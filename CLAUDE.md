@@ -74,6 +74,11 @@ Run `make validate` after any script edit, `make clutter` after any change to
 what is harvested, `make docs` after any change to documentation.
 [All targets](.docs/guides/workflow.md).
 
+**Finished work is committed straight to `main`** — no feature branch, no PR.
+This is a single-maintainer repo with no review step to serve, so a branch adds
+ceremony without adding a reader. Wait to be asked before committing, and run
+the loop above first: with nothing else gating what lands, it is the only gate.
+
 ---
 
 ## Four things about this environment
