@@ -75,6 +75,38 @@ STG_HUSNOCK = {
 			STG_N_Urgion STG_N_Datarrion STG_N_Lurrion STG_N_Nargion STG_N_Astarion STG_N_Peragion
 			STG_N_Selemarion STG_N_Lysargion STG_N_Lusmargion
 		}
+
+		corvette = {
+			STG_N_Berekarmur STG_N_Jatremion
+		}
+
+		destroyer = {
+			STG_N_Ascarimdar STG_N_Koordelur
+		}
+
+		cruiser = {
+			STG_N_Pellamur
+		}
+
+		battleship = {
+			STG_N_Oldaragur
+		}
+
+		science = {
+			STG_N_Jattarmur
+		}
+
+		colonizer = {
+			STG_N_Rendar
+		}
+
+		constructor = {
+			STG_N_Lurrmur
+		}
+
+		transport = {
+			STG_N_Etaradest
+		}
 	}
 
 	fleet_names = {

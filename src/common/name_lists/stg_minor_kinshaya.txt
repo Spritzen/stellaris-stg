@@ -56,6 +56,38 @@ STG_KINSHAYA = {
 			STG_N_HolyLight STG_N_Ayeh STG_N_DeaconOfVengance STG_N_BishopsWraith STG_N_VicarGeneralOfJanalwa STG_N_VicarOfWar
 			STG_N_DibleyFury STG_N_CathedralOfState STG_N_CathedralOfWar
 		}
+
+		corvette = {
+			STG_N_PriestofJustice STG_N_ArchbishipofStrength
+		}
+
+		destroyer = {
+			STG_N_PriestofFury STG_N_CardinalofWrath
+		}
+
+		cruiser = {
+			STG_N_BishopofHate
+		}
+
+		battleship = {
+			STG_N_CardinalofPower
+		}
+
+		science = {
+			STG_N_DeaconofDiscovery
+		}
+
+		colonizer = {
+			STG_N_DeaconofLife
+		}
+
+		constructor = {
+			STG_N_DeaconofBuild
+		}
+
+		transport = {
+			STG_N_DeaconofMove
+		}
 	}
 
 	fleet_names = {

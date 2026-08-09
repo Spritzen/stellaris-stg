@@ -68,11 +68,38 @@ for is whether the four chosen main-theme titles sit right beside the eighteen
 derived ones. And whether the rotation reads as 27 distinct recordings
 ([65](../decisions/65-music-rotation-dedupe.md)).
 
-### Ship registries
+### Ship registries and their class names
 
 Whether the Trek registries read right on the right hulls.
 [Decision 59](../decisions/59-ship-name-pools.md)'s tonnage table is a judgement,
 and **a Nebula-class name turning up on a corvette is the way it would be wrong.**
+
+The class half now folds by the same table
+([72](../decisions/72-ship-class-names.md)), so that sentence covers both and the
+class name is the easier of the two to catch by eye — *Nebula – Interceptor* is
+one glance. Three things new to that pass: whether the **Klingon and Romulan
+lists read as their own** (the join that would have leaked Federation classes
+into them was deleted before it shipped, so this is a check that nothing else
+does the same); whether the **Defiant showing at two tonnages** — destroyer and
+cruiser, which is STNH's own modelling — reads as wrong or as fine; and whether
+any list still draws a class name that plainly belongs to another tonnage, which
+would mean a `generic` token escaped demotion.
+
+> **The empty tiers are filled by hand, and what needs eyes is the writing.**
+> [Decision 73](../decisions/73-class-name-thematic-fill.md) gave the five
+> tonnage-less empires a graded set, filled eight missing titans and placed
+> Romulan's destroyers from names it already had — **21 of 22 playable empires
+> now carry all five core tiers**, against 13. The registers are vanilla's own
+> second idiom (NEC4's vices, AQU1's water), so what to look for is whether the
+> invented English sits beside the canon names without sounding like a different
+> mod: **`Stormwall` next to `Bolarus`, `Escrow` next to `Jaglom Shrek`**, and
+> whether the Xindi species names read as classes or just as species labels.
+>
+> Two things left standing on purpose. **Malon's inherited pools name a type,
+> not a class** — STNH declares `Waste Extraction Cruiser`, which will read as
+> *"Waste Extraction Cruiser – Interceptor"*; it is a source's content, so it is
+> flagged rather than cut. And **the 46 AI-only minors stay generic-only**,
+> where `generic` is drawn 100% of the time and thin is not broken.
 
 ### Answered, kept here for the shape of the answer
 

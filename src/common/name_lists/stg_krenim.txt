@@ -60,8 +60,36 @@ STG_KRENIM = {
 
 	ship_class_names = {
 		generic = {
-			STG_N_Annorax STG_N_Obrist STG_N_Kyana STG_N_Chroniton STG_N_Temporal STG_N_Erasure STG_N_Restoration
+			STG_N_Obrist STG_N_Kyana STG_N_Chroniton STG_N_Temporal STG_N_Erasure STG_N_Restoration
 			STG_N_Incursion STG_N_Causality
+		}
+
+		corvette = {
+			STG_N_Era STG_N_Duration
+		}
+
+		destroyer = {
+			STG_N_Infinity STG_N_Tempo
+		}
+
+		cruiser = {
+			STG_N_Eternity STG_N_Chrono
+		}
+
+		battleship = {
+			STG_N_Millennium
+		}
+
+		titan = {
+			STG_N_Continuum STG_N_Paradox
+		}
+
+		juggernaut = {
+			STG_N_Annorax
+		}
+
+		science = {
+			STG_N_Epoch
 		}
 	}
 

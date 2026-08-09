@@ -55,7 +55,27 @@ STG_PAKLED = {
 	ship_class_names = {
 		generic = {
 			STG_N_BigShip STG_N_Hunter STG_N_Pakled STG_N_Poacher STG_N_Trapper STG_N_FighterShip
-			STG_N_GoFaster STG_N_Mondom STG_N_Mondor
+			STG_N_GoFaster STG_N_Mondom
+		}
+
+		corvette = {
+			STG_N_Smallship STG_N_Boomship
+		}
+
+		destroyer = {
+			STG_N_Mondor STG_N_Pakledship
+		}
+
+		cruiser = {
+			STG_N_Spaceship STG_N_Clumpship
+		}
+
+		battleship = {
+			STG_N_Fightyship
+		}
+
+		science = {
+			STG_N_Smartship
 		}
 	}
 

@@ -64,6 +64,38 @@ STG_FENDOMAR = {
 			STG_N_BlazeOfDomar STG_N_BrillianceOfDomar STG_N_DazzlingOfDomar STG_N_FlashingOfDomar STG_N_GlisteningOfDomar STG_N_GlitteringOfDomar
 			STG_N_GoldenOfDomar STG_N_IntensityOfDomar STG_N_LuminousDomar
 		}
+
+		corvette = {
+			STG_N_FistofDomar STG_N_StrikeofDomar
+		}
+
+		destroyer = {
+			STG_N_KnifeofDomar STG_N_HateofDomar
+		}
+
+		cruiser = {
+			STG_N_WeaponsofDomar
+		}
+
+		battleship = {
+			STG_N_SlashofDomar
+		}
+
+		science = {
+			STG_N_LoveofDomar
+		}
+
+		colonizer = {
+			STG_N_HeartofDomar
+		}
+
+		constructor = {
+			STG_N_FaithofDomar
+		}
+
+		transport = {
+			STG_N_HeatofDomar
+		}
 	}
 
 	fleet_names = {

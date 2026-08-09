@@ -53,8 +53,28 @@ STG_BOLIAN = {
 
 	ship_class_names = {
 		generic = {
-			STG_N_Bolarus STG_N_Bolias STG_N_Ansata STG_N_Corvan STG_N_Tenara STG_N_Sappora STG_N_Nelvana
-			STG_N_Melona STG_N_Barisa
+			STG_N_Bolarus STG_N_Bolias STG_N_Ansata STG_N_Corvan STG_N_Tenara STG_N_Sappora
+			STG_N_Nelvana STG_N_Melona STG_N_Barisa
+		}
+
+		corvette = {
+			STG_N_Bole STG_N_Spindrift STG_N_Shoal STG_N_Breaker
+		}
+
+		destroyer = {
+			STG_N_Undertow STG_N_Tidewater STG_N_Squall
+		}
+
+		cruiser = {
+			STG_N_Quorum STG_N_Bluecrest STG_N_Deepwater
+		}
+
+		battleship = {
+			STG_N_Threefold STG_N_Concordance STG_N_Stormwall
+		}
+
+		titan = {
+			STG_N_WorldCouncil STG_N_Ascendant
 		}
 	}
 

@@ -68,6 +68,27 @@ STG_GARIDIAN = {
 			STG_N_Shagus STG_N_Grinselius STG_N_Swiselas STG_N_Matixas STG_N_Harel STG_N_ZiMpuls
 			STG_N_Ajrmr STG_N_Belak STG_N_Dridthau
 		}
+
+		corvette = {
+			STG_N_Rea STG_N_Stanet STG_N_Jorek STG_N_Arhael STG_N_Tvaro STG_N_Tliss
+			STG_N_Tmara STG_N_Tdair
+		}
+
+		cruiser = {
+			STG_N_Tellus STG_N_Stasek STG_N_Sharien STG_N_Kanassarum STG_N_Valdore STG_N_Vreedex
+		}
+
+		battleship = {
+			STG_N_Tshen STG_N_Debrune STG_N_Valkis STG_N_Kaskara STG_N_Pontilus STG_N_Dderidex
+		}
+
+		titan = {
+			STG_N_Scimitar
+		}
+
+		military_station_small = {
+			STG_N_Jian
+		}
 	}
 
 	fleet_names = {

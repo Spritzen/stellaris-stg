@@ -106,6 +106,8 @@ which is also where the rule lives: category is in this index, not in the path.
 | [51](51-prescripted-loc-scope.md) | The other three prescripted-power files are clean; the check keeps two scopes |
 | [52](52-trek-star-names.md) | Trek star names come from STNH's **maps**, not its `star_names` pool |
 | [59](59-ship-name-pools.md) | STNH's ship registries, folded onto vanilla's ship sizes |
+| [72](72-ship-class-names.md) | STNH declares its own class names, so 59's fuzzy join was never needed |
+| [73](73-class-name-thematic-fill.md) | A class-name pool is one semantic field, and vanilla is the model for filling one |
 
 ## Ship art and weapon mounts
 

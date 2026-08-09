@@ -74,8 +74,44 @@ STG_FERENGI = {
 
 	ship_class_names = {
 		generic = {
-			STG_N_DKora STG_N_Marauder STG_N_Kreechta STG_N_Krayton STG_N_Nagus STG_N_Ledger STG_N_Bargainer
-			STG_N_TradeWind STG_N_Venture
+			STG_N_Marauder STG_N_Kreechta STG_N_Krayton STG_N_Ledger STG_N_Bargainer STG_N_TradeWind
+			STG_N_Venture
+		}
+
+		corvette = {
+			STG_N_Profit STG_N_Finance
+		}
+
+		destroyer = {
+			STG_N_Ulis STG_N_Taxation
+		}
+
+		cruiser = {
+			STG_N_Nagus STG_N_DKora
+		}
+
+		battleship = {
+			STG_N_DaiMon
+		}
+
+		titan = {
+			STG_N_DivineTreasury STG_N_GrandExchange
+		}
+
+		science = {
+			STG_N_DKala
+		}
+
+		constructor = {
+			STG_N_Qurell
+		}
+
+		transport = {
+			STG_N_Prineta
+		}
+
+		military_station_large = {
+			STG_N_NagusWill STG_N_DRel
 		}
 	}
 

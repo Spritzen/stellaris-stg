@@ -59,8 +59,43 @@ STG_BAJORAN = {
 
 	ship_class_names = {
 		generic = {
-			STG_N_Denorios STG_N_Kendra STG_N_Dahkur STG_N_Rakantha STG_N_Musilla STG_N_Hedrikspool STG_N_Lonar
-			STG_N_Janitza STG_N_Perikian
+			STG_N_Kendra STG_N_Dahkur STG_N_Rakantha STG_N_Musilla STG_N_Hedrikspool STG_N_Lonar
+		}
+
+		corvette = {
+			STG_N_Perikian STG_N_Antares
+		}
+
+		destroyer = {
+			STG_N_Ornathia STG_N_Shabren
+		}
+
+		cruiser = {
+			STG_N_Janitza
+		}
+
+		battleship = {
+			STG_N_Denorios
+		}
+
+		titan = {
+			STG_N_Shakaar STG_N_Kohn-Ma
+		}
+
+		science = {
+			STG_N_Atlira STG_N_Bestri
+		}
+
+		colonizer = {
+			STG_N_OrbofUnity
+		}
+
+		constructor = {
+			STG_N_OrbofChange
+		}
+
+		transport = {
+			STG_N_Janitza
 		}
 	}
 

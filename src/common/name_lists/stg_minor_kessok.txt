@@ -84,6 +84,26 @@ STG_KESSOK = {
 			STG_N_AflrnaR STG_N_Aglhafhm STG_N_AhbosyAgl STG_N_BsnaRuazhro STG_N_Bsnyhah STG_N_BiyLal
 			STG_N_EnffHyeF STG_N_EioRo STG_N_EyaZhro
 		}
+
+		corvette = {
+			STG_N_Yel-Fex STG_N_Sal-Fex
+		}
+
+		destroyer = {
+			STG_N_Tel-Fex STG_N_Neb-Fex
+		}
+
+		cruiser = {
+			STG_N_Bel-Fex STG_N_Lea-Fex
+		}
+
+		battleship = {
+			STG_N_Pal-Fex STG_N_Sol-Fex
+		}
+
+		military_station_small = {
+			STG_N_Def-Fex
+		}
 	}
 
 	fleet_names = {

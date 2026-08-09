@@ -60,8 +60,28 @@ STG_MALON = {
 
 	ship_class_names = {
 		generic = {
-			STG_N_Emck STG_N_Fesek STG_N_Vrelk STG_N_Controller STG_N_Export STG_N_Hauler STG_N_Tanker
-			STG_N_Reclaimer STG_N_Discharge
+			STG_N_Emck STG_N_Fesek STG_N_Vrelk STG_N_Controller STG_N_Export STG_N_Hauler
+			STG_N_Tanker STG_N_Reclaimer STG_N_Discharge
+		}
+
+		corvette = {
+			STG_N_WasteExtractionFrigate STG_N_WasteExtractionRaider
+		}
+
+		destroyer = {
+			STG_N_WasteExtractionDestroyer STG_N_WasteExtractionBattlecruiser
+		}
+
+		cruiser = {
+			STG_N_WasteExtractionCruiser STG_N_WasteExtractionAssaultCruiser
+		}
+
+		battleship = {
+			STG_N_WasteExtractionBattleship
+		}
+
+		titan = {
+			STG_N_Behemoth STG_N_Theta
 		}
 	}
 

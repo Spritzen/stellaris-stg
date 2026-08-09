@@ -91,8 +91,28 @@ STG_VIDIIAN = {
 
 	ship_class_names = {
 		generic = {
-			STG_N_Dereth STG_N_Motura STG_N_Sulan STG_N_Danara STG_N_Honatta STG_N_Phage STG_N_Sustainer
-			STG_N_Harvest STG_N_Transplant
+			STG_N_Dereth STG_N_Motura STG_N_Sulan STG_N_Danara STG_N_Honatta STG_N_Phage
+			STG_N_Sustainer STG_N_Harvest STG_N_Transplant
+		}
+
+		corvette = {
+			STG_N_Lancet STG_N_Scalpel STG_N_Suture
+		}
+
+		destroyer = {
+			STG_N_Graft STG_N_Excision STG_N_Vector
+		}
+
+		cruiser = {
+			STG_N_Donor STG_N_Splice STG_N_Culture
+		}
+
+		battleship = {
+			STG_N_Remedy STG_N_Immunity STG_N_Palliative
+		}
+
+		titan = {
+			STG_N_Sodality STG_N_Convalescence
 		}
 	}
 

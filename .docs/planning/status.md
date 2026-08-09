@@ -16,7 +16,7 @@ number here has a date because every number here goes stale —
 | **Phase 1** — playable Federation | **complete**, run in-game repeatedly |
 | **Phase 2** — the rest of the galaxy | **complete**. 101 prescripted empires (22 playable, 79 AI-only minors), 101 species classes, 92 name lists, 37 real home systems |
 | **Phase 3** — art and identity | **complete 2026-08-08**. Clothing triggers, shipsets, weapon mounts, flags, rooms, city sets, loading screens, `paragon_backgrounds.txt`, the shipsets' 39 extra flags |
-| **Phase 4** — polish | **started 2026-08-08**: music ([55](../decisions/55-federation-anthem.md)), then the ship registries ([59](../decisions/59-ship-name-pools.md)). Events, anomalies and archaeology are untouched and still deliberately last |
+| **Phase 4** — polish | **started 2026-08-08**: music ([55](../decisions/55-federation-anthem.md)), then the ship registries ([59](../decisions/59-ship-name-pools.md)) and their class names ([72](../decisions/72-ship-class-names.md), [73](../decisions/73-class-name-thematic-fill.md), 2026-08-09). Events, anomalies and archaeology are untouched and still deliberately last |
 | **Phase 5** — the clutter pass | **complete 2026-08-07** (pipeline work, taken out of order) |
 
 `make docs` stands at **0 warnings, 0 errors** and now asks a second family of

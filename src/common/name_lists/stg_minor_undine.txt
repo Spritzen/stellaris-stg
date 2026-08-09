@@ -55,8 +55,47 @@ STG_UNDINE = {
 
 	ship_class_names = {
 		generic = {
-			STG_N_Dashel STG_N_Kraken STG_N_Cheirex STG_N_Dahut STG_N_Telen STG_N_Talen
-			STG_N_Nicor STG_N_Dromias STG_N_Dactylus
+			STG_N_Cheirex STG_N_Telen
+		}
+
+		corvette = {
+			STG_N_Cheirax STG_N_Nicor STG_N_Dahut
+		}
+
+		destroyer = {
+			STG_N_Talen
+		}
+
+		cruiser = {
+			STG_N_Dromias
+		}
+
+		battleship = {
+			STG_N_Chast STG_N_Dactylus STG_N_Vila
+		}
+
+		titan = {
+			STG_N_infestabami
+		}
+
+		juggernaut = {
+			STG_N_Tethys STG_N_Kraken
+		}
+
+		science = {
+			STG_N_Dashel
+		}
+
+		colonizer = {
+			STG_N_Seed-Ship
+		}
+
+		constructor = {
+			STG_N_Chemxita
+		}
+
+		transport = {
+			STG_N_Yasel
 		}
 	}
 

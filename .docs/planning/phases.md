@@ -410,8 +410,43 @@ names) which a vanilla chassis cannot ask for.
 `tools/gen_ship_names.py` folds them onto vanilla's ship sizes by an explicit
 tonnage table — an unmapped key stops the build — and re-emits the values as
 `STG_N_` keys. **88 lists, 6,093 → 32,805 tokens, 9,951 new name keys.**
-`ship_class_names` is the other half and is still open; that decision records why
-the obvious source for it does not work.
+> **The other half is done, and the answer was that the question was wrong.**
+> [Decision 72](../decisions/72-ship-class-names.md): STNH's name lists carry
+> their own `ship_class_names` block, one loc token per hull, declaring **165 of
+> the 177 Trek hull keys** — so the fuzzy join decision 59 called for was never
+> needed, and it was built, measured and deleted. It contributed nothing but
+> would have put **Saber, Steamrunner and Sovereign in the Klingon fleet**,
+> because STNH's cross-empire hulls are literally named that.
+> `tools/gen_ship_class_names.py` imports 59's tonnage table rather than
+> restating it. **92 lists, 820 → 1,766 tokens, 286 new class keys.**
+>
+> It also reverses 59's exclusion of `bolian`, `breen`, `bajoran` and `andorian`
+> **for class names only** — right for registries, wrong here, and three of the
+> four declare their own. Searching Memory Alpha and then Memory Beta for the
+> five playable empires still without a size split returned **nothing worth
+> taking**: canon names no classes for Tholian, Vidiian, Trill or Yridian ships,
+> and what STG hand-wrote in Phase 1 is already the better material.
+
+### Done: the class names STNH does not have
+
+[Decision 73](../decisions/73-class-name-thematic-fill.md), and the model is
+vanilla. Its 13 class-name lists use exactly two idioms — invented
+species-language words (HUM1's `Il-Koth`, LITH3's `Kroshhk`) or **one semantic
+field in plain English** (NEC4's vices, HIVE2's robustness, AQU1's water) — and
+the second is what STG's Phase 1 pools already are, so extending a register is
+not inventing lore. **99 hand-authored names across 15 lists, 820 → 1,864
+tokens, and 21 of 22 playable empires now carry all five core tiers** against 13.
+
+> **Vanilla never splits this block by tonnage at all** — all 13 lists are
+> `generic` only, 17–40 names, median 22. STG splits because a Trek class *is*
+> its tonnage, but vanilla's pool sizes are the yardstick and STG is still under
+> them. Left thin rather than padded.
+>
+> The subtlety worth carrying: **`generic` is drawn at any tonnage** — vanilla's
+> README puts it at 50/50 against the size-specific list — so STG's ten
+> hand-written names had to be *demoted out of* generic once a size claimed
+> them, or Nebula would still land on a corvette half the time. Matched by
+> shape, because STG wrote `DDeridex` and STNH writes `D'deridex`.
 
 ### Everything else in this phase is unstarted
 

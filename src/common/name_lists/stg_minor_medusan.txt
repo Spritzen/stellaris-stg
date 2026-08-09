@@ -61,7 +61,27 @@ STG_MEDUSAN = {
 	ship_class_names = {
 		generic = {
 			STG_N_Kollos STG_N_Zero STG_N_Alpha STG_N_Kellan STG_N_Kella STG_N_Gamma
-			STG_N_Korgan STG_N_Chanx STG_N_Fettas
+			STG_N_Fettas
+		}
+
+		corvette = {
+			STG_N_Koll STG_N_Hellas
+		}
+
+		destroyer = {
+			STG_N_Visalayan STG_N_Lamora
+		}
+
+		cruiser = {
+			STG_N_Hydrae STG_N_Medula
+		}
+
+		battleship = {
+			STG_N_Korgan
+		}
+
+		science = {
+			STG_N_Chanx
 		}
 	}
 

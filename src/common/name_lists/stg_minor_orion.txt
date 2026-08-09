@@ -67,6 +67,38 @@ STG_ORION = {
 			STG_N_ProfitsGrasp STG_N_Flight STG_N_Robber STG_N_Looter STG_N_Corsair STG_N_Warbarge
 			STG_N_Slavemaster STG_N_Ravager STG_N_Pillager
 		}
+
+		corvette = {
+			STG_N_Scavenger STG_N_Barge
+		}
+
+		destroyer = {
+			STG_N_Interceptor STG_N_Harad
+		}
+
+		cruiser = {
+			STG_N_Maraar
+		}
+
+		battleship = {
+			STG_N_Marauder
+		}
+
+		science = {
+			STG_N_Wanderer
+		}
+
+		colonizer = {
+			STG_N_Grasper
+		}
+
+		constructor = {
+			STG_N_Harik
+		}
+
+		transport = {
+			STG_N_Kretchet
+		}
 	}
 
 	fleet_names = {

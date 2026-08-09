@@ -58,8 +58,27 @@ STG_CAITIAN = {
 
 	ship_class_names = {
 		generic = {
-			STG_N_Atrox STG_N_Ferox STG_N_Ferus STG_N_Torvus STG_N_Bestialis STG_N_Aspero
-			STG_N_Hadir STG_N_Stalker STG_N_Huntress
+			STG_N_Bestialis STG_N_Aspero STG_N_Hadir STG_N_Huntress
+		}
+
+		corvette = {
+			STG_N_Stalker STG_N_Lynx
+		}
+
+		destroyer = {
+			STG_N_Ferus STG_N_Torvus
+		}
+
+		cruiser = {
+			STG_N_Atrox STG_N_Pouncer
+		}
+
+		battleship = {
+			STG_N_Ferox
+		}
+
+		science = {
+			STG_N_Hunter
 		}
 	}
 

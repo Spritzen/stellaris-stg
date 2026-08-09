@@ -148,6 +148,35 @@ TONNAGE: list[tuple[str, str]] = [
     ("civ_", "corvette"),
     ("small_ship", "corvette"),
     ("large_ship", "cruiser"),
+
+    # ── the hulls only ship_class_names names ──
+    #
+    # `ship_class_names` is keyed by the same hull vocabulary but reaches 19
+    # hulls no registry pool does -- the Borg, the Undine, the fallen empires,
+    # the Xindi planet killer, Annorax. They are placed by VANILLA'S OWN
+    # fleet_slot_size ladder (corvette 1, destroyer 2, cruiser 3, battleship 4,
+    # titan 8, juggernaut and colossus 32) read against STNH's value for each
+    # hull, which is the comment on every line. Nothing here is a guess about
+    # what a cube "feels like".
+    ("borg_probe", "corvette"),                             # fleet 1
+    ("borg_unimatrix_defense", "military_station_small"),   # fleet 2, a station
+    ("cardassian_cannon", "military_station_small"),        # fleet 2, a station
+    ("borg_pyramid", "battleship"),                         # fleet 4
+    ("borg_sphere", "battleship"),                          # fleet 4
+    ("fallen_attack", "battleship"),                        # fleet 4
+    ("fallen_interdictor", "battleship"),                   # fleet 4
+    ("undine_01_bio_ship", "battleship"),                   # fleet 4
+    ("borg_diamond", "titan"),                              # fleet 8
+    ("fallen_assault", "titan"),                            # fleet 8
+    ("cardassian_01_weapons_platform", "titan"),            # fleet 16
+    ("undine_01_bio_infester", "titan"),                    # fleet 16
+    ("xindi_planet_killer", "titan"),                       # fleet 16
+    ("borg_cube", "juggernaut"),                            # fleet 32
+    ("borg_tactical", "juggernaut"),                        # fleet 32
+    ("super_cube", "juggernaut"),                           # fleet 32
+    ("time_ship_annorax", "juggernaut"),                    # fleet 32
+    ("undine_01_bio_behemoth", "juggernaut"),               # fleet 32
+    ("undine_01_bio_vanquisher", "juggernaut"),             # fleet 32
 ]
 TONNAGE.sort(key=lambda r: -len(r[0]))
 

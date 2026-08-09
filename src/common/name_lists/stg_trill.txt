@@ -58,8 +58,28 @@ STG_TRILL = {
 
 	ship_class_names = {
 		generic = {
-			STG_N_Ganses STG_N_Makala STG_N_Tenaran STG_N_Rixx STG_N_LeranManev STG_N_Kurl STG_N_Belar
-			STG_N_Vernan STG_N_Kelis
+			STG_N_Ganses STG_N_Makala STG_N_Tenaran STG_N_Rixx STG_N_LeranManev STG_N_Kurl
+			STG_N_Belar STG_N_Vernan STG_N_Kelis
+		}
+
+		corvette = {
+			STG_N_Initiate STG_N_Manev STG_N_Anwar
+		}
+
+		destroyer = {
+			STG_N_Guardian STG_N_Kaleem STG_N_Trillius
+		}
+
+		cruiser = {
+			STG_N_Symbiosis STG_N_Continuance STG_N_Caverns
+		}
+
+		battleship = {
+			STG_N_BesManev STG_N_Lifetime
+		}
+
+		titan = {
+			STG_N_Zhiantara
 		}
 	}
 

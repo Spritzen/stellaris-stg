@@ -67,8 +67,40 @@ STG_MAM1 = {
 
 	ship_class_names = {
 		generic = {
-			STG_N_TTanak STG_N_TTuda STG_N_TTimonok STG_N_TDimik STG_N_TDerikam STG_N_DDana
-			STG_N_DVormat STG_N_DKirmik STG_N_TKana
+			STG_N_TTanak STG_N_TTuda STG_N_TTimonok STG_N_TDimik STG_N_DDana STG_N_DVormat
+			STG_N_DKirmik
+		}
+
+		corvette = {
+			STG_N_DKuru STG_N_DOh
+		}
+
+		destroyer = {
+			STG_N_TTerell STG_N_DTarga
+		}
+
+		cruiser = {
+			STG_N_TDerikam STG_N_YViram
+		}
+
+		battleship = {
+			STG_N_YSorom
+		}
+
+		science = {
+			STG_N_DJolsik
+		}
+
+		colonizer = {
+			STG_N_TTyrik
+		}
+
+		constructor = {
+			STG_N_TSaris
+		}
+
+		transport = {
+			STG_N_TKana
 		}
 	}
 

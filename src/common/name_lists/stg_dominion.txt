@@ -64,8 +64,44 @@ STG_DOMINION = {
 
 	ship_class_names = {
 		generic = {
-			STG_N_JemHadar STG_N_Vorta STG_N_Karemma STG_N_Rondac STG_N_Omarion STG_N_Kurill STG_N_Vandros
-			STG_N_Callinon STG_N_Torga
+			STG_N_JemHadar STG_N_Vorta STG_N_Karemma STG_N_Rondac STG_N_Omarion STG_N_Kurill
+			STG_N_Vandros STG_N_Callinon STG_N_Torga
+		}
+
+		corvette = {
+			STG_N_Patrol STG_N_ScarabFighter STG_N_AttackShip STG_N_HeavyAttackShip
+		}
+
+		destroyer = {
+			STG_N_Destroyer STG_N_Warship STG_N_HeavyAttackShip STG_N_Battlecruiser
+		}
+
+		cruiser = {
+			STG_N_Cruiser STG_N_AssaultCruiser STG_N_AttackCruiser STG_N_HeavyAssaultCruiser
+		}
+
+		battleship = {
+			STG_N_Battleship STG_N_Dreadnaught STG_N_AdvancedDreadnaught
+		}
+
+		titan = {
+			STG_N_Shrike
+		}
+
+		science = {
+			STG_N_Science STG_N_ScienceVessel
+		}
+
+		colonizer = {
+			STG_N_ColonyVessel
+		}
+
+		constructor = {
+			STG_N_Kudak STG_N_ConstructionVessel
+		}
+
+		transport = {
+			STG_N_Ammut STG_N_TransportVessel
 		}
 	}
 

@@ -57,6 +57,30 @@ STG_HAZARI = {
 			STG_N_SeperElegion STG_N_SeperSetnassel STG_N_SeperHundramel STG_N_SeperGrenalion STG_N_SeperFundroleth STG_N_SeperSagredioth
 			STG_N_SeperCurenrod STG_N_SeperTulethendral STG_N_SeperHuvendrog
 		}
+
+		corvette = {
+			STG_N_Afan STG_N_SafalonWing
+		}
+
+		destroyer = {
+			STG_N_Goran STG_N_Kurros
+		}
+
+		cruiser = {
+			STG_N_Vyliged STG_N_Hundramel
+		}
+
+		battleship = {
+			STG_N_Slitherin
+		}
+
+		science = {
+			STG_N_Zolalus
+		}
+
+		military_station_small = {
+			STG_N_Dras
+		}
 	}
 
 	fleet_names = {

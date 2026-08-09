@@ -47,7 +47,11 @@ tools/
   gen_star_names.py     one-shot: 829 Trek star + 80 nebula names harvested from
                         STNH's hand-built map/setup_scenarios (decision 52)
   gen_ship_names.py     the ship_names pools: STNH's 38,707 registry names
-                        folded onto vanilla's ship sizes (decision 59)
+                        folded onto vanilla's ship sizes (decision 59). Owns the
+                        tonnage table both halves of a ship's name fold by
+  gen_ship_class_names.py  the other half: the ship_class_names pools, STNH's own
+                        per-hull class declarations folded by the same table
+                        (decision 72)
   gen_ruler_clothes.py  the seven empire-select ruler portraits and their
                         one-texture clothes selectors (decision 69)
   fix_ship_locators.py  weapon mount positions (decisions 28, 60, 67)

@@ -59,8 +59,27 @@ STG_LYRAN = {
 
 	ship_class_names = {
 		generic = {
-			STG_N_BlackStripe STG_N_PeltHunter STG_N_Battleclaw STG_N_Demonclaw STG_N_Scarclaw STG_N_Ironclaw
-			STG_N_GoldenFang STG_N_Predator STG_N_PredatorCounty
+			STG_N_BlackStripe STG_N_PeltHunter STG_N_GoldenFang STG_N_Predator STG_N_PredatorCounty
+		}
+
+		corvette = {
+			STG_N_Cheetah STG_N_Lynx
+		}
+
+		destroyer = {
+			STG_N_Savage STG_N_Battleclaw
+		}
+
+		cruiser = {
+			STG_N_Scarclaw STG_N_Demonclaw
+		}
+
+		battleship = {
+			STG_N_Ironclaw
+		}
+
+		science = {
+			STG_N_Lyra
 		}
 	}
 

@@ -63,8 +63,32 @@ STG_CAITIAN = {
 
 	ship_class_names = {
 		generic = {
-			STG_N_Cait STG_N_Ferasa STG_N_MRess STG_N_Shrar STG_N_Rrowl STG_N_Kailar STG_N_Nashira
-			STG_N_Sennira STG_N_Tarath
+			STG_N_Cait STG_N_Ferasa STG_N_MRess STG_N_Shrar STG_N_Rrowl STG_N_Kailar
+			STG_N_Nashira STG_N_Sennira STG_N_Tarath
+		}
+
+		corvette = {
+			STG_N_Stalker STG_N_Lynx
+		}
+
+		destroyer = {
+			STG_N_Ferus STG_N_Torvus
+		}
+
+		cruiser = {
+			STG_N_Atrox STG_N_Pouncer
+		}
+
+		battleship = {
+			STG_N_Ferox
+		}
+
+		titan = {
+			STG_N_Pridemaster STG_N_Sabertooth
+		}
+
+		science = {
+			STG_N_Hunter
 		}
 	}
 

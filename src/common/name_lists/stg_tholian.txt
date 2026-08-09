@@ -61,8 +61,28 @@ STG_THOLIAN = {
 
 	ship_class_names = {
 		generic = {
-			STG_N_Loskene STG_N_Nezhek STG_N_Lattice STG_N_Prism STG_N_Facet STG_N_Spinneret STG_N_Obsidian
-			STG_N_Quartzite STG_N_Spinel
+			STG_N_Loskene STG_N_Nezhek STG_N_Lattice STG_N_Prism STG_N_Facet STG_N_Spinneret
+			STG_N_Obsidian STG_N_Quartzite STG_N_Spinel
+		}
+
+		corvette = {
+			STG_N_Shard STG_N_Sliver STG_N_Needle STG_N_Chert
+		}
+
+		destroyer = {
+			STG_N_Tessera STG_N_Rutile STG_N_Zircon
+		}
+
+		cruiser = {
+			STG_N_Geode STG_N_Beryl STG_N_Cinnabar
+		}
+
+		battleship = {
+			STG_N_Carapace STG_N_Corundum STG_N_Vitrine
+		}
+
+		titan = {
+			STG_N_Weaver STG_N_Adamant
 		}
 	}
 

@@ -76,8 +76,47 @@ STG_CARDASSIAN = {
 
 	ship_class_names = {
 		generic = {
-			STG_N_Galor STG_N_Keldon STG_N_Hideki STG_N_Groumall STG_N_Brinok
-			STG_N_Nokar STG_N_Rasilak STG_N_Sarcophagus STG_N_Vetar
+			STG_N_Groumall STG_N_Brinok STG_N_Nokar STG_N_Sarcophagus STG_N_Vetar
+		}
+
+		corvette = {
+			STG_N_Hideki STG_N_Rasilak
+		}
+
+		destroyer = {
+			STG_N_Glint STG_N_Kulinor
+		}
+
+		cruiser = {
+			STG_N_Veracidor STG_N_Keldon STG_N_Ekoor STG_N_Letau STG_N_Kimal
+		}
+
+		battleship = {
+			STG_N_Galor STG_N_Hutet STG_N_Obsidian
+		}
+
+		titan = {
+			STG_N_Chintoka
+		}
+
+		science = {
+			STG_N_Marek
+		}
+
+		constructor = {
+			STG_N_Dalek
+		}
+
+		transport = {
+			STG_N_Balek
+		}
+
+		military_station_small = {
+			STG_N_Glimar STG_N_Mekor
+		}
+
+		military_station_large = {
+			STG_N_Nor
 		}
 	}
 

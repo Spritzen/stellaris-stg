@@ -67,8 +67,27 @@ STG_BYNAR = {
 
 	ship_class_names = {
 		generic = {
-			STG_N_0 STG_N_1 STG_N_10 STG_N_11 STG_N_100 STG_N_101
-			STG_N_110 STG_N_111 STG_N_1000
+			STG_N_111 STG_N_1000
+		}
+
+		corvette = {
+			STG_N_1 STG_N_110
+		}
+
+		destroyer = {
+			STG_N_10 STG_N_100
+		}
+
+		cruiser = {
+			STG_N_11
+		}
+
+		battleship = {
+			STG_N_101
+		}
+
+		science = {
+			STG_N_0
 		}
 	}
 

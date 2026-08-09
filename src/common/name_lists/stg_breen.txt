@@ -57,6 +57,38 @@ STG_BREEN = {
 			STG_N_Dissipator STG_N_Rimefall STG_N_Whiteout STG_N_Glacier STG_N_Frostbite STG_N_Blizzard
 			STG_N_Hoarfrost STG_N_Icebound STG_N_Snowblind
 		}
+
+		corvette = {
+			STG_N_CelGrett STG_N_TeshNarr
+		}
+
+		destroyer = {
+			STG_N_PleshBrek STG_N_Rezreth
+		}
+
+		cruiser = {
+			STG_N_BlethChoas STG_N_Reikken
+		}
+
+		battleship = {
+			STG_N_SarrThenn
+		}
+
+		titan = {
+			STG_N_Permafrost STG_N_AbsoluteZero
+		}
+
+		science = {
+			STG_N_HeshThor
+		}
+
+		constructor = {
+			STG_N_ChaaFess
+		}
+
+		transport = {
+			STG_N_ChallRess
+		}
 	}
 
 	fleet_names = {

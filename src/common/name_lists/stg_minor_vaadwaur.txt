@@ -54,8 +54,39 @@ STG_VAADWAUR = {
 
 	ship_class_names = {
 		generic = {
-			STG_N_Snake STG_N_Asp STG_N_Adder STG_N_Cascabel STG_N_Krait STG_N_Kadru
-			STG_N_Yarara STG_N_Garuda STG_N_Taipan
+			STG_N_Snake STG_N_Adder STG_N_Kadru STG_N_Yarara STG_N_Garuda
+		}
+
+		corvette = {
+			STG_N_Nagaraja STG_N_Asp
+		}
+
+		destroyer = {
+			STG_N_Taipan STG_N_Astika
+		}
+
+		cruiser = {
+			STG_N_Manasa
+		}
+
+		battleship = {
+			STG_N_Cascabel
+		}
+
+		science = {
+			STG_N_Eldaxia STG_N_Krait
+		}
+
+		colonizer = {
+			STG_N_Valaxia
+		}
+
+		constructor = {
+			STG_N_Vasukwaur
+		}
+
+		transport = {
+			STG_N_Vasuki
 		}
 	}
 

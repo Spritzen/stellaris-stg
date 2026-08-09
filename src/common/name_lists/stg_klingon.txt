@@ -180,8 +180,45 @@ STG_KLINGON = {
 
 	ship_class_names = {
 		generic = {
-			STG_N_Brel STG_N_Ktinga STG_N_Vorcha STG_N_NeghVar
-			STG_N_Somraw STG_N_Raptor STG_N_DKtagh STG_N_Karfi
+			STG_N_Raptor STG_N_DKtagh STG_N_Karfi
+		}
+
+		corvette = {
+			STG_N_Klughtal STG_N_ChaqU STG_N_Borghel STG_N_BlasRika STG_N_HomChaPar STG_N_Brel
+			STG_N_PaghHaw STG_N_Sech STG_N_D6-Type STG_N_Klalath STG_N_KVort STG_N_Kivra
+			STG_N_Daqtagh STG_N_BRelAttackWing STG_N_Grethor STG_N_Feklhr
+		}
+
+		destroyer = {
+			STG_N_Qoj STG_N_Somraw STG_N_D5-Type STG_N_JevChapar STG_N_HeghJop STG_N_MeHadRaw
+		}
+
+		cruiser = {
+			STG_N_Jach STG_N_D7-Type STG_N_Ktinga STG_N_Norgh STG_N_Vorcha
+		}
+
+		battleship = {
+			STG_N_Jejha STG_N_RojPar STG_N_Kvek STG_N_NeghVar
+		}
+
+		titan = {
+			STG_N_DevastatorD5 STG_N_D7-Type STG_N_ChTang STG_N_JeHjhong
+		}
+
+		science = {
+			STG_N_Qed
+		}
+
+		constructor = {
+			STG_N_ghoS
+		}
+
+		transport = {
+			STG_N_lup
+		}
+
+		military_station_small = {
+			STG_N_DuQwl STG_N_Brel
 		}
 	}
 

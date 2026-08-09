@@ -537,8 +537,57 @@ STG_VULCAN = {
 
 	ship_class_names = {
 		generic = {
-			STG_N_Suurok STG_N_DKyr STG_N_ShRaan STG_N_Vahklas STG_N_Maymora
-			STG_N_NiVar STG_N_TPlanaHath STG_N_Surak STG_N_ShRan
+			STG_N_Suurok STG_N_ShRaan STG_N_Vahklas STG_N_Maymora STG_N_NiVar STG_N_TPlanaHath
+		}
+
+		corvette = {
+			STG_N_Karatek STG_N_Sharien STG_N_Vras STG_N_DMir STG_N_Emmette STG_N_Magee
+			STG_N_Saladin STG_N_Akula STG_N_Challenger STG_N_California STG_N_Frontier STG_N_Malachowski
+			STG_N_Daedalus STG_N_Oberth STG_N_Freedom STG_N_Olympic STG_N_Nova
+		}
+
+		destroyer = {
+			STG_N_TPau STG_N_Surak STG_N_Intrepid-Type STG_N_Bonaventure STG_N_Shepard STG_N_Kelvin
+			STG_N_Talas STG_N_Tpol STG_N_Gral STG_N_Centaur STG_N_Curry STG_N_Niagara
+			STG_N_Steamrunner STG_N_Saber STG_N_Parliament STG_N_NX STG_N_Cardenas STG_N_Hoover
+			STG_N_Miranda STG_N_NewOrleans STG_N_Cheyenne STG_N_KiriKinTha STG_N_Intrepid STG_N_Century
+		}
+
+		cruiser = {
+			STG_N_ShRan STG_N_DKyr STG_N_Poseidon STG_N_Walker STG_N_Constellation STG_N_Nebula
+			STG_N_Akira STG_N_Norway STG_N_Yorktown STG_N_Nimitz STG_N_Ares STG_N_Constitution
+			STG_N_Springfield STG_N_Sovereign STG_N_Defiant STG_N_Prometheus STG_N_Sarajevo STG_N_Engle
+			STG_N_Ptolomy STG_N_Sydney STG_N_IwoJima STG_N_Achilles STG_N_Argonaut
+		}
+
+		battleship = {
+			STG_N_TalKyr STG_N_Crossfield STG_N_Excelsior STG_N_Obena STG_N_Vesta STG_N_Federation
+			STG_N_Ambassador STG_N_Galaxy STG_N_Luna STG_N_Inquiry STG_N_Odyssey
+		}
+
+		titan = {
+			STG_N_EnterpriseA STG_N_EnterpriseB STG_N_EnterpriseC STG_N_EnterpriseD STG_N_EnterpriseE
+		}
+
+		science = {
+			STG_N_TVran
+		}
+
+		constructor = {
+			STG_N_Torvaya
+		}
+
+		transport = {
+			STG_N_TRen
+		}
+
+		military_station_small = {
+			STG_N_Puk STG_N_Shuttlepods STG_N_Khrash STG_N_Danube STG_N_Tlen STG_N_Yellowstone
+			STG_N_DMin STG_N_Aquarius
+		}
+
+		military_station_large = {
+			STG_N_Eles
 		}
 	}
 

@@ -146,6 +146,34 @@ STG_PRALOR = {
 			STG_N_AutomatedVessel11 STG_N_AutomatedVessel14 STG_N_AutomatedVessel17 STG_N_AutomatedVessel20 STG_N_AutomatedVessel23 STG_N_AutomatedVessel26
 			STG_N_AutomatedVessel29 STG_N_AutomatedVessel32 STG_N_AutomatedVessel35
 		}
+
+		corvette = {
+			STG_N_BasicAutomatedUnit STG_N_SuperiorAutomatedUnit
+		}
+
+		destroyer = {
+			STG_N_AttackAutomatedUnit STG_N_PriorityAutomatedUnit
+		}
+
+		cruiser = {
+			STG_N_UpgradedAutomatedUnit STG_N_SuperiorAutomatedUnit
+		}
+
+		battleship = {
+			STG_N_AdvancedAutomatedUnit
+		}
+
+		science = {
+			STG_N_AnalysisUnitClass
+		}
+
+		colonizer = {
+			STG_N_ColonisationUnitClass
+		}
+
+		transport = {
+			STG_N_TransportationUnitClass
+		}
 	}
 
 	fleet_names = {

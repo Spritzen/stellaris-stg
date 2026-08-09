@@ -58,6 +58,26 @@ STG_TZENKETHI = {
 			STG_N_Zelear STG_N_Zeeska STG_N_Alirliad STG_N_Vonme STG_N_Veleer STG_N_Bevonar
 			STG_N_Nenzeska STG_N_Korcht STG_N_Choskank
 		}
+
+		corvette = {
+			STG_N_Ertome STG_N_Aztraoz
+		}
+
+		destroyer = {
+			STG_N_Shuk-din STG_N_Rhasbej
+		}
+
+		cruiser = {
+			STG_N_Brolnta STG_N_Autarch
+		}
+
+		battleship = {
+			STG_N_Ja-Tem
+		}
+
+		science = {
+			STG_N_Ametiger
+		}
 	}
 
 	fleet_names = {

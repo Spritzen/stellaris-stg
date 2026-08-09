@@ -59,8 +59,28 @@ STG_YRIDIAN = {
 
 	ship_class_names = {
 		generic = {
-			STG_N_Yridia STG_N_Shrek STG_N_Ledger STG_N_Broker STG_N_Confidence STG_N_Whisper STG_N_Ransom
-			STG_N_Bargain STG_N_Retainer
+			STG_N_Yridia STG_N_Shrek STG_N_Ledger STG_N_Broker STG_N_Confidence STG_N_Whisper
+			STG_N_Ransom STG_N_Bargain STG_N_Retainer
+		}
+
+		corvette = {
+			STG_N_Courier STG_N_Cipher STG_N_Errand
+		}
+
+		destroyer = {
+			STG_N_Intercept STG_N_Dossier STG_N_Tipoff
+		}
+
+		cruiser = {
+			STG_N_Escrow STG_N_Consignment STG_N_Informant
+		}
+
+		battleship = {
+			STG_N_Contraband STG_N_Extortion STG_N_Windfall
+		}
+
+		titan = {
+			STG_N_Clearinghouse STG_N_Trove
 		}
 	}
 

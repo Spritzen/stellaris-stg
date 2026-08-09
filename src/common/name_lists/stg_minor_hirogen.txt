@@ -55,8 +55,35 @@ STG_HIROGEN = {
 
 	ship_class_names = {
 		generic = {
-			STG_N_Hunter STG_N_Predator STG_N_Carnivore STG_N_BeastOfPrey STG_N_HunterKiller STG_N_Raptor
-			STG_N_Marauder STG_N_Killer STG_N_Vulture
+			STG_N_Carnivore STG_N_BeastOfPrey STG_N_HunterKiller STG_N_Raptor STG_N_Killer STG_N_Vulture
+		}
+
+		corvette = {
+			STG_N_Hunter STG_N_Tracker
+		}
+
+		destroyer = {
+			STG_N_Game STG_N_Predator
+		}
+
+		cruiser = {
+			STG_N_Marauder STG_N_Venatic
+		}
+
+		battleship = {
+			STG_N_Apex
+		}
+
+		science = {
+			STG_N_Tracer
+		}
+
+		constructor = {
+			STG_N_Calas
+		}
+
+		transport = {
+			STG_N_Beta
 		}
 	}
 

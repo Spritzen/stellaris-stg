@@ -246,8 +246,43 @@ STG_BORG = {
 
 	ship_class_names = {
 		generic = {
-			STG_N_Cube STG_N_TacticalCube STG_N_Sphere STG_N_Probe STG_N_Diamond STG_N_Scout STG_N_Unimatrix
-			STG_N_Node STG_N_Conduit
+			STG_N_Unimatrix STG_N_Node STG_N_Conduit
+		}
+
+		corvette = {
+			STG_N_Probe STG_N_Cone
+		}
+
+		destroyer = {
+			STG_N_Scout STG_N_Tetrahedron
+		}
+
+		cruiser = {
+			STG_N_Vinculum STG_N_Dodecahedron
+		}
+
+		battleship = {
+			STG_N_Pyramid STG_N_Sphere STG_N_OmegaCube
+		}
+
+		titan = {
+			STG_N_Diamond
+		}
+
+		juggernaut = {
+			STG_N_Cube STG_N_TacticalCube STG_N_OmegaCube
+		}
+
+		science = {
+			STG_N_Surveyor
+		}
+
+		constructor = {
+			STG_N_Assembler
+		}
+
+		military_station_small = {
+			STG_N_UnimatrixDefenseGrid
 		}
 	}
 

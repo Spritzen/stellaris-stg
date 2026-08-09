@@ -62,8 +62,40 @@ STG_SULIBAN = {
 
 	ship_class_names = {
 		generic = {
-			STG_N_Helix STG_N_Tandar STG_N_Silik STG_N_Sarin STG_N_Raan STG_N_Cabal STG_N_Shroud
-			STG_N_Cellship STG_N_Vanish
+			STG_N_Helix STG_N_Tandar STG_N_Silik STG_N_Sarin STG_N_Raan STG_N_Cabal
+			STG_N_Shroud STG_N_Cellship STG_N_Vanish
+		}
+
+		corvette = {
+			STG_N_CellAlpha STG_N_CellEta
+		}
+
+		destroyer = {
+			STG_N_CellBeta STG_N_CellDelta
+		}
+
+		cruiser = {
+			STG_N_CellGamma
+		}
+
+		battleship = {
+			STG_N_CellEpsilon
+		}
+
+		titan = {
+			STG_N_CellOmega STG_N_GrandHelix
+		}
+
+		science = {
+			STG_N_CellSurvey
+		}
+
+		constructor = {
+			STG_N_CellConstructor
+		}
+
+		transport = {
+			STG_N_CellTransport
 		}
 	}
 

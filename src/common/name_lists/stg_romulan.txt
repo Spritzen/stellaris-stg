@@ -167,8 +167,34 @@ STG_ROMULAN = {
 
 	ship_class_names = {
 		generic = {
-			STG_N_DDeridex STG_N_Valdore STG_N_Norexan STG_N_Talon STG_N_BirdofPrey
-			STG_N_Scimitar STG_N_Mogai STG_N_Shrike STG_N_Whitewind
+			STG_N_Norexan STG_N_BirdofPrey STG_N_Mogai
+		}
+
+		corvette = {
+			STG_N_Rea STG_N_Stanet STG_N_Jorek STG_N_Arhael STG_N_Arrenhe STG_N_Tvaro
+			STG_N_Tliss STG_N_Tmara STG_N_Tdair STG_N_Tajen STG_N_Snakehead
+		}
+
+		destroyer = {
+			STG_N_Talon STG_N_Shrike STG_N_Whitewind
+		}
+
+		cruiser = {
+			STG_N_Tellus STG_N_Stasek STG_N_Sharien STG_N_Kanassarum STG_N_Valdore STG_N_Vreedex
+			STG_N_Decius STG_N_Vasteme STG_N_kHanakh
+		}
+
+		battleship = {
+			STG_N_Tshen STG_N_Debrune STG_N_Valkis STG_N_Kaskara STG_N_Praetor STG_N_GallantWing
+			STG_N_Pontilus STG_N_Dderidex STG_N_DKazanak
+		}
+
+		titan = {
+			STG_N_Mimicus STG_N_Scimitar STG_N_Falchion STG_N_Tulwas
+		}
+
+		military_station_small = {
+			STG_N_Jian
 		}
 	}
 

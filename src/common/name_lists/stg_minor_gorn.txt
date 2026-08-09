@@ -63,6 +63,38 @@ STG_GORN = {
 			STG_N_Vishap STG_N_Kkethess STG_N_Naga STG_N_Tuatara STG_N_Draguas STG_N_Zilant
 			STG_N_Varanus STG_N_Balaur STG_N_Cuelebre
 		}
+
+		corvette = {
+			STG_N_Lath STG_N_Hunter
+		}
+
+		destroyer = {
+			STG_N_Euromastyx STG_N_Gila
+		}
+
+		cruiser = {
+			STG_N_Zilos STG_N_Lacertilia
+		}
+
+		battleship = {
+			STG_N_KingSnake STG_N_Tyrannus
+		}
+
+		science = {
+			STG_N_Cyclura
+		}
+
+		colonizer = {
+			STG_N_Cyclura
+		}
+
+		constructor = {
+			STG_N_Nubila
+		}
+
+		transport = {
+			STG_N_Agama
+		}
 	}
 
 	fleet_names = {

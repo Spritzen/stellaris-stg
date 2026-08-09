@@ -53,8 +53,55 @@ STG_ANDORIAN = {
 
 	ship_class_names = {
 		generic = {
-			STG_N_Kumari STG_N_Docana STG_N_Thelasa-vor STG_N_Weytahn STG_N_Lorvela STG_N_Kholhr STG_N_Zabathu
-			STG_N_Ushaan STG_N_Tarhana
+			STG_N_Thelasa-vor STG_N_Weytahn STG_N_Lorvela STG_N_Kholhr STG_N_Ushaan STG_N_Tarhana
+		}
+
+		corvette = {
+			STG_N_Thris STG_N_Khyzon STG_N_Andron STG_N_KuyThela
+		}
+
+		destroyer = {
+			STG_N_Charal STG_N_Docana
+		}
+
+		cruiser = {
+			STG_N_Kumari
+		}
+
+		battleship = {
+			STG_N_Zabathu
+		}
+
+		titan = {
+			STG_N_Shran STG_N_Kuthar
+		}
+
+		science = {
+			STG_N_Atlira
+		}
+
+		colonizer = {
+			STG_N_Kayva
+		}
+
+		constructor = {
+			STG_N_Brokva
+		}
+
+		transport = {
+			STG_N_Kastra
+		}
+
+		military_station_small = {
+			STG_N_Chvaokres
+		}
+
+		military_station_medium = {
+			STG_N_Andor
+		}
+
+		military_station_large = {
+			STG_N_Procyon
 		}
 	}
 

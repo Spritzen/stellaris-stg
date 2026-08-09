@@ -63,8 +63,28 @@ STG_XINDI = {
 
 	ship_class_names = {
 		generic = {
-			STG_N_Xindus STG_N_AzatiPrime STG_N_Degra STG_N_Dolim STG_N_Jannar STG_N_Thalen STG_N_Kessick
+			STG_N_Xindus STG_N_AzatiPrime STG_N_Dolim STG_N_Jannar STG_N_Thalen STG_N_Kessick
 			STG_N_Naara STG_N_Gralik
+		}
+
+		corvette = {
+			STG_N_Insectoid STG_N_Vortex
+		}
+
+		destroyer = {
+			STG_N_Reptilian STG_N_Delphic
+		}
+
+		cruiser = {
+			STG_N_Primate STG_N_Arboreal
+		}
+
+		battleship = {
+			STG_N_Aquatic STG_N_Avian
+		}
+
+		titan = {
+			STG_N_Degra STG_N_Council
 		}
 	}
 
