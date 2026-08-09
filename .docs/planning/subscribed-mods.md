@@ -8,14 +8,14 @@
 Inventory of the read-only `/workshop` mount as seen from the dev container.
 Everything below is read straight from each mod's `descriptor.mod`.
 
-- **Mods on disk:** 52
-- **Total size:** ~23 GB
-- **Regenerated:** 2026-08-03
+- **Mods on disk:** 54
+- **Total size:** ~24 GB
+- **Regenerated:** 2026-08-09
 - **Our target:** Stellaris 4.4.x "Pegasus"
 
 This is an inventory of what is *subscribed*, not what STG builds from. **49 of
-these 52 are harvested**, and the build reads pinned copies in `.source/`, never
-this mount. The three not harvested are marked **`not harvested`** below — two
+these 54 are harvested**, and the build reads pinned copies in `.source/`, never
+this mount. The five not harvested are marked **`not harvested`** below — two
 of them are still snapshotted, so restoring one is a `vendor.yml` edit away:
 
 | Mod | Why | In `.source/`? |
@@ -23,6 +23,15 @@ of them are still snapshotted, so restoring one is a `vendor.yml` edit away:
 | Ariphaos Unofficial Patch | [Decision 02](../decisions/02-drop-ariphaos.md) | **no** — dropped before `.source/` existed |
 | Kammarheit | [Decision 11](../decisions/11-drop-cinematic-camera-and-ambient-soundtracks.md) — taste | yes |
 | Apocryphos | [Decision 11](../decisions/11-drop-cinematic-camera-and-ambient-soundtracks.md) — taste | yes |
+| More Events Mod (MEM) | [Decision 80](../decisions/80-mem-integration-deferred.md) — **deferred, not declined** | **no** — snapshot it when the pass starts |
+| MEM planetary-shields compatch | Ships with MEM; same deferral | **no** |
+
+> **The last two rows are not the same kind of row as the three above them.**
+> Ariphaos, Kammarheit and Apocryphos were *declined* on content grounds; MEM is
+> *queued*, and its `supported_version` is current. Do not read one column as one
+> verdict. [Decision 80](../decisions/80-mem-integration-deferred.md) has the
+> reasoning and the one trap: **the compatch's name says Planetary Shields and
+> all 19 of its files are `mem_*`.**
 
 Cinematic Camera was on this list until 2026-08-07 and is not any more. Decision
 11 dropped it for breaking Real Space – System Scale;
@@ -117,6 +126,7 @@ vanilla file is a likely collision — check `rg -l "<filename>" /workshop/16234
 | [Sensor Expansion](https://steamcommunity.com/sharedfiles/filedetails/?id=2002751329) | 2002751329 | 4.1 | v4.1.\* | 915 KB |
 | [Assorted Precursor Adjustments](https://steamcommunity.com/sharedfiles/filedetails/?id=1326381312) | 1326381312 | 3.13.0 | v4.1.\* | 861 KB |
 | [Cinematic Camera](https://steamcommunity.com/sharedfiles/filedetails/?id=703156866) | 703156866 | 2.6.1 | v4.\*.\* | 429 KB |
+| [More Events Mod](https://steamcommunity.com/sharedfiles/filedetails/?id=727000451) | 727000451 | 2.20.0 | v4.4.\* | 2.3 GB — **not harvested yet** |
 
 ## Patches / fixes
 
@@ -124,6 +134,7 @@ vanilla file is a likely collision — check `rg -l "<filename>" /workshop/16234
 |---|---|---|---|---|
 | [~~Ariphaos Unofficial Patch (4.2)~~](https://steamcommunity.com/sharedfiles/filedetails/?id=1995601384) | 1995601384 | 4.2.4 | v4.2.4 | 13 MB — **not harvested** |
 | [!!!Universal Resource Patch [2.4+]](https://steamcommunity.com/sharedfiles/filedetails/?id=1595876588) | 1595876588 | 4.1.\* | v4.\*.\* | 272 KB |
+| [RS System Scale / Planetary Shields Compatch 2.0](https://steamcommunity.com/sharedfiles/filedetails/?id=2993881965) — **a MEM patch despite the name** | 2993881965 | 1 | 3.11.2 | 3.6 MB — **not harvested** |
 
 The Universal Resource Patch is the conventional compatibility layer for mods
 adding new strategic resources — relevant if STG introduces any. STG ships a
@@ -173,8 +184,9 @@ flags them, and they are the least reliable as prior art for current-version
 script:
 
 `1326381312` (v4.1), `1327874725` (v4.2), `1995601384` (v4.2.4), `2002751329`
-(v4.1), `1506079770` (3.\*), and **all 22 Walshicus shipsets** (v4.3.\*). The
-three `.zip` mods declare nothing readable from outside the archive.
+(v4.1), `1506079770` (3.\*), `2993881965` (3.11.2), and **all 22 Walshicus
+shipsets** (v4.3.\*). The three `.zip` mods declare nothing readable from
+outside the archive.
 
 Note that `supported_version` is author-declared, not verified — several of these
 still work fine, the shipsets conspicuously so. Treat it as a caution flag, not a

@@ -48,7 +48,7 @@ On the **host** (not the container):
   which is host-side — the container can only read what Steam has already
   fetched. [`.docs/planning/subscribed-mods.md`](.docs/planning/subscribed-mods.md)
   lists them.
-- ~45 GB free on the same filesystem as the repo (22 GB of sources + a ~16 GB
+- ~45 GB free on the same filesystem as the repo (22 GB of sources + a ~15 GB
   build). On btrfs or XFS this is almost entirely reflinked and costs nearly
   nothing real — see [Disk](#disk-and-why-the-numbers-lie).
 
@@ -208,7 +208,7 @@ ls /workshop/*/descriptor.mod | wc -l # a few mods ship as .zip instead
 `.source/` is 22 GB across 51 mods — the 49 the build vendors, plus two ambient
 soundtracks kept snapshotted after
 [decision 11](.docs/decisions/11-drop-cinematic-camera-and-ambient-soundtracks.md)
-dropped them from the harvest. `stg-build/` is a further ~16 GB. But on this
+dropped them from the harvest. `stg-build/` is a further ~15 GB. But on this
 machine `/workshop` and the repo are the same btrfs subvolume, so the snapshot
 **reflinks** — the copy shares extents with the original and takes about a
 second. `tools/sources.py` uses `cp --reflink=auto`, which degrades silently to a

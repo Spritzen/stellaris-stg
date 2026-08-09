@@ -17,16 +17,18 @@
 # vendor — naming one here gets the class silently dropped.
 #
 # `graphical_culture` names a vendored ship set, and comes from one of two
-# places. Nine of the fourteen name a Walshicus standalone shipset, which
-# declares its own culture and all 44 of vanilla's section entities — nothing of
-# ours is involved. The other five (BAJ, TRI, ADR, BOL, BRE) have no such set and
-# stay on STNH art, whose culture and vanilla-shaped entities are generated into
-# src/ by tools/gen_shipsets.py. Either way the key is the art's to choose, not
-# ours, for the same reason these keys are unprefixed.
+# places. Most name a Walshicus standalone shipset, which declares its own
+# culture and all 44 of vanilla's section entities — nothing of ours is
+# involved. Five (BAJ, TRI, ADR, BOL, BRE) have no such set and stay on STNH
+# art, whose culture and vanilla-shaped entities are generated into src/ by
+# tools/gen_shipsets.py, as do the generic_0N donor cultures the AI-only minors
+# share. Either way the key is the art's to choose, not ours, for the same
+# reason these keys are unprefixed.
 # See .docs/decisions/18-walshicus-shipsets-replace-stnh-hulls.md.
 #
 # `randomized = no` throughout: these appear only as the prescripted empires in
-# src/prescripted_countries/.
+# src/prescripted_countries/, and 30 of the 131 are selector stubs that no
+# empire names at all -- .docs/decisions/32-declare-stub-species-classes.md.
 
 # United Federation of Planets — humans and the founding members.
 FED = {

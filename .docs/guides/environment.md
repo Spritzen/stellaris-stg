@@ -1,6 +1,6 @@
 # Environment — mounts, container, and the host boundary
 
-> **What** — the four mounts, which are writable, and the line between what the
+> **What** — the five mounts, which are writable, and the line between what the
 > container can do and what only the host can.
 > **Open when** — reading or writing anything outside the repo, or about to
 > claim something about the game install.

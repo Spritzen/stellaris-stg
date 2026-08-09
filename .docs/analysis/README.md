@@ -10,9 +10,9 @@
 |---|---|
 | [2026-08-15](2026-08-15.md) | **Phase 4, audited against disk.** Every claim decisions 55–77 make, re-measured: the content resolves and the ship-name and music figures verify exactly; three file headers cite the wrong count, the story pool's "21%" is the Federation's rate alone, and `weight` — decision 76's own headline finding — has no check behind it. **All four findings actioned the same day** ([78](../decisions/78-phase-4-count-corrections.md), [79](../decisions/79-reachability-checks.md)); its finding 1 stays open and is what the next live run is for |
 
-**The back catalogue is gone.** Fifteen files, `2026-08-01` through
-`2026-08-14`, cleared on 2026-08-03. Analyses are now written only when asked
-for, one file per live run.
+**The back catalogue is gone.** The slots `2026-08-01` through `2026-08-14` were
+cleared on 2026-08-03, before the initial commit, so git does not hold them
+either. Analyses are now written only when asked for, one file per live run.
 
 **The file above is the exception that proves the convention**: it is a
 container-side audit, not a reading of `error.log`, and it says so in its own

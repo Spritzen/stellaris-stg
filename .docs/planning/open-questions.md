@@ -31,8 +31,9 @@ evidence for anything in this section — the standing lesson of decisions
 
 ### The shipsets' weapons
 
-Whether the nine Walshicus shipsets draw their weapons, and whether the pruned
-event pictures took anything visible with them.
+Whether the Walshicus shipsets draw their weapons — 17 of the 22 playable
+empires fly one — and whether the pruned event pictures took anything visible
+with them.
 
 Then the weapon-mount re-derivation
 ([60](../decisions/60-mounts-share-existing-points.md),
@@ -78,91 +79,84 @@ derived ones. And whether the rotation reads as 27 distinct recordings
 
 ### Ship registries and their class names
 
-Whether the Trek registries read right on the right hulls.
-[Decision 59](../decisions/59-ship-name-pools.md)'s tonnage table is a judgement,
-and **a Nebula-class name turning up on a corvette is the way it would be wrong.**
+Whether the Trek registries read right on the right hulls, and whether the class
+names fold by the same tonnage table without leaking across empires.
+[Decisions 59](../decisions/59-ship-name-pools.md),
+[72](../decisions/72-ship-class-names.md),
+[73](../decisions/73-class-name-thematic-fill.md). Five things to watch, in
+descending order of how obviously they would be wrong:
 
-The class half now folds by the same table
-([72](../decisions/72-ship-class-names.md)), so that sentence covers both and the
-class name is the easier of the two to catch by eye — *Nebula – Interceptor* is
-one glance. Three things new to that pass: whether the **Klingon and Romulan
-lists read as their own** (the join that would have leaked Federation classes
-into them was deleted before it shipped, so this is a check that nothing else
-does the same); whether the **Defiant showing at two tonnages** — destroyer and
-cruiser, which is STNH's own modelling — reads as wrong or as fine; and whether
-any list still draws a class name that plainly belongs to another tonnage, which
-would mean a `generic` token escaped demotion.
+- **A Nebula-class name on a corvette.** The tonnage table is a judgement and
+  this is how it fails. The class half is the easier of the two to catch by eye:
+  *Nebula – Interceptor* is one glance.
+- **Whether the Klingon and Romulan lists read as their own.** The fuzzy join
+  that would have put Saber, Steamrunner and Sovereign in the Klingon fleet was
+  deleted before it shipped; this is a check that nothing else does the same.
+- **Whether the invented English sits beside the canon names.** Decision 73
+  filled the empty tiers from vanilla's own second idiom (NEC4's vices, AQU1's
+  water), so what to look for is `Stormwall` next to `Bolarus` and `Escrow` next
+  to `Jaglom Shrek` — and whether the Xindi species names read as classes or
+  just as species labels. **21 of 22 playable empires now carry all five core
+  tiers**, against 13.
+- **Whether the Defiant showing at two tonnages** — destroyer and cruiser, which
+  is STNH's own modelling — reads as wrong or as fine.
+- **Whether any list draws a class name plainly belonging to another tonnage**,
+  which would mean a `generic` token escaped demotion.
 
-> **The empty tiers are filled by hand, and what needs eyes is the writing.**
-> [Decision 73](../decisions/73-class-name-thematic-fill.md) gave the five
-> tonnage-less empires a graded set, filled eight missing titans and placed
-> Romulan's destroyers from names it already had — **21 of 22 playable empires
-> now carry all five core tiers**, against 13. The registers are vanilla's own
-> second idiom (NEC4's vices, AQU1's water), so what to look for is whether the
-> invented English sits beside the canon names without sounding like a different
-> mod: **`Stormwall` next to `Bolarus`, `Escrow` next to `Jaglom Shrek`**, and
-> whether the Xindi species names read as classes or just as species labels.
->
-> Two things left standing on purpose. **Malon's inherited pools name a type,
-> not a class** — STNH declares `Waste Extraction Cruiser`, which will read as
-> *"Waste Extraction Cruiser – Interceptor"*; it is a source's content, so it is
-> flagged rather than cut. And **the 46 AI-only minors stay generic-only**,
-> where `generic` is drawn 100% of the time and thin is not broken.
+> Two things left standing on purpose. **Malon's inherited pools name a type, not
+> a class** — STNH declares `Waste Extraction Cruiser`, which will read as *"Waste
+> Extraction Cruiser – Interceptor"*; it is a source's content, so it is flagged
+> rather than cut. And **the 46 AI-only minors stay generic-only**, where
+> `generic` is drawn 100% of the time and thin is not broken.
 
 ### The Trek anomalies
 
-New on 2026-08-09 and the largest eyes-only surface the project has ever added
-at once: **21 categories, 27 outcome events, 123 loc keys and ~3,500 words of
-prose**, none of which any check can grade
-([decision 75](../decisions/75-trek-anomalies.md)).
+**21 categories, 27 outcome events, 24 pictures, 123 loc keys and ~3,500 words**,
+none of which any check can grade
+([decision 75](../decisions/75-trek-anomalies.md)). Three separate questions, and
+they fail differently:
 
-Three separate questions, and they fail differently:
-
-- **Does the writing sound like Star Trek, or like a different mod?** The same
-  test [decision 73](../decisions/73-class-name-thematic-fill.md) set for the
-  class names, over four hundred words instead of one. The register is a
-  survey officer's report, which is vanilla's own register — so what to watch
-  for is a description that reads as a *plot summary* of an episode rather than
-  as something a science officer wrote.
-- **Does the picture match the text under it?** 24 STNH pictures, all looked at
-  before they were chosen, and two rejected on tone — `mugato_world.dds` is
-  animated in a cartoon style and `romulan_minefield.dds` does not depict a
-  minefield. **Nine of the 24 are frames extracted from a 9315×264 animation
-  strip**, and a wrong frame is the failure mode there.
+- **Does the writing sound like Star Trek, or like a different mod?** The
+  register is a survey officer's report, which is vanilla's own — so what to
+  watch for is a description that reads as a *plot summary* of an episode rather
+  than as something a science officer wrote.
+- **Does the picture match the text under it?** All 24 were looked at before
+  they were chosen, and two rejected on tone. **Nine of the 24 are frames
+  extracted from a 9315×264 animation strip**, and a wrong frame is the failure
+  mode there.
 - **Do the levels and rewards feel right?** An anomaly level gates which
-  scientist can crack it, and how often the roll fails. 21 categories span
-  levels 1–6 and the mapping is a judgement, not a measurement — but there is
-  now a number to hold it against:
+  scientist can crack it and how often the roll fails. The mapping is a
+  judgement, but there is a number to hold it against
+  ([78](../decisions/78-phase-4-count-corrections.md)):
 
   | level | 1 | 2 | 3 | 4 | 5 | 6 | 7 | mean |
   |---|---|---|---|---|---|---|---|---|
   | STG, 21 categories | 2 | 2 | 5 | 3 | 6 | 3 | 0 | **3.86** |
   | vanilla base game, 40 | 12 | 14 | 6 | 4 | 3 | 0 | 1 | **2.4** |
 
-  Vanilla's base game puts 65% of its categories at level 1–2 and 10% at level
-  5+; STG puts 19% and **43%**. The merged pool still leans vanilla (348
-  categories), so the galaxy is not harder — but **the Trek half is the slow,
-  failure-prone half**, which is the half the player is meant to notice, and
-  early-game scientists will bounce off it. Measured for
-  [decision 78](../decisions/78-phase-4-count-corrections.md).
+  Vanilla puts 65% of its base-game categories at level 1–2 and 10% at level 5+;
+  STG puts 19% and **43%**. The merged pool still leans vanilla (348 categories),
+  so the galaxy is not harder — but **the Trek half is the slow, failure-prone
+  half**, which is the half the player is meant to notice, and early-game
+  scientists will bounce off it.
 
 > **And the framing question underneath all three.**
 > [Decision 74](../decisions/74-event-picture-families.md) centre-crops these
 > pictures from 620×264 to 450×150, losing 21 px top and bottom. For the 569
 > that shadow a vanilla path that crop was verified against the vanilla scene
-> they replace; these 24 shadow nothing, so **there is no control** — twelve
-> were looked at and read correctly, which is a sample. A subject cropped at
-> the chin is what it would look like. **The archaeology adds 27 more on the
-> same terms**, and those 27 were each looked at in the exact crop before being
-> chosen ([76](../decisions/76-trek-archaeology.md)) — so if a framing problem
-> shows up, the anomalies' 24 are where to look first.
+> they replace; **the anomalies' 24 shadow nothing, so there is no control** —
+> twelve were looked at and read correctly, which is a sample. A subject cropped
+> at the chin is what it would look like. The archaeology's 27 and the story
+> events' 21 were each looked at in the exact crop before being chosen
+> ([76](../decisions/76-trek-archaeology.md),
+> [77](../decisions/77-trek-story-events.md)), **so if a framing problem shows
+> up, the anomalies' 24 are where to look first.**
 
 ### The Trek archaeology
 
-New on 2026-08-09 and the same shape one database over: **6 dig sites, 27 stage
-events, 27 pictures, 117 loc keys and ~3,800 words**, none of which any check can
-grade ([decision 76](../decisions/76-trek-archaeology.md)). The writing and
-picture questions above apply here unchanged. Three that are specific to a dig:
+**6 dig sites, 27 stage events, 27 pictures, 117 loc keys and ~3,800 words**
+([decision 76](../decisions/76-trek-archaeology.md)). The writing and picture
+questions above apply here unchanged. Three that are specific to a dig:
 
 - **Do they turn up at all?** This is the one question a live run answers
   cheaply and nothing else answers. The sites spawn through `ancrel.9999` on
@@ -180,38 +174,32 @@ picture questions above apply here unchanged. Three that are specific to a dig:
 
 ### The Trek story events
 
-New on 2026-08-09 and the last of the three
-[decision 75](../decisions/75-trek-anomalies.md) scoped: **21 events, 21
-pictures, 84 loc keys and ~4,000 words**, none of which any check can grade
+**21 events, 21 pictures, 84 loc keys and ~4,000 words**
 ([decision 77](../decisions/77-trek-story-events.md)). The writing and picture
 questions above apply here unchanged. Four that are specific to a story event:
 
 - **Do they fire at all, and at the right rate?** The pool is calibrated against
-  vanilla's own 18.6% per five-year pulse: **21.1% for the Federation, 17.8% for
-  the other ten gated classes, 14.3% for everyone else**, and `stg_recent_story`
-  blanks the pulse after a hit, so the long-run figure is ~17% / ~13%. Roughly
-  one story event per decade per empire. If **none** appears in a long game the
-  thing to doubt is the hook, not the weights — a custom on_action reached only
-  by `fire_on_action` is exactly the arrangement `check_story_events` was
-  written to police, and a check that has never failed in the live game is not
-  yet evidence ([check design rule 7](../validation/check-design.md#7-compare-declared-identity-not-block-key--and-distrust-a-check-that-has-never-failed)).
+  vanilla's own 18.6% per five-year pulse, and `stg_recent_story` blanks the
+  pulse after a hit, so the long-run figure is ~17% for the Federation and ~13%
+  for an ungated empire — roughly one story event per decade per empire
+  ([78](../decisions/78-phase-4-count-corrections.md) has the three tiers). If
+  **none** appears in a long game the thing to doubt is the hook, not the
+  weights: a custom on_action reached only by `fire_on_action` is exactly the
+  arrangement `check_story_events` was written to police, and a check that has
+  never failed in the live game is not yet evidence
+  ([check design rule 7](../validation/check-design.md#7-compare-declared-identity-not-block-key--and-distrust-a-check-that-has-never-failed)).
 - **Does the right empire get the right story?** Twelve are gated on species
   class. A Klingon empire seeing the Federation Council, or a Federation empire
   seeing none of its own two in a whole game, are the two ways the gate is
   wrong, and they fail in opposite directions.
 
   > **And a third way, which is not a broken gate and would not read as one:
-  > eleven of the 22 playable empires are outside the gate entirely.** The 12
-  > gated events cover 11 distinct species classes, so **BOL, BRE, THO, CAI,
-  > XIN, SUL, YRI, KRE, MAL, VID and TER** — and all 79 AI minors — see only the
-  > eight open events, at 14.3% a pulse against the Federation's 21.1%. The
-  > mirror **Terran Empire** is the one that stings: a headline playable empire
-  > with its own ENT-era uniforms
-  > ([64](../decisions/64-terran-empire-mirror-uniforms.md)) and nothing in the
-  > pool for it. **A Malon player reporting "I never see my own story" is
-  > reporting the content, not the gate**, so ask which empire before doubting
-  > the trigger. Growing the pool is cheap — `random_events` fires one winner,
-  > so eleven more gated events cannot make anyone see more popups
+  > eleven of the 22 playable empires are outside the gate entirely** — BOL, BRE,
+  > THO, CAI, XIN, SUL, YRI, KRE, MAL, VID and the mirror **TER**, plus all 79
+  > AI minors. They see only the eight open events. **A Malon player reporting "I
+  > never see my own story" is reporting the content, not the gate**, so ask
+  > which empire before doubting the trigger. Left open as a content gap;
+  > growing the pool is cheap, because `random_events` fires exactly one winner
   > ([78](../decisions/78-phase-4-count-corrections.md)).
 - **Does a five-year flavour popup read as texture or as interruption?** This is
   the one question the anomalies and dig sites do not raise, because those are
@@ -223,29 +211,20 @@ questions above apply here unchanged. Four that are specific to a story event:
   institution. The failure mode is a description that reads as a narrator
   summarising an episode instead of a civil servant writing a minute.
 
-### Answered, kept here for the shape of the answer
+### Answered by the runs of 2026-08-08
 
-- **Rooms and hidden empires — confirmed on the Cardassian run of 2026-08-08.**
-  All four hidden empires are back in the empire list, and the designer's room list
-  is *"realistically over 300"* against the 19 of
-  [decision 48](../decisions/48-room-selector-merge.md).
-- **Five of the six city sets were declared nowhere** — the Klingon run of
-  2026-08-08 found it: the designer hid Vulcan, Cardassia, the Tholians and the
-  Borg outright with `EMPIRE_DESIGN_INVALID_GFX_CULTURE`. The art was complete and
-  the `room_selector` was right — only the `common/graphical_culture/` entry was
-  missing, which nothing dangles on. Klingon was the one that worked, because its
-  city name is also its *shipset* culture name and that is declared. Sweeping the
-  rule found a fifth, `stg_minor_undine_vanguard`, which is AI-only and so can
-  never appear in any log.
-  [Decision 62](../decisions/62-city-set-cultures-undeclared.md).
-- **Star names append rather than replace — settled 2026-08-08.**
-  [Decision 44](../decisions/44-random-names-pools-append.md) had inferred it from
-  two mods' file layouts and labelled itself as inference; the Cardassian run
-  reports the galaxy map carrying *"a mix — Trek names, real stars, and catalogue
-  designations (HD/HIP numbers)"*, which is exactly the three-way mix that
-  distinguishes append from replace. The effective pool is **6,531**, not the 1,584
-  decision 44 recorded. [Decision 52](../decisions/52-trek-star-names.md).
-- **The city framing.** Answered and needed no change
+Kept as one line each, because the *shape* of the answer is what transfers; the
+finding itself is in the decision.
+
+- Rooms and hidden empires — all four hidden empires are back and the designer's
+  room list is *"realistically over 300"*
+  ([48](../decisions/48-room-selector-merge.md),
+  [62](../decisions/62-city-set-cultures-undeclared.md)).
+- Star names **append** rather than replace, confirmed by the three-way mix on
+  the galaxy map; the effective pool is 6,531
+  ([52](../decisions/52-trek-star-names.md), correcting
+  [44](../decisions/44-random-names-pools-append.md)).
+- The Vulcan city framing needed no change
   ([70](../decisions/70-vulcan-city-framing.md)).
 
 ---
@@ -299,13 +278,22 @@ questions above apply here unchanged. Four that are specific to a story event:
 - **The prescripted-power sweep is done and clean.** `stg_minor_powers` shipped
   with 78 of its 79 empire names truncated and 16 loc values that were the loc key
   itself; all 100 are repaired
-  ([47](../decisions/47-minor-power-names-truncated.md)). The other three files —
-  `stg_frontier_powers.txt`, `stg_major_powers.txt`, `stg_quadrant_powers.txt` —
+  ([47](../decisions/47-minor-power-names-truncated.md)). The other three files
   were swept and are clean: **0 leaked loc keys, 0 truncations** across all 22
-  empires, against all 111 STNH empires.
+  empires.
 
   > The premise behind worrying about them was wrong in a specific way worth
   > keeping: **those three were hand-authored and only the minors were generated**,
   > and truncation is a *generator* failure. "Same hand" describes who chose the
   > content, not what produced the file, and only the second matters for this
   > defect class. [Decision 51](../decisions/51-prescripted-loc-scope.md).
+
+---
+
+## Queued, and deliberately not started
+
+**More Events Mod and its compatch are subscribed for a later integration pass**
+— in scope, waiting on this page's eyes-only surface being graded first.
+**Only the timing is closed**; which paths are taken and how MEM's events sit
+beside Trek ones are the pass itself and are open.
+[Decision 80](../decisions/80-mem-integration-deferred.md).

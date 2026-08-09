@@ -1,6 +1,6 @@
 # How to write a check
 
-> **What** — eleven rules the existing checks are built on, each earned by a
+> **What** — twelve rules the existing checks are built on, each earned by a
 > check that reported a confident wrong answer.
 > **Open when** — adding a check to `tools/validate.py`, widening one's scope, or
 > deciding whether a finding is real.

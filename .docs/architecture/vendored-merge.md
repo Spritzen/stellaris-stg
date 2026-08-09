@@ -109,10 +109,10 @@ harvest change and this section has been stale more than once.
 | | |
 |---|---|
 | Gameplay/UI tier — 26 mods | 4.7 GB, 8,026 files |
-| STNH — art paths only, ship tree pruned per [decision 18](../decisions/18-walshicus-shipsets-replace-stnh-hulls.md) | 7.0 GB, 10,871 files |
+| STNH — art paths only, ship tree pruned per [decision 18](../decisions/18-walshicus-shipsets-replace-stnh-hulls.md) | 7.0 GB, 10,943 files |
 | Walshicus' 22 Trek shipsets | 2.5 GB, 3,093 files |
-| `src/` — hand-written | 3.4 MB, 329 files |
-| **Built mod, total** | **14.3 GB**, 22,319 files, 49 sources + `src/` |
+| `src/` — hand-written | 3.4 MB, 343 files |
+| **Built mod, total** | **14.3 GB**, 22,405 files, 49 sources + `src/` |
 | `.source/` — 51 mods: the 49 harvested plus Kammarheit and Apocryphos | 22 GB apparent, **~0 real** (reflinked; [decision 09](../decisions/09-source-snapshot.md)) |
 | Disk available in-container | 177 GB |
 

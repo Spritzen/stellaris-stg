@@ -1,6 +1,6 @@
 # Decisions — index
 
-> **What** — all 79 resolved decisions, grouped by subject, one line each.
+> **What** — all 80 resolved decisions, grouped by subject, one line each.
 > **Open when** — before reopening a settled question, or when a citation names a
 > decision by number and you need to know what it says.
 > **Then** — [Style guide §7](../style-guide.md#7-decision-files-have-a-fixed-head) for the file format · [Documentation map](../README.md)
@@ -53,6 +53,7 @@ which is also where the rule lives: category is in this index, not in the path.
 | [05](05-harvest-order.md) | Harvest order corrections |
 | [11](11-drop-cinematic-camera-and-ambient-soundtracks.md) | Drop Cinematic Camera, Kammarheit and Apocryphos — *Cinematic Camera restored by [43](43-planet-scale-system-length.md)* |
 | [12](12-fix-source-errors-dont-drop.md) | **Fix a source mod's errors; never drop the mod to silence them** |
+| [80](80-mem-integration-deferred.md) | More Events Mod is in scope and waits — it writes the databases Phase 4 just wrote by hand, and eyes cannot attribute what they cannot separate |
 
 ## The pipeline
 

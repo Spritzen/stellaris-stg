@@ -43,7 +43,7 @@ of this page.
 | [planning/](planning/) | **State and direction** — status, phases, open questions, scope | [README](planning/README.md) |
 | [decisions/](decisions/) | **One numbered file per resolved question**, with the reasoning and what it cost | [README](decisions/README.md) |
 | [reference/](reference/) | **Lookups** — glossary, repo layout, database rules, external links | [README](reference/README.md) |
-| [analysis/](analysis/) | **What a live run measured.** Currently empty by choice | [README](analysis/README.md) |
+| [analysis/](analysis/) | **What a live run measured** — written only on request, one file per run | [README](analysis/README.md) |
 
 Plus two single files:
 

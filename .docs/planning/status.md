@@ -14,69 +14,40 @@ number here has a date because every number here goes stale —
 |---|---|
 | **Phase 0** — vendoring pipeline | **complete** |
 | **Phase 1** — playable Federation | **complete**, run in-game repeatedly |
-| **Phase 2** — the rest of the galaxy | **complete**. 101 prescripted empires (22 playable, 79 AI-only minors), 101 species classes, 92 name lists, 37 real home systems |
+| **Phase 2** — the rest of the galaxy | **complete**. 101 prescripted empires (22 playable, 79 AI-only minors) over 100 distinct species classes, 92 name lists, 37 real home systems. `src/` declares **131** classes in all — the extra 31 are the STNH selector stubs of [decision 32](../decisions/32-declare-stub-species-classes.md) |
 | **Phase 3** — art and identity | **complete 2026-08-08**. Clothing triggers, shipsets, weapon mounts, flags, rooms, city sets, loading screens, `paragon_backgrounds.txt`, the shipsets' 39 extra flags |
-| **Phase 4** — polish | **started 2026-08-08**: music ([55](../decisions/55-federation-anthem.md)), then the ship registries ([59](../decisions/59-ship-name-pools.md)) and their class names ([72](../decisions/72-ship-class-names.md), [73](../decisions/73-class-name-thematic-fill.md)), then **21 Trek anomalies** on 24 reclaimed STNH event pictures ([75](../decisions/75-trek-anomalies.md), [74](../decisions/74-event-picture-families.md), 2026-08-09), then **6 Trek archaeological sites** on 27 more ([76](../decisions/76-trek-archaeology.md)), then **21 Trek story events** on 21 more ([77](../decisions/77-trek-story-events.md)), all 2026-08-09. All three things [decision 75](../decisions/75-trek-anomalies.md) scoped are shipped |
+| **Phase 4** — polish | **started 2026-08-08**. Music, the ship registries and their class names, then the three slices [decision 75](../decisions/75-trek-anomalies.md) scoped: **21 Trek anomalies** ([75](../decisions/75-trek-anomalies.md)), **6 dig sites** ([76](../decisions/76-trek-archaeology.md)) and **21 story events** ([77](../decisions/77-trek-story-events.md)), all 2026-08-09. All three are shipped; what remains in the phase has no scope written for it |
 | **Phase 5** — the clutter pass | **complete 2026-08-07** (pipeline work, taken out of order) |
 
-`make docs` stands at **0 warnings, 0 errors** and now asks a second family of
+## The build, as it stands
+
+**Read every figure below off the build rather than off this page** —
+`.vendor-manifest.json` and the `make validate` summary line carry the live
+ones.
+
+| | Build of 2026-08-09 |
+|---|---|
+| Files / size | **22,405 / 14.3 GB** ([the per-tier split](../architecture/vendored-merge.md#size)) |
+| Re-cut at harvest / pruned | 1,661 / **888** |
+| `make vendor` | 80 s |
+| `make validate` | **0 warnings, 0 errors** |
+| `make docs` | **0 warnings, 0 errors** |
+
+**The prune has fallen 935 → 909 → 888 across three passes with no edit to
+`vendor.yml`**, and that is the property worth knowing rather than the number:
+the 27 pictures [decision 76](../decisions/76-trek-archaeology.md)'s dig sites
+declare and the 21 [decision 77](../decisions/77-trek-story-events.md)'s story
+events declare came back out of `.source/` by themselves, exactly as the
+anomalies' 24 did. Declaring art un-prunes it; nothing has to be excluded.
+
+`make validate` gained `check_anomalies`, `check_archaeology` and
+`check_story_events` over Phase 4 and `make docs` gained a second family of
 question — whether the documented inventory still matches the repo, not only
-whether its citations resolve. The pass that added it found six live
-inconsistencies against a tree the old checker had just passed
-([decision 71](../decisions/71-doc-inventory-checks.md)).
-
-`make validate` stands at **0 warnings, 0 errors**, now including
-`check_shadowed_texture_geometry`'s second question — whether art that shadows
-*no* vanilla path still matches the family vanilla is uniform about, calibrated at
-113 findings before [decision 63](../decisions/63-city-set-family-targets.md)'s
-fix and 0 after — and `check_anomalies`, which asks the six questions vanilla
-scores 0 on across its 327 anomaly categories, a seventh scoped to the one
-file where its floor is not 114 of 310
-([decision 75](../decisions/75-trek-anomalies.md)), and an eighth on
-**`spawn_chance`**, whose floor is a known 3 of 327.
-
-**And `check_archaeology`, the same shape one database over**: ten questions
-across vanilla's 123 site types and 475 stage events, nine of them at 0 and the
-tenth at a floor of 1 (`cstorms.1300`'s undefined option key), plus an eleventh
-scoped to our own events file, where vanilla's floor would be 157 of 628. One of
-the ten — **`stages = N` against the `stage` blocks beside it** — has no
-counterpart in `check_anomalies` and nothing else in the game enforces it
-([decision 76](../decisions/76-trek-archaeology.md)).
-
-> **A twelfth was added on 2026-08-09, and it is the one decision 76 asked for
-> and did not get.** `weight` — the field that decision calls "the whole
-> question" — had no check behind it until the
-> [2026-08-15 audit](../analysis/2026-08-15.md) read the code and found the
-> substring absent. A `weight = 0` site is complete, validating clean and never
-> placed, and it is what six of vanilla's ten base-game sites look like. Asked
-> alone it reports 74 of vanilla's 123; asked with "and nothing in script names
-> it" the floor is **0**, so it needs no scope
-> ([decision 79](../decisions/79-reachability-checks.md), [check-design rule
-> 12](../validation/check-design.md#12-can-this-ever-appear-has-more-than-one-route--ask-them-all-then-read-the-scope-off-the-answer)).
-
-**And `check_story_events`, the same shape a third time**, over the built tree's
-58 non-empty on_action hooks. Its first question has no counterpart in either
-sibling — **is the on_action KEY one the engine will ever fire?** — and vanilla
-scores 0 there once empty stubs are excluded, against **17 dangling event ids in
-its own `00_on_actions.txt`** ([decision 77](../decisions/77-trek-story-events.md)).
-
-> That first run found a defect in the two checks beside it rather than in the
-> content: a bare **`event = { }`** declaration is legal, vanilla writes it in
-> forty-odd of its own files, and `kind.endswith("_event")` does not match it —
-> so 26 live hooks in four source mods read as dangling. All three checks now
-> share `_is_event_block`. Neither sibling's floor moved.
-
-**That family question now covers `gfx/event_pictures` as well**, where it had
-been declined on a measurement that read one directory as one family. It is two:
-the top level is 580 of 580 at 450×150 and `origins/` is 59 of 59 at 220×115.
-Splitting them is what makes a Trek event picture usable at all
-([decision 74](../decisions/74-event-picture-families.md)). Build of 2026-08-09:
-**22,405 files, 14.3 GB**, 1,661 re-cut at harvest, 888 pruned, `make vendor`
-in 80 s. The prune has fallen 935 → 909 → **888** with no edit to `vendor.yml`
-across three passes: the 27 pictures
-[decision 76](../decisions/76-trek-archaeology.md)'s dig sites declare and the
-21 [decision 77](../decisions/77-trek-story-events.md)'s story events declare
-came back out of `.source/` by themselves, exactly as the anomalies' 24 did.
+whether its citations resolve ([71](../decisions/71-doc-inventory-checks.md)).
+What each asks, and the vanilla floor each is calibrated against, is in
+[the check catalogue](../validation/checks.md); the floors themselves are
+constants in `tools/validate.py` with the ratio written beside them
+([rule 11](../validation/check-design.md#11-scope-is-a-calibration-result-not-a-convenience-filter)).
 
 ---
 
@@ -100,19 +71,18 @@ eyes-only, which is now the standard shape.
 > work**, and reconcile group by group against these 1,261
 > ([live-runs.md](../guides/live-runs.md)). Three things are unmeasured and
 > nothing container-side can reach them: whether the 72 event pictures render at
-> the right size in the popup ([decision 42](../decisions/42-event-picture-geometry.md)'s
-> defect in [74](../decisions/74-event-picture-families.md)'s new territory, and
-> the 24 anomaly pictures have no vanilla control behind their crop); whether
-> `stg_on_five_year_story_pulse` fires at all; and whether any dig site is ever
-> placed. [The 2026-08-15 audit](../analysis/2026-08-15.md), finding 1.
+> the right size in the popup; whether `stg_on_five_year_story_pulse` fires at
+> all; and whether any dig site is ever placed.
+> [The 2026-08-15 audit](../analysis/2026-08-15.md), finding 1.
 
 The game has been the **native Linux build** since 2026-08-02
 ([decision 15](../decisions/15-native-linux-runtime.md)) — content unaffected,
 deployment re-confirmed on it, startup and gfx counts **not comparable across that
 boundary**.
 
-`.docs/analysis/` was cleared on 2026-08-03 and is written only on request; until
-one exists, this section carries the baseline.
+Analyses are written only on request, one file per live run
+([`../analysis/`](../analysis/README.md)); until the next one exists, this
+section is the baseline.
 
 ---
 
@@ -139,14 +109,10 @@ the container can say what it is. The seven affected rulers now take STNH's own
 convention: a dedicated **one-texture** selector and `clothes = 0`, the one index a
 live run has ever confirmed. [Decision 69](../decisions/69-ruler-clothes-dedicated-selectors.md).
 
----
-
-## The warning triage of 2026-08-08
-
-The 17 warnings standing on 2026-08-07 were triaged to **0**, and **two of them
-were real defects**: five nebula and debris entities rendering at a third of
-System Scale's size, and every empire's habitats at risk of drawing as a Suliban
-helix. Decisions [53](../decisions/53-duplicate-entity-triage.md),
+**The 17 warnings standing on 2026-08-07 were triaged to 0, and two of them were
+real defects** — five nebula and debris entities rendering at a third of System
+Scale's size, and every empire's habitats at risk of drawing as a Suliban helix.
+Decisions [53](../decisions/53-duplicate-entity-triage.md),
 [54](../decisions/54-federation-texture-collisions.md),
 [56](../decisions/56-starbase-modules-order.md). **Nothing in that has been seen
 by a live run yet.**

@@ -10,7 +10,7 @@
 | File | |
 |---|---|
 | [working-rules.md](working-rules.md) | **Start here.** The four invariants and the nine session rules |
-| [environment.md](environment.md) | The four mounts, which are writable, and the host boundary |
+| [environment.md](environment.md) | The five mounts, which are writable, and the host boundary |
 | [workflow.md](workflow.md) | Every `make` target, the daily loop, and what each step proves |
 | [writing-script.md](writing-script.md) | Read vanilla first; `stg_` prefixing and its two exceptions; tabs, BOMs, shadowing |
 | [source-snapshots.md](source-snapshots.md) | `.source/` and the `status → diff → sync` procedure |

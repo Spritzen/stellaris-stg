@@ -1,13 +1,17 @@
 # Bodies for the STNH scripted triggers that STNH's ART depends on.
 #
 # .docs/architecture/stnh-art.md takes STNH's art and never its common/, but the art wiring IS
-# script: the vendored asset_selectors pick clothing with 139 triggers that
-# live in STNH's common/scripted_triggers/. Undefined, they are an error.log
-# record each; defined `always = no`, every uniform entry is unreachable and
-# every leader falls through to vanilla's generic uniform.
+# script: the vendored asset_selectors pick clothing with triggers that live in
+# STNH's common/scripted_triggers/. Undefined, they are an error.log record
+# each; defined `always = no`, every uniform entry is unreachable and every
+# leader falls through to vanilla's generic uniform. All of them are declared
+# here -- 141 as this file stands; count the top-level declarations rather than
+# trusting that figure.
 #
 # PHASE 3, applied 2026-08-03: the era, identity, role and stratum triggers
-# below have real bodies. Everything under INERT keeps `always = no`.
+# above the INERT divider have real bodies -- 25 of the 141. Everything under
+# INERT keeps `always = no`, which is a definition and not a body: it resolves,
+# so nothing dangles, and the entry it gates is simply never chosen.
 # Reasoning, the era choice and the 4.4 mapping table:
 # .docs/decisions/16-phase-3-clothing-triggers.md
 #

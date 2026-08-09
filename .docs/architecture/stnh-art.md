@@ -117,7 +117,7 @@ only the first — the gap between "one" and "four" cost a live run to discover.
 
 | Dependency | Status |
 |---|---|
-| **Scripted triggers** (clothing/era selectors) | Closed. 140 triggers given real bodies: era pinned to TNG/DS9 rather than STNH's `years_passed` windows, identity keyed to species class rather than country flags STG never sets. [Decision 16](../decisions/16-phase-3-clothing-triggers.md). |
+| **Scripted triggers** (clothing/era selectors) | Closed. All of STNH's art triggers are declared in `src/common/scripted_triggers/stg_stnh_art_triggers.txt` — 141 as it stands, **25 of them with real bodies** and the rest inert `always = no`. Era is pinned to TNG/DS9 rather than STNH's `years_passed` windows, identity keyed to species class rather than country flags STG never sets. [Decision 16](../decisions/16-phase-3-clothing-triggers.md) recorded the 140 it harvested. |
 | **Species classes** | Closed. [Decision 10](../decisions/10-species-class-keys-unprefixed.md) renamed the five majors to STNH's bare keys; [decision 32](../decisions/32-declare-stub-species-classes.md) declared the remaining **34** selector keys as stubs after the 08-07 run priced them at 439 errors, 22% of `error.log`. STG declares **131** classes and `dangling_identifier_ack` is empty. Four of the 34 were misspellings of our own (DELT→DEL, ELAU→ELA, MONE→MON, PARA→PAR) — [decision 20](../decisions/20-minor-power-species-class-keys.md). |
 | **Leader traits** | Closed. `leader_trait_starfleet_32` and `trait_pc_assimilated_preference` stubbed inert in `src/common/traits/`. |
 | **Shader effects** | Closed. `src/gfx/FX/pdxmesh.shader` is vanilla 4.4 verbatim plus STNH's five effect blocks — an additive merge, not a 3.12 file shadowing vanilla's. |

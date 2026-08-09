@@ -24,7 +24,7 @@ the fix — there is deliberately **no fallback to `/workshop`**.
 
 ```bash
 make sources-status              # what changed upstream (size+mtime; seconds)
-make sources-status DEEP=1       # hash all 44,584 files instead
+make sources-status DEEP=1       # hash every file instead — ~44,500 of them
 make sources-diff ID=937289339   # read the actual change, file by file
 make sources-sync ID=937289339   # accept it for that one source
 make sources-sync                # re-snapshot everything
