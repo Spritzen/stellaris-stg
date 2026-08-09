@@ -28,6 +28,11 @@ evidence for anything in this section — the standing lesson of decisions
 > log and let a survey fleet work** — that one act reaches the three sections
 > below that nothing else can. [The 2026-08-15 audit](../analysis/2026-08-15.md),
 > finding 1.
+>
+> **That run is planned**, as a long Federation campaign:
+> [runs/ufp-long-campaign.md](../runs/ufp-long-campaign.md) puts this page's
+> eyes-only surface in the order a playthrough actually reaches it, and names
+> what a Federation run cannot reach at all.
 
 ### The shipsets' weapons
 

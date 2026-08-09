@@ -4,7 +4,7 @@
 > ever gets, and what a clean log does not mean.
 > **Open when** — the user reports they have launched the game. Every time,
 > before saying anything about how the run went.
-> **Then** — [Deployment](deployment.md) · [Analyses](../analysis/README.md) · [Open questions](../planning/open-questions.md)
+> **Then** — [Run plans](../runs/README.md) · [Deployment](deployment.md) · [Analyses](../analysis/README.md) · [Open questions](../planning/open-questions.md)
 
 The game runs on the **host**, not in the container. After `make vendor`, restart
 the Stellaris launcher, enable *Star Trek Galaxies* in the playset, and launch.
@@ -67,6 +67,11 @@ evidence for any of them. That is the standing lesson of
 
 [Open questions](../planning/open-questions.md) keeps the list of what is
 currently waiting on somebody's eyes, and what specifically to look at.
+
+**Decide that before the game opens, not after.** A run plan in
+[`../runs/`](../runs/README.md) turns that list into an ordered checklist for one
+empire — including what that empire *cannot* reach, which is the part that is
+only cheap to know in advance.
 
 ## Writing it up
 

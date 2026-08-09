@@ -26,6 +26,7 @@ of this page.
 | change what is harvested | [architecture/harvest-order.md](architecture/harvest-order.md) |
 | understand a `make validate` finding | [validation/checks.md](validation/checks.md) |
 | write a new check | [validation/check-design.md](validation/check-design.md) |
+| plan what a playthrough should cover | [runs/README.md](runs/README.md) |
 | read `error.log` after the user played | [guides/live-runs.md](guides/live-runs.md) |
 | find out whether a question is already settled | [decisions/README.md](decisions/README.md) |
 | look up a term | [reference/glossary.md](reference/glossary.md) |
@@ -43,6 +44,7 @@ of this page.
 | [planning/](planning/) | **State and direction** — status, phases, open questions, scope | [README](planning/README.md) |
 | [decisions/](decisions/) | **One numbered file per resolved question**, with the reasoning and what it cost | [README](decisions/README.md) |
 | [reference/](reference/) | **Lookups** — glossary, repo layout, database rules, external links | [README](reference/README.md) |
+| [runs/](runs/) | **What a live run should cover** — written before the run, one file per playthrough | [README](runs/README.md) |
 | [analysis/](analysis/) | **What a live run measured** — written only on request, one file per run | [README](analysis/README.md) |
 
 Plus two single files:

@@ -70,7 +70,7 @@ GENERATED = {DOCS / "provenance.md"}
 
 # Folders that are categories: each needs a README naming its files.
 CATEGORY_DIRS = ["guides", "architecture", "validation", "planning",
-                 "reference", "decisions", "analysis"]
+                 "reference", "decisions", "analysis", "runs"]
 
 LINK = re.compile(r"\[[^\]]*\]\(([^)\s]+)(?:\s+\"[^\"]*\")?\)")
 CODE_CITE = re.compile(r"\.docs/[A-Za-z0-9_./-]*[A-Za-z0-9_-]")
