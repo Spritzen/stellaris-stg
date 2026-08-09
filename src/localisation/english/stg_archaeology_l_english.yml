@@ -1,0 +1,192 @@
+﻿l_english:
+ # Star Trek Galaxies -- the Trek archaeological sites.
+ #
+ # Four families of key, and all four are load-bearing:
+ #   <site>              / <site>_desc      the situation log entry
+ #   stg_arcsite.N.name  / .desc            the stage popup
+ #   stg_arcsite.N.a / .b                   the option buttons
+ #   <modifier> / <modifier>_desc           the finale reward on the empire list
+ #
+ # Sites live in common/archaeological_site_types/stg_arc_sites.txt, stage
+ # events in events/stg_arcsite_events.txt, pictures in
+ # interface/stg_arcsite_pictures.gfx, modifiers in
+ # common/static_modifiers/stg_archaeology_modifiers.txt. check_archaeology
+ # walks all five and fails on any key with nothing behind it.
+ #
+ # THE REGISTER IS A SURVEY OFFICER'S REPORT, which is vanilla's own -- somebody
+ # writing up what a team found this week, for a reader who was not there. Not a
+ # narrator, and never a plot summary of an episode.
+ # See .docs/decisions/76-trek-archaeology.md
+
+ # ── The Hall of the Blade ────────────────────────────────────────────────────
+
+ stg_site_hall_of_the_blade:0 "The Hall of the Blade"
+ stg_site_hall_of_the_blade_desc:0 "Deep radar over the northern basin of [from.planet.GetName] returns a shape erosion does not make: a corridor eleven kilometres long, cut dead straight through bedrock, ending in a chamber with a worked ceiling. There is no city above it, no road to it, and no wear on the approach. Whoever cut this did not expect it to be visited often."
+
+ stg_arcsite.100.name:0 "A Mass Below the Basin"
+ stg_arcsite.100.desc:0 "The corridor is real. Our first shaft came down through nine metres of wind-laid dust and then eleven of shattered rock that was not shattered by weather — the tool marks are still on it, spaced too evenly for anything but a cutting beam, and cold enough in profile that they were made in one pass.\n\nThe rock above the corridor was replaced after the cutting. Somebody dug this, then filled the hole behind them and smoothed the basin over. That is not the behaviour of builders. It is the behaviour of people closing something."
+ stg_arcsite.100.a:0 "Then we go in the way they came out."
+
+ stg_arcsite.101.name:0 "The Processional"
+ stg_arcsite.101.desc:0 "It is not a mine and it is not a bunker. It is a road — three metres wide, level to within a hand's breadth over its whole length, with niches cut into both walls at regular intervals. Two hundred and six of them.\n\nEvery one is empty. Not looted: emptied. There is no breakage, no scatter, no fragment left in any of them, and the dust that settled afterwards is undisturbed. Somebody walked this corridor with a cart, took two hundred and six objects out in order, and never came back for the two hundred and seventh, whatever it was."
+ stg_arcsite.101.a:0 "Photograph every niche. The pattern is the artefact."
+
+ stg_arcsite.102.name:0 "The City That Kept It"
+ stg_arcsite.102.desc:0 "Four kilometres east, under the same dust, a settlement — and it is the wrong kind of settlement. No market, no harbour, no industry beyond a foundry and a granary, and housing for perhaps two thousand. Everything in it faces the basin.\n\nThe occupation layers run continuously for something between eight and nine centuries. Nine generations of people were born, worked and buried here, and the only thing this place did was keep watch on a corridor with nothing in it. The last layer shows no burning and no siege. They packed, and they left."
+ stg_arcsite.102.a:0 "Nine hundred years of guard duty. Find out what for."
+
+ stg_arcsite.103.name:0 "The Hall"
+ stg_arcsite.103.desc:0 "The chamber at the end is thirty metres across and vaulted, and it was a hall of assembly — tiered benches cut from the living rock, worn smooth in the middle of each tier and sharp at the ends, exactly as a bench wears when the same seats are taken for centuries.\n\nAt the focus of the tiers there is a forge. Not a shrine dressed as a forge: a working one, with slag in the drain, quench scale on the floor, and an anvil bolted through to bedrock. Whatever the two hundred and six were, they were made here, one at a time, in front of everybody."
+ stg_arcsite.103.a:0 "Take the floor apart. Start at the anvil."
+
+ stg_arcsite.104.name:0 "The Blade"
+ stg_arcsite.104.desc:0 "Under the anvil, in a lined void the ground radar read as solid stone, there is a single blade.\n\nIt is a bat'leth-form weapon of a hard grey alloy our metallurgists cannot yet name, and it is unfinished — the last third of the edge is still rough from the hammer. Beside it, laid out in order, are the tools that were making it. The forge was not shut down. It was abandoned mid-strike, and then the hall was sealed by people who had time to seal it properly.\n\nThe survey lead has asked, in writing, that we decide what happens next before anybody touches it. She is right to ask."
+ stg_arcsite.104.a:0 "Lift it. Carefully, and with witnesses."
+ stg_arcsite.104.b:0 "Leave it on the anvil. Record everything and seal the hall."
+
+ # ── The Ark in the Sand ──────────────────────────────────────────────────────
+
+ stg_site_ark_in_the_sand:0 "The Ark in the Sand"
+ stg_site_ark_in_the_sand_desc:0 "A paved road runs eighty kilometres across the southern erg of [from.planet.GetName] and stops. Not at a ruin, not at a river, not at a border — it simply ends, in open dune, with the last course of paving laid as carefully as the first. Roads end where somebody wanted to arrive."
+
+ stg_arcsite.200.name:0 "The Road to Nowhere"
+ stg_arcsite.200.desc:0 "The paving is a fitted mosaic of dressed stone, and the joints are tight enough that the team's first task was convincing themselves it was not natural. It carried foot traffic and nothing else: no ruts, no axle wear, no hoofprint in the sealed layers beneath.\n\nThe stone was quarried four hundred kilometres north. Every block on this road was carried here on somebody's back, over three centuries of building seasons, to reach a spot in the sand that has nothing on it at all."
+ stg_arcsite.200.a:0 "Whatever is here, they thought it was worth the walk."
+
+ stg_arcsite.201.name:0 "The Season of Storms"
+ stg_arcsite.201.desc:0 "The dust season arrived four weeks early and took the survey grid with it. Nobody was hurt. We lost eleven days, two shelters and the standing spoil heap, and we learned something in the process: the storms run the same corridor every year, and the end of the road sits precisely in the lee of the only ridge for sixty kilometres.\n\nThat is not luck. The builders sited this where the sand would bury it and keep burying it. The dig is inside somebody's plan."
+ stg_arcsite.201.a:0 "Weather it in the field. The season is data too."
+ stg_arcsite.201.b:0 "Fund a hardened camp and work straight through."
+
+ stg_arcsite.202.name:0 "The Case"
+ stg_arcsite.202.desc:0 "Six metres under the last paving stone: a case.\n\nIt is a little under a metre long, ornamented on all six faces, and made of at least four materials that were never mined on this world. The ornament is not decoration in the sense of pattern — it is dense, purposeful and repeating, and our epigraphers are already using the word inscription. There is no lock and no hinge anybody can find.\n\nIt was placed on a bed of clean sand that was screened before it was laid. Somebody sifted the ground for the thing they were burying."
+ stg_arcsite.202.a:0 "Lift it whole. Nobody opens anything in the field."
+
+ stg_arcsite.203.name:0 "What Is Inside It"
+ stg_arcsite.203.desc:0 "It opened on the third day in the shipboard lab, and it opened by being asked correctly — a sequence of pressures on the ornament, worked out by a junior specialist who was treating the pattern as instructions rather than art.\n\nInside, suspended in a field the case is still generating after an interval we currently estimate at eleven thousand years, is a crystal the size of a fist. It is doing something. Every instrument in the room agrees that it is doing something, and no two of them agree on what.\n\nThe field draws no power we can detect. That, so far, is the most alarming sentence in the report."
+ stg_arcsite.203.a:0 "Log everything. Change nothing."
+
+ stg_arcsite.204.name:0 "The City It Remembers"
+ stg_arcsite.204.desc:0 "The crystal is a recording, and it is not a recording of words.\n\nHeld in the case's field it produces a coherent image, and the image is a city — green, terraced, built along a falling river, with its people going about an ordinary afternoon in it. It runs for nine minutes and begins again. Cross-checked against the geology, the city stood two thousand kilometres north of here, and the river dried up before the road was built.\n\nSo this was not a burial. It was a deposit, made by people who had already lost the thing they were preserving, at the end of a road they built specifically so that whoever came next would have to walk to it."
+ stg_arcsite.204.a:0 "It belongs with somebody who will keep it. Find them."
+ stg_arcsite.204.b:0 "We are the ones who came next. Keep reading it."
+
+ # ── The Sealed Mechanism ─────────────────────────────────────────────────────
+
+ stg_site_sealed_mechanism:0 "The Sealed Mechanism"
+ stg_site_sealed_mechanism_desc:0 "A survey sweep of [from.planet.GetName] returned a subsurface density anomaly, which is ordinary, and then returned it again eleven minutes later two hundred metres from where it had been, which is not. The object under the crust is not moving. Something about it is moving our measurement of it."
+
+ stg_arcsite.300.name:0 "The Return Nobody Can Explain"
+ stg_arcsite.300.desc:0 "Four instruments, four answers. The mass reads between eight and thirty tonnes depending on which sensor is asked and when; the depth is stable at ninety-one metres; the outline is a lens, four metres across, too regular to be geology and too small to be a ship.\n\nThe most useful result is the least dramatic. The rock immediately around it has been heated and re-cooled, once, uniformly, all the way round — which means it did not fall here. It was put here, hot, and the hole was closed behind it."
+ stg_arcsite.300.a:0 "Sink a shaft. Slowly, and with the sensors running."
+
+ stg_arcsite.301.name:0 "One Piece of It"
+ stg_arcsite.301.desc:0 "At sixty metres the shaft crew brought up a fragment — a curved section of casing the size of a hand, sheared cleanly, with a machined inner face carrying a spiral of fine indentations.\n\nIt is inert. It is also, according to the lab, an alloy we can describe precisely and cannot reproduce: the grain structure runs continuously through the curve with no weld, no cast line and no crystal boundary anywhere in the sample. It was not assembled. It was grown, or it was printed by something with better tools than ours.\n\nThe shear face is fresh. Something took this piece off recently, in geological terms, and left the rest."
+ stg_arcsite.301.a:0 "Get the metallurgists everything they can hold."
+
+ stg_arcsite.302.name:0 "The Whole of It"
+ stg_arcsite.302.desc:0 "The shaft reached the object at 0400 and the team has been quiet ever since.\n\nIt is a sealed disc four metres across and one deep, banded in the same grown alloy, with a recessed iris on the upper face and no seam, port, mark or inscription anywhere else on it. Three sections of casing are missing — ours is one of them — and the gaps have been closed from inside by something that flowed and then set.\n\nIt repairs itself. It has been repairing itself, at that depth, in the dark, for as long as it has been there."
+ stg_arcsite.302.a:0 "Cordon it. Nobody works alone down there."
+
+ stg_arcsite.303.name:0 "It Notices Us"
+ stg_arcsite.303.desc:0 "At 1130 the iris opened four millimetres and closed again.\n\nNothing came out. Nothing went in. Every instrument on the floor of the shaft logged a rise in local field strength that began ninety seconds before the movement and ended ninety seconds after, symmetrical to three decimal places, which our physicist describes as the signature of a system running a check and then going back to sleep.\n\nIt is not damaged. It is not derelict. It is dormant, it is aware that we are here, and the only open question is what it was left dormant to wait for."
+ stg_arcsite.303.a:0 "Wake it under supervision. We will not learn this from outside."
+ stg_arcsite.303.b:0 "Backfill the shaft and mark the chart. Not this one."
+
+ # ── The Desert Sanctuary ─────────────────────────────────────────────────────
+
+ stg_site_desert_sanctuary:0 "The Desert Sanctuary"
+ stg_site_desert_sanctuary_desc:0 "High on the eastern scarp of [from.planet.GetName], where the survey flight had no reason to look twice, there is cut stone: terraces, a stair, and a doorway with nothing behind it but rock. Somebody built a place that is hard to reach, and then made the last part of the climb harder on purpose."
+
+ stg_arcsite.400.name:0 "The Plateau"
+ stg_arcsite.400.desc:0 "The scarp is a bad place to live and an excellent place to be left alone. No water within a day's walk, no arable soil, no shelter from the afternoon, and a wind that has been polishing the terraces smooth for a very long time.\n\nThe stair is the tell. It is a formal stair, cut wide enough for two, with a landing every forty steps and a drainage channel beside it that has never carried water in living memory. This was built when the climate was different — and it was still being used long after it stopped being convenient."
+ stg_arcsite.400.a:0 "Camp on the terrace. Work up from the stair."
+
+ stg_arcsite.401.name:0 "The Retreat"
+ stg_arcsite.401.desc:0 "Behind the false doorway, a complex: cells, a refectory, a cistern, and a hall with a floor worn into shallow bowls where people knelt in the same places for generations.\n\nThere is almost nothing in it. No jewellery, no coin, no weapon, no personal marking of any kind — and the cells are identical to within a few centimetres. Whoever lived here owned a bowl, a lamp and a sleeping ledge, and the archaeology of that is a problem: a site with no possessions is a site that tells you almost nothing about the people in it, which may well have been the point."
+ stg_arcsite.401.a:0 "Then read the building instead of the belongings."
+
+ stg_arcsite.402.name:0 "The First Object"
+ stg_arcsite.402.desc:0 "Set into the cistern wall, behind a plug of the same stone cut so well it took three days to find, there is a cavity, and in it a triangular plate of worked metal a little larger than a hand.\n\nIt is dense, cold, and covered on both faces with a script none of our comparanda match. It is also the only object on this entire site that anybody thought worth hiding, which makes it the most important thing here by a considerable margin.\n\nThe geometry of the cavity says there were others. Three cavities, three plugs, one plate."
+ stg_arcsite.402.a:0 "Find the other two. Take the site apart if you have to."
+
+ stg_arcsite.403.name:0 "The Third Object"
+ stg_arcsite.403.desc:0 "The second was under the refectory threshold and the third was in the hall floor, at the centre of the worn bowls, which means the community knelt around it every day for eight hundred years without, apparently, ever taking it out.\n\nBrought within a metre of each other on the bench, the three plates move. Not violently — they turn on the table until their edges line up, and then they hold, against a hand, hard. Separated, they go inert within seconds.\n\nOur working note reads: this was one object, deliberately taken to pieces, and the pieces were deliberately kept apart by people who understood what they had."
+ stg_arcsite.403.a:0 "Keep them apart. Assemble nothing until we know what it does."
+
+ stg_arcsite.404.name:0 "The Floor Under the Floor"
+ stg_arcsite.404.desc:0 "There is a second floor under the hall, and it is a text.\n\nThe whole surface — eleven metres by nine — is inscribed, in a hand that changes eight times across the work, which tells us it was cut by eight people over what must have been decades. The upper floor was laid on top of it, carefully, without a single character scored through.\n\nWe can only read the shape of the argument so far, not the argument itself, but the shape is unmistakable: it is not a chronicle, a boast or a prayer. It is a method. Somebody set down, at enormous cost, in a place nobody could reach easily, how to think about something — and then their successors covered it up and knelt on it every morning for eight centuries."
+ stg_arcsite.404.a:0 "Translate it, and then teach it."
+ stg_arcsite.404.b:0 "Record it whole and put it in the archive. Let it be read."
+
+ # ── The Hebitian Vaults ──────────────────────────────────────────────────────
+
+ stg_site_hebitian_vaults:0 "The Hebitian Vaults"
+ stg_site_hebitian_vaults_desc:0 "The ruins on [from.planet.GetName] are catalogued, dated and, according to every reference we have, thoroughly unremarkable. The catalogue is wrong by about four thousand years: there is a second city under the first, and nobody who wrote the reference works appears to have dug deep enough to find it."
+
+ stg_arcsite.500.name:0 "The Wrong Layer"
+ stg_arcsite.500.desc:0 "The trench was supposed to be a formality — a section through a known settlement, to date it and move on. Two metres below the floor everybody expected to be sterile, the spoil started producing worked stone with a completely different tool signature.\n\nThe upper city was built out of the lower one. Half the dressed blocks in its walls are re-used, and on several of them the original carved face is turned inward, into the mortar, where it cannot be seen. That is a choice somebody made, block by block, thousands of times."
+ stg_arcsite.500.a:0 "Turn the wall around. Let us see what they hid."
+
+ stg_arcsite.501.name:0 "The Inscription, and the Argument About It"
+ stg_arcsite.501.desc:0 "The reversed faces carry a continuous inscription, and the dig has divided into two camps about it inside a week.\n\nOne reading has it as an inventory — quantities, holdings, the accounts of a rich and orderly state. The other has it as a lament, in which the same figures are what was lost. The grammar supports both, and the epigraphers have started taking their meals separately.\n\nWhat neither camp disputes: the lower civilisation was wealthier, older and better at building than the one that replaced it, and the replacement went to deliberate trouble to face its words into the dark."
+ stg_arcsite.501.a:0 "Let them argue. Publish both readings side by side."
+
+ stg_arcsite.502.name:0 "The Vault"
+ stg_arcsite.502.desc:0 "Under the eastern quarter, a chamber the size of a hangar, dry, sealed and intact.\n\nRacked floor to ceiling: metalwork, glass, and pale ceramic in quantities that make the inventory reading look conservative. Most of it is ornament, and the ornament is superb — but the useful half is the racking itself, which is a modular structural alloy system considerably in advance of anything the city above it ever built.\n\nThe vault was closed from outside and never reopened. Nobody came back for any of this, and the people living directly above it for four millennia either did not know it was here or had agreed not to."
+ stg_arcsite.502.a:0 "Survey it item by item. This will take years and it is worth years."
+
+ stg_arcsite.503.name:0 "Whose It Is Now"
+ stg_arcsite.503.desc:0 "The last chamber is smaller and it is the one that matters. On the end wall, cut deep and picked out in a metal that has not tarnished, is a single sigil — and it is the mark that appears, simplified almost past recognition, on the successor state's own official architecture.\n\nThey knew. They took the sigil, they took the stone, they took the vault's location out of the record, and they built a state on top of a civilisation they had decided to stop mentioning.\n\nThe find is now a political object as much as an archaeological one, and the survey lead would like a decision from somebody senior enough to make it."
+ stg_arcsite.503.a:0 "Publish all of it. The dead are owed their name."
+ stg_arcsite.503.b:0 "Catalogue the metalwork and ship it. We have uses for it."
+
+ # ── The Lost Colony ──────────────────────────────────────────────────────────
+
+ stg_site_lost_colony:0 "The Lost Colony"
+ stg_site_lost_colony_desc:0 "There is a settlement on [from.planet.GetName] and it is far too young to be ruins. Prefabricated structures, a landing field, a graded road — all of it abandoned, none of it damaged, and nothing in the region's history that says anybody was ever sent here."
+
+ stg_arcsite.600.name:0 "The Lander"
+ stg_arcsite.600.desc:0 "The hull on the landing field is a colony lander of a type nobody on the survey team recognises, and its construction standards are perfectly comprehensible — welded plate, chemical thrusters, a reactor design our engineers describe as crude, robust and entirely sane.\n\nIt landed under control. The gear is down and locked, the field is graded, and the cargo doors are open. Then it sat here long enough for the paint to go and the seals to perish, with nobody closing it up.\n\nWe are not looking at a crash. We are looking at an arrival."
+ stg_arcsite.600.a:0 "Date the hull, then walk the road and see where it goes."
+
+ stg_arcsite.601.name:0 "The Town"
+ stg_arcsite.601.desc:0 "Two kilometres from the field: a town for perhaps four hundred people, laid out on a grid, with a water plant, a school and a burial ground of one hundred and six graves.\n\nThe graves span sixty years and stop. The last dozen are the tidiest — carved markers, careful spelling — which is not what a failing colony's cemetery looks like. Failing colonies bury people badly at the end.\n\nThe houses were swept. Doors closed, shutters latched, tools racked. Whatever happened to these people, they had time, and they used it on housekeeping."
+ stg_arcsite.601.a:0 "People who tidy up are people who expect to be judged for it."
+
+ stg_arcsite.602.name:0 "Where They Went"
+ stg_arcsite.602.desc:0 "The graded road runs past the town and ends at the cliffs, and the cliffs are full of doors.\n\nSeventy-one openings, cut and shored, on four levels, with a lift shaft at the western end that still has its cable on the drum. Inside: galleries, dormitories, a hydroponics run and a great deal of very careful ventilation engineering, all of it built with the lander's own plate and the town's own tools.\n\nThey did not vanish. They moved, downward, over a period of years, and they took the town apart to do it. The question the team keeps asking in the evenings is what they were getting away from, on a world whose surface is, by every measurement we have taken, entirely benign."
+ stg_arcsite.602.a:0 "Go down. Bring lights and a geologist."
+
+ stg_arcsite.603.name:0 "The Works, Still Running"
+ stg_arcsite.603.desc:0 "The lowest gallery is lit.\n\nA geothermal tap the colonists cut into a fault line is still turning, still feeding a switchboard, still running four ventilation fans and a bank of lamps in a chamber nobody has walked through in a very long time. It has been maintained: bearings replaced, windings rewound, the work getting rougher and more ingenious as the record goes on and the proper materials ran out.\n\nThe last repair is undated and old. There is no third settlement below this one, and there are no further graves. Somewhere between the surface and here, a few hundred people stopped being a colony and became something else, and the only honest thing in our report is that we do not know what.\n\nThe engineering, at least, is exceptional. They solved problems down here that our own frontier crews are still arguing about."
+ stg_arcsite.603.a:0 "Copy every schematic. Then seal the gallery and leave the lights on."
+
+ # ── The finale modifiers ─────────────────────────────────────────────────────
+
+ stg_blade_recovered:0 "The Recovered Blade"
+ stg_blade_recovered_desc:0 "A weapon made by hand, in front of witnesses, by people who thought a blade was worth nine centuries of guarding. Our own crews have taken the point."
+
+ stg_hall_recorded:0 "The Sealed Hall"
+ stg_hall_recorded_desc:0 "We found it, we recorded it, and we put the stone back. There is a certain standing in being the power that could have taken something and did not."
+
+ stg_ark_returned:0 "The Ark Restored"
+ stg_ark_returned_desc:0 "A city that no longer exists is remembered by people who will keep remembering it. The road was built to be walked, and we walked it back."
+
+ stg_ark_studied:0 "The Ark Read"
+ stg_ark_studied_desc:0 "Nine minutes of a lost afternoon, running on no power we can find, in a field we cannot yet build. Our laboratories will be busy for a generation."
+
+ stg_mechanism_studied:0 "The Waking Mechanism"
+ stg_mechanism_studied_desc:0 "It repairs itself, it checks its surroundings, and it has now been persuaded to do both where we can watch. Our hull metallurgy has already changed."
+
+ stg_mechanism_sealed:0 "The Buried Mechanism"
+ stg_mechanism_sealed_desc:0 "The shaft is backfilled and the position is on every chart we publish. Not everything that can be opened should be, and saying so out loud has done our people good."
+
+ stg_sanctuary_discipline:0 "The Sanctuary Method"
+ stg_sanctuary_discipline_desc:0 "Eight hands cut it into a floor and eight centuries knelt on it. It is not a faith and it is not a science; it is a way of holding a difficult thought steady, and it teaches."
+
+ stg_vault_catalogued:0 "The Hebitian Record"
+ stg_vault_catalogued_desc:0 "A civilisation that was written out of its own successor's history has its name back, its inventory published and its work credited. Scholarship of that kind travels."
+
+ stg_colony_survivors:0 "The Undercity Schematics"
+ stg_colony_survivors_desc:0 "Four hundred colonists rebuilt a world underneath one, with the wrong materials and no help. Our own settlement crews are working from their drawings."

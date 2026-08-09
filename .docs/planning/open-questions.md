@@ -131,7 +131,60 @@ Three separate questions, and they fail differently:
 > that shadow a vanilla path that crop was verified against the vanilla scene
 > they replace; these 24 shadow nothing, so **there is no control** — twelve
 > were looked at and read correctly, which is a sample. A subject cropped at
-> the chin is what it would look like.
+> the chin is what it would look like. **The archaeology adds 27 more on the
+> same terms**, and those 27 were each looked at in the exact crop before being
+> chosen ([76](../decisions/76-trek-archaeology.md)) — so if a framing problem
+> shows up, the anomalies' 24 are where to look first.
+
+### The Trek archaeology
+
+New on 2026-08-09 and the same shape one database over: **6 dig sites, 27 stage
+events, 27 pictures, 117 loc keys and ~3,800 words**, none of which any check can
+grade ([decision 76](../decisions/76-trek-archaeology.md)). The writing and
+picture questions above apply here unchanged. Three that are specific to a dig:
+
+- **Do they turn up at all?** This is the one question a live run answers
+  cheaply and nothing else answers. The sites spawn through `ancrel.9999` on
+  `on_survey_planet`, at vanilla's own 5-in-405 roll, weighted on planet class —
+  so the test is whether a dig site appears in the situation log over a few dozen
+  surveys, and whether more than one of the six ever shows in one galaxy. If
+  **none** appears, the weights are the thing to doubt, not the content.
+- **Does a five-stage dig hold up over the hours it takes?** An anomaly is one
+  popup; a site is four or five, spread across a scientist's career. The failure
+  mode is a middle stage that reads as filler between the hook and the payoff.
+- **Do the finale choices feel like choices?** Five of the six end on two options
+  with different modifiers — take the blade or seal the hall, return the ark or
+  keep reading it, wake the mechanism or backfill the shaft. If one side is
+  obviously correct every time, it is not a choice, it is a tax.
+
+### The Trek story events
+
+New on 2026-08-09 and the last of the three
+[decision 75](../decisions/75-trek-anomalies.md) scoped: **21 events, 21
+pictures, 84 loc keys and ~4,000 words**, none of which any check can grade
+([decision 77](../decisions/77-trek-story-events.md)). The writing and picture
+questions above apply here unchanged. Four that are specific to a story event:
+
+- **Do they fire at all, and at the right rate?** The pool is calibrated at 21%
+  per five-year pulse against vanilla's own 18.6%, which works out at roughly
+  one story event per decade per empire. If **none** appears in a long game the
+  thing to doubt is the hook, not the weights — a custom on_action reached only
+  by `fire_on_action` is exactly the arrangement `check_story_events` was
+  written to police, and a check that has never failed in the live game is not
+  yet evidence ([check design rule 7](../validation/check-design.md#7-compare-declared-identity-not-block-key--and-distrust-a-check-that-has-never-failed)).
+- **Does the right empire get the right story?** Twelve are gated on species
+  class. A Klingon empire seeing the Federation Council, or a Federation empire
+  seeing none of its own two in a whole game, are the two ways the gate is
+  wrong, and they fail in opposite directions.
+- **Does a five-year flavour popup read as texture or as interruption?** This is
+  the one question the anomalies and dig sites do not raise, because those are
+  answers to something the player did. A story event arrives unbidden. If it
+  reads as a tax on the pause key the weights are too high, and `1200 = 0` is
+  the one number to move.
+- **Does the register hold at country scope?** The dig sites are a survey
+  officer's report; these are a service dispatch, written from inside an
+  institution. The failure mode is a description that reads as a narrator
+  summarising an episode instead of a civil servant writing a minute.
 
 ### Answered, kept here for the shape of the answer
 

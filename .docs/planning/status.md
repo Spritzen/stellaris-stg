@@ -16,7 +16,7 @@ number here has a date because every number here goes stale —
 | **Phase 1** — playable Federation | **complete**, run in-game repeatedly |
 | **Phase 2** — the rest of the galaxy | **complete**. 101 prescripted empires (22 playable, 79 AI-only minors), 101 species classes, 92 name lists, 37 real home systems |
 | **Phase 3** — art and identity | **complete 2026-08-08**. Clothing triggers, shipsets, weapon mounts, flags, rooms, city sets, loading screens, `paragon_backgrounds.txt`, the shipsets' 39 extra flags |
-| **Phase 4** — polish | **started 2026-08-08**: music ([55](../decisions/55-federation-anthem.md)), then the ship registries ([59](../decisions/59-ship-name-pools.md)) and their class names ([72](../decisions/72-ship-class-names.md), [73](../decisions/73-class-name-thematic-fill.md)), then **21 Trek anomalies** on 24 reclaimed STNH event pictures ([75](../decisions/75-trek-anomalies.md), [74](../decisions/74-event-picture-families.md), 2026-08-09). Archaeology and story events are unstarted, and next |
+| **Phase 4** — polish | **started 2026-08-08**: music ([55](../decisions/55-federation-anthem.md)), then the ship registries ([59](../decisions/59-ship-name-pools.md)) and their class names ([72](../decisions/72-ship-class-names.md), [73](../decisions/73-class-name-thematic-fill.md)), then **21 Trek anomalies** on 24 reclaimed STNH event pictures ([75](../decisions/75-trek-anomalies.md), [74](../decisions/74-event-picture-families.md), 2026-08-09), then **6 Trek archaeological sites** on 27 more ([76](../decisions/76-trek-archaeology.md)), then **21 Trek story events** on 21 more ([77](../decisions/77-trek-story-events.md)), all 2026-08-09. All three things [decision 75](../decisions/75-trek-anomalies.md) scoped are shipped |
 | **Phase 5** — the clutter pass | **complete 2026-08-07** (pipeline work, taken out of order) |
 
 `make docs` stands at **0 warnings, 0 errors** and now asks a second family of
@@ -34,13 +34,37 @@ scores 0 on across its 327 anomaly categories, and a seventh scoped to the one
 file where its floor is not 114 of 310
 ([decision 75](../decisions/75-trek-anomalies.md)).
 
+**And `check_archaeology`, the same shape one database over**: ten questions
+across vanilla's 123 site types and 475 stage events, nine of them at 0 and the
+tenth at a floor of 1 (`cstorms.1300`'s undefined option key), plus an eleventh
+scoped to our own events file, where vanilla's floor would be 157 of 628. One of
+the ten — **`stages = N` against the `stage` blocks beside it** — has no
+counterpart in `check_anomalies` and nothing else in the game enforces it
+([decision 76](../decisions/76-trek-archaeology.md)).
+
+**And `check_story_events`, the same shape a third time**, over the built tree's
+58 non-empty on_action hooks. Its first question has no counterpart in either
+sibling — **is the on_action KEY one the engine will ever fire?** — and vanilla
+scores 0 there once empty stubs are excluded, against **17 dangling event ids in
+its own `00_on_actions.txt`** ([decision 77](../decisions/77-trek-story-events.md)).
+
+> That first run found a defect in the two checks beside it rather than in the
+> content: a bare **`event = { }`** declaration is legal, vanilla writes it in
+> forty-odd of its own files, and `kind.endswith("_event")` does not match it —
+> so 26 live hooks in four source mods read as dangling. All three checks now
+> share `_is_event_block`. Neither sibling's floor moved.
+
 **That family question now covers `gfx/event_pictures` as well**, where it had
 been declined on a measurement that read one directory as one family. It is two:
 the top level is 580 of 580 at 450×150 and `origins/` is 59 of 59 at 220×115.
 Splitting them is what makes a Trek event picture usable at all
 ([decision 74](../decisions/74-event-picture-families.md)). Build of 2026-08-09:
-**22,349 files, 14.2 GB**, 1,661 re-cut at harvest, 935 pruned, `make vendor`
-in 75 s.
+**22,405 files, 14.3 GB**, 1,661 re-cut at harvest, 888 pruned, `make vendor`
+in 80 s. The prune has fallen 935 → 909 → **888** with no edit to `vendor.yml`
+across three passes: the 27 pictures
+[decision 76](../decisions/76-trek-archaeology.md)'s dig sites declare and the
+21 [decision 77](../decisions/77-trek-story-events.md)'s story events declare
+came back out of `.source/` by themselves, exactly as the anomalies' 24 did.
 
 ---
 

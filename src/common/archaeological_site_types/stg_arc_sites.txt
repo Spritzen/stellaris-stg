@@ -1,0 +1,441 @@
+# Star Trek Galaxies -- Trek archaeological site types.
+#
+# A NEW file, not a shadow: site types merge by key across files, so vanilla's
+# 327 are untouched and these 6 are added beside them. Stage events are in
+# events/stg_arcsite_events.txt, pictures in interface/stg_arcsite_pictures.gfx,
+# names, descriptions and stage prose in
+# localisation/english/stg_archaeology_l_english.yml, and the finale modifiers
+# in common/static_modifiers/stg_archaeology_modifiers.txt -- five files that
+# must all meet, which is what check_archaeology asks.
+#
+# Every field, trigger, difficulty and idiom here is copied from
+# common/archaeological_site_types/00_base_game_arc_sites.txt, whose header and
+# 99_README_ARC_SITES.txt are the only documentation of the format.
+#
+# THESE SIX SPAWN ON SURVEY, which is the thing to understand before adding a
+# seventh. `weight` is read only by `create_archaeological_site = random`, and
+# the only thing in the game that calls it is events/
+# ancient_relics_site_spawn_event.txt's ancrel.9999, hung on `on_survey_planet`.
+# Its trigger asks nothing about DLC, so a weighted site reaches every host.
+# Six of vanilla's ten base-game sites carry `weight = 0` and are placed by an
+# initializer or an event instead; ours have nowhere to be placed FROM, because
+# STG writes no story chain. See .docs/decisions/76-trek-archaeology.md.
+#
+# No `specimen`, no minor-artifact reward, no `has_ancrel` branch: STG is
+# standalone and behaves the same whatever the host owns. Vanilla's own comment
+# at the top of the base-game file says the same thing in the other direction --
+# "a base-game arc site must offer a reward other than Minor Artifacts".
+#
+# `RANDOM_EVENTS = no_events` on all six, which is what vanilla's
+# site_ancient_robot_world does. The alternative is one of the fifteen
+# *_random_events effects in common/scripted_effects/archaeology_event_effects.txt,
+# and every one of them fires `ancrel.*` dig-team events -- Ancient Relics
+# content, guarded inside itself rather than at the call. The tooltip that tells
+# the player their roll odds comes from standard_archaeological_site_on_roll_failed
+# either way; only the interruptions are declined.
+
+# ── The Hall of the Blade ─────────────────────────────────────────────────────
+# A warrior culture's reliquary, cut into a dead world. Five stages, and the
+# blade is at the bottom.
+stg_site_hall_of_the_blade = {
+	desc = "stg_site_hall_of_the_blade_desc"
+	picture = GFX_evt_stg_kahless_moon
+	stages = 5
+	max_instances = 1
+
+	weight = {
+		base = 0
+		modifier = {
+			add = 25
+			is_planet_class = pc_barren
+		}
+		modifier = {
+			add = 25
+			is_planet_class = pc_nuked
+		}
+		modifier = {
+			add = 15
+			is_planet_class = pc_volcanic
+		}
+	}
+
+	allow = {
+		exists = leader
+		leader = { leader_class = scientist }
+	}
+
+	visible = {
+		default_site_visible_trigger = yes
+	}
+
+	on_visible = {
+		country_event = { id = story.5 days = 30 }
+	}
+
+	stage = {
+		difficulty = 2
+		icon = GFX_archaeology_runes_B1
+		event = stg_arcsite.100
+	}
+	stage = {
+		difficulty = 3
+		icon = GFX_archaeology_runes_B2
+		event = stg_arcsite.101
+	}
+	stage = {
+		difficulty = 4
+		icon = GFX_archaeology_runes_B3
+		event = stg_arcsite.102
+	}
+	stage = {
+		difficulty = 5
+		icon = GFX_archaeology_runes_B4
+		event = stg_arcsite.103
+	}
+	stage = {
+		difficulty = 6
+		icon = GFX_archaeology_runes_B5
+		event = stg_arcsite.104
+	}
+
+	on_roll_failed = {
+		from = {
+			standard_archaeological_site_on_roll_failed = { RANDOM_EVENTS = no_events }
+		}
+	}
+}
+
+# ── The Ark in the Sand ───────────────────────────────────────────────────────
+# A reliquary buried by people who expected to come back for it. Five stages.
+stg_site_ark_in_the_sand = {
+	desc = "stg_site_ark_in_the_sand_desc"
+	picture = GFX_evt_stg_ark_expedition
+	stages = 5
+	max_instances = 1
+
+	weight = {
+		base = 0
+		modifier = {
+			add = 30
+			is_planet_class = pc_desert
+		}
+		modifier = {
+			add = 20
+			is_planet_class = pc_arid
+		}
+		modifier = {
+			add = 10
+			is_planet_class = pc_savannah
+		}
+	}
+
+	allow = {
+		exists = leader
+		leader = { leader_class = scientist }
+	}
+
+	visible = {
+		default_site_visible_trigger = yes
+	}
+
+	on_visible = {
+		country_event = { id = story.5 days = 30 }
+	}
+
+	stage = {
+		difficulty = 1
+		icon = GFX_archaeology_runes_C1
+		event = stg_arcsite.200
+	}
+	stage = {
+		difficulty = 3
+		icon = GFX_archaeology_runes_C2
+		event = stg_arcsite.201
+	}
+	stage = {
+		difficulty = 4
+		icon = GFX_archaeology_runes_C3
+		event = stg_arcsite.202
+	}
+	stage = {
+		difficulty = 4
+		icon = GFX_archaeology_runes_C4
+		event = stg_arcsite.203
+	}
+	stage = {
+		difficulty = 5
+		icon = GFX_archaeology_runes_C5
+		event = stg_arcsite.204
+	}
+
+	on_roll_failed = {
+		from = {
+			standard_archaeological_site_on_roll_failed = { RANDOM_EVENTS = no_events }
+		}
+	}
+}
+
+# ── The Sealed Mechanism ──────────────────────────────────────────────────────
+# Somebody buried a machine and did not mark the grave. Four stages, and the
+# last one is a decision rather than a reward.
+stg_site_sealed_mechanism = {
+	desc = "stg_site_sealed_mechanism_desc"
+	picture = GFX_evt_stg_mechanism_scan
+	stages = 4
+	max_instances = 1
+
+	weight = {
+		base = 0
+		modifier = {
+			add = 25
+			is_planet_class = pc_frozen
+		}
+		modifier = {
+			add = 25
+			is_planet_class = pc_toxic
+		}
+		modifier = {
+			add = 15
+			is_planet_class = pc_barren_cold
+		}
+	}
+
+	allow = {
+		exists = leader
+		leader = { leader_class = scientist }
+	}
+
+	visible = {
+		default_site_visible_trigger = yes
+	}
+
+	on_visible = {
+		country_event = { id = story.5 days = 30 }
+	}
+
+	stage = {
+		difficulty = 3
+		icon = GFX_archaeology_runes_D1
+		event = stg_arcsite.300
+	}
+	stage = {
+		difficulty = 4
+		icon = GFX_archaeology_runes_D2
+		event = stg_arcsite.301
+	}
+	stage = {
+		difficulty = 6
+		icon = GFX_archaeology_runes_D3
+		event = stg_arcsite.302
+	}
+	stage = {
+		difficulty = 7
+		icon = GFX_archaeology_runes_D4
+		event = stg_arcsite.303
+	}
+
+	on_roll_failed = {
+		from = {
+			standard_archaeological_site_on_roll_failed = { RANDOM_EVENTS = no_events }
+		}
+	}
+}
+
+# ── The Desert Sanctuary ──────────────────────────────────────────────────────
+# A retreat, an archive and three objects its keepers deliberately separated.
+stg_site_desert_sanctuary = {
+	desc = "stg_site_desert_sanctuary_desc"
+	picture = GFX_evt_stg_sanctuary_forge
+	stages = 5
+	max_instances = 1
+
+	weight = {
+		base = 0
+		modifier = {
+			add = 25
+			is_planet_class = pc_arid
+		}
+		modifier = {
+			add = 20
+			is_planet_class = pc_desert
+		}
+		modifier = {
+			add = 10
+			is_planet_class = pc_tundra
+		}
+	}
+
+	allow = {
+		exists = leader
+		leader = { leader_class = scientist }
+	}
+
+	visible = {
+		default_site_visible_trigger = yes
+	}
+
+	on_visible = {
+		country_event = { id = story.5 days = 30 }
+	}
+
+	stage = {
+		difficulty = 2
+		icon = GFX_archaeology_runes_E1
+		event = stg_arcsite.400
+	}
+	stage = {
+		difficulty = 3
+		icon = GFX_archaeology_runes_E2
+		event = stg_arcsite.401
+	}
+	stage = {
+		difficulty = 4
+		icon = GFX_archaeology_runes_E3
+		event = stg_arcsite.402
+	}
+	stage = {
+		difficulty = 4
+		icon = GFX_archaeology_runes_E4
+		event = stg_arcsite.403
+	}
+	stage = {
+		difficulty = 6
+		icon = GFX_archaeology_runes_E5
+		event = stg_arcsite.404
+	}
+
+	on_roll_failed = {
+		from = {
+			standard_archaeological_site_on_roll_failed = { RANDOM_EVENTS = no_events }
+		}
+	}
+}
+
+# ── The Hebitian Vaults ───────────────────────────────────────────────────────
+# A civilisation its own descendants stopped talking about. Four stages.
+stg_site_hebitian_vaults = {
+	desc = "stg_site_hebitian_vaults_desc"
+	picture = GFX_evt_stg_vault_dig
+	stages = 4
+	max_instances = 1
+
+	weight = {
+		base = 0
+		modifier = {
+			add = 25
+			is_planet_class = pc_nuked
+		}
+		modifier = {
+			add = 20
+			is_planet_class = pc_arid
+		}
+		modifier = {
+			add = 15
+			is_planet_class = pc_continental
+		}
+	}
+
+	allow = {
+		exists = leader
+		leader = { leader_class = scientist }
+	}
+
+	visible = {
+		default_site_visible_trigger = yes
+	}
+
+	on_visible = {
+		country_event = { id = story.5 days = 30 }
+	}
+
+	stage = {
+		difficulty = 2
+		icon = GFX_archaeology_runes_F1
+		event = stg_arcsite.500
+	}
+	stage = {
+		difficulty = 3
+		icon = GFX_archaeology_runes_F2
+		event = stg_arcsite.501
+	}
+	stage = {
+		difficulty = 5
+		icon = GFX_archaeology_runes_F3
+		event = stg_arcsite.502
+	}
+	stage = {
+		difficulty = 6
+		icon = GFX_archaeology_runes_F4
+		event = stg_arcsite.503
+	}
+
+	on_roll_failed = {
+		from = {
+			standard_archaeological_site_on_roll_failed = { RANDOM_EVENTS = no_events }
+		}
+	}
+}
+
+# ── The Lost Colony ───────────────────────────────────────────────────────────
+# THE ONLY ONE OF THE SIX WITH NO `max_instances`, and the split is vanilla's
+# own: a site that names a specific thing -- one blade, one ark, one sanctuary --
+# reads as broken if the galaxy holds four of them, and a site that names a KIND
+# of thing does not. A colony that failed is a kind of thing. Same call as
+# .docs/decisions/75-trek-anomalies.md made over the anomaly categories.
+stg_site_lost_colony = {
+	desc = "stg_site_lost_colony_desc"
+	picture = GFX_evt_stg_colony_lander
+	stages = 4
+
+	weight = {
+		base = 0
+		modifier = {
+			add = 20
+			habitable_planet = yes
+		}
+		modifier = {
+			add = 15
+			is_planet_class = pc_barren
+		}
+	}
+
+	allow = {
+		exists = leader
+		leader = { leader_class = scientist }
+	}
+
+	visible = {
+		default_site_visible_trigger = yes
+	}
+
+	on_visible = {
+		country_event = { id = story.5 days = 30 }
+	}
+
+	stage = {
+		difficulty = 1
+		icon = GFX_archaeology_runes_A1
+		event = stg_arcsite.600
+	}
+	stage = {
+		difficulty = 2
+		icon = GFX_archaeology_runes_A2
+		event = stg_arcsite.601
+	}
+	stage = {
+		difficulty = 4
+		icon = GFX_archaeology_runes_A3
+		event = stg_arcsite.602
+	}
+	stage = {
+		difficulty = 5
+		icon = GFX_archaeology_runes_A4
+		event = stg_arcsite.603
+	}
+
+	on_roll_failed = {
+		from = {
+			standard_archaeological_site_on_roll_failed = { RANDOM_EVENTS = no_events }
+		}
+	}
+}

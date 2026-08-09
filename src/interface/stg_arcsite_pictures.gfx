@@ -1,0 +1,367 @@
+# Star Trek Galaxies -- sprites for the Trek event pictures our archaeological
+# sites use.
+#
+# A SECOND new file beside interface/stg_event_pictures.gfx rather than an
+# extension of it, because the two databases are read by two different checks
+# and a session that breaks one should not have to read the other. Everything
+# in the sibling's header applies here unchanged:
+#
+#   TWO SPRITES PER PICTURE -- interface/eventpictures.gfx says "the Situation
+#   Log automatically uses sprites with the _nomask suffix if available", and a
+#   dig site lives in the situation log, so the _nomask twin is not optional
+#   decoration here the way it nearly is for an anomaly popup.
+#
+#   The art is 620x264 or a 9315x264 animation strip in .source/; `target:
+#   family` on gfx/event_pictures in vendor.yml re-cuts it to vanilla's 450x150
+#   at harvest, freezing frame 0 of a strip. Without that this file is decision
+#   42's defect: UIOD's eventwindow.gui draws at scale = 1.5 inside a 693x239
+#   frame, so 620x264 art renders 930x396.
+#   See .docs/decisions/74-event-picture-families.md.
+#
+# ALL 27 WERE LOOKED AT AS THE BUILD WILL CUT THEM -- frame 0, centre-cropped
+# to 450x150 -- and eleven candidates were rejected on what that crop showed:
+# four TAS-animated frames, three close-ups of a named character's face, two
+# near-featureless gradients and two too dark to read at this size. A filename
+# cannot make that call. Same standard as
+# .docs/decisions/75-trek-anomalies.md set for the anomaly pictures.
+#
+# NONE OF THE 27 IS ALREADY DECLARED by the anomalies' file, which is a
+# constraint and not a coincidence: theChase, undergroundTunnels, stone_of_gol
+# and ancientCapsule1 were all first choices here and all four are already
+# spent on an anomaly, so the sites took stone_of_gol_1/_3 and ancientCapsule2
+# and found other art for the caves. One picture, one subject.
+#
+# See .docs/decisions/76-trek-archaeology.md
+
+spriteTypes = {
+
+	# ── The Hall of the Blade ─────────────────────────────────────────────────
+	spriteType = {
+		name = "GFX_evt_stg_kahless_moon"
+		texturefile = "gfx/event_pictures/theSwordOfKahless2.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_stg_kahless_moon_nomask"
+		texturefile = "gfx/event_pictures/theSwordOfKahless2.dds"
+		alwaystransparent = yes
+	}
+
+	spriteType = {
+		name = "GFX_evt_stg_kahless_canyon"
+		texturefile = "gfx/event_pictures/theSwordOfKahless5.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_stg_kahless_canyon_nomask"
+		texturefile = "gfx/event_pictures/theSwordOfKahless5.dds"
+		alwaystransparent = yes
+	}
+
+	spriteType = {
+		name = "GFX_evt_stg_kahless_city"
+		texturefile = "gfx/event_pictures/theSwordOfKahless10.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_stg_kahless_city_nomask"
+		texturefile = "gfx/event_pictures/theSwordOfKahless10.dds"
+		alwaystransparent = yes
+	}
+
+	spriteType = {
+		name = "GFX_evt_stg_kahless_hall"
+		texturefile = "gfx/event_pictures/theSwordOfKahless9.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_stg_kahless_hall_nomask"
+		texturefile = "gfx/event_pictures/theSwordOfKahless9.dds"
+		alwaystransparent = yes
+	}
+
+	spriteType = {
+		name = "GFX_evt_stg_kahless_blade"
+		texturefile = "gfx/event_pictures/theSwordOfKahless8.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_stg_kahless_blade_nomask"
+		texturefile = "gfx/event_pictures/theSwordOfKahless8.dds"
+		alwaystransparent = yes
+	}
+
+	# ── The Ark in the Sand ───────────────────────────────────────────────────
+	spriteType = {
+		name = "GFX_evt_stg_ark_expedition"
+		texturefile = "gfx/event_pictures/orb_of_emissary_1.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_stg_ark_expedition_nomask"
+		texturefile = "gfx/event_pictures/orb_of_emissary_1.dds"
+		alwaystransparent = yes
+	}
+
+	spriteType = {
+		name = "GFX_evt_stg_ark_duststorm"
+		texturefile = "gfx/event_pictures/theOrbOfProphecy2.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_stg_ark_duststorm_nomask"
+		texturefile = "gfx/event_pictures/theOrbOfProphecy2.dds"
+		alwaystransparent = yes
+	}
+
+	spriteType = {
+		name = "GFX_evt_stg_ark_uncovered"
+		texturefile = "gfx/event_pictures/orb_of_emissary_2.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_stg_ark_uncovered_nomask"
+		texturefile = "gfx/event_pictures/orb_of_emissary_2.dds"
+		alwaystransparent = yes
+	}
+
+	spriteType = {
+		name = "GFX_evt_stg_ark_opened"
+		texturefile = "gfx/event_pictures/time_crystal.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_stg_ark_opened_nomask"
+		texturefile = "gfx/event_pictures/time_crystal.dds"
+		alwaystransparent = yes
+	}
+
+	spriteType = {
+		name = "GFX_evt_stg_ark_vision"
+		texturefile = "gfx/event_pictures/theOrbOfProphecy1.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_stg_ark_vision_nomask"
+		texturefile = "gfx/event_pictures/theOrbOfProphecy1.dds"
+		alwaystransparent = yes
+	}
+
+	# ── The Sealed Mechanism ──────────────────────────────────────────────────
+	spriteType = {
+		name = "GFX_evt_stg_mechanism_scan"
+		texturefile = "gfx/event_pictures/structure_on_the_surface1.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_stg_mechanism_scan_nomask"
+		texturefile = "gfx/event_pictures/structure_on_the_surface1.dds"
+		alwaystransparent = yes
+	}
+
+	spriteType = {
+		name = "GFX_evt_stg_mechanism_fragment"
+		texturefile = "gfx/event_pictures/abronath_part.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_stg_mechanism_fragment_nomask"
+		texturefile = "gfx/event_pictures/abronath_part.dds"
+		alwaystransparent = yes
+	}
+
+	spriteType = {
+		name = "GFX_evt_stg_mechanism_dormant"
+		texturefile = "gfx/event_pictures/abronath_inactive.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_stg_mechanism_dormant_nomask"
+		texturefile = "gfx/event_pictures/abronath_inactive.dds"
+		alwaystransparent = yes
+	}
+
+	spriteType = {
+		name = "GFX_evt_stg_mechanism_waking"
+		texturefile = "gfx/event_pictures/abronath_arming.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_stg_mechanism_waking_nomask"
+		texturefile = "gfx/event_pictures/abronath_arming.dds"
+		alwaystransparent = yes
+	}
+
+	# ── The Desert Sanctuary ──────────────────────────────────────────────────
+	spriteType = {
+		name = "GFX_evt_stg_sanctuary_forge"
+		texturefile = "gfx/event_pictures/vulcanForge.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_stg_sanctuary_forge_nomask"
+		texturefile = "gfx/event_pictures/vulcanForge.dds"
+		alwaystransparent = yes
+	}
+
+	spriteType = {
+		name = "GFX_evt_stg_sanctuary_temple"
+		texturefile = "gfx/event_pictures/kolinahr.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_stg_sanctuary_temple_nomask"
+		texturefile = "gfx/event_pictures/kolinahr.dds"
+		alwaystransparent = yes
+	}
+
+	spriteType = {
+		name = "GFX_evt_stg_sanctuary_relic_1"
+		texturefile = "gfx/event_pictures/stone_of_gol_1.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_stg_sanctuary_relic_1_nomask"
+		texturefile = "gfx/event_pictures/stone_of_gol_1.dds"
+		alwaystransparent = yes
+	}
+
+	spriteType = {
+		name = "GFX_evt_stg_sanctuary_relic_2"
+		texturefile = "gfx/event_pictures/stone_of_gol_3.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_stg_sanctuary_relic_2_nomask"
+		texturefile = "gfx/event_pictures/stone_of_gol_3.dds"
+		alwaystransparent = yes
+	}
+
+	spriteType = {
+		name = "GFX_evt_stg_sanctuary_text"
+		texturefile = "gfx/event_pictures/kirShara.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_stg_sanctuary_text_nomask"
+		texturefile = "gfx/event_pictures/kirShara.dds"
+		alwaystransparent = yes
+	}
+
+	# ── The Hebitian Vaults ───────────────────────────────────────────────────
+	spriteType = {
+		name = "GFX_evt_stg_vault_dig"
+		texturefile = "gfx/event_pictures/cardassian_archaeologist.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_stg_vault_dig_nomask"
+		texturefile = "gfx/event_pictures/cardassian_archaeologist.dds"
+		alwaystransparent = yes
+	}
+
+	spriteType = {
+		name = "GFX_evt_stg_vault_inscription"
+		texturefile = "gfx/event_pictures/darsayKorgano.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_stg_vault_inscription_nomask"
+		texturefile = "gfx/event_pictures/darsayKorgano.dds"
+		alwaystransparent = yes
+	}
+
+	spriteType = {
+		name = "GFX_evt_stg_vault_chamber"
+		texturefile = "gfx/event_pictures/ancientCapsule2.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_stg_vault_chamber_nomask"
+		texturefile = "gfx/event_pictures/ancientCapsule2.dds"
+		alwaystransparent = yes
+	}
+
+	spriteType = {
+		name = "GFX_evt_stg_vault_sigil"
+		texturefile = "gfx/event_pictures/hebitianRestoration.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_stg_vault_sigil_nomask"
+		texturefile = "gfx/event_pictures/hebitianRestoration.dds"
+		alwaystransparent = yes
+	}
+
+	# ── The Lost Colony ───────────────────────────────────────────────────────
+	spriteType = {
+		name = "GFX_evt_stg_colony_lander"
+		texturefile = "gfx/event_pictures/northStar3.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_stg_colony_lander_nomask"
+		texturefile = "gfx/event_pictures/northStar3.dds"
+		alwaystransparent = yes
+	}
+
+	spriteType = {
+		name = "GFX_evt_stg_colony_settlement"
+		texturefile = "gfx/event_pictures/northStar2.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_stg_colony_settlement_nomask"
+		texturefile = "gfx/event_pictures/northStar2.dds"
+		alwaystransparent = yes
+	}
+
+	spriteType = {
+		name = "GFX_evt_stg_colony_cliffs"
+		texturefile = "gfx/event_pictures/terraNova2.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_stg_colony_cliffs_nomask"
+		texturefile = "gfx/event_pictures/terraNova2.dds"
+		alwaystransparent = yes
+	}
+
+	spriteType = {
+		name = "GFX_evt_stg_colony_works"
+		texturefile = "gfx/event_pictures/alien_facility.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_stg_colony_works_nomask"
+		texturefile = "gfx/event_pictures/alien_facility.dds"
+		alwaystransparent = yes
+	}
+}

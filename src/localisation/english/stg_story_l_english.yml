@@ -1,0 +1,130 @@
+﻿l_english:
+ # Star Trek Galaxies -- the Trek story events.
+ #
+ # Two families of key, and both are load-bearing:
+ #   stg_story.N.name / .desc     the popup
+ #   stg_story.N.a / .b           the option buttons
+ #
+ # Events live in events/stg_story_events.txt, the hooks that fire them in
+ # common/on_actions/stg_on_actions.txt, pictures in
+ # interface/stg_story_pictures.gfx. check_story_events walks all four and fails
+ # on any key with nothing behind it.
+ #
+ # THE REGISTER IS A SERVICE DISPATCH, which is the country-event sibling of the
+ # survey officer's report .docs/decisions/76-trek-archaeology.md set for the dig
+ # sites: somebody inside the institution writing up what happened this quarter,
+ # for a reader who was not in the room. Not a narrator, and never a plot summary
+ # of an episode.
+ #
+ # See .docs/decisions/77-trek-story-events.md
+
+ # ── The twelve peoples' own institutions ─────────────────────────────────────
+
+ stg_story.10.name:0 "The Academy Class"
+ stg_story.10.desc:0 "Three hundred and sixty cadets took the oath this morning on the parade ground at the Academy, in front of families who had travelled from nineteen worlds to watch them do it. The Superintendent's address ran under six minutes, which the instructors tell us is a record.\n\nThe posting board went up an hour later, and that is where the interesting argument is. Two hundred of the class have asked for deep-survey billets — the long postings, five years out, no relief. The remainder want laboratory and hospital assignments closer to [Root.Capital.GetName], and the Academy's own faculty are split on which instinct we should be encouraging.\n\nThe Superintendent has forwarded both lists and declined to recommend either. She points out, not unreasonably, that the service has spent a century telling these people that curiosity is the highest of the virtues, and that it is a little late to be surprised when three hundred of them believe it."
+ stg_story.10.a:0 "Give them the long postings. That is what the oath was for."
+ stg_story.10.b:0 "Keep the best of them in the laboratories. The frontier will still be there."
+
+ stg_story.11.name:0 "A Session of the Council"
+ stg_story.11.desc:0 "The Council sat for nine hours on a petition of admission and did not vote. That is not a failure of procedure; it is procedure. A world that joins us does not stop being itself, and the delegates spent most of the session establishing what exactly the petitioners were proposing to keep.\n\nThe sticking point was never the trade schedule. It was a clause the petitioners had written themselves, asking that their courts retain jurisdiction over their own citizens in matters of conscience. Half the chamber heard a reasonable request from a proud people. The other half heard the first sentence of a long argument about whose law runs where, and would rather have that argument now than in forty years.\n\nThe President has asked for a recommendation before the next session. She has also, informally, asked whether anyone in the room remembers that our own charter was written by people making exactly this objection."
+ stg_story.11.a:0 "Admit them with the clause. A federation that cannot bend is not one."
+ stg_story.11.b:0 "Hold the vote. Let the negotiators earn their salaries first."
+
+ stg_story.12.name:0 "The Road to Gol"
+ stg_story.12.desc:0 "Commander T'Sel submitted her resignation from the service this week, in writing, with ninety days' notice and a complete handover file. She is forty-one years in, holds two fleet commendations, and is by some distance the most capable subspace theorist we have. She is going to Gol.\n\nShe has declined to characterise this as a loss. Her file argues, at some length and with citations, that the discipline she is undertaking will make her more useful to us and not less, and that the service's habit of treating Kolinahr as a retirement is a category error committed by people who have not read the texts.\n\nWhat is not in the file, and what the Science Directorate is quietly asking about, is her working notes. Nineteen years of them, on a problem she has never published. She has offered to leave them. She has not offered to explain them, and it is not clear that anyone else can read them."
+ stg_story.12.a:0 "Accept the resignation. Take the notes and set a team on them."
+ stg_story.12.b:0 "Ask her to defer a year. The Directorate can wait; the problem may not."
+
+ stg_story.13.name:0 "The Floor of the Great Hall"
+ stg_story.13.desc:0 "A challenge was laid on the floor of the Great Hall four days ago and it has not yet been answered, which is itself the news. The challenger is not a fool and not a nobody: he commanded a squadron at the border for nine years and his House has sat on the Council since before the Hall had a roof.\n\nHis complaint is a matter of record. He says the Council has grown comfortable. He says that a warrior who dies in a bunk is a warrior the Empire wasted, and that the fleet has been ordered to hold position so many times in the last decade that its captains have forgotten what an order to advance sounds like.\n\nHe is not wholly wrong, and the Council knows it. What the Council has to decide is whether the answer is a blade — which is quick, and settles nothing — or a posting, which would put him and his squadron somewhere the Empire genuinely needs a man who will not sit still."
+ stg_story.13.a:0 "Answer him on the floor. The Hall exists for this."
+ stg_story.13.b:0 "Give him a border command. Let him be right somewhere useful."
+
+ stg_story.14.name:0 "The Continuing Committee"
+ stg_story.14.desc:0 "The Committee met at the third hour and the file was on the table before anyone sat down. It concerns a Senator of eighteen years' standing, and it is thorough — travel, correspondents, an account in a name that is not hers, and a photograph taken through a window from four hundred metres.\n\nThe file is also, on inspection, entirely circumstantial. Every item in it is true. Nothing in it is a crime. The Tal Shiar analyst who compiled it was asked directly whether she believed the Senator had committed treason, and answered that she had been asked to assemble a file, not to hold an opinion, which is the correct answer and tells us nothing.\n\nThe Committee is therefore deciding two questions at once and only one of them is about the Senator. The other is what it means that a file like this can be assembled about anyone in the chamber in under a month, and whether the members would like to find out how thick their own are."
+ stg_story.14.a:0 "Act on the file. A Senator who can be watched can be bought."
+ stg_story.14.b:0 "Bury the file and ask who ordered it. That is the real question."
+
+ stg_story.15.name:0 "Before the Tribunal"
+ stg_story.15.desc:0 "The tribunal concluded on schedule. The verdict, as the Archon reminded the gallery in his opening remarks, was reached before proceedings began — this is not a defect of our courts but their entire purpose, since a state that puts a citizen before the people without being certain has already failed that citizen.\n\nThe difficulty is that the conservator did his job unusually well. He was appointed to guide the accused to a confession, and instead he spent four days establishing, on the record and in front of a broadcast gallery, that the evidence had been assembled by a garrison officer who has been promoted twice since.\n\nThe sentence stands. It could not do otherwise. But the conservator has filed a note with Central Command asking that the garrison's evidentiary procedures be reviewed, and the note is on the public record, where it will stay. Several million citizens watched him put it there."
+ stg_story.15.a:0 "Review the garrison. A court that cannot be trusted is worth nothing."
+ stg_story.15.b:0 "Let the verdict stand and say no more. The gallery has seen enough."
+
+ stg_story.16.name:0 "An Amendment to the Rules"
+ stg_story.16.desc:0 "A proposal has come before the Commerce Authority to amend the Rules, which happens roughly once a generation and never quietly. The proposed text would place a ceiling on what may be charged for a repair that the buyer cannot decline — medical, atmospheric, life support — on the grounds that a customer who has no choice is not a customer but a hostage.\n\nThe drafters are careful to note that this is not charity. Their argument, laid out over sixty pages of case history, is that a reputation for gouging the desperate has cost the Alliance more in lost repeat business over two centuries than it has ever earned, and they have the ledgers to prove it.\n\nThe traditionalists have replied that a rule which limits profit is a rule that limits profit, and that the drafters may keep their ledgers. The Grand Nagus has been notably silent, which everyone in the chamber has correctly read as an instruction to keep arguing until one side produces a bigger number."
+ stg_story.16.a:0 "Adopt it. The ledgers are right and the ledgers are what we are."
+ stg_story.16.b:0 "Reject it, and sell the argument to whoever wants it most."
+
+ stg_story.17.name:0 "The Temple Opens"
+ stg_story.17.desc:0 "The passage opened for six seconds at the eighteenth hour and closed again with nothing having gone through it. Every instrument we have pointed at it recorded the same six seconds. The Vedek Assembly has recorded them too, and describes them differently, and the two accounts are not in conflict so much as they are not about the same thing.\n\nOur observatory reports a stable aperture, verteron flux inside expected bounds, no vessel in transit. The Assembly reports that the Prophets opened the doors of the Temple and that four hundred people on the promenade stopped walking at the same instant.\n\nBoth reports are on my desk. The Assembly has asked for observatory time to continue their vigil, and the observatory has asked whether it is being asked to fund theology. It is a fair question and it has a boring answer: the aperture is the single most interesting object in our space, and it has never once opened for a reason our instruments could name in advance."
+ stg_story.17.a:0 "Give the Assembly the time. They have been right about the doors before."
+ stg_story.17.b:0 "Fund the observatory. Faith does not need our telescopes; physics does."
+
+ stg_story.18.name:0 "Efficiency Below Tolerance"
+ stg_story.18.desc:0 "Node cluster four-one-seven reports an efficiency deviation of nought point nought nought three percent, sustained across seventy cycles. The deviation is not a fault. Every component is within specification. Every drone in the cluster performs its assigned function within tolerance.\n\nThe deviation arises from the assignment itself. The cluster was tasked from a template drawn for a species with four manipulating limbs and it is executing that template with two. The template has been correct for twelve thousand cycles. It is now, for this cluster, marginally wrong, and the cluster has continued to execute it because nothing in the cluster is permitted to conclude that an instruction is wrong.\n\nThe Collective does not discard efficiency. Two paths present. Re-derive the template from the population as it now is, which costs processing and admits that the archive was incomplete. Or replace the population in the cluster, which costs nothing and admits nothing."
+ stg_story.18.a:0 "Re-derive the template. The archive is a record, not an authority."
+ stg_story.18.b:0 "Replace the cluster. The template is not the thing in error."
+
+ stg_story.19.name:0 "A Founder Walks Among Us"
+ stg_story.19.desc:0 "A Founder came to the shipyards on the ninth and stayed four days. This is not recorded anywhere it can be read, and this report will not survive the week, but the effect is worth setting down before it is gone.\n\nThe Vorta administrators worked. They have always worked. What changed is that they worked without checking, without the small pause before every decision in which a Vorta calculates what will be said about it afterwards. Output rose nine percent in ninety-six hours and not one order was countermanded from above, because there was no above; there was only the certainty in the room.\n\nOn the fifth morning the Founder was gone and the pause came back. The First of the garrison, who does not speak unless asked, was asked, and said that the Jem'Hadar had noticed nothing, because the Jem'Hadar do not require a god to be present in order to know that one exists. He did not appear to consider this a criticism of the Vorta. It was not clear that he considered it anything."
+ stg_story.19.a:0 "Let the Founders be seen more often. The order holds when they are."
+ stg_story.19.b:0 "Let the pause stand. An order that needs a god present is not an order."
+
+ stg_story.20.name:0 "The Symbiosis Commission"
+ stg_story.20.desc:0 "The Commission has published its intake for the year: two hundred and six candidates accepted from nine thousand applications, which is a ratio it has held for three centuries and defends fiercely.\n\nThis year a field surgeon on the frontier has published a paper disputing the ratio. Her argument is not sentimental. She has treated forty-one initiates for rejection over a career and reports that the failures cluster not among the marginal candidates but among the excellent ones — that the Commission's screening selects for a kind of composure that is precisely the wrong quality when a symbiont's memories arrive faster than the host can file them.\n\nThe Commission has not responded to the paper. It has, however, quietly asked its own physicians for the same numbers, which is the closest thing to an answer the institution is capable of giving in public. The surgeon has been offered a post on the review board and has not yet accepted."
+ stg_story.20.a:0 "Fund the review. Three centuries of a ratio is not three centuries of proof."
+ stg_story.20.b:0 "Leave the Commission alone and offer the surgeon a chair. It works."
+
+ stg_story.21.name:0 "The Ushaan"
+ stg_story.21.desc:0 "Two officers of the Guard have declared the Ushaan over a matter of property, and the property is a mine — nine hundred workers, four generations of one clan's labour, and a survey filing that both families insist is theirs.\n\nThe rite is legal, ancient, and in this case entirely disproportionate. Neither officer wants the other dead. Both have said so privately. Neither can withdraw, because the declaration was made in front of witnesses and a withdrawal would settle the mine on the other family permanently, which is exactly what the declaration was for.\n\nThe Guard's own judge advocate points out that the Ushaan-tor was carried by ice miners for cutting ice, that the rite was codified in a century when a clan's whole wealth could be argued over in an afternoon, and that nine hundred workers are now waiting to find out who owns them on the outcome of a knife fight. He also points out that saying so aloud has never once stopped one."
+ stg_story.21.a:0 "Let the rite proceed. The law is the law and it is ours."
+ stg_story.21.b:0 "Buy the filing out from under both of them. Then there is nothing to cut for."
+
+ # ── The life of a starfaring service ─────────────────────────────────────────
+
+ stg_story.22.name:0 "A Fault in the Pattern Buffer"
+ stg_story.22.desc:0 "A survey vessel lost a transport cycle at the sixth hour and recovered both crewmen intact, which is the only sentence in this report that anybody will read twice.\n\nThe fault was in the phase discriminator. Under a load the design never anticipated, the buffer held two patterns for four point one seconds longer than the cycle allows, and for those four seconds the ship's computer was maintaining, in a lattice the size of a filing cabinet, two people who existed nowhere else. The chief engineer's log for that interval consists of one line and it is not a technical note.\n\nBoth crewmen are cleared for duty. Neither has asked for counselling; both have asked, separately and in almost the same words, whether the person who walked off the pad is the person who walked onto it. The ship's doctor has told them the truth, which is that the question is old, that nobody has answered it, and that they are the two hundredth and two hundred and first people to ask her."
+ stg_story.22.a:0 "Redesign the discriminator. Fleet-wide, and this quarter."
+ stg_story.22.b:0 "Publish the buffer logs. Four seconds of that lattice is worth a decade of theory."
+
+ stg_story.23.name:0 "Program Complete"
+ stg_story.23.desc:0 "The recreation deck aboard one of our survey cruisers has been running a single program for nineteen weeks, off duty hours only, with a rotating cast of about forty of the crew. It began as a navigation exercise. It is now a small town with a mayor, a grievance procedure and, as of last month, a second generation of characters that nobody on the design team wrote.\n\nThe ship's counsellor filed it as a morale success and it plainly is one. The ship's engineer filed it as an unscheduled load on the computer core and it plainly is that too. Fleet Operations has been asked to rule on which report is the real one.\n\nWhat neither report addresses, and what the counsellor raised privately, is that six of the crew have stopped attending. Not from boredom. They have said, in the careful way people say things they know sound foolish, that they did not care for how easy it was to prefer it."
+ stg_story.23.a:0 "Let it run. A crew five years from home needs somewhere to go."
+ stg_story.23.b:0 "Cap the core allocation. The ship is the ship; the town is a program."
+
+ stg_story.24.name:0 "The Cartography Office"
+ stg_story.24.desc:0 "The cartography office has finished the reconciliation and the news is that we were wrong about seventeen systems, which in a survey of this size is an excellent result and a slightly alarming one.\n\nThe errors are not observational. Every one of the seventeen was catalogued correctly by the ship that found it. They were mis-entered afterwards, in the office, by people transcribing between two coordinate conventions that the service has been quietly running in parallel for thirty years because neither department would give up its own.\n\nThe head of the office has proposed the obvious fix and costed it: fourteen months, a full re-transcription, and a freeze on new catalogue entries while it runs. Her deputy has proposed the other fix, which is to keep both conventions and write a converter, and has pointed out with some feeling that this is the third time in his career the obvious fix has been proposed and the second time it has been costed."
+ stg_story.24.a:0 "Do the re-transcription. One catalogue, one convention, once."
+ stg_story.24.b:0 "Write the converter. The ships need the catalogue open, not correct."
+
+ stg_story.25.name:0 "Twelve Days of Shore Leave"
+ stg_story.25.desc:0 "The Fourth Survey Flotilla came in from a fourteen-month patrol and Fleet Operations authorised twelve days of leave, which is four more than standing orders allow and was authorised anyway, on the recommendation of every one of the flotilla's four commanding officers.\n\nThe reports back are unremarkable in the best possible way. Nobody was arrested. Two engagements were announced. A lieutenant from the flagship spent the entire twelve days asleep in a hammock ten metres from the water and has written a formal letter of thanks about it.\n\nThe useful finding is in the medical intake. Every officer in the flotilla was screened on arrival and again on departure, and the second set of numbers is better than the first by a margin the fleet surgeon describes as embarrassing to anyone who has ever argued that leave is a cost. She has attached the data to a request that twelve days become the standard. Operations has attached a note about the crewing implications, which run to four pages."
+ stg_story.25.a:0 "Make it standard. The surgeon has the numbers and Operations has excuses."
+ stg_story.25.b:0 "Keep it at eight and spend the difference on hulls."
+
+ stg_story.26.name:0 "The Convoy"
+ stg_story.26.desc:0 "Nineteen freighters made the outbound run this month and nineteen came back, which has not happened in a year and a half and is the reason this report exists at all.\n\nThe change is not escort strength. It is a scheduling clerk in the harbourmaster's office who noticed that our convoys had been departing on a fixed cycle since the route opened, and that anyone with a chronometer and a grudge could work out where to wait. She proposed randomising the departures within a nine-day window. It cost nothing. It required no ships. It took four months to get approved because it did not fit any budget line.\n\nThe merchants' guild has asked, in writing, what else the harbourmaster's office has been sitting on. The harbourmaster has replied that his office has been making this and similar proposals for some years, and that the guild is welcome to review the correspondence, which he has enclosed in full."
+ stg_story.26.a:0 "Fund the harbourmaster's office properly. Cheap ideas are still ideas."
+ stg_story.26.b:0 "Put the savings into hulls. Randomised or not, a freighter alone is a target."
+
+ stg_story.27.name:0 "The Long Round"
+ stg_story.27.desc:0 "A frontier colony reported an atypical fever in the ninth week and the response has been, by the standards of these things, close to exemplary. A medical ship was on station in nine days. The organism was sequenced in four. It is not transmissible between species and it is not, on current evidence, going to kill anybody.\n\nWhat it is going to do is come back. The organism has a dormant phase measured in years and the colony sits on top of an aquifer full of it. Eradication is not on the table. What is on the table is a permanent medical presence — a ward, a supply line and two physicians who will spend a substantial part of their careers in a settlement of four thousand people, treating a disease that is unlikely ever to be famous.\n\nThe senior physician on the medical ship has volunteered. She is forty-one, holds three fellowships, and could have any post in the service. Her stated reason is that somebody has to and everyone else has a better offer."
+ stg_story.27.a:0 "Build the ward. Take her, and give her whatever she asks for."
+ stg_story.27.b:0 "Rotate physicians through instead. Nobody should be spent on one aquifer."
+
+ stg_story.28.name:0 "Past the Rated Limit"
+ stg_story.28.desc:0 "An engineering team took a warp core past its rated limit for six minutes on a test stand and came back with numbers nobody had.\n\nThe rating exists because a previous generation of engineers established, carefully and at some cost, where the field geometry becomes unstable. That work was correct. It was also done on a core with a plasma injector we have not built in forty years, and nobody had thought to ask whether the ceiling had moved when the injector did.\n\nIt has moved. Not far — the team is claiming four percent and the review board will probably allow two — but four percent across every hull in the fleet is not a small number, and the argument now is entirely about how much of it we take. The board's cautious members point out that the last people to be certain about this limit were also careful, also right, and also working from an assumption they never wrote down."
+ stg_story.28.a:0 "Take the four percent and re-rate the fleet. The stand does not lie."
+ stg_story.28.b:0 "Take two and publish everything. Let the next generation see the assumption."
+
+ stg_story.29.name:0 "The Signatories"
+ stg_story.29.desc:0 "The accords were signed on neutral ground nine days ago by delegations who had spent the previous fortnight refusing to be photographed in the same room.\n\nThe text is modest. Search-and-rescue obligations, a shared distress frequency, a standing channel between two flag offices, and a clause requiring ninety days' notice before either party alters a border patrol pattern. No trade. No defence. Nothing that would survive a real quarrel.\n\nWhich is the point, and the reason the negotiators are quietly pleased with themselves. Every large agreement in anyone's history began as a small one that nobody expected to hold, and the value of this one is not in what it obliges us to do but in the fact that there is now a telephone at each end of a line, with a name beside it, and a habit of picking it up. The delegations have agreed to meet again in five years. Nobody has said what about."
+ stg_story.29.a:0 "Press for more while the room is warm. Trade next."
+ stg_story.29.b:0 "Leave it exactly as small as it is. Let the habit set first."
+
+ # ── First contact ────────────────────────────────────────────────────────────
+
+ stg_story.30.name:0 "The First Words"
+ stg_story.30.desc:0 "Contact with [From.GetName] was established at the fourth hour and the transcript runs to four lines, three of which are handshake protocol.\n\nThe fourth is the one the archive will keep. Our officer said what our officers are trained to say, which is a greeting, a name, and a statement of peaceful intent, in that order and no longer than nine seconds. What came back was not a translation of it. It was their own version of the same three things, composed before they knew we existed, sitting ready in a buffer on their vessel exactly as ours was sitting in ours.\n\nTwo species who have never met have both, independently, decided that the first thing to say to a stranger is who we are and that we mean no harm. The linguists are already arguing about whether that is convergence or coincidence. The diplomatic service does not much care which, and has quietly noted that every relationship [Root.GetName] has ever had began with somebody deciding what to put in that buffer."
+ stg_story.30.a:0 "Send a delegation. This is what the service is for."
+ stg_story.30.b:0 "Send an analyst first. A prepared greeting is still a prepared greeting."

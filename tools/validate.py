@@ -4381,6 +4381,28 @@ def check_music_declarations() -> int:
 # category names is dead there and only there. See check_anomalies.
 _ANOMALY_OWN_EVENTS = "stg_anomaly_events.txt"
 
+# The same shape one database over: the one file whose archaeology events are
+# all site stage outcomes. See check_archaeology.
+_ARCSITE_OWN_EVENTS = "stg_arcsite_events.txt"
+
+# And a third: the one file whose events are all reached from an on_action, with
+# no chains. See check_story_events.
+_STORY_OWN_EVENTS = "stg_story_events.txt"
+
+
+def _is_event_block(kind: str) -> bool:
+    """Is this top-level key an event declaration?
+
+    `country_event`, `ship_event`, `planet_event` ... and the BARE `event`,
+    which is legal and which vanilla writes in 40-odd of its own files and Real
+    Space writes in all of its. Missing the bare form does not make an event
+    dangle -- it makes a check believe one does, which is worse: the first run
+    of check_story_events reported 26 hooks in Real Space, Planetary Diversity,
+    Ariphaos and System Scale as firing events nobody declares, and every one of
+    those events was sitting in the tree under `event = {`.
+    """
+    return kind == "event" or kind.endswith("_event")
+
 
 def _merged_loc_keys() -> set[str]:
     """Every localisation key the game will have loaded: the tree's and vanilla's."""
@@ -4445,7 +4467,7 @@ def check_anomalies() -> int:
                     list((GAME_DIR / "events").glob("*.txt"))):
         text = _strip_comments(_read(f))
         for kind, body in _top_level_blocks(text):
-            if not kind.endswith("_event"):
+            if not _is_event_block(kind):
                 continue
             m = re.search(r"(?m)^\s*id\s*=\s*([A-Za-z_0-9]+\.\d+)", body)
             if not m:
@@ -4533,6 +4555,402 @@ def check_anomalies() -> int:
                     f"events/{fname}: {eid} has an option named "
                     f"'{om.group(1)}', which has no localisation key -- the "
                     f"button draws the key. Vanilla has 0.")
+
+    return n
+
+
+def check_archaeology() -> int:
+    """An archaeological site whose stages, pictures, modifiers or loc do not meet.
+
+    A dig site is FIVE files that have to agree, and none of them dangles when
+    they do not: common/archaeological_site_types/ names a stage event and a
+    picture, events/ declares the event, interface/*.gfx declares the picture
+    and the stage's rune icon, common/static_modifiers/ declares the reward the
+    finale hands out, and localisation/ carries the situation-log entry, the
+    stage popup and every option button. Miss one and the game logs nothing
+    useful -- a stage naming an event nobody declares completes in silence, and
+    a missing loc key draws the raw key on the dig-site panel. Decision 47's
+    silence in a sixth database.
+
+    ONE QUESTION HERE HAS NO COUNTERPART IN check_anomalies, and it is the one
+    worth having: `stages = N` is written by hand beside N `stage = { }` blocks,
+    and vanilla's README says only that it "should match". Nothing enforces it,
+    a site that claims more stages than it has cannot be finished, and a site
+    that claims fewer never fires its last event.
+
+    VANILLA IS THE CALIBRATION, over its 123 site types and the 475 stage events
+    they name:
+
+        site picture declared                0 findings
+        site name loc key                    0
+        site desc loc key (incl. `desc = { text = }`)  0
+        stage names an event that exists     0
+        stage rune icon declared             0
+        `stages = N` matches the blocks      0
+        RANDOM_EVENTS names a scripted effect  0
+        stage event picture declared         0
+        stage event title / desc loc key     0
+        stage event option loc key           1  -- cstorms.1300 offers
+                                                NAME_Hold_the_line_habitat,
+                                                which no localisation file
+                                                defines. A floor of one known
+                                                instance, not zero, exactly as
+                                                UBUME_BABY_CAT is for
+                                                check_anomalies.
+
+    So all ten are asked of every site in the built tree.
+
+    THE ELEVENTH QUESTION HAS A SCOPE, for the reason it does in check_anomalies:
+    "an archaeology event no site names" scores 157 of vanilla's 628
+    `archaeology = yes` events, because vanilla chains dig-team interruptions
+    off scripted effects this check does not read. Over
+    src/events/stg_arcsite_events.txt the shape is different by construction --
+    every event there is a stage outcome and there are no chains -- so the
+    question is exact there and meaningless everywhere else.
+    See .docs/validation/check-design.md rule 11.
+
+    See .docs/decisions/76-trek-archaeology.md.
+    """
+    site_dir = BUILD / "common" / "archaeological_site_types"
+    if not site_dir.is_dir():
+        return 0
+
+    # Events, sprites and scripted effects all resolve against the merged tree
+    # AND vanilla: a site may name a vanilla event or a vanilla rune as easily
+    # as one of ours, and `no_events` is vanilla's.
+    event_ids: set[str] = set()
+    events_seen: list[tuple[str, str, str]] = []   # (file, id, body)
+    for f in sorted(list((BUILD / "events").glob("*.txt")) +
+                    list((GAME_DIR / "events").glob("*.txt"))):
+        text = _strip_comments(_read(f))
+        for kind, body in _top_level_blocks(text):
+            if not _is_event_block(kind):
+                continue
+            m = re.search(r"(?m)^\s*id\s*=\s*([A-Za-z_0-9]+\.\d+)", body)
+            if not m:
+                continue
+            event_ids.add(m.group(1))
+            if f.is_relative_to(BUILD):
+                events_seen.append((f.name, m.group(1), body))
+
+    sprites: set[str] = set()
+    for f in list((BUILD / "interface").rglob("*.gfx")) + \
+            list((GAME_DIR / "interface").rglob("*.gfx")):
+        sprites |= set(re.findall(r'name\s*=\s*"(GFX_[^"]+)"', _read(f)))
+
+    effects: set[str] = set()
+    for rel in ("common/scripted_effects",):
+        for f in list((BUILD / rel).glob("*.txt")) + \
+                list((GAME_DIR / rel).glob("*.txt")):
+            effects |= {k for k, _ in _top_level_blocks(_strip_comments(_read(f)))}
+
+    # BOTH modifier databases, and the second one is a calibration result rather
+    # than thoroughness: `modifier = X` inside an event is written the same way
+    # for an empire modifier and for an opinion modifier, and reading only
+    # static_modifiers reports vanilla's own strange_worlds.2050 for awarding
+    # `opinion_gift_given`. One line, and the floor goes from 1 to 0.
+    modifiers: set[str] = set()
+    for rel in ("common/static_modifiers", "common/opinion_modifiers"):
+        for f in list((BUILD / rel).glob("*.txt")) + \
+                list((GAME_DIR / rel).glob("*.txt")):
+            modifiers |= {k for k, _ in _top_level_blocks(_strip_comments(_read(f)))}
+
+    loc = _merged_loc_keys()
+
+    n = 0
+    named: set[str] = set()
+    for f in sorted(site_dir.glob("*.txt")):
+        text = _strip_comments(_read(f))
+        for key, body in _top_level_blocks(text):
+            # Vanilla's own comment: "empty type for random assignments, handled
+            # via code. So do not rename or remove this entry!" It has no name,
+            # no picture and no stages on purpose.
+            if key == "random":
+                continue
+            n += 1
+            rel = f"common/archaeological_site_types/{f.name}"
+
+            pic = re.search(r'(?m)^\s*picture\s*=\s*"?(GFX_[A-Za-z_0-9]+)"?', body)
+            if pic and pic.group(1) not in sprites:
+                errors.append(
+                    f"{rel}: {key} draws '{pic.group(1)}', which no .gfx "
+                    f"declares. Declare it in "
+                    f"src/interface/stg_arcsite_pictures.gfx. Vanilla has 0.")
+            if key not in loc:
+                errors.append(
+                    f"{rel}: {key} has no localisation key, so the situation "
+                    f"log draws the key itself and logs nothing. Vanilla has 0.")
+
+            # `desc = key` and `desc = { trigger = { } text = key }` are one
+            # question. Vanilla writes both, sometimes in the same site.
+            dkeys = [m.group(1) for m in re.finditer(
+                r'(?m)^\s*desc\s*=\s*"?([A-Za-z0-9_.\-]+)"?\s*$', body)]
+            dkeys += re.findall(
+                r'(?m)^\s*text\s*=\s*"?([A-Za-z0-9_.\-]+)"?\s*$', body)
+            for d in dkeys:
+                if d not in loc:
+                    errors.append(
+                        f"{rel}: {key} describes itself with '{d}', which has "
+                        f"no localisation key. Vanilla has 0.")
+
+            stage_blocks = re.findall(r"(?m)^\s*stage\s*=\s*\{", body)
+            declared = re.search(r"(?m)^\s*stages\s*=\s*(\d+)", body)
+            if declared and int(declared.group(1)) != len(stage_blocks):
+                errors.append(
+                    f"{rel}: {key} says `stages = {declared.group(1)}` and has "
+                    f"{len(stage_blocks)} stage blocks. Claiming more than it "
+                    f"has makes the dig unfinishable; claiming fewer drops the "
+                    f"last event. Vanilla has 0 mismatches over 123 sites.")
+
+            evs = re.findall(r"(?m)^\s*event\s*=\s*([A-Za-z_0-9]+\.\d+)", body)
+            named |= set(evs)
+            for eid in evs:
+                if eid not in event_ids:
+                    errors.append(
+                        f"{rel}: {key} has a stage that fires '{eid}', which no "
+                        f"events/ file declares. The stage completes and shows "
+                        f"nothing. Vanilla has 0.")
+            for icon in re.findall(
+                    r'(?m)^\s*icon\s*=\s*"?(GFX_[A-Za-z_0-9]+)"?', body):
+                if icon not in sprites:
+                    errors.append(
+                        f"{rel}: {key} marks a stage with '{icon}', which no "
+                        f".gfx declares. Vanilla has 0.")
+            for rname in re.findall(r"RANDOM_EVENTS\s*=\s*([A-Za-z_0-9]+)", body):
+                if rname not in effects:
+                    errors.append(
+                        f"{rel}: {key}'s on_roll_failed passes "
+                        f"RANDOM_EVENTS = {rname}, which no "
+                        f"common/scripted_effects/ file declares -- a failed "
+                        f"roll then does nothing at all. Vanilla has 0.")
+
+    # The events, from the other end.
+    for fname, eid, body in events_seen:
+        if fname == _ARCSITE_OWN_EVENTS and eid not in named:
+            errors.append(
+                f"events/{fname}: {eid} is declared and no site names it, so it "
+                f"can never fire. Every event in this file is a stage outcome by "
+                f"construction -- vanilla chains its own, and scores 157 of 628 "
+                f"here, which is why the question is asked of this file alone.")
+        if fname != _ARCSITE_OWN_EVENTS and eid not in named:
+            continue
+        pic = re.search(r'(?m)^\s*picture\s*=\s*"?(GFX_[A-Za-z_0-9]+)"?', body)
+        if pic and pic.group(1) not in sprites:
+            errors.append(
+                f"events/{fname}: {eid} draws '{pic.group(1)}', which no .gfx "
+                f"declares. Vanilla has 0 over its 475 stage events.")
+        for field in ("title", "desc"):
+            m = re.search(rf'(?m)^\s*{field}\s*=\s*"?([A-Za-z0-9_.\-]+)"?\s*$',
+                          body)
+            if m and m.group(1) not in loc:
+                errors.append(
+                    f"events/{fname}: {eid}'s {field} is '{m.group(1)}', which "
+                    f"has no localisation key -- the popup draws the key. "
+                    f"Vanilla has 0.")
+        for om in re.finditer(r'(?m)^\s*name\s*=\s*"?([A-Za-z0-9_.\-]+)"?\s*$',
+                              body):
+            if om.group(1) not in loc:
+                errors.append(
+                    f"events/{fname}: {eid} has an option named "
+                    f"'{om.group(1)}', which has no localisation key -- the "
+                    f"button draws the key. Vanilla has exactly one of these.")
+        for mm in re.finditer(
+                r'(?m)^\s*modifier\s*=\s*"?([A-Za-z_0-9]+)"?\s*$', body):
+            if mm.group(1) not in modifiers:
+                errors.append(
+                    f"events/{fname}: {eid} awards the modifier "
+                    f"'{mm.group(1)}', which no common/static_modifiers/ file "
+                    f"declares -- the reward is nothing and the tooltip is "
+                    f"blank. Vanilla has 0.")
+            elif mm.group(1) not in loc:
+                errors.append(
+                    f"events/{fname}: {eid} awards '{mm.group(1)}', which is "
+                    f"declared but has no localisation key, so the empire's "
+                    f"modifier list draws the key itself. Vanilla has 0.")
+
+    return n
+
+
+def check_story_events() -> int:
+    """A story event whose hook, event, picture or loc key does not meet.
+
+    A story event is FOUR files that have to agree, and none of them dangles
+    when they do not: common/on_actions/ names an on_action key and an event id
+    under it, events/ declares the event, interface/*.gfx declares the picture,
+    and localisation/ carries the title, the description and every option
+    button. Decision 47's silence in a seventh database.
+
+    THE FIRST QUESTION HAS NO COUNTERPART IN check_anomalies OR
+    check_archaeology, and it is the one worth having: an on_action block whose
+    KEY nothing declares and nothing fires. The file parses. Every event under
+    it exists, draws real art and reads correctly. It simply never runs, because
+    Stellaris only fires on_action keys the engine knows or a `fire_on_action`
+    names -- a mod that hooks `on_survey` when the engine renamed it
+    `on_survey_planet` gets no error and no events. That is decision 76's
+    `weight = 0` and decision 62's undeclared graphical culture, one database
+    over: everything present, nothing dangling, the content never appears.
+
+    An EMPTY block is not that defect and is not reported. All six findings in
+    the built tree before this filter are Planetary Diversity's, and all six are
+    `on_x = { events = { } }` -- vestigial stubs left behind by engine renames,
+    hooking nothing to nowhere. A hook with nothing in it cannot fail to fire
+    anything.
+
+    VANILLA IS THE CALIBRATION, over its 452 on_action keys and the events they
+    name:
+
+        on_action key declared or fired      0 findings in the built tree
+                                             (6 before the empty-block filter,
+                                              all six Planetary Diversity's)
+        on_action names an event that exists 0 in the built tree, 17 in VANILLA
+                                             -- Paradox hooks origin.5094/5104/
+                                             5114/5124, anomaly.6793, action.41,
+                                             six shroud.103xx and five
+                                             grand_archive.70xx that it does not
+                                             ship. The floor is a known 17, so
+                                             the question is exact over the
+                                             built tree and calibrated, not
+                                             assumed, over vanilla.
+        event picture declared               0
+        event title / desc / option loc key  0
+
+    THE FIFTH QUESTION HAS A SCOPE, for the reason it does in the two sibling
+    checks: "a story event no on_action names" is meaningless over vanilla,
+    which reaches most of its events by chaining them off each other. Over
+    src/events/stg_story_events.txt the shape is different by construction --
+    every event there is either hung on an on_action or fired by the two-step
+    pulse gatekeeper beside it -- so the question is exact there and nowhere
+    else. See .docs/validation/check-design.md rule 11.
+
+    See .docs/decisions/77-trek-story-events.md.
+    """
+    hook_dir = BUILD / "common" / "on_actions"
+    if not hook_dir.is_dir():
+        return 0
+
+    # Event ids resolve against the merged tree AND vanilla: a hook may name a
+    # vanilla event as easily as one of ours.
+    event_ids: set[str] = set()
+    events_seen: list[tuple[str, str, str]] = []   # (file, id, body)
+    for f in sorted(list((BUILD / "events").glob("*.txt")) +
+                    list((GAME_DIR / "events").glob("*.txt"))):
+        text = _strip_comments(_read(f))
+        for kind, body in _top_level_blocks(text):
+            if not _is_event_block(kind):
+                continue
+            m = re.search(r"(?m)^\s*id\s*=\s*([A-Za-z_0-9]+\.\d+)", body)
+            if not m:
+                continue
+            event_ids.add(m.group(1))
+            if f.is_relative_to(BUILD):
+                events_seen.append((f.name, m.group(1), body))
+
+    sprites: set[str] = set()
+    for f in list((BUILD / "interface").rglob("*.gfx")) + \
+            list((GAME_DIR / "interface").rglob("*.gfx")):
+        sprites |= set(re.findall(r'name\s*=\s*"(GFX_[^"]+)"', _read(f)))
+
+    # The engine's own on_action keys, plus every custom one somebody fires.
+    # BOTH halves are needed: vanilla's 00_on_actions.txt is the engine list, and
+    # the README says custom on_actions are legal as long as a `fire_on_action`
+    # reaches them -- which is exactly how STG's own pool is reached.
+    engine_hooks: set[str] = set()
+    van_hook_dir = GAME_DIR / "common" / "on_actions"
+    if van_hook_dir.is_dir():
+        for f in sorted(van_hook_dir.glob("*.txt")):
+            engine_hooks |= {k for k, _ in
+                             _top_level_blocks(_strip_comments(_read(f)))}
+    fired: set[str] = set()
+    for root in (BUILD, GAME_DIR):
+        for f in root.rglob("*.txt"):
+            fired |= set(re.findall(
+                r"fire_on_action\s*=\s*\{[^{}]*on_action\s*=\s*([a-z_0-9]+)",
+                _strip_comments(_read(f))))
+
+    # A THIRD source of legitimacy, and it is a calibration result rather than
+    # thoroughness. `on_destroy_planet_with_<KEY>` is generated by the ENGINE
+    # from a planet-killer component's own key -- vanilla's
+    # 01_planet_destruction.txt declares the four for its own components and
+    # says nothing about anyone else's, so Planetary Diversity's Necro Ray hook
+    # reads as dangling while being perfectly live. The allowlist comes from the
+    # component database, not from a hand-written name.
+    # .docs/validation/check-design.md rule 4.
+    for rel in ("common/component_templates",):
+        for f in list((BUILD / rel).glob("*.txt")) + \
+                list((GAME_DIR / rel).glob("*.txt")):
+            for k in re.findall(r'(?m)^\s*key\s*=\s*"([A-Za-z_0-9]+)"',
+                                _strip_comments(_read(f))):
+                base = f"on_destroy_planet_with_{k}"
+                fired |= {base, f"{base}_queued", f"{base}_unqueued"}
+
+    loc = _merged_loc_keys()
+
+    n = 0
+    hooked: set[str] = set()
+    for f in sorted(hook_dir.glob("*.txt")):
+        if "README" in f.name.upper():
+            continue
+        rel = f"common/on_actions/{f.name}"
+        for key, body in _top_level_blocks(_strip_comments(_read(f))):
+            # `events = { X }` and `random_events = { N = X }` are one question:
+            # which events does this hook reach.
+            evs = set(re.findall(
+                r"(?m)^\s*(?:\d+\s*=\s*)?([a-z_0-9]+\.\d+)\s*$", body))
+            if not evs:
+                continue          # an empty hook reaches nothing to break
+            n += 1
+            hooked |= evs
+            if key not in engine_hooks and key not in fired:
+                errors.append(
+                    f"{rel}: '{key}' is not an on_action the engine declares "
+                    f"and no `fire_on_action` names it, so the {len(evs)} "
+                    f"event(s) under it can never run. Nothing dangles and "
+                    f"nothing is logged. Vanilla scores 0 here once empty "
+                    f"stubs are excluded.")
+            for eid in sorted(evs):
+                if eid not in event_ids:
+                    errors.append(
+                        f"{rel}: '{key}' fires '{eid}', which no events/ file "
+                        f"declares. Vanilla has 17 of these in its own hooks; "
+                        f"the built tree has 0.")
+
+    # An event our own file fires FROM another of its own events is reached too.
+    # The pulse gatekeeper hangs on the on_action and calls its sibling back with
+    # a random delay, which is vanilla's own action.220 / action.221 shape, and
+    # the sibling is named nowhere near an on_action.
+    for fname, _eid, body in events_seen:
+        if fname == _STORY_OWN_EVENTS:
+            hooked |= set(re.findall(
+                r"[a-z_]*event\s*=\s*\{[^{}]*?\bid\s*=\s*([A-Za-z_0-9]+\.\d+)",
+                body))
+
+    # The events, from the other end.
+    for fname, eid, body in events_seen:
+        if fname == _STORY_OWN_EVENTS and eid not in hooked:
+            errors.append(
+                f"events/{fname}: {eid} is declared and no on_action names it, "
+                f"so it can never fire. Every event in this file is reached "
+                f"from a hook by construction -- vanilla chains its own, which "
+                f"is why the question is asked of this file alone.")
+        if fname != _STORY_OWN_EVENTS and eid not in hooked:
+            continue
+        if re.search(r"(?m)^\s*hide_window\s*=\s*yes", body):
+            continue          # no window, so no picture and no loc to draw
+        pic = re.search(r'(?m)^\s*picture\s*=\s*"?(GFX_[A-Za-z_0-9]+)"?', body)
+        if pic and pic.group(1) not in sprites:
+            errors.append(
+                f"events/{fname}: {eid} draws '{pic.group(1)}', which no .gfx "
+                f"declares. Declare it in "
+                f"src/interface/stg_story_pictures.gfx. Vanilla has 0.")
+        keys = [m.group(1) for m in re.finditer(
+            r'(?m)^\s*(?:title|desc|name|text)\s*=\s*"?'
+            r'([A-Za-z0-9_.\-]+)"?\s*$', body)]
+        for k in keys:
+            if k not in loc:
+                errors.append(
+                    f"events/{fname}: {eid} names the localisation key '{k}', "
+                    f"which nothing defines -- the popup draws the key itself. "
+                    f"Vanilla has 0 across the events its on_actions reach.")
 
     return n
 
@@ -4937,6 +5355,8 @@ def main() -> int:
     room_n = check_room_references()
     mus_n = check_music_declarations()
     ano_n = check_anomalies()
+    arc_n = check_archaeology()
+    sty_n = check_story_events()
     unr_n, unr_out = check_unreferenced()
     src_n = check_sources()
     man_n = check_manifest_parses()
@@ -4975,6 +5395,10 @@ def main() -> int:
           f"{room_n} for the room and city set they ask for, "
           f"{mus_n} music track(s) for a declaration that plays them, "
           f"{ano_n} anomaly categor(ies) for their event, picture and loc, "
+          f"{arc_n} archaeological site(s) for their stages, pictures, "
+          f"modifiers and loc, "
+          f"{sty_n} on_action hook(s) for the events, pictures and loc they "
+          f"reach, "
           f"{unr_n} for reachability ({unr_out} unreferenced outside the prune "
           f"scope, reported not failed — see `make clutter`)  |  "
           f"{src_n} source snapshot(s), vendor.yml declares {man_n}{OFF}")

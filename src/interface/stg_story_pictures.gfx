@@ -1,0 +1,292 @@
+# Star Trek Galaxies -- sprites for the Trek event pictures our story events use.
+#
+# A THIRD new file beside interface/stg_event_pictures.gfx and
+# interface/stg_arcsite_pictures.gfx, for the reason the second one exists: the
+# three databases are read by three different checks, and a session that breaks
+# one should not have to read the other two. Everything in the first file's
+# header applies here unchanged:
+#
+#   TWO SPRITES PER PICTURE -- interface/eventpictures.gfx says "the Situation
+#   Log automatically uses sprites with the _nomask suffix if available".
+#
+#   The art is 620x264 or a 9315x264 animation strip in .source/; `target:
+#   family` on gfx/event_pictures in vendor.yml re-cuts it to vanilla's 450x150
+#   at harvest, freezing frame 0 of a strip. Without that this file is decision
+#   42's defect: UIOD's eventwindow.gui draws at scale = 1.5 inside a 693x239
+#   frame, so 620x264 art renders 930x396.
+#   See .docs/decisions/74-event-picture-families.md.
+#
+# ALL 21 WERE LOOKED AT AS THE BUILD WILL CUT THEM -- frame 0, centre-cropped to
+# 450x150 -- and eight candidates were rejected on what that crop showed: two
+# Lower-Decks-animated frames, three close-ups of a named character's face, one
+# near-featureless star field (bajoranWormhole1, whose wormhole has not opened
+# yet in frame 0) and two that read as a different subject than the filename
+# promised. Same standard as .docs/decisions/75-trek-anomalies.md set.
+#
+# THREE CANDIDATES WERE DROPPED FOR THE OPPOSITE REASON -- engineering_bay,
+# cargoship_caravan and galactic_market are STNH shipping VANILLA'S OWN picture
+# under vanilla's own name, so they are neither Trek nor ours to declare. The
+# filter is one line: 580 of STNH's 1,350 names also exist in
+# /stellaris/gfx/event_pictures, and only the other 770 are art STNH added.
+#
+# NONE OF THE 21 IS DECLARED BY EITHER SIBLING. One picture, one subject.
+#
+# See .docs/decisions/77-trek-story-events.md
+
+spriteTypes = {
+
+	# ── The twelve peoples' own institutions ─────────────────────────────────
+	spriteType = {
+		name = "GFX_evt_stg_academy_class"
+		texturefile = "gfx/event_pictures/starfleet_academy.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_stg_academy_class_nomask"
+		texturefile = "gfx/event_pictures/starfleet_academy.dds"
+		alwaystransparent = yes
+	}
+
+	spriteType = {
+		name = "GFX_evt_stg_federation_council"
+		texturefile = "gfx/event_pictures/federationCouncil.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_stg_federation_council_nomask"
+		texturefile = "gfx/event_pictures/federationCouncil.dds"
+		alwaystransparent = yes
+	}
+
+	spriteType = {
+		name = "GFX_evt_stg_road_to_gol"
+		texturefile = "gfx/event_pictures/federationVulcan.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_stg_road_to_gol_nomask"
+		texturefile = "gfx/event_pictures/federationVulcan.dds"
+		alwaystransparent = yes
+	}
+
+	spriteType = {
+		name = "GFX_evt_stg_great_hall_floor"
+		texturefile = "gfx/event_pictures/klingonLeadership1.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_stg_great_hall_floor_nomask"
+		texturefile = "gfx/event_pictures/klingonLeadership1.dds"
+		alwaystransparent = yes
+	}
+
+	spriteType = {
+		name = "GFX_evt_stg_continuing_committee"
+		texturefile = "gfx/event_pictures/romulanCourt.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_stg_continuing_committee_nomask"
+		texturefile = "gfx/event_pictures/romulanCourt.dds"
+		alwaystransparent = yes
+	}
+
+	spriteType = {
+		name = "GFX_evt_stg_cardassian_tribunal"
+		texturefile = "gfx/event_pictures/cardassianCommittee.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_stg_cardassian_tribunal_nomask"
+		texturefile = "gfx/event_pictures/cardassianCommittee.dds"
+		alwaystransparent = yes
+	}
+
+	spriteType = {
+		name = "GFX_evt_stg_rules_of_acquisition"
+		texturefile = "gfx/event_pictures/ferengiTongo.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_stg_rules_of_acquisition_nomask"
+		texturefile = "gfx/event_pictures/ferengiTongo.dds"
+		alwaystransparent = yes
+	}
+
+	spriteType = {
+		name = "GFX_evt_stg_celestial_temple"
+		texturefile = "gfx/event_pictures/bajoranWormhole2.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_stg_celestial_temple_nomask"
+		texturefile = "gfx/event_pictures/bajoranWormhole2.dds"
+		alwaystransparent = yes
+	}
+
+	spriteType = {
+		name = "GFX_evt_stg_borg_data_node"
+		texturefile = "gfx/event_pictures/borgDataNode.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_stg_borg_data_node_nomask"
+		texturefile = "gfx/event_pictures/borgDataNode.dds"
+		alwaystransparent = yes
+	}
+
+	spriteType = {
+		name = "GFX_evt_stg_founder_returns"
+		texturefile = "gfx/event_pictures/changelingFound1.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_stg_founder_returns_nomask"
+		texturefile = "gfx/event_pictures/changelingFound1.dds"
+		alwaystransparent = yes
+	}
+
+	spriteType = {
+		name = "GFX_evt_stg_symbiosis_commission"
+		texturefile = "gfx/event_pictures/trillSymbiosis.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_stg_symbiosis_commission_nomask"
+		texturefile = "gfx/event_pictures/trillSymbiosis.dds"
+		alwaystransparent = yes
+	}
+
+	spriteType = {
+		name = "GFX_evt_stg_ushaan"
+		texturefile = "gfx/event_pictures/andorianUshaan.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_stg_ushaan_nomask"
+		texturefile = "gfx/event_pictures/andorianUshaan.dds"
+		alwaystransparent = yes
+	}
+
+	# ── The life of a starfaring service ─────────────────────────────────────
+	spriteType = {
+		name = "GFX_evt_stg_pattern_buffer"
+		texturefile = "gfx/event_pictures/transporterAccident.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_stg_pattern_buffer_nomask"
+		texturefile = "gfx/event_pictures/transporterAccident.dds"
+		alwaystransparent = yes
+	}
+
+	spriteType = {
+		name = "GFX_evt_stg_holodeck"
+		texturefile = "gfx/event_pictures/holodeck3.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_stg_holodeck_nomask"
+		texturefile = "gfx/event_pictures/holodeck3.dds"
+		alwaystransparent = yes
+	}
+
+	spriteType = {
+		name = "GFX_evt_stg_stellar_cartography"
+		texturefile = "gfx/event_pictures/stellar_cartography.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_stg_stellar_cartography_nomask"
+		texturefile = "gfx/event_pictures/stellar_cartography.dds"
+		alwaystransparent = yes
+	}
+
+	spriteType = {
+		name = "GFX_evt_stg_shore_leave"
+		texturefile = "gfx/event_pictures/shoreleave.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_stg_shore_leave_nomask"
+		texturefile = "gfx/event_pictures/shoreleave.dds"
+		alwaystransparent = yes
+	}
+
+	spriteType = {
+		name = "GFX_evt_stg_convoy"
+		texturefile = "gfx/event_pictures/cargo.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_stg_convoy_nomask"
+		texturefile = "gfx/event_pictures/cargo.dds"
+		alwaystransparent = yes
+	}
+
+	spriteType = {
+		name = "GFX_evt_stg_long_round"
+		texturefile = "gfx/event_pictures/starfleetDoctor.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_stg_long_round_nomask"
+		texturefile = "gfx/event_pictures/starfleetDoctor.dds"
+		alwaystransparent = yes
+	}
+
+	spriteType = {
+		name = "GFX_evt_stg_rated_limit"
+		texturefile = "gfx/event_pictures/voyagerWarp.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_stg_rated_limit_nomask"
+		texturefile = "gfx/event_pictures/voyagerWarp.dds"
+		alwaystransparent = yes
+	}
+
+	spriteType = {
+		name = "GFX_evt_stg_signatories"
+		texturefile = "gfx/event_pictures/KhitomerConference.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_stg_signatories_nomask"
+		texturefile = "gfx/event_pictures/KhitomerConference.dds"
+		alwaystransparent = yes
+	}
+
+	# ── First contact ────────────────────────────────────────────────────────
+	spriteType = {
+		name = "GFX_evt_stg_first_words"
+		texturefile = "gfx/event_pictures/first_contact.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_stg_first_words_nomask"
+		texturefile = "gfx/event_pictures/first_contact.dds"
+		alwaystransparent = yes
+	}
+}

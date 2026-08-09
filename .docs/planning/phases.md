@@ -362,6 +362,12 @@ if Trek-named random ones turn out not to be enough. This is where the mod stops
 being a reskin and starts having a voice — and it is also infinite, so it comes
 after everything with a definition of done.
 
+**All three things [decision 75](../decisions/75-trek-anomalies.md) scoped are
+now shipped** — anomalies ([75](../decisions/75-trek-anomalies.md)), archaeology
+([76](../decisions/76-trek-archaeology.md)) and story events
+([77](../decisions/77-trek-story-events.md)), 2026-08-09. What remains in the
+phase has no scope written for it yet.
+
 ### Done: music
 
 [Decision 55](../decisions/55-federation-anthem.md).
@@ -488,11 +494,90 @@ against real content**: the Iconian Gateway category and both its events shipped
 with no localisation at all — one authoring slip, invisible to every other check
 and to `error.log`.
 
-### Archaeology and story events are still unstarted
+### Done: the archaeology, and the field that decides whether it is ever seen
 
-Deliberately, and next. The anomalies establish what they will copy — the
-picture pipeline, the loc shape, the check — so the second slice is cheaper than
-the first was.
+[Decision 76](../decisions/76-trek-archaeology.md), 2026-08-09, and it did copy
+what the anomalies established — the picture pipeline, the loc shape, the
+five-files-must-agree check. **6 dig sites, 27 stage events, 27 Trek pictures
+over 54 sprites, 9 finale modifiers, 117 loc keys, ~3,800 words.** Six against
+vanilla's base-game ten, thin rather than padded, on the same call
+[73](../decisions/73-class-name-thematic-fill.md) made about pool sizes.
+
+> **`weight` is the whole question, and six of vanilla's ten decline it.** A
+> site type's `weight` block is read by exactly one thing —
+> `create_archaeological_site = random`, whose only caller in the game is
+> `ancrel.9999` on `on_survey_planet`, and whose trigger asks nothing about DLC.
+> Vanilla's other six base-game sites carry `weight = 0` and are placed by a
+> story chain that knows where it wants them. **STG writes no story chain**, so a
+> `weight = 0` site here is complete, correct, validating clean and unreachable
+> — [decision 62](../decisions/62-city-set-cultures-undeclared.md)'s defect
+> class, one database over. All six carry real weights keyed on planet class.
+
+> **Eleven pictures were rejected on what the crop showed**, not on the filename:
+> four TAS-animated frames, three close-ups of a named character's face, two
+> near-featureless gradients and two too dark to read at 450×150. Three of the
+> eleven were named after exactly the subject a site wanted. And **four first
+> choices were already spent on an anomaly** — `theChase`,
+> `undergroundTunnels`, `stone_of_gol`, `ancientCapsule1` — so the sites took
+> the siblings. One picture, one subject.
+
+`check_archaeology` asks ten questions vanilla scores 0 on across its 123 site
+types and 475 stage events — one of them, **`stages = N` against the `stage`
+blocks beside it**, has no counterpart in `check_anomalies` and is the one most
+worth having — plus one at a floor of 1 and an eleventh scoped the way
+[51](../decisions/51-prescripted-loc-scope.md) established.
+
+### Done: the story events, and the merge question the design refuses to ask
+
+[Decision 77](../decisions/77-trek-story-events.md), 2026-08-09, and it
+completes the scope [decision 75](../decisions/75-trek-anomalies.md) set.
+**3 hooks, 21 story events + a 2-event pulse gatekeeper, 21 Trek pictures over
+42 sprites, 84 loc keys, ~4,000 words.** Twelve belong to one people and are
+gated on species class — the Academy and the Council, the road to Gol, a
+challenge on the floor of the Great Hall, the Continuing Committee, a Cardassian
+tribunal, an amendment to the Rules of Acquisition, the Celestial Temple, a Borg
+efficiency deviation, a Founder's visit, the Symbiosis Commission, the Ushaan.
+Eight are open to every empire and are the life of a starfaring service. The
+twenty-first hangs on first contact.
+
+> **The design's one real decision is what it declines to do.** Vanilla's
+> `on_five_year_random_pulse_country` is the slot the base game reserves for
+> exactly this and is very nearly empty on a standalone host — of its 435 points
+> of content, all but one entry is DLC. `events = { }` lists demonstrably merge
+> across files; **whether a second file's `random_events` merges or REPLACES is
+> a question nothing on disk answers**, and being wrong the replacing way
+> deletes vanilla's own `1900 = 0` and fires a story event nearly every pulse
+> for the rest of the game. `stg_on_five_year_story_pulse` is our own on_action
+> key, reached by one line in an `events` list — the merge behaviour that is
+> proven — so we own every weight including the one for "nothing happens".
+> Calibrated at **21% against vanilla's own 18.6%**, and because
+> `random_events` fires exactly one winner, growing the pool later cannot make
+> the player see more popups, only different ones.
+
+`check_story_events` asks four questions and **the first has no counterpart in
+either sibling: is the on_action KEY itself one the engine will ever fire?** A
+hook whose key is wrong parses, its events exist, its art loads, and nothing
+under it ever runs — decision 76's `weight = 0` in a seventh database. Vanilla
+scores 0 across the built tree's 58 hooks once empty stubs are excluded, and
+**17 in its own `00_on_actions.txt`**.
+
+> **Its first run found a defect in the two checks beside it rather than in the
+> content.** 26 hooks in Real Space, Planetary Diversity, Ariphaos and System
+> Scale were reported as firing events nobody declares, and every one of those
+> events was in the tree, declared as a bare **`event = { }`** — legal, written
+> by vanilla in forty-odd of its own files, and not matched by
+> `kind.endswith("_event")`. All three checks now share `_is_event_block`.
+> **Missing the bare form does not make an event dangle; it makes a check
+> believe one does**, which is worse, because the next move is to repair content
+> that was never broken. Neither sibling's floor moved.
+
+> **Three pictures were rejected for a reason none of the earlier passes had**:
+> `engineering_bay`, `cargoship_caravan` and `galactic_market` are STNH shipping
+> **vanilla's own art under vanilla's own name** — Stellaris concept art, in a
+> Trek directory, with a Trek-sounding filename. 580 of STNH's 1,350 event
+> picture names also exist in `/stellaris/gfx/event_pictures`; only the other
+> 770 are art STNH added. Eight more were rejected on what the 450×150 crop
+> showed, on [75](../decisions/75-trek-anomalies.md)'s standard.
 
 ---
 

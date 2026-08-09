@@ -1,0 +1,80 @@
+# Star Trek Galaxies -- the hooks that make the Trek story events fire.
+#
+# A NEW file, not a shadow: on_action blocks merge by key across files (four of
+# the vendored mods declare `on_colonized` between them and all four are read),
+# so vanilla's 452 on_actions are untouched and these sit beside them.
+#
+# WE ADD TO SOMEBODY ELSE'S `events` LIST AND TO NOBODY ELSE'S `random_events`
+# LIST. Whether a second file's `random_events` merges with vanilla's or
+# replaces it is a question nothing on disk answers -- and being wrong the
+# replacing way would delete vanilla's own `1900 = 0`, so a story event would
+# fire nearly every pulse. `stg_on_five_year_story_pulse` is our own on_action
+# key, which makes the question not arise: we own every weight in it, including
+# the one for "nothing happens".
+#
+# The two-step delay is copied from vanilla's own action.220 / action.221 in
+# events/on_action_events_2.txt, which is how vanilla reaches
+# on_five_year_random_pulse_country. Without it every empire in the galaxy rolls
+# on the same day.
+#
+# Scopes are vanilla's, read off common/on_actions/00_on_actions.txt:
+#   on_five_year_pulse_country   this = country
+#   on_first_contact             this = country, FROM = the country we just met
+#
+# See .docs/decisions/77-trek-story-events.md
+
+# The gatekeeper. One line in a list vanilla and four source mods already share.
+on_five_year_pulse_country = {
+	events = {
+		stg_story.1		# Trek story pulse -- sets up the delay
+	}
+}
+
+# Trek's own first-contact beat, once per empire per game. `events` fires every
+# entry whose trigger passes, so stg_story.30 carries its own country flag.
+on_first_contact = {
+	events = {
+		stg_story.30	# The First Words
+	}
+}
+
+# OUR OWN POOL. `random_events` excludes every event whose trigger is false and
+# then rolls one winner, so a species-gated event costs nothing to the empires
+# it is not for -- and adding to this list later cannot make the player see more
+# popups, only different ones. That property is why the whole slice hangs here.
+#
+# THE WEIGHTS ARE CALIBRATED AGAINST VANILLA'S OWN POOL, not chosen.
+# on_five_year_random_pulse_country carries 435 of content against `1900 = 0`,
+# so vanilla's five-year pulse produces anything at all 18.6% of the time. An
+# STG empire sees 2 of the 12 species-gated events at 60 and all 8 open ones at
+# 25 -- 320 against `1200 = 0`, or 21%. Close to vanilla's rate deliberately:
+# this pulse is a flavour slot, not a second anomaly system.
+stg_on_five_year_story_pulse = {
+	random_events = {
+		1200 = 0
+
+		# Species-gated: the twelve peoples' own institutions.
+		60 = stg_story.10	# The Academy Class (FED)
+		60 = stg_story.11	# A Session of the Council (FED)
+		60 = stg_story.12	# The Road to Gol (VUL)
+		60 = stg_story.13	# The Floor of the Great Hall (KDF)
+		60 = stg_story.14	# The Continuing Committee (ROM)
+		60 = stg_story.15	# Before the Tribunal (CAR)
+		60 = stg_story.16	# An Amendment to the Rules (FER)
+		60 = stg_story.17	# The Temple Opens (BAJ)
+		60 = stg_story.18	# Efficiency Below Tolerance (BRG)
+		60 = stg_story.19	# A Founder Walks Among Us (DOM)
+		60 = stg_story.20	# The Symbiosis Commission (TRI)
+		60 = stg_story.21	# The Ushaan (ADR)
+
+		# Open to every empire: the life of a starfaring service.
+		25 = stg_story.22	# A Fault in the Pattern Buffer
+		25 = stg_story.23	# Program Complete
+		25 = stg_story.24	# The Cartography Office
+		25 = stg_story.25	# Twelve Days of Shore Leave
+		25 = stg_story.26	# The Convoy
+		25 = stg_story.27	# The Long Round
+		25 = stg_story.28	# Past the Rated Limit
+		25 = stg_story.29	# The Signatories
+	}
+}

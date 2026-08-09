@@ -1,0 +1,1124 @@
+##########################
+#
+# Star Trek Galaxies -- stage events for the Trek archaeological sites in
+# common/archaeological_site_types/stg_arc_sites.txt.
+#
+# SCOPES, from events/arcsite_events.txt, which every one of these copies:
+#   this  = the excavating fleet     from   = the archaeological site
+#   owner = the excavating country   leader = its scientist
+#   from.planet = the body being dug
+#
+# `archaeology = yes` is what puts the popup in the dig-site frame rather than
+# the ordinary event frame. `set_site_progress_locked` in `immediate` and back
+# in `after` is vanilla's own bracket -- without it the excavation can roll the
+# next stage while the player is still reading this one, and `after` rather than
+# an option effect because an option with a `trigger` can be the one not taken.
+#
+# The `if = { limit = { NOT = { has_deposit_for = shipclass_research_station } }
+# clear_deposits = yes }` before a research deposit is vanilla's, for the reason
+# .docs/decisions/75-trek-anomalies.md records: without it the body keeps a
+# deposit that makes the research station unbuildable and the reward is
+# unreachable.
+#
+# No `specimen`, no minor artifacts, no `has_ancrel` branch: STG is standalone.
+# See .docs/decisions/76-trek-archaeology.md
+#
+##########################
+
+namespace = stg_arcsite
+
+################################
+# The Hall of the Blade
+################################
+
+### Stage 1 -- the mass under the crust
+fleet_event = {
+	id = stg_arcsite.100
+	title = "stg_arcsite.100.name"
+	desc = "stg_arcsite.100.desc"
+	picture = GFX_evt_stg_kahless_moon
+	location = from
+	show_sound = event_scanner
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		from = { set_site_progress_locked = yes }
+	}
+
+	option = {
+		name = "stg_arcsite.100.a"
+		owner = {
+			add_monthly_resource_mult = {
+				resource = engineering_research
+				value = @tier1researchreward
+				min = @tier1researchmin
+				max = @tier1researchmax
+			}
+		}
+	}
+
+	after = {
+		from = { set_site_progress_locked = no }
+	}
+}
+
+### Stage 2 -- the processional canyon
+fleet_event = {
+	id = stg_arcsite.101
+	title = "stg_arcsite.101.name"
+	desc = "stg_arcsite.101.desc"
+	picture = GFX_evt_stg_kahless_canyon
+	location = from
+	show_sound = event_wind_ruins
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		from = { set_site_progress_locked = yes }
+	}
+
+	option = {
+		name = "stg_arcsite.101.a"
+		owner = {
+			add_monthly_resource_mult = {
+				resource = minerals
+				value = @tier1materialreward
+				min = @tier1materialmin
+				max = @tier1materialmax
+			}
+		}
+		leader = { add_experience = 100 }
+	}
+
+	after = {
+		from = { set_site_progress_locked = no }
+	}
+}
+
+### Stage 3 -- the city that kept the hall
+fleet_event = {
+	id = stg_arcsite.102
+	title = "stg_arcsite.102.name"
+	desc = "stg_arcsite.102.desc"
+	picture = GFX_evt_stg_kahless_city
+	location = from
+	show_sound = event_dig_site
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		from = { set_site_progress_locked = yes }
+	}
+
+	option = {
+		name = "stg_arcsite.102.a"
+		owner = {
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = @tier2researchreward
+				min = @tier2researchmin
+				max = @tier2researchmax
+			}
+		}
+	}
+
+	after = {
+		from = { set_site_progress_locked = no }
+	}
+}
+
+### Stage 4 -- the hall itself
+fleet_event = {
+	id = stg_arcsite.103
+	title = "stg_arcsite.103.name"
+	desc = "stg_arcsite.103.desc"
+	picture = GFX_evt_stg_kahless_hall
+	location = from
+	show_sound = event_dig_site
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		from = { set_site_progress_locked = yes }
+	}
+
+	option = {
+		name = "stg_arcsite.103.a"
+		owner = {
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = @tier2researchreward
+				min = @tier2researchmin
+				max = @tier2researchmax
+			}
+		}
+		from = {
+			planet = {
+				if = {
+					limit = {
+						NOT = { has_deposit_for = shipclass_research_station }
+					}
+					clear_deposits = yes
+				}
+				add_deposit = d_society_3
+			}
+		}
+	}
+
+	after = {
+		from = { set_site_progress_locked = no }
+	}
+}
+
+### Stage 5 -- the blade on the anvil
+fleet_event = {
+	id = stg_arcsite.104
+	title = "stg_arcsite.104.name"
+	desc = "stg_arcsite.104.desc"
+	picture = GFX_evt_stg_kahless_blade
+	location = from
+	show_sound = event_mystic_reveal
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		from = { set_site_progress_locked = yes }
+	}
+
+	# Take it out
+	option = {
+		name = "stg_arcsite.104.a"
+		owner = {
+			add_modifier = {
+				modifier = "stg_blade_recovered"
+				days = -1
+			}
+		}
+		leader = { add_experience = 250 }
+	}
+	# Leave it where its keepers put it
+	option = {
+		name = "stg_arcsite.104.b"
+		owner = {
+			add_monthly_resource_mult = {
+				resource = unity
+				value = @tier3researchreward
+				min = @tier3researchmin
+				max = @tier3researchmax
+			}
+			add_modifier = {
+				modifier = "stg_hall_recorded"
+				days = -1
+			}
+		}
+	}
+
+	after = {
+		from = { set_site_progress_locked = no }
+	}
+}
+
+################################
+# The Ark in the Sand
+################################
+
+### Stage 1 -- the road nobody built for wheels
+fleet_event = {
+	id = stg_arcsite.200
+	title = "stg_arcsite.200.name"
+	desc = "stg_arcsite.200.desc"
+	picture = GFX_evt_stg_ark_expedition
+	location = from
+	show_sound = event_scanner
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		from = { set_site_progress_locked = yes }
+	}
+
+	option = {
+		name = "stg_arcsite.200.a"
+		owner = {
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = @tier1researchreward
+				min = @tier1researchmin
+				max = @tier1researchmax
+			}
+		}
+	}
+
+	after = {
+		from = { set_site_progress_locked = no }
+	}
+}
+
+### Stage 2 -- the season the dig loses
+fleet_event = {
+	id = stg_arcsite.201
+	title = "stg_arcsite.201.name"
+	desc = "stg_arcsite.201.desc"
+	picture = GFX_evt_stg_ark_duststorm
+	location = from
+	show_sound = event_wind_ruins
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		from = { set_site_progress_locked = yes }
+	}
+
+	# Ride it out on the surface
+	option = {
+		name = "stg_arcsite.201.a"
+		owner = {
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = @tier1researchreward
+				min = @tier1researchmin
+				max = @tier1researchmax
+			}
+		}
+		leader = { add_experience = 150 }
+	}
+	# Pay for a hardened camp
+	option = {
+		name = "stg_arcsite.201.b"
+		allow = {
+			owner = {
+				resource_stockpile_compare = {
+					resource = energy
+					value >= 300
+				}
+			}
+		}
+		owner = {
+			add_resource = { energy = -300 }
+			add_monthly_resource_mult = {
+				resource = engineering_research
+				value = @tier2researchreward
+				min = @tier2researchmin
+				max = @tier2researchmax
+			}
+		}
+	}
+
+	after = {
+		from = { set_site_progress_locked = no }
+	}
+}
+
+### Stage 3 -- the case in the sand
+fleet_event = {
+	id = stg_arcsite.202
+	title = "stg_arcsite.202.name"
+	desc = "stg_arcsite.202.desc"
+	picture = GFX_evt_stg_ark_uncovered
+	location = from
+	show_sound = event_dig_site
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		from = { set_site_progress_locked = yes }
+	}
+
+	option = {
+		name = "stg_arcsite.202.a"
+		owner = {
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = @tier2researchreward
+				min = @tier2researchmin
+				max = @tier2researchmax
+			}
+		}
+		from = {
+			planet = {
+				if = {
+					limit = {
+						NOT = { has_deposit_for = shipclass_research_station }
+					}
+					clear_deposits = yes
+				}
+				add_deposit = d_society_3
+			}
+		}
+	}
+
+	after = {
+		from = { set_site_progress_locked = no }
+	}
+}
+
+### Stage 4 -- the light inside it
+fleet_event = {
+	id = stg_arcsite.203
+	title = "stg_arcsite.203.name"
+	desc = "stg_arcsite.203.desc"
+	picture = GFX_evt_stg_ark_opened
+	location = from
+	show_sound = event_mystic_reveal
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		from = { set_site_progress_locked = yes }
+	}
+
+	option = {
+		name = "stg_arcsite.203.a"
+		owner = {
+			add_monthly_resource_mult = {
+				resource = physics_research
+				value = @tier2researchreward
+				min = @tier2researchmin
+				max = @tier2researchmax
+			}
+		}
+		leader = { add_experience = 200 }
+	}
+
+	after = {
+		from = { set_site_progress_locked = no }
+	}
+}
+
+### Stage 5 -- what the ark was for
+fleet_event = {
+	id = stg_arcsite.204
+	title = "stg_arcsite.204.name"
+	desc = "stg_arcsite.204.desc"
+	picture = GFX_evt_stg_ark_vision
+	location = from
+	show_sound = event_mystic_reveal
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		from = { set_site_progress_locked = yes }
+	}
+
+	# Give it back to somebody who will keep it
+	option = {
+		name = "stg_arcsite.204.a"
+		owner = {
+			add_monthly_resource_mult = {
+				resource = unity
+				value = @tier3researchreward
+				min = @tier3researchmin
+				max = @tier3researchmax
+			}
+			add_modifier = {
+				modifier = "stg_ark_returned"
+				days = -1
+			}
+		}
+	}
+	# Keep it, and keep reading it
+	option = {
+		name = "stg_arcsite.204.b"
+		owner = {
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = @tier3researchreward
+				min = @tier3researchmin
+				max = @tier3researchmax
+			}
+			add_modifier = {
+				modifier = "stg_ark_studied"
+				days = -1
+			}
+		}
+	}
+
+	after = {
+		from = { set_site_progress_locked = no }
+	}
+}
+
+################################
+# The Sealed Mechanism
+################################
+
+### Stage 1 -- the return nobody can explain
+fleet_event = {
+	id = stg_arcsite.300
+	title = "stg_arcsite.300.name"
+	desc = "stg_arcsite.300.desc"
+	picture = GFX_evt_stg_mechanism_scan
+	location = from
+	show_sound = event_scanner
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		from = { set_site_progress_locked = yes }
+	}
+
+	option = {
+		name = "stg_arcsite.300.a"
+		owner = {
+			add_monthly_resource_mult = {
+				resource = physics_research
+				value = @tier1researchreward
+				min = @tier1researchmin
+				max = @tier1researchmax
+			}
+		}
+	}
+
+	after = {
+		from = { set_site_progress_locked = no }
+	}
+}
+
+### Stage 2 -- the piece in somebody's hand
+fleet_event = {
+	id = stg_arcsite.301
+	title = "stg_arcsite.301.name"
+	desc = "stg_arcsite.301.desc"
+	picture = GFX_evt_stg_mechanism_fragment
+	location = from
+	show_sound = event_dig_site
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		from = { set_site_progress_locked = yes }
+	}
+
+	option = {
+		name = "stg_arcsite.301.a"
+		owner = {
+			add_monthly_resource_mult = {
+				resource = engineering_research
+				value = @tier2researchreward
+				min = @tier2researchmin
+				max = @tier2researchmax
+			}
+		}
+	}
+
+	after = {
+		from = { set_site_progress_locked = no }
+	}
+}
+
+### Stage 3 -- the thing the pieces came off
+fleet_event = {
+	id = stg_arcsite.302
+	title = "stg_arcsite.302.name"
+	desc = "stg_arcsite.302.desc"
+	picture = GFX_evt_stg_mechanism_dormant
+	location = from
+	show_sound = event_dig_site
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		from = { set_site_progress_locked = yes }
+	}
+
+	option = {
+		name = "stg_arcsite.302.a"
+		owner = {
+			add_monthly_resource_mult = {
+				resource = physics_research
+				value = @tier2researchreward
+				min = @tier2researchmin
+				max = @tier2researchmax
+			}
+			add_monthly_resource_mult = {
+				resource = alloys
+				value = @tier1materialreward
+				min = @tier1materialmin
+				max = @tier1materialmax
+			}
+		}
+	}
+
+	after = {
+		from = { set_site_progress_locked = no }
+	}
+}
+
+### Stage 4 -- it notices
+fleet_event = {
+	id = stg_arcsite.303
+	title = "stg_arcsite.303.name"
+	desc = "stg_arcsite.303.desc"
+	picture = GFX_evt_stg_mechanism_waking
+	location = from
+	show_sound = event_mystic_reveal
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		from = { set_site_progress_locked = yes }
+	}
+
+	# Finish waking it up under supervision
+	option = {
+		name = "stg_arcsite.303.a"
+		owner = {
+			add_monthly_resource_mult = {
+				resource = physics_research
+				value = @tier3researchreward
+				min = @tier3researchmin
+				max = @tier3researchmax
+			}
+			add_modifier = {
+				modifier = "stg_mechanism_studied"
+				days = -1
+			}
+		}
+		leader = { add_experience = 250 }
+	}
+	# Put the lid back on
+	option = {
+		name = "stg_arcsite.303.b"
+		owner = {
+			add_monthly_resource_mult = {
+				resource = unity
+				value = @tier2researchreward
+				min = @tier2researchmin
+				max = @tier2researchmax
+			}
+			add_modifier = {
+				modifier = "stg_mechanism_sealed"
+				days = -1
+			}
+		}
+	}
+
+	after = {
+		from = { set_site_progress_locked = no }
+	}
+}
+
+################################
+# The Desert Sanctuary
+################################
+
+### Stage 1 -- the plateau
+fleet_event = {
+	id = stg_arcsite.400
+	title = "stg_arcsite.400.name"
+	desc = "stg_arcsite.400.desc"
+	picture = GFX_evt_stg_sanctuary_forge
+	location = from
+	show_sound = event_wind_ruins
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		from = { set_site_progress_locked = yes }
+	}
+
+	option = {
+		name = "stg_arcsite.400.a"
+		owner = {
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = @tier1researchreward
+				min = @tier1researchmin
+				max = @tier1researchmax
+			}
+		}
+	}
+
+	after = {
+		from = { set_site_progress_locked = no }
+	}
+}
+
+### Stage 2 -- the retreat
+fleet_event = {
+	id = stg_arcsite.401
+	title = "stg_arcsite.401.name"
+	desc = "stg_arcsite.401.desc"
+	picture = GFX_evt_stg_sanctuary_temple
+	location = from
+	show_sound = event_dig_site
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		from = { set_site_progress_locked = yes }
+	}
+
+	option = {
+		name = "stg_arcsite.401.a"
+		owner = {
+			add_monthly_resource_mult = {
+				resource = unity
+				value = @tier1researchreward
+				min = @tier1researchmin
+				max = @tier1researchmax
+			}
+		}
+	}
+
+	after = {
+		from = { set_site_progress_locked = no }
+	}
+}
+
+### Stage 3 -- the first of the three
+fleet_event = {
+	id = stg_arcsite.402
+	title = "stg_arcsite.402.name"
+	desc = "stg_arcsite.402.desc"
+	picture = GFX_evt_stg_sanctuary_relic_1
+	location = from
+	show_sound = event_dig_site
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		from = { set_site_progress_locked = yes }
+	}
+
+	option = {
+		name = "stg_arcsite.402.a"
+		owner = {
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = @tier2researchreward
+				min = @tier2researchmin
+				max = @tier2researchmax
+			}
+		}
+	}
+
+	after = {
+		from = { set_site_progress_locked = no }
+	}
+}
+
+### Stage 4 -- the third of the three
+fleet_event = {
+	id = stg_arcsite.403
+	title = "stg_arcsite.403.name"
+	desc = "stg_arcsite.403.desc"
+	picture = GFX_evt_stg_sanctuary_relic_2
+	location = from
+	show_sound = event_mystic_reveal
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		from = { set_site_progress_locked = yes }
+	}
+
+	option = {
+		name = "stg_arcsite.403.a"
+		owner = {
+			add_monthly_resource_mult = {
+				resource = physics_research
+				value = @tier2researchreward
+				min = @tier2researchmin
+				max = @tier2researchmax
+			}
+		}
+		leader = { add_experience = 200 }
+	}
+
+	after = {
+		from = { set_site_progress_locked = no }
+	}
+}
+
+### Stage 5 -- the text under the floor
+fleet_event = {
+	id = stg_arcsite.404
+	title = "stg_arcsite.404.name"
+	desc = "stg_arcsite.404.desc"
+	picture = GFX_evt_stg_sanctuary_text
+	location = from
+	show_sound = event_mystic_reveal
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		from = { set_site_progress_locked = yes }
+	}
+
+	# Teach it
+	option = {
+		name = "stg_arcsite.404.a"
+		owner = {
+			add_modifier = {
+				modifier = "stg_sanctuary_discipline"
+				days = -1
+			}
+		}
+	}
+	# Archive it
+	option = {
+		name = "stg_arcsite.404.b"
+		owner = {
+			add_monthly_resource_mult = {
+				resource = unity
+				value = @tier3researchreward
+				min = @tier3researchmin
+				max = @tier3researchmax
+			}
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = @tier2researchreward
+				min = @tier2researchmin
+				max = @tier2researchmax
+			}
+		}
+	}
+
+	after = {
+		from = { set_site_progress_locked = no }
+	}
+}
+
+################################
+# The Hebitian Vaults
+################################
+
+### Stage 1 -- the wrong layer
+fleet_event = {
+	id = stg_arcsite.500
+	title = "stg_arcsite.500.name"
+	desc = "stg_arcsite.500.desc"
+	picture = GFX_evt_stg_vault_dig
+	location = from
+	show_sound = event_dig_site
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		from = { set_site_progress_locked = yes }
+	}
+
+	option = {
+		name = "stg_arcsite.500.a"
+		owner = {
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = @tier1researchreward
+				min = @tier1researchmin
+				max = @tier1researchmax
+			}
+		}
+	}
+
+	after = {
+		from = { set_site_progress_locked = no }
+	}
+}
+
+### Stage 2 -- the inscription, and the argument about it
+fleet_event = {
+	id = stg_arcsite.501
+	title = "stg_arcsite.501.name"
+	desc = "stg_arcsite.501.desc"
+	picture = GFX_evt_stg_vault_inscription
+	location = from
+	show_sound = event_default
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		from = { set_site_progress_locked = yes }
+	}
+
+	option = {
+		name = "stg_arcsite.501.a"
+		owner = {
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = @tier2researchreward
+				min = @tier2researchmin
+				max = @tier2researchmax
+			}
+		}
+		leader = { add_experience = 150 }
+	}
+
+	after = {
+		from = { set_site_progress_locked = no }
+	}
+}
+
+### Stage 3 -- the vault
+fleet_event = {
+	id = stg_arcsite.502
+	title = "stg_arcsite.502.name"
+	desc = "stg_arcsite.502.desc"
+	picture = GFX_evt_stg_vault_chamber
+	location = from
+	show_sound = event_dig_site
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		from = { set_site_progress_locked = yes }
+	}
+
+	option = {
+		name = "stg_arcsite.502.a"
+		owner = {
+			add_monthly_resource_mult = {
+				resource = engineering_research
+				value = @tier2researchreward
+				min = @tier2researchmin
+				max = @tier2researchmax
+			}
+		}
+		from = {
+			planet = {
+				if = {
+					limit = {
+						NOT = { has_deposit_for = shipclass_research_station }
+					}
+					clear_deposits = yes
+				}
+				add_deposit = d_engineering_3
+			}
+		}
+	}
+
+	after = {
+		from = { set_site_progress_locked = no }
+	}
+}
+
+### Stage 4 -- whose it is now
+fleet_event = {
+	id = stg_arcsite.503
+	title = "stg_arcsite.503.name"
+	desc = "stg_arcsite.503.desc"
+	picture = GFX_evt_stg_vault_sigil
+	location = from
+	show_sound = event_mystic_reveal
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		from = { set_site_progress_locked = yes }
+	}
+
+	# Publish everything
+	option = {
+		name = "stg_arcsite.503.a"
+		owner = {
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = @tier3researchreward
+				min = @tier3researchmin
+				max = @tier3researchmax
+			}
+			add_modifier = {
+				modifier = "stg_vault_catalogued"
+				days = -1
+			}
+		}
+	}
+	# Strip it and move on
+	option = {
+		name = "stg_arcsite.503.b"
+		owner = {
+			add_monthly_resource_mult = {
+				resource = alloys
+				value = @tier2materialreward
+				min = @tier2materialmin
+				max = @tier2materialmax
+			}
+			add_monthly_resource_mult = {
+				resource = energy
+				value = @tier2materialreward
+				min = @tier2materialmin
+				max = @tier2materialmax
+			}
+		}
+	}
+
+	after = {
+		from = { set_site_progress_locked = no }
+	}
+}
+
+################################
+# The Lost Colony
+################################
+
+### Stage 1 -- the lander
+fleet_event = {
+	id = stg_arcsite.600
+	title = "stg_arcsite.600.name"
+	desc = "stg_arcsite.600.desc"
+	picture = GFX_evt_stg_colony_lander
+	location = from
+	show_sound = event_scanner
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		from = { set_site_progress_locked = yes }
+	}
+
+	option = {
+		name = "stg_arcsite.600.a"
+		owner = {
+			add_monthly_resource_mult = {
+				resource = engineering_research
+				value = @tier1researchreward
+				min = @tier1researchmin
+				max = @tier1researchmax
+			}
+		}
+	}
+
+	after = {
+		from = { set_site_progress_locked = no }
+	}
+}
+
+### Stage 2 -- the town
+fleet_event = {
+	id = stg_arcsite.601
+	title = "stg_arcsite.601.name"
+	desc = "stg_arcsite.601.desc"
+	picture = GFX_evt_stg_colony_settlement
+	location = from
+	show_sound = event_wind_ruins
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		from = { set_site_progress_locked = yes }
+	}
+
+	option = {
+		name = "stg_arcsite.601.a"
+		owner = {
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = @tier1researchreward
+				min = @tier1researchmin
+				max = @tier1researchmax
+			}
+		}
+	}
+
+	after = {
+		from = { set_site_progress_locked = no }
+	}
+}
+
+### Stage 3 -- where they went
+fleet_event = {
+	id = stg_arcsite.602
+	title = "stg_arcsite.602.name"
+	desc = "stg_arcsite.602.desc"
+	picture = GFX_evt_stg_colony_cliffs
+	location = from
+	show_sound = event_dig_site
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		from = { set_site_progress_locked = yes }
+	}
+
+	option = {
+		name = "stg_arcsite.602.a"
+		owner = {
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = @tier2researchreward
+				min = @tier2researchmin
+				max = @tier2researchmax
+			}
+		}
+		leader = { add_experience = 150 }
+	}
+
+	after = {
+		from = { set_site_progress_locked = no }
+	}
+}
+
+### Stage 4 -- the works, still running
+fleet_event = {
+	id = stg_arcsite.603
+	title = "stg_arcsite.603.name"
+	desc = "stg_arcsite.603.desc"
+	picture = GFX_evt_stg_colony_works
+	location = from
+	show_sound = event_mystic_reveal
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		from = { set_site_progress_locked = yes }
+	}
+
+	option = {
+		name = "stg_arcsite.603.a"
+		owner = {
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = @tier2researchreward
+				min = @tier2researchmin
+				max = @tier2researchmax
+			}
+			add_modifier = {
+				modifier = "stg_colony_survivors"
+				years = 25
+			}
+		}
+		from = {
+			planet = {
+				if = {
+					limit = {
+						NOT = { has_deposit_for = shipclass_research_station }
+					}
+					clear_deposits = yes
+				}
+				add_deposit = d_engineering_3
+			}
+		}
+	}
+
+	after = {
+		from = { set_site_progress_locked = no }
+	}
+}

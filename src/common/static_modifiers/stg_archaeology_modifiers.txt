@@ -1,0 +1,75 @@
+# Star Trek Galaxies -- the empire modifiers our archaeological sites end on.
+#
+# A NEW file, not a shadow: static modifiers merge by key across files, so
+# vanilla's are untouched and these nine are added beside them.
+#
+# WHY OURS RATHER THAN VANILLA'S. The obvious shortcut is to reuse an existing
+# modifier -- `ice_trauma_insights_colony` has exactly the effect the Lost
+# Colony wants. It also has exactly the NAME "Frozen Submariners' Legacy", drawn
+# on the player's modifier list under a Trek dig that has nothing to do with
+# submarines. A static modifier is a loc key with numbers attached, and the loc
+# key is the half that shows.
+#
+# Every modifier field below is copied from a vanilla static modifier that was
+# opened in common/static_modifiers/02_static_modifiers.txt -- an invented field
+# name is not an error, it is silently nothing.
+#
+# Magnitudes are deliberately near vanilla's own arc-site rewards
+# (engineered_species_revelation is -10% species cost + 20% ethic attraction;
+# ice_trauma_insights_colony is +20% colony development). Five of the six sites
+# are `max_instances = 1`, so their modifiers are permanent (`days = -1`) the
+# way vanilla's unique-site rewards are; the Lost Colony can recur, so its one
+# is timed and cannot stack into an empire-wide bonus by digging.
+#
+# See .docs/decisions/76-trek-archaeology.md
+
+# ── The Hall of the Blade ─────────────────────────────────────────────────────
+stg_blade_recovered = {
+	army_damage_mult = 0.10
+	pop_ethic_militarist_attraction_mult = 0.15
+}
+
+stg_hall_recorded = {
+	country_unity_produces_mult = 0.05
+	pop_happiness = 0.02
+}
+
+# ── The Ark in the Sand ───────────────────────────────────────────────────────
+stg_ark_returned = {
+	country_unity_produces_mult = 0.10
+	pop_ethic_spiritualist_attraction_mult = 0.15
+}
+
+stg_ark_studied = {
+	country_society_research_produces_mult = 0.05
+	pop_ethic_materialist_attraction_mult = 0.15
+}
+
+# ── The Sealed Mechanism ──────────────────────────────────────────────────────
+stg_mechanism_studied = {
+	country_physics_research_produces_mult = 0.05
+	ship_hull_mult = 0.05
+}
+
+stg_mechanism_sealed = {
+	country_unity_produces_mult = 0.05
+	pop_happiness = 0.03
+}
+
+# ── The Desert Sanctuary ──────────────────────────────────────────────────────
+stg_sanctuary_discipline = {
+	pop_happiness = 0.05
+	country_society_research_produces_mult = 0.05
+}
+
+# ── The Hebitian Vaults ───────────────────────────────────────────────────────
+stg_vault_catalogued = {
+	country_unity_produces_mult = 0.05
+	country_society_research_produces_mult = 0.05
+}
+
+# ── The Lost Colony ───────────────────────────────────────────────────────────
+stg_colony_survivors = {
+	planet_colony_development_speed_mult = 0.20
+	pop_amenities_usage_mult = -0.03
+}

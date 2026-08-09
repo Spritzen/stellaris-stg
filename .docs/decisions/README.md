@@ -149,6 +149,8 @@ which is also where the rule lives: category is in this index, not in the path.
 | | |
 |---|---|
 | [75](75-trek-anomalies.md) | Phase 4 starts with anomalies, because they are the one part of "a voice" with a yardstick |
+| [76](76-trek-archaeology.md) | Trek archaeology, and the one field in the format that decides whether any of it is ever seen |
+| [77](77-trek-story-events.md) | Trek story events, and the merge question the design refuses to ask |
 
 ## Audio
 
