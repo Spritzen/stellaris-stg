@@ -1,6 +1,11 @@
 # 77 — Trek story events, and the merge question the design refuses to ask
 
-**Status:** decided, 2026-08-09
+**Status:** decided, 2026-08-09, and **corrected in part by
+[decision 78](78-phase-4-count-corrections.md)** — vanilla has **485** on_action
+keys, not the 452 quoted below, and the 21% story rate is the **Federation's
+alone**: the other ten gated classes see 17.8% and eleven playable empires see
+14.3%. The calibration argument holds; the figures moved. The body is left
+exactly as written.
 **Follows:** [76](76-trek-archaeology.md)
 
 ## What this closes

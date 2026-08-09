@@ -1,7 +1,13 @@
 # 75 — Phase 4 starts with anomalies, because they are the one part of "a voice" with a yardstick
 
-**Status:** decided, 2026-08-09
+**Status:** decided, 2026-08-09, and **corrected in part by
+[decision 78](78-phase-4-count-corrections.md)** — the restricted-category tally
+below says seven and the file has **nine**, and the `clear_deposits` rule is
+stated as absolute where vanilla practises it in 40 of 69. The reasoning holds
+in both places and the file follows it; only the figures moved. The body is left
+exactly as written.
 **Follows:** [74](74-event-picture-families.md)
+**Gains the check it asked for:** [79](79-reachability-checks.md) — `spawn_chance`
 
 ## The problem this had to solve first
 

@@ -2,6 +2,9 @@
 
 **Status:** decided, 2026-08-09
 **Follows:** [75](75-trek-anomalies.md)
+**Gains the check it asked for:** [79](79-reachability-checks.md) — the `weight`
+question below had no check behind it for as long as this file has existed; it
+does now, together with the second half it needs.
 
 ## What this closes
 

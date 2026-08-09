@@ -1,6 +1,6 @@
 # Decisions — index
 
-> **What** — all 75 resolved decisions, grouped by subject, one line each.
+> **What** — all 79 resolved decisions, grouped by subject, one line each.
 > **Open when** — before reopening a settled question, or when a citation names a
 > decision by number and you need to know what it says.
 > **Then** — [Style guide §7](../style-guide.md#7-decision-files-have-a-fixed-head) for the file format · [Documentation map](../README.md)
@@ -151,6 +151,7 @@ which is also where the rule lives: category is in this index, not in the path.
 | [75](75-trek-anomalies.md) | Phase 4 starts with anomalies, because they are the one part of "a voice" with a yardstick |
 | [76](76-trek-archaeology.md) | Trek archaeology, and the one field in the format that decides whether any of it is ever seen |
 | [77](77-trek-story-events.md) | Trek story events, and the merge question the design refuses to ask |
+| [78](78-phase-4-count-corrections.md) | Four numbers in Phase 4 were wrong, and the worst was another database's right number — *corrects [75](75-trek-anomalies.md) and [77](77-trek-story-events.md) in part* |
 
 ## Audio
 
@@ -169,6 +170,7 @@ which is also where the rule lives: category is in this index, not in the path.
 | [40](40-live-run-2026-08-07-repairs.md) | The 2026-08-07 15:41 run's small defects, and what each one cost |
 | [43](43-planet-scale-system-length.md) | `PLANET_SCALE_SYSTEM` is measured against an array no script can set |
 | [71](71-doc-inventory-checks.md) | A doc citation can resolve perfectly and still describe a repo that moved |
+| [79](79-reachability-checks.md) | A site with no `weight` and a category with no `spawn_chance` are complete, clean and unreachable — and the second half of the question is what makes the check worth having |
 
 ---
 

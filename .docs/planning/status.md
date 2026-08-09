@@ -30,9 +30,10 @@ inconsistencies against a tree the old checker had just passed
 *no* vanilla path still matches the family vanilla is uniform about, calibrated at
 113 findings before [decision 63](../decisions/63-city-set-family-targets.md)'s
 fix and 0 after — and `check_anomalies`, which asks the six questions vanilla
-scores 0 on across its 327 anomaly categories, and a seventh scoped to the one
+scores 0 on across its 327 anomaly categories, a seventh scoped to the one
 file where its floor is not 114 of 310
-([decision 75](../decisions/75-trek-anomalies.md)).
+([decision 75](../decisions/75-trek-anomalies.md)), and an eighth on
+**`spawn_chance`**, whose floor is a known 3 of 327.
 
 **And `check_archaeology`, the same shape one database over**: ten questions
 across vanilla's 123 site types and 475 stage events, nine of them at 0 and the
@@ -41,6 +42,17 @@ scoped to our own events file, where vanilla's floor would be 157 of 628. One of
 the ten — **`stages = N` against the `stage` blocks beside it** — has no
 counterpart in `check_anomalies` and nothing else in the game enforces it
 ([decision 76](../decisions/76-trek-archaeology.md)).
+
+> **A twelfth was added on 2026-08-09, and it is the one decision 76 asked for
+> and did not get.** `weight` — the field that decision calls "the whole
+> question" — had no check behind it until the
+> [2026-08-15 audit](../analysis/2026-08-15.md) read the code and found the
+> substring absent. A `weight = 0` site is complete, validating clean and never
+> placed, and it is what six of vanilla's ten base-game sites look like. Asked
+> alone it reports 74 of vanilla's 123; asked with "and nothing in script names
+> it" the floor is **0**, so it needs no scope
+> ([decision 79](../decisions/79-reachability-checks.md), [check-design rule
+> 12](../validation/check-design.md#12-can-this-ever-appear-has-more-than-one-route--ask-them-all-then-read-the-scope-off-the-answer)).
 
 **And `check_story_events`, the same shape a third time**, over the built tree's
 58 non-empty on_action hooks. Its first question has no counterpart in either
@@ -75,6 +87,24 @@ came back out of `.source/` by themselves, exactly as the anomalies' 24 did.
 after the 49.3 s startup window.** No record names anything `stg_`, and none names
 clothes, city sets or ship locators — all four of that run's findings were
 eyes-only, which is now the standard shape.
+
+> **The baseline predates the whole of decisions 74–77.** `error.log` was last
+> written 2026-08-08 20:45; the anomalies landed at `cba8a81` (2026-08-09 09:15)
+> and the dig sites and story events at `272f3c7` (2026-08-09 13:31). So the
+> 1,261 records describe a build containing **none** of the largest single
+> addition the project has made — 21 anomaly categories, 6 dig sites, 23 story
+> events, 144 sprites, 72 re-cut pictures, 324 loc keys and ~11,200 words.
+> `make validate` covers the references and nothing covers the rest.
+>
+> **The next live run should open the situation log and let a survey fleet
+> work**, and reconcile group by group against these 1,261
+> ([live-runs.md](../guides/live-runs.md)). Three things are unmeasured and
+> nothing container-side can reach them: whether the 72 event pictures render at
+> the right size in the popup ([decision 42](../decisions/42-event-picture-geometry.md)'s
+> defect in [74](../decisions/74-event-picture-families.md)'s new territory, and
+> the 24 anomaly pictures have no vanilla control behind their crop); whether
+> `stg_on_five_year_story_pulse` fires at all; and whether any dig site is ever
+> placed. [The 2026-08-15 audit](../analysis/2026-08-15.md), finding 1.
 
 The game has been the **native Linux build** since 2026-08-02
 ([decision 15](../decisions/15-native-linux-runtime.md)) — content unaffected,

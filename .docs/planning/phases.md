@@ -527,6 +527,13 @@ blocks beside it**, has no counterpart in `check_anomalies` and is the one most
 worth having — plus one at a floor of 1 and an eleventh scoped the way
 [51](../decisions/51-prescripted-loc-scope.md) established.
 
+**And a twelfth as of [decision 79](../decisions/79-reachability-checks.md):
+`weight` itself**, which is the field this section calls the whole question and
+which no check asked until the [2026-08-15 audit](../analysis/2026-08-15.md)
+went looking. A site with no positive weight that nothing in script names can
+never be placed; vanilla's floor for that pair is 0 of 123, so it is asked of the
+whole tree. `check_anomalies` gained the same question over `spawn_chance`.
+
 ### Done: the story events, and the merge question the design refuses to ask
 
 [Decision 77](../decisions/77-trek-story-events.md), 2026-08-09, and it

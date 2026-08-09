@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """Fast structural checks that catch the Stellaris failure modes CWTools can't.
 
 CWTools validates script semantics inside the editor. This covers the file-level
@@ -4404,6 +4404,70 @@ def _is_event_block(kind: str) -> bool:
     return kind == "event" or kind.endswith("_event")
 
 
+@functools.lru_cache(maxsize=4)
+def _script_tokens_outside(directory: str) -> frozenset[str]:
+    """Every identifier written in script anywhere except one database's own directory.
+
+    The second half of a reachability question. "Nothing places this at random"
+    is only half of "nothing places this": the other route is a script that
+    names the key outright, and vanilla uses it constantly -- 74 of its 123
+    archaeological site types carry no positive `weight` and every one of them
+    is created by an initialiser, an event or a parameterised effect instead.
+    Ask the weight question alone and the check reports 74 false findings; ask
+    it against this sweep and vanilla's floor is 0.
+
+    IT IS A TOKEN SWEEP, NOT A REFERENCE PARSE, and deliberately so. The zroni
+    chain is created by `create_archaeological_site = $DIGSITE$` inside an
+    inline script, with `DIGSITE = zroni_digsite_2` passed from an event four
+    files away -- no parser that follows one effect name finds that, and a mod
+    can invent a route vanilla has not used. The sweep over-accepts by
+    construction, which is the right direction for a check whose finding is
+    "this content can never appear": a key nobody has typed anywhere is a claim
+    that holds however the engine reaches it.
+
+    The database's own directory is excluded, since a definition is not a
+    reference (check-design rule 3). Localisation is excluded with it -- every
+    key has a loc entry by construction, so including .yml would make the
+    question vacuous.
+    """
+    tokens: set[str] = set()
+    for root in (BUILD, GAME_DIR):
+        for f in root.rglob("*.txt"):
+            if f.parent.name == directory:
+                continue
+            tokens |= set(re.findall(r"[A-Za-z_][A-Za-z_0-9]*", _read(f)))
+    return frozenset(tokens)
+
+
+def _no_positive(body: str, field: str) -> bool:
+    """Is `field` present-and-zero, or absent, where absent means zero?
+
+    `weight` on a site and `spawn_chance` on an anomaly category are the same
+    field twice: a scriptable value that defaults to 0, written either bare
+    (`weight = 0`) or as a block whose `base` and `add` entries sum the chance
+    up from nothing. A `factor` does NOT count -- it multiplies, and vanilla
+    writes `base = 0` with a `factor` under it, which is still zero.
+
+    TRUE ONLY WHEN THE ZERO IS ESTABLISHED. A scripted value, an `@variable` or
+    a block shape this does not recognise returns False and is not reported: a
+    reachability check that guesses is worse than one that misses, because its
+    finding is "delete this or wire it up".
+    """
+    m = re.search(rf"(?m)^\s*{field}\s*=\s*(\{{|[^\s{{]+)", body)
+    if not m:
+        return True
+    if m.group(1) != "{":
+        try:
+            return float(m.group(1)) <= 0
+        except ValueError:
+            return False
+    block = _balanced(body, body.index("{", m.start()))
+    nums = re.findall(r"(?m)^\s*(?:base|add)\s*=\s*(-?[\d.]+)", block)
+    if not nums:
+        return False        # a shape this cannot read is not an established zero
+    return not any(float(n) > 0 for n in nums)
+
+
 def _merged_loc_keys() -> set[str]:
     """Every localisation key the game will have loaded: the tree's and vanilla's."""
     keys: set[str] = set()
@@ -4444,6 +4508,24 @@ def check_anomalies() -> int:
 
     So all six questions are asked of every anomaly in the built tree.
 
+    THE SEVENTH IS `spawn_chance`, AND IT IS THE ONE THE SIX ABOVE CANNOT SEE.
+    `spawn_chance` defaults to `base = 0`, so a category with none, or with one
+    that never adds to it, is complete, correct, validating clean and never
+    rolled -- decision 76's `weight = 0` and decision 62's undeclared graphical
+    culture in an eighth database, and the defect class this whole family of
+    checks exists for. It is asked with the reachability filter
+    _script_tokens_outside describes, because a category can also be placed by
+    an effect that names it:
+
+        no positive spawn_chance             49 of vanilla's 327
+        ... and named nowhere else in script  3 -- ANCREL_MECHANO_CAT,
+                                             VULTAUMAR and YUHTAAN, which appear
+                                             only in their own file and in
+                                             localisation. A floor of three
+                                             known instances, not zero.
+
+    See .docs/decisions/79-reachability-checks.md.
+
     THE SEVENTH QUESTION HAS A SCOPE, because its floor is nothing like zero:
     "an anomaly event no category names" scores 114 of vanilla's 310, since
     vanilla chains events off each other and off on_actions this check does not
@@ -4482,6 +4564,7 @@ def check_anomalies() -> int:
         sprites |= set(re.findall(r'name\s*=\s*"(GFX_[^"]+)"', _read(f)))
 
     loc = _merged_loc_keys()
+    referenced = _script_tokens_outside("anomalies")
 
     def picture_of(body: str) -> str | None:
         m = re.search(r'(?m)^\s*picture\s*=\s*"?(GFX_[A-Za-z_0-9]+)"?', body)
@@ -4525,6 +4608,14 @@ def check_anomalies() -> int:
                 errors.append(
                     f"common/anomalies/{f.name}: {key} describes itself with "
                     f"'{dkey}', which has no localisation key. Vanilla has 0.")
+            if _no_positive(body, "spawn_chance") and key not in referenced:
+                errors.append(
+                    f"common/anomalies/{f.name}: {key} has no positive "
+                    f"`spawn_chance` and nothing in script names it, so the "
+                    f"survey die can never pick it and no effect places it -- "
+                    f"the category, its events, its art and its prose can never "
+                    f"appear. `spawn_chance` defaults to `base = 0`. Vanilla's "
+                    f"floor is 3 of 327.")
 
     # The events, from the other end.
     for fname, eid, body in events_seen:
@@ -4609,7 +4700,25 @@ def check_archaeology() -> int:
     question is exact there and meaningless everywhere else.
     See .docs/validation/check-design.md rule 11.
 
-    See .docs/decisions/76-trek-archaeology.md.
+    THE TWELFTH IS `weight`, WHICH DECISION 76 CALLS "the whole question" AND
+    THE FIRST ELEVEN CANNOT SEE. A `weight = 0` site is complete, correct,
+    validating clean and never placed, and it is what six of vanilla's ten
+    base-game sites look like -- so it is exactly what a site copied from a
+    vanilla template inherits. It is asked with the reachability filter
+    _script_tokens_outside describes, because `weight` governs only
+    `create_archaeological_site = random` and vanilla places most of its sites
+    by naming them:
+
+        no positive weight                   74 of vanilla's 123
+        ... and named nowhere else in script  0
+
+    Weight alone would be a 74-finding check; the pair is a 0-finding one, so
+    the question is asked of the whole built tree rather than scoped to our own
+    file -- scope is a calibration result (check-design rule 11), and here the
+    calibration says none is needed.
+
+    See .docs/decisions/76-trek-archaeology.md and
+    .docs/decisions/79-reachability-checks.md.
     """
     site_dir = BUILD / "common" / "archaeological_site_types"
     if not site_dir.is_dir():
@@ -4656,6 +4765,7 @@ def check_archaeology() -> int:
             modifiers |= {k for k, _ in _top_level_blocks(_strip_comments(_read(f)))}
 
     loc = _merged_loc_keys()
+    referenced = _script_tokens_outside("archaeological_site_types")
 
     n = 0
     named: set[str] = set()
@@ -4692,6 +4802,15 @@ def check_archaeology() -> int:
                     errors.append(
                         f"{rel}: {key} describes itself with '{d}', which has "
                         f"no localisation key. Vanilla has 0.")
+
+            if _no_positive(body, "weight") and key not in referenced:
+                errors.append(
+                    f"{rel}: {key} has no positive `weight` and nothing in "
+                    f"script names it, so `create_archaeological_site = random` "
+                    f"can never pick it and no initialiser or event places it "
+                    f"-- the site, its stages, its art and its prose can never "
+                    f"appear. Vanilla writes `weight = 0` in 74 of 123 sites "
+                    f"and names every one of them somewhere.")
 
             stage_blocks = re.findall(r"(?m)^\s*stage\s*=\s*\{", body)
             declared = re.search(r"(?m)^\s*stages\s*=\s*(\d+)", body)
@@ -4796,8 +4915,13 @@ def check_story_events() -> int:
     hooking nothing to nowhere. A hook with nothing in it cannot fail to fire
     anything.
 
-    VANILLA IS THE CALIBRATION, over its 452 on_action keys and the events they
-    name:
+    VANILLA IS THE CALIBRATION, over its 485 on_action keys and the events they
+    name -- 396 in 00_on_actions.txt, 33 in 01_planet_destruction.txt and 56 in
+    02_component_on_actions.txt. (Decision 77 and this docstring both said 452,
+    which is the sum with the planet-destruction file silently dropped. The
+    figure is corrected here and recorded in
+    .docs/decisions/78-phase-4-count-corrections.md; the decision keeps its
+    text, per style guide 7.)
 
         on_action key declared or fired      0 findings in the built tree
                                              (6 before the empty-block filter,
@@ -4821,6 +4945,15 @@ def check_story_events() -> int:
     every event there is either hung on an on_action or fired by the two-step
     pulse gatekeeper beside it -- so the question is exact there and nowhere
     else. See .docs/validation/check-design.md rule 11.
+
+    THE FIRST QUESTION IS ONE LEVEL DEEP, and saying so is cheaper than deepening
+    it. `stg_on_five_year_story_pulse` counts as fired because some event in the
+    tree textually contains `fire_on_action = { on_action = ... }` naming it; if
+    THAT event were itself unreachable, the hook would still read as fired.
+    Today the fifth question closes the gap from the other end -- it catches
+    stg_story.2, the event that does the firing, if nothing hangs it on a hook --
+    so the pair is closed for our own file and the transitive walk buys nothing
+    it does not already have.
 
     See .docs/decisions/77-trek-story-events.md.
     """

@@ -8,7 +8,7 @@
 | File | |
 |---|---|
 | [checks.md](checks.md) | The catalogue: every check, grouped by the kind of question it asks |
-| [check-design.md](check-design.md) | **Read before writing one.** Eleven rules, each earned by a check that lied |
+| [check-design.md](check-design.md) | **Read before writing one.** Twelve rules, each earned by a check that lied |
 | [acks.md](acks.md) | Where reviewed exceptions live, and the kind of ack that rots |
 | [clutter.md](clutter.md) | The reachability closure — the one check that **deletes** |
 
@@ -30,3 +30,5 @@ Two habits that follow, and they are the whole discipline:
 - **Calibrate against vanilla, and write the ratio next to the scope.**
   [Rule 4](check-design.md#4-derive-allowlists-from-vanillas-own-usage-never-by-hand),
   [rule 11](check-design.md#11-scope-is-a-calibration-result-not-a-convenience-filter).
+  And when the floor comes out high, suspect the question before the population:
+  [rule 12](check-design.md#12-can-this-ever-appear-has-more-than-one-route--ask-them-all-then-read-the-scope-off-the-answer).

@@ -12,6 +12,14 @@
 # deposit is vanilla's own: without it the planet keeps a deposit that makes the
 # research station unbuildable, so the reward is unreachable.
 #
+# VANILLA IS NOT ABSOLUTE ABOUT IT, though decision 75 states the rule as if it
+# were. Measured over events/anomaly_events_[0-9].txt: 40 of 69 research-deposit
+# adds carry the guard, and the split is what matters -- 29 of the 42 that also
+# add a permanent planet modifier, against 11 of the 27 that do not. Ours is 5 of
+# 8, and the 5 are exactly the ones that add a modifier, so the file follows
+# vanilla's real pattern rather than the stated rule.
+# See .docs/decisions/78-phase-4-count-corrections.md
+#
 # No `specimen = `, no DLC-gated effect: STG is standalone and must behave the
 # same whatever the host owns.
 #

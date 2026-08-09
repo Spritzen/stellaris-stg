@@ -211,3 +211,28 @@ and the 22 hand-authored empires diverge from their source deliberately; its
 leaked-key half covers all four, because it asks nothing of the source, so it
 costs nothing and cannot produce a false positive.
 [Decision 51](../decisions/51-prescripted-loc-scope.md).
+
+---
+
+## 12. "Can this ever appear" has more than one route — ask them all, then read the scope off the answer
+
+**A high floor is usually a missing half of the question, not a reason to
+scope.** `weight` on an archaeological site governs
+`create_archaeological_site = random` and nothing else; **74 of vanilla's 123
+sites carry no positive weight**, and every one of them is placed by an
+initialiser, an event or a parameterised effect that names it outright. Ask the
+weight question alone and the check reports 74 findings and has to be scoped to
+our own file to stay quiet. Ask it together with "and nothing in script names
+this key" and vanilla's floor is **0**, so no scope is needed at all.
+
+The scope [rule 11](#11-scope-is-a-calibration-result-not-a-convenience-filter)
+would have permitted was hiding an incomplete question. **Widen the question
+before narrowing the population.**
+
+**The second half over-accepts on purpose.** It is a token sweep of every `.txt`
+in the merged tree, not a parse of `create_archaeological_site`, because vanilla
+reaches its own zroni chain through `$DIGSITE$` inside an inline script and a mod
+can invent a route vanilla has not used. For a check whose finding is *"delete
+this or wire it up"*, over-accepting is the safe direction
+([rule 1](#1-a-check-that-deletes-is-not-a-check-that-reports)).
+[Decision 79](../decisions/79-reachability-checks.md).

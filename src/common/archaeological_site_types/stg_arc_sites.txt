@@ -1,7 +1,7 @@
 # Star Trek Galaxies -- Trek archaeological site types.
 #
 # A NEW file, not a shadow: site types merge by key across files, so vanilla's
-# 327 are untouched and these 6 are added beside them. Stage events are in
+# 123 are untouched and these 6 are added beside them. Stage events are in
 # events/stg_arcsite_events.txt, pictures in interface/stg_arcsite_pictures.gfx,
 # names, descriptions and stage prose in
 # localisation/english/stg_archaeology_l_english.yml, and the finale modifiers
@@ -19,7 +19,12 @@
 # Its trigger asks nothing about DLC, so a weighted site reaches every host.
 # Six of vanilla's ten base-game sites carry `weight = 0` and are placed by an
 # initializer or an event instead; ours have nowhere to be placed FROM, because
-# STG writes no story chain. See .docs/decisions/76-trek-archaeology.md.
+# STG writes no story chain. So a seventh site copied from a vanilla template
+# inherits `weight = 0` and ships complete, validating clean and unreachable --
+# check_archaeology asks this now, against the whole tree, and its other half is
+# whether anything in script names the key at all.
+# See .docs/decisions/76-trek-archaeology.md and
+# .docs/decisions/79-reachability-checks.md
 #
 # No `specimen`, no minor-artifact reward, no `has_ancrel` branch: STG is
 # standalone and behaves the same whatever the host owns. Vanilla's own comment

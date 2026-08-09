@@ -2,7 +2,9 @@
 #
 # A NEW file, not a shadow: on_action blocks merge by key across files (four of
 # the vendored mods declare `on_colonized` between them and all four are read),
-# so vanilla's 452 on_actions are untouched and these sit beside them.
+# so vanilla's 485 on_actions are untouched and these sit beside them -- 396 in
+# 00_on_actions.txt, 33 in 01_planet_destruction.txt, 56 in
+# 02_component_on_actions.txt.
 #
 # WE ADD TO SOMEBODY ELSE'S `events` LIST AND TO NOBODY ELSE'S `random_events`
 # LIST. Whether a second file's `random_events` merges with vanilla's or
@@ -45,10 +47,28 @@ on_first_contact = {
 #
 # THE WEIGHTS ARE CALIBRATED AGAINST VANILLA'S OWN POOL, not chosen.
 # on_five_year_random_pulse_country carries 435 of content against `1900 = 0`,
-# so vanilla's five-year pulse produces anything at all 18.6% of the time. An
-# STG empire sees 2 of the 12 species-gated events at 60 and all 8 open ones at
-# 25 -- 320 against `1200 = 0`, or 21%. Close to vanilla's rate deliberately:
-# this pulse is a flavour slot, not a second anomaly system.
+# so vanilla's five-year pulse produces anything at all 18.6% of the time.
+#
+# THE RATE HAS THREE TIERS, and the Federation's is not the general one. The 12
+# gated events cover 11 distinct species classes, and only FED holds two:
+#
+#   empire                                gated  in pool  rate per pulse
+#   Federation (FED)                          2      320          21.1%
+#   the other 10 gated classes                1      260          17.8%
+#   11 playable empires + all 79 AI minors    0      200          14.3%
+#
+# The eleven with no institution of their own are BOL, BRE, THO, CAI, XIN, SUL,
+# YRI, KRE, MAL, VID and TER -- the mirror Terran Empire being the notable one.
+# Growing the pool is cheap: `random_events` fires one winner, so more gated
+# events cannot make anyone see more popups.
+# See .docs/decisions/78-phase-4-count-corrections.md and
+# .docs/planning/open-questions.md
+#
+# And these are per-pulse rates, not frequencies. `stg_recent_story` runs 3,600
+# days (9.86 years) and every story event sets it, so one fired event blanks the
+# next five-year pulse; the long-run figure is about p / (1 + p) -- ~17% for FED,
+# ~13% for an ungated empire. Close to vanilla's rate deliberately: this pulse is
+# a flavour slot, not a second anomaly system.
 stg_on_five_year_story_pulse = {
 	random_events = {
 		1200 = 0

@@ -21,6 +21,14 @@ evidence for anything in this section — the standing lesson of decisions
 [08](../decisions/08-stnh-art-shadows-vanilla.md) and
 [42](../decisions/42-event-picture-geometry.md).
 
+> **What the next run should do, before anything else on this page.** The
+> `error.log` baseline in [status.md](status.md) was written 2026-08-08 20:45
+> and **decisions 74–77 all landed the next day**, so none of the anomalies, dig
+> sites or story events has ever been in front of the game. **Open the situation
+> log and let a survey fleet work** — that one act reaches the three sections
+> below that nothing else can. [The 2026-08-15 audit](../analysis/2026-08-15.md),
+> finding 1.
+
 ### The shipsets' weapons
 
 Whether the nine Walshicus shipsets draw their weapons, and whether the pruned
@@ -122,8 +130,21 @@ Three separate questions, and they fail differently:
   minefield. **Nine of the 24 are frames extracted from a 9315×264 animation
   strip**, and a wrong frame is the failure mode there.
 - **Do the levels and rewards feel right?** An anomaly level gates which
-  scientist can crack it. 21 categories span levels 1–6 and the mapping is a
-  judgement, not a measurement.
+  scientist can crack it, and how often the roll fails. 21 categories span
+  levels 1–6 and the mapping is a judgement, not a measurement — but there is
+  now a number to hold it against:
+
+  | level | 1 | 2 | 3 | 4 | 5 | 6 | 7 | mean |
+  |---|---|---|---|---|---|---|---|---|
+  | STG, 21 categories | 2 | 2 | 5 | 3 | 6 | 3 | 0 | **3.86** |
+  | vanilla base game, 40 | 12 | 14 | 6 | 4 | 3 | 0 | 1 | **2.4** |
+
+  Vanilla's base game puts 65% of its categories at level 1–2 and 10% at level
+  5+; STG puts 19% and **43%**. The merged pool still leans vanilla (348
+  categories), so the galaxy is not harder — but **the Trek half is the slow,
+  failure-prone half**, which is the half the player is meant to notice, and
+  early-game scientists will bounce off it. Measured for
+  [decision 78](../decisions/78-phase-4-count-corrections.md).
 
 > **And the framing question underneath all three.**
 > [Decision 74](../decisions/74-event-picture-families.md) centre-crops these
@@ -165,8 +186,10 @@ pictures, 84 loc keys and ~4,000 words**, none of which any check can grade
 ([decision 77](../decisions/77-trek-story-events.md)). The writing and picture
 questions above apply here unchanged. Four that are specific to a story event:
 
-- **Do they fire at all, and at the right rate?** The pool is calibrated at 21%
-  per five-year pulse against vanilla's own 18.6%, which works out at roughly
+- **Do they fire at all, and at the right rate?** The pool is calibrated against
+  vanilla's own 18.6% per five-year pulse: **21.1% for the Federation, 17.8% for
+  the other ten gated classes, 14.3% for everyone else**, and `stg_recent_story`
+  blanks the pulse after a hit, so the long-run figure is ~17% / ~13%. Roughly
   one story event per decade per empire. If **none** appears in a long game the
   thing to doubt is the hook, not the weights — a custom on_action reached only
   by `fire_on_action` is exactly the arrangement `check_story_events` was
@@ -176,6 +199,20 @@ questions above apply here unchanged. Four that are specific to a story event:
   class. A Klingon empire seeing the Federation Council, or a Federation empire
   seeing none of its own two in a whole game, are the two ways the gate is
   wrong, and they fail in opposite directions.
+
+  > **And a third way, which is not a broken gate and would not read as one:
+  > eleven of the 22 playable empires are outside the gate entirely.** The 12
+  > gated events cover 11 distinct species classes, so **BOL, BRE, THO, CAI,
+  > XIN, SUL, YRI, KRE, MAL, VID and TER** — and all 79 AI minors — see only the
+  > eight open events, at 14.3% a pulse against the Federation's 21.1%. The
+  > mirror **Terran Empire** is the one that stings: a headline playable empire
+  > with its own ENT-era uniforms
+  > ([64](../decisions/64-terran-empire-mirror-uniforms.md)) and nothing in the
+  > pool for it. **A Malon player reporting "I never see my own story" is
+  > reporting the content, not the gate**, so ask which empire before doubting
+  > the trigger. Growing the pool is cheap — `random_events` fires one winner,
+  > so eleven more gated events cannot make anyone see more popups
+  > ([78](../decisions/78-phase-4-count-corrections.md)).
 - **Does a five-year flavour popup read as texture or as interruption?** This is
   the one question the anomalies and dig sites do not raise, because those are
   answers to something the player did. A story event arrives unbidden. If it

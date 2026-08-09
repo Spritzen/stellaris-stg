@@ -1,7 +1,7 @@
 # Star Trek Galaxies -- Trek anomaly categories.
 #
 # A NEW file, not a shadow: anomaly categories merge by key across files, so
-# vanilla's 137 are untouched and these 21 are added beside them. Outcome events
+# vanilla's 327 are untouched and these 21 are added beside them. Outcome events
 # are in events/stg_anomaly_events.txt, pictures in
 # interface/stg_event_pictures.gfx, names and descriptions in
 # localisation/english/stg_anomalies_l_english.yml -- four halves that must all
@@ -10,6 +10,22 @@
 # Every trigger, reward tier and idiom here is copied from
 # common/anomalies/00_anomaly_categories.txt and events/anomaly_events_*.txt.
 # Yardstick: vanilla's base game ships 40 categories in that file.
+#
+# NINE OF THE 21 ARE RESTRICTED -- five `max_once_global` (planet_killer_remnant,
+# iconian_gateway, tox_uthat, deep_space_probe, omega_signature) and four
+# `max_once` (resonator_cache, living_ship, cetacean_probe, transwarp_conduit).
+# The rule is the one decision 75 states -- a category that names a SPECIFIC
+# thing is restricted, one that names a KIND of thing is not -- but the tally
+# there says seven. It is nine, which is 43% against vanilla's base-game 8 of 40,
+# and that is a consequence of a Trek set naming more specific objects rather
+# than a drift from the rule.
+# See .docs/decisions/78-phase-4-count-corrections.md
+#
+# EVERY CATEGORY NEEDS A POSITIVE `spawn_chance`. It defaults to `base = 0`, and
+# a category with nothing adding to it is complete, validating clean and never
+# rolled. check_anomalies asks this now; a `factor` does not count, because it
+# multiplies. See .docs/decisions/79-reachability-checks.md
+#
 # See .docs/decisions/75-trek-anomalies.md
 
 # ── Asteroids, hulks and debris ───────────────────────────────────────────────
