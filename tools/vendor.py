@@ -367,12 +367,13 @@ def resample_rules(entries: list) -> list[tuple[str, str, str]]:
 
     `target: family` WIDENS THE SCOPE FROM SHADOWED FILES TO THE WHOLE PATTERN,
     so it is opt-in per rule rather than global. Vanilla is 266/271 uniform on
-    city layers and 91/91 on rooms, which is what makes a family target
-    meaningful there; it is 580/639 on event pictures, whose 59 stragglers are a
-    genuine second size, so that rule keeps the exact per-path question decision
-    42 calibrated. Declaring it per rule keeps a widening readable as the piece
-    of work it is -- .docs/validation/check-design.md rule 11, applied
-    to the harvest.
+    city layers, 91/91 on rooms, 580/580 on top-level event pictures and 59/59
+    on origin pictures -- and the last two are one directory, which is why RULE
+    ORDER IS LOAD-BEARING here: `*` spans '/', so the narrower origins glob has
+    to come first or it never gets a file. See vanilla_families().
+
+    Declaring it per rule keeps a widening readable as the piece of work it is
+    -- .docs/validation/check-design.md rule 11, applied to the harvest.
     """
     out = []
     for e in entries:
@@ -393,12 +394,26 @@ def resample_rules(entries: list) -> list[tuple[str, str, str]]:
     return out
 
 
-def vanilla_family(pattern: str) -> tuple[Counter, tuple[int, int] | None]:
-    """Vanilla's own dimensions across the files this pattern matches.
+def vanilla_families(
+        rules: list[tuple[str, str, str]],
+) -> dict[str, tuple[Counter, tuple[int, int] | None]]:
+    """Vanilla's own dimensions per family, one entry per `target: family` rule.
 
-    Returns (histogram, modal) where `modal` is the family's single canonical
-    size, or None if vanilla does not agree with itself strongly enough to have
-    one. See resample_plan() for what the two halves are used for.
+    Each entry is (histogram, modal), where `modal` is that family's single
+    canonical size or None if vanilla does not agree with itself strongly enough
+    to have one. See resample_plan() for what the two halves are used for.
+
+    A VANILLA FILE IS ATTRIBUTED TO THE FIRST RULE WHOSE GLOB MATCHES IT, which
+    is the same rule resample_plan() applies to the source's files -- and it has
+    to be, or the two halves disagree about what a family is. fnmatch's '*' spans
+    '/', so `gfx/event_pictures/*.dds` matches the origins/ subdirectory too, and
+    measuring that glob over the raw directory gives 580 of 639 at 450x150: the
+    59 stragglers are not scattered stragglers at all, they are vanilla's origin
+    pictures, 59 of 59 at 220x115. Two families in one directory, each uniform on
+    its own, reading as one family that is 90.8% uniform -- a hair over the floor
+    and one game patch away from silently falling under it. Ordering the origins
+    rule first makes both measure 100%.
+    See .docs/decisions/74-event-picture-families.md.
 
     UNIFORMITY_FLOOR is a threshold on a measurement, not a guess at an answer:
     vanilla's `*_room.dds` is 91 of 91 at 952x340 and its `*_city_l0N.dds` is
@@ -407,23 +422,31 @@ def vanilla_family(pattern: str) -> tuple[Counter, tuple[int, int] | None]:
     short and gets no target rather than a plausible wrong one.
     """
     UNIFORMITY_FLOOR = 0.90
-    hist: Counter = Counter()
+    hists: dict[str, Counter] = {g: Counter() for g, _f, t in rules
+                                 if t == "family"}
     for path in (GAME_DIR).glob("**/*"):
         if not path.is_file():
             continue
         rel = path.relative_to(GAME_DIR).as_posix()
-        if not matches(rel, pattern):
+        owner = next((g for g, _f, _t in rules if matches(rel, g)), None)
+        if owner is None or owner not in hists:
             continue
         try:
             dims = dds_dimensions(path)
         except OSError:
             continue
         if dims:
-            hist[dims] += 1
-    if not hist:
-        return hist, None
-    (top, n), = hist.most_common(1)
-    return hist, (top if n / sum(hist.values()) >= UNIFORMITY_FLOOR else None)
+            hists[owner][dims] += 1
+
+    out: dict[str, tuple[Counter, tuple[int, int] | None]] = {}
+    for glob_, hist in hists.items():
+        if not hist:
+            out[glob_] = (hist, None)
+            continue
+        (top, n), = hist.most_common(1)
+        out[glob_] = (hist, top if n / sum(hist.values()) >= UNIFORMITY_FLOOR
+                      else None)
+    return out
 
 
 def resample_plan(root: Path, entries: list,
@@ -467,7 +490,7 @@ def resample_plan(root: Path, entries: list,
     and one modal over both would have padded every room onto a city canvas.
     """
     rules = resample_rules(entries)
-    families = {g: vanilla_family(g) for g, fit, t in rules if t == "family"}
+    families = vanilla_families(rules)
 
     candidates: list[tuple[str, Path, tuple[int, int], str, str]] = []
     for rel, path in todo:

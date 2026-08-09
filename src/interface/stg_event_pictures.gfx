@@ -1,0 +1,315 @@
+# Star Trek Galaxies -- sprites for the Trek event pictures our anomalies use.
+#
+# A NEW file, not a shadow. STNH ships ~1,430 event pictures and declares them
+# in interface/STH_event_pictures.gfx, which .docs/architecture/stnh-art.md does
+# not take from it -- so 805 of them were inert bytes the clutter closure pruned
+# every build. A picture here is a picture that comes back.
+#
+# TWO SPRITES PER PICTURE, which is vanilla's own convention and not decoration:
+# interface/eventpictures.gfx says "the Situation Log automatically uses sprites
+# with the _nomask suffix if available", so a picture with only the masked twin
+# is drawn through the event mask in the log as well as the popup.
+#
+# The art is 620x264 or a 9315x264 animation strip in .source/; `target: family`
+# on gfx/event_pictures in vendor.yml re-cuts it to vanilla's 450x150 at harvest.
+# WITHOUT THAT THIS FILE IS DECISION 42'S DEFECT: UIOD's eventwindow.gui draws
+# at scale = 1.5 inside a 693x239 frame, so 620x264 art renders 930x396.
+# See .docs/decisions/74-event-picture-families.md.
+#
+# Sprite names take the `stg_` prefix -- we invented them, no vendored art
+# references them, so decision 10's exception does not apply.
+# See .docs/decisions/75-trek-anomalies.md
+
+spriteTypes = {
+
+	# ── Asteroids, hulks and debris ───────────────────────────────────────────
+	spriteType = {
+		name = "GFX_evt_stg_dilithium_matrix"
+		texturefile = "gfx/event_pictures/dilithium_incubator.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_stg_dilithium_matrix_nomask"
+		texturefile = "gfx/event_pictures/dilithium_incubator.dds"
+		alwaystransparent = yes
+	}
+
+	spriteType = {
+		name = "GFX_evt_stg_starship_graveyard"
+		texturefile = "gfx/event_pictures/starship_debris.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_stg_starship_graveyard_nomask"
+		texturefile = "gfx/event_pictures/starship_debris.dds"
+		alwaystransparent = yes
+	}
+
+	spriteType = {
+		name = "GFX_evt_stg_derelict_hulk"
+		texturefile = "gfx/event_pictures/derelict_ship.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_stg_derelict_hulk_nomask"
+		texturefile = "gfx/event_pictures/derelict_ship.dds"
+		alwaystransparent = yes
+	}
+
+	spriteType = {
+		name = "GFX_evt_stg_sleeper_capsule"
+		texturefile = "gfx/event_pictures/ancientCapsule1.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_stg_sleeper_capsule_nomask"
+		texturefile = "gfx/event_pictures/ancientCapsule1.dds"
+		alwaystransparent = yes
+	}
+
+	spriteType = {
+		name = "GFX_evt_stg_interphase_ship"
+		texturefile = "gfx/event_pictures/interphaseShip.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_stg_interphase_ship_nomask"
+		texturefile = "gfx/event_pictures/interphaseShip.dds"
+		alwaystransparent = yes
+	}
+
+	spriteType = {
+		name = "GFX_evt_stg_planet_killer_remnant"
+		texturefile = "gfx/event_pictures/doomsdayRemnant.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_stg_planet_killer_remnant_nomask"
+		texturefile = "gfx/event_pictures/doomsdayRemnant.dds"
+		alwaystransparent = yes
+	}
+
+	spriteType = {
+		name = "GFX_evt_stg_shattered_moon"
+		texturefile = "gfx/event_pictures/praxis1.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_stg_shattered_moon_nomask"
+		texturefile = "gfx/event_pictures/praxis1.dds"
+		alwaystransparent = yes
+	}
+
+	# ── Surfaces ──────────────────────────────────────────────────────────────
+	spriteType = {
+		name = "GFX_evt_stg_horta_tunnels"
+		texturefile = "gfx/event_pictures/janusVI.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_stg_horta_tunnels_nomask"
+		texturefile = "gfx/event_pictures/janusVI.dds"
+		alwaystransparent = yes
+	}
+
+	spriteType = {
+		name = "GFX_evt_stg_subterranean_caverns"
+		texturefile = "gfx/event_pictures/undergroundTunnels.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_stg_subterranean_caverns_nomask"
+		texturefile = "gfx/event_pictures/undergroundTunnels.dds"
+		alwaystransparent = yes
+	}
+
+	spriteType = {
+		name = "GFX_evt_stg_cliff_dwellings"
+		texturefile = "gfx/event_pictures/theChase.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_stg_cliff_dwellings_nomask"
+		texturefile = "gfx/event_pictures/theChase.dds"
+		alwaystransparent = yes
+	}
+
+	spriteType = {
+		name = "GFX_evt_stg_iconian_gateway"
+		texturefile = "gfx/event_pictures/iconianGateway.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_stg_iconian_gateway_nomask"
+		texturefile = "gfx/event_pictures/iconianGateway.dds"
+		alwaystransparent = yes
+	}
+
+	spriteType = {
+		name = "GFX_evt_stg_genesis_matrix"
+		texturefile = "gfx/event_pictures/genesis_planet.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_stg_genesis_matrix_nomask"
+		texturefile = "gfx/event_pictures/genesis_planet.dds"
+		alwaystransparent = yes
+	}
+
+	spriteType = {
+		name = "GFX_evt_stg_tox_uthat"
+		texturefile = "gfx/event_pictures/tox_uthat.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_stg_tox_uthat_nomask"
+		texturefile = "gfx/event_pictures/tox_uthat.dds"
+		alwaystransparent = yes
+	}
+
+	spriteType = {
+		name = "GFX_evt_stg_resonator_cache"
+		texturefile = "gfx/event_pictures/stone_of_gol.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_stg_resonator_cache_nomask"
+		texturefile = "gfx/event_pictures/stone_of_gol.dds"
+		alwaystransparent = yes
+	}
+
+	spriteType = {
+		name = "GFX_evt_stg_tribble_biosphere"
+		texturefile = "gfx/event_pictures/shipTribbles.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_stg_tribble_biosphere_nomask"
+		texturefile = "gfx/event_pictures/shipTribbles.dds"
+		alwaystransparent = yes
+	}
+
+	# ── Life, probes and phenomena ────────────────────────────────────────────
+	spriteType = {
+		name = "GFX_evt_stg_crystalline_entity"
+		texturefile = "gfx/event_pictures/crystalline_entity.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_stg_crystalline_entity_nomask"
+		texturefile = "gfx/event_pictures/crystalline_entity.dds"
+		alwaystransparent = yes
+	}
+
+	spriteType = {
+		name = "GFX_evt_stg_living_ship"
+		texturefile = "gfx/event_pictures/gomtuu.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_stg_living_ship_nomask"
+		texturefile = "gfx/event_pictures/gomtuu.dds"
+		alwaystransparent = yes
+	}
+
+	spriteType = {
+		name = "GFX_evt_stg_cetacean_probe"
+		texturefile = "gfx/event_pictures/whaleProbe3.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_stg_cetacean_probe_nomask"
+		texturefile = "gfx/event_pictures/whaleProbe3.dds"
+		alwaystransparent = yes
+	}
+
+	spriteType = {
+		name = "GFX_evt_stg_deep_space_probe"
+		texturefile = "gfx/event_pictures/vger_probe.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_stg_deep_space_probe_nomask"
+		texturefile = "gfx/event_pictures/vger_probe.dds"
+		alwaystransparent = yes
+	}
+
+	spriteType = {
+		name = "GFX_evt_stg_derelict_probe"
+		texturefile = "gfx/event_pictures/alienProbe.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_stg_derelict_probe_nomask"
+		texturefile = "gfx/event_pictures/alienProbe.dds"
+		alwaystransparent = yes
+	}
+
+	spriteType = {
+		name = "GFX_evt_stg_omega_signature"
+		texturefile = "gfx/event_pictures/omegaStable.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_stg_omega_signature_nomask"
+		texturefile = "gfx/event_pictures/omegaStable.dds"
+		alwaystransparent = yes
+	}
+
+	spriteType = {
+		name = "GFX_evt_stg_stellar_flare"
+		texturefile = "gfx/event_pictures/star_explodes.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_stg_stellar_flare_nomask"
+		texturefile = "gfx/event_pictures/star_explodes.dds"
+		alwaystransparent = yes
+	}
+
+	spriteType = {
+		name = "GFX_evt_stg_plasma_storms"
+		texturefile = "gfx/event_pictures/badlands.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_stg_plasma_storms_nomask"
+		texturefile = "gfx/event_pictures/badlands.dds"
+		alwaystransparent = yes
+	}
+
+	spriteType = {
+		name = "GFX_evt_stg_transwarp_conduit"
+		texturefile = "gfx/event_pictures/transwarpCorridor.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_stg_transwarp_conduit_nomask"
+		texturefile = "gfx/event_pictures/transwarpCorridor.dds"
+		alwaystransparent = yes
+	}
+}

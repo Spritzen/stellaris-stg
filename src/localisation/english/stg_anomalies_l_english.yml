@@ -1,0 +1,189 @@
+﻿l_english:
+ # Star Trek Galaxies -- the Trek anomalies.
+ #
+ # Three families of key, and all three are load-bearing:
+ #   <category>          / <category>_desc   the situation log entry
+ #   stg_anomaly.N.name  / .desc             the outcome popup
+ #   stg_anomaly.N.a                         the option button
+ #
+ # Categories live in common/anomalies/stg_anomaly_categories.txt, events in
+ # events/stg_anomaly_events.txt, pictures in interface/stg_event_pictures.gfx.
+ # check_anomalies walks all four and fails on any key with nothing behind it.
+ # See .docs/decisions/75-trek-anomalies.md
+
+ # ── Asteroids, hulks and debris ──────────────────────────────────────────────
+
+ stg_dilithium_matrix_category:0 "Crystalline Seam"
+ stg_dilithium_matrix_category_desc:0 "Deep-scan returns from this asteroid show a lattice running the length of its long axis — regular, unweathered, and refracting our own sensor beam back at a frequency we did not send. Whatever is down there is not ordinary rock, and it has been growing."
+
+ stg_anomaly.1.name:0 "The Seam"
+ stg_anomaly.1.desc:0 "The lattice is a natural dilithium formation, and an exceptionally clean one. The crystals have grown undisturbed for something on the order of a billion years, which makes them both a resource and a very long recording: every gravitational event this system has suffered is written into the growth rings.\n\nThe survey team has flagged the asteroid for extraction. The geology department has flagged it for preservation. Both requests are, in fairness, reasonable."
+ stg_anomaly.1.a:0 "We can do both. Carefully."
+
+ stg_anomaly.2.name:0 "Fractured Lattice"
+ stg_anomaly.2.desc:0 "The seam is shattered — sheared through by an impact long before anyone was here to see it — and the fragments are too small and too contaminated to be worth a mining claim.\n\nWhat they are worth is a look. The fracture surfaces show how a dilithium lattice fails under shock loading, which is a question our warp engineers have been arguing about with theory and no samples. They now have samples."
+ stg_anomaly.2.a:0 "Ship every fragment to the propulsion labs."
+
+ stg_starship_graveyard_category:0 "Debris Field"
+ stg_starship_graveyard_category_desc:0 "The body is surrounded by a shell of tumbling metal — thousands of fragments, all of it worked, none of it ours. The pieces are still in rough orbital formation, which means whatever happened here happened fast enough that nothing had time to disperse."
+
+ stg_anomaly.5.name:0 "The Graveyard"
+ stg_anomaly.5.desc:0 "At least forty vessels, of at least four incompatible designs, destroyed within minutes of one another. The hull fragments carry weapon signatures that do not match each other, and the largest intact section is a bridge module with its command chair still bolted to the deck.\n\nNo distress buoy. No survivors' pods. Whoever won this engagement did not stay to collect their dead, and nobody has come back for them since."
+ stg_anomaly.5.a:0 "Log the position. Someone should know they are here."
+
+ stg_anomaly.6.name:0 "Salvage Rights"
+ stg_anomaly.6.desc:0 "The field is old, picked over, and archaeologically worthless — three separate salvage operations have been through here already, judging by the cutting marks. What they left behind is the material nobody in this region had the furnaces to process.\n\nWe do."
+ stg_anomaly.6.a:0 "Bring the tugs."
+
+ stg_derelict_hulk_category:0 "Derelict Vessel"
+ stg_derelict_hulk_category_desc:0 "A single large hull, adrift and dark, holding a stable orbit it cannot possibly be maintaining on purpose. Passive scans show no reactor output, no life signs, and — faintly, on a channel nobody has used in a century — a carrier wave."
+
+ stg_anomaly.10.name:0 "The Last Entry"
+ stg_anomaly.10.desc:0 "The carrier wave is a log buoy, running on a trickle of residual charge and repeating the same forty seconds of the captain's final entry. The language took our linguists three days. The content took them ten minutes: the ship was a survey vessel, it went somewhere it had been told not to go, and it came back with something in the cargo hold.\n\nThe entry ends mid-sentence. The cargo hold, when we open it, is empty and scrubbed to the bulkheads."
+ stg_anomaly.10.a:0 "File it. And note where they were told not to go."
+
+ stg_anomaly.11.name:0 "Cold Core"
+ stg_anomaly.11.desc:0 "The vessel was abandoned in good order — hatches dogged, consoles powered down, personal effects removed. No panic, no damage, no bodies. Somebody decided this ship had reached the end of its service life and simply walked away from it.\n\nThey left the reactor behind. It is a design our engineers have not seen, it is intact, and it is still holding containment after what our best estimate puts at eight hundred years."
+ stg_anomaly.11.a:0 "Get a team aboard before it changes its mind."
+
+ stg_sleeper_capsule_category:0 "Powered Object"
+ stg_sleeper_capsule_category_desc:0 "Something small and artificial is tucked into a crater on this body, and it is drawing power — a few watts, cycling on a rhythm too regular to be geological. It has been doing this for a very long time."
+
+ stg_anomaly.15.name:0 "The Sleepers"
+ stg_anomaly.15.desc:0 "A pre-warp colony capsule, launched from a system four light years from here by a civilisation that had chemical rockets and no idea whether anything was waiting at the other end. It carries eleven hundred people in cryogenic suspension and a reactor built to run for two thousand years.\n\nIt has been running for four thousand. The passengers did not survive the last millennium of it. The capsule kept trying anyway, and the ship's counsellor has asked that this be recorded somewhere other than an engineering report."
+ stg_anomaly.15.a:0 "It is recorded. Bring them home."
+
+ stg_interphase_ship_category:0 "Interphasic Distortion"
+ stg_interphase_ship_category_desc:0 "Sensors keep half-resolving a mass in this orbit and then losing it. The returns are consistent, the object is not: it is present for roughly two seconds in every eleven, and in between it is not anywhere our instruments can describe."
+
+ stg_anomaly.20.name:0 "Out of Phase"
+ stg_anomaly.20.desc:0 "It is a starship, and it is occupying the same volume as something else — another region of space entirely, overlapping this one along an axis we have no word for. Every eleven seconds the overlap slips and the vessel is briefly here.\n\nWe cannot board it, tow it, or scan its interior. What we can do is watch a spatial interphase from the outside for as long as we like, which is a thing no one in the fleet has ever been able to do. The physics section has cancelled all leave."
+ stg_anomaly.20.a:0 "Give them the sensor time. All of it."
+
+ stg_planet_killer_remnant_category:0 "Impossible Density"
+ stg_planet_killer_remnant_category_desc:0 "One fragment in this asteroid's debris halo returns a mass reading four orders of magnitude above everything around it, and a composition reading of nothing at all. Our sensors are not confused. They simply have no entry for what this is made of."
+
+ stg_anomaly.100.name:0 "Neutronium"
+ stg_anomaly.100.desc:0 "A curved plate of solid neutronium, eleven metres across, with a torn edge. It was part of something much larger and it came off under stress that would have vaporised any hull we know how to build.\n\nWe cannot cut it, drill it, or analyse it beyond confirming what it is. We can measure the curvature, and the curvature says the object it belonged to was roughly the length of a small moon. The tactical department has asked, twice, whether there is any chance the rest of it is still operating."
+ stg_anomaly.100.a:0 "Answer them honestly: we do not know."
+
+ stg_shattered_moon_category:0 "Shattered Moon"
+ stg_shattered_moon_category_desc:0 "This moon is missing a substantial piece of itself, and the break is fresh — no more than a century or two of micrometeorite weathering on the fracture face. The debris is still in a coherent stream rather than a ring."
+
+ stg_anomaly.80.name:0 "The Accident"
+ stg_anomaly.80.desc:0 "Not an impact. The moon came apart from the inside, and the isotope signature at the fracture face is unambiguous: somebody was mining energy here, at industrial scale, with inadequate containment.\n\nThere is no record of who, and no survivors to ask. What they were extracting is still extractable, and the exposed interior has put a century of ordinary geology within reach of a survey team's hand scanner."
+ stg_anomaly.80.a:0 "Mine it. And review our own containment margins."
+
+ # ── Surfaces ─────────────────────────────────────────────────────────────────
+
+ stg_horta_tunnels_category:0 "Tunnel Network"
+ stg_horta_tunnels_category_desc:0 "Subsurface scans of this world show a tunnel system running to a depth of six kilometres. The tunnels are smooth-bored, circular in cross-section, and they branch in a pattern that is neither geological nor, on any reading we can make, mechanical."
+
+ stg_anomaly.30.name:0 "The Excavators"
+ stg_anomaly.30.desc:0 "The tunnels were made by something living. Silicon-based, roughly a metre across, and capable of moving through solid rock the way a fish moves through water — by dissolving it. There are perhaps two thousand of them down there, and they are aware of us.\n\nFirst contact took eleven days and a great deal of patience from the science officer, who points out that they have been asking us the same question the whole time: are we here to dig."
+ stg_anomaly.30.a:0 "Tell them no. Then ask if we may study them."
+
+ stg_anomaly.31.name:0 "Bored, Not Formed"
+ stg_anomaly.31.desc:0 "No lifeforms. The tunnels are the work of a mining operation that predates any civilisation on record in this sector, and it was a thorough one — they took the ore and they took the machines and they backfilled the shafts they were finished with.\n\nWhat they did not take is the survey data written into the rock face at every junction, in a notation our geologists worked out in an afternoon because good mine mapping is good mine mapping in any language. There is a great deal of ore left."
+ stg_anomaly.31.a:0 "Follow their map."
+
+ stg_cliff_dwellings_category:0 "Cliff Dwellings"
+ stg_cliff_dwellings_category_desc:0 "Cut into a canyon wall on the northern continent: several hundred chambers, in rows, with worked lintels and what look very much like windows. Orbital imaging shows no roads, no fields, and no other settlement anywhere on the planet."
+
+ stg_anomaly.35.name:0 "The People Who Stopped"
+ stg_anomaly.35.desc:0 "A single community of perhaps four thousand, living in these cliffs for eleven centuries, and then gone — not killed, not starved, not conquered. The dwellings were swept out and closed up from the outside. The tools were stacked. The dead were taken with them.\n\nThey went somewhere, deliberately and in good order, and they left nothing behind that says where. The most complete record of them we have is the wear on the stairs."
+ stg_anomaly.35.a:0 "Survey it properly. They earned that much."
+
+ stg_iconian_gateway_category:0 "Standing Arch"
+ stg_iconian_gateway_category_desc:0 "There is a structure on the surface of this dead world — a free-standing arch, some nine metres high, machined out of a single piece of material our scans cannot classify. It is the only artificial object on the planet, and the ground around it is glassed for two kilometres in every direction."
+
+ stg_anomaly.25.name:0 "The Gateway"
+ stg_anomaly.25.desc:0 "It is a door. Not a metaphor and not a transporter: a door, standing open, and what is visible through it is a surface somewhere else — a landscape under a different sky, in real time, with weather.\n\nThe view changes every few seconds. The science officer has counted two hundred and eleven distinct destinations before the sequence began to repeat, which puts the network this arch belongs to across an appreciable fraction of the galaxy. Every strategic analyst who has read the report has come back with the same recommendation, and none of them has been willing to write it down."
+ stg_anomaly.25.a:0 "Nobody steps through. Study it where it stands."
+
+ stg_anomaly.26.name:0 "Dark Arch"
+ stg_anomaly.26.desc:0 "The arch is dead, and it has been dead a long time — the power conduits inside it are fused, and the fusing is old enough to have grown its own mineral crust.\n\nIt was a gateway of some kind. The glassed ground around it is the shape of a blast, and the blast came from the arch. Somebody destroyed this thing on purpose, from the inside, and did a thorough job of it; there is a strong impression, from the wear on the approach, that they were the last of a queue."
+ stg_anomaly.26.a:0 "Whatever they were closing, they meant it."
+
+ stg_genesis_matrix_category:0 "Interrupted Terraforming"
+ stg_genesis_matrix_category_desc:0 "The atmosphere of this world is wrong for its class in a very specific way: the trace gas ratios are those of a deliberate early-stage terraforming programme, arrested part way through and left to decay for several thousand years."
+
+ stg_anomaly.40.name:0 "Half a World"
+ stg_anomaly.40.desc:0 "Somebody was making this planet habitable, and they were good at it. The seeding pattern is efficient, the atmospheric chemistry is elegant, and the whole programme stops dead about forty years in with no sign of failure, disaster or evacuation.\n\nThe work that was done has not undone itself. A competent team could pick the project up where it was abandoned — and the abandoned project's own notes, recovered from a beacon in polar orbit, are better than our current best practice."
+ stg_anomaly.40.a:0 "Finish what they started."
+
+ stg_tox_uthat_category:0 "Buried Signature"
+ stg_tox_uthat_category_desc:0 "Beneath the ice, at a depth of forty metres, something is emitting a particle we do not have a name for. The emission is weak, perfectly steady, and it has almost certainly been running since long before this glacier existed."
+
+ stg_anomaly.85.name:0 "The Cache"
+ stg_anomaly.85.desc:0 "A device the size of a fist, in a case built to survive geological time, buried by someone who intended it never to be found. It is a weapon — a stellar-scale one, capable of arresting fusion in a star's core — and it is inert, disarmed, and hidden.\n\nThe theoretical framework behind it does not exist yet. Not in our science, and not in anyone's we have met. The most defensible reading of the evidence is that somebody brought it here from a great deal further forward than now, and hid it where their own people would not think to look."
+ stg_anomaly.85.a:0 "Study the theory. Leave the device disarmed."
+
+ stg_resonator_cache_category:0 "Resonance Reading"
+ stg_resonator_cache_category_desc:0 "A neurogenic field is emanating from a sealed chamber on this dead world. It is faint, it is shaped, and every telepathically sensitive member of the survey team reported a headache within ninety seconds of entering orbit."
+
+ stg_anomaly.90.name:0 "The Resonators"
+ stg_anomaly.90.desc:0 "Nine hundred psionic amplifiers, racked and sealed, from a war this planet lost. Each one takes a trained mind and turns it into a weapon that kills at a distance and leaves no mark. The surrender terms required them to be destroyed. Somebody buried them instead.\n\nThe chamber was sealed from the inside. Whoever hid them stayed with them, and the field we are reading is what is left of that decision."
+ stg_anomaly.90.a:0 "Seal it again. Record everything. Take nothing."
+
+ stg_tribble_biosphere_category:0 "Runaway Biosphere"
+ stg_tribble_biosphere_category_desc:0 "The biomass readings for this world are impossible — roughly forty times what its ecology could support — and they are concentrated in a single species. Whatever it is, it is everywhere, and there is not much else left."
+
+ stg_anomaly.95.name:0 "Born Pregnant"
+ stg_anomaly.95.desc:0 "A small, warm, entirely harmless herbivore with no natural predators on this continent and a reproductive cycle best described as continuous. Our exobiologist's report opens with the observation that the animal is essentially born pregnant, and closes with a recommendation that no specimen be brought aboard under any circumstances.\n\nThe recommendation has been logged. The quartermaster has been briefed. Twice."
+ stg_anomaly.95.a:0 "Study them. From orbit."
+
+ # ── Life, probes and phenomena ───────────────────────────────────────────────
+
+ stg_crystalline_entity_category:0 "Crystalline Trace"
+ stg_crystalline_entity_category_desc:0 "This body has been stripped — not mined, stripped. Every organic molecule and a good proportion of the loose silicates are simply gone, down to a depth of several metres, over an area of thousands of square kilometres. The surface left behind is fused smooth."
+
+ stg_anomaly.45.name:0 "The Feeding Trail"
+ stg_anomaly.45.desc:0 "The pattern is a track. Something crossed this body converting matter directly into energy on a scale we associate with weapons, and it did so slowly and methodically, the way a grazing animal works a field.\n\nThe residual field signature matches nothing in our database, but it matches itself: the same signature appears on two other bodies in this sector, months apart, in a line. It is travelling, it is enormous, and it is presumably still hungry."
+ stg_anomaly.45.a:0 "Plot the line. Warn everyone on it."
+
+ stg_living_ship_category:0 "Organic Mass"
+ stg_living_ship_category_desc:0 "There is something in this gas giant's upper atmosphere that is roughly the size of a starship, roughly the shape of a starship, and unambiguously alive. It has been there long enough to have a wake."
+
+ stg_anomaly.50.name:0 "Alone"
+ stg_anomaly.50.desc:0 "A spaceborne organism, immensely old, that grew as a vessel and carried a crew — there are chambers inside it that were lived in, and the wear patterns say they were lived in for generations. The crew are long dead. The ship is not.\n\nIt is aware of us. It is not interested in us. Our counsellor, who spent four hours in telepathic contact and came out of it badly shaken, describes the sensation as standing beside something that has been grieving for eight hundred years and would rather not be interrupted."
+ stg_anomaly.50.a:0 "Leave it in peace. Log the courtesy."
+
+ stg_cetacean_probe_category:0 "Cetacean Transmission"
+ stg_cetacean_probe_category_desc:0 "A signal is being broadcast from this ocean world at an energy level that should have boiled the atmosphere off it. It is not modulated for any receiver we would build. It appears to be aimed downward, into the water."
+
+ stg_anomaly.55.name:0 "The Call"
+ stg_anomaly.55.desc:0 "An automated probe of unknown origin, in low orbit, transmitting into the ocean and waiting for a reply. It has been waiting for a very long time.\n\nThe ocean is empty. Whatever used to answer this call is extinct, and the probe has no way to know that; it will keep calling until its power source fails, which our best estimate puts at another sixty thousand years. The whales this world used to have are the most thoroughly documented extinct species in our records now, because the probe has been describing them to us for a week."
+ stg_anomaly.55.a:0 "Record everything it says about them."
+
+ stg_deep_space_probe_category:0 "Ancient Probe"
+ stg_deep_space_probe_category_desc:0 "A small artificial object on a hyperbolic trajectory through this system, tumbling, cold, and carrying an isotope signature that puts its construction well before any spacefaring culture in the region. It is a very long way from wherever it started."
+
+ stg_anomaly.60.name:0 "It Went Out and Came Back"
+ stg_anomaly.60.desc:0 "The probe is primitive — chemical thrusters, a plutonium pile, a gold-plated plaque with a star map on it. It was launched by a pre-warp civilisation as a message in a bottle, and by the plaque's own reckoning that was well over a thousand years ago.\n\nIt has been modified. Something found it, understood it, and added to it: a data store of a technology we cannot read, grafted on with evident care, containing what our best guess puts at several thousand years of accumulated observation. Someone answered the bottle. They just sent the reply the long way round."
+ stg_anomaly.60.a:0 "Read it. However long it takes."
+
+ stg_omega_signature_category:0 "Anomalous Signature"
+ stg_omega_signature_category_desc:0 "Sensors are reading a particle in this star's corona that should not be able to exist for longer than a fraction of a microsecond. It has been there throughout our observation window. Subspace in the immediate volume is measurably scarred."
+
+ stg_anomaly.65.name:0 "Stable"
+ stg_anomaly.65.desc:0 "A lattice of the most energetic particle theory permits, held in a stable configuration inside the star's convective zone — naturally, as far as we can tell, and by a margin of chance that our physicists cannot make sound less absurd each time they recalculate it.\n\nOne of these particles carries the energy output of an entire warp core. This one is not going anywhere and cannot be extracted, which the science officer describes as the single most fortunate thing about it. The subspace scarring around the star suggests it has destabilised before, and healed."
+ stg_anomaly.65.a:0 "Observe. Do not experiment."
+
+ stg_anomaly.66.name:0 "It Comes Apart"
+ stg_anomaly.66.desc:0 "The lattice destabilises eleven hours into the observation. For a little under two seconds the star's corona is brighter than the rest of the system combined, subspace within half a light year is rendered impassable, and every warp-capable vessel in the volume drops to impulse.\n\nNobody is hurt. The subspace damage will heal in a decade or so. What we have is two seconds of the finest sensor data anyone has ever collected on a phenomenon most physicists regard as theoretical, and a very clear demonstration of why they would prefer it stayed that way."
+ stg_anomaly.66.a:0 "Two seconds will do. Get us out of here."
+
+ stg_plasma_storms_category:0 "Plasma Storms"
+ stg_plasma_storms_category_desc:0 "The nebular medium here is not quiescent. Sheets of ionised plasma are discharging through it on a cycle of a few hours, violently enough to strip shields, and the pattern of the discharges is stable enough to chart."
+
+ stg_anomaly.70.name:0 "Charting the Badlands"
+ stg_anomaly.70.desc:0 "Six weeks of survey work produces a chart: where the plasma fronts form, how they propagate, and — the part the helm officers care about — the corridors between them that stay clear for hours at a time.\n\nA vessel that has this chart can cross this region. A vessel that does not will lose its shields in the first day and its hull in the second. Our engineering department has also worked out how to tap a front for power, which is either elegant or reckless depending on which of them you ask."
+ stg_anomaly.70.a:0 "Distribute the chart. Fleet-wide."
+
+ stg_transwarp_conduit_category:0 "Subspace Aperture"
+ stg_transwarp_conduit_category_desc:0 "There is a persistent subspace distortion at the edge of this singularity's ergosphere. It is not a natural feature of the geometry — it is held open, against considerable pressure, by something."
+
+ stg_anomaly.75.name:0 "Somebody Built a Door"
+ stg_anomaly.75.desc:0 "An artificial aperture: the mouth of a transwarp conduit, anchored to the singularity and maintained by a mechanism buried somewhere in the accretion disc that we cannot locate and would not survive reaching.\n\nIt is far too small for a starship and it is not aimed anywhere we can follow. What it is, is a working example of a technology our theorists have argued was impossible for two centuries — running, in front of us, with its power bill paid by a black hole."
+ stg_anomaly.75.a:0 "Measure it. Do not touch it."

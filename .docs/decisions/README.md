@@ -1,6 +1,6 @@
 # Decisions — index
 
-> **What** — all 71 resolved decisions, grouped by subject, one line each.
+> **What** — all 75 resolved decisions, grouped by subject, one line each.
 > **Open when** — before reopening a settled question, or when a citation names a
 > decision by number and you need to know what it says.
 > **Then** — [Style guide §7](../style-guide.md#7-decision-files-have-a-fixed-head) for the file format · [Documentation map](../README.md)
@@ -142,6 +142,13 @@ which is also where the rule lives: category is in this index, not in the path.
 | [68](68-ruler-clothes-index-restored.md) | An absent `clothes` is index 0 — **falsified by [69](69-ruler-clothes-dedicated-selectors.md)**, kept for the diagnosis |
 | [69](69-ruler-clothes-dedicated-selectors.md) | A shared master selector cannot be indexed; give the ruler its own |
 | [70](70-vulcan-city-framing.md) | The Vulcan city is not cropped by us; the art is composed that way |
+| [74](74-event-picture-families.md) | `gfx/event_pictures` is two families, and reading it as one left 865 pictures unasked |
+
+## Content — events, anomalies and archaeology
+
+| | |
+|---|---|
+| [75](75-trek-anomalies.md) | Phase 4 starts with anomalies, because they are the one part of "a voice" with a yardstick |
 
 ## Audio
 

@@ -16,7 +16,7 @@ number here has a date because every number here goes stale —
 | **Phase 1** — playable Federation | **complete**, run in-game repeatedly |
 | **Phase 2** — the rest of the galaxy | **complete**. 101 prescripted empires (22 playable, 79 AI-only minors), 101 species classes, 92 name lists, 37 real home systems |
 | **Phase 3** — art and identity | **complete 2026-08-08**. Clothing triggers, shipsets, weapon mounts, flags, rooms, city sets, loading screens, `paragon_backgrounds.txt`, the shipsets' 39 extra flags |
-| **Phase 4** — polish | **started 2026-08-08**: music ([55](../decisions/55-federation-anthem.md)), then the ship registries ([59](../decisions/59-ship-name-pools.md)) and their class names ([72](../decisions/72-ship-class-names.md), [73](../decisions/73-class-name-thematic-fill.md), 2026-08-09). Events, anomalies and archaeology are untouched and still deliberately last |
+| **Phase 4** — polish | **started 2026-08-08**: music ([55](../decisions/55-federation-anthem.md)), then the ship registries ([59](../decisions/59-ship-name-pools.md)) and their class names ([72](../decisions/72-ship-class-names.md), [73](../decisions/73-class-name-thematic-fill.md)), then **21 Trek anomalies** on 24 reclaimed STNH event pictures ([75](../decisions/75-trek-anomalies.md), [74](../decisions/74-event-picture-families.md), 2026-08-09). Archaeology and story events are unstarted, and next |
 | **Phase 5** — the clutter pass | **complete 2026-08-07** (pipeline work, taken out of order) |
 
 `make docs` stands at **0 warnings, 0 errors** and now asks a second family of
@@ -29,7 +29,18 @@ inconsistencies against a tree the old checker had just passed
 `check_shadowed_texture_geometry`'s second question — whether art that shadows
 *no* vanilla path still matches the family vanilla is uniform about, calibrated at
 113 findings before [decision 63](../decisions/63-city-set-family-targets.md)'s
-fix and 0 after.
+fix and 0 after — and `check_anomalies`, which asks the six questions vanilla
+scores 0 on across its 327 anomaly categories, and a seventh scoped to the one
+file where its floor is not 114 of 310
+([decision 75](../decisions/75-trek-anomalies.md)).
+
+**That family question now covers `gfx/event_pictures` as well**, where it had
+been declined on a measurement that read one directory as one family. It is two:
+the top level is 580 of 580 at 450×150 and `origins/` is 59 of 59 at 220×115.
+Splitting them is what makes a Trek event picture usable at all
+([decision 74](../decisions/74-event-picture-families.md)). Build of 2026-08-09:
+**22,349 files, 14.2 GB**, 1,661 re-cut at harvest, 935 pruned, `make vendor`
+in 75 s.
 
 ---
 

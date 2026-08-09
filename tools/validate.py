@@ -4096,41 +4096,61 @@ def check_asset_variables() -> int:
 # check_shadowed_texture_geometry(); adding a third means measuring it first.
 _GEOMETRY_DIRS = ("gfx/event_pictures", "gfx/portraits/city_sets")
 
-# Per directory, the filename families vanilla is uniform enough about that a
-# file shadowing NO vanilla path can still be checked against one. Only
-# city_sets qualifies, and it qualifies twice: vanilla is 266/271 at 800x400 on
-# city layers and 91/91 at 952x340 on rooms. gfx/event_pictures is deliberately
-# absent -- 580 of its 639 are 450x150 and the other 59 are a genuine second
-# size, so it has no single family answer and keeps the exact per-path question
-# decision 42 calibrated. Mirrors `target: family` in vendor.yml; the two must
-# name the same families or the build fixes what the check does not ask about.
+# Per directory, the families vanilla is uniform enough about that a file
+# shadowing NO vanilla path can still be checked against one. Patterns are globs
+# against the path RELATIVE TO THE DIRECTORY, ordered, first match wins -- which
+# is what lets one directory hold two families whose globs overlap.
+#
+# city_sets qualifies twice: vanilla is 266/271 at 800x400 on city layers and
+# 91/91 at 952x340 on rooms. gfx/event_pictures also qualifies twice, and used
+# to be listed as qualifying not at all: "580 of its 639 are 450x150 and the
+# other 59 are a genuine second size" is what one glob over the whole directory
+# measures, and the 59 are the origins/ subdirectory -- 59 of 59 at 220x115.
+# Split, both families are 100% uniform.
+# See .docs/decisions/74-event-picture-families.md.
+#
+# Mirrors `target: family` in vendor.yml; the two must name the same families in
+# the same order, or the build fixes what the check does not ask about.
 _GEOMETRY_FAMILIES = {
+    "gfx/event_pictures": ("origins/*.dds", "*.dds"),
     "gfx/portraits/city_sets": ("*_city_l*.dds", "*_room.dds"),
 }
 _GEOMETRY_UNIFORMITY = 0.90
 
 
-def _vanilla_family_sizes(directory: str, pattern: str):
-    """(every size vanilla uses for this family, its modal size or None).
+def _geometry_family_of(rel_in_dir: str, patterns: tuple[str, ...]) -> str | None:
+    """The first pattern that claims this path, or None. See _GEOMETRY_FAMILIES."""
+    return next((p for p in patterns if _fnmatch(rel_in_dir, p)), None)
+
+
+def _vanilla_family_sizes(directory: str, patterns: tuple[str, ...]):
+    """Per family, (every size vanilla uses for it, its modal size or None).
 
     Both halves matter. The modal is the target; the full set is what keeps
     vanilla's own vocabulary from reading as a defect -- it ships
     ai_01_city_l01..l05 at 4x4 to mean "this layer is empty", and Planetary
     Diversity uses the same idiom for pd_tree_of_life_01.
     """
-    hist: collections.Counter = collections.Counter()
+    hists = {p: collections.Counter() for p in patterns}
     art = GAME_DIR / directory
     if art.is_dir():
         for f in art.rglob("*.dds"):
-            if _fnmatch(f.name, pattern):
-                dims = _dds_dimensions(f)
-                if dims:
-                    hist[dims] += 1
-    if not hist:
-        return set(), None
-    (top, count), = hist.most_common(1)
-    modal = top if count / sum(hist.values()) >= _GEOMETRY_UNIFORMITY else None
-    return set(hist), modal
+            owner = _geometry_family_of(f.relative_to(art).as_posix(), patterns)
+            if owner is None:
+                continue
+            dims = _dds_dimensions(f)
+            if dims:
+                hists[owner][dims] += 1
+    out = {}
+    for pattern, hist in hists.items():
+        if not hist:
+            out[pattern] = (set(), None)
+            continue
+        (top, count), = hist.most_common(1)
+        out[pattern] = (set(hist),
+                        top if count / sum(hist.values()) >= _GEOMETRY_UNIFORMITY
+                        else None)
+    return out
 
 
 def _dds_dimensions(path: Path) -> tuple[int, int] | None:
@@ -4185,6 +4205,17 @@ def check_shadowed_texture_geometry() -> int:
     because `additive_only` makes STNH lose all 121 environments/ paths to the
     mods that own them, so only the half nobody else claims was ever wrong.
     See .docs/decisions/58-city-set-geometry.md.
+
+    GFX_EVENT_PICTURES BECAME THAT CASE TOO ON 2026-08-09, and it had been read
+    as failing the test by a measurement that asked one glob of two families.
+    "580 of 639 at 450x150, the other 59 a genuine second size" is true of the
+    directory and false of both families in it: the 59 are the origins/
+    subdirectory, 59 of 59 at 220x115, and the top level is 580 of 580. So the
+    865 STNH pictures that shadow NO vanilla path -- every picture a Trek event
+    would want -- had no question asked of them at all, at 620x264 against a
+    family of 450x150. Same blindness as the city sets, in the very directory
+    decision 42 was written about.
+    See .docs/decisions/74-event-picture-families.md.
     """
     ack = _ack_list("texture_geometry_ack")
     found: list[tuple[str, tuple[int, int], tuple[int, int]]] = []
@@ -4193,8 +4224,8 @@ def check_shadowed_texture_geometry() -> int:
         art = BUILD / d
         if not art.is_dir():
             continue
-        families = {pat: _vanilla_family_sizes(d, pat)
-                    for pat in _GEOMETRY_FAMILIES.get(d, ())}
+        patterns = _GEOMETRY_FAMILIES.get(d, ())
+        families = _vanilla_family_sizes(d, patterns)
         for f in sorted(art.rglob("*.dds")):
             rel = f.relative_to(BUILD).as_posix()
             if rel in ack:
@@ -4215,13 +4246,15 @@ def check_shadowed_texture_geometry() -> int:
             # how STNH's six own Trek city prefixes stayed at 70% through two
             # live runs while this check reported 0. Same question, asked of
             # the family instead of the file. See decision 58.
-            for pat, (sizes, modal) in families.items():
-                if not _fnmatch(Path(rel).name, pat) or modal is None:
-                    continue
-                n += 1
-                if have != modal and have not in sizes:
-                    found.append((rel, modal, have))
-                break
+            pat = _geometry_family_of(f.relative_to(art).as_posix(), patterns)
+            if pat is None:
+                continue
+            sizes, modal = families[pat]
+            if modal is None:
+                continue
+            n += 1
+            if have != modal and have not in sizes:
+                found.append((rel, modal, have))
 
     for rel, want, have in found[:8]:
         errors.append(
@@ -4342,6 +4375,166 @@ def check_music_declarations() -> int:
                 f"See .docs/decisions/61-music-player-track-names.md.")
 
     return len(oggs)
+
+
+# The one file whose anomaly events are all category outcomes, so an event no
+# category names is dead there and only there. See check_anomalies.
+_ANOMALY_OWN_EVENTS = "stg_anomaly_events.txt"
+
+
+def _merged_loc_keys() -> set[str]:
+    """Every localisation key the game will have loaded: the tree's and vanilla's."""
+    keys: set[str] = set()
+    for lp in list((BUILD / "localisation").rglob("*.yml")) + \
+            list((GAME_DIR / "localisation" / "english").rglob("*.yml")):
+        for line in lp.read_text(encoding="utf-8-sig",
+                                 errors="replace").splitlines():
+            m = re.match(r"\s*([A-Za-z0-9_.\-]+):\d*\s+\"", line)
+            if m:
+                keys.add(m.group(1))
+    return keys
+
+
+def check_anomalies() -> int:
+    """An anomaly whose category, event, picture or loc key does not meet.
+
+    An anomaly is FOUR files that have to agree, and none of them dangles when
+    they do not: common/anomalies/ names an event id, events/ declares it,
+    interface/*.gfx declares the picture, and localisation/ carries the category
+    name, the category description, the event title, the event description and
+    every option button. Get any one wrong and the game logs nothing useful --
+    a missing outcome event means the anomaly resolves to a blank popup, and a
+    missing loc key means the raw key is drawn on screen, which is decision 47's
+    silence in a fifth database.
+
+    VANILLA IS THE CALIBRATION AND IT IS NEARLY PERFECT, measured over its 327
+    categories and the 310 ship_events in events/anomaly_events_*.txt:
+
+        category picture declared          0 findings
+        category name loc key              0
+        category desc loc key              0
+        event title / desc / option loc    0
+        event picture declared             0
+        category names an event that exists  1  -- UBUME_BABY_CAT points at
+                                                anomaly.6791, which Paradox
+                                                does not ship. A floor of one
+                                                known instance, not zero.
+
+    So all six questions are asked of every anomaly in the built tree.
+
+    THE SEVENTH QUESTION HAS A SCOPE, because its floor is nothing like zero:
+    "an anomaly event no category names" scores 114 of vanilla's 310, since
+    vanilla chains events off each other and off on_actions this check does not
+    read. Over src/events/stg_anomaly_events.txt the shape is different by
+    construction -- every event there is a category outcome and there are no
+    chains -- so the question is exact there and meaningless everywhere else.
+    A check can want two scopes at once: .docs/validation/check-design.md rule 11
+    and .docs/decisions/51-prescripted-loc-scope.md.
+
+    See .docs/decisions/75-trek-anomalies.md.
+    """
+    cat_dir = BUILD / "common" / "anomalies"
+    if not cat_dir.is_dir():
+        return 0
+
+    # Event ids resolve against the merged tree AND vanilla: a category may name
+    # a vanilla event as easily as one of ours.
+    event_ids: set[str] = set()
+    events_seen: list[tuple[str, str, str]] = []   # (file, id, body)
+    for f in sorted(list((BUILD / "events").glob("*.txt")) +
+                    list((GAME_DIR / "events").glob("*.txt"))):
+        text = _strip_comments(_read(f))
+        for kind, body in _top_level_blocks(text):
+            if not kind.endswith("_event"):
+                continue
+            m = re.search(r"(?m)^\s*id\s*=\s*([A-Za-z_0-9]+\.\d+)", body)
+            if not m:
+                continue
+            event_ids.add(m.group(1))
+            if f.is_relative_to(BUILD):
+                events_seen.append((f.name, m.group(1), body))
+
+    sprites: set[str] = set()
+    for f in list((BUILD / "interface").rglob("*.gfx")) + \
+            list((GAME_DIR / "interface").rglob("*.gfx")):
+        sprites |= set(re.findall(r'name\s*=\s*"(GFX_[^"]+)"', _read(f)))
+
+    loc = _merged_loc_keys()
+
+    def picture_of(body: str) -> str | None:
+        m = re.search(r'(?m)^\s*picture\s*=\s*"?(GFX_[A-Za-z_0-9]+)"?', body)
+        return m.group(1) if m else None
+
+    n = 0
+    reached: set[str] = set()
+    for f in sorted(cat_dir.glob("*.txt")):
+        text = _strip_comments(_read(f))
+        for key, body in _top_level_blocks(text):
+            n += 1
+            # `on_success = X`, `N = X` and `anomaly_event = X` are all one
+            # question: which event does resolving this anomaly fire.
+            outcomes = set(re.findall(
+                r"(?:anomaly_event|ship_event|on_success)\s*=\s*"
+                r"([A-Za-z_0-9]+\.\d+)", body))
+            outcomes |= set(re.findall(
+                r"(?m)^\s*\d+\s*=\s*([A-Za-z_0-9]+\.\d+)\s*$", body))
+            reached |= outcomes
+            for eid in sorted(outcomes):
+                if eid not in event_ids:
+                    errors.append(
+                        f"common/anomalies/{f.name}: {key} resolves to event "
+                        f"'{eid}', which no events/ file declares. The anomaly "
+                        f"completes and shows nothing. Vanilla has exactly one "
+                        f"of these.")
+            pic = picture_of(body)
+            if pic and pic not in sprites:
+                errors.append(
+                    f"common/anomalies/{f.name}: {key} draws '{pic}', which no "
+                    f".gfx declares. Declare it in "
+                    f"src/interface/stg_event_pictures.gfx. Vanilla has 0.")
+            if key not in loc:
+                errors.append(
+                    f"common/anomalies/{f.name}: {key} has no localisation key, "
+                    f"so the situation log draws the key itself and logs "
+                    f"nothing. Vanilla has 0.")
+            dm = re.search(r'(?m)^\s*desc\s*=\s*"?([A-Za-z0-9_.\-]+)"?', body)
+            dkey = dm.group(1) if dm else f"{key}_desc"
+            if dkey not in loc:
+                errors.append(
+                    f"common/anomalies/{f.name}: {key} describes itself with "
+                    f"'{dkey}', which has no localisation key. Vanilla has 0.")
+
+    # The events, from the other end.
+    for fname, eid, body in events_seen:
+        if eid not in reached and fname == _ANOMALY_OWN_EVENTS:
+            errors.append(
+                f"events/{fname}: {eid} is declared and no anomaly category "
+                f"names it, so it can never fire. Every event in this file is a "
+                f"category outcome by construction -- vanilla chains its own, "
+                f"and scores 114 of 310 here, which is why the question is "
+                f"asked of this file alone.")
+        if fname != _ANOMALY_OWN_EVENTS and eid not in reached:
+            continue
+        pic = picture_of(body)
+        if pic and pic not in sprites:
+            errors.append(
+                f"events/{fname}: {eid} draws '{pic}', which no .gfx declares. "
+                f"Vanilla has 0 of these across its 310 anomaly events.")
+        for field in ("title", "desc"):
+            m = re.search(rf'(?m)^\s*{field}\s*=\s*"?([A-Za-z0-9_.\-]+)"?', body)
+            if m and m.group(1) not in loc:
+                errors.append(
+                    f"events/{fname}: {eid}'s {field} is '{m.group(1)}', which "
+                    f"has no localisation key -- the popup draws the key. "
+                    f"Vanilla has 0.")
+        for om in re.finditer(r'(?m)^\s*name\s*=\s*"?([A-Za-z0-9_.\-]+)"?', body):
+            if om.group(1) not in loc:
+                errors.append(
+                    f"events/{fname}: {eid} has an option named "
+                    f"'{om.group(1)}', which has no localisation key -- the "
+                    f"button draws the key. Vanilla has 0.")
+
+    return n
 
 
 def _declared_graphical_cultures() -> set[str]:
@@ -4743,6 +4936,7 @@ def main() -> int:
     app_n = check_prescripted_appearance()
     room_n = check_room_references()
     mus_n = check_music_declarations()
+    ano_n = check_anomalies()
     unr_n, unr_out = check_unreferenced()
     src_n = check_sources()
     man_n = check_manifest_parses()
@@ -4780,6 +4974,7 @@ def main() -> int:
           f"{app_n} for ruler appearance indices, "
           f"{room_n} for the room and city set they ask for, "
           f"{mus_n} music track(s) for a declaration that plays them, "
+          f"{ano_n} anomaly categor(ies) for their event, picture and loc, "
           f"{unr_n} for reachability ({unr_out} unreferenced outside the prune "
           f"scope, reported not failed — see `make clutter`)  |  "
           f"{src_n} source snapshot(s), vendor.yml declares {man_n}{OFF}")

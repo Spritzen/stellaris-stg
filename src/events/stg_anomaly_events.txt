@@ -1,0 +1,756 @@
+############################
+#
+# Star Trek Galaxies -- outcome events for the Trek anomaly categories in
+# common/anomalies/stg_anomaly_categories.txt.
+#
+# ROOT = ship scope, FROM = planet scope -- the scopes `anomaly_event` hands a
+# ship_event, per common/anomalies/99_README_ANOMALIES.txt.
+#
+# Every effect, reward tier and guard here is copied from
+# events/anomaly_events_1.txt. The `if = { limit = { NOT = { has_deposit_for
+# = shipclass_research_station } } clear_deposits = yes }` before a research
+# deposit is vanilla's own: without it the planet keeps a deposit that makes the
+# research station unbuildable, so the reward is unreachable.
+#
+# No `specimen = `, no DLC-gated effect: STG is standalone and must behave the
+# same whatever the host owns.
+#
+# See .docs/decisions/75-trek-anomalies.md
+#
+############################
+
+namespace = stg_anomaly
+
+### Dilithium Matrix -- a crystal seam worth mining
+ship_event = {
+	id = stg_anomaly.1
+	title = "stg_anomaly.1.name"
+	desc = "stg_anomaly.1.desc"
+	picture = GFX_evt_stg_dilithium_matrix
+	show_sound = event_scanner
+	location = FROM
+
+	is_triggered_only = yes
+
+	option = {
+		name = "stg_anomaly.1.a"
+		from = { add_deposit = d_rare_crystals_2 }
+		owner = {
+			add_monthly_resource_mult = {
+				resource = physics_research
+				value = @tier1researchreward
+				min = @tier1researchmin
+				max = @tier1researchmax
+			}
+		}
+	}
+}
+
+### Dilithium Matrix -- fractured, but the lattice itself is the find
+ship_event = {
+	id = stg_anomaly.2
+	title = "stg_anomaly.2.name"
+	desc = "stg_anomaly.2.desc"
+	picture = GFX_evt_stg_dilithium_matrix
+	show_sound = event_scanner
+	location = FROM
+
+	is_triggered_only = yes
+
+	option = {
+		name = "stg_anomaly.2.a"
+		owner = {
+			add_monthly_resource_mult = {
+				resource = engineering_research
+				value = @tier2researchreward
+				min = @tier2researchmin
+				max = @tier2researchmax
+			}
+		}
+	}
+}
+
+### Starship Graveyard -- a battle nobody recorded
+ship_event = {
+	id = stg_anomaly.5
+	title = "stg_anomaly.5.name"
+	desc = "stg_anomaly.5.desc"
+	picture = GFX_evt_stg_starship_graveyard
+	show_sound = event_ship_bridge
+	location = FROM
+
+	is_triggered_only = yes
+
+	option = {
+		name = "stg_anomaly.5.a"
+		hidden_effect = {
+			FROM = {
+				add_modifier = {
+					modifier = "ship_graveyard"
+					days = -1
+				}
+				if = {
+					limit = {
+						NOT = { has_deposit_for = shipclass_research_station }
+					}
+					clear_deposits = yes
+				}
+			}
+		}
+		from = { add_deposit = d_engineering_3 }
+	}
+}
+
+### Starship Graveyard -- salvage, not history
+ship_event = {
+	id = stg_anomaly.6
+	title = "stg_anomaly.6.name"
+	desc = "stg_anomaly.6.desc"
+	picture = GFX_evt_stg_starship_graveyard
+	show_sound = event_ship_bridge
+	location = FROM
+
+	is_triggered_only = yes
+
+	option = {
+		name = "stg_anomaly.6.a"
+		owner = {
+			add_monthly_resource_mult = {
+				resource = alloys
+				value = @tier1materialreward
+				min = @tier1materialmin
+				max = @tier1materialmax
+			}
+		}
+	}
+}
+
+### Derelict Hulk -- the log buoy still transmitting
+ship_event = {
+	id = stg_anomaly.10
+	title = "stg_anomaly.10.name"
+	desc = "stg_anomaly.10.desc"
+	picture = GFX_evt_stg_derelict_hulk
+	show_sound = event_radio_chatter
+	location = FROM
+
+	is_triggered_only = yes
+
+	option = {
+		name = "stg_anomaly.10.a"
+		owner = {
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = @tier2researchreward
+				min = @tier2researchmin
+				max = @tier2researchmax
+			}
+		}
+	}
+}
+
+### Derelict Hulk -- an intact warp core
+ship_event = {
+	id = stg_anomaly.11
+	title = "stg_anomaly.11.name"
+	desc = "stg_anomaly.11.desc"
+	picture = GFX_evt_stg_derelict_hulk
+	show_sound = event_ship_thrusters
+	location = FROM
+
+	is_triggered_only = yes
+
+	option = {
+		name = "stg_anomaly.11.a"
+		from = { add_deposit = d_engineering_2 }
+		owner = {
+			add_monthly_resource_mult = {
+				resource = engineering_research
+				value = @tier2researchreward
+				min = @tier2researchmin
+				max = @tier2researchmax
+			}
+		}
+	}
+}
+
+### Sleeper Capsule -- a pre-warp ark, still under power
+ship_event = {
+	id = stg_anomaly.15
+	title = "stg_anomaly.15.name"
+	desc = "stg_anomaly.15.desc"
+	picture = GFX_evt_stg_sleeper_capsule
+	show_sound = event_mystic_reveal
+	location = FROM
+
+	is_triggered_only = yes
+
+	option = {
+		name = "stg_anomaly.15.a"
+		owner = {
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = @tier2researchreward
+				min = @tier2researchmin
+				max = @tier2researchmax
+			}
+			add_monthly_resource_mult = {
+				resource = unity
+				value = @tier1unityreward
+				min = @tier1unitymin
+				max = @tier1unitymax
+			}
+		}
+	}
+}
+
+### Interphasic Contact -- a ship in two places and neither
+ship_event = {
+	id = stg_anomaly.20
+	title = "stg_anomaly.20.name"
+	desc = "stg_anomaly.20.desc"
+	picture = GFX_evt_stg_interphase_ship
+	show_sound = event_mystic_reveal
+	location = FROM
+
+	is_triggered_only = yes
+
+	option = {
+		name = "stg_anomaly.20.a"
+		owner = {
+			add_monthly_resource_mult = {
+				resource = physics_research
+				value = @tier3researchreward
+				min = @tier3researchmin
+				max = @tier3researchmax
+			}
+		}
+	}
+}
+
+### Iconian Gateway -- it still works
+ship_event = {
+	id = stg_anomaly.25
+	title = "stg_anomaly.25.name"
+	desc = "stg_anomaly.25.desc"
+	picture = GFX_evt_stg_iconian_gateway
+	show_sound = event_mystic_reveal
+	location = FROM
+
+	is_triggered_only = yes
+
+	option = {
+		name = "stg_anomaly.25.a"
+		from = { add_deposit = d_physics_4 }
+		owner = {
+			add_monthly_resource_mult = {
+				resource = physics_research
+				value = @tier4researchreward
+				min = @tier4researchmin
+				max = @tier4researchmax
+			}
+		}
+	}
+}
+
+### Iconian Gateway -- burned out millennia ago
+ship_event = {
+	id = stg_anomaly.26
+	title = "stg_anomaly.26.name"
+	desc = "stg_anomaly.26.desc"
+	picture = GFX_evt_stg_iconian_gateway
+	show_sound = event_scanner
+	location = FROM
+
+	is_triggered_only = yes
+
+	option = {
+		name = "stg_anomaly.26.a"
+		owner = {
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = @tier3researchreward
+				min = @tier3researchmin
+				max = @tier3researchmax
+			}
+		}
+	}
+}
+
+### Silicon Tunnels -- the rock is alive
+ship_event = {
+	id = stg_anomaly.30
+	title = "stg_anomaly.30.name"
+	desc = "stg_anomaly.30.desc"
+	picture = GFX_evt_stg_horta_tunnels
+	show_sound = event_alien_nature
+	location = FROM
+
+	is_triggered_only = yes
+
+	option = {
+		name = "stg_anomaly.30.a"
+		hidden_effect = {
+			FROM = {
+				add_modifier = {
+					modifier = "silicon_lifeforms"
+					days = -1
+				}
+				if = {
+					limit = {
+						NOT = { has_deposit_for = shipclass_research_station }
+					}
+					clear_deposits = yes
+				}
+			}
+		}
+		from = { add_deposit = d_society_3 }
+	}
+}
+
+### Silicon Tunnels -- bored, not formed
+ship_event = {
+	id = stg_anomaly.31
+	title = "stg_anomaly.31.name"
+	desc = "stg_anomaly.31.desc"
+	picture = GFX_evt_stg_subterranean_caverns
+	show_sound = event_scanner
+	location = FROM
+
+	is_triggered_only = yes
+
+	option = {
+		name = "stg_anomaly.31.a"
+		from = { add_deposit = d_minerals_3 }
+		owner = {
+			add_monthly_resource_mult = {
+				resource = engineering_research
+				value = @tier1researchreward
+				min = @tier1researchmin
+				max = @tier1researchmax
+			}
+		}
+	}
+}
+
+### Cliff Dwellings -- a culture that stopped
+ship_event = {
+	id = stg_anomaly.35
+	title = "stg_anomaly.35.name"
+	desc = "stg_anomaly.35.desc"
+	picture = GFX_evt_stg_cliff_dwellings
+	show_sound = event_alien_nature
+	location = FROM
+
+	is_triggered_only = yes
+
+	option = {
+		name = "stg_anomaly.35.a"
+		from = { add_deposit = d_society_2 }
+		owner = {
+			add_monthly_resource_mult = {
+				resource = unity
+				value = @tier1unityreward
+				min = @tier1unitymin
+				max = @tier1unitymax
+			}
+		}
+	}
+}
+
+### Terraforming Matrix -- somebody started and stopped
+ship_event = {
+	id = stg_anomaly.40
+	title = "stg_anomaly.40.name"
+	desc = "stg_anomaly.40.desc"
+	picture = GFX_evt_stg_genesis_matrix
+	show_sound = event_mystic_reveal
+	location = FROM
+
+	is_triggered_only = yes
+
+	option = {
+		name = "stg_anomaly.40.a"
+		hidden_effect = {
+			FROM = {
+				add_modifier = {
+					modifier = "terraforming_candidate"
+					days = -1
+				}
+			}
+		}
+		owner = {
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = @tier3researchreward
+				min = @tier3researchmin
+				max = @tier3researchmax
+			}
+		}
+	}
+}
+
+### Crystalline Lifeform -- a feeding trail
+ship_event = {
+	id = stg_anomaly.45
+	title = "stg_anomaly.45.name"
+	desc = "stg_anomaly.45.desc"
+	picture = GFX_evt_stg_crystalline_entity
+	show_sound = event_alien_signal
+	location = FROM
+
+	is_triggered_only = yes
+
+	option = {
+		name = "stg_anomaly.45.a"
+		owner = {
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = @tier3researchreward
+				min = @tier3researchmin
+				max = @tier3researchmax
+			}
+		}
+	}
+}
+
+### Living Vessel -- it is grieving
+ship_event = {
+	id = stg_anomaly.50
+	title = "stg_anomaly.50.name"
+	desc = "stg_anomaly.50.desc"
+	picture = GFX_evt_stg_living_ship
+	show_sound = event_alien_signal
+	location = FROM
+
+	is_triggered_only = yes
+
+	option = {
+		name = "stg_anomaly.50.a"
+		owner = {
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = @tier4researchreward
+				min = @tier4researchmin
+				max = @tier4researchmax
+			}
+			add_monthly_resource_mult = {
+				resource = unity
+				value = @tier2unityreward
+				min = @tier2unitymin
+				max = @tier2unitymax
+			}
+		}
+	}
+}
+
+### Cetacean Signal -- a call with no listener left
+ship_event = {
+	id = stg_anomaly.55
+	title = "stg_anomaly.55.name"
+	desc = "stg_anomaly.55.desc"
+	picture = GFX_evt_stg_cetacean_probe
+	show_sound = event_alien_signal
+	location = FROM
+
+	is_triggered_only = yes
+
+	option = {
+		name = "stg_anomaly.55.a"
+		hidden_effect = {
+			FROM = {
+				add_modifier = {
+					modifier = "atmospheric_ecosystem"
+					days = -1
+				}
+				if = {
+					limit = {
+						NOT = { has_deposit_for = shipclass_research_station }
+					}
+					clear_deposits = yes
+				}
+			}
+		}
+		from = { add_deposit = d_society_4 }
+	}
+}
+
+### Deep Space Probe -- launched by somebody's ancestors, and it has been busy
+ship_event = {
+	id = stg_anomaly.60
+	title = "stg_anomaly.60.name"
+	desc = "stg_anomaly.60.desc"
+	picture = GFX_evt_stg_deep_space_probe
+	show_sound = event_mystic_reveal
+	location = FROM
+
+	is_triggered_only = yes
+
+	option = {
+		name = "stg_anomaly.60.a"
+		owner = {
+			add_monthly_resource_mult = {
+				resource = physics_research
+				value = @tier4researchreward
+				min = @tier4researchmin
+				max = @tier4researchmax
+			}
+		}
+	}
+}
+
+### Omega Signature -- stable, and that is the frightening part
+ship_event = {
+	id = stg_anomaly.65
+	title = "stg_anomaly.65.name"
+	desc = "stg_anomaly.65.desc"
+	picture = GFX_evt_stg_omega_signature
+	show_sound = event_mystic_reveal
+	location = FROM
+
+	is_triggered_only = yes
+
+	option = {
+		name = "stg_anomaly.65.a"
+		owner = {
+			add_monthly_resource_mult = {
+				resource = physics_research
+				value = @tier5researchreward
+				min = @tier5researchmin
+				max = @tier5researchmax
+			}
+		}
+	}
+}
+
+### Omega Signature -- it collapses while we watch
+ship_event = {
+	id = stg_anomaly.66
+	title = "stg_anomaly.66.name"
+	desc = "stg_anomaly.66.desc"
+	picture = GFX_evt_stg_stellar_flare
+	show_sound = event_scanner
+	location = FROM
+
+	is_triggered_only = yes
+
+	option = {
+		name = "stg_anomaly.66.a"
+		owner = {
+			add_monthly_resource_mult = {
+				resource = physics_research
+				value = @tier3researchreward
+				min = @tier3researchmin
+				max = @tier3researchmax
+			}
+		}
+	}
+}
+
+### Plasma Storms -- a place to hide, if you are willing
+ship_event = {
+	id = stg_anomaly.70
+	title = "stg_anomaly.70.name"
+	desc = "stg_anomaly.70.desc"
+	picture = GFX_evt_stg_plasma_storms
+	show_sound = event_ship_thrusters
+	location = FROM
+
+	is_triggered_only = yes
+
+	option = {
+		name = "stg_anomaly.70.a"
+		owner = {
+			add_monthly_resource_mult = {
+				resource = engineering_research
+				value = @tier2researchreward
+				min = @tier2researchmin
+				max = @tier2researchmax
+			}
+			add_monthly_resource_mult = {
+				resource = energy
+				value = @tier2materialreward
+				min = @tier2materialmin
+				max = @tier2materialmax
+			}
+		}
+	}
+}
+
+### Transwarp Aperture -- somebody built a door here
+ship_event = {
+	id = stg_anomaly.75
+	title = "stg_anomaly.75.name"
+	desc = "stg_anomaly.75.desc"
+	picture = GFX_evt_stg_transwarp_conduit
+	show_sound = event_sensor_ping
+	location = FROM
+
+	is_triggered_only = yes
+
+	option = {
+		name = "stg_anomaly.75.a"
+		hidden_effect = {
+			FROM = {
+				add_modifier = {
+					modifier = "microsingularity"
+					days = -1
+				}
+				if = {
+					limit = {
+						NOT = { has_deposit_for = shipclass_research_station }
+					}
+					clear_deposits = yes
+				}
+			}
+		}
+		from = { add_deposit = d_physics_3 }
+	}
+}
+
+### Shattered Moon -- an industrial accident, a very long time ago
+ship_event = {
+	id = stg_anomaly.80
+	title = "stg_anomaly.80.name"
+	desc = "stg_anomaly.80.desc"
+	picture = GFX_evt_stg_shattered_moon
+	show_sound = event_scanner
+	location = FROM
+
+	is_triggered_only = yes
+
+	option = {
+		name = "stg_anomaly.80.a"
+		hidden_effect = {
+			FROM = {
+				add_modifier = {
+					modifier = "precious_moon"
+					days = -1
+				}
+			}
+		}
+		owner = {
+			add_monthly_resource_mult = {
+				resource = minerals
+				value = @tier2materialreward
+				min = @tier2materialmin
+				max = @tier2materialmax
+			}
+		}
+	}
+}
+
+### Buried Cache -- a weapon from a war that has not happened
+ship_event = {
+	id = stg_anomaly.85
+	title = "stg_anomaly.85.name"
+	desc = "stg_anomaly.85.desc"
+	picture = GFX_evt_stg_tox_uthat
+	show_sound = event_mystic_reveal
+	location = FROM
+
+	is_triggered_only = yes
+
+	option = {
+		name = "stg_anomaly.85.a"
+		owner = {
+			add_monthly_resource_mult = {
+				resource = physics_research
+				value = @tier4researchreward
+				min = @tier4researchmin
+				max = @tier4researchmax
+			}
+		}
+	}
+}
+
+### Psionic Resonator Cache -- disarmed, and kept anyway
+ship_event = {
+	id = stg_anomaly.90
+	title = "stg_anomaly.90.name"
+	desc = "stg_anomaly.90.desc"
+	picture = GFX_evt_stg_resonator_cache
+	show_sound = event_mystic_reveal
+	location = FROM
+
+	is_triggered_only = yes
+
+	option = {
+		name = "stg_anomaly.90.a"
+		owner = {
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = @tier3researchreward
+				min = @tier3researchmin
+				max = @tier3researchmax
+			}
+			add_monthly_resource_mult = {
+				resource = unity
+				value = @tier2unityreward
+				min = @tier2unitymin
+				max = @tier2unitymax
+			}
+		}
+	}
+}
+
+### Runaway Biosphere -- born pregnant
+ship_event = {
+	id = stg_anomaly.95
+	title = "stg_anomaly.95.name"
+	desc = "stg_anomaly.95.desc"
+	picture = GFX_evt_stg_tribble_biosphere
+	show_sound = event_alien_nature
+	location = FROM
+
+	is_triggered_only = yes
+
+	option = {
+		name = "stg_anomaly.95.a"
+		hidden_effect = {
+			FROM = {
+				add_modifier = {
+					modifier = "unbalanced_ecosystem"
+					days = -1
+				}
+				if = {
+					limit = {
+						NOT = { has_deposit_for = shipclass_research_station }
+					}
+					clear_deposits = yes
+				}
+			}
+		}
+		from = { add_deposit = d_society_2 }
+	}
+}
+
+### Neutronium Fragment -- a hull nothing we have will cut
+ship_event = {
+	id = stg_anomaly.100
+	title = "stg_anomaly.100.name"
+	desc = "stg_anomaly.100.desc"
+	picture = GFX_evt_stg_planet_killer_remnant
+	show_sound = event_ship_bridge
+	location = FROM
+
+	is_triggered_only = yes
+
+	option = {
+		name = "stg_anomaly.100.a"
+		owner = {
+			add_monthly_resource_mult = {
+				resource = engineering_research
+				value = @tier4researchreward
+				min = @tier4researchmin
+				max = @tier4researchmax
+			}
+			add_monthly_resource_mult = {
+				resource = alloys
+				value = @tier2materialreward
+				min = @tier2materialmin
+				max = @tier2materialmax
+			}
+		}
+	}
+}

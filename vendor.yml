@@ -2422,8 +2422,11 @@ sources:
     # paths. The sprites that declare them stay vanilla's and the window that
     # draws them is UIOD's, whose scale = 1.5 is cut for 450×150 — so the art
     # rendered 930×396 inside a 693×239 frame. Nothing dangled and make validate
-    # was clean throughout. Re-cut to whatever vanilla ships at each path.
-    # See .docs/decisions/42-event-picture-geometry.md.
+    # was clean throughout. Re-cut to whatever vanilla ships at each path — and
+    # since 2026-08-09, to whatever vanilla ships across the FAMILY, which is
+    # what lets a Trek event use a picture vanilla has no path for at all.
+    # See .docs/decisions/42-event-picture-geometry.md and
+    # .docs/decisions/74-event-picture-families.md.
     # And the planet view's city layers, 2026-08-08 — the same defect one
     # directory over, found because a live run reported the city art sitting
     # too low on every planet while the backdrop behind it looked right.
@@ -2437,8 +2440,24 @@ sources:
     # so only the half nobody else claims was ever wrong.
     # See .docs/decisions/58-city-set-geometry.md.
     resample_to_vanilla:
-      - "gfx/event_pictures/*.dds"
-      # ONE DIRECTORY, TWO FAMILIES, TWO FIT MODES — and they must be two rules
+      # ORDER IS LOAD-BEARING: fnmatch's `*` spans `/`, so the broad event
+      # picture glob below matches `origins/` too and would claim these first.
+      # Vanilla ships all 59 of its origin pictures at 220×115 against 450×150
+      # everywhere else in the directory — a second family, not a second size.
+      # See .docs/decisions/74-event-picture-families.md.
+      - glob: "gfx/event_pictures/origins/*.dds"
+        target: family
+      # `target: family`, added 2026-08-09. Decision 42's per-path rule re-cut
+      # the 569 STNH pictures that shadow a vanilla path and was structurally
+      # blind to the 865 that shadow nothing — which is every picture Phase 4
+      # would want to put on a Trek event. Those are 620×264, and UIOD's
+      # `scale = 1.5` draws them 930×396 inside a 693×239 frame: decision 42's
+      # exact defect, waiting behind the first `.gfx` that declares one.
+      # Vanilla is 580/580 at 450×150 here once origins are claimed above.
+      - glob: "gfx/event_pictures/*.dds"
+        target: family
+      # THE CITY SETS ARE ONE DIRECTORY, TWO FAMILIES, TWO FIT MODES — and they
+      # must be two rules
       # rather than one `*.dds`, because the target and the canvas are now both
       # read off the family (see resample_plan) and vanilla's two families
       # disagree: 266/271 city layers at 800×400, 91/91 rooms at 952×340.

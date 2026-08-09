@@ -448,11 +448,51 @@ tokens, and 21 of 22 playable empires now carry all five core tiers** against 13
 > them, or Nebula would still land on a corvette half the time. Matched by
 > shape, because STG wrote `DDeridex` and STNH writes `D'deridex`.
 
-### Everything else in this phase is unstarted
+### Done: the Trek anomalies, and the scope call behind them
 
-And it is the first work in the project with no external definition of done — the
-sources supply no events to harvest and no check can say when a mod has a voice.
-**Scope it deliberately before starting.**
+[Decision 75](../decisions/75-trek-anomalies.md), 2026-08-09. This section used
+to say the phase's remaining work had no external definition of done and had to
+be **scoped deliberately before starting**; that is the call, made: **anomalies
+first, archaeology and story events after.** An anomaly is the smallest complete
+unit of voice the game has — a category, an outcome, a picture and four hundred
+words — and vanilla's base game ships **40** categories, which is a yardstick
+where archaeology has none.
+
+**21 categories, 27 outcome events, 24 Trek pictures over 48 sprites, 123 loc
+keys, ~3,500 words.** Half of vanilla's base-game count, thin rather than padded
+— [decision 73](../decisions/73-class-name-thematic-fill.md)'s call about pool
+sizes, applied to a different database. Every trigger, reward tier, deposit,
+modifier and guard is copied from a vanilla file that was opened, including the
+`clear_deposits` guard vanilla puts before every research deposit, without which
+the research station is unbuildable and the reward unreachable. No `specimen`,
+no DLC-gated branch: STG is standalone.
+
+> **The art had to be unlocked first, and that is the larger finding.**
+> [Decision 74](../decisions/74-event-picture-families.md). STNH ships ~1,430
+> event pictures and the closure pruned **805** of them every build, exactly as
+> [decision 42](../decisions/42-event-picture-geometry.md) predicted it would
+> until somebody wanted Trek art on Trek events. Declaring one is two lines;
+> declaring one also puts 620×264 art in a window cut for 450×150, which is
+> decision 42's own defect in decision 42's own directory. `target: family` was
+> the lever, and both the build and the check had refused it here in the same
+> words — *"580 of its 639 are 450×150 and the other 59 are a genuine second
+> size"*. **True of the directory, false of both families in it:** the 59 are
+> the `origins/` subdirectory, 59 of 59 at 220×115, and the top level is 580 of
+> 580. Split, each is 100% uniform against a 90% floor. 722 → **1,661** files
+> re-cut, `make vendor` 35 s → 75 s, and the 24 pictures the first `.gfx` named
+> came back out of `.source/` by themselves — prune 959 → **935**, with no edit
+> to `vendor.yml`.
+
+`check_anomalies` ties the four halves together and **failed on its first run
+against real content**: the Iconian Gateway category and both its events shipped
+with no localisation at all — one authoring slip, invisible to every other check
+and to `error.log`.
+
+### Archaeology and story events are still unstarted
+
+Deliberately, and next. The anomalies establish what they will copy — the
+picture pipeline, the loc shape, the check — so the second slice is cheaper than
+the first was.
 
 ---
 

@@ -1,0 +1,462 @@
+# Star Trek Galaxies -- Trek anomaly categories.
+#
+# A NEW file, not a shadow: anomaly categories merge by key across files, so
+# vanilla's 137 are untouched and these 21 are added beside them. Outcome events
+# are in events/stg_anomaly_events.txt, pictures in
+# interface/stg_event_pictures.gfx, names and descriptions in
+# localisation/english/stg_anomalies_l_english.yml -- four halves that must all
+# meet, which is what check_anomalies asks.
+#
+# Every trigger, reward tier and idiom here is copied from
+# common/anomalies/00_anomaly_categories.txt and events/anomaly_events_*.txt.
+# Yardstick: vanilla's base game ships 40 categories in that file.
+# See .docs/decisions/75-trek-anomalies.md
+
+# ── Asteroids, hulks and debris ───────────────────────────────────────────────
+
+# Dilithium Matrix (Asteroid)
+stg_dilithium_matrix_category = {
+	desc = "stg_dilithium_matrix_category_desc"
+	picture = GFX_evt_stg_dilithium_matrix
+	level = 2
+
+	spawn_chance = {
+		modifier = {
+			add = 3
+			is_asteroid = yes
+		}
+		modifier = {
+			factor = 0
+			has_any_strategic_resource = yes
+		}
+	}
+
+	on_success = {
+		2 = stg_anomaly.1
+		1 = stg_anomaly.2
+	}
+}
+
+# Starship Graveyard (Uninhabitable Planet)
+stg_starship_graveyard_category = {
+	desc = "stg_starship_graveyard_category_desc"
+	picture = GFX_evt_stg_starship_graveyard
+	level = 1
+
+	spawn_chance = {
+		modifier = {
+			add = 2
+			uninhabitable_regular_planet = yes
+		}
+		modifier = {
+			add = 2
+			is_asteroid = yes
+		}
+	}
+
+	on_success = {
+		2 = stg_anomaly.5
+		1 = stg_anomaly.6
+	}
+}
+
+# Derelict Hulk (Uninhabitable Planet)
+stg_derelict_hulk_category = {
+	desc = "stg_derelict_hulk_category_desc"
+	picture = GFX_evt_stg_derelict_hulk
+	level = 3
+
+	spawn_chance = {
+		modifier = {
+			add = 2
+			uninhabitable_regular_planet = yes
+		}
+		modifier = {
+			factor = 0
+			has_any_strategic_resource = yes
+		}
+	}
+
+	on_success = {
+		1 = stg_anomaly.10
+		1 = stg_anomaly.11
+	}
+}
+
+# Sleeper Capsule (Asteroid)
+stg_sleeper_capsule_category = {
+	desc = "stg_sleeper_capsule_category_desc"
+	picture = GFX_evt_stg_sleeper_capsule
+	level = 3
+	null_spawn_chance = 0.5
+
+	spawn_chance = {
+		modifier = {
+			add = 2
+			is_asteroid = yes
+		}
+	}
+
+	on_success = stg_anomaly.15
+}
+
+# Interphasic Contact (Any)
+stg_interphase_ship_category = {
+	desc = "stg_interphase_ship_category_desc"
+	picture = GFX_evt_stg_interphase_ship
+	level = 4
+	null_spawn_chance = 0.5
+
+	spawn_chance = {
+		modifier = {
+			add = 1
+			uninhabitable_regular_planet = yes
+		}
+		modifier = {
+			add = 1
+			is_planet_class = pc_gas_giant
+		}
+	}
+
+	on_success = stg_anomaly.20
+}
+
+# Neutronium Fragment (Asteroid)
+stg_planet_killer_remnant_category = {
+	desc = "stg_planet_killer_remnant_category_desc"
+	picture = GFX_evt_stg_planet_killer_remnant
+	level = 6
+	max_once_global = yes
+	null_spawn_chance = 0.75
+
+	spawn_chance = {
+		modifier = {
+			add = 2
+			is_asteroid = yes
+		}
+	}
+
+	on_success = stg_anomaly.100
+}
+
+# Shattered Moon (Moon)
+stg_shattered_moon_category = {
+	desc = "stg_shattered_moon_category_desc"
+	picture = GFX_evt_stg_shattered_moon
+	level = 3
+
+	spawn_chance = {
+		modifier = {
+			add = 3
+			is_moon = yes
+			uninhabitable_regular_planet = yes
+		}
+	}
+
+	on_success = stg_anomaly.80
+}
+
+# ── Surfaces ──────────────────────────────────────────────────────────────────
+
+# Silicon Tunnels (Molten / Barren)
+stg_horta_tunnels_category = {
+	desc = "stg_horta_tunnels_category_desc"
+	picture = GFX_evt_stg_horta_tunnels
+	level = 3
+
+	spawn_chance = {
+		modifier = {
+			add = 3
+			is_planet_class = pc_molten
+		}
+		modifier = {
+			add = 2
+			is_planet_class = pc_barren
+		}
+	}
+
+	on_success = {
+		2 = stg_anomaly.30
+		1 = stg_anomaly.31
+	}
+}
+
+# Cliff Dwellings (Habitable, uncolonised)
+stg_cliff_dwellings_category = {
+	desc = "stg_cliff_dwellings_category_desc"
+	picture = GFX_evt_stg_cliff_dwellings
+	level = 2
+
+	spawn_chance = {
+		modifier = {
+			add = 2
+			habitable_planet_not_urban = yes
+			is_planet_class = pc_arid
+		}
+		modifier = {
+			add = 2
+			habitable_planet_not_urban = yes
+			is_planet_class = pc_desert
+		}
+		modifier = {
+			add = 2
+			habitable_planet_not_urban = yes
+			is_planet_class = pc_savannah
+		}
+		modifier = {
+			add = 2
+			habitable_planet_not_urban = yes
+			is_planet_class = pc_tundra
+		}
+	}
+
+	on_success = stg_anomaly.35
+}
+
+# Iconian Gateway (Barren / Tomb World)
+stg_iconian_gateway_category = {
+	desc = "stg_iconian_gateway_category_desc"
+	picture = GFX_evt_stg_iconian_gateway
+	level = 5
+	max_once_global = yes
+	null_spawn_chance = 0.75
+
+	spawn_chance = {
+		modifier = {
+			add = 2
+			is_planet_class = pc_barren
+		}
+		modifier = {
+			add = 3
+			is_planet_class = pc_nuked
+		}
+	}
+
+	on_success = {
+		2 = stg_anomaly.25
+		1 = stg_anomaly.26
+	}
+}
+
+# Terraforming Matrix (Barren / Toxic)
+stg_genesis_matrix_category = {
+	desc = "stg_genesis_matrix_category_desc"
+	picture = GFX_evt_stg_genesis_matrix
+	level = 4
+	null_spawn_chance = 0.5
+
+	spawn_chance = {
+		modifier = {
+			add = 2
+			is_planet_class = pc_barren
+		}
+		modifier = {
+			add = 2
+			is_planet_class = pc_toxic
+		}
+		modifier = {
+			factor = 0
+			has_modifier = terraforming_candidate
+		}
+	}
+
+	on_success = stg_anomaly.40
+}
+
+# Buried Cache (Frozen / Arctic)
+stg_tox_uthat_category = {
+	desc = "stg_tox_uthat_category_desc"
+	picture = GFX_evt_stg_tox_uthat
+	level = 5
+	max_once_global = yes
+	null_spawn_chance = 0.75
+
+	spawn_chance = {
+		modifier = {
+			add = 2
+			is_planet_class = pc_frozen
+		}
+		modifier = {
+			add = 2
+			is_planet_class = pc_arctic
+		}
+	}
+
+	on_success = stg_anomaly.85
+}
+
+# Psionic Resonator Cache (Tomb World / Barren)
+stg_resonator_cache_category = {
+	desc = "stg_resonator_cache_category_desc"
+	picture = GFX_evt_stg_resonator_cache
+	level = 5
+	max_once = yes
+	null_spawn_chance = 0.6
+
+	spawn_chance = {
+		modifier = {
+			add = 2
+			is_planet_class = pc_nuked
+		}
+		modifier = {
+			add = 1
+			is_planet_class = pc_barren_cold
+		}
+	}
+
+	on_success = stg_anomaly.90
+}
+
+# Runaway Biosphere (Habitable, uncolonised)
+stg_tribble_biosphere_category = {
+	desc = "stg_tribble_biosphere_category_desc"
+	picture = GFX_evt_stg_tribble_biosphere
+	level = 1
+
+	spawn_chance = {
+		modifier = {
+			add = 2
+			habitable_planet_not_urban = yes
+		}
+	}
+
+	on_success = stg_anomaly.95
+}
+
+# ── Life, probes and phenomena ────────────────────────────────────────────────
+
+# Crystalline Lifeform (Any)
+stg_crystalline_entity_category = {
+	desc = "stg_crystalline_entity_category_desc"
+	picture = GFX_evt_stg_crystalline_entity
+	level = 4
+	null_spawn_chance = 0.5
+
+	spawn_chance = {
+		modifier = {
+			add = 1
+			uninhabitable_regular_planet = yes
+		}
+		modifier = {
+			add = 2
+			is_asteroid = yes
+		}
+	}
+
+	on_success = stg_anomaly.45
+}
+
+# Living Vessel (Gas Giant)
+stg_living_ship_category = {
+	desc = "stg_living_ship_category_desc"
+	picture = GFX_evt_stg_living_ship
+	level = 5
+	max_once = yes
+	null_spawn_chance = 0.6
+
+	spawn_chance = {
+		modifier = {
+			add = 3
+			is_planet_class = pc_gas_giant
+		}
+	}
+
+	on_success = stg_anomaly.50
+}
+
+# Cetacean Signal (Ocean)
+stg_cetacean_probe_category = {
+	desc = "stg_cetacean_probe_category_desc"
+	picture = GFX_evt_stg_cetacean_probe
+	level = 5
+	max_once = yes
+	null_spawn_chance = 0.6
+
+	spawn_chance = {
+		modifier = {
+			add = 3
+			is_planet_class = pc_ocean
+		}
+	}
+
+	on_success = stg_anomaly.55
+}
+
+# Deep Space Probe (Gas Giant / Uninhabitable)
+stg_deep_space_probe_category = {
+	desc = "stg_deep_space_probe_category_desc"
+	picture = GFX_evt_stg_deep_space_probe
+	level = 6
+	max_once_global = yes
+	null_spawn_chance = 0.75
+
+	spawn_chance = {
+		modifier = {
+			add = 1
+			is_planet_class = pc_gas_giant
+		}
+		modifier = {
+			add = 1
+			uninhabitable_regular_planet = yes
+		}
+	}
+
+	on_success = stg_anomaly.60
+}
+
+# Omega Signature (Star)
+stg_omega_signature_category = {
+	desc = "stg_omega_signature_category_desc"
+	picture = GFX_evt_stg_omega_signature
+	level = 6
+	max_once_global = yes
+	null_spawn_chance = 0.75
+
+	spawn_chance = {
+		modifier = {
+			add = 2
+			is_star = yes
+		}
+	}
+
+	on_success = {
+		2 = stg_anomaly.65
+		1 = stg_anomaly.66
+	}
+}
+
+# Plasma Storms (Inside a Nebula)
+stg_plasma_storms_category = {
+	desc = "stg_plasma_storms_category_desc"
+	picture = GFX_evt_stg_plasma_storms
+	level = 3
+
+	spawn_chance = {
+		modifier = {
+			add = 3
+			is_inside_nebula = yes
+			is_star = yes
+		}
+	}
+
+	on_success = stg_anomaly.70
+}
+
+# Transwarp Aperture (Black Hole)
+stg_transwarp_conduit_category = {
+	desc = "stg_transwarp_conduit_category_desc"
+	picture = GFX_evt_stg_transwarp_conduit
+	level = 5
+	max_once = yes
+	null_spawn_chance = 0.5
+
+	spawn_chance = {
+		modifier = {
+			add = 3
+			is_star = yes
+			is_star_class = sc_black_hole
+		}
+	}
+
+	on_success = stg_anomaly.75
+}

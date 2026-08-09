@@ -101,6 +101,38 @@ would mean a `generic` token escaped demotion.
 > flagged rather than cut. And **the 46 AI-only minors stay generic-only**,
 > where `generic` is drawn 100% of the time and thin is not broken.
 
+### The Trek anomalies
+
+New on 2026-08-09 and the largest eyes-only surface the project has ever added
+at once: **21 categories, 27 outcome events, 123 loc keys and ~3,500 words of
+prose**, none of which any check can grade
+([decision 75](../decisions/75-trek-anomalies.md)).
+
+Three separate questions, and they fail differently:
+
+- **Does the writing sound like Star Trek, or like a different mod?** The same
+  test [decision 73](../decisions/73-class-name-thematic-fill.md) set for the
+  class names, over four hundred words instead of one. The register is a
+  survey officer's report, which is vanilla's own register — so what to watch
+  for is a description that reads as a *plot summary* of an episode rather than
+  as something a science officer wrote.
+- **Does the picture match the text under it?** 24 STNH pictures, all looked at
+  before they were chosen, and two rejected on tone — `mugato_world.dds` is
+  animated in a cartoon style and `romulan_minefield.dds` does not depict a
+  minefield. **Nine of the 24 are frames extracted from a 9315×264 animation
+  strip**, and a wrong frame is the failure mode there.
+- **Do the levels and rewards feel right?** An anomaly level gates which
+  scientist can crack it. 21 categories span levels 1–6 and the mapping is a
+  judgement, not a measurement.
+
+> **And the framing question underneath all three.**
+> [Decision 74](../decisions/74-event-picture-families.md) centre-crops these
+> pictures from 620×264 to 450×150, losing 21 px top and bottom. For the 569
+> that shadow a vanilla path that crop was verified against the vanilla scene
+> they replace; these 24 shadow nothing, so **there is no control** — twelve
+> were looked at and read correctly, which is a sample. A subject cropped at
+> the chin is what it would look like.
+
 ### Answered, kept here for the shape of the answer
 
 - **Rooms and hidden empires — confirmed on the Cardassian run of 2026-08-08.**
@@ -165,7 +197,9 @@ would mean a `generic` token escaped demotion.
   `ZOOM_STEPS_SYSTEM`, an array no script can set, and the visual test found
   13-against-8 rendering correctly.
   [Decision 43](../decisions/43-planet-scale-system-length.md).
-- **706 report-tier orphans** from the clutter closure. At vanilla's own 4.9%
+- **704 report-tier orphans** from the clutter closure (build of 2026-08-09;
+  [decision 45](../decisions/45-clutter-pass.md) recorded 706, and `make
+  validate` prints the live figure). At vanilla's own 4.9%
   leftover rate in `gfx/models`, a finding there is indistinguishable from
   Paradox's. Widening the prune scope means moving a tier in `tools/clutter.py`
   **with a new ratio written beside it**. [The clutter closure](../validation/clutter.md).
