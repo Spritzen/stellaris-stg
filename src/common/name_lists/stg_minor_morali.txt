@@ -1,0 +1,175 @@
+﻿# Morali name list, for the AI-only minor powers that use it.
+#
+# CONVERTED from .source/688086068/common/name_lists/Morali.txt: the tokens are
+# STNH's, resolved through STNH's own localisation and re-keyed as STG_N_. The
+# ship-size buckets are rebuilt for VANILLA's ladder -- STNH's file buckets by
+# its own (saber, sovereign, steamrunner) and those keys mean nothing here.
+#
+# See .docs/decisions/19-stnh-minor-powers-as-ai-empires.md.
+
+STG_MORALI = {
+	category = "Humanoid"
+	randomized = no
+
+	ship_names = {
+		generic = {
+			STG_N_Segus STG_N_Mullatobius STG_N_Huetia STG_N_Grannia STG_N_Veterius STG_N_Ambisamarus
+			STG_N_Arausus STG_N_Visucellio STG_N_Inthus STG_N_Britasgus STG_N_Tarausus STG_N_Andrasta
+			STG_N_Agrus STG_N_Aeris STG_N_Arvernunnos STG_N_Anetonus STG_N_Andatus STG_N_Brianus
+			STG_N_Rudianus STG_N_Cernus STG_N_Canextios STG_N_Alisama STG_N_Belata STG_N_Mulus
+			STG_N_Alisagrus STG_N_Andartios STG_N_Sucius STG_N_Vosegomo STG_N_Condatus STG_N_Latus
+			STG_N_Neris STG_N_Abelatus STG_N_Bello STG_N_Arnemausio STG_N_Sedatis STG_N_Tarabus
+			STG_N_Arabus STG_N_Contres STG_N_Artiomarus STG_N_Trios STG_N_Abandrasta STG_N_Belatobius
+			STG_N_Abandatis STG_N_Abelatobius STG_N_Condarta STG_N_Huetericura STG_N_Adsullos STG_N_Grania
+			STG_N_Hueterius STG_N_Ancaste STG_N_Barintara STG_N_Roborrum STG_N_Belisagrona STG_N_Nemetia
+			STG_N_Vheterius STG_N_Ambis STG_N_Artiomara STG_N_Leucellio STG_N_Belisagrus STG_N_Aerius
+			STG_N_Andinus STG_N_Mullatus STG_N_Anextios STG_N_Britanniae STG_N_Vetericura STG_N_Tridama
+			STG_N_Coventia STG_N_Damos STG_N_Abandraste STG_N_Brianos STG_N_Adsullo STG_N_Arnemausus
+			STG_N_Roborvo STG_N_Belatucarus STG_N_Nemetiris STG_N_Tridamona STG_N_Camna STG_N_Arnemetiris
+			STG_N_Bellio STG_N_Leucellos STG_N_Nemausio STG_N_Leucetiris STG_N_Aveteris STG_N_Mullos
+			STG_N_Adsullatus STG_N_Aventina STG_N_Canetonus STG_N_Tarannia STG_N_Andatis STG_N_Abellos
+			STG_N_Alisamarus STG_N_Aufanis STG_N_Damarus STG_N_Anextiomara STG_N_Vhetericura STG_N_Huetios
+			STG_N_Latucadros STG_N_Vinotonnus STG_N_Alisagrona STG_N_Aveterius
+		}
+
+		corvette = {
+			STG_N_Andrasta STG_N_Agrus STG_N_Aeris STG_N_Arvernunnos STG_N_Anetonus
+		}
+
+		destroyer = {
+			STG_N_Andatus STG_N_Brianus STG_N_Rudianus STG_N_Cernus STG_N_Canextios
+		}
+
+		cruiser = {
+			STG_N_Alisama STG_N_Belata STG_N_Mulus STG_N_Alisagrus STG_N_Andartios
+		}
+
+		battleship = {
+			STG_N_Sucius STG_N_Vosegomo STG_N_Condatus STG_N_Latus STG_N_Neris
+		}
+
+		titan = {
+			STG_N_Abelatus STG_N_Bello STG_N_Arnemausio STG_N_Sedatis
+		}
+
+		science = {
+			STG_N_Segus STG_N_Mullatobius STG_N_Huetia STG_N_Grannia STG_N_Veterius STG_N_Ambisamarus
+		}
+
+		colonizer = {
+			STG_N_Segus STG_N_Mullatobius STG_N_Huetia STG_N_Grannia STG_N_Veterius
+		}
+
+		constructor = {
+			STG_N_Arausus STG_N_Visucellio STG_N_Inthus STG_N_Britasgus STG_N_Tarausus
+		}
+	}
+
+	ship_class_names = {
+		generic = {
+			STG_N_Segus STG_N_Mullatobius STG_N_Huetia STG_N_Grannia STG_N_Veterius STG_N_Ambisamarus
+			STG_N_Arausus STG_N_Visucellio STG_N_Inthus
+		}
+	}
+
+	fleet_names = {
+		sequential_name = STG_MORALI_GROUP
+	}
+
+	army_names = {
+		machine_assault_1 = {
+			sequential_name = STG_MORALI_ASSAULTAUXILIARY
+		}
+
+		machine_defense = {
+			sequential_name = STG_MORALI_DEFENSEAUXILIARY
+		}
+
+		defense_army = {
+			sequential_name = STG_MORALI_PLANETARYDEFENSEAUXILIARY
+		}
+
+		assault_army = {
+			sequential_name = STG_MORALI_EXPEDITIONARYAUXILIARY
+		}
+
+		slave_army = {
+			sequential_name = STG_MORALI_LABORAUXILIARY
+		}
+
+		clone_army = {
+			sequential_name = STG_MORALI_REPLICATEAUXILIARY
+		}
+
+		robotic_army = {
+			sequential_name = STG_MORALI_AUTOMATEDAUXILIARY
+		}
+
+		psionic_army = {
+			sequential_name = STG_MORALI_ADEPTAUXILIARY
+		}
+
+		xenomorph_army = {
+			sequential_name = STG_MORALI_XENOMORPHAUXILIARY
+		}
+
+		gene_warrior_army = {
+			sequential_name = STG_MORALI_AUGMENTEDAUXILIARY
+		}
+
+		occupation_army = {
+			sequential_name = STG_MORALI_OCCUPATIONAUXILIARY
+		}
+
+		robotic_defense_army = {
+			sequential_name = STG_MORALI_AUTOMATEDDEFENSEAUXILIARY
+		}
+
+		industrial_army = {
+			sequential_name = STG_MORALI_INDUSTRIALAUXILIARY
+		}
+
+		primitive_army = {
+			sequential_name = STG_MORALI_MILITIA
+		}
+	}
+
+	planet_names = {
+		generic = {
+			names = {
+				STG_N_Segus STG_N_Mullatobius STG_N_Huetia STG_N_Grannia STG_N_Veterius STG_N_Ambisamarus
+				STG_N_Arausus STG_N_Visucellio STG_N_Inthus STG_N_Britasgus STG_N_Tarausus STG_N_Andrasta
+				STG_N_Agrus STG_N_Aeris STG_N_Arvernunnos STG_N_Anetonus STG_N_Andatus STG_N_Brianus
+				STG_N_Rudianus STG_N_Cernus STG_N_Canextios STG_N_Alisama STG_N_Belata STG_N_Mulus
+				STG_N_Alisagrus STG_N_Andartios STG_N_Sucius STG_N_Vosegomo STG_N_Condatus STG_N_Latus
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			weight = 100
+
+			first_names_male = {
+				STG_N_Urnet STG_N_Holencos STG_N_Horrod STG_N_Koi STG_N_Herrod STG_N_Nolur
+				STG_N_Tevor STG_N_Nollin STG_N_Hubin STG_N_Ugochi STG_N_Ulbrek STG_N_Ubnel
+				STG_N_Borok STG_N_Ulthori STG_N_Bolun STG_N_Beldov STG_N_Benoro STG_N_Bilot
+				STG_N_Cholifir STG_N_Emork STG_N_Foktim STG_N_Gomoshes STG_N_Glochies STG_N_Heilen
+			}
+
+			first_names_female = {
+				STG_N_Zheeggu STG_N_Shairur STG_N_Maggoush STG_N_Vashkinali STG_N_Nigelli STG_N_Gegavu
+				STG_N_Jigulalish STG_N_Hadillu STG_N_Shesso STG_N_Taydali STG_N_Dadder STG_N_Geessu
+				STG_N_Taiddou STG_N_Thevissalir STG_N_Neessosho STG_N_Thinnouhnu STG_N_Jevvouvali STG_N_Jannousali
+				STG_N_Thahnu STG_N_Mede STG_N_Hedes STG_N_Naggolle STG_N_Seedduhliss STG_N_Nevuhno
+			}
+
+			second_names = {
+				STG_N_Urnet STG_N_Holencos STG_N_Horrod STG_N_Koi STG_N_Herrod STG_N_Nolur
+				STG_N_Tevor STG_N_Nollin STG_N_Hubin STG_N_Ugochi STG_N_Ulbrek STG_N_Ubnel
+				STG_N_Borok STG_N_Ulthori STG_N_Bolun STG_N_Beldov STG_N_Benoro STG_N_Bilot
+				STG_N_Cholifir STG_N_Emork STG_N_Foktim STG_N_Gomoshes STG_N_Glochies STG_N_Heilen
+			}
+		}
+	}
+}

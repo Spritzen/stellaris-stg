@@ -1,0 +1,161 @@
+﻿# Trill Symbiosis name list.
+#
+# second_names are SYMBIONT names — Dax, Kahn, Odan — which is how Trill naming
+# works: the given name is the host's, the second the symbiont's. The one
+# species here whose canon order matches Stellaris' rendering.
+#
+# Structure mirrors /stellaris/common/name_lists/HUMAN1.txt. Every name token
+# is an STG_N_ key in src/localisation/english/stg_names_l_english.yml.
+
+STG_TRILL = {
+	category = "Humanoid"
+	randomized = no
+
+	ship_names = {
+		generic = {
+			STG_N_Ganses STG_N_Makala STG_N_CavesofMakala STG_N_Symbiosis STG_N_Continuity STG_N_Joined
+			STG_N_LeranManev STG_N_TrilliusPrime STG_N_Tenaran STG_N_Rixx STG_N_Nilani STG_N_Torias
+			STG_N_Curzon STG_N_Jadzia STG_N_Ezri STG_N_Lela STG_N_Emony STG_N_Audrid
+			STG_N_Champion STG_N_Defender STG_N_Guardian STG_N_Paladin STG_N_Protector STG_N_Exponent
+			STG_N_Backer STG_N_Fighter STG_N_Demagogue STG_N_Endurance STG_N_Perpetual STG_N_Advocate
+			STG_N_Shield STG_N_Guard STG_N_Savior STG_N_Keeper STG_N_Warder STG_N_Custodian
+			STG_N_Watcher STG_N_Guarder STG_N_Warden STG_N_Porter STG_N_Janitor
+		}
+
+		corvette = {
+			STG_N_Torias STG_N_Joran STG_N_Verad STG_N_Yolad STG_N_Belar
+		}
+
+		destroyer = {
+			STG_N_Curzon STG_N_Emony STG_N_Tobin STG_N_Audrid
+		}
+
+		cruiser = {
+			STG_N_Jadzia STG_N_Ezri STG_N_Lela STG_N_Nilani
+		}
+
+		battleship = {
+			STG_N_Symbiosis STG_N_Continuity STG_N_CavesofMakala STG_N_TrilliusPrime
+		}
+
+		titan = {
+			STG_N_Guardian STG_N_Joined STG_N_Memory STG_N_Lifetime
+		}
+
+		science = {
+			STG_N_SymbiosisCommission STG_N_Guardian STG_N_PoolsofMakala STG_N_Tenaran STG_N_Nilani STG_N_Memory
+			STG_N_Lifetime
+		}
+
+		colonizer = {
+			STG_N_NewTrill STG_N_LeranManev STG_N_Gandhara STG_N_Bilby STG_N_Kurl
+		}
+
+		constructor = {
+			STG_N_Ganses STG_N_Rixx STG_N_Tenaran STG_N_Kelis STG_N_Vernan
+		}
+	}
+
+	ship_class_names = {
+		generic = {
+			STG_N_Ganses STG_N_Makala STG_N_Tenaran STG_N_Rixx STG_N_LeranManev STG_N_Kurl STG_N_Belar
+			STG_N_Vernan STG_N_Kelis
+		}
+	}
+
+	fleet_names = {
+		sequential_name = STG_TRILL_FLOTILLA
+	}
+
+	army_names = {
+		machine_assault_1 = {
+			sequential_name = STG_TRILL_ASSAULTHOST
+		}
+
+		machine_defense = {
+			sequential_name = STG_TRILL_DEFENSEHOST
+		}
+
+		defense_army = {
+			sequential_name = STG_TRILL_PLANETARYDEFENSEHOST
+		}
+
+		assault_army = {
+			sequential_name = STG_TRILL_EXPEDITIONARYHOST
+		}
+
+		slave_army = {
+			sequential_name = STG_TRILL_LABORHOST
+		}
+
+		clone_army = {
+			sequential_name = STG_TRILL_REPLICATEHOST
+		}
+
+		robotic_army = {
+			sequential_name = STG_TRILL_AUTOMATEDHOST
+		}
+
+		psionic_army = {
+			sequential_name = STG_TRILL_ADEPTHOST
+		}
+
+		xenomorph_army = {
+			sequential_name = STG_TRILL_XENOMORPHHOST
+		}
+
+		gene_warrior_army = {
+			sequential_name = STG_TRILL_AUGMENTEDHOST
+		}
+
+		occupation_army = {
+			sequential_name = STG_TRILL_OCCUPATIONHOST
+		}
+
+		robotic_defense_army = {
+			sequential_name = STG_TRILL_AUTOMATEDDEFENSEHOST
+		}
+
+		industrial_army = {
+			sequential_name = STG_TRILL_INDUSTRIALHOST
+		}
+
+		primitive_army = {
+			sequential_name = STG_TRILL_MILITIA
+		}
+	}
+
+	planet_names = {
+		generic = {
+			names = {
+				STG_N_TrilliusPrime STG_N_LeranManev STG_N_Makala STG_N_Gandhara STG_N_NewSydney STG_N_Kurl
+				STG_N_Bilby STG_N_Tenaran STG_N_Ganses STG_N_Rixx STG_N_Vernan STG_N_Kelis
+				STG_N_Belar STG_N_Nilani STG_N_Manev STG_N_Caves STG_N_Pools STG_N_Hoobishan
+				STG_N_Vanden
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			weight = 100
+
+			first_names_male = {
+				STG_N_Torias STG_N_Joran STG_N_Tobin STG_N_Verad STG_N_Curzon STG_N_Yedrin STG_N_Kareel STG_N_Timor
+				STG_N_Selin STG_N_Hanor STG_N_Belar STG_N_Malko STG_N_Renhol STG_N_Bejal STG_N_Gard STG_N_Sorval
+				STG_N_Nemec STG_N_Vandel
+			}
+
+			first_names_female = {
+				STG_N_Jadzia STG_N_Ezri STG_N_Lela STG_N_Emony STG_N_Audrid STG_N_Nilani STG_N_Arjin STG_N_Lenara
+				STG_N_Kareel STG_N_Dania STG_N_Neema STG_N_Yanas STG_N_Tarel STG_N_Melora STG_N_Ilana STG_N_Vetra
+			}
+
+			second_names = {
+				STG_N_Dax STG_N_Kahn STG_N_Odan STG_N_Peers STG_N_Belar STG_N_Idaris STG_N_Tigan STG_N_Renhol
+				STG_N_Kalandra STG_N_Pirak STG_N_Yalon STG_N_Vanden STG_N_Sorval STG_N_Nemec STG_N_Hoobishan
+				STG_N_Gard
+			}
+		}
+	}
+}

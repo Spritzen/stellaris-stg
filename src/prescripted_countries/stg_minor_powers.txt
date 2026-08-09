@@ -1,0 +1,5311 @@
+# Star Trek Galaxies — the minor powers, AI only.
+#
+# 79 empires converted from STNH's own prescripted countries. Their IDENTITY is
+# STNH's — name, species, homeworld, ruler, heraldry and name list all come
+# across — and their MECHANICS are not: all 110 of STNH's use at least one
+# STNH-only origin, trait, civic or room, and not one validates against vanilla
+# 4.4 as written. So every authority/government/civic tuple below is lifted
+# whole from a vanilla prescripted empire and matched to the empire by its
+# ethics, exactly as stg_frontier_powers.txt does.
+#
+# `playable = stg_never` keeps all 79 out of the empire picker while leaving
+# them spawnable as AI. That trigger is in
+# src/common/scripted_triggers/stg_prescripted_triggers.txt; `playable` takes a
+# trigger NAME, not an inline block.
+#
+# SHIP ART, and the reason this file was affordable at all: 34 of the 79 keep
+# their own STNH culture, because it is one of generic_01/02/05/06/07 — already
+# harvested as donor art and now declared as cultures by tools/gen_shipsets.py.
+# The other 45 point at a Walshicus set instead of their own STNH directory.
+# That is deliberately a compromise: a Gorn empire flying Xindi hulls is wrong,
+# but the alternative was 38 more STNH directories and ~5,800 log records for
+# empires you mostly meet as a portrait. See
+# .docs/decisions/19-stnh-minor-powers-as-ai-empires.md.
+#
+# GENERATED SHAPE, HAND-OWNED FILE: written once by a throwaway script from
+# .source/, then owned here. Regenerating it is not part of `make vendor`.
+
+# `room =` is STNH's own assignment for the same empire, restored 2026-08-08 by
+# tools/fix_prescripted_rooms.py — it had been replaced wholesale by vanilla
+# personality rooms, which cost the 20 empires STNH gives a Trek room. The three
+# rows where STG keeps its own answer are listed in that script.
+# See .docs/decisions/48-room-selector-merge.md
+
+# ── Sovereignty (02 beta quadrant) ──
+stg_minor_acamarian_sovereignty = {
+	name = "STG_EMPIRE_minor_acamarian_sovereignty"
+	adjective = "STG_adjective_minor_acamarian_sovereignty"
+	spawn_enabled = yes
+	playable = stg_never
+
+	ship_prefix = "STG_ship_prefix_minor_acamarian_sovereignty"
+
+	species = {
+		class = "ACA"
+		portrait = "acamarian"
+		name = "STG_species_name_minor_acamarian_sovereignty"
+		plural = "STG_species_plural_minor_acamarian_sovereignty"
+		adjective = "STG_species_adjective_minor_acamarian_sovereignty"
+		name_list = "STG_ACAMARIAN"
+		trait = "trait_organic"
+		trait = "trait_storm_touched"
+		trait = "trait_charismatic"
+		trait = "trait_nomadic"
+		trait = "trait_solitary"
+	}
+
+	room = "personality_ruthless_capitalists_room"
+
+	authority = "auth_oligarchic"
+	civics = { "civic_astrometeorology" "civic_storm_callers" }
+	government = gov_storm_chasers
+	origin = "origin_default"
+
+	ethic = "ethic_xenophile"
+	ethic = "ethic_militarist"
+	ethic = "ethic_spiritualist"
+
+	initializer = "stg_minor_acamarian_sovereignty_home"
+	planet_name = "STG_planet_name_minor_acamarian_sovereignty"
+	planet_class = "pc_arctic"
+	system_name = "STG_system_name_minor_acamarian_sovereignty"
+
+	graphical_culture = "generic_05"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "trek"
+			file = "acamarian.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"dark_brown"
+			"khaki_brown"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_minor_acamarian_sovereignty"
+		gender = female
+		portrait = "acamarian_female_04"
+		texture = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+# ── Shoals (01 alpha quadrant) ──
+stg_minor_antedian_shoals = {
+	name = "STG_EMPIRE_minor_antedian_shoals"
+	adjective = "STG_adjective_minor_antedian_shoals"
+	spawn_enabled = yes
+	playable = stg_never
+
+	ship_prefix = "STG_ship_prefix_minor_antedian_shoals"
+
+	species = {
+		class = "ANT"
+		portrait = "antedian"
+		name = "STG_species_name_minor_antedian_shoals"
+		plural = "STG_species_plural_minor_antedian_shoals"
+		adjective = "STG_species_adjective_minor_antedian_shoals"
+		name_list = "STG_ANTEDIAN"
+		trait = "trait_organic"
+		trait = "trait_communal"
+		trait = "trait_talented"
+	}
+
+	room = "personality_erudite_explorers_room"
+
+	authority = "auth_democratic"
+	civics = { "civic_technocracy" "civic_free_haven" }
+	government = gov_rational_consensus
+	origin = "origin_default"
+
+	ethic = "ethic_xenophile"
+	ethic = "ethic_pacifist"
+	ethic = "ethic_materialist"
+
+	planet_name = "STG_planet_name_minor_antedian_shoals"
+	planet_class = "pc_continental"
+	system_name = "STG_system_name_minor_antedian_shoals"
+
+	graphical_culture = "generic_06"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "trek"
+			file = "antedian.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"dark_red"
+			"orange"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_minor_antedian_shoals"
+		gender = male
+		portrait = "antedian_01"
+		texture = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+# ── Packs (01 alpha quadrant) ──
+stg_minor_antican_packs = {
+	name = "STG_EMPIRE_minor_antican_packs"
+	adjective = "STG_adjective_minor_antican_packs"
+	spawn_enabled = yes
+	playable = stg_never
+
+	ship_prefix = "STG_ship_prefix_minor_antican_packs"
+
+	species = {
+		class = "ANTI"
+		portrait = "antican"
+		name = "STG_species_name_minor_antican_packs"
+		plural = "STG_species_plural_minor_antican_packs"
+		adjective = "STG_species_adjective_minor_antican_packs"
+		name_list = "STG_ANTICAN"
+		trait = "trait_organic"
+		trait = "trait_strong"
+		trait = "trait_resilient"
+	}
+
+	room = "personality_erudite_explorers_room"
+
+	authority = "auth_oligarchic"
+	civics = { "civic_twisted_experimenters" "civic_police_state" }
+	government = gov_executive_committee
+	origin = "origin_default"
+
+	ethic = "ethic_authoritarian"
+	ethic = "ethic_militarist"
+	ethic = "ethic_materialist"
+
+	planet_name = "STG_planet_name_minor_antican_packs"
+	planet_class = "pc_arctic"
+	system_name = "STG_system_name_minor_antican_packs"
+
+	graphical_culture = "cardassian"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "zoological"
+			file = "flag_zoological_3.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"dark_purple"
+			"shadow_purple"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_minor_antican_packs"
+		gender = male
+		portrait = "antican_male_04"
+		texture = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+# ── Commonwealth (03 gamma quadrant) ──
+stg_minor_argrathian_commonwealth = {
+	name = "STG_EMPIRE_minor_argrathian_commonwealth"
+	adjective = "STG_adjective_minor_argrathian_commonwealth"
+	spawn_enabled = yes
+	playable = stg_never
+
+	ship_prefix = "STG_ship_prefix_minor_argrathian_commonwealth"
+
+	species = {
+		class = "ARG"
+		portrait = "argrathian"
+		name = "STG_species_name_minor_argrathian_commonwealth"
+		plural = "STG_species_plural_minor_argrathian_commonwealth"
+		adjective = "STG_species_adjective_minor_argrathian_commonwealth"
+		name_list = "STG_ARGRATHI"
+		trait = "trait_organic"
+		trait = "trait_strong"
+		trait = "trait_resilient"
+	}
+
+	room = "personality_erudite_explorers_room"
+
+	authority = "auth_democratic"
+	civics = { "civic_nationalistic_zeal" "civic_citizen_service" }
+	government = gov_military_commissariat
+	origin = "origin_default"
+
+	ethic = "ethic_fanatic_egalitarian"
+	ethic = "ethic_militarist"
+
+	planet_name = "STG_planet_name_minor_argrathian_commonwealth"
+	planet_class = "pc_arctic"
+	system_name = "STG_system_name_minor_argrathian_commonwealth"
+
+	graphical_culture = "generic_01"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "trek"
+			file = "argrathi.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"dark_blue"
+			"dark_teal"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_minor_argrathian_commonwealth"
+		gender = female
+		portrait = "argrathian_female_01"
+		texture = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+# ── Commonwealth (02 beta quadrant) ──
+stg_minor_benzarian_commonwealth = {
+	name = "STG_EMPIRE_minor_benzarian_commonwealth"
+	adjective = "STG_adjective_minor_benzarian_commonwealth"
+	spawn_enabled = yes
+	playable = stg_never
+
+	ship_prefix = "STG_ship_prefix_minor_benzarian_commonwealth"
+
+	species = {
+		class = "BEN"
+		portrait = "benzite"
+		name = "STG_species_name_minor_benzarian_commonwealth"
+		plural = "STG_species_plural_minor_benzarian_commonwealth"
+		adjective = "STG_species_adjective_minor_benzarian_commonwealth"
+		name_list = "STG_BENZITE"
+		trait = "trait_organic"
+		trait = "trait_agrarian"
+	}
+
+	room = "personality_ruthless_capitalists_room"
+
+	authority = "auth_oligarchic"
+	civics = { "civic_mining_guilds" "civic_meritocracy" }
+	government = gov_irenic_bureaucracy
+	origin = "origin_default"
+
+	ethic = "ethic_pacifist"
+	ethic = "ethic_fanatic_materialist"
+
+	planet_name = "STG_planet_name_minor_benzarian_commonwealth"
+	planet_class = "pc_continental"
+	system_name = "STG_system_name_minor_benzarian_commonwealth"
+
+	graphical_culture = "generic_05"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "trek"
+			file = "benzite.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"dark_red"
+			"dark_red"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_minor_benzarian_commonwealth"
+		gender = male
+		portrait = "leader_male_benzite_01"
+		texture = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+# ── Houses (01 alpha quadrant) ──
+stg_minor_betazoid_houses = {
+	name = "STG_EMPIRE_minor_betazoid_houses"
+	adjective = "STG_adjective_minor_betazoid_houses"
+	spawn_enabled = yes
+	playable = stg_never
+
+	ship_prefix = "STG_ship_prefix_minor_betazoid_houses"
+
+	species = {
+		class = "BET"
+		portrait = "betazoid"
+		name = "STG_species_name_minor_betazoid_houses"
+		plural = "STG_species_plural_minor_betazoid_houses"
+		adjective = "STG_species_adjective_minor_betazoid_houses"
+		name_list = "STG_BETAZOID"
+		trait = "trait_organic"
+		trait = "trait_charismatic"
+		trait = "trait_nomadic"
+		trait = "trait_solitary"
+	}
+
+	room = "betazoid_room"
+
+	authority = "auth_democratic"
+	civics = { "civic_technocracy" "civic_free_haven" }
+	government = gov_rational_consensus
+	origin = "origin_default"
+
+	ethic = "ethic_xenophile"
+	ethic = "ethic_pacifist"
+	ethic = "ethic_materialist"
+
+	initializer = "stg_minor_betazoid_houses_home"
+	planet_name = "STG_planet_name_minor_betazoid_houses"
+	planet_class = "pc_continental"
+	system_name = "STG_system_name_minor_betazoid_houses"
+
+	graphical_culture = "generic_01"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "trek"
+			file = "betazoid.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"intense_burgundy"
+			"grey"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_minor_betazoid_houses"
+		gender = male
+		portrait = "betazoid_female_01"
+		texture = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+# ── Empire (04 delta quadrant) ──
+stg_minor_brunali_empire = {
+	name = "STG_EMPIRE_minor_brunali_empire"
+	adjective = "STG_adjective_minor_brunali_empire"
+	spawn_enabled = yes
+	playable = stg_never
+
+	ship_prefix = "STG_ship_prefix_minor_brunali_empire"
+
+	species = {
+		class = "BRU"
+		portrait = "brunali"
+		name = "STG_species_name_minor_brunali_empire"
+		plural = "STG_species_plural_minor_brunali_empire"
+		adjective = "STG_species_adjective_minor_brunali_empire"
+		name_list = "STG_BRUNALI"
+		trait = "trait_organic"
+		trait = "trait_tankbound"
+		trait = "trait_agrarian"
+	}
+
+	room = "personality_spiritual_seekers_room"
+
+	authority = "auth_democratic"
+	civics = { "civic_superstitious_beliefs" "civic_tankbound" }
+	government = gov_theocratic_republic
+	origin = "origin_default"
+
+	ethic = "ethic_xenophile"
+	ethic = "ethic_pacifist"
+	ethic = "ethic_spiritualist"
+
+	planet_name = "STG_planet_name_minor_brunali_empire"
+	planet_class = "pc_continental"
+	system_name = "STG_system_name_minor_brunali_empire"
+
+	graphical_culture = "generic_02"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "plantoid"
+			file = "plantoid_05.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"dark_orange"
+			"dark_teal"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_minor_brunali_empire"
+		gender = male
+		portrait = "brunali_male_01"
+		texture = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+# ── Domains (01 alpha quadrant) ──
+stg_minor_bynar_domains = {
+	name = "STG_EMPIRE_minor_bynar_domains"
+	adjective = "STG_adjective_minor_bynar_domains"
+	spawn_enabled = yes
+	playable = stg_never
+
+	ship_prefix = "STG_ship_prefix_minor_bynar_domains"
+
+	species = {
+		class = "BYN"
+		portrait = "bynar"
+		name = "STG_species_name_minor_bynar_domains"
+		plural = "STG_species_plural_minor_bynar_domains"
+		adjective = "STG_species_adjective_minor_bynar_domains"
+		name_list = "STG_BYNAR"
+		trait = "trait_organic"
+		trait = "trait_agrarian"
+	}
+
+	room = "personality_ruthless_capitalists_room"
+
+	authority = "auth_democratic"
+	civics = { "civic_technocracy" "civic_free_haven" }
+	government = gov_rational_consensus
+	origin = "origin_default"
+
+	ethic = "ethic_xenophile"
+	ethic = "ethic_pacifist"
+	ethic = "ethic_materialist"
+
+	planet_name = "STG_planet_name_minor_bynar_domains"
+	planet_class = "pc_arctic"
+	system_name = "STG_system_name_minor_bynar_domains"
+
+	graphical_culture = "generic_01"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "trek"
+			file = "bynar.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"yellow"
+			"dark_red"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_minor_bynar_domains"
+		gender = male
+		portrait = "bynar_01"
+		texture = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+# ── Sovereignty (02 beta quadrant) ──
+stg_minor_chelarian_sovereignty = {
+	name = "STG_EMPIRE_minor_chelarian_sovereignty"
+	adjective = "STG_adjective_minor_chelarian_sovereignty"
+	spawn_enabled = yes
+	playable = stg_never
+
+	ship_prefix = "STG_ship_prefix_minor_chelarian_sovereignty"
+
+	species = {
+		class = "CHE"
+		portrait = "chelarian"
+		name = "STG_species_name_minor_chelarian_sovereignty"
+		plural = "STG_species_plural_minor_chelarian_sovereignty"
+		adjective = "STG_species_adjective_minor_chelarian_sovereignty"
+		name_list = "STG_RIGELLIAN"
+		trait = "trait_organic"
+		trait = "trait_communal"
+		trait = "trait_talented"
+	}
+
+	room = "personality_hive_mind_room"
+
+	authority = "auth_democratic"
+	civics = { "civic_beacon_of_liberty" "civic_free_haven" }
+	government = gov_moral_democracy
+	origin = "origin_default"
+
+	ethic = "ethic_egalitarian"
+	ethic = "ethic_fanatic_xenophile"
+
+	planet_name = "STG_planet_name_minor_chelarian_sovereignty"
+	planet_class = "pc_ocean"
+	system_name = "STG_system_name_minor_chelarian_sovereignty"
+
+	graphical_culture = "generic_06"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "trek"
+			file = "chelarian.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"dark_purple"
+			"shadow_purple"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_minor_chelarian_sovereignty"
+		gender = male
+		portrait = "chelarian_01"
+		texture = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+# ── Commission (02 beta quadrant) ──
+stg_minor_cheronite_nation = {
+	name = "STG_EMPIRE_minor_cheronite_nation"
+	adjective = "STG_adjective_minor_cheronite_nation"
+	spawn_enabled = yes
+	playable = stg_never
+
+	ship_prefix = "STG_ship_prefix_minor_cheronite_nation"
+
+	species = {
+		class = "CHER"
+		portrait = "cheronite"
+		name = "STG_species_name_minor_cheronite_nation"
+		plural = "STG_species_plural_minor_cheronite_nation"
+		adjective = "STG_species_adjective_minor_cheronite_nation"
+		name_list = "STG_CHERONITE"
+		trait = "trait_organic"
+		trait = "trait_industrious"
+		trait = "trait_deviants"
+		trait = "trait_traditional"
+	}
+
+	room = "personality_spiritual_seekers_room"
+
+	authority = "auth_imperial"
+	civics = { "civic_crowdsourcing" "civic_philosopher_king" }
+	government = gov_enlightened_monarchy
+	origin = "origin_default"
+
+	ethic = "ethic_authoritarian"
+	ethic = "ethic_xenophobe"
+	ethic = "ethic_spiritualist"
+
+	initializer = "stg_minor_cheronite_nation_home"
+	planet_name = "STG_planet_name_minor_cheronite_nation"
+	planet_class = "pc_arctic"
+	system_name = "STG_system_name_minor_cheronite_nation"
+
+	graphical_culture = "generic_01"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "pirate"
+			file = "flag_pirate_4.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"grey"
+			"dark_blue"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_minor_cheronite_nation"
+		gender = female
+		portrait = "cheronite_male_04"
+		texture = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+# ── of Earth (05 alt) ──
+stg_minor_confederation_earth = {
+	name = "STG_EMPIRE_minor_confederation_earth"
+	adjective = "STG_adjective_minor_confederation_earth"
+	spawn_enabled = yes
+	playable = stg_never
+
+	ship_prefix = "STG_ship_prefix_minor_confederation_earth"
+
+	species = {
+		class = "CON"
+		portrait = "human"
+		name = "STG_species_name_minor_confederation_earth"
+		plural = "STG_species_plural_minor_confederation_earth"
+		adjective = "STG_species_adjective_minor_confederation_earth"
+		name_list = "STG_CONFEDERATION"
+		trait = "trait_organic"
+		trait = "trait_strong"
+		trait = "trait_resilient"
+	}
+
+	room = "confederacy_room"
+
+	authority = "auth_imperial"
+	civics = { "civic_crowdsourcing" "civic_philosopher_king" }
+	government = gov_enlightened_monarchy
+	origin = "origin_default"
+
+	ethic = "ethic_authoritarian"
+	ethic = "ethic_xenophobe"
+	ethic = "ethic_spiritualist"
+
+	initializer = "stg_minor_confederation_earth_home"
+	planet_name = "STG_planet_name_minor_confederation_earth"
+	planet_class = "pc_continental"
+	system_name = "STG_system_name_minor_confederation_earth"
+
+	graphical_culture = "starfleet_tng"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "trek"
+			file = "confederation.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"beige"
+			"brown"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_minor_confederation_earth"
+		gender = male
+		portrait = "leader_male_03"
+		texture = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+# ── CravicImperative (04 delta quadrant) ──
+stg_minor_cravic_imperative = {
+	name = "STG_EMPIRE_minor_cravic_imperative"
+	adjective = "STG_adjective_minor_cravic_imperative"
+	spawn_enabled = yes
+	playable = stg_never
+
+	ship_prefix = "STG_ship_prefix_minor_cravic_imperative"
+
+	species = {
+		class = "CRA"
+		portrait = "cravic"
+		name = "STG_species_name_minor_cravic_imperative"
+		plural = "STG_species_plural_minor_cravic_imperative"
+		adjective = "STG_species_adjective_minor_cravic_imperative"
+		name_list = "STG_CRAVIC"
+		trait = "trait_organic"
+		trait = "trait_strong"
+		trait = "trait_resilient"
+	}
+
+	room = "personality_hegemonic_imperialists_room"
+
+	authority = "auth_democratic"
+	civics = { "civic_shared_burden" "civic_functional_architecture" }
+	government = gov_communal_parity
+	origin = "origin_default"
+
+	ethic = "ethic_fanatic_egalitarian"
+	ethic = "ethic_materialist"
+
+	planet_name = "STG_planet_name_minor_cravic_imperative"
+	planet_class = "pc_continental"
+	system_name = "STG_system_name_minor_cravic_imperative"
+
+	graphical_culture = "borg"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "trek"
+			file = "cravic.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"intense_burgundy"
+			"pink"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_minor_cravic_imperative"
+		gender = male
+		portrait = "cravic_male_01"
+		texture = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+# ── Deltan (01 alpha quadrant) ──
+stg_minor_deltan_union = {
+	name = "STG_EMPIRE_minor_deltan_union"
+	adjective = "STG_adjective_minor_deltan_union"
+	spawn_enabled = yes
+	playable = stg_never
+
+	ship_prefix = "STG_ship_prefix_minor_deltan_union"
+
+	species = {
+		class = "DEL"
+		portrait = "deltan"
+		name = "STG_species_name_minor_deltan_union"
+		plural = "STG_species_plural_minor_deltan_union"
+		adjective = "STG_species_adjective_minor_deltan_union"
+		name_list = "STG_DELTAN"
+		trait = "trait_organic"
+		trait = "trait_communal"
+		trait = "trait_talented"
+	}
+
+	room = "personality_ruthless_capitalists_room"
+
+	authority = "auth_democratic"
+	civics = { "civic_technocracy" "civic_free_haven" }
+	government = gov_rational_consensus
+	origin = "origin_default"
+
+	ethic = "ethic_xenophile"
+	ethic = "ethic_pacifist"
+	ethic = "ethic_materialist"
+
+	planet_name = "STG_planet_name_minor_deltan_union"
+	planet_class = "pc_continental"
+	system_name = "STG_system_name_minor_deltan_union"
+
+	graphical_culture = "generic_01"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "trek"
+			file = "deltan.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"intense_burgundy"
+			"dark_green"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_minor_deltan_union"
+		gender = female
+		portrait = "deltan_female_06"
+		texture = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+# ── Unity (01 alpha quadrant) ──
+stg_minor_denobulan_unity = {
+	name = "STG_EMPIRE_minor_denobulan_unity"
+	adjective = "STG_adjective_minor_denobulan_unity"
+	spawn_enabled = yes
+	playable = stg_never
+
+	ship_prefix = "STG_ship_prefix_minor_denobulan_unity"
+
+	species = {
+		class = "DEN"
+		portrait = "denobulan"
+		name = "STG_species_name_minor_denobulan_unity"
+		plural = "STG_species_plural_minor_denobulan_unity"
+		adjective = "STG_species_adjective_minor_denobulan_unity"
+		name_list = "STG_DENOBULAN"
+		trait = "trait_organic"
+		trait = "trait_charismatic"
+		trait = "trait_nomadic"
+		trait = "trait_solitary"
+	}
+
+	room = "personality_ruthless_capitalists_room"
+
+	authority = "auth_democratic"
+	civics = { "civic_technocracy" "civic_free_haven" }
+	government = gov_rational_consensus
+	origin = "origin_default"
+
+	ethic = "ethic_xenophile"
+	ethic = "ethic_pacifist"
+	ethic = "ethic_materialist"
+
+	initializer = "stg_minor_denobulan_unity_home"
+	planet_name = "STG_planet_name_minor_denobulan_unity"
+	planet_class = "pc_continental"
+	system_name = "STG_system_name_minor_denobulan_unity"
+
+	graphical_culture = "starfleet_tng"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "trek"
+			file = "denobula.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"orange"
+			"pink"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_minor_denobulan_unity"
+		gender = male
+		portrait = "leader_male_denobulan_01"
+		texture = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+# ── Imperium (04 delta quadrant) ──
+stg_minor_devore_imperium = {
+	name = "STG_EMPIRE_minor_devore_imperium"
+	adjective = "STG_adjective_minor_devore_imperium"
+	spawn_enabled = yes
+	playable = stg_never
+
+	ship_prefix = "STG_ship_prefix_minor_devore_imperium"
+
+	species = {
+		class = "DEV"
+		portrait = "devore"
+		name = "STG_species_name_minor_devore_imperium"
+		plural = "STG_species_plural_minor_devore_imperium"
+		adjective = "STG_species_adjective_minor_devore_imperium"
+		name_list = "STG_DEVORE"
+		trait = "trait_organic"
+		trait = "trait_industrious"
+		trait = "trait_communal"
+		# Was trait_solitary, which vanilla declares `opposites` with communal.
+		# Nine minor powers carried the same copied four-trait block as the Xindi
+		# in stg_frontier_powers.txt; quarrelsome is the same -1 and keeps the
+		# total at BIOLOGICAL's 2.
+		trait = "trait_quarrelsome"
+	}
+
+	room = "personality_hegemonic_imperialists_room"
+
+	authority = "auth_imperial"
+	civics = { "civic_crowdsourcing" "civic_philosopher_king" }
+	government = gov_enlightened_monarchy
+	origin = "origin_default"
+
+	ethic = "ethic_authoritarian"
+	ethic = "ethic_xenophobe"
+	ethic = "ethic_spiritualist"
+
+	planet_name = "STG_planet_name_minor_devore_imperium"
+	planet_class = "pc_arctic"
+	system_name = "STG_system_name_minor_devore_imperium"
+
+	graphical_culture = "vidiian"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "trek"
+			file = "devore.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"dark_brown"
+			"khaki_brown"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_minor_devore_imperium"
+		gender = male
+		portrait = "devore_male_04"
+		texture = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+# ── Confederacy (03 gamma quadrant) ──
+stg_minor_dosi_confederacy = {
+	name = "STG_EMPIRE_minor_dosi_confederacy"
+	adjective = "STG_adjective_minor_dosi_confederacy"
+	spawn_enabled = yes
+	playable = stg_never
+
+	ship_prefix = "STG_ship_prefix_minor_dosi_confederacy"
+
+	species = {
+		class = "DOS"
+		portrait = "dosi"
+		name = "STG_species_name_minor_dosi_confederacy"
+		plural = "STG_species_plural_minor_dosi_confederacy"
+		adjective = "STG_species_adjective_minor_dosi_confederacy"
+		name_list = "STG_DOSI"
+		trait = "trait_organic"
+		trait = "trait_strong"
+		trait = "trait_resilient"
+	}
+
+	room = "personality_honorbound_warriors_room"
+
+	authority = "auth_democratic"
+	civics = { "civic_technocracy" "civic_free_haven" }
+	government = gov_rational_consensus
+	origin = "origin_default"
+
+	ethic = "ethic_xenophile"
+	ethic = "ethic_pacifist"
+	ethic = "ethic_materialist"
+
+	planet_name = "STG_planet_name_minor_dosi_confederacy"
+	planet_class = "pc_desert"
+	system_name = "STG_system_name_minor_dosi_confederacy"
+
+	graphical_culture = "generic_02"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "domination"
+			file = "domination_7.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"pink"
+			"dark_orange"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_minor_dosi_confederacy"
+		gender = female
+		portrait = "dosi_female_04"
+		texture = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+# ── -Aurian Auditorium (04 delta quadrant) ──
+stg_minor_elaurian_auditorium = {
+	name = "STG_EMPIRE_minor_elaurian_auditorium"
+	adjective = "STG_adjective_minor_elaurian_auditorium"
+	spawn_enabled = yes
+	playable = stg_never
+
+	ship_prefix = "STG_ship_prefix_minor_elaurian_auditorium"
+
+	species = {
+		class = "ELA"
+		portrait = "elaurian"
+		name = "STG_species_name_minor_elaurian_auditorium"
+		plural = "STG_species_plural_minor_elaurian_auditorium"
+		adjective = "STG_species_adjective_minor_elaurian_auditorium"
+		name_list = "STG_MAM1"
+		trait = "trait_organic"
+		trait = "trait_charismatic"
+		trait = "trait_nomadic"
+		trait = "trait_solitary"
+	}
+
+	room = "personality_hegemonic_imperialists_room"
+
+	authority = "auth_democratic"
+	civics = { "civic_technocracy" "civic_free_haven" }
+	government = gov_rational_consensus
+	origin = "origin_default"
+
+	ethic = "ethic_xenophile"
+	ethic = "ethic_pacifist"
+	ethic = "ethic_materialist"
+
+	planet_name = "STG_planet_name_minor_elaurian_auditorium"
+	planet_class = "pc_continental"
+	system_name = "STG_system_name_minor_elaurian_auditorium"
+
+	graphical_culture = "lukari"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "ornate"
+			file = "flag_ornate_14.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"ochre_brown"
+			"khaki_brown"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_minor_elaurian_auditorium"
+		gender = male
+		portrait = "leader_elaurian_01"
+		texture = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+# ── Domar States (02 beta quadrant) ──
+stg_minor_fen_domar_states = {
+	name = "STG_EMPIRE_minor_fen_domar_states"
+	adjective = "STG_adjective_minor_fen_domar_states"
+	spawn_enabled = yes
+	playable = stg_never
+
+	ship_prefix = "STG_ship_prefix_minor_fen_domar_states"
+
+	species = {
+		class = "FEN"
+		portrait = "fen_domar"
+		name = "STG_species_name_minor_fen_domar_states"
+		plural = "STG_species_plural_minor_fen_domar_states"
+		adjective = "STG_species_adjective_minor_fen_domar_states"
+		name_list = "STG_FENDOMAR"
+		trait = "trait_organic"
+		trait = "trait_storm_touched"
+		trait = "trait_strong"
+		trait = "trait_resilient"
+	}
+
+	room = "personality_democratic_crusaders_room"
+
+	authority = "auth_oligarchic"
+	civics = { "civic_astrometeorology" "civic_storm_callers" }
+	government = gov_storm_chasers
+	origin = "origin_default"
+
+	ethic = "ethic_xenophile"
+	ethic = "ethic_militarist"
+	ethic = "ethic_spiritualist"
+
+	planet_name = "STG_planet_name_minor_fen_domar_states"
+	planet_class = "pc_arctic"
+	system_name = "STG_system_name_minor_fen_domar_states"
+
+	graphical_culture = "generic_01"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "trek"
+			file = "fen_domar.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"shadow_purple"
+			"grey"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_minor_fen_domar_states"
+		gender = female
+		portrait = "fen_domar_female_04"
+		texture = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+# ── Hegemony (02 beta quadrant) ──
+stg_minor_flaxian_hegemony = {
+	name = "STG_EMPIRE_minor_flaxian_hegemony"
+	adjective = "STG_adjective_minor_flaxian_hegemony"
+	spawn_enabled = yes
+	playable = stg_never
+
+	ship_prefix = "STG_ship_prefix_minor_flaxian_hegemony"
+
+	species = {
+		class = "FLA"
+		portrait = "flaxian"
+		name = "STG_species_name_minor_flaxian_hegemony"
+		plural = "STG_species_plural_minor_flaxian_hegemony"
+		adjective = "STG_species_adjective_minor_flaxian_hegemony"
+		name_list = "STG_FLAXIAN"
+		trait = "trait_organic"
+		trait = "trait_industrious"
+		trait = "trait_communal"
+		# Was trait_solitary, which vanilla declares `opposites` with communal.
+		# Nine minor powers carried the same copied four-trait block as the Xindi
+		# in stg_frontier_powers.txt; quarrelsome is the same -1 and keeps the
+		# total at BIOLOGICAL's 2.
+		trait = "trait_quarrelsome"
+	}
+
+	room = "personality_ruthless_capitalists_room"
+
+	authority = "auth_imperial"
+	civics = { "civic_crowdsourcing" "civic_philosopher_king" }
+	government = gov_enlightened_monarchy
+	origin = "origin_default"
+
+	ethic = "ethic_authoritarian"
+	ethic = "ethic_xenophobe"
+	ethic = "ethic_spiritualist"
+
+	planet_name = "STG_planet_name_minor_flaxian_hegemony"
+	planet_class = "pc_desert"
+	system_name = "STG_system_name_minor_flaxian_hegemony"
+
+	graphical_culture = "generic_01"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "trek"
+			file = "flaxian.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"yellow"
+			"pink"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_minor_flaxian_hegemony"
+		gender = male
+		portrait = "flaxian_male_01"
+		texture = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+# ── Republic (02 beta quadrant) ──
+stg_minor_garidian_republic = {
+	name = "STG_EMPIRE_minor_garidian_republic"
+	adjective = "STG_adjective_minor_garidian_republic"
+	spawn_enabled = yes
+	playable = stg_never
+
+	ship_prefix = "STG_ship_prefix_minor_garidian_republic"
+
+	species = {
+		class = "GAR"
+		portrait = "garidian"
+		name = "STG_species_name_minor_garidian_republic"
+		plural = "STG_species_plural_minor_garidian_republic"
+		adjective = "STG_species_adjective_minor_garidian_republic"
+		name_list = "STG_GARIDIAN"
+		trait = "trait_organic"
+		trait = "trait_strong"
+		trait = "trait_resilient"
+	}
+
+	room = "personality_harmonious_hierarchy_room"
+
+	authority = "auth_imperial"
+	civics = { "civic_feudal_realm" "civic_aristocratic_elite" }
+	government = gov_feudal_empire
+	origin = "origin_default"
+
+	ethic = "ethic_authoritarian"
+	ethic = "ethic_militarist"
+	ethic = "ethic_spiritualist"
+
+	initializer = "stg_minor_garidian_republic_home"
+	planet_name = "STG_planet_name_minor_garidian_republic"
+	planet_class = "pc_arctic"
+	system_name = "STG_system_name_minor_garidian_republic"
+
+	graphical_culture = "romulan"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "pointy"
+			file = "flag_pointy_9.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"shadow_purple"
+			"brown"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_minor_garidian_republic"
+		gender = female
+		portrait = "garidian_female_01"
+		texture = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+# ── Hegemony (02 beta quadrant) ──
+stg_minor_gorn_empire = {
+	name = "STG_EMPIRE_minor_gorn_empire"
+	adjective = "STG_adjective_minor_gorn_empire"
+	spawn_enabled = yes
+	playable = stg_never
+
+	ship_prefix = "STG_ship_prefix_minor_gorn_empire"
+
+	species = {
+		class = "GOR"
+		portrait = "gorn"
+		name = "STG_species_name_minor_gorn_empire"
+		plural = "STG_species_plural_minor_gorn_empire"
+		adjective = "STG_species_adjective_minor_gorn_empire"
+		name_list = "STG_GORN"
+		trait = "trait_organic"
+		trait = "trait_strong"
+		trait = "trait_resilient"
+	}
+
+	room = "personality_decadent_hierarchy_room"
+
+	authority = "auth_democratic"
+	civics = { "civic_nationalistic_zeal" "civic_citizen_service" }
+	government = gov_military_commissariat
+	origin = "origin_default"
+
+	ethic = "ethic_fanatic_egalitarian"
+	ethic = "ethic_militarist"
+
+	planet_name = "STG_planet_name_minor_gorn_empire"
+	planet_class = "pc_desert"
+	system_name = "STG_system_name_minor_gorn_empire"
+
+	graphical_culture = "xindi"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "trek"
+			file = "gorn.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"burgundy"
+			"dark_purple"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_minor_gorn_empire"
+		gender = male
+		portrait = "gorn_01"
+		texture = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+# ── Order (04 delta quadrant) ──
+stg_minor_haakonian_order = {
+	name = "STG_EMPIRE_minor_haakonian_order"
+	adjective = "STG_adjective_minor_haakonian_order"
+	spawn_enabled = yes
+	playable = stg_never
+
+	ship_prefix = "STG_ship_prefix_minor_haakonian_order"
+
+	species = {
+		class = "HAA"
+		portrait = "haakonian"
+		name = "STG_species_name_minor_haakonian_order"
+		plural = "STG_species_plural_minor_haakonian_order"
+		adjective = "STG_species_adjective_minor_haakonian_order"
+		name_list = "STG_HAAKONIAN"
+		trait = "trait_organic"
+		trait = "trait_strong"
+		trait = "trait_resilient"
+	}
+
+	room = "personality_ruthless_capitalists_room"
+
+	authority = "auth_oligarchic"
+	civics = { "civic_twisted_experimenters" "civic_police_state" }
+	government = gov_executive_committee
+	origin = "origin_default"
+
+	ethic = "ethic_authoritarian"
+	ethic = "ethic_militarist"
+	ethic = "ethic_materialist"
+
+	initializer = "stg_minor_haakonian_order_home"
+	planet_name = "STG_planet_name_minor_haakonian_order"
+	planet_class = "pc_arctic"
+	system_name = "STG_system_name_minor_haakonian_order"
+
+	graphical_culture = "generic_01"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "trek"
+			file = "haakonian.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"dark_teal"
+			"burgundy"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_minor_haakonian_order"
+		gender = male
+		portrait = "haakonian_male_01"
+		texture = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+# ── Tuatara (04 delta quadrant) ──
+stg_minor_hazari_tuatara = {
+	name = "STG_EMPIRE_minor_hazari_tuatara"
+	adjective = "STG_adjective_minor_hazari_tuatara"
+	spawn_enabled = yes
+	playable = stg_never
+
+	ship_prefix = "STG_ship_prefix_minor_hazari_tuatara"
+
+	species = {
+		class = "HAZ"
+		portrait = "hazari"
+		name = "STG_species_name_minor_hazari_tuatara"
+		plural = "STG_species_plural_minor_hazari_tuatara"
+		adjective = "STG_species_adjective_minor_hazari_tuatara"
+		name_list = "STG_HAZARI"
+		trait = "trait_organic"
+		trait = "trait_industrious"
+		trait = "trait_communal"
+		# Was trait_solitary, which vanilla declares `opposites` with communal.
+		# Nine minor powers carried the same copied four-trait block as the Xindi
+		# in stg_frontier_powers.txt; quarrelsome is the same -1 and keeps the
+		# total at BIOLOGICAL's 2.
+		trait = "trait_quarrelsome"
+	}
+
+	room = "personality_ruthless_capitalists_room"
+
+	authority = "auth_imperial"
+	civics = { "civic_crowdsourcing" "civic_philosopher_king" }
+	government = gov_enlightened_monarchy
+	origin = "origin_default"
+
+	ethic = "ethic_authoritarian"
+	ethic = "ethic_xenophobe"
+	ethic = "ethic_spiritualist"
+
+	planet_name = "STG_planet_name_minor_hazari_tuatara"
+	planet_class = "pc_desert"
+	system_name = "STG_system_name_minor_hazari_tuatara"
+
+	graphical_culture = "krenim"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "pirate"
+			file = "pirate_12.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"intense_burgundy"
+			"dark_green"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_minor_hazari_tuatara"
+		gender = male
+		portrait = "hazari_male_01"
+		texture = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+# ── Hunters (04 delta quadrant) ──
+stg_minor_hirogen_hunters = {
+	name = "STG_EMPIRE_minor_hirogen_hunters"
+	adjective = "STG_adjective_minor_hirogen_hunters"
+	spawn_enabled = yes
+	playable = stg_never
+
+	ship_prefix = "STG_ship_prefix_minor_hirogen_hunters"
+
+	species = {
+		class = "HIR"
+		portrait = "hirogen"
+		name = "STG_species_name_minor_hirogen_hunters"
+		plural = "STG_species_plural_minor_hirogen_hunters"
+		adjective = "STG_species_adjective_minor_hirogen_hunters"
+		name_list = "STG_HIROGEN"
+		trait = "trait_organic"
+		trait = "trait_strong"
+		trait = "trait_resilient"
+	}
+
+	room = "personality_fanatic_purifier_room"
+
+	authority = "auth_imperial"
+	civics = { "civic_police_state" "civic_slaver_guilds" }
+	government = gov_star_empire
+	origin = "origin_default"
+
+	ethic = "ethic_authoritarian"
+	ethic = "ethic_fanatic_militarist"
+
+	initializer = "stg_minor_hirogen_hunters_home"
+	planet_name = "STG_planet_name_minor_hirogen_hunters"
+	planet_class = "pc_continental"
+	system_name = "STG_system_name_minor_hirogen_hunters"
+
+	graphical_culture = "krenim"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "trek"
+			file = "hirogen.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"purple"
+			"yellow"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_minor_hirogen_hunters"
+		gender = male
+		portrait = "hirogen_male_01"
+		texture = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+# ── 'Q Stagnancy (03 gamma quadrant) ──
+stg_minor_hur_q_stagnancy = {
+	name = "STG_EMPIRE_minor_hur_q_stagnancy"
+	adjective = "STG_adjective_minor_hur_q_stagnancy"
+	spawn_enabled = yes
+	playable = stg_never
+
+	ship_prefix = "STG_ship_prefix_minor_hur_q_stagnancy"
+
+	species = {
+		class = "HUR"
+		portrait = "hur'q"
+		name = "STG_species_name_minor_hur_q_stagnancy"
+		plural = "STG_species_plural_minor_hur_q_stagnancy"
+		adjective = "STG_species_adjective_minor_hur_q_stagnancy"
+		name_list = "STG_ARGRATHI"
+		trait = "trait_organic"
+		trait = "trait_strong"
+		trait = "trait_resilient"
+	}
+
+	room = "personality_decadent_hierarchy_room"
+
+	authority = "auth_democratic"
+	civics = { "civic_nationalistic_zeal" "civic_citizen_service" }
+	government = gov_military_commissariat
+	origin = "origin_default"
+
+	ethic = "ethic_fanatic_egalitarian"
+	ethic = "ethic_militarist"
+
+	initializer = "stg_minor_hur_q_stagnancy_home"
+	planet_name = "STG_planet_name_minor_hur_q_stagnancy"
+	planet_class = "pc_desert"
+	system_name = "STG_system_name_minor_hur_q_stagnancy"
+
+	graphical_culture = "generic_01"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "trek"
+			file = "hur'q.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"intense_burgundy"
+			"grey"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_minor_hur_q_stagnancy"
+		gender = female
+		portrait = "hur'q_04"
+		texture = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+# ── Ascendency (02 beta quadrant) ──
+stg_minor_husnock_ascendency = {
+	name = "STG_EMPIRE_minor_husnock_ascendency"
+	adjective = "STG_adjective_minor_husnock_ascendency"
+	spawn_enabled = yes
+	playable = stg_never
+
+	ship_prefix = "STG_ship_prefix_minor_husnock_ascendency"
+
+	species = {
+		class = "HUS"
+		portrait = "husnock"
+		name = "STG_species_name_minor_husnock_ascendency"
+		plural = "STG_species_plural_minor_husnock_ascendency"
+		adjective = "STG_species_adjective_minor_husnock_ascendency"
+		name_list = "STG_HUSNOCK"
+		trait = "trait_organic"
+		trait = "trait_industrious"
+		trait = "trait_deviants"
+		trait = "trait_traditional"
+	}
+
+	room = "personality_slaving_despots_room"
+
+	authority = "auth_imperial"
+	civics = { "civic_crowdsourcing" "civic_philosopher_king" }
+	government = gov_enlightened_monarchy
+	origin = "origin_default"
+
+	ethic = "ethic_authoritarian"
+	ethic = "ethic_xenophobe"
+	ethic = "ethic_spiritualist"
+
+	planet_name = "STG_planet_name_minor_husnock_ascendency"
+	planet_class = "pc_continental"
+	system_name = "STG_system_name_minor_husnock_ascendency"
+
+	graphical_culture = "elachi"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "trek"
+			file = "husnock.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"burgundy"
+			"dark_blue"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_minor_husnock_ascendency"
+		gender = male
+		portrait = "husnock_01"
+		texture = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+# ── Kingdom (01 alpha quadrant) ──
+stg_minor_hydran_kingdom = {
+	name = "STG_EMPIRE_minor_hydran_kingdom"
+	adjective = "STG_adjective_minor_hydran_kingdom"
+	spawn_enabled = yes
+	playable = stg_never
+
+	ship_prefix = "STG_ship_prefix_minor_hydran_kingdom"
+
+	species = {
+		class = "HYDR"
+		portrait = "hydran"
+		name = "STG_species_name_minor_hydran_kingdom"
+		plural = "STG_species_plural_minor_hydran_kingdom"
+		adjective = "STG_species_adjective_minor_hydran_kingdom"
+		name_list = "STG_ANTEDIAN"
+		trait = "trait_organic"
+		trait = "trait_strong"
+		trait = "trait_resilient"
+	}
+
+	room = "personality_ruthless_capitalists_room"
+
+	authority = "auth_imperial"
+	civics = { "civic_feudal_realm" "civic_aristocratic_elite" }
+	government = gov_feudal_empire
+	origin = "origin_default"
+
+	ethic = "ethic_authoritarian"
+	ethic = "ethic_militarist"
+	ethic = "ethic_spiritualist"
+
+	planet_name = "STG_planet_name_minor_hydran_kingdom"
+	planet_class = "pc_ocean"
+	system_name = "STG_system_name_minor_hydran_kingdom"
+
+	graphical_culture = "elachi"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "trek"
+			file = "hydran.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"ochre_brown"
+			"dark_brown"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_minor_hydran_kingdom"
+		gender = male
+		portrait = "hydran_leader_01"
+		texture = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+# ── Foundation (03 gamma quadrant) ──
+stg_minor_karemman_foundation = {
+	name = "STG_EMPIRE_minor_karemman_foundation"
+	adjective = "STG_adjective_minor_karemman_foundation"
+	spawn_enabled = yes
+	playable = stg_never
+
+	ship_prefix = "STG_ship_prefix_minor_karemman_foundation"
+
+	species = {
+		class = "KAR"
+		portrait = "karemma"
+		name = "STG_species_name_minor_karemman_foundation"
+		plural = "STG_species_plural_minor_karemman_foundation"
+		adjective = "STG_species_adjective_minor_karemman_foundation"
+		name_list = "STG_KAREMMAN"
+		trait = "trait_organic"
+		trait = "trait_charismatic"
+		trait = "trait_nomadic"
+		trait = "trait_solitary"
+	}
+
+	room = "personality_decadent_hierarchy_room"
+
+	authority = "auth_democratic"
+	civics = { "civic_technocracy" "civic_free_haven" }
+	government = gov_rational_consensus
+	origin = "origin_default"
+
+	ethic = "ethic_xenophile"
+	ethic = "ethic_pacifist"
+	ethic = "ethic_materialist"
+
+	planet_name = "STG_planet_name_minor_karemman_foundation"
+	planet_class = "pc_desert"
+	system_name = "STG_system_name_minor_karemman_foundation"
+
+	graphical_culture = "dominion"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "corporate"
+			file = "corporate_06.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"brown"
+			"yellow"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_minor_karemman_foundation"
+		gender = male
+		portrait = "karemma_male_04"
+		texture = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+# ── Sects (04 delta quadrant) ──
+stg_minor_kazon_sects = {
+	name = "STG_EMPIRE_minor_kazon_sects"
+	adjective = "STG_adjective_minor_kazon_sects"
+	spawn_enabled = yes
+	playable = stg_never
+
+	ship_prefix = "STG_ship_prefix_minor_kazon_sects"
+
+	species = {
+		class = "KAZ"
+		portrait = "kazon"
+		name = "STG_species_name_minor_kazon_sects"
+		plural = "STG_species_plural_minor_kazon_sects"
+		adjective = "STG_species_adjective_minor_kazon_sects"
+		name_list = "STG_KAZON"
+		trait = "trait_organic"
+		trait = "trait_strong"
+		trait = "trait_resilient"
+	}
+
+	room = "personality_slaving_despots_room"
+
+	authority = "auth_imperial"
+	civics = { "civic_feudal_realm" "civic_aristocratic_elite" }
+	government = gov_feudal_empire
+	origin = "origin_default"
+
+	ethic = "ethic_authoritarian"
+	ethic = "ethic_militarist"
+	ethic = "ethic_spiritualist"
+
+	planet_name = "STG_planet_name_minor_kazon_sects"
+	planet_class = "pc_desert"
+	system_name = "STG_system_name_minor_kazon_sects"
+
+	graphical_culture = "malon"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "trek"
+			file = "kazon.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"yellow"
+			"dark_orange"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_minor_kazon_sects"
+		gender = male
+		portrait = "kazon_male_04"
+		texture = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+# ── Kessok (01 alpha quadrant) ──
+stg_minor_kessok_heliolatry = {
+	name = "STG_EMPIRE_minor_kessok_heliolatry"
+	adjective = "STG_adjective_minor_kessok_heliolatry"
+	spawn_enabled = yes
+	playable = stg_never
+
+	ship_prefix = "STG_ship_prefix_minor_kessok_heliolatry"
+
+	species = {
+		class = "KES"
+		portrait = "kessok"
+		name = "STG_species_name_minor_kessok_heliolatry"
+		plural = "STG_species_plural_minor_kessok_heliolatry"
+		adjective = "STG_species_adjective_minor_kessok_heliolatry"
+		name_list = "STG_KESSOK"
+		trait = "trait_organic"
+		trait = "trait_industrious"
+		trait = "trait_deviants"
+		trait = "trait_traditional"
+	}
+
+	room = "personality_fanatic_purifier_room"
+
+	authority = "auth_imperial"
+	civics = { "civic_crowdsourcing" "civic_philosopher_king" }
+	government = gov_enlightened_monarchy
+	origin = "origin_default"
+
+	ethic = "ethic_authoritarian"
+	ethic = "ethic_xenophobe"
+	ethic = "ethic_spiritualist"
+
+	planet_name = "STG_planet_name_minor_kessok_heliolatry"
+	planet_class = "pc_desert"
+	system_name = "STG_system_name_minor_kessok_heliolatry"
+
+	graphical_culture = "cardassian"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "trek"
+			file = "kessok.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"purple"
+			"dark_red"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_minor_kessok_heliolatry"
+		gender = male
+		portrait = "leader_male_06"
+		texture = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+# ── Order of the Kinshaya (02 beta quadrant) ──
+stg_minor_kinshaya_holy_order = {
+	name = "STG_EMPIRE_minor_kinshaya_holy_order"
+	adjective = "STG_adjective_minor_kinshaya_holy_order"
+	spawn_enabled = yes
+	playable = stg_never
+
+	ship_prefix = "STG_ship_prefix_minor_kinshaya_holy_order"
+
+	species = {
+		class = "KIN"
+		portrait = "kinshaya"
+		name = "STG_species_name_minor_kinshaya_holy_order"
+		plural = "STG_species_plural_minor_kinshaya_holy_order"
+		adjective = "STG_species_adjective_minor_kinshaya_holy_order"
+		name_list = "STG_KINSHAYA"
+		trait = "trait_organic"
+		trait = "trait_strong"
+		trait = "trait_resilient"
+	}
+
+	room = "personality_democratic_crusaders_room"
+
+	authority = "auth_imperial"
+	civics = { "civic_crowdsourcing" "civic_philosopher_king" }
+	government = gov_enlightened_monarchy
+	origin = "origin_default"
+
+	ethic = "ethic_authoritarian"
+	ethic = "ethic_xenophobe"
+	ethic = "ethic_spiritualist"
+
+	initializer = "stg_minor_kinshaya_holy_order_home"
+	planet_name = "STG_planet_name_minor_kinshaya_holy_order"
+	planet_class = "pc_arctic"
+	system_name = "STG_system_name_minor_kinshaya_holy_order"
+
+	graphical_culture = "klingon"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "ornate"
+			file = "flag_ornate_3.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"dark_orange"
+			"dark_teal"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_minor_kinshaya_holy_order"
+		gender = male
+		portrait = "kinshaya"
+		texture = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+# ── Republic (04 delta quadrant) ──
+stg_minor_kobali_republic = {
+	name = "STG_EMPIRE_minor_kobali_republic"
+	adjective = "STG_adjective_minor_kobali_republic"
+	spawn_enabled = yes
+	playable = stg_never
+
+	ship_prefix = "STG_ship_prefix_minor_kobali_republic"
+
+	species = {
+		class = "KOB"
+		portrait = "kobali"
+		name = "STG_species_name_minor_kobali_republic"
+		plural = "STG_species_plural_minor_kobali_republic"
+		adjective = "STG_species_adjective_minor_kobali_republic"
+		name_list = "STG_KOBALI"
+		trait = "trait_organic"
+		trait = "trait_intelligent"
+		trait = "trait_natural_physicists"
+		trait = "trait_fleeting"
+	}
+
+	room = "personality_ruthless_capitalists_room"
+
+	authority = "auth_democratic"
+	civics = { "civic_technocracy" "civic_free_haven" }
+	government = gov_rational_consensus
+	origin = "origin_default"
+
+	ethic = "ethic_xenophile"
+	ethic = "ethic_pacifist"
+	ethic = "ethic_materialist"
+
+	initializer = "stg_minor_kobali_republic_home"
+	planet_name = "STG_planet_name_minor_kobali_republic"
+	planet_class = "pc_continental"
+	system_name = "STG_system_name_minor_kobali_republic"
+
+	graphical_culture = "vidiian"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "trek"
+			file = "kobali.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"ochre_brown"
+			"dark_brown"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_minor_kobali_republic"
+		gender = male
+		portrait = "kobali_male_01"
+		texture = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+# ── Sanctum (04 delta quadrant) ──
+stg_minor_kraylor_republic = {
+	name = "STG_EMPIRE_minor_kraylor_republic"
+	adjective = "STG_adjective_minor_kraylor_republic"
+	spawn_enabled = yes
+	playable = stg_never
+
+	ship_prefix = "STG_ship_prefix_minor_kraylor_republic"
+
+	species = {
+		class = "KRA"
+		portrait = "kraylor"
+		name = "STG_species_name_minor_kraylor_republic"
+		plural = "STG_species_plural_minor_kraylor_republic"
+		adjective = "STG_species_adjective_minor_kraylor_republic"
+		name_list = "STG_KRAYLOR"
+		trait = "trait_organic"
+		trait = "trait_agrarian"
+	}
+
+	room = "personality_ruthless_capitalists_room"
+
+	authority = "auth_democratic"
+	civics = { "civic_technocracy" "civic_free_haven" }
+	government = gov_rational_consensus
+	origin = "origin_default"
+
+	ethic = "ethic_xenophile"
+	ethic = "ethic_pacifist"
+	ethic = "ethic_materialist"
+
+	initializer = "stg_minor_kraylor_republic_home"
+	planet_name = "STG_planet_name_minor_kraylor_republic"
+	planet_class = "pc_continental"
+	system_name = "STG_system_name_minor_kraylor_republic"
+
+	graphical_culture = "malon"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "ornate"
+			file = "flag_ornate_9.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"dark_brown"
+			"dark_blue"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_minor_kraylor_republic"
+		gender = male
+		portrait = "kraylor_male_01"
+		texture = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+# ── Dynasty of Krios Prime (02 beta quadrant) ──
+stg_minor_krios_dynasty = {
+	name = "STG_EMPIRE_minor_krios_dynasty"
+	adjective = "STG_adjective_minor_krios_dynasty"
+	spawn_enabled = yes
+	playable = stg_never
+
+	ship_prefix = "STG_ship_prefix_minor_krios_dynasty"
+
+	species = {
+		class = "KRI"
+		portrait = "kriosian"
+		name = "STG_species_name_minor_krios_dynasty"
+		plural = "STG_species_plural_minor_krios_dynasty"
+		adjective = "STG_species_adjective_minor_krios_dynasty"
+		name_list = "STG_KRIOSIAN"
+		trait = "trait_organic"
+		trait = "trait_strong"
+		trait = "trait_resilient"
+	}
+
+	room = "personality_erudite_explorers_room"
+
+	authority = "auth_oligarchic"
+	civics = { "civic_twisted_experimenters" "civic_police_state" }
+	government = gov_executive_committee
+	origin = "origin_default"
+
+	ethic = "ethic_authoritarian"
+	ethic = "ethic_militarist"
+	ethic = "ethic_materialist"
+
+	planet_name = "STG_planet_name_minor_krios_dynasty"
+	planet_class = "pc_continental"
+	system_name = "STG_system_name_minor_krios_dynasty"
+
+	graphical_culture = "generic_01"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "trek"
+			file = "kriosian.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"grey"
+			"orange"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_minor_krios_dynasty"
+		gender = female
+		portrait = "kriosian_female_01"
+		texture = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+# ── Kzinti (01 alpha quadrant) ──
+stg_minor_kzinti_empire = {
+	name = "STG_EMPIRE_minor_kzinti_empire"
+	adjective = "STG_adjective_minor_kzinti_empire"
+	spawn_enabled = yes
+	playable = stg_never
+
+	ship_prefix = "STG_ship_prefix_minor_kzinti_empire"
+
+	species = {
+		class = "KZI"
+		portrait = "kzinti"
+		name = "STG_species_name_minor_kzinti_empire"
+		plural = "STG_species_plural_minor_kzinti_empire"
+		adjective = "STG_species_adjective_minor_kzinti_empire"
+		name_list = "STG_CAITIAN"
+		trait = "trait_organic"
+		trait = "trait_industrious"
+		trait = "trait_deviants"
+		trait = "trait_traditional"
+	}
+
+	room = "personality_fanatic_purifier_room"
+
+	authority = "auth_imperial"
+	civics = { "civic_police_state" "civic_slaver_guilds" }
+	government = gov_star_empire
+	origin = "origin_default"
+
+	ethic = "ethic_authoritarian"
+	ethic = "ethic_fanatic_militarist"
+
+	planet_name = "STG_planet_name_minor_kzinti_empire"
+	planet_class = "pc_arctic"
+	system_name = "STG_system_name_minor_kzinti_empire"
+
+	graphical_culture = "caitian"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "trek"
+			file = "kzinti.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"ochre_brown"
+			"brown"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_minor_kzinti_empire"
+		gender = male
+		portrait = "kzinti_male_01"
+		texture = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+# ── Parliaments (01 alpha quadrant) ──
+stg_minor_lissepian_parliaments = {
+	name = "STG_EMPIRE_minor_lissepian_parliaments"
+	adjective = "STG_adjective_minor_lissepian_parliaments"
+	spawn_enabled = yes
+	playable = stg_never
+
+	ship_prefix = "STG_ship_prefix_minor_lissepian_parliaments"
+
+	species = {
+		class = "LIS"
+		portrait = "lissepian"
+		name = "STG_species_name_minor_lissepian_parliaments"
+		plural = "STG_species_plural_minor_lissepian_parliaments"
+		adjective = "STG_species_adjective_minor_lissepian_parliaments"
+		name_list = "STG_LISSEPIAN"
+		trait = "trait_organic"
+		trait = "trait_charismatic"
+		trait = "trait_nomadic"
+		trait = "trait_solitary"
+	}
+
+	room = "personality_hive_mind_room"
+
+	authority = "auth_democratic"
+	civics = { "civic_technocracy" "civic_free_haven" }
+	government = gov_rational_consensus
+	origin = "origin_default"
+
+	ethic = "ethic_xenophile"
+	ethic = "ethic_pacifist"
+	ethic = "ethic_materialist"
+
+	planet_name = "STG_planet_name_minor_lissepian_parliaments"
+	planet_class = "pc_desert"
+	system_name = "STG_system_name_minor_lissepian_parliaments"
+
+	graphical_culture = "generic_02"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "trek"
+			file = "lissepian.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"purple"
+			"burgundy"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_minor_lissepian_parliaments"
+		gender = male
+		portrait = "lissepian_male_01"
+		texture = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+# ── Principality (01 alpha quadrant) ──
+stg_minor_lurian_principality = {
+	name = "STG_EMPIRE_minor_lurian_principality"
+	adjective = "STG_adjective_minor_lurian_principality"
+	spawn_enabled = yes
+	playable = stg_never
+
+	ship_prefix = "STG_ship_prefix_minor_lurian_principality"
+
+	species = {
+		class = "LUR"
+		portrait = "lurian"
+		name = "STG_species_name_minor_lurian_principality"
+		plural = "STG_species_plural_minor_lurian_principality"
+		adjective = "STG_species_adjective_minor_lurian_principality"
+		name_list = "STG_LURIAN"
+		trait = "trait_organic"
+		trait = "trait_industrious"
+		trait = "trait_communal"
+		# Was trait_solitary, which vanilla declares `opposites` with communal.
+		# Nine minor powers carried the same copied four-trait block as the Xindi
+		# in stg_frontier_powers.txt; quarrelsome is the same -1 and keeps the
+		# total at BIOLOGICAL's 2.
+		trait = "trait_quarrelsome"
+	}
+
+	room = "personality_hive_mind_room"
+
+	authority = "auth_imperial"
+	civics = { "civic_crowdsourcing" "civic_philosopher_king" }
+	government = gov_enlightened_monarchy
+	origin = "origin_default"
+
+	ethic = "ethic_authoritarian"
+	ethic = "ethic_xenophobe"
+	ethic = "ethic_spiritualist"
+
+	planet_name = "STG_planet_name_minor_lurian_principality"
+	planet_class = "pc_desert"
+	system_name = "STG_system_name_minor_lurian_principality"
+
+	graphical_culture = "generic_02"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "trek"
+			file = "lurian.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"ochre_brown"
+			"dark_blue"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_minor_lurian_principality"
+		gender = male
+		portrait = "lurian_male_01"
+		texture = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+# ── Star Empire (01 alpha quadrant) ──
+stg_minor_lyran_star_empire = {
+	name = "STG_EMPIRE_minor_lyran_star_empire"
+	adjective = "STG_adjective_minor_lyran_star_empire"
+	spawn_enabled = yes
+	playable = stg_never
+
+	ship_prefix = "STG_ship_prefix_minor_lyran_star_empire"
+
+	species = {
+		class = "LYR"
+		portrait = "lyran"
+		name = "STG_species_name_minor_lyran_star_empire"
+		plural = "STG_species_plural_minor_lyran_star_empire"
+		adjective = "STG_species_adjective_minor_lyran_star_empire"
+		name_list = "STG_LYRAN"
+		trait = "trait_organic"
+		trait = "trait_strong"
+		trait = "trait_resilient"
+	}
+
+	room = "personality_spiritual_seekers_room"
+
+	authority = "auth_imperial"
+	civics = { "civic_crowdsourcing" "civic_philosopher_king" }
+	government = gov_enlightened_monarchy
+	origin = "origin_default"
+
+	ethic = "ethic_authoritarian"
+	ethic = "ethic_xenophobe"
+	ethic = "ethic_spiritualist"
+
+	initializer = "stg_minor_lyran_star_empire_home"
+	planet_name = "STG_planet_name_minor_lyran_star_empire"
+	planet_class = "pc_arctic"
+	system_name = "STG_system_name_minor_lyran_star_empire"
+
+	graphical_culture = "caitian"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "trek"
+			file = "lyran.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"dark_blue"
+			"orange"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_minor_lyran_star_empire"
+		gender = male
+		portrait = "lyran_male_01"
+		texture = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+# ── Diaspora (04 delta quadrant) ──
+stg_minor_lyridian_diaspora = {
+	name = "STG_EMPIRE_minor_lyridian_diaspora"
+	adjective = "STG_adjective_minor_lyridian_diaspora"
+	spawn_enabled = yes
+	playable = stg_never
+
+	ship_prefix = "STG_ship_prefix_minor_lyridian_diaspora"
+
+	species = {
+		class = "LYRI"
+		portrait = "lyridian"
+		name = "STG_species_name_minor_lyridian_diaspora"
+		plural = "STG_species_plural_minor_lyridian_diaspora"
+		adjective = "STG_species_adjective_minor_lyridian_diaspora"
+		name_list = "STG_LYRIDIAN"
+		trait = "trait_organic"
+		trait = "trait_strong"
+		trait = "trait_resilient"
+	}
+
+	room = "personality_honorbound_warriors_room"
+
+	authority = "auth_oligarchic"
+	civics = { "civic_twisted_experimenters" "civic_police_state" }
+	government = gov_executive_committee
+	origin = "origin_default"
+
+	ethic = "ethic_authoritarian"
+	ethic = "ethic_militarist"
+	ethic = "ethic_materialist"
+
+	planet_name = "STG_planet_name_minor_lyridian_diaspora"
+	planet_class = "pc_arctic"
+	system_name = "STG_system_name_minor_lyridian_diaspora"
+
+	graphical_culture = "malon"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "spherical"
+			file = "flag_spherical_11.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"grey"
+			"brown"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_minor_lyridian_diaspora"
+		gender = female
+		portrait = "lyridian_female_04"
+		texture = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+# ── Corporium (02 beta quadrant) ──
+stg_minor_medusan_corporium = {
+	name = "STG_EMPIRE_minor_medusan_corporium"
+	adjective = "STG_adjective_minor_medusan_corporium"
+	spawn_enabled = yes
+	playable = stg_never
+
+	ship_prefix = "STG_ship_prefix_minor_medusan_corporium"
+
+	species = {
+		class = "MED"
+		portrait = "medusan"
+		name = "STG_species_name_minor_medusan_corporium"
+		plural = "STG_species_plural_minor_medusan_corporium"
+		adjective = "STG_species_adjective_minor_medusan_corporium"
+		name_list = "STG_MEDUSAN"
+		trait = "trait_organic"
+		trait = "trait_communal"
+		trait = "trait_talented"
+	}
+
+	room = "personality_harmonious_hierarchy_room"
+
+	authority = "auth_democratic"
+	civics = { "civic_technocracy" "civic_free_haven" }
+	government = gov_rational_consensus
+	origin = "origin_default"
+
+	ethic = "ethic_xenophile"
+	ethic = "ethic_pacifist"
+	ethic = "ethic_materialist"
+
+	planet_name = "STG_planet_name_minor_medusan_corporium"
+	planet_class = "pc_continental"
+	system_name = "STG_system_name_minor_medusan_corporium"
+
+	graphical_culture = "generic_07"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "trek"
+			file = "medusan.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"dark_green"
+			"dark_purple"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_minor_medusan_corporium"
+		gender = male
+		portrait = "medusan_body_01"
+		texture = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+# ── Maritime Sovereignty (04 delta quadrant) ──
+stg_minor_monean_maritime_sovereignty = {
+	name = "STG_EMPIRE_minor_monean_maritime_sovereignty"
+	adjective = "STG_adjective_minor_monean_maritime_sovereignty"
+	spawn_enabled = yes
+	playable = stg_never
+
+	ship_prefix = "STG_ship_prefix_minor_monean_maritime_sovereignty"
+
+	species = {
+		class = "MON"
+		portrait = "monean"
+		name = "STG_species_name_minor_monean_maritime_sovereignty"
+		plural = "STG_species_plural_minor_monean_maritime_sovereignty"
+		adjective = "STG_species_adjective_minor_monean_maritime_sovereignty"
+		name_list = "STG_BANEAN"
+		trait = "trait_organic"
+		trait = "trait_communal"
+		trait = "trait_talented"
+	}
+
+	room = "personality_erudite_explorers_room"
+
+	authority = "auth_democratic"
+	civics = { "civic_technocracy" "civic_free_haven" }
+	government = gov_rational_consensus
+	origin = "origin_default"
+
+	ethic = "ethic_xenophile"
+	ethic = "ethic_pacifist"
+	ethic = "ethic_materialist"
+
+	planet_name = "STG_planet_name_minor_monean_maritime_sovereignty"
+	planet_class = "pc_ocean"
+	system_name = "STG_system_name_minor_monean_maritime_sovereignty"
+
+	graphical_culture = "generic_06"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "trek"
+			file = "monean.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"burgundy"
+			"dark_teal"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_minor_monean_maritime_sovereignty"
+		gender = male
+		portrait = "leader_male_04"
+		texture = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+# ── States (02 beta quadrant) ──
+stg_minor_morali_states = {
+	name = "STG_EMPIRE_minor_morali_states"
+	adjective = "STG_adjective_minor_morali_states"
+	spawn_enabled = yes
+	playable = stg_never
+
+	ship_prefix = "STG_ship_prefix_minor_morali_states"
+
+	species = {
+		class = "MOR"
+		portrait = "sth_humanoid_02"
+		name = "STG_species_name_minor_morali_states"
+		plural = "STG_species_plural_minor_morali_states"
+		adjective = "STG_species_adjective_minor_morali_states"
+		name_list = "STG_MORALI"
+		trait = "trait_organic"
+		trait = "trait_agrarian"
+	}
+
+	room = "personality_harmonious_hierarchy_room"
+
+	authority = "auth_oligarchic"
+	civics = { "civic_corporate_dominion" "civic_shadow_council" }
+	government = gov_trade_league
+	origin = "origin_default"
+
+	ethic = "ethic_egalitarian"
+	ethic = "ethic_spiritualist"
+	ethic = "ethic_pacifist"
+
+	planet_name = "STG_planet_name_minor_morali_states"
+	planet_class = "pc_continental"
+	system_name = "STG_system_name_minor_morali_states"
+
+	graphical_culture = "generic_05"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "blocky"
+			file = "flag_blocky_8.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"dark_purple"
+			"red"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_minor_morali_states"
+		gender = female
+		portrait = "sth_humanoid_02_female_01"
+		texture = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+# ── Tribes (02 beta quadrant) ──
+stg_minor_nausicaan_tribes = {
+	name = "STG_EMPIRE_minor_nausicaan_tribes"
+	adjective = "STG_adjective_minor_nausicaan_tribes"
+	spawn_enabled = yes
+	playable = stg_never
+
+	ship_prefix = "STG_ship_prefix_minor_nausicaan_tribes"
+
+	species = {
+		class = "NAU"
+		portrait = "nausicaan"
+		name = "STG_species_name_minor_nausicaan_tribes"
+		plural = "STG_species_plural_minor_nausicaan_tribes"
+		adjective = "STG_species_adjective_minor_nausicaan_tribes"
+		name_list = "STG_NAUSICAAN"
+		trait = "trait_organic"
+		trait = "trait_strong"
+		trait = "trait_resilient"
+	}
+
+	room = "personality_fanatic_purifier_room"
+
+	authority = "auth_oligarchic"
+	civics = { "civic_twisted_experimenters" "civic_police_state" }
+	government = gov_executive_committee
+	origin = "origin_default"
+
+	ethic = "ethic_authoritarian"
+	ethic = "ethic_militarist"
+	ethic = "ethic_materialist"
+
+	planet_name = "STG_planet_name_minor_nausicaan_tribes"
+	planet_class = "pc_desert"
+	system_name = "STG_system_name_minor_nausicaan_tribes"
+
+	graphical_culture = "klingon"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "pirate"
+			file = "flag_pirate_7.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"brown"
+			"intense_burgundy"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_minor_nausicaan_tribes"
+		gender = male
+		portrait = "nausicaan_male_01"
+		texture = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+# ── Harmony (04 delta quadrant) ──
+stg_minor_norcadian_harmony = {
+	name = "STG_EMPIRE_minor_norcadian_harmony"
+	adjective = "STG_adjective_minor_norcadian_harmony"
+	spawn_enabled = yes
+	playable = stg_never
+
+	ship_prefix = "STG_ship_prefix_minor_norcadian_harmony"
+
+	species = {
+		class = "NOR"
+		portrait = "norcadian"
+		name = "STG_species_name_minor_norcadian_harmony"
+		plural = "STG_species_plural_minor_norcadian_harmony"
+		adjective = "STG_species_adjective_minor_norcadian_harmony"
+		name_list = "STG_NORCADIAN"
+		trait = "trait_organic"
+		trait = "trait_intelligent"
+		trait = "trait_natural_physicists"
+		trait = "trait_fleeting"
+	}
+
+	room = "personality_decadent_hierarchy_room"
+
+	authority = "auth_democratic"
+	civics = { "civic_technocracy" "civic_free_haven" }
+	government = gov_rational_consensus
+	origin = "origin_default"
+
+	ethic = "ethic_xenophile"
+	ethic = "ethic_pacifist"
+	ethic = "ethic_materialist"
+
+	planet_name = "STG_planet_name_minor_norcadian_harmony"
+	planet_class = "pc_continental"
+	system_name = "STG_system_name_minor_norcadian_harmony"
+
+	graphical_culture = "generic_01"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "spherical"
+			file = "flag_spherical_18.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"dark_purple"
+			"dark_blue"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_minor_norcadian_harmony"
+		gender = male
+		portrait = "norcadian"
+		texture = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+# ── Alliance (03 gamma quadrant) ──
+stg_minor_nyberrite_alliance = {
+	name = "STG_EMPIRE_minor_nyberrite_alliance"
+	adjective = "STG_adjective_minor_nyberrite_alliance"
+	spawn_enabled = yes
+	playable = stg_never
+
+	ship_prefix = "STG_ship_prefix_minor_nyberrite_alliance"
+
+	species = {
+		class = "NYB"
+		portrait = "nyberrite"
+		name = "STG_species_name_minor_nyberrite_alliance"
+		plural = "STG_species_plural_minor_nyberrite_alliance"
+		adjective = "STG_species_adjective_minor_nyberrite_alliance"
+		name_list = "STG_MAM1"
+		trait = "trait_organic"
+		trait = "trait_charismatic"
+		trait = "trait_nomadic"
+		trait = "trait_solitary"
+	}
+
+	room = "personality_democratic_crusaders_room"
+
+	authority = "auth_democratic"
+	civics = { "civic_technocracy" "civic_free_haven" }
+	government = gov_rational_consensus
+	origin = "origin_default"
+
+	ethic = "ethic_xenophile"
+	ethic = "ethic_pacifist"
+	ethic = "ethic_materialist"
+
+	planet_name = "STG_planet_name_minor_nyberrite_alliance"
+	planet_class = "pc_continental"
+	system_name = "STG_system_name_minor_nyberrite_alliance"
+
+	graphical_culture = "dominion"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "legion"
+			file = "legion_05.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"beige"
+			"orange"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_minor_nyberrite_alliance"
+		gender = female
+		portrait = "nyberrite_female_04"
+		texture = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+# ── Sector Authority (04 delta quadrant) ──
+stg_minor_nygean_sector_authority = {
+	name = "STG_EMPIRE_minor_nygean_sector_authority"
+	adjective = "STG_adjective_minor_nygean_sector_authority"
+	spawn_enabled = yes
+	playable = stg_never
+
+	ship_prefix = "STG_ship_prefix_minor_nygean_sector_authority"
+
+	species = {
+		class = "NYG"
+		portrait = "nygean"
+		name = "STG_species_name_minor_nygean_sector_authority"
+		plural = "STG_species_plural_minor_nygean_sector_authority"
+		adjective = "STG_species_adjective_minor_nygean_sector_authority"
+		name_list = "STG_MAM1"
+		trait = "trait_organic"
+		trait = "trait_industrious"
+		trait = "trait_deviants"
+		trait = "trait_traditional"
+	}
+
+	room = "personality_erudite_explorers_room"
+
+	authority = "auth_imperial"
+	civics = { "civic_crowdsourcing" "civic_philosopher_king" }
+	government = gov_enlightened_monarchy
+	origin = "origin_default"
+
+	ethic = "ethic_authoritarian"
+	ethic = "ethic_xenophobe"
+	ethic = "ethic_spiritualist"
+
+	planet_name = "STG_planet_name_minor_nygean_sector_authority"
+	planet_class = "pc_continental"
+	system_name = "STG_system_name_minor_nygean_sector_authority"
+
+	graphical_culture = "malon"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "blocky"
+			file = "flag_blocky_15.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"dark_blue"
+			"dark_purple"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_minor_nygean_sector_authority"
+		gender = male
+		portrait = "leader_nygean_male_01"
+		texture = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+# ── Orion (02 beta quadrant) ──
+stg_minor_orion_free_states = {
+	name = "STG_EMPIRE_minor_orion_free_states"
+	adjective = "STG_adjective_minor_orion_free_states"
+	spawn_enabled = yes
+	playable = stg_never
+
+	ship_prefix = "STG_ship_prefix_minor_orion_free_states"
+
+	species = {
+		class = "ORI"
+		portrait = "orion"
+		name = "STG_species_name_minor_orion_free_states"
+		plural = "STG_species_plural_minor_orion_free_states"
+		adjective = "STG_species_adjective_minor_orion_free_states"
+		name_list = "STG_ORION"
+		trait = "trait_organic"
+		trait = "trait_intelligent"
+		trait = "trait_natural_physicists"
+		trait = "trait_fleeting"
+	}
+
+	room = "personality_slaving_despots_room"
+
+	authority = "auth_oligarchic"
+	civics = { "civic_twisted_experimenters" "civic_police_state" }
+	government = gov_executive_committee
+	origin = "origin_default"
+
+	ethic = "ethic_authoritarian"
+	ethic = "ethic_militarist"
+	ethic = "ethic_materialist"
+
+	planet_name = "STG_planet_name_minor_orion_free_states"
+	planet_class = "pc_continental"
+	system_name = "STG_system_name_minor_orion_free_states"
+
+	graphical_culture = "ferengi"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "trek"
+			file = "orion.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"dark_red"
+			"grey"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_minor_orion_free_states"
+		gender = female
+		portrait = "orion_female_01"
+		texture = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+# ── Hunters (03 gamma quadrant) ──
+stg_minor_oschean_hunters = {
+	name = "STG_EMPIRE_minor_oschean_hunters"
+	adjective = "STG_adjective_minor_oschean_hunters"
+	spawn_enabled = yes
+	playable = stg_never
+
+	ship_prefix = "STG_ship_prefix_minor_oschean_hunters"
+
+	species = {
+		class = "OSC"
+		portrait = "oschean"
+		name = "STG_species_name_minor_oschean_hunters"
+		plural = "STG_species_plural_minor_oschean_hunters"
+		adjective = "STG_species_adjective_minor_oschean_hunters"
+		name_list = "STG_OSCHEAN"
+		trait = "trait_organic"
+		trait = "trait_communal"
+		trait = "trait_talented"
+	}
+
+	room = "personality_democratic_crusaders_room"
+
+	authority = "auth_oligarchic"
+	civics = { "civic_twisted_experimenters" "civic_police_state" }
+	government = gov_executive_committee
+	origin = "origin_default"
+
+	ethic = "ethic_authoritarian"
+	ethic = "ethic_militarist"
+	ethic = "ethic_materialist"
+
+	planet_name = "STG_planet_name_minor_oschean_hunters"
+	planet_class = "pc_desert"
+	system_name = "STG_system_name_minor_oschean_hunters"
+
+	graphical_culture = "dominion"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "trek"
+			file = "oschean.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"dark_green"
+			"dark_teal"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_minor_oschean_hunters"
+		gender = male
+		portrait = "oschean_male_01"
+		texture = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+# ── Clan Groups (01 alpha quadrant) ──
+stg_minor_pakled_groupings = {
+	name = "STG_EMPIRE_minor_pakled_groupings"
+	adjective = "STG_adjective_minor_pakled_groupings"
+	spawn_enabled = yes
+	playable = stg_never
+
+	ship_prefix = "STG_ship_prefix_minor_pakled_groupings"
+
+	species = {
+		class = "PAK"
+		portrait = "pakled"
+		name = "STG_species_name_minor_pakled_groupings"
+		plural = "STG_species_plural_minor_pakled_groupings"
+		adjective = "STG_species_adjective_minor_pakled_groupings"
+		name_list = "STG_PAKLED"
+		trait = "trait_organic"
+		trait = "trait_industrious"
+		trait = "trait_communal"
+		# Was trait_solitary, which vanilla declares `opposites` with communal.
+		# Nine minor powers carried the same copied four-trait block as the Xindi
+		# in stg_frontier_powers.txt; quarrelsome is the same -1 and keeps the
+		# total at BIOLOGICAL's 2.
+		trait = "trait_quarrelsome"
+	}
+
+	room = "personality_ruthless_capitalists_room"
+
+	authority = "auth_imperial"
+	civics = { "civic_crowdsourcing" "civic_philosopher_king" }
+	government = gov_enlightened_monarchy
+	origin = "origin_default"
+
+	ethic = "ethic_authoritarian"
+	ethic = "ethic_xenophobe"
+	ethic = "ethic_spiritualist"
+
+	planet_name = "STG_planet_name_minor_pakled_groupings"
+	planet_class = "pc_continental"
+	system_name = "STG_system_name_minor_pakled_groupings"
+
+	graphical_culture = "cardassian"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "trek"
+			file = "pakled.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"dark_brown"
+			"dark_blue"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_minor_pakled_groupings"
+		gender = male
+		portrait = "pakled_male_01"
+		texture = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+# ── Commonwealth (03 gamma quadrant) ──
+stg_minor_paradan_commonwealth = {
+	name = "STG_EMPIRE_minor_paradan_commonwealth"
+	adjective = "STG_adjective_minor_paradan_commonwealth"
+	spawn_enabled = yes
+	playable = stg_never
+
+	ship_prefix = "STG_ship_prefix_minor_paradan_commonwealth"
+
+	species = {
+		class = "PAR"
+		portrait = "paradan"
+		name = "STG_species_name_minor_paradan_commonwealth"
+		plural = "STG_species_plural_minor_paradan_commonwealth"
+		adjective = "STG_species_adjective_minor_paradan_commonwealth"
+		name_list = "STG_ARGRATHI"
+		trait = "trait_organic"
+		trait = "trait_industrious"
+		trait = "trait_deviants"
+		trait = "trait_traditional"
+	}
+
+	room = "personality_fanatic_purifier_room"
+
+	authority = "auth_oligarchic"
+	civics = { "civic_twisted_experimenters" "civic_police_state" }
+	government = gov_executive_committee
+	origin = "origin_default"
+
+	ethic = "ethic_authoritarian"
+	ethic = "ethic_militarist"
+	ethic = "ethic_materialist"
+
+	planet_name = "STG_planet_name_minor_paradan_commonwealth"
+	planet_class = "pc_continental"
+	system_name = "STG_system_name_minor_paradan_commonwealth"
+
+	graphical_culture = "dominion"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "trek"
+			file = "paradan.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"dark_green"
+			"purple"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_minor_paradan_commonwealth"
+		gender = male
+		portrait = "leader_male_05"
+		texture = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+# ── Auxiliary (04 delta quadrant) ──
+stg_minor_pralor_auxiliary = {
+	name = "STG_EMPIRE_minor_pralor_auxiliary"
+	adjective = "STG_adjective_minor_pralor_auxiliary"
+	spawn_enabled = yes
+	playable = stg_never
+
+	ship_prefix = "STG_ship_prefix_minor_pralor_auxiliary"
+
+	species = {
+		class = "PRA"
+		portrait = "pralor"
+		name = "STG_species_name_minor_pralor_auxiliary"
+		plural = "STG_species_plural_minor_pralor_auxiliary"
+		adjective = "STG_species_adjective_minor_pralor_auxiliary"
+		name_list = "STG_PRALOR"
+		trait = "trait_organic"
+		trait = "trait_strong"
+		trait = "trait_resilient"
+	}
+
+	room = "personality_xenophobic_isolationists_room"
+
+	authority = "auth_democratic"
+	civics = { "civic_shared_burden" "civic_functional_architecture" }
+	government = gov_communal_parity
+	origin = "origin_default"
+
+	ethic = "ethic_fanatic_egalitarian"
+	ethic = "ethic_materialist"
+
+	planet_name = "STG_planet_name_minor_pralor_auxiliary"
+	planet_class = "pc_arctic"
+	system_name = "STG_system_name_minor_pralor_auxiliary"
+
+	graphical_culture = "borg"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "trek"
+			file = "pralor.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"burgundy"
+			"beige"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_minor_pralor_auxiliary"
+		gender = male
+		portrait = "pralor_male_01"
+		texture = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+# ── Third Imperium (03 gamma quadrant) ──
+stg_minor_rakharian_free_states = {
+	name = "STG_EMPIRE_minor_rakharian_free_states"
+	adjective = "STG_adjective_minor_rakharian_free_states"
+	spawn_enabled = yes
+	playable = stg_never
+
+	ship_prefix = "STG_ship_prefix_minor_rakharian_free_states"
+
+	species = {
+		class = "RAK"
+		portrait = "rakhari"
+		name = "STG_species_name_minor_rakharian_free_states"
+		plural = "STG_species_plural_minor_rakharian_free_states"
+		adjective = "STG_species_adjective_minor_rakharian_free_states"
+		name_list = "STG_RAKHARI"
+		trait = "trait_organic"
+		trait = "trait_industrious"
+		trait = "trait_deviants"
+		trait = "trait_traditional"
+	}
+
+	room = "personality_hegemonic_imperialists_room"
+
+	authority = "auth_dictatorial"
+	civics = { "civic_corvee_system" "civic_cutthroat_politics" }
+	government = gov_constitutional_dictatorship
+	origin = "origin_default"
+
+	ethic = "ethic_fanatic_authoritarian"
+	ethic = "ethic_xenophobe"
+
+	planet_name = "STG_planet_name_minor_rakharian_free_states"
+	planet_class = "pc_desert"
+	system_name = "STG_system_name_minor_rakharian_free_states"
+
+	graphical_culture = "generic_01"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "trek"
+			file = "rakhari.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"dark_green"
+			"beige"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_minor_rakharian_free_states"
+		gender = male
+		portrait = "rakhari_male_04"
+		texture = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+# ── Consortium (02 beta quadrant) ──
+stg_minor_rigellian_consortium = {
+	name = "STG_EMPIRE_minor_rigellian_consortium"
+	adjective = "STG_adjective_minor_rigellian_consortium"
+	spawn_enabled = yes
+	playable = stg_never
+
+	ship_prefix = "STG_ship_prefix_minor_rigellian_consortium"
+
+	species = {
+		class = "RIG"
+		portrait = "rigellian"
+		name = "STG_species_name_minor_rigellian_consortium"
+		plural = "STG_species_plural_minor_rigellian_consortium"
+		adjective = "STG_species_adjective_minor_rigellian_consortium"
+		name_list = "STG_RIGELLIAN"
+		trait = "trait_organic"
+		trait = "trait_communal"
+		trait = "trait_talented"
+	}
+
+	room = "personality_ruthless_capitalists_room"
+
+	authority = "auth_democratic"
+	civics = { "civic_beacon_of_liberty" "civic_free_haven" }
+	government = gov_moral_democracy
+	origin = "origin_default"
+
+	ethic = "ethic_egalitarian"
+	ethic = "ethic_fanatic_xenophile"
+
+	initializer = "stg_minor_rigellian_consortium_home"
+	planet_name = "STG_planet_name_minor_rigellian_consortium"
+	planet_class = "pc_arctic"
+	system_name = "STG_system_name_minor_rigellian_consortium"
+
+	graphical_culture = "generic_05"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "spherical"
+			file = "flag_spherical_13.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"intense_burgundy"
+			"yellow"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_minor_rigellian_consortium"
+		gender = male
+		portrait = "rigellian_male_01"
+		texture = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+# ── League (01 alpha quadrant) ──
+stg_minor_saurian_league = {
+	name = "STG_EMPIRE_minor_saurian_league"
+	adjective = "STG_adjective_minor_saurian_league"
+	spawn_enabled = yes
+	playable = stg_never
+
+	ship_prefix = "STG_ship_prefix_minor_saurian_league"
+
+	species = {
+		class = "SAU"
+		portrait = "saurian"
+		name = "STG_species_name_minor_saurian_league"
+		plural = "STG_species_plural_minor_saurian_league"
+		adjective = "STG_species_adjective_minor_saurian_league"
+		name_list = "STG_SAURIAN"
+		trait = "trait_organic"
+		trait = "trait_charismatic"
+		trait = "trait_nomadic"
+		trait = "trait_solitary"
+	}
+
+	room = "personality_hive_mind_room"
+
+	authority = "auth_democratic"
+	civics = { "civic_technocracy" "civic_free_haven" }
+	government = gov_rational_consensus
+	origin = "origin_default"
+
+	ethic = "ethic_xenophile"
+	ethic = "ethic_pacifist"
+	ethic = "ethic_materialist"
+
+	planet_name = "STG_planet_name_minor_saurian_league"
+	planet_class = "pc_desert"
+	system_name = "STG_system_name_minor_saurian_league"
+
+	graphical_culture = "generic_02"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "trek"
+			file = "saurian.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"dark_purple"
+			"dark_teal"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_minor_saurian_league"
+		gender = male
+		portrait = "saurian_01"
+		texture = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+# ── Clutches (01 alpha quadrant) ──
+stg_minor_selay_clutches = {
+	name = "STG_EMPIRE_minor_selay_clutches"
+	adjective = "STG_adjective_minor_selay_clutches"
+	spawn_enabled = yes
+	playable = stg_never
+
+	ship_prefix = "STG_ship_prefix_minor_selay_clutches"
+
+	species = {
+		class = "SEL"
+		portrait = "selay"
+		name = "STG_species_name_minor_selay_clutches"
+		plural = "STG_species_plural_minor_selay_clutches"
+		adjective = "STG_species_adjective_minor_selay_clutches"
+		name_list = "STG_SELAY"
+		trait = "trait_organic"
+		trait = "trait_strong"
+		trait = "trait_resilient"
+	}
+
+	room = "personality_erudite_explorers_room"
+
+	authority = "auth_democratic"
+	civics = { "civic_nationalistic_zeal" "civic_citizen_service" }
+	government = gov_military_commissariat
+	origin = "origin_default"
+
+	ethic = "ethic_fanatic_egalitarian"
+	ethic = "ethic_militarist"
+
+	planet_name = "STG_planet_name_minor_selay_clutches"
+	planet_class = "pc_continental"
+	system_name = "STG_system_name_minor_selay_clutches"
+
+	graphical_culture = "xindi"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "zoological"
+			file = "flag_zoological_17.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"red"
+			"pink"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_minor_selay_clutches"
+		gender = male
+		portrait = "selay_01"
+		texture = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+# ── Corporate (01 alpha quadrant) ──
+stg_minor_sheliak_corporate = {
+	name = "STG_EMPIRE_minor_sheliak_corporate"
+	adjective = "STG_adjective_minor_sheliak_corporate"
+	spawn_enabled = yes
+	playable = stg_never
+
+	ship_prefix = "STG_ship_prefix_minor_sheliak_corporate"
+
+	species = {
+		class = "SHE"
+		portrait = "sheliak"
+		name = "STG_species_name_minor_sheliak_corporate"
+		plural = "STG_species_plural_minor_sheliak_corporate"
+		adjective = "STG_species_adjective_minor_sheliak_corporate"
+		name_list = "STG_SHELIAK"
+		trait = "trait_organic"
+		trait = "trait_industrious"
+		trait = "trait_deviants"
+		trait = "trait_traditional"
+	}
+
+	room = "sheliak_room"
+
+	authority = "auth_imperial"
+	civics = { "civic_crowdsourcing" "civic_philosopher_king" }
+	government = gov_enlightened_monarchy
+	origin = "origin_default"
+
+	ethic = "ethic_authoritarian"
+	ethic = "ethic_xenophobe"
+	ethic = "ethic_spiritualist"
+
+	planet_name = "STG_planet_name_minor_sheliak_corporate"
+	planet_class = "pc_desert"
+	system_name = "STG_system_name_minor_sheliak_corporate"
+
+	graphical_culture = "tholian"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "trek"
+			file = "sheliak.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"burgundy"
+			"dark_teal"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_minor_sheliak_corporate"
+		gender = male
+		portrait = "sheliak_01"
+		texture = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+# ── Republic (03 gamma quadrant) ──
+stg_minor_skrreean_republic = {
+	name = "STG_EMPIRE_minor_skrreean_republic"
+	adjective = "STG_adjective_minor_skrreean_republic"
+	spawn_enabled = yes
+	playable = stg_never
+
+	ship_prefix = "STG_ship_prefix_minor_skrreean_republic"
+
+	species = {
+		class = "SKR"
+		portrait = "skrreean"
+		name = "STG_species_name_minor_skrreean_republic"
+		plural = "STG_species_plural_minor_skrreean_republic"
+		adjective = "STG_species_adjective_minor_skrreean_republic"
+		name_list = "STG_ARGRATHI"
+		trait = "trait_organic"
+		trait = "trait_agrarian"
+	}
+
+	room = "personality_migrating_flock_room"
+
+	authority = "auth_dictatorial"
+	civics = { "civic_agrarian_idyll" "civic_environmentalist" }
+	government = gov_irenic_dictatorship
+	origin = "origin_default"
+
+	ethic = "ethic_xenophobe"
+	ethic = "ethic_fanatic_pacifist"
+
+	planet_name = "STG_planet_name_minor_skrreean_republic"
+	planet_class = "pc_desert"
+	system_name = "STG_system_name_minor_skrreean_republic"
+
+	graphical_culture = "generic_02"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "plantoid"
+			file = "plantoid_09.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"ochre_brown"
+			"khaki_brown"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_minor_skrreean_republic"
+		gender = female
+		portrait = "skrreean_female_01"
+		texture = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+# ── 'Rogoran Empire (03 gamma quadrant) ──
+stg_minor_t_rogoran_empire = {
+	name = "STG_EMPIRE_minor_t_rogoran_empire"
+	adjective = "STG_adjective_minor_t_rogoran_empire"
+	spawn_enabled = yes
+	playable = stg_never
+
+	ship_prefix = "STG_ship_prefix_minor_t_rogoran_empire"
+
+	species = {
+		class = "TRO"
+		portrait = "sth_humanoid_01"
+		name = "STG_species_name_minor_t_rogoran_empire"
+		plural = "STG_species_plural_minor_t_rogoran_empire"
+		adjective = "STG_species_adjective_minor_t_rogoran_empire"
+		name_list = "STG_TROGORAN"
+		trait = "trait_organic"
+		trait = "trait_strong"
+		trait = "trait_resilient"
+	}
+
+	room = "personality_hegemonic_imperialists_room"
+
+	authority = "auth_imperial"
+	civics = { "civic_crowdsourcing" "civic_philosopher_king" }
+	government = gov_enlightened_monarchy
+	origin = "origin_default"
+
+	ethic = "ethic_authoritarian"
+	ethic = "ethic_xenophobe"
+	ethic = "ethic_spiritualist"
+
+	planet_name = "STG_planet_name_minor_t_rogoran_empire"
+	planet_class = "pc_arctic"
+	system_name = "STG_system_name_minor_t_rogoran_empire"
+
+	graphical_culture = "generic_01"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "domination"
+			file = "domination_14.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"dark_teal"
+			"purple"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_minor_t_rogoran_empire"
+		gender = female
+		portrait = "sth_humanoid_01_female_01"
+		texture = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+# ── Republic (01 alpha quadrant) ──
+stg_minor_talarian_republic = {
+	name = "STG_EMPIRE_minor_talarian_republic"
+	adjective = "STG_adjective_minor_talarian_republic"
+	spawn_enabled = yes
+	playable = stg_never
+
+	ship_prefix = "STG_ship_prefix_minor_talarian_republic"
+
+	species = {
+		class = "TAL"
+		portrait = "talarian"
+		name = "STG_species_name_minor_talarian_republic"
+		plural = "STG_species_plural_minor_talarian_republic"
+		adjective = "STG_species_adjective_minor_talarian_republic"
+		name_list = "STG_TALARIAN"
+		trait = "trait_organic"
+		trait = "trait_communal"
+		trait = "trait_talented"
+	}
+
+	room = "personality_xenophobic_isolationists_room"
+
+	authority = "auth_democratic"
+	civics = { "civic_nationalistic_zeal" "civic_citizen_service" }
+	government = gov_military_commissariat
+	origin = "origin_default"
+
+	ethic = "ethic_fanatic_egalitarian"
+	ethic = "ethic_militarist"
+
+	planet_name = "STG_planet_name_minor_talarian_republic"
+	planet_class = "pc_continental"
+	system_name = "STG_system_name_minor_talarian_republic"
+
+	graphical_culture = "generic_02"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "trek"
+			file = "talarian.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"dark_green"
+			"ochre_brown"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_minor_talarian_republic"
+		gender = male
+		portrait = "talarian_male_01"
+		texture = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+# ── Commonality (04 delta quadrant) ──
+stg_minor_talaxian_empire = {
+	name = "STG_EMPIRE_minor_talaxian_empire"
+	adjective = "STG_adjective_minor_talaxian_empire"
+	spawn_enabled = yes
+	playable = stg_never
+
+	ship_prefix = "STG_ship_prefix_minor_talaxian_empire"
+
+	species = {
+		class = "TALA"
+		portrait = "talaxian"
+		name = "STG_species_name_minor_talaxian_empire"
+		plural = "STG_species_plural_minor_talaxian_empire"
+		adjective = "STG_species_adjective_minor_talaxian_empire"
+		name_list = "STG_TALAXIAN"
+		trait = "trait_organic"
+		trait = "trait_agrarian"
+	}
+
+	room = "personality_migrating_flock_room"
+
+	authority = "auth_oligarchic"
+	civics = { "civic_corporate_dominion" "civic_shadow_council" }
+	government = gov_trade_league
+	origin = "origin_default"
+
+	ethic = "ethic_egalitarian"
+	ethic = "ethic_spiritualist"
+	ethic = "ethic_pacifist"
+
+	planet_name = "STG_planet_name_minor_talaxian_empire"
+	planet_class = "pc_continental"
+	system_name = "STG_system_name_minor_talaxian_empire"
+
+	graphical_culture = "malon"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "trek"
+			file = "talaxian.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"orange"
+			"yellow"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_minor_talaxian_empire"
+		gender = male
+		portrait = "talaxian_male_01"
+		texture = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+# ── Unity (01 alpha quadrant) ──
+stg_minor_tamarian_unity = {
+	name = "STG_EMPIRE_minor_tamarian_unity"
+	adjective = "STG_adjective_minor_tamarian_unity"
+	spawn_enabled = yes
+	playable = stg_never
+
+	ship_prefix = "STG_ship_prefix_minor_tamarian_unity"
+
+	species = {
+		class = "TAM"
+		portrait = "tamarian"
+		name = "STG_species_name_minor_tamarian_unity"
+		plural = "STG_species_plural_minor_tamarian_unity"
+		adjective = "STG_species_adjective_minor_tamarian_unity"
+		name_list = "STG_TAMARIAN"
+		trait = "trait_organic"
+		trait = "trait_agrarian"
+	}
+
+	room = "personality_spiritual_seekers_room"
+
+	authority = "auth_democratic"
+	civics = { "civic_superstitious_beliefs" "civic_memorialist" }
+	government = gov_theocratic_republic
+	origin = "origin_default"
+
+	ethic = "ethic_xenophile"
+	ethic = "ethic_pacifist"
+	ethic = "ethic_spiritualist"
+
+	planet_name = "STG_planet_name_minor_tamarian_unity"
+	planet_class = "pc_continental"
+	system_name = "STG_system_name_minor_tamarian_unity"
+
+	graphical_culture = "lukari"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "trek"
+			file = "tamarian.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"dark_teal"
+			"beige"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_minor_tamarian_unity"
+		gender = male
+		portrait = "tamarian_male_01"
+		texture = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+# ── Technocracy (01 alpha quadrant) ──
+stg_minor_tellarian_technocracy = {
+	name = "STG_EMPIRE_minor_tellarian_technocracy"
+	adjective = "STG_adjective_minor_tellarian_technocracy"
+	spawn_enabled = yes
+	playable = stg_never
+
+	ship_prefix = "STG_ship_prefix_minor_tellarian_technocracy"
+
+	species = {
+		class = "TEL"
+		portrait = "tellarite"
+		name = "STG_species_name_minor_tellarian_technocracy"
+		plural = "STG_species_plural_minor_tellarian_technocracy"
+		adjective = "STG_species_adjective_minor_tellarian_technocracy"
+		name_list = "STG_TELLARITE"
+		trait = "trait_organic"
+		trait = "trait_charismatic"
+		trait = "trait_nomadic"
+		trait = "trait_solitary"
+	}
+
+	room = "personality_peaceful_traders_room"
+
+	authority = "auth_democratic"
+	civics = { "civic_technocracy" "civic_free_haven" }
+	government = gov_rational_consensus
+	origin = "origin_default"
+
+	ethic = "ethic_xenophile"
+	ethic = "ethic_pacifist"
+	ethic = "ethic_materialist"
+
+	planet_name = "STG_planet_name_minor_tellarian_technocracy"
+	planet_class = "pc_continental"
+	system_name = "STG_system_name_minor_tellarian_technocracy"
+
+	graphical_culture = "starfleet_tng"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "trek"
+			file = "tellarite.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"dark_brown"
+			"red"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_minor_tellarian_technocracy"
+		gender = male
+		portrait = "leader_male_tellarite_01"
+		texture = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+# ── Alliance (04 delta quadrant) ──
+stg_minor_trabe_alliance = {
+	name = "STG_EMPIRE_minor_trabe_alliance"
+	adjective = "STG_adjective_minor_trabe_alliance"
+	spawn_enabled = yes
+	playable = stg_never
+
+	ship_prefix = "STG_ship_prefix_minor_trabe_alliance"
+
+	species = {
+		class = "TRA"
+		portrait = "trabe"
+		name = "STG_species_name_minor_trabe_alliance"
+		plural = "STG_species_plural_minor_trabe_alliance"
+		adjective = "STG_species_adjective_minor_trabe_alliance"
+		name_list = "STG_TRABE"
+		trait = "trait_organic"
+		trait = "trait_strong"
+		trait = "trait_resilient"
+	}
+
+	room = "personality_slaving_despots_room"
+
+	authority = "auth_oligarchic"
+	civics = { "civic_twisted_experimenters" "civic_police_state" }
+	government = gov_executive_committee
+	origin = "origin_default"
+
+	ethic = "ethic_authoritarian"
+	ethic = "ethic_militarist"
+	ethic = "ethic_materialist"
+
+	planet_name = "STG_planet_name_minor_trabe_alliance"
+	planet_class = "pc_desert"
+	system_name = "STG_system_name_minor_trabe_alliance"
+
+	graphical_culture = "malon"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "trek"
+			file = "trabe.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"red"
+			"beige"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_minor_trabe_alliance"
+		gender = male
+		portrait = "trabe_male_01"
+		texture = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+# ── Commonwealth (04 delta quadrant) ──
+stg_minor_turei_commonwealth = {
+	name = "STG_EMPIRE_minor_turei_commonwealth"
+	adjective = "STG_adjective_minor_turei_commonwealth"
+	spawn_enabled = yes
+	playable = stg_never
+
+	ship_prefix = "STG_ship_prefix_minor_turei_commonwealth"
+
+	species = {
+		class = "TUR"
+		portrait = "turei"
+		name = "STG_species_name_minor_turei_commonwealth"
+		plural = "STG_species_plural_minor_turei_commonwealth"
+		adjective = "STG_species_adjective_minor_turei_commonwealth"
+		name_list = "STG_MAM3"
+		trait = "trait_organic"
+		trait = "trait_strong"
+		trait = "trait_resilient"
+	}
+
+	room = "personality_metalheads_room"
+
+	authority = "auth_oligarchic"
+	civics = { "civic_twisted_experimenters" "civic_police_state" }
+	government = gov_executive_committee
+	origin = "origin_default"
+
+	ethic = "ethic_authoritarian"
+	ethic = "ethic_militarist"
+	ethic = "ethic_materialist"
+
+	planet_name = "STG_planet_name_minor_turei_commonwealth"
+	planet_class = "pc_arctic"
+	system_name = "STG_system_name_minor_turei_commonwealth"
+
+	graphical_culture = "generic_02"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "trek"
+			file = "turei.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"dark_blue"
+			"khaki_brown"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_minor_turei_commonwealth"
+		gender = male
+		portrait = "stg_tur_ruler"
+		texture = 0
+		clothes = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+# ── Coalition (01 alpha quadrant) ──
+stg_minor_tzenkethi_coalition = {
+	name = "STG_EMPIRE_minor_tzenkethi_coalition"
+	adjective = "STG_adjective_minor_tzenkethi_coalition"
+	spawn_enabled = yes
+	playable = stg_never
+
+	ship_prefix = "STG_ship_prefix_minor_tzenkethi_coalition"
+
+	species = {
+		class = "TZE"
+		portrait = "tzenkethi"
+		name = "STG_species_name_minor_tzenkethi_coalition"
+		plural = "STG_species_plural_minor_tzenkethi_coalition"
+		adjective = "STG_species_adjective_minor_tzenkethi_coalition"
+		name_list = "STG_TZENKETHI"
+		trait = "trait_organic"
+		trait = "trait_industrious"
+		trait = "trait_communal"
+		# Was trait_solitary, which vanilla declares `opposites` with communal.
+		# Nine minor powers carried the same copied four-trait block as the Xindi
+		# in stg_frontier_powers.txt; quarrelsome is the same -1 and keeps the
+		# total at BIOLOGICAL's 2.
+		trait = "trait_quarrelsome"
+	}
+
+	room = "personality_hive_mind_room"
+
+	authority = "auth_oligarchic"
+	civics = { "civic_twisted_experimenters" "civic_police_state" }
+	government = gov_executive_committee
+	origin = "origin_default"
+
+	ethic = "ethic_authoritarian"
+	ethic = "ethic_militarist"
+	ethic = "ethic_materialist"
+
+	planet_name = "STG_planet_name_minor_tzenkethi_coalition"
+	planet_class = "pc_continental"
+	system_name = "STG_system_name_minor_tzenkethi_coalition"
+
+	graphical_culture = "tuterian"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "trek"
+			file = "tzenkethi.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"grey"
+			"brown"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_minor_tzenkethi_coalition"
+		gender = male
+		portrait = "tzenkethi_01"
+		texture = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+# ── Undine (00 major powers) ──
+stg_minor_undine_vanguard = {
+	name = "STG_EMPIRE_minor_undine_vanguard"
+	adjective = "STG_adjective_minor_undine_vanguard"
+	spawn_enabled = yes
+	playable = stg_never
+
+	ship_prefix = "STG_ship_prefix_minor_undine_vanguard"
+
+	species = {
+		class = "UND"
+		portrait = "undine"
+		name = "STG_species_name_minor_undine_vanguard"
+		plural = "STG_species_plural_minor_undine_vanguard"
+		adjective = "STG_species_adjective_minor_undine_vanguard"
+		name_list = "STG_UNDINE"
+		trait = "trait_organic"
+		trait = "trait_industrious"
+		trait = "trait_communal"
+		# Was trait_solitary, which vanilla declares `opposites` with communal.
+		# Nine minor powers carried the same copied four-trait block as the Xindi
+		# in stg_frontier_powers.txt; quarrelsome is the same -1 and keeps the
+		# total at BIOLOGICAL's 2.
+		trait = "trait_quarrelsome"
+	}
+
+	room = "undine_room"
+
+	authority = "auth_dictatorial"
+	civics = { "civic_corvee_system" "civic_cutthroat_politics" }
+	government = gov_constitutional_dictatorship
+	origin = "origin_default"
+
+	ethic = "ethic_fanatic_authoritarian"
+	ethic = "ethic_xenophobe"
+
+	planet_name = "STG_planet_name_minor_undine_vanguard"
+	planet_class = "pc_continental"
+	system_name = "STG_system_name_minor_undine_vanguard"
+
+	graphical_culture = "elachi"
+	city_graphical_culture = "undine_01"
+
+	empire_flag = {
+		icon = {
+			category = "trek"
+			file = "8472.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"grey"
+			"dark_purple"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_minor_undine_vanguard"
+		gender = male
+		portrait = "undine_01"
+		texture = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+# ── Congress of Banea (04 delta quadrant) ──
+stg_minor_united_congress_of_banea = {
+	name = "STG_EMPIRE_minor_united_congress_of_banea"
+	adjective = "STG_adjective_minor_united_congress_of_banea"
+	spawn_enabled = yes
+	playable = stg_never
+
+	ship_prefix = "STG_ship_prefix_minor_united_congress_of_banea"
+
+	species = {
+		class = "UNI"
+		portrait = "banea"
+		name = "STG_species_name_minor_united_congress_of_banea"
+		plural = "STG_species_plural_minor_united_congress_of_banea"
+		adjective = "STG_species_adjective_minor_united_congress_of_banea"
+		name_list = "STG_BANEAN"
+		trait = "trait_organic"
+		trait = "trait_communal"
+		trait = "trait_talented"
+	}
+
+	room = "personality_federation_builders_room"
+
+	authority = "auth_democratic"
+	civics = { "civic_technocracy" "civic_free_haven" }
+	government = gov_rational_consensus
+	origin = "origin_default"
+
+	ethic = "ethic_xenophile"
+	ethic = "ethic_pacifist"
+	ethic = "ethic_materialist"
+
+	planet_name = "STG_planet_name_minor_united_congress_of_banea"
+	planet_class = "pc_desert"
+	system_name = "STG_system_name_minor_united_congress_of_banea"
+
+	graphical_culture = "malon"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "trek"
+			file = "banea.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"ochre_brown"
+			"dark_brown"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_minor_united_congress_of_banea"
+		gender = male
+		portrait = "banea_male_05"
+		texture = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+# ── Supremacy (04 delta quadrant) ──
+stg_minor_vaadwaur_supremacy = {
+	name = "STG_EMPIRE_minor_vaadwaur_supremacy"
+	adjective = "STG_adjective_minor_vaadwaur_supremacy"
+	spawn_enabled = yes
+	playable = stg_never
+
+	ship_prefix = "STG_ship_prefix_minor_vaadwaur_supremacy"
+
+	species = {
+		class = "VAA"
+		portrait = "vaadwaur"
+		name = "STG_species_name_minor_vaadwaur_supremacy"
+		plural = "STG_species_plural_minor_vaadwaur_supremacy"
+		adjective = "STG_species_adjective_minor_vaadwaur_supremacy"
+		name_list = "STG_VAADWAUR"
+		trait = "trait_organic"
+		trait = "trait_strong"
+		trait = "trait_resilient"
+	}
+
+	room = "personality_hegemonic_imperialists_room"
+
+	authority = "auth_imperial"
+	civics = { "civic_crowdsourcing" "civic_philosopher_king" }
+	government = gov_enlightened_monarchy
+	origin = "origin_default"
+
+	ethic = "ethic_authoritarian"
+	ethic = "ethic_xenophobe"
+	ethic = "ethic_spiritualist"
+
+	planet_name = "STG_planet_name_minor_vaadwaur_supremacy"
+	planet_class = "pc_continental"
+	system_name = "STG_system_name_minor_vaadwaur_supremacy"
+
+	graphical_culture = "vidiian"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "trek"
+			file = "vaadwaur.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"dark_blue"
+			"dark_blue"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_minor_vaadwaur_supremacy"
+		gender = male
+		portrait = "vaadwaur_male_01"
+		texture = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+# ── Freeholds (01 alpha quadrant) ──
+stg_minor_valerian_freeholds = {
+	name = "STG_EMPIRE_minor_valerian_freeholds"
+	adjective = "STG_adjective_minor_valerian_freeholds"
+	spawn_enabled = yes
+	playable = stg_never
+
+	ship_prefix = "STG_ship_prefix_minor_valerian_freeholds"
+
+	species = {
+		class = "VAL"
+		portrait = "valerian"
+		name = "STG_species_name_minor_valerian_freeholds"
+		plural = "STG_species_plural_minor_valerian_freeholds"
+		adjective = "STG_species_adjective_minor_valerian_freeholds"
+		name_list = "STG_VALERIAN"
+		trait = "trait_organic"
+		trait = "trait_communal"
+		trait = "trait_talented"
+	}
+
+	room = "personality_hive_mind_room"
+
+	authority = "auth_oligarchic"
+	civics = { "civic_twisted_experimenters" "civic_police_state" }
+	government = gov_executive_committee
+	origin = "origin_default"
+
+	ethic = "ethic_authoritarian"
+	ethic = "ethic_militarist"
+	ethic = "ethic_materialist"
+
+	planet_name = "STG_planet_name_minor_valerian_freeholds"
+	planet_class = "pc_desert"
+	system_name = "STG_system_name_minor_valerian_freeholds"
+
+	graphical_culture = "generic_02"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "trek"
+			file = "valerian.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"dark_orange"
+			"dark_purple"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_minor_valerian_freeholds"
+		gender = female
+		portrait = "valerian_female_02"
+		texture = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+# ── Senate (02 beta quadrant) ──
+stg_minor_valtese_senate = {
+	name = "STG_EMPIRE_minor_valtese_senate"
+	adjective = "STG_adjective_minor_valtese_senate"
+	spawn_enabled = yes
+	playable = stg_never
+
+	ship_prefix = "STG_ship_prefix_minor_valtese_senate"
+
+	species = {
+		class = "VALT"
+		portrait = "valtese"
+		name = "STG_species_name_minor_valtese_senate"
+		plural = "STG_species_plural_minor_valtese_senate"
+		adjective = "STG_species_adjective_minor_valtese_senate"
+		name_list = "STG_VALTESE"
+		trait = "trait_organic"
+		trait = "trait_agrarian"
+	}
+
+	room = "personality_erudite_explorers_room"
+
+	authority = "auth_oligarchic"
+	civics = { "civic_corporate_dominion" "civic_shadow_council" }
+	government = gov_trade_league
+	origin = "origin_default"
+
+	ethic = "ethic_egalitarian"
+	ethic = "ethic_spiritualist"
+	ethic = "ethic_pacifist"
+
+	planet_name = "STG_planet_name_minor_valtese_senate"
+	planet_class = "pc_arctic"
+	system_name = "STG_system_name_minor_valtese_senate"
+
+	graphical_culture = "generic_05"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "trek"
+			file = "valtese.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"dark_purple"
+			"dark_purple"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_minor_valtese_senate"
+		gender = male
+		portrait = "valtese_male_01"
+		texture = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+# ── N'Akat Order (04 delta quadrant) ──
+stg_minor_vau_nakat_order = {
+	name = "STG_EMPIRE_minor_vau_nakat_order"
+	adjective = "STG_adjective_minor_vau_nakat_order"
+	spawn_enabled = yes
+	playable = stg_never
+
+	ship_prefix = "STG_ship_prefix_minor_vau_nakat_order"
+
+	species = {
+		class = "VAU"
+		portrait = "vau_nakat"
+		name = "STG_species_name_minor_vau_nakat_order"
+		plural = "STG_species_plural_minor_vau_nakat_order"
+		adjective = "STG_species_adjective_minor_vau_nakat_order"
+		name_list = "STG_BANEAN"
+		trait = "trait_organic"
+		trait = "trait_industrious"
+		trait = "trait_communal"
+		# Was trait_solitary, which vanilla declares `opposites` with communal.
+		# Nine minor powers carried the same copied four-trait block as the Xindi
+		# in stg_frontier_powers.txt; quarrelsome is the same -1 and keeps the
+		# total at BIOLOGICAL's 2.
+		trait = "trait_quarrelsome"
+	}
+
+	room = "vaunakat_room"
+
+	authority = "auth_imperial"
+	civics = { "civic_crowdsourcing" "civic_philosopher_king" }
+	government = gov_enlightened_monarchy
+	origin = "origin_default"
+
+	ethic = "ethic_authoritarian"
+	ethic = "ethic_xenophobe"
+	ethic = "ethic_spiritualist"
+
+	planet_name = "STG_planet_name_minor_vau_nakat_order"
+	planet_class = "pc_continental"
+	system_name = "STG_system_name_minor_vau_nakat_order"
+
+	graphical_culture = "malon"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "trek"
+			file = "vau_nakat.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"beige"
+			"grey"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_minor_vau_nakat_order"
+		gender = female
+		portrait = "leader_vau_nakat_female_01"
+		texture = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+# ── Theocracy (04 delta quadrant) ──
+stg_minor_voth_theocracy = {
+	name = "STG_EMPIRE_minor_voth_theocracy"
+	adjective = "STG_adjective_minor_voth_theocracy"
+	spawn_enabled = yes
+	playable = stg_never
+
+	ship_prefix = "STG_ship_prefix_minor_voth_theocracy"
+
+	species = {
+		class = "VOT"
+		portrait = "voth"
+		name = "STG_species_name_minor_voth_theocracy"
+		plural = "STG_species_plural_minor_voth_theocracy"
+		adjective = "STG_species_adjective_minor_voth_theocracy"
+		name_list = "STG_VOTH"
+		trait = "trait_organic"
+		trait = "trait_traditional"
+		trait = "trait_talented"
+	}
+
+	room = "voth_room"
+
+	authority = "auth_imperial"
+	civics = { "civic_crowdsourcing" "civic_philosopher_king" }
+	government = gov_enlightened_monarchy
+	origin = "origin_default"
+
+	ethic = "ethic_authoritarian"
+	ethic = "ethic_xenophobe"
+	ethic = "ethic_spiritualist"
+
+	initializer = "stg_minor_voth_theocracy_home"
+	planet_name = "STG_planet_name_minor_voth_theocracy"
+	planet_class = "pc_continental"
+	system_name = "STG_system_name_minor_voth_theocracy"
+
+	graphical_culture = "krenim"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "trek"
+			file = "voth.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"brown"
+			"dark_red"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_minor_voth_theocracy"
+		gender = female
+		portrait = "voth_female_01"
+		texture = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+# ── Emirates (03 gamma quadrant) ──
+stg_minor_wadi_emirates = {
+	name = "STG_EMPIRE_minor_wadi_emirates"
+	adjective = "STG_adjective_minor_wadi_emirates"
+	spawn_enabled = yes
+	playable = stg_never
+
+	ship_prefix = "STG_ship_prefix_minor_wadi_emirates"
+
+	species = {
+		class = "WAD"
+		portrait = "wadi"
+		name = "STG_species_name_minor_wadi_emirates"
+		plural = "STG_species_plural_minor_wadi_emirates"
+		adjective = "STG_species_adjective_minor_wadi_emirates"
+		name_list = "STG_WADI"
+		trait = "trait_organic"
+		trait = "trait_charismatic"
+		trait = "trait_nomadic"
+		trait = "trait_solitary"
+	}
+
+	room = "personality_peaceful_traders_room"
+
+	authority = "auth_democratic"
+	civics = { "civic_technocracy" "civic_free_haven" }
+	government = gov_rational_consensus
+	origin = "origin_default"
+
+	ethic = "ethic_xenophile"
+	ethic = "ethic_pacifist"
+	ethic = "ethic_materialist"
+
+	planet_name = "STG_planet_name_minor_wadi_emirates"
+	planet_class = "pc_arctic"
+	system_name = "STG_system_name_minor_wadi_emirates"
+
+	graphical_culture = "generic_02"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "trek"
+			file = "wadi.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"burgundy"
+			"dark_purple"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_minor_wadi_emirates"
+		gender = male
+		portrait = "wadi_male_01"
+		texture = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+# ── Guilds (01 alpha quadrant) ──
+stg_minor_xepolite_guilds = {
+	name = "STG_EMPIRE_minor_xepolite_guilds"
+	adjective = "STG_adjective_minor_xepolite_guilds"
+	spawn_enabled = yes
+	playable = stg_never
+
+	ship_prefix = "STG_ship_prefix_minor_xepolite_guilds"
+
+	species = {
+		class = "XEP"
+		portrait = "xepolite"
+		name = "STG_species_name_minor_xepolite_guilds"
+		plural = "STG_species_plural_minor_xepolite_guilds"
+		adjective = "STG_species_adjective_minor_xepolite_guilds"
+		name_list = "STG_XEPOLITE"
+		trait = "trait_organic"
+		trait = "trait_charismatic"
+		trait = "trait_nomadic"
+		trait = "trait_solitary"
+	}
+
+	room = "personality_hive_mind_room"
+
+	authority = "auth_democratic"
+	civics = { "civic_technocracy" "civic_free_haven" }
+	government = gov_rational_consensus
+	origin = "origin_default"
+
+	ethic = "ethic_xenophile"
+	ethic = "ethic_pacifist"
+	ethic = "ethic_materialist"
+
+	planet_name = "STG_planet_name_minor_xepolite_guilds"
+	planet_class = "pc_desert"
+	system_name = "STG_system_name_minor_xepolite_guilds"
+
+	graphical_culture = "generic_02"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "trek"
+			file = "xepolite.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"brown"
+			"dark_orange"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_minor_xepolite_guilds"
+		gender = male
+		portrait = "xepolite_male_01"
+		texture = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+# ── Union (03 gamma quadrant) ──
+stg_minor_yaderan_republic = {
+	name = "STG_EMPIRE_minor_yaderan_republic"
+	adjective = "STG_adjective_minor_yaderan_republic"
+	spawn_enabled = yes
+	playable = stg_never
+
+	ship_prefix = "STG_ship_prefix_minor_yaderan_republic"
+
+	species = {
+		class = "YAD"
+		portrait = "yaderan"
+		name = "STG_species_name_minor_yaderan_republic"
+		plural = "STG_species_plural_minor_yaderan_republic"
+		adjective = "STG_species_adjective_minor_yaderan_republic"
+		name_list = "STG_YADERAN"
+		trait = "trait_organic"
+		trait = "trait_industrious"
+		trait = "trait_communal"
+		# Was trait_solitary, which vanilla declares `opposites` with communal.
+		# Nine minor powers carried the same copied four-trait block as the Xindi
+		# in stg_frontier_powers.txt; quarrelsome is the same -1 and keeps the
+		# total at BIOLOGICAL's 2.
+		trait = "trait_quarrelsome"
+	}
+
+	room = "personality_peaceful_traders_room"
+
+	authority = "auth_oligarchic"
+	civics = { "civic_corporate_dominion" "civic_shadow_council" }
+	government = gov_trade_league
+	origin = "origin_default"
+
+	ethic = "ethic_egalitarian"
+	ethic = "ethic_spiritualist"
+	ethic = "ethic_pacifist"
+
+	planet_name = "STG_planet_name_minor_yaderan_republic"
+	planet_class = "pc_continental"
+	system_name = "STG_system_name_minor_yaderan_republic"
+
+	graphical_culture = "dominion"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "trek"
+			file = "yaderan.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"purple"
+			"intense_burgundy"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_minor_yaderan_republic"
+		gender = male
+		portrait = "yaderan_male_01"
+		texture = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+# ── Technocracy (04 delta quadrant) ──
+stg_minor_zahl_technocracy = {
+	name = "STG_EMPIRE_minor_zahl_technocracy"
+	adjective = "STG_adjective_minor_zahl_technocracy"
+	spawn_enabled = yes
+	playable = stg_never
+
+	ship_prefix = "STG_ship_prefix_minor_zahl_technocracy"
+
+	species = {
+		class = "ZAH"
+		portrait = "zahl"
+		name = "STG_species_name_minor_zahl_technocracy"
+		plural = "STG_species_plural_minor_zahl_technocracy"
+		adjective = "STG_species_adjective_minor_zahl_technocracy"
+		name_list = "STG_MAM2"
+		trait = "trait_organic"
+		trait = "trait_strong"
+		trait = "trait_resilient"
+	}
+
+	room = "personality_erudite_explorers_room"
+
+	authority = "auth_democratic"
+	civics = { "civic_technocracy" "civic_free_haven" }
+	government = gov_rational_consensus
+	origin = "origin_default"
+
+	ethic = "ethic_xenophile"
+	ethic = "ethic_pacifist"
+	ethic = "ethic_materialist"
+
+	planet_name = "STG_planet_name_minor_zahl_technocracy"
+	planet_class = "pc_arctic"
+	system_name = "STG_system_name_minor_zahl_technocracy"
+
+	graphical_culture = "malon"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "spherical"
+			file = "flag_spherical_22.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"brown"
+			"grey"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_minor_zahl_technocracy"
+		gender = male
+		portrait = "zahl_male_03"
+		texture = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+# ── Comity (02 beta quadrant) ──
+stg_minor_zakdorn_alliance = {
+	name = "STG_EMPIRE_minor_zakdorn_alliance"
+	adjective = "STG_adjective_minor_zakdorn_alliance"
+	spawn_enabled = yes
+	playable = stg_never
+
+	ship_prefix = "STG_ship_prefix_minor_zakdorn_alliance"
+
+	species = {
+		class = "ZAK"
+		portrait = "zakdorn"
+		name = "STG_species_name_minor_zakdorn_alliance"
+		plural = "STG_species_plural_minor_zakdorn_alliance"
+		adjective = "STG_species_adjective_minor_zakdorn_alliance"
+		name_list = "STG_ZAKDORN"
+		trait = "trait_organic"
+		trait = "trait_strong"
+		trait = "trait_resilient"
+	}
+
+	room = "personality_erudite_explorers_room"
+
+	authority = "auth_democratic"
+	civics = { "civic_technocracy" "civic_free_haven" }
+	government = gov_rational_consensus
+	origin = "origin_default"
+
+	ethic = "ethic_xenophile"
+	ethic = "ethic_pacifist"
+	ethic = "ethic_materialist"
+
+	planet_name = "STG_planet_name_minor_zakdorn_alliance"
+	planet_class = "pc_desert"
+	system_name = "STG_system_name_minor_zakdorn_alliance"
+
+	graphical_culture = "generic_05"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "trek"
+			file = "zakdorn.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"grey"
+			"orange"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_minor_zakdorn_alliance"
+		gender = male
+		portrait = "zakdorn_male_01"
+		texture = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+# ── of Hope (2300s) (05 alt) ──
+stg_minor_tng_coalition_hope = {
+	name = "STG_EMPIRE_minor_tng_coalition_hope"
+	adjective = "STG_adjective_minor_tng_coalition_hope"
+	spawn_enabled = yes
+	playable = stg_never
+
+	ship_prefix = "STG_ship_prefix_minor_tng_coalition_hope"
+
+	species = {
+		class = "VUL"
+		portrait = "vulcan"
+		name = "STG_species_name_minor_tng_coalition_hope"
+		plural = "STG_species_plural_minor_tng_coalition_hope"
+		adjective = "STG_species_adjective_minor_tng_coalition_hope"
+		name_list = "STG_VULCAN"
+		trait = "trait_organic"
+		trait = "trait_storm_touched"
+		trait = "trait_charismatic"
+		trait = "trait_nomadic"
+		trait = "trait_solitary"
+	}
+
+	room = "vulcan_room"
+
+	authority = "auth_oligarchic"
+	civics = { "civic_astrometeorology" "civic_storm_callers" }
+	government = gov_storm_chasers
+	origin = "origin_default"
+
+	ethic = "ethic_xenophile"
+	ethic = "ethic_militarist"
+	ethic = "ethic_spiritualist"
+
+	initializer = "stg_minor_tng_coalition_hope_home"
+	planet_name = "STG_planet_name_minor_tng_coalition_hope"
+	planet_class = "pc_desert"
+	system_name = "STG_system_name_minor_tng_coalition_hope"
+
+	graphical_culture = "starfleet_tng"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "trek"
+			file = "coalition_of_hope.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"dark_red"
+			"brown"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_minor_tng_coalition_hope"
+		gender = male
+		portrait = "charMirrorSarek"
+		texture = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+# ── Klingon-Cardassian Alliance (2300s) (05 alt) ──
+stg_minor_tng_klingon_cardassian_alliance = {
+	name = "STG_EMPIRE_minor_tng_klingon_cardassian_alliance"
+	adjective = "STG_adjective_minor_tng_klingon_cardassian_alliance"
+	spawn_enabled = yes
+	playable = stg_never
+
+	ship_prefix = "STG_ship_prefix_minor_tng_klingon_cardassian_alliance"
+
+	species = {
+		class = "TNGK"
+		portrait = "klingon"
+		name = "STG_species_name_minor_tng_klingon_cardassian_alliance"
+		plural = "STG_species_plural_minor_tng_klingon_cardassian_alliance"
+		adjective = "STG_species_adjective_minor_tng_klingon_cardassian_alliance"
+		name_list = "STG_KLINGON"
+		trait = "trait_organic"
+		trait = "trait_strong"
+		trait = "trait_resilient"
+	}
+
+	room = "klingon_room"
+
+	authority = "auth_imperial"
+	civics = { "civic_police_state" "civic_slaver_guilds" }
+	government = gov_star_empire
+	origin = "origin_default"
+
+	ethic = "ethic_authoritarian"
+	ethic = "ethic_fanatic_militarist"
+
+	initializer = "stg_minor_tng_klingon_cardassian_alliance_home"
+	planet_name = "STG_planet_name_minor_tng_klingon_cardassian_alliance"
+	planet_class = "pc_continental"
+	system_name = "STG_system_name_minor_tng_klingon_cardassian_alliance"
+
+	graphical_culture = "starfleet_tng"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "trek"
+			file = "Mirror2.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"dark_blue"
+			"dark_teal"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_minor_tng_klingon_cardassian_alliance"
+		gender = male
+		portrait = "charGorkon"
+		texture = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}

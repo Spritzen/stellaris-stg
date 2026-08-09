@@ -1,0 +1,163 @@
+﻿# Undine name list, for the AI-only minor powers that use it.
+#
+# CONVERTED from .source/688086068/common/name_lists/Undine.txt: the tokens are
+# STNH's, resolved through STNH's own localisation and re-keyed as STG_N_. The
+# ship-size buckets are rebuilt for VANILLA's ladder -- STNH's file buckets by
+# its own (saber, sovereign, steamrunner) and those keys mean nothing here.
+#
+# See .docs/decisions/19-stnh-minor-powers-as-ai-empires.md.
+
+STG_UNDINE = {
+	category = "Humanoid"
+	randomized = no
+
+	ship_names = {
+		generic = {
+			STG_N_Dashel STG_N_Kraken STG_N_Cheirex STG_N_Dahut STG_N_Telen STG_N_Talen
+			STG_N_Nicor STG_N_Dromias STG_N_Dactylus STG_N_Vila STG_N_Ththa STG_N_Tethys
+			STG_N_Jazari STG_N_Und STG_N_Indentured STG_N_Wraith STG_N_Villas STG_N_Rift
+			STG_N_Eddys STG_N_Tear STG_N_Perisher STG_N_Indicutus STG_N_FluidFury STG_N_Darius
+			STG_N_Nela STG_N_Talactus STG_N_Ashwin STG_N_Axar STG_N_Ishanti STG_N_Illumin
+		}
+
+		corvette = {
+			STG_N_Tethys STG_N_Jazari STG_N_Und STG_N_Indentured STG_N_Wraith
+		}
+
+		destroyer = {
+			STG_N_Villas STG_N_Rift STG_N_Eddys STG_N_Tear STG_N_Perisher
+		}
+
+		cruiser = {
+			STG_N_Indicutus STG_N_FluidFury STG_N_Darius STG_N_Nela STG_N_Talactus
+		}
+
+		battleship = {
+			STG_N_Ashwin STG_N_Axar STG_N_Ishanti STG_N_Illumin
+		}
+
+		titan = {
+			STG_N_Dashel STG_N_Kraken STG_N_Cheirex
+		}
+
+		science = {
+			STG_N_Dashel STG_N_Kraken STG_N_Cheirex STG_N_Dahut STG_N_Telen STG_N_Talen
+		}
+
+		colonizer = {
+			STG_N_Cheirax STG_N_Kraken STG_N_Dahut STG_N_Domum STG_N_Aufereturus
+		}
+
+		constructor = {
+			STG_N_Nicor STG_N_Dromias STG_N_Dactylus STG_N_Vila STG_N_Ththa
+		}
+	}
+
+	ship_class_names = {
+		generic = {
+			STG_N_Dashel STG_N_Kraken STG_N_Cheirex STG_N_Dahut STG_N_Telen STG_N_Talen
+			STG_N_Nicor STG_N_Dromias STG_N_Dactylus
+		}
+	}
+
+	fleet_names = {
+		sequential_name = STG_UNDINE_GROUP
+	}
+
+	army_names = {
+		machine_assault_1 = {
+			sequential_name = STG_UNDINE_ASSAULTAUXILIARY
+		}
+
+		machine_defense = {
+			sequential_name = STG_UNDINE_DEFENSEAUXILIARY
+		}
+
+		defense_army = {
+			sequential_name = STG_UNDINE_PLANETARYDEFENSEAUXILIARY
+		}
+
+		assault_army = {
+			sequential_name = STG_UNDINE_EXPEDITIONARYAUXILIARY
+		}
+
+		slave_army = {
+			sequential_name = STG_UNDINE_LABORAUXILIARY
+		}
+
+		clone_army = {
+			sequential_name = STG_UNDINE_REPLICATEAUXILIARY
+		}
+
+		robotic_army = {
+			sequential_name = STG_UNDINE_AUTOMATEDAUXILIARY
+		}
+
+		psionic_army = {
+			sequential_name = STG_UNDINE_ADEPTAUXILIARY
+		}
+
+		xenomorph_army = {
+			sequential_name = STG_UNDINE_XENOMORPHAUXILIARY
+		}
+
+		gene_warrior_army = {
+			sequential_name = STG_UNDINE_AUGMENTEDAUXILIARY
+		}
+
+		occupation_army = {
+			sequential_name = STG_UNDINE_OCCUPATIONAUXILIARY
+		}
+
+		robotic_defense_army = {
+			sequential_name = STG_UNDINE_AUTOMATEDDEFENSEAUXILIARY
+		}
+
+		industrial_army = {
+			sequential_name = STG_UNDINE_INDUSTRIALAUXILIARY
+		}
+
+		primitive_army = {
+			sequential_name = STG_UNDINE_MILITIA
+		}
+	}
+
+	planet_names = {
+		generic = {
+			names = {
+				STG_N_Cheirax STG_N_Kraken STG_N_Dahut STG_N_Domum STG_N_Aufereturus STG_N_Alvearel
+				STG_N_Alveareren STG_N_Indicutus STG_N_Dromenan STG_N_Dashe STG_N_Tethys STG_N_Nicorel
+				STG_N_Adeodatus STG_N_Adora STG_N_Adeline STG_N_Adiran STG_N_Acario STG_N_Abundiantus
+				STG_N_Adelais STG_N_Haadiyaa STG_N_Haahashtari STG_N_Xaviera STG_N_Xochitl STG_N_Dactylus
+				STG_N_Infestabami
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			weight = 100
+
+			first_names_male = {
+				STG_N_Aenean STG_N_Congue STG_N_Fringilla STG_N_Pellentesqu STG_N_Quisque STG_N_MollisEuEros
+				STG_N_Sollicitudin STG_N_Consectetur STG_N_Quam STG_N_Maecenas STG_N_Nibh STG_N_Blandit
+				STG_N_Gravida STG_N_Integer STG_N_Elementum STG_N_Pellentesque STG_N_Porttitor STG_N_Volutpat
+				STG_N_Nullam STG_N_Curabitur
+			}
+
+			first_names_female = {
+				STG_N_Nulla STG_N_Convallis STG_N_Qictumquis STG_N_Vlutpatatodio STG_N_Donec STG_N_Vestibulum
+				STG_N_Liquam STG_N_Lorem STG_N_Dapibus STG_N_Conguel STG_N_Lectus STG_N_Turpisiuy
+				STG_N_Slementum STG_N_Consectetura STG_N_FaucibusEuNeque STG_N_Phyasellus STG_N_Kllentesque STG_N_Tincidunt
+				STG_N_Consequuat STG_N_Velitsodales
+			}
+
+			second_names = {
+				STG_N_Aenean STG_N_Congue STG_N_Fringilla STG_N_Pellentesqu STG_N_Quisque STG_N_MollisEuEros
+				STG_N_Sollicitudin STG_N_Consectetur STG_N_Quam STG_N_Maecenas STG_N_Nibh STG_N_Blandit
+				STG_N_Gravida STG_N_Integer STG_N_Elementum STG_N_Pellentesque STG_N_Porttitor STG_N_Volutpat
+				STG_N_Nullam STG_N_Curabitur STG_N_Nulla STG_N_Convallis STG_N_Qictumquis STG_N_Vlutpatatodio
+			}
+		}
+	}
+}

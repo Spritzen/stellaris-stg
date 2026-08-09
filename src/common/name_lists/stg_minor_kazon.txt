@@ -1,0 +1,180 @@
+﻿# Kazon name list, for the AI-only minor powers that use it.
+#
+# CONVERTED from .source/688086068/common/name_lists/Kazon.txt: the tokens are
+# STNH's, resolved through STNH's own localisation and re-keyed as STG_N_. The
+# ship-size buckets are rebuilt for VANILLA's ladder -- STNH's file buckets by
+# its own (saber, sovereign, steamrunner) and those keys mean nothing here.
+#
+# See .docs/decisions/19-stnh-minor-powers-as-ai-empires.md.
+
+STG_KAZON = {
+	category = "Humanoid"
+	randomized = no
+
+	ship_names = {
+		generic = {
+			STG_N_Debase STG_N_Debaser STG_N_Scavenger STG_N_Retriever STG_N_Redeemer STG_N_Recouper
+			STG_N_Aquirer STG_N_Hordeship STG_N_Sectship STG_N_Reclaimer STG_N_Occupier STG_N_Tinker
+			STG_N_Meddler STG_N_Interloper STG_N_Breaker STG_N_Scrapper STG_N_Depraver STG_N_Ruiner
+			STG_N_Desecrater STG_N_Reaver STG_N_Ambusher STG_N_Marauder STG_N_Ravager STG_N_Loot
+			STG_N_Looter STG_N_Pirate STG_N_Corsair STG_N_Burglar STG_N_Bootleg STG_N_Wastelander
+			STG_N_Skyjacker STG_N_Skyjack STG_N_Defiler STG_N_Corrupter STG_N_Tainter STG_N_Impairer
+			STG_N_Devastator STG_N_PrideOfHalik STG_N_HaliksPride STG_N_HaliksHonour STG_N_PrideofHalik STG_N_StrengthofHalik
+			STG_N_HalikStrength STG_N_PowerofHalik STG_N_HaliksPower STG_N_ForceofHalik STG_N_HalikForce STG_N_HonourofHalik
+			STG_N_PrideofHobii STG_N_HobiisPride STG_N_HobiisHonour STG_N_StrengthofHobii STG_N_HobiiStrength STG_N_PowerofHobii
+			STG_N_HobiisPower STG_N_ForceofHobii STG_N_HobiiForce STG_N_HonourofHobii STG_N_PrideofMonstral STG_N_MonstralsPride
+			STG_N_MonstralsHonour STG_N_StrengthofMonstral STG_N_MonstralStrength STG_N_PowerofMonstral STG_N_MonstralsPower STG_N_ForceofMonstral
+			STG_N_MonstralForce STG_N_HonourofMonstral STG_N_PrideofNistrim STG_N_NistrimsPride STG_N_NistrimsHonour STG_N_StrengthofNistrim
+			STG_N_NistrimStrength STG_N_PowerofNistrim STG_N_NistrimsPower STG_N_ForceofNistrim STG_N_NistrimForce STG_N_HonourofNistrim
+			STG_N_PrideofOgla STG_N_OglasPride STG_N_OglasHonour STG_N_StrengthofOgla STG_N_OglaStrength STG_N_PowerofOgla
+			STG_N_OglasPower STG_N_ForceofOgla STG_N_OglaForce STG_N_HonourofOgla STG_N_PrideofOglamar STG_N_OglamarsPride
+			STG_N_OglamarsHonour STG_N_StrengthofOglamar STG_N_OglamarStrength STG_N_PowerofOglamar STG_N_OglamarsPower STG_N_ForceofOglamar
+			STG_N_OglamarForce STG_N_HonourofOglamar STG_N_PrideofPommar STG_N_PommarsPride STG_N_PommarsHonour STG_N_StrengthofPommar
+			STG_N_PommarStrength STG_N_PowerofPommar STG_N_PommarsPower STG_N_ForceofPommar STG_N_PommarForce STG_N_HonourofPommar
+			STG_N_PrideofRelora STG_N_RelorasPride STG_N_RelorasHonour STG_N_StrengthofRelora STG_N_ReloraStrength STG_N_PowerofRelora
+			STG_N_RelorasPower STG_N_ForceofRelora STG_N_ReloraForce STG_N_HonourofRelora STG_N_PrideofVistik STG_N_VistiksPride
+			STG_N_VistiksHonour STG_N_StrengthofVistik STG_N_VistikStrength STG_N_PowerofVistik STG_N_VistiksPower STG_N_ForceofVistik
+			STG_N_VistikForce STG_N_HonourofVistik
+		}
+
+		corvette = {
+			STG_N_Tinker STG_N_Meddler STG_N_Interloper STG_N_Breaker STG_N_Scrapper
+		}
+
+		destroyer = {
+			STG_N_Depraver STG_N_Ruiner STG_N_Desecrater STG_N_Reaver STG_N_Ambusher
+		}
+
+		cruiser = {
+			STG_N_Marauder STG_N_Ravager STG_N_Loot STG_N_Looter STG_N_Pirate
+		}
+
+		battleship = {
+			STG_N_Corsair STG_N_Burglar STG_N_Bootleg STG_N_Wastelander STG_N_Skyjacker
+		}
+
+		titan = {
+			STG_N_Skyjack STG_N_Defiler STG_N_Corrupter STG_N_Tainter
+		}
+
+		science = {
+			STG_N_Debase STG_N_Debaser STG_N_Scavenger STG_N_Retriever STG_N_Redeemer STG_N_Recouper
+		}
+
+		colonizer = {
+			STG_N_Debase STG_N_Debaser STG_N_Scavenger STG_N_Retriever STG_N_Redeemer STG_N_Settler
+		}
+
+		constructor = {
+			STG_N_Aquirer STG_N_Hordeship STG_N_Sectship STG_N_Reclaimer STG_N_Occupier STG_N_Fixer
+		}
+	}
+
+	ship_class_names = {
+		generic = {
+			STG_N_Debase STG_N_Debaser STG_N_Scavenger STG_N_Retriever STG_N_Redeemer STG_N_Recouper
+			STG_N_Aquirer STG_N_Hordeship STG_N_Sectship
+		}
+	}
+
+	fleet_names = {
+		sequential_name = STG_KAZON_GROUP
+	}
+
+	army_names = {
+		machine_assault_1 = {
+			sequential_name = STG_KAZON_ASSAULTAUXILIARY
+		}
+
+		machine_defense = {
+			sequential_name = STG_KAZON_DEFENSEAUXILIARY
+		}
+
+		defense_army = {
+			sequential_name = STG_KAZON_PLANETARYDEFENSEAUXILIARY
+		}
+
+		assault_army = {
+			sequential_name = STG_KAZON_EXPEDITIONARYAUXILIARY
+		}
+
+		slave_army = {
+			sequential_name = STG_KAZON_LABORAUXILIARY
+		}
+
+		clone_army = {
+			sequential_name = STG_KAZON_REPLICATEAUXILIARY
+		}
+
+		robotic_army = {
+			sequential_name = STG_KAZON_AUTOMATEDAUXILIARY
+		}
+
+		psionic_army = {
+			sequential_name = STG_KAZON_ADEPTAUXILIARY
+		}
+
+		xenomorph_army = {
+			sequential_name = STG_KAZON_XENOMORPHAUXILIARY
+		}
+
+		gene_warrior_army = {
+			sequential_name = STG_KAZON_AUGMENTEDAUXILIARY
+		}
+
+		occupation_army = {
+			sequential_name = STG_KAZON_OCCUPATIONAUXILIARY
+		}
+
+		robotic_defense_army = {
+			sequential_name = STG_KAZON_AUTOMATEDDEFENSEAUXILIARY
+		}
+
+		industrial_army = {
+			sequential_name = STG_KAZON_INDUSTRIALAUXILIARY
+		}
+
+		primitive_army = {
+			sequential_name = STG_KAZON_MILITIA
+		}
+	}
+
+	planet_names = {
+		generic = {
+			names = {
+				STG_N_Debase STG_N_Debaser STG_N_Scavenger STG_N_Retriever STG_N_Redeemer STG_N_Recouper
+				STG_N_Aquirer STG_N_Hordeship STG_N_Sectship STG_N_Reclaimer STG_N_Occupier STG_N_Tinker
+				STG_N_Meddler STG_N_Interloper STG_N_Breaker STG_N_Scrapper STG_N_Depraver STG_N_Ruiner
+				STG_N_Desecrater STG_N_Reaver STG_N_Ambusher STG_N_Marauder STG_N_Ravager STG_N_Loot
+				STG_N_Looter STG_N_Pirate STG_N_Corsair STG_N_Burglar STG_N_Bootleg STG_N_Wastelander
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			weight = 100
+
+			first_names_male = {
+				STG_N_Kar STG_N_Karden STG_N_Kinell STG_N_Kaz STG_N_Raz STG_N_Razik
+				STG_N_Tarok STG_N_Haliz STG_N_Culluh STG_N_Loran STG_N_Lorrum STG_N_Minnis
+				STG_N_Tersa STG_N_Rulat STG_N_Sankur STG_N_Jabin STG_N_Haron STG_N_Rettik
+				STG_N_Tierna STG_N_Valek STG_N_Surat STG_N_Nelek STG_N_Culleh STG_N_Curze
+			}
+
+			first_names_female = {
+				STG_N_Fav STG_N_Fazix STG_N_Tafov STG_N_Halix STG_N_Collox STG_N_Lorav
+				STG_N_Lorriv STG_N_Minnix STG_N_Tefxa STG_N_Fulax STG_N_Sankux STG_N_Favix
+				STG_N_Hafov STG_N_Rexiv STG_N_Tiefnav STG_N_Valex STG_N_Sufav STG_N_Nelev
+				STG_N_Cullev STG_N_Curzev STG_N_Dornax STG_N_Settev STG_N_Ketiv STG_N_Halik
+			}
+
+			second_names = {
+				STG_N_Kar STG_N_Karden STG_N_Kinell STG_N_Kaz STG_N_Raz STG_N_Razik
+				STG_N_Tarok STG_N_Haliz STG_N_Culluh STG_N_Loran STG_N_Lorrum STG_N_Minnis
+				STG_N_Tersa STG_N_Rulat STG_N_Sankur STG_N_Jabin STG_N_Haron STG_N_Rettik
+				STG_N_Tierna STG_N_Valek STG_N_Surat STG_N_Nelek STG_N_Culleh STG_N_Curze
+			}
+		}
+	}
+}

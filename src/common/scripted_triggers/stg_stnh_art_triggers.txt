@@ -1,0 +1,310 @@
+# Bodies for the STNH scripted triggers that STNH's ART depends on.
+#
+# .docs/architecture/stnh-art.md takes STNH's art and never its common/, but the art wiring IS
+# script: the vendored asset_selectors pick clothing with 139 triggers that
+# live in STNH's common/scripted_triggers/. Undefined, they are an error.log
+# record each; defined `always = no`, every uniform entry is unreachable and
+# every leader falls through to vanilla's generic uniform.
+#
+# PHASE 3, applied 2026-08-03: the era, identity, role and stratum triggers
+# below have real bodies. Everything under INERT keeps `always = no`.
+# Reasoning, the era choice and the 4.4 mapping table:
+# .docs/decisions/16-phase-3-clothing-triggers.md
+#
+# Keys are STNH's names, referenced verbatim by the art, so only the FILE takes
+# the stg_ prefix. Same exception as decision 10.
+#
+# Two things that are NOT STNH's definitions, and must not be "corrected" back:
+#   * STNH's eras are `years_passed` windows — it is a timeline conversion that
+#     starts in the ENT era and advances. STG starts AT TNG/DS9 (.docs/planning/scope.md), so
+#     a years_passed body is false at game start and leaves us where we were.
+#   * STNH's identity triggers gate on country flags it sets in its own
+#     common/. Nothing in STG sets them — the same hole the Breen and Romulan
+#     advisor voices had.
+#     Species class is the gate here, as it is there.
+
+########## ERA — exactly one may be true PER EMPIRE ##########
+#
+# "Exactly one" is a constraint on what a single leader sees, not a constant:
+# turning on a second era for the SAME empire makes two entries match and the
+# first in file order silently wins. Two eras that are true for two DIFFERENT
+# empires never meet in one evaluation, so the mirror universe can sit in the
+# ENT era while everyone else is in DS9 — which is what the Terran Empire is
+# for. Keep any new era mutually exclusive with the two below.
+
+# The DS9-era Starfleet uniform, for everyone except the mirror universe. To
+# move the whole mod to TNG S3+ instead, set this to `is_terran_empire = no`
+# with tng_clothing_era2 taking this body.
+ds9_clothing_era = { is_terran_empire = no }
+
+# STNH's TNG *scenario map*, gated on a global flag we never set. The DS9
+# leader entries all require `is_tng_era = no`, so this must stay false.
+is_tng_era = { always = no }
+
+# ENT era, TRUE ONLY FOR THE TERRAN EMPIRE. Its own prescripted header says it
+# is the Empire of ENT 'In a Mirror, Darkly' and it flies the terran_nx
+# shipset, so this is the era its art was cut for. Paired with the two mirror
+# identity triggers below; on its own it reaches nothing, because every
+# `ent_human_*` row also requires uses_starfleet_uniform, which is FED-only.
+enterprise_era = { is_terran_empire = yes }
+
+########## IDENTITY — which empire wears Starfleet ##########
+
+# STNH used six country flags; we use the founder species class. `owner_species`
+# in country scope is the form proven by the advisor-voice weights in the
+# 2026-08-09 run (zero trigger_impl records).
+is_starfleet_uniform_country = {
+	exists = owner
+	owner = { owner_species = { is_species_class = FED } }
+}
+
+is_any_starfleet_empire = { is_starfleet_uniform_country = yes }
+is_ufp = { is_starfleet_uniform_country = yes }
+
+# The mirror universe. STG's TER class has exactly one empire, the Terran
+# Empire, and STNH cut ten ENT-era mirror uniforms for it that nothing could
+# reach: the leader rows want `uses_mirror_starfleet_uniform` and the ruler
+# rows want `uses_terran_uniform_ruler`, two different triggers, and both were
+# on the INERT list — so every Terran leader fell through the master selector
+# to `all/generic_female_uniform_01.dds` while the empire designer showed the
+# mirror coat correctly (decision 22's game_setup gate). Same shape as decision
+# 22: the scope the designer reads and the scopes the game reads are separate,
+# and getting one right says nothing about the other.
+is_terran_empire = {
+	exists = owner
+	owner = { owner_species = { is_species_class = TER } }
+}
+
+uses_mirror_starfleet_uniform = { is_terran_empire = yes }
+uses_terran_uniform_ruler = { is_terran_empire = yes }
+
+uses_starfleet_uniform = {
+	is_starfleet_uniform_country = yes
+	uses_clothing_override = no
+}
+
+uses_starfleet_uniform_pop = { is_starfleet_uniform_country = yes }
+
+# Non-Federation species wear their own clothes. This is what puts Vulcans,
+# Klingons and the rest back in Trek costume, not only humans — but a Vulcan
+# serving in the Federation still reads as Starfleet, which is canon.
+uses_native_clothes = {
+	uses_starfleet_uniform = no
+	uses_borg_full_prosthetics = no
+	uses_borg_leader_full_prosthetics = no
+}
+
+uses_native_clothes_pop = { uses_starfleet_uniform_pop = no }
+
+########## ROLES — 4.4 leader classes and subclasses ##########
+#
+# 4.4 has four classes (official, commander, scientist, envoy) and subclasses
+# as traits. STNH's bodies name `leader_class = legend` and six traits 4.4 no
+# longer has, so these are written against vanilla rather than copied.
+#
+#   commander, no/councilor subclass  -> command   (red)
+#   commander + admiral subclass      -> admiral
+#   commander + general subclass      -> security  (gold)
+#   commander + governor subclass     -> command
+#   official                          -> civilian president clothes (see below)
+#   scientist                         -> sciences  (blue)
+#   envoy                             -> checked directly by the selector
+
+uses_starfleet_admiral = {
+	leader_class = commander
+	has_trait = subclass_commander_admiral
+}
+
+is_sec_ops = {
+	leader_class = commander
+	has_trait = subclass_commander_general
+}
+
+# "hero or admiral" is STNH's name for the plain command uniform; the selector
+# entry that uses it also requires `uses_starfleet_admiral = no`, so the
+# admiral subclass falls through to the admiral entry rather than matching here.
+is_hero_or_admiral = {
+	leader_class = commander
+	NOR = {
+		has_trait = subclass_commander_general
+		has_trait = subclass_commander_governor
+	}
+}
+
+# Literally a military governor. Officials must NOT land here: the entry at
+# humanoid_master_male_clothes_01.txt:653 catches `leader_class = official` with
+# `is_military_governor = no` and dresses them in human_president_male_*.dds —
+# the Federation's civilian administration, which is the canon look and is
+# reached only by leaving this false for them.
+is_military_governor = {
+	leader_class = commander
+	has_trait = subclass_commander_governor
+}
+
+uses_science_uniform = { leader_class = scientist }
+
+# The native-clothes sections use this trio for non-Federation species.
+uses_science_uniform_basic = { leader_class = scientist }
+uses_command_uniform = {
+	leader_class = commander
+	NOR = {
+		has_trait = subclass_commander_general
+		has_trait = subclass_commander_governor
+	}
+}
+uses_operations_uniform = {
+	leader_class = commander
+	OR = {
+		has_trait = subclass_commander_general
+		has_trait = subclass_commander_governor
+	}
+}
+
+# The Federation President is a civilian; the ruler scope has no Starfleet
+# entry, only per-species civilian clothes. Composed rather than `always = yes`
+# so that giving either override below a body flips this automatically.
+ruler_normal_clothes = {
+	uses_federation_president_clothes = no
+	uses_starfleet_uniform_ruler = no
+}
+
+########## POP STRATA ##########
+# 4.4 pop categories, as vanilla's own selectors use them
+# (/stellaris/gfx/portraits/asset_selectors/toxoid_clothes_15.txt:19).
+
+has_state_command_job = { is_pop_category = ruler }
+has_specialist_stratum_clothes = { is_pop_category = specialist }
+has_worker_stratum_clothes = { is_pop_category = worker }
+
+########## INERT — no 4.4 equivalent, or not this era ##########
+#
+# 4.4 has no medical or spy leader concept, so is_medical_leader, is_cmo_leader
+# and is_spy_leader cannot be mapped and the DS9 medical, CMO and Section 31
+# uniforms stay unreachable. That is a content gap, not a defect; the art is
+# in the tree if a future pass adds Trek leader traits to hang them on.
+
+agt_clothing_era = { always = no }
+agt_mirror_clothing_era = { always = no }
+all_good_things_era = { always = no }
+children_of_mars_era = { always = no }
+com_clothing_era = { always = no }
+dis32_clothing_era = { always = no }
+discovery_era = { always = no }
+first_contact_era = { always = no }
+forced_uniform = { always = no }
+franklin_era = { always = no }
+has_state_medical_job = { always = no }
+has_state_science_job = { always = no }
+has_state_security_job = { always = no }
+has_tng_era_mirror_scenario = { always = no }
+# STNH REFERENCES THIS BUT DOES NOT DEFINE IT. In
+# .source/688086068/common/scripted_triggers/STH_clothing_triggers.txt:583 the
+# definition is COMMENTED OUT, while 13 vendored Bajoran hair and humanoid
+# clothes selectors still call it — 41 references, and 41 errors in the
+# 2026-08-01 live run. The original 139-stub harvest read STNH's trigger
+# DEFINITIONS, so a name STNH itself leaves undefined was invisible to it.
+# A reference-driven re-harvest of the whole vendored art tree on 2026-08-02
+# found this and nothing else; tools/validate.py's check_dangling_identifiers
+# now runs that harvest on every build so the next one is caught statically.
+isBajoranReligiousLeader = { always = no }
+is_army_leader = { always = no }
+is_assimilator = { always = no }
+is_cmo_leader = { always = no }
+is_earth_or_ufp_story_empire = { always = no }
+is_earth_story_empire = { always = no }
+is_gov_or_envoy_leader = { always = no }
+is_medical_leader = { always = no }
+is_medical_leader_snw = { always = no }
+is_military_ruler = { always = no }
+is_nurse_leader = { always = no }
+is_security_leader = { always = no }
+is_spy_leader = { always = no }
+is_stnh_commander = { always = no }
+is_transport_or_army_veteran_leader = { always = no }
+is_vulcan_story_empire = { always = no }
+is_wok_ops = { always = no }
+is_wok_sec = { always = no }
+kelvin_era = { always = no }
+klingon_dis_clothing = { always = no }
+klingon_tmp_clothing = { always = no }
+klingon_tng_clothing = { always = no }
+klingon_tos_clothing = { always = no }
+ld_clothing_era = { always = no }
+lost_era_clothing_era = { always = no }
+mirror_agt_era = { always = no }
+misogynist = { always = no }
+next_generation_era = { always = no }
+ody_clothing_era = { always = no }
+original_series_era = { always = no }
+pic2_clothing_era = { always = no }
+pic_clothing_era = { always = no }
+picard_era = { always = no }
+post_nemesis_era = { always = no }
+prod_clothing_era = { always = no }
+relativity_era = { always = no }
+snw_clothing_era = { always = no }
+stnh_discovery_era = { always = no }
+stnh_enterprise_era = { always = no }
+stnh_franklin_era = { always = no }
+stnh_kelvin_era = { always = no }
+tmp_clothing_era = { always = no }
+tng_agt_clothing_era = { always = no }
+tng_agt_mirror_clothing_era = { always = no }
+tng_agt_relativity_era = { always = no }
+tng_clothing_era1 = { always = no }
+tng_clothing_era2 = { always = no }
+tng_com_clothing_era = { always = no }
+tng_ds9_clothing_era = { always = no }
+tng_first_contact_era = { always = no }
+tng_ld_clothing_era = { always = no }
+tng_lost_era_clothing_era = { always = no }
+tng_ody_clothing_era = { always = no }
+tng_pic2_clothing_era = { always = no }
+tng_pic_clothing_era = { always = no }
+tng_prod_clothing_era = { always = no }
+tng_tng_clothing_era1 = { always = no }
+tng_tng_clothing_era2 = { always = no }
+tng_wok_clothing_era = { always = no }
+tos_clothing_era = { always = no }
+uses_andorian_uniform_pop = { always = no }
+uses_bajoran_uniform = { always = no }
+uses_barzan_uniform = { always = no }
+uses_borg_full_prosthetics = { always = no }
+uses_borg_leader_full_prosthetics = { always = no }
+uses_borg_prosthetics = { always = no }
+uses_borg_prosthetics_all_hair = { always = no }
+uses_clothing_override = { always = no }
+uses_cmo_uniform = { always = no }
+uses_coalition_of_hope_uniform = { always = no }
+uses_coe_uniform_ruler = { always = no }
+uses_command_background = { always = no }
+uses_confed_corps_uniform = { always = no }
+uses_federation_president_clothes = { always = no }
+uses_human_augment_uniform = { always = no }
+uses_k_c_alliance_uniform = { always = no }
+uses_kelpien_uniform = { always = no }
+uses_khan_clothes = { always = no }
+uses_medical_uniform = { always = no }
+uses_medical_uniform_not_cmo = { always = no }
+uses_pg_full_borg_prosthetics = { always = no }
+uses_pg_partial_borg_prosthetics = { always = no }
+uses_romulan_uniform = { always = no }
+uses_romulan_uniform_pop = { always = no }
+uses_special_clothes = { always = no }
+uses_starfleet_admiral_2 = { always = no }
+uses_starfleet_commodore = { always = no }
+uses_starfleet_snw_admiral = { always = no }
+uses_starfleet_uniform_engineer = { always = no }
+uses_starfleet_uniform_ruler = { always = no }
+uses_talosian_uniform = { always = no }
+uses_terran_uniform_pop = { always = no }
+uses_tmp_engineering = { always = no }
+uses_tmp_security = { always = no }
+uses_trill_uniform = { always = no }
+uses_turei_uniform = { always = no }
+uses_turei_uniform_pop = { always = no }
+uses_valt_clothes = { always = no }
+uses_vulcan_uniform = { always = no }
+uses_vulcan_uniform_pop = { always = no }
+wok_clothing_era = { always = no }
+wrath_of_khan_era = { always = no }

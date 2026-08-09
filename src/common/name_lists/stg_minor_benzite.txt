@@ -1,0 +1,165 @@
+﻿# Benzite name list, for the AI-only minor powers that use it.
+#
+# CONVERTED from .source/688086068/common/name_lists/Benzite.txt: the tokens are
+# STNH's, resolved through STNH's own localisation and re-keyed as STG_N_. The
+# ship-size buckets are rebuilt for VANILLA's ladder -- STNH's file buckets by
+# its own (saber, sovereign, steamrunner) and those keys mean nothing here.
+#
+# See .docs/decisions/19-stnh-minor-powers-as-ai-empires.md.
+
+STG_BENZITE = {
+	category = "Humanoid"
+	randomized = no
+
+	ship_names = {
+		generic = {
+			STG_N_Gelkot STG_N_Andross STG_N_Belross STG_N_Bepsot STG_N_Chandock STG_N_Panzor
+			STG_N_Galmut STG_N_Chadock STG_N_Dathet STG_N_Entoss STG_N_Entock STG_N_Gelkoss
+			STG_N_Grevan STG_N_Gral STG_N_Farkoss STG_N_Freptas STG_N_Lartak STG_N_Lorveth
+			STG_N_Lustoss STG_N_Mantoss STG_N_Methot STG_N_Mordoss STG_N_Morneth STG_N_Panthak
+			STG_N_Renas STG_N_Ker STG_N_Panthoss STG_N_Toruk STG_N_Tarkat STG_N_Tarkoss
+			STG_N_Tekross STG_N_Tekra STG_N_Tatock STG_N_Tatoss STG_N_Wipvoss STG_N_Wipvuk
+			STG_N_Utva STG_N_Pheradon STG_N_Merria STG_N_Herti STG_N_Dwora
+		}
+
+		corvette = {
+			STG_N_Gelkoss STG_N_Grevan STG_N_Gral STG_N_Farkoss STG_N_Freptas
+		}
+
+		destroyer = {
+			STG_N_Lartak STG_N_Lorveth STG_N_Lustoss STG_N_Mantoss STG_N_Methot
+		}
+
+		cruiser = {
+			STG_N_Mordoss STG_N_Morneth STG_N_Panthak STG_N_Renas STG_N_Ker
+		}
+
+		battleship = {
+			STG_N_Panthoss STG_N_Toruk STG_N_Tarkat STG_N_Tarkoss STG_N_Tekross
+		}
+
+		titan = {
+			STG_N_Tekra STG_N_Tatock STG_N_Tatoss STG_N_Wipvoss
+		}
+
+		science = {
+			STG_N_Gelkot STG_N_Andross STG_N_Belross STG_N_Bepsot STG_N_Chandock STG_N_Panzor
+		}
+
+		colonizer = {
+			STG_N_Gelkot STG_N_Andross STG_N_Belross STG_N_Bepsot STG_N_Chandock
+		}
+
+		constructor = {
+			STG_N_Galmut STG_N_Chadock STG_N_Dathet STG_N_Entoss STG_N_Entock
+		}
+	}
+
+	ship_class_names = {
+		generic = {
+			STG_N_Gelkot STG_N_Andross STG_N_Belross STG_N_Bepsot STG_N_Chandock STG_N_Panzor
+			STG_N_Galmut STG_N_Chadock STG_N_Dathet
+		}
+	}
+
+	fleet_names = {
+		sequential_name = STG_BENZITE_GROUP
+	}
+
+	army_names = {
+		machine_assault_1 = {
+			sequential_name = STG_BENZITE_ASSAULTAUXILIARY
+		}
+
+		machine_defense = {
+			sequential_name = STG_BENZITE_DEFENSEAUXILIARY
+		}
+
+		defense_army = {
+			sequential_name = STG_BENZITE_PLANETARYDEFENSEAUXILIARY
+		}
+
+		assault_army = {
+			sequential_name = STG_BENZITE_EXPEDITIONARYAUXILIARY
+		}
+
+		slave_army = {
+			sequential_name = STG_BENZITE_LABORAUXILIARY
+		}
+
+		clone_army = {
+			sequential_name = STG_BENZITE_REPLICATEAUXILIARY
+		}
+
+		robotic_army = {
+			sequential_name = STG_BENZITE_AUTOMATEDAUXILIARY
+		}
+
+		psionic_army = {
+			sequential_name = STG_BENZITE_ADEPTAUXILIARY
+		}
+
+		xenomorph_army = {
+			sequential_name = STG_BENZITE_XENOMORPHAUXILIARY
+		}
+
+		gene_warrior_army = {
+			sequential_name = STG_BENZITE_AUGMENTEDAUXILIARY
+		}
+
+		occupation_army = {
+			sequential_name = STG_BENZITE_OCCUPATIONAUXILIARY
+		}
+
+		robotic_defense_army = {
+			sequential_name = STG_BENZITE_AUTOMATEDDEFENSEAUXILIARY
+		}
+
+		industrial_army = {
+			sequential_name = STG_BENZITE_INDUSTRIALAUXILIARY
+		}
+
+		primitive_army = {
+			sequential_name = STG_BENZITE_MILITIA
+		}
+	}
+
+	planet_names = {
+		generic = {
+			names = {
+				STG_N_Gelkot STG_N_Andross STG_N_Belross STG_N_Bepsot STG_N_Chandock STG_N_Panzor
+				STG_N_Galmut STG_N_Chadock STG_N_Dathet STG_N_Entoss STG_N_Entock STG_N_Gelkoss
+				STG_N_Grevan STG_N_Gral STG_N_Farkoss STG_N_Freptas STG_N_Lartak STG_N_Lorveth
+				STG_N_Lustoss STG_N_Mantoss STG_N_Methot STG_N_Mordoss STG_N_Morneth STG_N_Panthak
+				STG_N_Renas STG_N_Ker STG_N_Panthoss STG_N_Toruk STG_N_Tarkat STG_N_Tarkoss
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			weight = 100
+
+			first_names_male = {
+				STG_N_Mordock STG_N_Mendon STG_N_Laporin STG_N_Oorv STG_N_Pirk STG_N_Gari
+				STG_N_Culer STG_N_Nenap STG_N_Canut STG_N_Huro STG_N_Yunnel STG_N_Pizann
+				STG_N_Paluh STG_N_Curak STG_N_Roriy STG_N_Gihen STG_N_Dobet STG_N_Mosap
+				STG_N_Tined STG_N_Polik STG_N_Gazed STG_N_Dupey STG_N_Cripbar STG_N_Bamiz
+			}
+
+			first_names_female = {
+				STG_N_Cira STG_N_Hubo STG_N_Ceza STG_N_Cecir STG_N_Gapy STG_N_Sohiz
+				STG_N_Gizy STG_N_Piza STG_N_Nuzza STG_N_Kidii STG_N_Mecia STG_N_Tonuo
+				STG_N_Sinuo STG_N_Busia STG_N_Rucez STG_N_Zukel STG_N_Canoh STG_N_Dezako
+				STG_N_Zoni STG_N_Yunna STG_N_Morda STG_N_Lapora STG_N_Menda STG_N_Oorva
+			}
+
+			second_names = {
+				STG_N_Mordock STG_N_Mendon STG_N_Laporin STG_N_Oorv STG_N_Pirk STG_N_Gari
+				STG_N_Culer STG_N_Nenap STG_N_Canut STG_N_Huro STG_N_Yunnel STG_N_Pizann
+				STG_N_Paluh STG_N_Curak STG_N_Roriy STG_N_Gihen STG_N_Dobet STG_N_Mosap
+				STG_N_Tined STG_N_Polik STG_N_Gazed STG_N_Dupey STG_N_Cripbar STG_N_Bamiz
+			}
+		}
+	}
+}

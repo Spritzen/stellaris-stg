@@ -1,0 +1,531 @@
+# Vanilla 4.4 entity declarations that a vendored file at the same path drops.
+#
+# A NEW file, not a shadow. Real Space - System Scale wins
+# gfx/models/ships/megastructures/quantum_catapult/quantum_catapult_01.asset,
+# and its pre-4.4 copy declares none of the 24 entities below — the Biogenesis,
+# cybernetics, infernal, toxoid and wilderness catapult shipsets. Vanilla's
+# 13_quantum_catapult.txt names them per graphical culture. Latent, not
+# measured: nothing built a catapult in the 90-second 2026-08-02 session.
+#
+# SCALE is the one edit to vanilla's text below: Real Space adds
+# `scale = @catapult_scale` to every catapult it declares, so restored ones take
+# the same line and its value rather than coming out a third of the size.
+
+@catapult_scale = 3
+# `@` variables are FILE-scoped, so @quantum_catapult_size has to be redeclared
+# here even though vanilla declares it in the file this one supplements.
+# Omitting it produced six `Malformed token` records in the 2026-08-02 13:35 run.
+# Vanilla's value, verbatim.
+@quantum_catapult_size = 400
+
+entity = {
+	name = "toxoid_01_quantum_catapult_stage_1_entity"
+	pdxmesh = "quantum_catapult_stage_1_mesh"
+	scale = @catapult_scale
+
+	locator = { name = "root"	position = { 0 0 0 } }
+
+	attach = { root = "quantum_catapult_stage_1_lightning_entity" }
+
+	meshsettings = {
+		name = "g_bodyShape"
+		index = 0
+		texture_diffuse = "toxoid_01_quantum_catapult_diffuse.dds"
+		texture_normal = "toxoid_01_quantum_catapult_normal.dds"
+		texture_specular = "toxoid_01_quantum_catapult_specular.dds"
+		shader = "PdxMeshShip"
+	}
+
+	game_data = {
+		size = @quantum_catapult_size
+	}
+}
+
+entity = {
+	name = "toxoid_01_quantum_catapult_stage_2_entity"
+	pdxmesh = "quantum_catapult_stage_2_mesh"
+	scale = @catapult_scale
+
+	locator = { name = "root"	position = { 0 0 0 } }
+
+	attach = { root = "quantum_catapult_stage_2_lightning_entity" }
+
+	meshsettings = {
+		name = "g_bodyShape"
+		index = 0
+		texture_diffuse = "toxoid_01_quantum_catapult_diffuse.dds"
+		texture_normal = "toxoid_01_quantum_catapult_normal.dds"
+		texture_specular = "toxoid_01_quantum_catapult_specular.dds"
+		shader = "PdxMeshShip"
+	}
+
+	game_data = {
+		size = @quantum_catapult_size
+	}
+}
+
+entity = {
+	name = "toxoid_01_quantum_catapult_stage_3_entity"
+	pdxmesh = "quantum_catapult_stage_3_mesh"
+	scale = @catapult_scale
+	#scale = 0.25
+	locator = { name = "root"	position = { 0 0 0 } }
+
+	attach = { root = "quantum_catapult_stage_3_lightning_entity" }
+
+	meshsettings = {
+		name = "g_bodyShape"
+		index = 0
+		texture_diffuse = "toxoid_01_quantum_catapult_diffuse.dds"
+		texture_normal = "toxoid_01_quantum_catapult_normal.dds"
+		texture_specular = "toxoid_01_quantum_catapult_specular.dds"
+		shader = "PdxMeshShip"
+	}
+
+	game_data = {
+		size = @quantum_catapult_size
+	}
+}
+
+entity = {
+	name = "cybernetics_01_quantum_catapult_stage_1_entity"
+	pdxmesh = "quantum_catapult_stage_1_mesh"
+	scale = @catapult_scale
+	
+	locator = { name = "root"	position = { 0 0 0 } }
+
+	attach = { root = "quantum_catapult_stage_1_lightning_entity" }	
+	
+		meshsettings = {
+			name = "g_bodyShape"
+			index = 0
+			texture_diffuse = "cybernetics_01_quantum_catapult_diffuse.dds"
+			texture_normal = "cybernetics_01_quantum_catapult_normal.dds"
+			texture_specular = "cybernetics_01_quantum_catapult_specular.dds"
+			shader = "PdxMeshShip"
+	
+		}
+	}
+
+entity = {
+	name = "cybernetics_01_quantum_catapult_stage_2_entity"
+	pdxmesh = "quantum_catapult_stage_2_mesh"
+	scale = @catapult_scale
+	
+	locator = { name = "root"	position = { 0 0 0 } }
+
+	attach = { root = "quantum_catapult_stage_2_lightning_entity" }	
+	
+
+		meshsettings = {
+			name = "g_bodyShape"
+			index = 0
+			texture_diffuse = "cybernetics_01_quantum_catapult_diffuse.dds"
+			texture_normal = "cybernetics_01_quantum_catapult_normal.dds"
+			texture_specular = "cybernetics_01_quantum_catapult_specular.dds"
+			shader = "PdxMeshShip"
+	
+		}
+	}
+
+entity = {
+	name = "cybernetics_01_quantum_catapult_stage_3_entity"
+	pdxmesh = "quantum_catapult_stage_3_mesh"
+	scale = @catapult_scale
+	#scale = 0.25
+	locator = { name = "root"	position = { 0 0 0 } }
+
+	attach = { root = "quantum_catapult_stage_3_lightning_entity" }	
+	
+	
+		meshsettings = {
+			name = "g_bodyShape"
+			index = 0
+			texture_diffuse = "cybernetics_01_quantum_catapult_diffuse.dds"
+			texture_normal = "cybernetics_01_quantum_catapult_normal.dds"
+			texture_specular = "cybernetics_01_quantum_catapult_specular.dds"
+			shader = "PdxMeshShip"
+
+	}
+}
+
+entity = {
+	name = "synthetics_01_quantum_catapult_stage_1_entity"
+	pdxmesh = "quantum_catapult_stage_1_mesh"
+	scale = @catapult_scale
+	
+	locator = { name = "root"	position = { 0 0 0 } }
+
+	attach = { root = "quantum_catapult_stage_1_lightning_entity" }	
+	
+		meshsettings = {
+			name = "g_bodyShape"
+			index = 0
+			texture_diffuse = "synthetics_01_quantum_catapult_diffuse.dds"
+			texture_normal = "synthetics_01_quantum_catapult_normal.dds"
+			texture_specular = "synthetics_01_quantum_catapult_specular.dds"
+			shader = "PdxMeshShip"
+	
+		}
+	}
+
+entity = {
+	name = "synthetics_01_quantum_catapult_stage_2_entity"
+	pdxmesh = "quantum_catapult_stage_2_mesh"
+	scale = @catapult_scale
+	
+	locator = { name = "root"	position = { 0 0 0 } }
+
+	attach = { root = "quantum_catapult_stage_2_lightning_entity" }	
+	
+
+		meshsettings = {
+			name = "g_bodyShape"
+			index = 0
+			texture_diffuse = "synthetics_01_quantum_catapult_diffuse.dds"
+			texture_normal = "synthetics_01_quantum_catapult_normal.dds"
+			texture_specular = "synthetics_01_quantum_catapult_specular.dds"
+			shader = "PdxMeshShip"
+	
+		}
+	}
+
+entity = {
+	name = "synthetics_01_quantum_catapult_stage_3_entity"
+	pdxmesh = "quantum_catapult_stage_3_mesh"
+	scale = @catapult_scale
+	#scale = 0.25
+	locator = { name = "root"	position = { 0 0 0 } }
+
+	attach = { root = "quantum_catapult_stage_3_lightning_entity" }	
+	
+	
+		meshsettings = {
+			name = "g_bodyShape"
+			index = 0
+			texture_diffuse = "synthetics_01_quantum_catapult_diffuse.dds"
+			texture_normal = "synthetics_01_quantum_catapult_normal.dds"
+			texture_specular = "synthetics_01_quantum_catapult_specular.dds"
+			shader = "PdxMeshShip"
+
+	}
+}
+
+entity = {
+	name = "biogenesis_01_quantum_catapult_stage_1_entity"
+	pdxmesh = "quantum_catapult_stage_1_mesh"
+	scale = @catapult_scale
+	
+	locator = { name = "root"	position = { 0 0 0 } }
+
+	attach = { root = "quantum_catapult_stage_1_lightning_entity" }	
+	
+		meshsettings = {
+			name = "g_bodyShape"
+			index = 0
+			texture_diffuse = "biogenesis_01_quantum_catapult_diffuse.dds"
+			texture_normal = "biogenesis_01_quantum_catapult_normal.dds"
+			texture_specular = "biogenesis_01_quantum_catapult_specular.dds"
+			shader = "PdxMeshShipDiffuseEmissive"
+	
+		}
+		game_data = {
+			emissive_recolor_crunch = 3.0
+		}
+	}
+
+entity = {
+	name = "biogenesis_01_quantum_catapult_stage_2_entity"
+	pdxmesh = "quantum_catapult_stage_2_mesh"
+	scale = @catapult_scale
+	
+	locator = { name = "root"	position = { 0 0 0 } }
+
+	attach = { root = "quantum_catapult_stage_2_lightning_entity" }	
+	
+
+		meshsettings = {
+			name = "g_bodyShape"
+			index = 0
+			texture_diffuse = "biogenesis_01_quantum_catapult_diffuse.dds"
+			texture_normal = "biogenesis_01_quantum_catapult_normal.dds"
+			texture_specular = "biogenesis_01_quantum_catapult_specular.dds"
+			shader = "PdxMeshShipDiffuseEmissive"
+	
+		}
+		game_data = {
+			emissive_recolor_crunch = 3.0
+		}
+	}
+
+entity = {
+	name = "biogenesis_01_quantum_catapult_stage_3_entity"
+	pdxmesh = "quantum_catapult_stage_3_mesh"
+	scale = @catapult_scale
+	#scale = 0.25
+	locator = { name = "root"	position = { 0 0 0 } }
+
+	attach = { root = "quantum_catapult_stage_3_lightning_entity" }	
+	
+	
+		meshsettings = {
+			name = "g_bodyShape"
+			index = 0
+			texture_diffuse = "biogenesis_01_quantum_catapult_diffuse.dds"
+			texture_normal = "biogenesis_01_quantum_catapult_normal.dds"
+			texture_specular = "biogenesis_01_quantum_catapult_specular.dds"
+			shader = "PdxMeshShipDiffuseEmissive"
+
+	}
+	game_data = {
+		emissive_recolor_crunch = 3.0
+	}
+}
+
+entity = {
+	name = "biogenesis_02_quantum_catapult_stage_1_entity"
+	pdxmesh = "quantum_catapult_stage_1_mesh"
+	scale = @catapult_scale
+	
+	locator = { name = "root"	position = { 0 0 0 } }
+
+	attach = { root = "quantum_catapult_stage_1_lightning_entity" }	
+	
+		meshsettings = {
+			name = "g_bodyShape"
+			index = 0
+			texture_diffuse = "biogenesis_02_quantum_catapult_diffuse.dds"
+			texture_normal = "biogenesis_02_quantum_catapult_normal.dds"
+			texture_specular = "biogenesis_02_quantum_catapult_specular.dds"
+			shader = "PdxMeshShipDiffuseEmissive"
+	
+		}
+		game_data = {
+			emissive_recolor_crunch = 3.0
+		}
+	}
+
+entity = {
+	name = "biogenesis_02_quantum_catapult_stage_2_entity"
+	pdxmesh = "quantum_catapult_stage_2_mesh"
+	scale = @catapult_scale
+	
+	locator = { name = "root"	position = { 0 0 0 } }
+
+	attach = { root = "quantum_catapult_stage_2_lightning_entity" }	
+	
+
+		meshsettings = {
+			name = "g_bodyShape"
+			index = 0
+			texture_diffuse = "biogenesis_02_quantum_catapult_diffuse.dds"
+			texture_normal = "biogenesis_02_quantum_catapult_normal.dds"
+			texture_specular = "biogenesis_02_quantum_catapult_specular.dds"
+			shader = "PdxMeshShipDiffuseEmissive"
+	
+		}
+		game_data = {
+			emissive_recolor_crunch = 3.0
+		}
+	}
+
+entity = {
+	name = "biogenesis_02_quantum_catapult_stage_3_entity"
+	pdxmesh = "quantum_catapult_stage_3_mesh"
+	scale = @catapult_scale
+	#scale = 0.25
+	locator = { name = "root"	position = { 0 0 0 } }
+
+	attach = { root = "quantum_catapult_stage_3_lightning_entity" }	
+	
+	
+		meshsettings = {
+			name = "g_bodyShape"
+			index = 0
+			texture_diffuse = "biogenesis_02_quantum_catapult_diffuse.dds"
+			texture_normal = "biogenesis_02_quantum_catapult_normal.dds"
+			texture_specular = "biogenesis_02_quantum_catapult_specular.dds"
+			shader = "PdxMeshShipDiffuseEmissive"
+
+	}
+	game_data = {
+		emissive_recolor_crunch = 3.0
+	}
+}
+
+entity = {
+	name = "mindwarden_01_quantum_catapult_stage_1_entity"
+	pdxmesh = "quantum_catapult_stage_1_mesh"
+	scale = @catapult_scale
+	locator = { name = "root"	position = { 0 0 0 } }
+
+	attach = { root = "quantum_catapult_stage_1_lightning_entity" }	
+
+	meshsettings = {
+		name = "g_bodyShape"
+		index = 0
+		texture_diffuse = "mindwarden_01_quantum_catapult_diffuse.dds"
+		texture_normal = "mindwarden_01_quantum_catapult_normal.dds"
+		texture_specular = "mindwarden_01_quantum_catapult_specular.dds"
+		shader = "PdxMeshShip"
+	}
+}
+
+entity = {
+	name = "mindwarden_01_quantum_catapult_stage_2_entity"
+	pdxmesh = "quantum_catapult_stage_2_mesh"
+	scale = @catapult_scale
+	locator = { name = "root"	position = { 0 0 0 } }
+
+	attach = { root = "quantum_catapult_stage_2_lightning_entity" }	
+
+	meshsettings = {
+		name = "g_bodyShape"
+		index = 0
+		texture_diffuse = "mindwarden_01_quantum_catapult_diffuse.dds"
+		texture_normal = "mindwarden_01_quantum_catapult_normal.dds"
+		texture_specular = "mindwarden_01_quantum_catapult_specular.dds"
+		shader = "PdxMeshShip"
+	}
+}
+
+entity = {
+	name = "mindwarden_01_quantum_catapult_stage_3_entity"
+	pdxmesh = "quantum_catapult_stage_3_mesh"
+	scale = @catapult_scale
+	locator = { name = "root"	position = { 0 0 0 } }
+
+	attach = { root = "quantum_catapult_stage_3_lightning_entity" }	
+
+	meshsettings = {
+		name = "g_bodyShape"
+		index = 0
+		texture_diffuse = "mindwarden_01_quantum_catapult_diffuse.dds"
+		texture_normal = "mindwarden_01_quantum_catapult_normal.dds"
+		texture_specular = "mindwarden_01_quantum_catapult_specular.dds"
+		shader = "PdxMeshShip"
+	}
+}
+
+entity = {
+	name = "psionic_01_quantum_catapult_stage_1_entity"
+	pdxmesh = "quantum_catapult_stage_1_mesh"
+	scale = @catapult_scale
+	locator = { name = "root"	position = { 0 0 0 } }
+
+	attach = { root = "quantum_catapult_stage_1_lightning_entity" }	
+
+	meshsettings = {
+		name = "g_bodyShape"
+		index = 0
+		texture_diffuse = "psionic_01_quantum_catapult_diffuse.dds"
+		texture_normal = "psionic_01_quantum_catapult_normal.dds"
+		texture_specular = "psionic_01_quantum_catapult_specular.dds"
+		shader = "PdxMeshShip"
+	}
+}
+
+entity = {
+	name = "psionic_01_quantum_catapult_stage_2_entity"
+	pdxmesh = "quantum_catapult_stage_2_mesh"
+	scale = @catapult_scale
+	locator = { name = "root"	position = { 0 0 0 } }
+
+	attach = { root = "quantum_catapult_stage_2_lightning_entity" }	
+
+	meshsettings = {
+		name = "g_bodyShape"
+		index = 0
+		texture_diffuse = "psionic_01_quantum_catapult_diffuse.dds"
+		texture_normal = "psionic_01_quantum_catapult_normal.dds"
+		texture_specular = "psionic_01_quantum_catapult_specular.dds"
+		shader = "PdxMeshShip"
+	}
+}
+
+entity = {
+	name = "psionic_01_quantum_catapult_stage_3_entity"
+	pdxmesh = "quantum_catapult_stage_3_mesh"
+	scale = @catapult_scale
+	locator = { name = "root"	position = { 0 0 0 } }
+
+	attach = { root = "quantum_catapult_stage_3_lightning_entity" }	
+
+	meshsettings = {
+		name = "g_bodyShape"
+		index = 0
+		texture_diffuse = "psionic_01_quantum_catapult_diffuse.dds"
+		texture_normal = "psionic_01_quantum_catapult_normal.dds"
+		texture_specular = "psionic_01_quantum_catapult_specular.dds"
+		shader = "PdxMeshShip"
+	}
+}
+
+entity = {
+	name = "infernal_01_quantum_catapult_stage_1_entity"
+	pdxmesh = "quantum_catapult_stage_1_mesh"
+	scale = @catapult_scale
+
+	locator = { name = "root"	position = { 0 0 0 } }
+
+	attach = { root = "quantum_catapult_stage_1_lightning_entity" }
+
+	meshsettings = {
+		name = "g_bodyShape"
+		index = 0
+		texture_diffuse = "infernal_01_quantum_catapult_diffuse.dds"
+		texture_normal = "infernal_01_quantum_catapult_normal.dds"
+		texture_specular = "infernal_01_quantum_catapult_specular.dds"
+		shader = "PdxMeshShipDiffuseEmissive"
+	}
+
+	game_data = {
+		size = @quantum_catapult_size
+	}
+}
+
+entity = {
+	name = "infernal_01_quantum_catapult_stage_2_entity"
+	pdxmesh = "quantum_catapult_stage_2_mesh"
+	scale = @catapult_scale
+
+	locator = { name = "root"	position = { 0 0 0 } }
+
+	attach = { root = "quantum_catapult_stage_2_lightning_entity" }
+
+	meshsettings = {
+		name = "g_bodyShape"
+		index = 0
+		texture_diffuse = "infernal_01_quantum_catapult_diffuse.dds"
+		texture_normal = "infernal_01_quantum_catapult_normal.dds"
+		texture_specular = "infernal_01_quantum_catapult_specular.dds"
+		shader = "PdxMeshShipDiffuseEmissive"
+	}
+
+	game_data = {
+		size = @quantum_catapult_size
+	}
+}
+
+entity = {
+	name = "infernal_01_quantum_catapult_stage_3_entity"
+	pdxmesh = "quantum_catapult_stage_3_mesh"
+	scale = @catapult_scale
+	#scale = 0.25
+	locator = { name = "root"	position = { 0 0 0 } }
+
+	attach = { root = "quantum_catapult_stage_3_lightning_entity" }
+
+	meshsettings = {
+		name = "g_bodyShape"
+		index = 0
+		texture_diffuse = "infernal_01_quantum_catapult_diffuse.dds"
+		texture_normal = "infernal_01_quantum_catapult_normal.dds"
+		texture_specular = "infernal_01_quantum_catapult_specular.dds"
+		shader = "PdxMeshShipDiffuseEmissive"
+	}
+
+	game_data = {
+		size = @quantum_catapult_size
+	}
+}

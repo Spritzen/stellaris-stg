@@ -1,0 +1,163 @@
+﻿# Nausicaan name list, for the AI-only minor powers that use it.
+#
+# CONVERTED from .source/688086068/common/name_lists/Nausicaan.txt: the tokens are
+# STNH's, resolved through STNH's own localisation and re-keyed as STG_N_. The
+# ship-size buckets are rebuilt for VANILLA's ladder -- STNH's file buckets by
+# its own (saber, sovereign, steamrunner) and those keys mean nothing here.
+#
+# See .docs/decisions/19-stnh-minor-powers-as-ai-empires.md.
+
+STG_NAUSICAAN = {
+	category = "Humanoid"
+	randomized = no
+
+	ship_names = {
+		generic = {
+			STG_N_Stinger STG_N_Pincer STG_N_Claw STG_N_Nipper STG_N_Mandible STG_N_Cutter
+			STG_N_Grasper STG_N_Grappler STG_N_Wrestle STG_N_Boxer STG_N_Fang STG_N_Bite
+			STG_N_Talon STG_N_Guramba STG_N_NiGuramba STG_N_Ravager STG_N_Scourge STG_N_Kolasi
+			STG_N_Reclaimer STG_N_Raider STG_N_Invader STG_N_Thriller STG_N_MeatBoiler STG_N_Ripper
+			STG_N_Piercer
+		}
+
+		corvette = {
+			STG_N_Bite STG_N_Talon STG_N_Guramba STG_N_NiGuramba STG_N_Ravager
+		}
+
+		destroyer = {
+			STG_N_Scourge STG_N_Kolasi STG_N_Reclaimer STG_N_Raider STG_N_Invader
+		}
+
+		cruiser = {
+			STG_N_Thriller STG_N_MeatBoiler STG_N_Ripper STG_N_Piercer
+		}
+
+		battleship = {
+			STG_N_Stinger STG_N_Pincer STG_N_Claw
+		}
+
+		titan = {
+			STG_N_Stinger STG_N_Pincer STG_N_Claw
+		}
+
+		science = {
+			STG_N_Stinger STG_N_Pincer STG_N_Claw STG_N_Nipper STG_N_Mandible STG_N_Cutter
+		}
+
+		colonizer = {
+			STG_N_Stinger STG_N_Pincer STG_N_Claw STG_N_Nipper STG_N_Mandible
+		}
+
+		constructor = {
+			STG_N_Grasper STG_N_Grappler STG_N_Wrestle STG_N_Boxer STG_N_Fang
+		}
+	}
+
+	ship_class_names = {
+		generic = {
+			STG_N_Stinger STG_N_Pincer STG_N_Claw STG_N_Nipper STG_N_Mandible STG_N_Cutter
+			STG_N_Grasper STG_N_Grappler STG_N_Wrestle
+		}
+	}
+
+	fleet_names = {
+		sequential_name = STG_NAUSICAAN_GROUP
+	}
+
+	army_names = {
+		machine_assault_1 = {
+			sequential_name = STG_NAUSICAAN_ASSAULTAUXILIARY
+		}
+
+		machine_defense = {
+			sequential_name = STG_NAUSICAAN_DEFENSEAUXILIARY
+		}
+
+		defense_army = {
+			sequential_name = STG_NAUSICAAN_PLANETARYDEFENSEAUXILIARY
+		}
+
+		assault_army = {
+			sequential_name = STG_NAUSICAAN_EXPEDITIONARYAUXILIARY
+		}
+
+		slave_army = {
+			sequential_name = STG_NAUSICAAN_LABORAUXILIARY
+		}
+
+		clone_army = {
+			sequential_name = STG_NAUSICAAN_REPLICATEAUXILIARY
+		}
+
+		robotic_army = {
+			sequential_name = STG_NAUSICAAN_AUTOMATEDAUXILIARY
+		}
+
+		psionic_army = {
+			sequential_name = STG_NAUSICAAN_ADEPTAUXILIARY
+		}
+
+		xenomorph_army = {
+			sequential_name = STG_NAUSICAAN_XENOMORPHAUXILIARY
+		}
+
+		gene_warrior_army = {
+			sequential_name = STG_NAUSICAAN_AUGMENTEDAUXILIARY
+		}
+
+		occupation_army = {
+			sequential_name = STG_NAUSICAAN_OCCUPATIONAUXILIARY
+		}
+
+		robotic_defense_army = {
+			sequential_name = STG_NAUSICAAN_AUTOMATEDDEFENSEAUXILIARY
+		}
+
+		industrial_army = {
+			sequential_name = STG_NAUSICAAN_INDUSTRIALAUXILIARY
+		}
+
+		primitive_army = {
+			sequential_name = STG_NAUSICAAN_MILITIA
+		}
+	}
+
+	planet_names = {
+		generic = {
+			names = {
+				STG_N_Stinger STG_N_Pincer STG_N_Claw STG_N_Nipper STG_N_Mandible STG_N_Cutter
+				STG_N_Grasper STG_N_Grappler STG_N_Wrestle STG_N_Boxer STG_N_Fang STG_N_Bite
+				STG_N_Talon STG_N_Guramba STG_N_NiGuramba STG_N_Ravager STG_N_Scourge STG_N_Kolasi
+				STG_N_Reclaimer STG_N_Raider STG_N_Invader STG_N_Thriller STG_N_MeatBoiler STG_N_Ripper
+				STG_N_Piercer
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			weight = 100
+
+			first_names_male = {
+				STG_N_Navin STG_N_Gramash STG_N_Targak STG_N_Dgidum STG_N_Vageet STG_N_Thimmkic
+				STG_N_Livom STG_N_Shesheerdz STG_N_Peth STG_N_Cherrg STG_N_Uut STG_N_Notz
+				STG_N_Steg STG_N_Veechuz STG_N_Teiltham STG_N_Uuthox STG_N_Dgeezutz STG_N_Vaggrec
+				STG_N_Steeth STG_N_Ratz STG_N_Oc STG_N_Hechk STG_N_Pith STG_N_Teeyeg
+			}
+
+			first_names_female = {
+				STG_N_Ghichuu STG_N_Rebzum STG_N_Duurgichk STG_N_Stechk STG_N_Mochk STG_N_Xin
+				STG_N_Stam STG_N_Hon STG_N_Riluujz STG_N_Xetaz STG_N_Xorr STG_N_Tleirr
+				STG_N_Traen STG_N_Reerr STG_N_Hetkz STG_N_Ghukaechk STG_N_Shilthu STG_N_Telthoth
+				STG_N_Jopujz STG_N_Dargujz STG_N_Irtuchk STG_N_Kleirr STG_N_Xoz STG_N_Gourrg
+			}
+
+			second_names = {
+				STG_N_Navin STG_N_Gramash STG_N_Targak STG_N_Dgidum STG_N_Vageet STG_N_Thimmkic
+				STG_N_Livom STG_N_Shesheerdz STG_N_Peth STG_N_Cherrg STG_N_Uut STG_N_Notz
+				STG_N_Steg STG_N_Veechuz STG_N_Teiltham STG_N_Uuthox STG_N_Dgeezutz STG_N_Vaggrec
+				STG_N_Steeth STG_N_Ratz STG_N_Oc STG_N_Hechk STG_N_Pith STG_N_Teeyeg
+			}
+		}
+	}
+}

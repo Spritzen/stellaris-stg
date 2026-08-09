@@ -1,0 +1,176 @@
+﻿# Husnock name list, for the AI-only minor powers that use it.
+#
+# CONVERTED from .source/688086068/common/name_lists/Husnock.txt: the tokens are
+# STNH's, resolved through STNH's own localisation and re-keyed as STG_N_. The
+# ship-size buckets are rebuilt for VANILLA's ladder -- STNH's file buckets by
+# its own (saber, sovereign, steamrunner) and those keys mean nothing here.
+#
+# See .docs/decisions/19-stnh-minor-powers-as-ai-empires.md.
+
+STG_HUSNOCK = {
+	category = "Humanoid"
+	randomized = no
+
+	ship_names = {
+		generic = {
+			STG_N_Urgion STG_N_Datarrion STG_N_Lurrion STG_N_Nargion STG_N_Astarion STG_N_Peragion
+			STG_N_Selemarion STG_N_Lysargion STG_N_Lusmargion STG_N_Hemberarion STG_N_Eshnenarion STG_N_Satharion
+			STG_N_Sulugarion STG_N_Antargion STG_N_Bessemargion STG_N_Vilargion STG_N_Ysmargion STG_N_Ytharion
+			STG_N_Berekarion STG_N_Comporgion STG_N_Cennergion STG_N_Callustion STG_N_Hethenion STG_N_Daforgion
+			STG_N_Nifargion STG_N_Cibbanion STG_N_Evanion STG_N_Umselanion STG_N_Usselargion STG_N_Sukuragion
+			STG_N_Deterabion STG_N_Dargion STG_N_Shanarion STG_N_Tirindion STG_N_Kasmalarion STG_N_Sedrinion
+			STG_N_Hodronumion STG_N_Hasarion STG_N_Pakharion STG_N_Gatharion STG_N_Pondoranion STG_N_Vussagion
+			STG_N_Diramion STG_N_Fidraggion STG_N_Hallamion STG_N_Bathradurion STG_N_Janarion STG_N_Pinatarion
+			STG_N_Jhunustarion STG_N_Sacradarion STG_N_Muntadarion STG_N_Volmanarion STG_N_Pedrinamion STG_N_Oldaragion
+			STG_N_Kargion STG_N_Winithion STG_N_Lakarion STG_N_Dukrumurion STG_N_Nastarion STG_N_Nisorgion
+			STG_N_Thagarion STG_N_Kordurion STG_N_Kadramurion STG_N_Condarion STG_N_Cifritharion STG_N_Rebrinthion
+			STG_N_Cathradarion STG_N_Cimbarion STG_N_Duthrularion STG_N_Entherabion STG_N_Redevellion STG_N_Pentarigion
+			STG_N_Bantarion STG_N_Bijinarion STG_N_Valdanarion STG_N_Ithisarion STG_N_Tolarion STG_N_Chambadarion
+			STG_N_Faldevarion STG_N_Nimbadarion STG_N_Zadarion STG_N_Beseldur STG_N_Ganandur STG_N_Vilkasordur
+			STG_N_Jamdur STG_N_Porandur STG_N_Bakandur STG_N_Itraldur STG_N_Varandur STG_N_Jarmakdur
+			STG_N_Sandur STG_N_Kirmandur STG_N_Tondur STG_N_Pasdur STG_N_Livandur STG_N_Ryndur
+			STG_N_Hiramdur STG_N_Ynamdur STG_N_Camdur STG_N_Cabandur STG_N_Jinndur STG_N_Darasdur
+			STG_N_Divimdur STG_N_Avamdur STG_N_Athirimdur STG_N_Ascarimdur STG_N_Ijimdur STG_N_Wimdur
+			STG_N_Trandur STG_N_Evamdur STG_N_Enildur STG_N_Ecandur STG_N_Timdur STG_N_Packandur
+			STG_N_Joldur STG_N_Rangdur STG_N_Rominadur STG_N_Pivamdur STG_N_Maldur STG_N_Makandur
+			STG_N_Nakondur STG_N_Binamdur STG_N_Kaldur STG_N_Kondur STG_N_Uramdur STG_N_Ubrildur
+			STG_N_Rebbendur STG_N_Kramdur STG_N_Konagdur STG_N_Etaradur
+		}
+
+		corvette = {
+			STG_N_Satharion STG_N_Sulugarion STG_N_Antargion STG_N_Bessemargion STG_N_Vilargion
+		}
+
+		destroyer = {
+			STG_N_Ysmargion STG_N_Ytharion STG_N_Berekarion STG_N_Comporgion STG_N_Cennergion
+		}
+
+		cruiser = {
+			STG_N_Callustion STG_N_Hethenion STG_N_Daforgion STG_N_Nifargion STG_N_Cibbanion
+		}
+
+		battleship = {
+			STG_N_Evanion STG_N_Umselanion STG_N_Usselargion STG_N_Sukuragion STG_N_Deterabion
+		}
+
+		titan = {
+			STG_N_Dargion STG_N_Shanarion STG_N_Tirindion STG_N_Kasmalarion
+		}
+
+		science = {
+			STG_N_Urgion STG_N_Datarrion STG_N_Lurrion STG_N_Nargion STG_N_Astarion STG_N_Peragion
+		}
+
+		colonizer = {
+			STG_N_Urgion STG_N_Datarrion STG_N_Lurrion STG_N_Nargion STG_N_Astarion
+		}
+
+		constructor = {
+			STG_N_Selemarion STG_N_Lysargion STG_N_Lusmargion STG_N_Hemberarion STG_N_Eshnenarion
+		}
+	}
+
+	ship_class_names = {
+		generic = {
+			STG_N_Urgion STG_N_Datarrion STG_N_Lurrion STG_N_Nargion STG_N_Astarion STG_N_Peragion
+			STG_N_Selemarion STG_N_Lysargion STG_N_Lusmargion
+		}
+	}
+
+	fleet_names = {
+		sequential_name = STG_HUSNOCK_GROUP
+	}
+
+	army_names = {
+		machine_assault_1 = {
+			sequential_name = STG_HUSNOCK_ASSAULTAUXILIARY
+		}
+
+		machine_defense = {
+			sequential_name = STG_HUSNOCK_DEFENSEAUXILIARY
+		}
+
+		defense_army = {
+			sequential_name = STG_HUSNOCK_PLANETARYDEFENSEAUXILIARY
+		}
+
+		assault_army = {
+			sequential_name = STG_HUSNOCK_EXPEDITIONARYAUXILIARY
+		}
+
+		slave_army = {
+			sequential_name = STG_HUSNOCK_LABORAUXILIARY
+		}
+
+		clone_army = {
+			sequential_name = STG_HUSNOCK_REPLICATEAUXILIARY
+		}
+
+		robotic_army = {
+			sequential_name = STG_HUSNOCK_AUTOMATEDAUXILIARY
+		}
+
+		psionic_army = {
+			sequential_name = STG_HUSNOCK_ADEPTAUXILIARY
+		}
+
+		xenomorph_army = {
+			sequential_name = STG_HUSNOCK_XENOMORPHAUXILIARY
+		}
+
+		gene_warrior_army = {
+			sequential_name = STG_HUSNOCK_AUGMENTEDAUXILIARY
+		}
+
+		occupation_army = {
+			sequential_name = STG_HUSNOCK_OCCUPATIONAUXILIARY
+		}
+
+		robotic_defense_army = {
+			sequential_name = STG_HUSNOCK_AUTOMATEDDEFENSEAUXILIARY
+		}
+
+		industrial_army = {
+			sequential_name = STG_HUSNOCK_INDUSTRIALAUXILIARY
+		}
+
+		primitive_army = {
+			sequential_name = STG_HUSNOCK_MILITIA
+		}
+	}
+
+	planet_names = {
+		generic = {
+			names = {
+				STG_N_Urgion STG_N_Datarrion STG_N_Lurrion STG_N_Nargion STG_N_Astarion STG_N_Peragion
+				STG_N_Selemarion STG_N_Lysargion STG_N_Lusmargion STG_N_Hemberarion STG_N_Eshnenarion STG_N_Satharion
+				STG_N_Sulugarion STG_N_Antargion STG_N_Bessemargion STG_N_Vilargion STG_N_Ysmargion STG_N_Ytharion
+				STG_N_Berekarion STG_N_Comporgion STG_N_Cennergion STG_N_Callustion STG_N_Hethenion STG_N_Daforgion
+				STG_N_Nifargion STG_N_Cibbanion STG_N_Evanion STG_N_Umselanion STG_N_Usselargion STG_N_Sukuragion
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			weight = 100
+
+			first_names_male = {
+				STG_N_Rodrig STG_N_Galdrig STG_N_Modrig STG_N_Valdrig STG_N_Jorim STG_N_Barim
+				STG_N_Virpim STG_N_Jargim STG_N_Birm STG_N_Raldirm
+			}
+
+			first_names_female = {
+				STG_N_Feldirm STG_N_Pendirm STG_N_DenHullos STG_N_DenBadir STG_N_DenVathrag STG_N_DenAdasga
+				STG_N_DenPolosch STG_N_DenPiriam STG_N_DenTarrob STG_N_DenIridar STG_N_DenRothorag
+			}
+
+			second_names = {
+				STG_N_Rodrig STG_N_Galdrig STG_N_Modrig STG_N_Valdrig STG_N_Jorim STG_N_Barim
+				STG_N_Virpim STG_N_Jargim STG_N_Birm STG_N_Raldirm STG_N_Feldirm STG_N_Pendirm
+				STG_N_DenHullos STG_N_DenBadir STG_N_DenVathrag STG_N_DenAdasga STG_N_DenPolosch STG_N_DenPiriam
+				STG_N_DenTarrob STG_N_DenIridar STG_N_DenRothorag
+			}
+		}
+	}
+}

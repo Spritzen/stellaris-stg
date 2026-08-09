@@ -1,0 +1,173 @@
+﻿# Garidian name list, for the AI-only minor powers that use it.
+#
+# CONVERTED from .source/688086068/common/name_lists/Garidian.txt: the tokens are
+# STNH's, resolved through STNH's own localisation and re-keyed as STG_N_. The
+# ship-size buckets are rebuilt for VANILLA's ladder -- STNH's file buckets by
+# its own (saber, sovereign, steamrunner) and those keys mean nothing here.
+#
+# See .docs/decisions/19-stnh-minor-powers-as-ai-empires.md.
+
+STG_GARIDIAN = {
+	category = "Humanoid"
+	randomized = no
+
+	ship_names = {
+		generic = {
+			STG_N_Shagus STG_N_Grinselius STG_N_Swiselas STG_N_Matixas STG_N_Harel STG_N_ZiMpuls
+			STG_N_Ajrmr STG_N_Belak STG_N_Dridthau STG_N_Decius STG_N_Dividices STG_N_Devoras
+			STG_N_Genorex STG_N_Haakona STG_N_Khazara STG_N_Kodiakerex STG_N_Makar STG_N_Narada
+			STG_N_Precetor STG_N_Scimitar STG_N_TMet STG_N_TTpalok STG_N_Talvath STG_N_Terix
+			STG_N_Tomal STG_N_Valdore STG_N_Tliss STG_N_Tvaro STG_N_Dhelan STG_N_Dhael
+			STG_N_Mogai STG_N_Dderidex STG_N_ArKif STG_N_Hafeh STG_N_Haapax STG_N_Daeinos
+			STG_N_Hanom STG_N_Faeht STG_N_Shamshir STG_N_Tulwar STG_N_Khaiell STG_N_Kara
+			STG_N_Jaeih STG_N_DKhellra STG_N_Jhuaek STG_N_Deihu STG_N_Okhala STG_N_Malem
+			STG_N_Vastam STG_N_Morrigu STG_N_Khopesh STG_N_Falchion STG_N_Drenet STG_N_Dretex
+			STG_N_Dridren STG_N_Rderex STG_N_Rtan STG_N_Ddredar STG_N_Asiram
+		}
+
+		corvette = {
+			STG_N_Devoras STG_N_Genorex STG_N_Haakona STG_N_Khazara STG_N_Kodiakerex
+		}
+
+		destroyer = {
+			STG_N_Makar STG_N_Narada STG_N_Precetor STG_N_Scimitar STG_N_TMet
+		}
+
+		cruiser = {
+			STG_N_TTpalok STG_N_Talvath STG_N_Terix STG_N_Tomal STG_N_Valdore
+		}
+
+		battleship = {
+			STG_N_Tliss STG_N_Tvaro STG_N_Dhelan STG_N_Dhael STG_N_Mogai
+		}
+
+		titan = {
+			STG_N_Dderidex STG_N_ArKif STG_N_Hafeh STG_N_Haapax
+		}
+
+		science = {
+			STG_N_Shagus STG_N_Grinselius STG_N_Swiselas STG_N_Matixas STG_N_Harel STG_N_ZiMpuls
+			STG_N_ScienceVessel
+		}
+
+		colonizer = {
+			STG_N_Shagus STG_N_Grinselius STG_N_Swiselas STG_N_Matixas STG_N_Harel STG_N_ColonyVessel
+		}
+
+		constructor = {
+			STG_N_Ajrmr STG_N_Belak STG_N_Dridthau STG_N_Decius STG_N_Dividices STG_N_ConstructionVessel
+		}
+
+		transport = {
+			STG_N_TransportVessel
+		}
+	}
+
+	ship_class_names = {
+		generic = {
+			STG_N_Shagus STG_N_Grinselius STG_N_Swiselas STG_N_Matixas STG_N_Harel STG_N_ZiMpuls
+			STG_N_Ajrmr STG_N_Belak STG_N_Dridthau
+		}
+	}
+
+	fleet_names = {
+		sequential_name = STG_GARIDIAN_GROUP
+	}
+
+	army_names = {
+		machine_assault_1 = {
+			sequential_name = STG_GARIDIAN_ASSAULTAUXILIARY
+		}
+
+		machine_defense = {
+			sequential_name = STG_GARIDIAN_DEFENSEAUXILIARY
+		}
+
+		defense_army = {
+			sequential_name = STG_GARIDIAN_PLANETARYDEFENSEAUXILIARY
+		}
+
+		assault_army = {
+			sequential_name = STG_GARIDIAN_EXPEDITIONARYAUXILIARY
+		}
+
+		slave_army = {
+			sequential_name = STG_GARIDIAN_LABORAUXILIARY
+		}
+
+		clone_army = {
+			sequential_name = STG_GARIDIAN_REPLICATEAUXILIARY
+		}
+
+		robotic_army = {
+			sequential_name = STG_GARIDIAN_AUTOMATEDAUXILIARY
+		}
+
+		psionic_army = {
+			sequential_name = STG_GARIDIAN_ADEPTAUXILIARY
+		}
+
+		xenomorph_army = {
+			sequential_name = STG_GARIDIAN_XENOMORPHAUXILIARY
+		}
+
+		gene_warrior_army = {
+			sequential_name = STG_GARIDIAN_AUGMENTEDAUXILIARY
+		}
+
+		occupation_army = {
+			sequential_name = STG_GARIDIAN_OCCUPATIONAUXILIARY
+		}
+
+		robotic_defense_army = {
+			sequential_name = STG_GARIDIAN_AUTOMATEDDEFENSEAUXILIARY
+		}
+
+		industrial_army = {
+			sequential_name = STG_GARIDIAN_INDUSTRIALAUXILIARY
+		}
+
+		primitive_army = {
+			sequential_name = STG_GARIDIAN_MILITIA
+		}
+	}
+
+	planet_names = {
+		generic = {
+			names = {
+				STG_N_Shagus STG_N_Grinselius STG_N_Swiselas STG_N_Matixas STG_N_Harel STG_N_ZiMpuls
+				STG_N_Ajrmr STG_N_Belak STG_N_Dridthau STG_N_Decius STG_N_Dividices STG_N_Devoras
+				STG_N_Genorex STG_N_Haakona STG_N_Khazara STG_N_Kodiakerex STG_N_Makar STG_N_Narada
+				STG_N_Precetor STG_N_Scimitar STG_N_TMet STG_N_TTpalok STG_N_Talvath STG_N_Terix
+				STG_N_Tomal STG_N_Valdore STG_N_Tliss STG_N_Tvaro STG_N_Dhelan STG_N_Dhael
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			weight = 100
+
+			first_names_male = {
+				STG_N_Aehkhifv STG_N_Aerv STG_N_Aev STG_N_Argelian STG_N_Chavek STG_N_Deletham
+				STG_N_Delon STG_N_Dhiemm STG_N_DNal STG_N_Ejiul STG_N_Fveirrolh STG_N_Galan
+				STG_N_Giellun STG_N_Hanaj STG_N_Hatham STG_N_Hdaen STG_N_Hexce STG_N_Hirl
+				STG_N_Havraha STG_N_Hvaid STG_N_Kalabam STG_N_Kaol STG_N_Khaiel STG_N_Khiy
+			}
+
+			first_names_female = {
+				STG_N_Teelis STG_N_Thue STG_N_TMandara STG_N_TRehu STG_N_Verelan STG_N_Lucana
+				STG_N_Pentara STG_N_Aenikh STG_N_Aelhih STG_N_Aieme STG_N_Aimne STG_N_Annhwi
+				STG_N_Barel STG_N_Dharvanek STG_N_Cretak STG_N_DAmarok STG_N_Dmora STG_N_Dvaro
+				STG_N_Dar STG_N_Doreka STG_N_Donatra STG_N_Ehhelih STG_N_Gaius STG_N_Galathon
+			}
+
+			second_names = {
+				STG_N_Aehkhifv STG_N_Aerv STG_N_Aev STG_N_Argelian STG_N_Chavek STG_N_Deletham
+				STG_N_Delon STG_N_Dhiemm STG_N_DNal STG_N_Ejiul STG_N_Fveirrolh STG_N_Galan
+				STG_N_Giellun STG_N_Hanaj STG_N_Hatham STG_N_Hdaen STG_N_Hexce STG_N_Hirl
+				STG_N_Havraha STG_N_Hvaid STG_N_Kalabam STG_N_Kaol STG_N_Khaiel STG_N_Khiy
+			}
+		}
+	}
+}

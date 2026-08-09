@@ -1,0 +1,168 @@
+﻿# Talaxian name list, for the AI-only minor powers that use it.
+#
+# CONVERTED from .source/688086068/common/name_lists/Talaxian.txt: the tokens are
+# STNH's, resolved through STNH's own localisation and re-keyed as STG_N_. The
+# ship-size buckets are rebuilt for VANILLA's ladder -- STNH's file buckets by
+# its own (saber, sovereign, steamrunner) and those keys mean nothing here.
+#
+# See .docs/decisions/19-stnh-minor-powers-as-ai-empires.md.
+
+STG_TALAXIAN = {
+	category = "Humanoid"
+	randomized = no
+
+	ship_names = {
+		generic = {
+			STG_N_Abominox STG_N_Accix STG_N_Acclamix STG_N_Acclimex STG_N_Deprecox STG_N_Depredox
+			STG_N_Deprivox STG_N_Illuviax STG_N_Incarnax STG_N_Inclinax STG_N_Inculcax STG_N_Retaliax
+			STG_N_Arbitrax STG_N_Stipulux STG_N_Passivux STG_N_Construx STG_N_Machinux STG_N_Combinux
+			STG_N_Conjurux STG_N_Passivexa STG_N_Itemizexa STG_N_Itinerexa STG_N_Pollinexa STG_N_Cultivexa
+			STG_N_Rubricix STG_N_Stimulix STG_N_Metrilix STG_N_Observix STG_N_Inspirix STG_N_Oscillix
+			STG_N_Lamentax STG_N_Irradiax STG_N_Preparax STG_N_Procreax STG_N_Procurax STG_N_Vindicax
+			STG_N_Degradax STG_N_Cybernoxa STG_N_Impartoxa STG_N_Impetroxa STG_N_Subjugoxa STG_N_Remigroxa
+			STG_N_Reoperoxa STG_N_Subragoxa STG_N_Degradoxa STG_N_Acclamox STG_N_Degradox STG_N_Infuriox
+			STG_N_Supernox STG_N_Terminox STG_N_Devastox STG_N_Salvoxia STG_N_Rexia STG_N_Liberaxia
+			STG_N_Scavexia
+		}
+
+		corvette = {
+			STG_N_Retaliax STG_N_Arbitrax STG_N_Stipulux STG_N_Passivux STG_N_Construx
+		}
+
+		destroyer = {
+			STG_N_Machinux STG_N_Combinux STG_N_Conjurux STG_N_Passivexa STG_N_Itemizexa
+		}
+
+		cruiser = {
+			STG_N_Itinerexa STG_N_Pollinexa STG_N_Cultivexa STG_N_Rubricix STG_N_Stimulix
+		}
+
+		battleship = {
+			STG_N_Metrilix STG_N_Observix STG_N_Inspirix STG_N_Oscillix STG_N_Lamentax
+		}
+
+		titan = {
+			STG_N_Irradiax STG_N_Preparax STG_N_Procreax STG_N_Procurax
+		}
+
+		science = {
+			STG_N_Abominox STG_N_Accix STG_N_Acclamix STG_N_Acclimex STG_N_Deprecox STG_N_Depredox
+		}
+
+		colonizer = {
+			STG_N_Abominox STG_N_Accix STG_N_Acclamix STG_N_Acclimex STG_N_Deprecox
+		}
+
+		constructor = {
+			STG_N_Deprivox STG_N_Illuviax STG_N_Incarnax STG_N_Inclinax STG_N_Inculcax
+		}
+	}
+
+	ship_class_names = {
+		generic = {
+			STG_N_Abominox STG_N_Accix STG_N_Acclamix STG_N_Acclimex STG_N_Deprecox STG_N_Depredox
+			STG_N_Deprivox STG_N_Illuviax STG_N_Incarnax
+		}
+	}
+
+	fleet_names = {
+		sequential_name = STG_TALAXIAN_GROUP
+	}
+
+	army_names = {
+		machine_assault_1 = {
+			sequential_name = STG_TALAXIAN_ASSAULTAUXILIARY
+		}
+
+		machine_defense = {
+			sequential_name = STG_TALAXIAN_DEFENSEAUXILIARY
+		}
+
+		defense_army = {
+			sequential_name = STG_TALAXIAN_PLANETARYDEFENSEAUXILIARY
+		}
+
+		assault_army = {
+			sequential_name = STG_TALAXIAN_EXPEDITIONARYAUXILIARY
+		}
+
+		slave_army = {
+			sequential_name = STG_TALAXIAN_LABORAUXILIARY
+		}
+
+		clone_army = {
+			sequential_name = STG_TALAXIAN_REPLICATEAUXILIARY
+		}
+
+		robotic_army = {
+			sequential_name = STG_TALAXIAN_AUTOMATEDAUXILIARY
+		}
+
+		psionic_army = {
+			sequential_name = STG_TALAXIAN_ADEPTAUXILIARY
+		}
+
+		xenomorph_army = {
+			sequential_name = STG_TALAXIAN_XENOMORPHAUXILIARY
+		}
+
+		gene_warrior_army = {
+			sequential_name = STG_TALAXIAN_AUGMENTEDAUXILIARY
+		}
+
+		occupation_army = {
+			sequential_name = STG_TALAXIAN_OCCUPATIONAUXILIARY
+		}
+
+		robotic_defense_army = {
+			sequential_name = STG_TALAXIAN_AUTOMATEDDEFENSEAUXILIARY
+		}
+
+		industrial_army = {
+			sequential_name = STG_TALAXIAN_INDUSTRIALAUXILIARY
+		}
+
+		primitive_army = {
+			sequential_name = STG_TALAXIAN_MILITIA
+		}
+	}
+
+	planet_names = {
+		generic = {
+			names = {
+				STG_N_Abominox STG_N_Accix STG_N_Acclamix STG_N_Acclimex STG_N_Deprecox STG_N_Depredox
+				STG_N_Deprivox STG_N_Illuviax STG_N_Incarnax STG_N_Inclinax STG_N_Inculcax STG_N_Retaliax
+				STG_N_Arbitrax STG_N_Stipulux STG_N_Passivux STG_N_Construx STG_N_Machinux STG_N_Combinux
+				STG_N_Conjurux STG_N_Passivexa STG_N_Itemizexa STG_N_Itinerexa STG_N_Pollinexa STG_N_Cultivexa
+				STG_N_Rubricix STG_N_Stimulix STG_N_Metrilix STG_N_Observix STG_N_Inspirix STG_N_Oscillix
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			weight = 100
+
+			first_names_male = {
+				STG_N_Keelix STG_N_Deelix STG_N_Kodix STG_N_Oxilon STG_N_Paxim STG_N_Wixiban
+				STG_N_Klixiban STG_N_Eldaxon STG_N_Keldaxon STG_N_Klaxon STG_N_Deenix STG_N_Neelix
+				STG_N_Vaxildan STG_N_Philox STG_N_Davix STG_N_Fordix STG_N_Gabix STG_N_Glexiban
+				STG_N_Kenix STG_N_Drax STG_N_Craix STG_N_Brockix STG_N_Trox STG_N_Scoxon
+			}
+
+			first_names_female = {
+				STG_N_Lexa STG_N_Nexa STG_N_Alixia STG_N_Nixa STG_N_Navixa STG_N_Natixa
+				STG_N_Kavixa STG_N_Vixa STG_N_Palaxia STG_N_Vanexa STG_N_Agnexa STG_N_Alyxa
+				STG_N_Anixa STG_N_Bex STG_N_Blix STG_N_Bloxom STG_N_Caxa STG_N_Caxi
+				STG_N_Cerixa STG_N_Contexa STG_N_Crexi STG_N_Floxi STG_N_Iridexa STG_N_Ixa
+			}
+
+			second_names = {
+				STG_N_Keelix STG_N_Deelix STG_N_Kodix STG_N_Oxilon STG_N_Paxim STG_N_Wixiban
+				STG_N_Klixiban STG_N_Eldaxon STG_N_Keldaxon STG_N_Klaxon STG_N_Deenix STG_N_Neelix
+				STG_N_Vaxildan STG_N_Philox STG_N_Davix STG_N_Fordix STG_N_Gabix STG_N_Glexiban
+				STG_N_Kenix STG_N_Drax STG_N_Craix STG_N_Brockix STG_N_Trox STG_N_Scoxon
+			}
+		}
+	}
+}

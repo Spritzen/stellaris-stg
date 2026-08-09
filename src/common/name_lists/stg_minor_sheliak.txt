@@ -1,0 +1,204 @@
+﻿# Sheliak name list, for the AI-only minor powers that use it.
+#
+# CONVERTED from .source/688086068/common/name_lists/Sheliak.txt: the tokens are
+# STNH's, resolved through STNH's own localisation and re-keyed as STG_N_. The
+# ship-size buckets are rebuilt for VANILLA's ladder -- STNH's file buckets by
+# its own (saber, sovereign, steamrunner) and those keys mean nothing here.
+#
+# See .docs/decisions/19-stnh-minor-powers-as-ai-empires.md.
+
+STG_SHELIAK = {
+	category = "Humanoid"
+	randomized = no
+
+	ship_names = {
+		generic = {
+			STG_N_Fnorgzghf STG_N_Fnorzhro STG_N_Phlegetzhro STG_N_Rkadirg STG_N_FnorythP STG_N_Zhro
+			STG_N_Fnorgl STG_N_FnorglnVulro STG_N_Fnorgln STG_N_RyaZhro STG_N_RNro STG_N_Hak
+			STG_N_FnorfhMgphR STG_N_ZhRonRon STG_N_Rnyzehro STG_N_Thro STG_N_Fnorglv STG_N_Rchro
+			STG_N_Rw STG_N_Bthnthro STG_N_EnffEhyeF STG_N_Shtunggli STG_N_FnorgRNgl STG_N_UKnaLi
+			STG_N_Fnorgzhro STG_N_TmRyarn STG_N_FnorhThro STG_N_RythftNafro STG_N_Fnorgky STG_N_FnorgkvulgtmW
+			STG_N_RuGofn STG_N_Rzhr STG_N_Rsna STG_N_FnorghuRo STG_N_UnggliSh STG_N_Fnorlm
+			STG_N_FnorglnVulg STG_N_FnorglFnorn STG_N_Zhr STG_N_Nkfhkad STG_N_Fnorythp STG_N_Fnorglnvulro
+			STG_N_Ryazhro STG_N_Rnro STG_N_FnorfhmgphR STG_N_Zhronron STG_N_Enffehyef STG_N_FnorgRngl
+			STG_N_Uknali STG_N_Tmryarn STG_N_Fnorhthro STG_N_Rythftnafro STG_N_Fnorgkvulgtmw STG_N_Rugofn
+			STG_N_Ungglish STG_N_Fnorglnvulg STG_N_UpRngluinR STG_N_FnorglnkdghuR STG_N_Fnorbsnas STG_N_Fnorgpadghhii
+			STG_N_Fnorgfh STG_N_Fnorglchhro STG_N_Rzhro STG_N_Lgczhro STG_N_Fnorglmwga STG_N_Fnornakthro
+			STG_N_Reulnilsll STG_N_Rlzhro STG_N_Rbsnast STG_N_Uhp STG_N_Flyarnakthro STG_N_Fnorglnv
+			STG_N_Rbthnhyef STG_N_Ret STG_N_Fnorfhro STG_N_Yhawaahzhro STG_N_Fnorglnbt STG_N_Fnorglnhro
+			STG_N_RmnaflRzhro STG_N_Fnorgldgfnor STG_N_Yazhro STG_N_Fnorytboshuon STG_N_Fnoroneebzhro STG_N_Rnythp
+			STG_N_Hro STG_N_Ishtuwahls STG_N_Rvulgtlagla STG_N_Rkkadish STG_N_ERo STG_N_Duaaa
+			STG_N_Fnorglnveul STG_N_Fnorglodzhro STG_N_Fnorg STG_N_Rtenffero STG_N_Fnoro STG_N_Fnorglai
+			STG_N_Rihthro STG_N_Rnyt STG_N_Fnorrnakzhro STG_N_Fnorgleg STG_N_Fnorya STG_N_Fnorgnl
+			STG_N_FnornakthaFnorna STG_N_Mlatgzhro STG_N_FnorglnnnRwk STG_N_Fnorglnro STG_N_ThR STG_N_Ykadishl
+			STG_N_Nilrgh STG_N_Zkadishturo STG_N_Fnorglnvzhro STG_N_Fnorwgarnak STG_N_Fnorthsyhahir STG_N_Rthrodrnyboshro
+			STG_N_Fnorglazh STG_N_Nakthro STG_N_Rhro STG_N_Fnorgkt STG_N_Rkadi STG_N_Fnorglaihupa
+			STG_N_Fnorglzzhro STG_N_Fnorlmaftagn STG_N_Ilgh STG_N_BsnaRuazhro STG_N_RyarnythRor STG_N_aboshFnordgwgak
+			STG_N_Os STG_N_Rhp STG_N_Rhnsg STG_N_Rshuggsllh STG_N_RnythRothr STG_N_Aglhafhm
+			STG_N_Ahbosyagl STG_N_Nzzhroaglh STG_N_Hriiaglnvu STG_N_EfNang STG_N_Drndgtlkthro STG_N_Boshurorrtenf
+			STG_N_Rnakadish STG_N_Rluzhrczhro STG_N_Fnorglbthn STG_N_Fnorglron STG_N_Fnoruiyeogo STG_N_Fnorgvulgiath
+			STG_N_Fnorgduaaah STG_N_Yhahtharhn STG_N_ReRogl STG_N_Arnakthro STG_N_Rro STG_N_Rgnm
+			STG_N_Fnorglzhro STG_N_Fnorglaithro STG_N_Fnorgdirgn STG_N_RthRothph STG_N_PhRphleg STG_N_Fnorgvu
+			STG_N_Fnorglnvulll STG_N_Rngluiupadfm STG_N_Fnorghugofnn STG_N_Fnorglnvulgtla STG_N_Shogg STG_N_Fnorglnvulgn
+			STG_N_Fnorgllloig STG_N_Hugofmaffc STG_N_RRphRff STG_N_Fnorgphdisnro STG_N_Fnorgbsnamnah STG_N_Dinvulgtm
+			STG_N_FnorgFnorhi STG_N_Fnorgla STG_N_Rvupad STG_N_Fnorglnvuo STG_N_NakkaR STG_N_Fnorglfhalmsy
+			STG_N_Fnorglaichteo STG_N_Fnorglnpadg STG_N_Fnorglogzna STG_N_Fnorglnzhro STG_N_Fnorgmgmnm STG_N_Rshtung
+			STG_N_Ghlrons STG_N_Fnorglaiatuhro STG_N_Rgahhthro STG_N_Fnorah STG_N_Rhrluhhrnh STG_N_Rsg
+			STG_N_Rkakthro STG_N_Fnorzhrodzhr STG_N_Fnorglawgah STG_N_Fnorglnvna STG_N_Fnorglkn STG_N_Fnorglnvulgtm
+			STG_N_eyazhro STG_N_Fnorglaiye STG_N_Kyarnakthro STG_N_RdrRor STG_N_Rmnzhro STG_N_Fnorgzhoggic
+			STG_N_Fnorglaikna STG_N_Fnorm STG_N_Yhahuhc STG_N_Fnorgktkchz STG_N_Fnorglnvul STG_N_Fnortgh
+			STG_N_Fnorglnulgtlarn STG_N_Slyef STG_N_FnorgphRporo STG_N_Fnorglgof STG_N_Fnorglireell STG_N_Zhrzhro
+			STG_N_RRngzzhro STG_N_Fnorglafh STG_N_FnorgR STG_N_Fnorahyazhro STG_N_Fnorglnphwg STG_N_Heulnzhro
+			STG_N_Fnorgldgzhro STG_N_Fnorgzyazhro STG_N_Rthnllo STG_N_Roror STG_N_FnorFnornak STG_N_Fnorglaiphro
+			STG_N_Bsnyhah STG_N_Thrluh STG_N_Rmgzhro STG_N_Kchtendua STG_N_Fnorglnvubthn STG_N_Fmlatnil
+			STG_N_Fnorglaio STG_N_Mafhta STG_N_Fnorglrbsna STG_N_Fnorgduzhro STG_N_Fnorglghfp STG_N_Mgm
+			STG_N_Fnorshu STG_N_Fnorglnvucht STG_N_Dishtutu STG_N_Rshugg STG_N_Fnorbsnawna STG_N_RFnorgladi
+			STG_N_RegethRoflR STG_N_Fnorgyazhro STG_N_Fnorlmafht STG_N_Fnorchtzhro STG_N_Rluhzhro STG_N_Kthro
+			STG_N_Rlabtell STG_N_Thphl STG_N_Fnoruknkk STG_N_nghft STG_N_Afhtnugg STG_N_Fnorgcht
+			STG_N_Uggsgnulgtm STG_N_FnorglRnyth STG_N_Yhahthro STG_N_Fnorglana STG_N_Fnorglnlegeo STG_N_Fnorglyaazhr
+			STG_N_Rkronvu STG_N_RFnordishthn STG_N_Fnorvulgn STG_N_FthaFnor STG_N_Rfhalmafh STG_N_AflRnaR
+			STG_N_Fnormgdisho STG_N_Rcwnzhro STG_N_heeyhanro STG_N_Fnorglnffehye STG_N_Fnorihlirthr STG_N_Rmgoogh
+			STG_N_Zhhrivm STG_N_Fnorgahro STG_N_Nhafhathg STG_N_Fnorgyzhroduel
+		}
+
+		corvette = {
+			STG_N_Hak STG_N_FnorfhMgphR STG_N_ZhRonRon STG_N_Rnyzehro STG_N_Thro
+		}
+
+		destroyer = {
+			STG_N_Fnorglv STG_N_Rchro STG_N_Rw STG_N_Bthnthro STG_N_EnffEhyeF
+		}
+
+		cruiser = {
+			STG_N_Shtunggli STG_N_FnorgRNgl STG_N_UKnaLi STG_N_Fnorgzhro STG_N_TmRyarn
+		}
+
+		battleship = {
+			STG_N_FnorhThro STG_N_RythftNafro STG_N_Fnorgky STG_N_FnorgkvulgtmW STG_N_RuGofn
+		}
+
+		titan = {
+			STG_N_Rzhr STG_N_Rsna STG_N_FnorghuRo STG_N_UnggliSh
+		}
+
+		science = {
+			STG_N_Fnorgzghf STG_N_Fnorzhro STG_N_Phlegetzhro STG_N_Rkadirg STG_N_FnorythP STG_N_Zhro
+		}
+
+		colonizer = {
+			STG_N_Fnorgzghf STG_N_Fnorzhro STG_N_Phlegetzhro STG_N_Rkadirg STG_N_FnorythP
+		}
+
+		constructor = {
+			STG_N_Fnorgl STG_N_FnorglnVulro STG_N_Fnorgln STG_N_RyaZhro STG_N_RNro
+		}
+	}
+
+	ship_class_names = {
+		generic = {
+			STG_N_Fnorgzghf STG_N_Fnorzhro STG_N_Phlegetzhro STG_N_Rkadirg STG_N_FnorythP STG_N_Zhro
+			STG_N_Fnorgl STG_N_FnorglnVulro STG_N_Fnorgln
+		}
+	}
+
+	fleet_names = {
+		sequential_name = STG_SHELIAK_GROUP
+	}
+
+	army_names = {
+		machine_assault_1 = {
+			sequential_name = STG_SHELIAK_ASSAULTAUXILIARY
+		}
+
+		machine_defense = {
+			sequential_name = STG_SHELIAK_DEFENSEAUXILIARY
+		}
+
+		defense_army = {
+			sequential_name = STG_SHELIAK_PLANETARYDEFENSEAUXILIARY
+		}
+
+		assault_army = {
+			sequential_name = STG_SHELIAK_EXPEDITIONARYAUXILIARY
+		}
+
+		slave_army = {
+			sequential_name = STG_SHELIAK_LABORAUXILIARY
+		}
+
+		clone_army = {
+			sequential_name = STG_SHELIAK_REPLICATEAUXILIARY
+		}
+
+		robotic_army = {
+			sequential_name = STG_SHELIAK_AUTOMATEDAUXILIARY
+		}
+
+		psionic_army = {
+			sequential_name = STG_SHELIAK_ADEPTAUXILIARY
+		}
+
+		xenomorph_army = {
+			sequential_name = STG_SHELIAK_XENOMORPHAUXILIARY
+		}
+
+		gene_warrior_army = {
+			sequential_name = STG_SHELIAK_AUGMENTEDAUXILIARY
+		}
+
+		occupation_army = {
+			sequential_name = STG_SHELIAK_OCCUPATIONAUXILIARY
+		}
+
+		robotic_defense_army = {
+			sequential_name = STG_SHELIAK_AUTOMATEDDEFENSEAUXILIARY
+		}
+
+		industrial_army = {
+			sequential_name = STG_SHELIAK_INDUSTRIALAUXILIARY
+		}
+
+		primitive_army = {
+			sequential_name = STG_SHELIAK_MILITIA
+		}
+	}
+
+	planet_names = {
+		generic = {
+			names = {
+				STG_N_Fnorgzghf STG_N_Fnorzhro STG_N_Phlegetzhro STG_N_Rkadirg STG_N_FnorythP STG_N_Zhro
+				STG_N_Fnorgl STG_N_FnorglnVulro STG_N_Fnorgln STG_N_RyaZhro STG_N_RNro STG_N_Hak
+				STG_N_FnorfhMgphR STG_N_ZhRonRon STG_N_Rnyzehro STG_N_Thro STG_N_Fnorglv STG_N_Rchro
+				STG_N_Rw STG_N_Bthnthro STG_N_EnffEhyeF STG_N_Shtunggli STG_N_FnorgRNgl STG_N_UKnaLi
+				STG_N_Fnorgzhro STG_N_TmRyarn STG_N_FnorhThro STG_N_RythftNafro STG_N_Fnorgky STG_N_FnorgkvulgtmW
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			weight = 100
+
+			first_names_male = {
+				STG_N_Cthgzghf STG_N_Cthzhro STG_N_Phlegetzhro STG_N_Rkadirg STG_N_CthythP STG_N_Zhro
+				STG_N_Cthgl STG_N_CthglnVulro STG_N_Cthgln STG_N_RyaZhro STG_N_RNro STG_N_Hak
+				STG_N_CthfhMgphR STG_N_ZhRonRon STG_N_Rnyzehro STG_N_Thro STG_N_Cthglv STG_N_Rchro
+				STG_N_Rw STG_N_Bthnthro STG_N_EnffEhyeF STG_N_Shtunggli STG_N_CthgRNgl STG_N_UKnaLi
+			}
+
+			first_names_female = {
+				STG_N_RRNgzzhro STG_N_CthglAfh STG_N_CthgR STG_N_CthahYaZhro STG_N_Cthglnphwg STG_N_HeUlnzhro
+				STG_N_CthglDgzhro STG_N_CthgzyaZhro STG_N_Rthnllo STG_N_RorOr STG_N_CthCthnak STG_N_CthglAiphro
+				STG_N_BsnYhah STG_N_ThRluh STG_N_Rmgzhro STG_N_KChtendUa STG_N_CthglnVubthn STG_N_Fmlatnil
+				STG_N_CthglAio STG_N_MaFhta STG_N_Cthglrbsna STG_N_CthgdUzhro STG_N_CthglGhfp STG_N_MgM
+			}
+
+			second_names = {
+				STG_N_Cthgzghf STG_N_Cthzhro STG_N_Phlegetzhro STG_N_Rkadirg STG_N_CthythP STG_N_Zhro
+				STG_N_Cthgl STG_N_CthglnVulro STG_N_Cthgln STG_N_RyaZhro STG_N_RNro STG_N_Hak
+				STG_N_CthfhMgphR STG_N_ZhRonRon STG_N_Rnyzehro STG_N_Thro STG_N_Cthglv STG_N_Rchro
+				STG_N_Rw STG_N_Bthnthro STG_N_EnffEhyeF STG_N_Shtunggli STG_N_CthgRNgl STG_N_UKnaLi
+			}
+		}
+	}
+}

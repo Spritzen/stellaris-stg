@@ -1,0 +1,211 @@
+﻿# Voth name list, for the AI-only minor powers that use it.
+#
+# CONVERTED from .source/688086068/common/name_lists/Voth.txt: the tokens are
+# STNH's, resolved through STNH's own localisation and re-keyed as STG_N_. The
+# ship-size buckets are rebuilt for VANILLA's ladder -- STNH's file buckets by
+# its own (saber, sovereign, steamrunner) and those keys mean nothing here.
+#
+# See .docs/decisions/19-stnh-minor-powers-as-ai-empires.md.
+
+STG_VOTH = {
+	category = "Humanoid"
+	randomized = no
+
+	ship_names = {
+		generic = {
+			STG_N_Mtosaurus STG_N_Galosaura STG_N_Aetosaurus STG_N_Eshansaurus STG_N_Echnosaurus STG_N_Argasaurus
+			STG_N_Wyleosaurus STG_N_Galtisaurus STG_N_Caphosaurus STG_N_Callosaurus STG_N_Astosaurus STG_N_Didaisaurus
+			STG_N_Fengosaurus STG_N_Pisaurus STG_N_Saurus STG_N_Parasaurus STG_N_Ahshisaurus STG_N_Leysaurus
+			STG_N_Stegisaurus STG_N_Scosaurus STG_N_Qianysaurus STG_N_Diplosaurus STG_N_Leamosaurus STG_N_Raptosaurus
+			STG_N_Chunosaurus STG_N_Likasaurus STG_N_Tylosaurus STG_N_Shunsaurus STG_N_Gasaurus STG_N_Panosaurus
+			STG_N_Ariusaurus STG_N_Dasaurus STG_N_Ligosaurus STG_N_Lampasaurus STG_N_Stesaurus STG_N_Ahsaurostes
+			STG_N_Atrosaurus STG_N_Malosaurus STG_N_Sileosaurus STG_N_Scopcsaurus STG_N_Ornisaurus STG_N_Ilisaurus
+			STG_N_Chisaurus STG_N_Shanosaurus STG_N_Neddosaurus STG_N_Nigmosaurus STG_N_Tecsaurus STG_N_Thecosaurus
+			STG_N_Kosaurus STG_N_Ngenusauru STG_N_Notasaurus STG_N_Hesaurus STG_N_Kilesaurus STG_N_Montosaurus
+			STG_N_Chaeosaurus STG_N_Aliaosaurus STG_N_Pinasauros STG_N_Ourasaurus STG_N_Andusaurus STG_N_Masaurus
+			STG_N_Olosaurus STG_N_Riosaurus STG_N_Hulsaurus STG_N_Pawsaurus STG_N_Aerosauros STG_N_Talsaurus
+			STG_N_Beisaurus STG_N_Drosaurus STG_N_Nasaurus STG_N_Ubeosaurus STG_N_Naalusaurus STG_N_Jengosaurus
+			STG_N_Manosaurus STG_N_Ariasaurus STG_N_Blasaurus STG_N_Arasaurus STG_N_Aerosaurus STG_N_Revusaurus
+			STG_N_Nyorosaurus STG_N_Anosaurus STG_N_Heisaurus STG_N_Zhousaurus STG_N_Medusaurus STG_N_Huanosaurus
+			STG_N_Losaurus STG_N_Anchasaurus STG_N_Huasaurus STG_N_Cryosaurus STG_N_Lousaurus STG_N_Laevisaurus
+			STG_N_Caulosaurus STG_N_Lepsysaurus STG_N_Danosaurus STG_N_Mosaurus STG_N_Fostosaurus STG_N_Oloposaurus
+			STG_N_Lesosaurus STG_N_Ticosaurus STG_N_Haeosaurus STG_N_Aleocratops STG_N_Zapatops STG_N_Vulceratops
+			STG_N_Paceratops STG_N_Marmatops STG_N_Elapatops STG_N_Yavenatops STG_N_Uniceratops STG_N_Peltops
+			STG_N_Jaklapatops STG_N_Venatops STG_N_Khetops STG_N_Aeocratops STG_N_Catops STG_N_Geratops
+			STG_N_Neovenatops STG_N_Saiceratops STG_N_Apatops STG_N_Theratops STG_N_Ratops STG_N_Datops
+			STG_N_Dravenatops STG_N_Micratops STG_N_Batops STG_N_Xiatops STG_N_Lexoviatops STG_N_Pivenatops
+			STG_N_Amaceratops STG_N_Zanatops STG_N_Tambatops STG_N_Euceratops STG_N_Daceratops STG_N_Zatops
+			STG_N_Neumatops STG_N_Megaltops STG_N_Moceratops STG_N_Velapatops STG_N_Agnatops STG_N_Atops
+			STG_N_Cratops STG_N_Selognatops STG_N_Uteratops STG_N_Heratops STG_N_Tanatops STG_N_Euaceratops
+			STG_N_Magnatops STG_N_Seceratops STG_N_Jobatops STG_N_Sinatops STG_N_Arctops STG_N_Anatops
+			STG_N_Umatops STG_N_Parontops STG_N_Saltops STG_N_Terreratops STG_N_Montops STG_N_Genatops
+			STG_N_Toceratops STG_N_Avidontops STG_N_Rapteratops STG_N_Tamberatops STG_N_Tataenatops STG_N_Aetops
+			STG_N_Dimontops STG_N_Caenatops STG_N_Tatops STG_N_Pelognatops STG_N_Ignatops STG_N_Sigilmatops
+			STG_N_Notognatops STG_N_Agaceratops STG_N_Eocratops STG_N_Patops STG_N_Embatops STG_N_Luanatops
+			STG_N_Asygnatops STG_N_Dipatops STG_N_Sefapatops STG_N_Bonatops STG_N_Plesiatops STG_N_Roceratops
+			STG_N_Epaceratops STG_N_Citipatops STG_N_Miceratops STG_N_Centops STG_N_Ojoratops STG_N_Natopsis
+			STG_N_Biceratops STG_N_Nutheratops STG_N_Maleoctops STG_N_Kanatops STG_N_Venagnatops STG_N_Pteratops
+			STG_N_Giraptops STG_N_Nectops STG_N_Mantinatops STG_N_Eloceratops STG_N_Elmatops STG_N_Toceraptops
+			STG_N_Natops STG_N_Laparaptor STG_N_Astroraptor STG_N_Arkharaptor STG_N_Garaptor STG_N_Giraptor
+			STG_N_Hiraptor STG_N_Paraptor STG_N_Araptor STG_N_Euroraptor STG_N_Elociraptor STG_N_Prociraptor
+			STG_N_Turaptor STG_N_Graptor STG_N_Diraptor STG_N_Naraptor STG_N_Proceraptor STG_N_Batharaptor
+			STG_N_Asinraptor STG_N_Saldoraptor STG_N_Theraptor STG_N_Natoraptor STG_N_Lambiraptor STG_N_Zaraptor
+			STG_N_Ojoraptor STG_N_Taraptor STG_N_Skoraptor STG_N_Sauraptor STG_N_Liraptor STG_N_Biharaptor
+			STG_N_Saiceraptor STG_N_Xuanraptor STG_N_Iguanraptor STG_N_Amaraptor STG_N_Kunbaraptor STG_N_Sauroraptor
+			STG_N_Raptoraptor STG_N_Juraptor STG_N_Baraptor STG_N_Sibiraptor STG_N_Doraptor STG_N_Mojoraptor
+			STG_N_Ceraptor STG_N_Chioraptor STG_N_Wannaraptor STG_N_Pararaptor STG_N_Ororaptor STG_N_Mymooraptor
+			STG_N_Koraptor STG_N_Diceraptor STG_N_Razaraptor STG_N_Tuojiraptor STG_N_Saraptor STG_N_Coraptor
+			STG_N_Indhraptor STG_N_Ratoraptor STG_N_Miraptor STG_N_Bisauraptor STG_N_Lindhraptor STG_N_Jainoraptor
+			STG_N_Gojiraptor STG_N_Kulceraptor STG_N_Lycoraptor STG_N_Coloraptor STG_N_Laeoraptor STG_N_Echiraptor
+			STG_N_Riliraptor STG_N_Chiraptor STG_N_Chairaptor STG_N_Ariraptor STG_N_Euceraptor STG_N_Gyptoraptor
+			STG_N_Loraptor STG_N_Amparaptor STG_N_Nyororaptor STG_N_Quenraptor STG_N_Icharaptor STG_N_Eodroraptor
+			STG_N_Ganoraptor STG_N_Astahraptor STG_N_Chikuraptor STG_N_Limnoraptor STG_N_Baraptornis STG_N_Toraptor
+			STG_N_Racoraptor STG_N_Dinoraptor STG_N_Atsinraptor STG_N_Andoraptor STG_N_Bagaraptor STG_N_Toceraptor
+			STG_N_Kateoraptor STG_N_Vahioraptor STG_N_Chaeoraptor STG_N_Teroraptor STG_N_Gemiraptor STG_N_Fulguraptor
+			STG_N_Leptoraptor STG_N_Horaptor STG_N_Kakuraptor STG_N_Yibiraptor STG_N_Atodactyl STG_N_Gadactyl
+			STG_N_Nodactyl STG_N_Datodactyl STG_N_Bradactyl STG_N_Huanodactyl STG_N_Sonodactyl STG_N_Pradactyl
+			STG_N_Ortadactyl STG_N_Peltadactyl STG_N_Chodactyl STG_N_Saltadactyl STG_N_Xuanodactyl STG_N_Doradactyl
+			STG_N_Regadactyl STG_N_Rachodactyl STG_N_Inodactyl STG_N_Elanodactyl STG_N_Gyptodactyl STG_N_Rhodactyl
+			STG_N_Shanodactyl STG_N_Manodactyl STG_N_Sanodactyl STG_N_Ovoradactyl STG_N_Anchodactyl STG_N_Loradactyl
+			STG_N_Pachodactyl STG_N_Avinodactyl
+		}
+
+		corvette = {
+			STG_N_Didaisaurus STG_N_Fengosaurus STG_N_Pisaurus STG_N_Saurus STG_N_Parasaurus
+		}
+
+		destroyer = {
+			STG_N_Ahshisaurus STG_N_Leysaurus STG_N_Stegisaurus STG_N_Scosaurus STG_N_Qianysaurus
+		}
+
+		cruiser = {
+			STG_N_Diplosaurus STG_N_Leamosaurus STG_N_Raptosaurus STG_N_Chunosaurus STG_N_Likasaurus
+		}
+
+		battleship = {
+			STG_N_Tylosaurus STG_N_Shunsaurus STG_N_Gasaurus STG_N_Panosaurus STG_N_Ariusaurus
+		}
+
+		titan = {
+			STG_N_Dasaurus STG_N_Ligosaurus STG_N_Lampasaurus STG_N_Stesaurus
+		}
+
+		science = {
+			STG_N_Mtosaurus STG_N_Galosaura STG_N_Aetosaurus STG_N_Eshansaurus STG_N_Echnosaurus STG_N_Argasaurus
+		}
+
+		colonizer = {
+			STG_N_Mtosaurus STG_N_Galosaura STG_N_Aetosaurus STG_N_Eshansaurus STG_N_Echnosaurus
+		}
+
+		constructor = {
+			STG_N_Wyleosaurus STG_N_Galtisaurus STG_N_Caphosaurus STG_N_Callosaurus STG_N_Astosaurus
+		}
+	}
+
+	ship_class_names = {
+		generic = {
+			STG_N_Mtosaurus STG_N_Galosaura STG_N_Aetosaurus STG_N_Eshansaurus STG_N_Echnosaurus STG_N_Argasaurus
+			STG_N_Wyleosaurus STG_N_Galtisaurus STG_N_Caphosaurus
+		}
+	}
+
+	fleet_names = {
+		sequential_name = STG_VOTH_GROUP
+	}
+
+	army_names = {
+		machine_assault_1 = {
+			sequential_name = STG_VOTH_ASSAULTAUXILIARY
+		}
+
+		machine_defense = {
+			sequential_name = STG_VOTH_DEFENSEAUXILIARY
+		}
+
+		defense_army = {
+			sequential_name = STG_VOTH_PLANETARYDEFENSEAUXILIARY
+		}
+
+		assault_army = {
+			sequential_name = STG_VOTH_EXPEDITIONARYAUXILIARY
+		}
+
+		slave_army = {
+			sequential_name = STG_VOTH_LABORAUXILIARY
+		}
+
+		clone_army = {
+			sequential_name = STG_VOTH_REPLICATEAUXILIARY
+		}
+
+		robotic_army = {
+			sequential_name = STG_VOTH_AUTOMATEDAUXILIARY
+		}
+
+		psionic_army = {
+			sequential_name = STG_VOTH_ADEPTAUXILIARY
+		}
+
+		xenomorph_army = {
+			sequential_name = STG_VOTH_XENOMORPHAUXILIARY
+		}
+
+		gene_warrior_army = {
+			sequential_name = STG_VOTH_AUGMENTEDAUXILIARY
+		}
+
+		occupation_army = {
+			sequential_name = STG_VOTH_OCCUPATIONAUXILIARY
+		}
+
+		robotic_defense_army = {
+			sequential_name = STG_VOTH_AUTOMATEDDEFENSEAUXILIARY
+		}
+
+		industrial_army = {
+			sequential_name = STG_VOTH_INDUSTRIALAUXILIARY
+		}
+
+		primitive_army = {
+			sequential_name = STG_VOTH_MILITIA
+		}
+	}
+
+	planet_names = {
+		generic = {
+			names = {
+				STG_N_Mtosaurus STG_N_Galosaura STG_N_Aetosaurus STG_N_Eshansaurus STG_N_Echnosaurus STG_N_Argasaurus
+				STG_N_Wyleosaurus STG_N_Galtisaurus STG_N_Caphosaurus STG_N_Callosaurus STG_N_Astosaurus STG_N_Didaisaurus
+				STG_N_Fengosaurus STG_N_Pisaurus STG_N_Saurus STG_N_Parasaurus STG_N_Ahshisaurus STG_N_Leysaurus
+				STG_N_Stegisaurus STG_N_Scosaurus STG_N_Qianysaurus STG_N_Diplosaurus STG_N_Leamosaurus STG_N_Raptosaurus
+				STG_N_Chunosaurus STG_N_Likasaurus STG_N_Tylosaurus STG_N_Shunsaurus STG_N_Gasaurus STG_N_Panosaurus
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			weight = 100
+
+			first_names_male = {
+				STG_N_Forra STG_N_Florra STG_N_Nelen STG_N_Curalk STG_N_Dran STG_N_Rex
+				STG_N_Tova STG_N_Dren STG_N_Nalin STG_N_Forin STG_N_Halin STG_N_Tolin
+				STG_N_Vran STG_N_Lan STG_N_Eran STG_N_Nylan STG_N_Dryn
+			}
+
+			first_names_female = {
+				STG_N_Ryx STG_N_Cirilk STG_N_Exil STG_N_Eknar STG_N_Foluma STG_N_Axxara
+				STG_N_Veer STG_N_Teer STG_N_Toluma STG_N_Axil STG_N_Exal STG_N_Uxil
+				STG_N_Ixul STG_N_Okner STG_N_Uknal STG_N_Yknil STG_N_Yxyl
+			}
+
+			second_names = {
+				STG_N_Forra STG_N_Florra STG_N_Nelen STG_N_Curalk STG_N_Dran STG_N_Rex
+				STG_N_Tova STG_N_Dren STG_N_Nalin STG_N_Forin STG_N_Halin STG_N_Tolin
+				STG_N_Vran STG_N_Lan STG_N_Eran STG_N_Nylan STG_N_Dryn STG_N_Ryx
+				STG_N_Cirilk STG_N_Exil STG_N_Eknar STG_N_Foluma STG_N_Axxara STG_N_Veer
+			}
+		}
+	}
+}

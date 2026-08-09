@@ -1,0 +1,598 @@
+# Star Trek Galaxies — the eight frontier powers.
+#
+# New prefixed file, merging with stg_major_powers.txt and
+# stg_quadrant_powers.txt
+# beside it; between the three they are the whole empire picker.
+#
+# THESE EIGHT EXIST BECAUSE THE ART DID. Each names a Walshicus shipset that
+# decision 18 brought into the harvest for a species STG had no empire for —
+# the ships, portraits and heraldry were all already in the tree and idle.
+# See .docs/decisions/18-walshicus-shipsets-replace-stnh-hulls.md.
+#
+# EVERY authority / government / civic / ethic TUPLE BELOW IS COPIED WHOLE FROM
+# A VANILLA PRESCRIPTED EMPIRE. The game does not report an invalid combination
+# — it refuses to start — and the constraint table in stg_quadrant_powers.txt is
+# only the part that binds most often. Taking a tuple vanilla itself ships is
+# the one way to be certain, so where a civic reads oddly for the species
+# (civic_environmentalist for the Krenim, civic_mining_guilds for the Malon) the
+# note above that empire says how to read it rather than substituting a better
+# word for a worse guarantee. The only substitutions made are civics vanilla
+# uses with the SAME authority elsewhere.
+#
+# Trait budgets are the vanilla default of 2 points and every list below sums to
+# exactly 2. All eight are BIOLOGICAL, so BIOLOGICAL-only traits are legal here.
+#
+# `initializer =` names a real home system, as in the other two files — see the
+# header of stg_major_powers.txt and .docs/decisions/25-real-home-systems.md.
+# `graphical_culture` is set
+# here AND on the species class, and this one wins — they must agree or the
+# empire silently drops to `fallback = mammalian_01`.
+#
+# None of these eight is referenced by an STNH clothing selector — STNH ships no
+# uniform art for them — so they wear the selector's default (decision 16).
+
+# `room =` is STNH's own assignment for the same empire, restored 2026-08-08 by
+# tools/fix_prescripted_rooms.py — it had been replaced wholesale by vanilla
+# personality rooms, which cost the 20 empires STNH gives a Trek room. The three
+# rows where STG keeps its own answer are listed in that script.
+# See .docs/decisions/48-room-selector-merge.md
+
+# ── Caitian Union ──────────────────────────────────────────────
+# Cait, in the Ferasa system — a Federation member world.
+stg_caitian_empire = {
+	name = "STG_EMPIRE_caitian"
+	adjective = "STG_adjective_caitian"
+	spawn_enabled = yes
+
+	ship_prefix = "STG_ship_prefix_caitian"
+
+	species = {
+		class = "CAI"
+		portrait = "caitian"
+		name = "STG_species_name_caitian"
+		plural = "STG_species_plural_caitian"
+		adjective = "STG_species_adjective_caitian"
+		name_list = "STG_CAITIAN"
+		trait = "trait_organic"
+		trait = "trait_nomadic"
+		trait = "trait_strong"
+	}
+
+	room = "personality_spiritual_seekers_room"
+
+	authority = "auth_democratic"
+	civics = { "civic_beacon_of_liberty" "civic_free_haven" }
+	government = gov_moral_democracy
+	origin = "origin_default"
+
+	ethic = "ethic_egalitarian"
+	ethic = "ethic_fanatic_xenophile"
+
+	initializer = "stg_caitian_empire_home"
+	planet_name = "STG_planet_name_caitian"
+	planet_class = "pc_savannah"
+	system_name = "STG_system_name_caitian"
+
+	graphical_culture = "caitian"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "trek"
+			file = "caitian.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"orange"
+			"burgundy"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_caitian"
+		gender = female
+		portrait = "caitian_female_01"
+		texture = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+
+# ── Xindi Council ──────────────────────────────────────────────
+# Xindus was destroyed; the Council rebuilt on the colony worlds. Azati Prime
+# is the canonical fallback capital.
+stg_xindi_empire = {
+	name = "STG_EMPIRE_xindi"
+	adjective = "STG_adjective_xindi"
+	spawn_enabled = yes
+
+	ship_prefix = "STG_ship_prefix_xindi"
+
+	species = {
+		class = "XIN"
+		portrait = "xindi_reptilian"
+		name = "STG_species_name_xindi"
+		plural = "STG_species_plural_xindi"
+		adjective = "STG_species_adjective_xindi"
+		name_list = "STG_XINDI"
+		trait = "trait_organic"
+		trait = "trait_industrious"		# 2
+		trait = "trait_communal"		# 1
+		# Was trait_solitary, which vanilla declares `opposites` with communal —
+		# the pair hid the empire. Quarrelsome is the same -1, keeps the total at
+		# BIOLOGICAL's 2, and reads as five species who fought a civil war.
+		trait = "trait_quarrelsome"		# -1
+	}
+
+	room = "xindi_room"
+
+	authority = "auth_oligarchic"
+	civics = { "civic_citizen_service" "civic_distinguished_admiralty" }
+	government = gov_citizen_stratocracy
+	origin = "origin_default"
+
+	ethic = "ethic_xenophobe"
+	ethic = "ethic_fanatic_militarist"
+
+	initializer = "stg_xindi_empire_home"
+	planet_name = "STG_planet_name_xindi"
+	planet_class = "pc_arid"
+	system_name = "STG_system_name_xindi"
+
+	graphical_culture = "xindi"
+	city_graphical_culture = "reptilian_01"
+
+	empire_flag = {
+		icon = {
+			category = "trek"
+			file = "xindi.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"dark_teal"
+			"dark_brown"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_xindi"
+		gender = male
+		portrait = "xindi_reptilian_male_01"
+		texture = 0
+		trait = "trait_ruler_warlike"
+		leader_class = commander
+	}
+}
+
+
+# ── Suliban Cabal ──────────────────────────────────────────────
+# The Suliban lost their homeworld generations before ENT; the Tandar Sector
+# is where the Cabal is placed.
+stg_suliban_empire = {
+	name = "STG_EMPIRE_suliban"
+	adjective = "STG_adjective_suliban"
+	spawn_enabled = yes
+
+	ship_prefix = "STG_ship_prefix_suliban"
+
+	species = {
+		class = "SUL"
+		portrait = "suliban"
+		name = "STG_species_name_suliban"
+		plural = "STG_species_plural_suliban"
+		adjective = "STG_species_adjective_suliban"
+		name_list = "STG_SULIBAN"
+		trait = "trait_organic"
+		trait = "trait_talented"
+		trait = "trait_quick_learners"
+	}
+
+	room = "suliban_room"
+
+	authority = "auth_dictatorial"
+	civics = { "civic_corvee_system" "civic_cutthroat_politics" }
+	government = gov_constitutional_dictatorship
+	origin = "origin_default"
+
+	ethic = "ethic_fanatic_authoritarian"
+	ethic = "ethic_xenophobe"
+
+	initializer = "stg_suliban_empire_home"
+	planet_name = "STG_planet_name_suliban"
+	planet_class = "pc_desert"
+	system_name = "STG_system_name_suliban"
+
+	graphical_culture = "suliban"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "trek"
+			file = "suliban.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"dark_green"
+			"grey"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_suliban"
+		gender = male
+		portrait = "suliban_male_04"
+		texture = 0
+		trait = "trait_ruler_eye_for_talent"
+		leader_class = official
+	}
+}
+
+
+# ── Yridian League ──────────────────────────────────────────────
+# Yridia II is the canonical homeworld; Yridia IV is a trading hub.
+stg_yridian_empire = {
+	name = "STG_EMPIRE_yridian"
+	adjective = "STG_adjective_yridian"
+	spawn_enabled = yes
+
+	playable = has_megacorp
+
+	ship_prefix = "STG_ship_prefix_yridian"
+
+	species = {
+		class = "YRI"
+		portrait = "yridian"
+		name = "STG_species_name_yridian"
+		plural = "STG_species_plural_yridian"
+		adjective = "STG_species_adjective_yridian"
+		name_list = "STG_YRIDIAN"
+		trait = "trait_organic"
+		trait = "trait_thrifty"
+		trait = "trait_talented"
+		trait = "trait_traditional"
+		trait = "trait_repugnant"
+	}
+
+	room = "personality_ruthless_capitalists_room"
+
+	authority = "auth_corporate"
+	civics = { "civic_brand_loyalty" "civic_media_conglomerate" }
+	government = gov_megacorporation
+	origin = "origin_default"
+
+	ethic = "ethic_authoritarian"
+	ethic = "ethic_xenophile"
+	ethic = "ethic_materialist"
+
+	initializer = "stg_yridian_empire_home"
+	planet_name = "STG_planet_name_yridian"
+	planet_class = "pc_arid"
+	system_name = "STG_system_name_yridian"
+
+	graphical_culture = "yridian"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "trek"
+			file = "yridian.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"dark_brown"
+			"yellow"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_yridian"
+		gender = male
+		portrait = "yridian_01"
+		texture = 0
+		trait = "trait_ruler_eye_for_talent"
+		leader_class = official
+	}
+}
+
+
+# ── Krenim Imperium ──────────────────────────────────────────────
+# Kyana Prime is the canonical Krenim world; the Imperium's extent depends
+# entirely on which timeline you are in.
+stg_krenim_empire = {
+	name = "STG_EMPIRE_krenim"
+	adjective = "STG_adjective_krenim"
+	spawn_enabled = yes
+
+	ship_prefix = "STG_ship_prefix_krenim"
+
+	species = {
+		class = "KRE"
+		portrait = "krenim"
+		name = "STG_species_name_krenim"
+		plural = "STG_species_plural_krenim"
+		adjective = "STG_species_adjective_krenim"
+		name_list = "STG_KRENIM"
+		trait = "trait_organic"
+		trait = "trait_intelligent"
+		trait = "trait_natural_physicists"
+		trait = "trait_fleeting"
+	}
+
+	room = "personality_xenophobic_isolationists_room"
+
+	authority = "auth_dictatorial"
+	civics = { "civic_technocracy" "civic_environmentalist" }
+	government = gov_technocratic_dictatorship
+	origin = "origin_default"
+
+	ethic = "ethic_authoritarian"
+	ethic = "ethic_fanatic_materialist"
+
+	initializer = "stg_krenim_empire_home"
+	planet_name = "STG_planet_name_krenim"
+	planet_class = "pc_continental"
+	system_name = "STG_system_name_krenim"
+
+	graphical_culture = "krenim"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "trek"
+			file = "krenim.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"dark_purple"
+			"grey"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_krenim"
+		gender = male
+		portrait = "krenim_male_01"
+		texture = 0
+		# Not trait_ruler_feedback_loop: allowed_ethics = ethic_gestalt_consciousness,
+		# and the Krenim are authoritarian materialists, so it hid the empire.
+		trait = "trait_ruler_eye_for_talent"
+		leader_class = scientist
+	}
+}
+
+
+# ── Malon Sanctity ──────────────────────────────────────────────
+# STNH ships no Malon flag, so this reuses the Talaxian heraldry — both are
+# Delta Quadrant hauler cultures and the art is the nearest fit in
+# flags/trek/. Replace it if a Malon flag ever arrives.
+stg_malon_empire = {
+	name = "STG_EMPIRE_malon"
+	adjective = "STG_adjective_malon"
+	spawn_enabled = yes
+
+	ship_prefix = "STG_ship_prefix_malon"
+
+	species = {
+		class = "MAL"
+		portrait = "malon"
+		name = "STG_species_name_malon"
+		plural = "STG_species_plural_malon"
+		adjective = "STG_species_adjective_malon"
+		name_list = "STG_MALON"
+		trait = "trait_organic"
+		trait = "trait_industrious"
+		trait = "trait_strong"
+		trait = "trait_wasteful"
+	}
+
+	room = "personality_erudite_explorers_room"
+
+	authority = "auth_oligarchic"
+	civics = { "civic_mining_guilds" "civic_meritocracy" }
+	government = gov_irenic_bureaucracy
+	origin = "origin_default"
+
+	ethic = "ethic_pacifist"
+	ethic = "ethic_fanatic_materialist"
+
+	initializer = "stg_malon_empire_home"
+	planet_name = "STG_planet_name_malon"
+	planet_class = "pc_continental"
+	system_name = "STG_system_name_malon"
+
+	graphical_culture = "malon"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "trek"
+			file = "malon.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"dark_orange"
+			"dark_grey"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_malon"
+		gender = male
+		portrait = "malon_male_01"
+		texture = 0
+		trait = "trait_ruler_industrialist"
+		leader_class = official
+	}
+}
+
+
+# ── Vidiian Sodality ──────────────────────────────────────────────
+# The Sodality's worlds are never named on screen; Vidiia is the conventional
+# name for the homeworld.
+stg_vidiian_empire = {
+	name = "STG_EMPIRE_vidiian"
+	adjective = "STG_adjective_vidiian"
+	spawn_enabled = yes
+
+	ship_prefix = "STG_ship_prefix_vidiian"
+
+	species = {
+		class = "VID"
+		portrait = "vidiian"
+		name = "STG_species_name_vidiian"
+		plural = "STG_species_plural_vidiian"
+		adjective = "STG_species_adjective_vidiian"
+		name_list = "STG_VIDIIAN"
+		trait = "trait_organic"
+		trait = "trait_intelligent"
+		trait = "trait_natural_engineers"
+		trait = "trait_talented"
+		trait = "trait_repugnant"
+	}
+
+	room = "personality_ruthless_capitalists_room"
+
+	authority = "auth_dictatorial"
+	civics = { "civic_nationalistic_zeal" "civic_distinguished_admiralty" }
+	government = gov_military_dictatorship
+	origin = "origin_default"
+
+	ethic = "ethic_xenophobe"
+	ethic = "ethic_fanatic_militarist"
+
+	initializer = "stg_vidiian_empire_home"
+	planet_name = "STG_planet_name_vidiian"
+	planet_class = "pc_continental"
+	system_name = "STG_system_name_vidiian"
+
+	graphical_culture = "vidiian"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "trek"
+			file = "vidiian.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"dark_green"
+			"dark_brown"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_vidiian"
+		gender = female
+		portrait = "vidiian_cured_female_04"
+		texture = 0
+		trait = "trait_ruler_warlike"
+		leader_class = commander
+	}
+}
+
+
+# ── Terran Empire ──────────────────────────────────────────────
+# The mirror universe's Earth. `graphical_culture = terran_nx` is the NX-era
+# Terran shipset, so this is the Empire at the time of ENT 'In a Mirror,
+# Darkly'.
+stg_terran_empire = {
+	name = "STG_EMPIRE_terran"
+	adjective = "STG_adjective_terran"
+	spawn_enabled = yes
+
+	ship_prefix = "STG_ship_prefix_terran"
+
+	species = {
+		class = "TER"
+		portrait = "human"
+		name = "STG_species_name_terran"
+		plural = "STG_species_plural_terran"
+		adjective = "STG_species_adjective_terran"
+		name_list = "STG_TERRAN"
+		trait = "trait_organic"
+		trait = "trait_adaptive"
+		trait = "trait_strong"
+		trait = "trait_deviants"
+	}
+
+	room = "terran_room"
+
+	authority = "auth_imperial"
+	civics = { "civic_police_state" "civic_slaver_guilds" }
+	government = gov_star_empire
+	origin = "origin_default"
+
+	ethic = "ethic_authoritarian"
+	ethic = "ethic_fanatic_militarist"
+
+	initializer = "sol_system_initializer"
+	planet_name = "STG_planet_name_terran"
+	planet_class = "pc_continental"
+	system_name = "STG_system_name_terran"
+
+	graphical_culture = "terran_nx"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "trek"
+			file = "TerranEmpire.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"red"
+			"black"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_terran"
+		gender = female
+		portrait = "stg_ter_ruler"
+		texture = 0
+		clothes = 0
+		trait = "trait_ruler_warlike"
+		leader_class = commander
+	}
+}

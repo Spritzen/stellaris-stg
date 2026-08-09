@@ -1,0 +1,157 @@
+﻿# Andorian Empire name list.
+#
+# Ships take Imperial Guard cruiser names and the clans and ice-fields of
+# Andoria. Canon gives Andorians a clan suffix (Thy'lek Shran), so clan names
+# sit in second_names, as the Trill symbionts do.
+#
+# Structure mirrors /stellaris/common/name_lists/HUMAN1.txt. Every name token
+# is an STG_N_ key in src/localisation/english/stg_names_l_english.yml.
+
+STG_ANDORIAN = {
+	category = "Humanoid"
+	randomized = no
+
+	ship_names = {
+		generic = {
+			STG_N_Kumari STG_N_Docana STG_N_Thelasa-vor STG_N_Weytahn STG_N_Andoria STG_N_IceCutter
+			STG_N_BlueStar STG_N_Lorvela STG_N_Kholhr STG_N_Zabathu STG_N_Ushaan STG_N_Tarhana STG_N_Vrenak
+			STG_N_Shran STG_N_Talas STG_N_Keval STG_N_Telev STG_N_Gareb
+		}
+
+		science = {
+			STG_N_Lorvela STG_N_Tarhana STG_N_Weytahn STG_N_Aenar STG_N_NorthernWastes STG_N_Vrenak STG_N_Keval
+		}
+
+		colonizer = {
+			STG_N_NewAndoria STG_N_Weytahn STG_N_Ifnab STG_N_Tarhana STG_N_Zabathu
+		}
+
+		constructor = {
+			STG_N_Kholhr STG_N_Gareb STG_N_Telev STG_N_Vrenak STG_N_Ifnab
+		}
+
+		corvette = {
+			STG_N_Ushaan STG_N_Zabathu STG_N_Talas STG_N_Keval STG_N_Gareb
+		}
+
+		destroyer = {
+			STG_N_Docana STG_N_Thelasa-vor STG_N_Telev STG_N_Kholhr
+		}
+
+		cruiser = {
+			STG_N_Kumari STG_N_Weytahn STG_N_Lorvela STG_N_BlueStar
+		}
+
+		battleship = {
+			STG_N_Andoria STG_N_ImperialGuard STG_N_Shran STG_N_Ushaan
+		}
+
+		titan = {
+			STG_N_Andoria STG_N_ImperialGuard STG_N_Kumari STG_N_IceCutter
+		}
+	}
+
+	ship_class_names = {
+		generic = {
+			STG_N_Kumari STG_N_Docana STG_N_Thelasa-vor STG_N_Weytahn STG_N_Lorvela STG_N_Kholhr STG_N_Zabathu
+			STG_N_Ushaan STG_N_Tarhana
+		}
+	}
+
+	fleet_names = {
+		sequential_name = STG_ANDORIAN_VANGUARD
+	}
+
+	army_names = {
+		machine_assault_1 = {
+			sequential_name = STG_ANDORIAN_ASSAULTGUARD
+		}
+
+		machine_defense = {
+			sequential_name = STG_ANDORIAN_DEFENSEGUARD
+		}
+
+		defense_army = {
+			sequential_name = STG_ANDORIAN_PLANETARYDEFENSEGUARD
+		}
+
+		assault_army = {
+			sequential_name = STG_ANDORIAN_EXPEDITIONARYGUARD
+		}
+
+		slave_army = {
+			sequential_name = STG_ANDORIAN_LABORGUARD
+		}
+
+		clone_army = {
+			sequential_name = STG_ANDORIAN_REPLICATEGUARD
+		}
+
+		robotic_army = {
+			sequential_name = STG_ANDORIAN_AUTOMATEDGUARD
+		}
+
+		psionic_army = {
+			sequential_name = STG_ANDORIAN_ADEPTGUARD
+		}
+
+		xenomorph_army = {
+			sequential_name = STG_ANDORIAN_XENOMORPHGUARD
+		}
+
+		gene_warrior_army = {
+			sequential_name = STG_ANDORIAN_AUGMENTEDGUARD
+		}
+
+		occupation_army = {
+			sequential_name = STG_ANDORIAN_OCCUPATIONGUARD
+		}
+
+		robotic_defense_army = {
+			sequential_name = STG_ANDORIAN_AUTOMATEDDEFENSEGUARD
+		}
+
+		industrial_army = {
+			sequential_name = STG_ANDORIAN_INDUSTRIALGUARD
+		}
+
+		primitive_army = {
+			sequential_name = STG_ANDORIAN_MILITIA
+		}
+	}
+
+	planet_names = {
+		generic = {
+			names = {
+				STG_N_Andor STG_N_Weytahn STG_N_Ifnab STG_N_Tarhana STG_N_Zabathu STG_N_Lorvela
+				STG_N_Kholhr STG_N_NewAndoria STG_N_NorthernWastes STG_N_Ushaan STG_N_Vrenak STG_N_Thelasa
+				STG_N_Docana STG_N_Gareb STG_N_Keval STG_N_Telev STG_N_Kumari STG_N_Aenar
+				STG_N_BlueStar
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			weight = 100
+
+			first_names_male = {
+				STG_N_Shran STG_N_Thylek STG_N_Telev STG_N_Keval STG_N_Gareb STG_N_Tarah STG_N_Thoris
+				STG_N_Anlenthoris STG_N_Kalev STG_N_Zhaban STG_N_Shanthi STG_N_Vrinn STG_N_Herav STG_N_Torath
+				STG_N_Erib STG_N_Sovek STG_N_Alav STG_N_Thalen
+			}
+
+			first_names_female = {
+				STG_N_Talas STG_N_Jhamel STG_N_Tarah STG_N_Athenaeum STG_N_Shenar STG_N_Vishri STG_N_Zhavey
+				STG_N_Enralla STG_N_Thirishar STG_N_Kellinda STG_N_Prynn STG_N_Sessethantis STG_N_Tessic
+				STG_N_Anichent
+			}
+
+			second_names = {
+				STG_N_Shran STG_N_Talas STG_N_Thzoarhi STG_N_Chthane STG_N_Zhthiin STG_N_Shrazzen STG_N_Thlenarad
+				STG_N_Chvraine STG_N_Zhranok STG_N_Shvaisen STG_N_Thkaleth STG_N_Chlorren STG_N_Zhkalesh
+				STG_N_Shthanas
+			}
+		}
+	}
+}

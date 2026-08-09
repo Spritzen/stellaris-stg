@@ -1,0 +1,17 @@
+# STG's own playlist entries — which declared tracks the game may play.
+#
+# A NEW file, not a shadow. Pairs with stg_music.asset, which maps the name to
+# the file; a `music = { }` with no `song = { }` is declared and never played,
+# which is the state the Federation anthem was in.
+#
+# No trigger, because the database has none: across vanilla's 24 `song` blocks
+# the only field beside `name` is `chance`, used once as `factor = 0` to keep a
+# DLC main-menu theme out of the in-game rotation. So this plays for every
+# empire, Klingon and Borg included — acceptable in a Trek conversion, and the
+# alternative was leaving it unheard.
+#
+# See .docs/decisions/55-federation-anthem.md.
+
+song = {
+	name = "stg_ufp_anthem"
+}

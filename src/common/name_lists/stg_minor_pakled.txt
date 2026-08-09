@@ -1,0 +1,158 @@
+﻿# Pakled name list, for the AI-only minor powers that use it.
+#
+# CONVERTED from .source/688086068/common/name_lists/Pakled.txt: the tokens are
+# STNH's, resolved through STNH's own localisation and re-keyed as STG_N_. The
+# ship-size buckets are rebuilt for VANILLA's ladder -- STNH's file buckets by
+# its own (saber, sovereign, steamrunner) and those keys mean nothing here.
+#
+# See .docs/decisions/19-stnh-minor-powers-as-ai-empires.md.
+
+STG_PAKLED = {
+	category = "Humanoid"
+	randomized = no
+
+	ship_names = {
+		generic = {
+			STG_N_BigShip STG_N_Hunter STG_N_Pakled STG_N_Poacher STG_N_Trapper STG_N_FighterShip
+			STG_N_GoFaster STG_N_Mondom STG_N_Mondor STG_N_PakledShip STG_N_SpaceShip STG_N_ScavengerShip
+			STG_N_Hind STG_N_Howler STG_N_Howl STG_N_Bingle STG_N_Jells STG_N_GoodShip
+			STG_N_FlyerShip STG_N_StealStuff
+		}
+
+		corvette = {
+			STG_N_ScavengerShip STG_N_Hind STG_N_Howler STG_N_Howl STG_N_Bingle
+		}
+
+		destroyer = {
+			STG_N_Jells STG_N_GoodShip STG_N_FlyerShip STG_N_StealStuff
+		}
+
+		cruiser = {
+			STG_N_BigShip STG_N_Hunter STG_N_Pakled
+		}
+
+		battleship = {
+			STG_N_BigShip STG_N_Hunter STG_N_Pakled
+		}
+
+		titan = {
+			STG_N_BigShip STG_N_Hunter STG_N_Pakled
+		}
+
+		science = {
+			STG_N_BigShip STG_N_Hunter STG_N_Pakled STG_N_Poacher STG_N_Trapper STG_N_FighterShip
+		}
+
+		colonizer = {
+			STG_N_PakledPlanet STG_N_AnotherPakledPlanet STG_N_BigPlanet STG_N_BigPakledPlanet STG_N_SmallPakledPlanet
+		}
+
+		constructor = {
+			STG_N_GoFaster STG_N_Mondom STG_N_Mondor STG_N_PakledShip STG_N_SpaceShip
+		}
+	}
+
+	ship_class_names = {
+		generic = {
+			STG_N_BigShip STG_N_Hunter STG_N_Pakled STG_N_Poacher STG_N_Trapper STG_N_FighterShip
+			STG_N_GoFaster STG_N_Mondom STG_N_Mondor
+		}
+	}
+
+	fleet_names = {
+		sequential_name = STG_PAKLED_GROUP
+	}
+
+	army_names = {
+		machine_assault_1 = {
+			sequential_name = STG_PAKLED_ASSAULTAUXILIARY
+		}
+
+		machine_defense = {
+			sequential_name = STG_PAKLED_DEFENSEAUXILIARY
+		}
+
+		defense_army = {
+			sequential_name = STG_PAKLED_PLANETARYDEFENSEAUXILIARY
+		}
+
+		assault_army = {
+			sequential_name = STG_PAKLED_EXPEDITIONARYAUXILIARY
+		}
+
+		slave_army = {
+			sequential_name = STG_PAKLED_LABORAUXILIARY
+		}
+
+		clone_army = {
+			sequential_name = STG_PAKLED_REPLICATEAUXILIARY
+		}
+
+		robotic_army = {
+			sequential_name = STG_PAKLED_AUTOMATEDAUXILIARY
+		}
+
+		psionic_army = {
+			sequential_name = STG_PAKLED_ADEPTAUXILIARY
+		}
+
+		xenomorph_army = {
+			sequential_name = STG_PAKLED_XENOMORPHAUXILIARY
+		}
+
+		gene_warrior_army = {
+			sequential_name = STG_PAKLED_AUGMENTEDAUXILIARY
+		}
+
+		occupation_army = {
+			sequential_name = STG_PAKLED_OCCUPATIONAUXILIARY
+		}
+
+		robotic_defense_army = {
+			sequential_name = STG_PAKLED_AUTOMATEDDEFENSEAUXILIARY
+		}
+
+		industrial_army = {
+			sequential_name = STG_PAKLED_INDUSTRIALAUXILIARY
+		}
+
+		primitive_army = {
+			sequential_name = STG_PAKLED_MILITIA
+		}
+	}
+
+	planet_names = {
+		generic = {
+			names = {
+				STG_N_PakledPlanet STG_N_AnotherPakledPlanet STG_N_BigPlanet STG_N_BigPakledPlanet STG_N_SmallPakledPlanet
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			weight = 100
+
+			first_names_male = {
+				STG_N_Grebnedlog STG_N_Rumdar STG_N_Rebner STG_N_Bergnendul STG_N_Jackabog STG_N_Grubdin
+				STG_N_Berf STG_N_Derf STG_N_Dorf STG_N_Hordor STG_N_Hoade STG_N_Hopmikbud
+				STG_N_Humbledem STG_N_Nessar STG_N_Menar STG_N_Ramseys STG_N_Morp STG_N_Mep
+				STG_N_Doggar STG_N_Hendeets STG_N_Dinsoqd STG_N_Jellsqs STG_N_Pommp STG_N_Flump
+			}
+
+			first_names_female = {
+				STG_N_Corgo STG_N_Smurfo STG_N_Smarfy STG_N_Badardul STG_N_Berfett STG_N_Hogari
+				STG_N_Heldii STG_N_Heggy STG_N_Lofahi STG_N_Bologone STG_N_Lorettdel STG_N_Melletel
+				STG_N_Nessaril STG_N_Kellenitil STG_N_Beff STG_N_Meff STG_N_Gennel STG_N_Gorgey
+				STG_N_Pem STG_N_Pom STG_N_Beffs STG_N_Yelggul STG_N_Pinscheri STG_N_Spaniy
+			}
+
+			second_names = {
+				STG_N_Grebnedlog STG_N_Rumdar STG_N_Rebner STG_N_Bergnendul STG_N_Jackabog STG_N_Grubdin
+				STG_N_Berf STG_N_Derf STG_N_Dorf STG_N_Hordor STG_N_Hoade STG_N_Hopmikbud
+				STG_N_Humbledem STG_N_Nessar STG_N_Menar STG_N_Ramseys STG_N_Morp STG_N_Mep
+				STG_N_Doggar STG_N_Hendeets STG_N_Dinsoqd STG_N_Jellsqs STG_N_Pommp STG_N_Flump
+			}
+		}
+	}
+}

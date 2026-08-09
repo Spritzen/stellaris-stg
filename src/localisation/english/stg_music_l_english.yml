@@ -1,0 +1,65 @@
+﻿l_english:
+ # Star Trek Galaxies -- display names for the music player.
+ #
+ # THE MUSIC PLAYER DRAWS THE DECLARATION NAME, looked up as a loc key: vanilla
+ # writes `music = { name = "cradleofthegalaxy" }` and
+ # `cradleofthegalaxy:0 "Cradle of the Galaxy"` beside it. A name with no key is
+ # drawn VERBATIM and logs nothing, because a name that resolves to itself still
+ # resolves -- so 16 of the built tree's 22 playlist entries listed as
+ # `newhorizonssong1`, `maintheme7`, `stg_ufp_anthem`. Reported from the
+ # 2026-08-08 live run. See .docs/decisions/61-music-player-track-names.md
+ #
+ # KEYS ARE NOT OURS TO PREFIX. The key is the `name =` in a vendored
+ # music/*.asset that we do not own and cannot rename, so it takes STNH's
+ # spelling and vanilla's. Same exception as the species classes
+ # (.docs/decisions/10-species-class-keys-unprefixed.md); only `stg_ufp_anthem`
+ # is ours and carries the prefix.
+ #
+ # Every value below is DERIVED, in this order of preference: STNH's own
+ # localisation, then the .ogg's embedded Vorbis TITLE tag, then the filename.
+ # The four that no source names at all are marked.
+
+ # ── STNH's ambient tracks. Values are STNH's own localisation/, which STG
+ # does not vendor (.docs/architecture/stnh-art.md takes its art paths and not its script), so the
+ # titles had to be harvested the same way decision 52 harvested star names.
+ newhorizonssong1:0 "New Horizons - Inner Light"
+ newhorizonssong2:0 "New Horizons - Deep Space 9"
+ newhorizonssong3:0 "New Horizons - Voyager"
+ newhorizonssong4:0 "New Horizons - Searching The Beyond"
+ newhorizonssong5:0 "New Horizons - The Search for Mr. Spock"
+ newhorizonssong6:0 "New Horizons - Enterprise Leaves Moorings"
+ newhorizonssong7:0 "New Horizons - Voyager Launch"
+ newhorizonssong8:0 "New Horizons - Gul Evek vs Chakotay"
+
+ # STNH names neither of these in any of its 51 localisation files. The first
+ # is the composer's own title, read out of the .ogg's Vorbis comment
+ # (ARTIST=Samuel Pierce); the second has no TITLE tag either, and its name is
+ # the one value on this page that is chosen rather than derived.
+ newhorizonssong9:0 "New Horizons - Make A Note In The Log"
+ newhorizonssong10:0 "New Horizons - Among the Stars"
+
+ # ── The main theme, once ─────────────────────────────────────────────────────
+ # `maintheme` and STNH's added `maintheme7/8/9/10/12` ALL declare
+ # newhorizonstheme.ogg -- six playlist entries, ONE recording, taking 6 of the
+ # rotation's 32 slots because Stellaris picks uniformly across song entries.
+ # Decision 61 kept all six with distinct titles at the user's direction; the
+ # 2026-08-08 Cardassian run reversed that, and the five aliases now have
+ # comment-only playlist files in src/music/. Their `music = { }` declarations
+ # and these five keys are deliberately NOT removed: the declarations are what
+ # keeps the .ogg reachable, and a key nothing looks up costs nothing, where a
+ # missing one would draw a raw alias if a future pass re-lists an entry.
+ #
+ # `maintheme` overrides vanilla's own key, which reads "Creation and Beyond" --
+ # correct for vanilla's file and wrong here, because STNH repoints maintheme at
+ # its own theme and the label stayed vanilla's.
+ maintheme:0 "New Horizons - Main Theme"
+ maintheme7:0 "New Horizons - Where No One Has Gone Before"
+ maintheme8:0 "New Horizons - Main Title Fanfare"
+ maintheme9:0 "New Horizons - Overture to the Final Frontier"
+ maintheme10:0 "New Horizons - Second Star to the Right"
+ maintheme12:0 "New Horizons - To Boldly Go"
+
+ # ── Ours ────────────────────────────────────────────────────────────────────
+ # Declared in src/music/stg_music.{asset,txt} by decision 55, which got the
+ # track playing and left it listed under its own key.
+ stg_ufp_anthem:0 "Anthem of the United Federation of Planets"

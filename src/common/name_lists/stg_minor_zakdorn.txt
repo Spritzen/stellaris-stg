@@ -1,0 +1,206 @@
+﻿# Zakdorn name list, for the AI-only minor powers that use it.
+#
+# CONVERTED from .source/688086068/common/name_lists/Zakdorn.txt: the tokens are
+# STNH's, resolved through STNH's own localisation and re-keyed as STG_N_. The
+# ship-size buckets are rebuilt for VANILLA's ladder -- STNH's file buckets by
+# its own (saber, sovereign, steamrunner) and those keys mean nothing here.
+#
+# See .docs/decisions/19-stnh-minor-powers-as-ai-empires.md.
+
+STG_ZAKDORN = {
+	category = "Humanoid"
+	randomized = no
+
+	ship_names = {
+		generic = {
+			STG_N_Glir STG_N_All STG_N_Glt STG_N_Lall STG_N_Drguts STG_N_Tenxing
+			STG_N_Backsze STG_N_Trze STG_N_Basebze STG_N_Skiboby STG_N_Hik STG_N_Ninjuu
+			STG_N_Punchby STG_N_Shon STG_N_Balaall STG_N_Polelay STG_N_Carches STG_N_Des
+			STG_N_Cyclog STG_N_Archm STG_N_Gigray STG_N_Autnet STG_N_Trwing STG_N_Spsu
+			STG_N_Juurfu STG_N_Snook STG_N_Papeze STG_N_Aeving STG_N_Croeing STG_N_Rallyle
+			STG_N_Volley STG_N_Floker STG_N_Elle STG_N_Raccing STG_N_Mass STG_N_Basebg
+			STG_N_Ling STG_N_Hilf STG_N_Snorze STG_N_Grquets STG_N_Blackti STG_N_Judze
+			STG_N_Baset STG_N_Letchwg STG_N_Ringets STG_N_Coze STG_N_Polosse STG_N_Cycxing
+			STG_N_Mope STG_N_Skyd STG_N_Crwing STG_N_Flyfi STG_N_Capeze STG_N_Vaquets
+			STG_N_Bushing STG_N_Icezg STG_N_Dirtjum STG_N_Netelze STG_N_Kennis STG_N_Disc
+			STG_N_Skball STG_N_Tobket STG_N_Backlin STG_N_Barby STG_N_Paraze STG_N_Rod
+			STG_N_Skiards STG_N_Speedp STG_N_Waaeqze STG_N_Badmg STG_N_Fluttze STG_N_Icesves
+			STG_N_Png STG_N_Unis STG_N_Snorkey STG_N_Goss STG_N_Shket STG_N_Wak
+			STG_N_Shou STG_N_Botzy STG_N_Cuttir STG_N_Blbting STG_N_Flyize STG_N_Ropxing
+			STG_N_Wakg STG_N_Udo STG_N_Vagling STG_N_Cyching STG_N_Coing STG_N_Rafg
+			STG_N_Steey STG_N_Floop STG_N_Medll STG_N_Sanshoy STG_N_Biving STG_N_Sofkey
+			STG_N_Bulng STG_N_Brodeo STG_N_Castize STG_N_Baskze STG_N_Kicgolf STG_N_Kun
+			STG_N_Sccer STG_N_Tkendo STG_N_Shoze STG_N_Aring STG_N_Shootfi STG_N_Pun
+			STG_N_Aikour STG_N_Canog STG_N_Eiards STG_N_Arfiing STG_N_Skydze STG_N_Hoov
+			STG_N_Supfooy STG_N_Saxelay STG_N_Shase STG_N_Harne STG_N_Bapeze STG_N_Longbal
+			STG_N_Bang STG_N_Slm STG_N_Kixing STG_N_Bandng STG_N_Mounkey STG_N_Ultimay
+			STG_N_River STG_N_Jmball STG_N_Eball STG_N_Hareu STG_N_Moxing STG_N_Flooze
+			STG_N_Greigh STG_N_Bulxing STG_N_Toss STG_N_Scootm STG_N_Kneebon STG_N_Flutze
+			STG_N_Sailinl STG_N_Kicze STG_N_Throwbg STG_N_Lop STG_N_Basejy STG_N_Toor
+			STG_N_Goalon STG_N_Saihing STG_N_Himbing STG_N_Medlng STG_N_Scootg STG_N_Eighnet
+			STG_N_Barbg STG_N_Polmate STG_N_Skaves STG_N_Bullrir STG_N_Matchze STG_N_Oxing
+			STG_N_Trampy STG_N_Gymnass STG_N_Cut STG_N_Kneeze STG_N_Minlay STG_N_Formuge
+			STG_N_Bandze STG_N_Unsg STG_N_Tendo STG_N_Ketxing STG_N_Teu STG_N_Dirze
+			STG_N_Kitball STG_N_Bacing STG_N_Gymnze STG_N_Hory STG_N_Superoy STG_N_Kitel
+			STG_N_Tracs STG_N_Catnet STG_N_Racdog STG_N_Poloze STG_N_Bage STG_N_Juge
+			STG_N_Roppdr STG_N_Lacr STG_N_Dodway STG_N_Call STG_N_Kicing STG_N_Rivern
+			STG_N_Discgol STG_N_Ropeju STG_N_Barding STG_N_Cyclo STG_N_Streets STG_N_Abse
+			STG_N_Beach STG_N_Carxing STG_N_Voss STG_N_Rmult STG_N_Caze STG_N_Bandyze
+			STG_N_Rackze STG_N_Skitoft STG_N_Tramll STG_N_Homball STG_N_Ulf STG_N_Volo
+			STG_N_Surpou STG_N_Kending STG_N_Tking STG_N_Rinze STG_N_Bandoy STG_N_Hmofng
+			STG_N_Hilball STG_N_Anglt STG_N_Juze STG_N_Slhting STG_N_Soze STG_N_Cardsg
+			STG_N_Para STG_N_Seaka STG_N_Fall STG_N_Racque STG_N_Kstroke STG_N_Hdy
+			STG_N_Sailf STG_N_Parasdo STG_N_Trackck STG_N_Banxing STG_N_Bbicket STG_N_Wrze
+			STG_N_Walkido STG_N_Glpeze STG_N_Letts STG_N_Waol STG_N_Wboy STG_N_Hangze
+			STG_N_Kendol STG_N_Geoze STG_N_Hillczs STG_N_Snown STG_N_Ulplay STG_N_Ringeze
+			STG_N_Slambal STG_N_Stee STG_N_Parkze STG_N_Foxhg STG_N_Wirmoto STG_N_Sumt
+			STG_N_Axfing STG_N_Icepool STG_N_Steepg STG_N_Sapezr STG_N_Cyclf STG_N_Lanze
+			STG_N_Climb STG_N_Ropecs STG_N_Waterpo STG_N_Matbals STG_N_Bodybon STG_N_Ropmoto
+			STG_N_Rodnis STG_N_Lacrze STG_N_Cat STG_N_Juggng STG_N_Geoto STG_N_Miniay
+			STG_N_Gymnnis STG_N_Batons STG_N_Eis STG_N_Wry STG_N_Loy STG_N_Kitefng
+			STG_N_Handh STG_N_Badting STG_N_Tepins STG_N_Dee STG_N_Glmul STG_N_Swordf
+			STG_N_Beaglze STG_N_Rishing STG_N_Figolf STG_N_Watics STG_N_Ton STG_N_Cuttnet
+			STG_N_Lepool STG_N_Cycze
+		}
+
+		corvette = {
+			STG_N_Ninjuu STG_N_Punchby STG_N_Shon STG_N_Balaall STG_N_Polelay
+		}
+
+		destroyer = {
+			STG_N_Carches STG_N_Des STG_N_Cyclog STG_N_Archm STG_N_Gigray
+		}
+
+		cruiser = {
+			STG_N_Autnet STG_N_Trwing STG_N_Spsu STG_N_Juurfu STG_N_Snook
+		}
+
+		battleship = {
+			STG_N_Papeze STG_N_Aeving STG_N_Croeing STG_N_Rallyle STG_N_Volley
+		}
+
+		titan = {
+			STG_N_Floker STG_N_Elle STG_N_Raccing STG_N_Mass
+		}
+
+		science = {
+			STG_N_Glir STG_N_All STG_N_Glt STG_N_Lall STG_N_Drguts STG_N_Tenxing
+		}
+
+		colonizer = {
+			STG_N_Glir STG_N_All STG_N_Glt STG_N_Lall STG_N_Drguts
+		}
+
+		constructor = {
+			STG_N_Backsze STG_N_Trze STG_N_Basebze STG_N_Skiboby STG_N_Hik
+		}
+	}
+
+	ship_class_names = {
+		generic = {
+			STG_N_Glir STG_N_All STG_N_Glt STG_N_Lall STG_N_Drguts STG_N_Tenxing
+			STG_N_Backsze STG_N_Trze STG_N_Basebze
+		}
+	}
+
+	fleet_names = {
+		sequential_name = STG_ZAKDORN_GROUP
+	}
+
+	army_names = {
+		machine_assault_1 = {
+			sequential_name = STG_ZAKDORN_ASSAULTAUXILIARY
+		}
+
+		machine_defense = {
+			sequential_name = STG_ZAKDORN_DEFENSEAUXILIARY
+		}
+
+		defense_army = {
+			sequential_name = STG_ZAKDORN_PLANETARYDEFENSEAUXILIARY
+		}
+
+		assault_army = {
+			sequential_name = STG_ZAKDORN_EXPEDITIONARYAUXILIARY
+		}
+
+		slave_army = {
+			sequential_name = STG_ZAKDORN_LABORAUXILIARY
+		}
+
+		clone_army = {
+			sequential_name = STG_ZAKDORN_REPLICATEAUXILIARY
+		}
+
+		robotic_army = {
+			sequential_name = STG_ZAKDORN_AUTOMATEDAUXILIARY
+		}
+
+		psionic_army = {
+			sequential_name = STG_ZAKDORN_ADEPTAUXILIARY
+		}
+
+		xenomorph_army = {
+			sequential_name = STG_ZAKDORN_XENOMORPHAUXILIARY
+		}
+
+		gene_warrior_army = {
+			sequential_name = STG_ZAKDORN_AUGMENTEDAUXILIARY
+		}
+
+		occupation_army = {
+			sequential_name = STG_ZAKDORN_OCCUPATIONAUXILIARY
+		}
+
+		robotic_defense_army = {
+			sequential_name = STG_ZAKDORN_AUTOMATEDDEFENSEAUXILIARY
+		}
+
+		industrial_army = {
+			sequential_name = STG_ZAKDORN_INDUSTRIALAUXILIARY
+		}
+
+		primitive_army = {
+			sequential_name = STG_ZAKDORN_MILITIA
+		}
+	}
+
+	planet_names = {
+		generic = {
+			names = {
+				STG_N_Glir STG_N_All STG_N_Glt STG_N_Lall STG_N_Drguts STG_N_Tenxing
+				STG_N_Backsze STG_N_Trze STG_N_Basebze STG_N_Skiboby STG_N_Hik STG_N_Ninjuu
+				STG_N_Punchby STG_N_Shon STG_N_Balaall STG_N_Polelay STG_N_Carches STG_N_Des
+				STG_N_Cyclog STG_N_Archm STG_N_Gigray STG_N_Autnet STG_N_Trwing STG_N_Spsu
+				STG_N_Juurfu STG_N_Snook STG_N_Papeze STG_N_Aeving STG_N_Croeing STG_N_Rallyle
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			weight = 100
+
+			first_names_male = {
+				STG_N_Klim STG_N_Sakud STG_N_Jir STG_N_Gruhn STG_N_Sirna STG_N_Koll
+				STG_N_Girkud STG_N_Sim STG_N_Jirna STG_N_Kol STG_N_Jirud STG_N_Sir
+				STG_N_Sima STG_N_Grn STG_N_Girud STG_N_Klirud STG_N_Jirn STG_N_Kll
+				STG_N_Girnar STG_N_Grnakel STG_N_Sirnarnakel STG_N_Marnarkud STG_N_Kolirna STG_N_Sirnakud
+			}
+
+			first_names_female = {
+				STG_N_Tykae STG_N_Kaly STG_N_Tokaly STG_N_Alllly STG_N_Tollyk STG_N_Kae
+				STG_N_Tallyk STG_N_Tolly STG_N_Tykaly STG_N_Alykae STG_N_Tollly STG_N_Tallly
+				STG_N_Kallly STG_N_Dokachin STG_N_Armnoj STG_N_Roplik STG_N_Bunkrep STG_N_Helkara
+				STG_N_Kolrami STG_N_Azernal STG_N_Arn STG_N_Bunopl STG_N_Azel STG_N_Bun
+			}
+
+			second_names = {
+				STG_N_Klim STG_N_Sakud STG_N_Jir STG_N_Gruhn STG_N_Sirna STG_N_Koll
+				STG_N_Girkud STG_N_Sim STG_N_Jirna STG_N_Kol STG_N_Jirud STG_N_Sir
+				STG_N_Sima STG_N_Grn STG_N_Girud STG_N_Klirud STG_N_Jirn STG_N_Kll
+				STG_N_Girnar STG_N_Grnakel STG_N_Sirnarnakel STG_N_Marnarkud STG_N_Kolirna STG_N_Sirnakud
+			}
+		}
+	}
+}

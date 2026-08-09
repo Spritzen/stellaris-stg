@@ -1,0 +1,5 @@
+# SHADOWS prescripted_countries/96_syndaw_prescripted_countries.txt —
+# deliberately empty, so vanilla's 6 empires (tebrid, custodianship, xt489,
+# tebrid_machine_age, custodianship_machine_age, xt489_machine_age) drop out
+# of the empire picker and AI spawning. Ours are in stg_major_powers.txt.
+# See .docs/decisions/14-remove-vanilla-prescripted-empires.md

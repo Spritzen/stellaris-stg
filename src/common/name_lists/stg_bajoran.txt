@@ -1,0 +1,162 @@
+﻿# Bajoran Republic name list.
+#
+# NAME ORDER IS DELIBERATELY THE REVERSE OF CANON. Bajorans write family name
+# first, and Stellaris cannot swap first_name and second_name. Putting family
+# names in the gendered first_names blocks would have been worse — family names
+# are not gendered. Every individual name is canon; only the order is not.
+#
+# Planet and ship names come from Bajor's provinces (Dahkur, Kendra,
+# Rakantha, Musilla, Hedrikspool, Lonar, Janitza, Perikian) and from the
+# Occupation-era resistance.
+#
+# Structure mirrors /stellaris/common/name_lists/HUMAN1.txt. Every name token
+# is an STG_N_ key in src/localisation/english/stg_names_l_english.yml.
+
+STG_BAJORAN = {
+	category = "Humanoid"
+	randomized = no
+
+	ship_names = {
+		generic = {
+			STG_N_Denorios STG_N_ProphetsTear STG_N_OrbofWisdom STG_N_BajorsHope STG_N_Shakaar STG_N_LiNalas
+			STG_N_Ratosha STG_N_Baraddo STG_N_Kendra STG_N_Dahkur STG_N_Rakantha STG_N_Musilla STG_N_Hedrikspool
+			STG_N_Lonar STG_N_Janitza STG_N_Perikian STG_N_Sahving STG_N_Tamulna
+		}
+
+		science = {
+			STG_N_OrbofProphecy STG_N_OrbofTime STG_N_Denorios STG_N_Prylar STG_N_Ranjen STG_N_Vedek
+			STG_N_CelestialTemple
+		}
+
+		colonizer = {
+			STG_N_FreeHaven STG_N_NewBajor STG_N_Golana STG_N_Valo STG_N_Dreon
+		}
+
+		constructor = {
+			STG_N_Hathon STG_N_Ilvia STG_N_Tozhat STG_N_Karvis STG_N_Jalanda
+		}
+
+		corvette = {
+			STG_N_Talon STG_N_Kendra STG_N_Dahkur STG_N_Lonar STG_N_Ornathia
+		}
+
+		destroyer = {
+			STG_N_Shakaar STG_N_LiNalas STG_N_Ratosha STG_N_Baraddo
+		}
+
+		cruiser = {
+			STG_N_Denorios STG_N_ProphetsTear STG_N_BajorsHope STG_N_Rakantha
+		}
+
+		battleship = {
+			STG_N_CelestialTemple STG_N_Emissary STG_N_KaiOpaka STG_N_OrbofWisdom
+		}
+
+		titan = {
+			STG_N_CelestialTemple STG_N_Emissary STG_N_OrbofTime STG_N_Bajor
+		}
+	}
+
+	ship_class_names = {
+		generic = {
+			STG_N_Denorios STG_N_Kendra STG_N_Dahkur STG_N_Rakantha STG_N_Musilla STG_N_Hedrikspool STG_N_Lonar
+			STG_N_Janitza STG_N_Perikian
+		}
+	}
+
+	fleet_names = {
+		sequential_name = STG_BAJORAN_WING
+	}
+
+	army_names = {
+		machine_assault_1 = {
+			sequential_name = STG_BAJORAN_ASSAULTCELL
+		}
+
+		machine_defense = {
+			sequential_name = STG_BAJORAN_DEFENSECELL
+		}
+
+		defense_army = {
+			sequential_name = STG_BAJORAN_PLANETARYDEFENSECELL
+		}
+
+		assault_army = {
+			sequential_name = STG_BAJORAN_EXPEDITIONARYCELL
+		}
+
+		slave_army = {
+			sequential_name = STG_BAJORAN_LABORCELL
+		}
+
+		clone_army = {
+			sequential_name = STG_BAJORAN_REPLICATECELL
+		}
+
+		robotic_army = {
+			sequential_name = STG_BAJORAN_AUTOMATEDCELL
+		}
+
+		psionic_army = {
+			sequential_name = STG_BAJORAN_ADEPTCELL
+		}
+
+		xenomorph_army = {
+			sequential_name = STG_BAJORAN_XENOMORPHCELL
+		}
+
+		gene_warrior_army = {
+			sequential_name = STG_BAJORAN_AUGMENTEDCELL
+		}
+
+		occupation_army = {
+			sequential_name = STG_BAJORAN_OCCUPATIONCELL
+		}
+
+		robotic_defense_army = {
+			sequential_name = STG_BAJORAN_AUTOMATEDDEFENSECELL
+		}
+
+		industrial_army = {
+			sequential_name = STG_BAJORAN_INDUSTRIALCELL
+		}
+
+		primitive_army = {
+			sequential_name = STG_BAJORAN_MILITIA
+		}
+	}
+
+	planet_names = {
+		generic = {
+			names = {
+				STG_N_Jeraddo STG_N_Andros STG_N_Golana STG_N_ValoII STG_N_FreeHaven STG_N_DreonVII
+				STG_N_ProphetsLanding STG_N_Hathon STG_N_Ilvia STG_N_Jalanda STG_N_Kendra STG_N_Dahkur
+				STG_N_Rakantha STG_N_Musilla STG_N_Hedrikspool STG_N_Lonar STG_N_Janitza STG_N_Perikian
+				STG_N_Tozhat
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			weight = 100
+
+			first_names_male = {
+				STG_N_Antos STG_N_Edon STG_N_Nalas STG_N_Furel STG_N_Pol STG_N_Los STG_N_Essa STG_N_Oak STG_N_Tennan
+				STG_N_Solbor STG_N_Koral STG_N_Rys STG_N_Bek STG_N_Fala STG_N_Sorem STG_N_Latha STG_N_Hovath
+				STG_N_Prin STG_N_Tumak STG_N_Dukat
+			}
+
+			first_names_female = {
+				STG_N_Nerys STG_N_Laren STG_N_Adami STG_N_Sulan STG_N_Lupaza STG_N_Neela STG_N_Yassim STG_N_Leeta
+				STG_N_Meru STG_N_Ziyal STG_N_Talis STG_N_Kalem STG_N_Deru STG_N_Rozahn STG_N_Vaatrik STG_N_Naprem
+			}
+
+			second_names = {
+				STG_N_Kira STG_N_Ro STG_N_Winn STG_N_Opaka STG_N_Bareil STG_N_Shakaar STG_N_Li STG_N_Mora
+				STG_N_Tahna STG_N_Jaro STG_N_Kubus STG_N_Anjohl STG_N_Ornathia STG_N_Krim STG_N_Reza STG_N_Sisko
+				STG_N_Furel STG_N_Yates STG_N_Nechayev STG_N_Halb
+			}
+		}
+	}
+}

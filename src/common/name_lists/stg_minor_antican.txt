@@ -1,0 +1,163 @@
+﻿# Antican name list, for the AI-only minor powers that use it.
+#
+# CONVERTED from .source/688086068/common/name_lists/Antican.txt: the tokens are
+# STNH's, resolved through STNH's own localisation and re-keyed as STG_N_. The
+# ship-size buckets are rebuilt for VANILLA's ladder -- STNH's file buckets by
+# its own (saber, sovereign, steamrunner) and those keys mean nothing here.
+#
+# See .docs/decisions/19-stnh-minor-powers-as-ai-empires.md.
+
+STG_ANTICAN = {
+	category = "Humanoid"
+	randomized = no
+
+	ship_names = {
+		generic = {
+			STG_N_Hound STG_N_Hunter STG_N_Poacher STG_N_Trapper STG_N_Pack STG_N_Canis
+			STG_N_Canem STG_N_Lupin STG_N_Lupus STG_N_Rabid STG_N_Retriever STG_N_Hind
+			STG_N_Howler STG_N_Howl STG_N_Bone STG_N_Obedience STG_N_Loyalty STG_N_ViciousDog
+			STG_N_SavageDog STG_N_YappyDog STG_N_Growler STG_N_SlyDog STG_N_StrayDog STG_N_SharpDog
+			STG_N_ScraggyDog
+		}
+
+		corvette = {
+			STG_N_Hind STG_N_Howler STG_N_Howl STG_N_Bone STG_N_Obedience
+		}
+
+		destroyer = {
+			STG_N_Loyalty STG_N_ViciousDog STG_N_SavageDog STG_N_YappyDog STG_N_Growler
+		}
+
+		cruiser = {
+			STG_N_SlyDog STG_N_StrayDog STG_N_SharpDog STG_N_ScraggyDog
+		}
+
+		battleship = {
+			STG_N_Hound STG_N_Hunter STG_N_Poacher
+		}
+
+		titan = {
+			STG_N_Hound STG_N_Hunter STG_N_Poacher
+		}
+
+		science = {
+			STG_N_Hound STG_N_Hunter STG_N_Poacher STG_N_Trapper STG_N_Pack STG_N_Canis
+		}
+
+		colonizer = {
+			STG_N_Hound STG_N_Hunter STG_N_Poacher STG_N_Trapper STG_N_Pack
+		}
+
+		constructor = {
+			STG_N_Canem STG_N_Lupin STG_N_Lupus STG_N_Rabid STG_N_Retriever
+		}
+	}
+
+	ship_class_names = {
+		generic = {
+			STG_N_Hound STG_N_Hunter STG_N_Poacher STG_N_Trapper STG_N_Pack STG_N_Canis
+			STG_N_Canem STG_N_Lupin STG_N_Lupus
+		}
+	}
+
+	fleet_names = {
+		sequential_name = STG_ANTICAN_GROUP
+	}
+
+	army_names = {
+		machine_assault_1 = {
+			sequential_name = STG_ANTICAN_ASSAULTAUXILIARY
+		}
+
+		machine_defense = {
+			sequential_name = STG_ANTICAN_DEFENSEAUXILIARY
+		}
+
+		defense_army = {
+			sequential_name = STG_ANTICAN_PLANETARYDEFENSEAUXILIARY
+		}
+
+		assault_army = {
+			sequential_name = STG_ANTICAN_EXPEDITIONARYAUXILIARY
+		}
+
+		slave_army = {
+			sequential_name = STG_ANTICAN_LABORAUXILIARY
+		}
+
+		clone_army = {
+			sequential_name = STG_ANTICAN_REPLICATEAUXILIARY
+		}
+
+		robotic_army = {
+			sequential_name = STG_ANTICAN_AUTOMATEDAUXILIARY
+		}
+
+		psionic_army = {
+			sequential_name = STG_ANTICAN_ADEPTAUXILIARY
+		}
+
+		xenomorph_army = {
+			sequential_name = STG_ANTICAN_XENOMORPHAUXILIARY
+		}
+
+		gene_warrior_army = {
+			sequential_name = STG_ANTICAN_AUGMENTEDAUXILIARY
+		}
+
+		occupation_army = {
+			sequential_name = STG_ANTICAN_OCCUPATIONAUXILIARY
+		}
+
+		robotic_defense_army = {
+			sequential_name = STG_ANTICAN_AUTOMATEDDEFENSEAUXILIARY
+		}
+
+		industrial_army = {
+			sequential_name = STG_ANTICAN_INDUSTRIALAUXILIARY
+		}
+
+		primitive_army = {
+			sequential_name = STG_ANTICAN_MILITIA
+		}
+	}
+
+	planet_names = {
+		generic = {
+			names = {
+				STG_N_Hound STG_N_Hunter STG_N_Poacher STG_N_Trapper STG_N_Pack STG_N_Canis
+				STG_N_Canem STG_N_Lupin STG_N_Lupus STG_N_Rabid STG_N_Retriever STG_N_Hind
+				STG_N_Howler STG_N_Howl STG_N_Bone STG_N_Obedience STG_N_Loyalty STG_N_ViciousDog
+				STG_N_SavageDog STG_N_YappyDog STG_N_Growler STG_N_SlyDog STG_N_StrayDog STG_N_SharpDog
+				STG_N_ScraggyDog
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			weight = 100
+
+			first_names_male = {
+				STG_N_Badar STG_N_Lavar STG_N_Hogar STG_N_Hadar STG_N_Hodar STG_N_Lofah
+				STG_N_Lindar STG_N_Lorar STG_N_Larar STG_N_Nessar STG_N_Menar STG_N_Melar
+				STG_N_Mepar STG_N_Mecar STG_N_Doggar STG_N_Wolfar STG_N_Dingar STG_N_Kanar
+				STG_N_Pomeran STG_N_Pinscher STG_N_Span STG_N_Terr STG_N_Sennen STG_N_Normand
+			}
+
+			first_names_female = {
+				STG_N_Mecari STG_N_Doggari STG_N_Wolfari STG_N_Dingari STG_N_Kanari STG_N_Pomerani
+				STG_N_Pinscheri STG_N_Spani STG_N_Terri STG_N_Sennenu STG_N_Normandu STG_N_Corgu
+				STG_N_NDD STG_N_TGG STG_N_NRR STG_N_GRR STG_N_WUF STG_N_YAP
+				STG_N_DDG STG_N_TRG STG_N_WOOF STG_N_WLKYS STG_N_BTT STG_N_KNL
+			}
+
+			second_names = {
+				STG_N_Badar STG_N_Lavar STG_N_Hogar STG_N_Hadar STG_N_Hodar STG_N_Lofah
+				STG_N_Lindar STG_N_Lorar STG_N_Larar STG_N_Nessar STG_N_Menar STG_N_Melar
+				STG_N_Mepar STG_N_Mecar STG_N_Doggar STG_N_Wolfar STG_N_Dingar STG_N_Kanar
+				STG_N_Pomeran STG_N_Pinscher STG_N_Span STG_N_Terr STG_N_Sennen STG_N_Normand
+			}
+		}
+	}
+}

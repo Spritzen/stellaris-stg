@@ -1,0 +1,24 @@
+root = true
+
+[*]
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+# Paradox script is tab-indented by convention.
+[*.{txt,gui,gfx,asset,mod,cwt}]
+indent_style = tab
+indent_size = 4
+charset = utf-8
+
+# Stellaris localisation files MUST be UTF-8 with BOM or the game silently
+# drops the file. `make validate` enforces this.
+[*.yml]
+indent_style = space
+indent_size = 1
+charset = utf-8-bom
+
+[*.py]
+indent_style = space
+indent_size = 4
+charset = utf-8

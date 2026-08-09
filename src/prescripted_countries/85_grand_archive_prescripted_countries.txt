@@ -1,0 +1,5 @@
+# SHADOWS prescripted_countries/85_grand_archive_prescripted_countries.txt —
+# deliberately empty, so vanilla's 2 empires (oviron_lodge,
+# graparx_trophy_hunters) drop out of the empire picker and AI spawning. Ours
+# are in stg_major_powers.txt.
+# See .docs/decisions/14-remove-vanilla-prescripted-empires.md

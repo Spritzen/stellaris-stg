@@ -1,0 +1,163 @@
+﻿# Hirogen name list, for the AI-only minor powers that use it.
+#
+# CONVERTED from .source/688086068/common/name_lists/Hirogen.txt: the tokens are
+# STNH's, resolved through STNH's own localisation and re-keyed as STG_N_. The
+# ship-size buckets are rebuilt for VANILLA's ladder -- STNH's file buckets by
+# its own (saber, sovereign, steamrunner) and those keys mean nothing here.
+#
+# See .docs/decisions/19-stnh-minor-powers-as-ai-empires.md.
+
+STG_HIROGEN = {
+	category = "Humanoid"
+	randomized = no
+
+	ship_names = {
+		generic = {
+			STG_N_Hunter STG_N_Predator STG_N_Carnivore STG_N_BeastOfPrey STG_N_HunterKiller STG_N_Raptor
+			STG_N_Marauder STG_N_Killer STG_N_Vulture STG_N_Brute STG_N_Assailant STG_N_Tracker
+			STG_N_Aggressor STG_N_Stalker STG_N_Survivor STG_N_Venator STG_N_ValiantChase STG_N_Pursuer
+			STG_N_Trapper STG_N_Ambusher STG_N_Huntress STG_N_Apex STG_N_ApexPredator STG_N_Seeker
+			STG_N_Huntmaster STG_N_HunterEscort STG_N_Baiter STG_N_BeastofPrey
+		}
+
+		corvette = {
+			STG_N_Tracker STG_N_Aggressor STG_N_Stalker STG_N_Survivor STG_N_Venator
+		}
+
+		destroyer = {
+			STG_N_ValiantChase STG_N_Pursuer STG_N_Trapper STG_N_Ambusher STG_N_Huntress
+		}
+
+		cruiser = {
+			STG_N_Apex STG_N_ApexPredator STG_N_Seeker STG_N_Huntmaster STG_N_HunterEscort
+		}
+
+		battleship = {
+			STG_N_Baiter
+		}
+
+		titan = {
+			STG_N_Hunter STG_N_Predator STG_N_Carnivore
+		}
+
+		science = {
+			STG_N_Hunter STG_N_Predator STG_N_Carnivore STG_N_BeastOfPrey STG_N_HunterKiller STG_N_Raptor
+		}
+
+		colonizer = {
+			STG_N_Hunter STG_N_Predator STG_N_Carnivore STG_N_BeastOfPrey STG_N_HunterKiller
+		}
+
+		constructor = {
+			STG_N_Marauder STG_N_Killer STG_N_Vulture STG_N_Brute STG_N_Assailant
+		}
+	}
+
+	ship_class_names = {
+		generic = {
+			STG_N_Hunter STG_N_Predator STG_N_Carnivore STG_N_BeastOfPrey STG_N_HunterKiller STG_N_Raptor
+			STG_N_Marauder STG_N_Killer STG_N_Vulture
+		}
+	}
+
+	fleet_names = {
+		sequential_name = STG_HIROGEN_GROUP
+	}
+
+	army_names = {
+		machine_assault_1 = {
+			sequential_name = STG_HIROGEN_ASSAULTAUXILIARY
+		}
+
+		machine_defense = {
+			sequential_name = STG_HIROGEN_DEFENSEAUXILIARY
+		}
+
+		defense_army = {
+			sequential_name = STG_HIROGEN_PLANETARYDEFENSEAUXILIARY
+		}
+
+		assault_army = {
+			sequential_name = STG_HIROGEN_EXPEDITIONARYAUXILIARY
+		}
+
+		slave_army = {
+			sequential_name = STG_HIROGEN_LABORAUXILIARY
+		}
+
+		clone_army = {
+			sequential_name = STG_HIROGEN_REPLICATEAUXILIARY
+		}
+
+		robotic_army = {
+			sequential_name = STG_HIROGEN_AUTOMATEDAUXILIARY
+		}
+
+		psionic_army = {
+			sequential_name = STG_HIROGEN_ADEPTAUXILIARY
+		}
+
+		xenomorph_army = {
+			sequential_name = STG_HIROGEN_XENOMORPHAUXILIARY
+		}
+
+		gene_warrior_army = {
+			sequential_name = STG_HIROGEN_AUGMENTEDAUXILIARY
+		}
+
+		occupation_army = {
+			sequential_name = STG_HIROGEN_OCCUPATIONAUXILIARY
+		}
+
+		robotic_defense_army = {
+			sequential_name = STG_HIROGEN_AUTOMATEDDEFENSEAUXILIARY
+		}
+
+		industrial_army = {
+			sequential_name = STG_HIROGEN_INDUSTRIALAUXILIARY
+		}
+
+		primitive_army = {
+			sequential_name = STG_HIROGEN_MILITIA
+		}
+	}
+
+	planet_names = {
+		generic = {
+			names = {
+				STG_N_Hunter STG_N_Predator STG_N_Carnivore STG_N_BeastOfPrey STG_N_HunterKiller STG_N_Raptor
+				STG_N_Marauder STG_N_Killer STG_N_Vulture STG_N_Brute STG_N_Assailant STG_N_Tracker
+				STG_N_Aggressor STG_N_Stalker STG_N_Survivor STG_N_Venator STG_N_ValiantChase STG_N_Pursuer
+				STG_N_Trapper STG_N_Ambusher STG_N_Huntress STG_N_Apex STG_N_ApexPredator STG_N_Seeker
+				STG_N_Huntmaster STG_N_HunterEscort STG_N_Baiter
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			weight = 100
+
+			first_names_male = {
+				STG_N_Davar STG_N_Decaren STG_N_Donik STG_N_Dossok STG_N_Gann STG_N_Hajur
+				STG_N_Harkan STG_N_Idrin STG_N_Jetarn STG_N_Jorik STG_N_Karon STG_N_Karr
+				STG_N_Kezal STG_N_Konuric STG_N_Netek STG_N_Ormoch STG_N_Ranjen STG_N_Saransk
+				STG_N_Takirac STG_N_Turanj STG_N_Vurond STG_N_Kinn STG_N_Koruj
+			}
+
+			first_names_female = {
+				STG_N_Doranj STG_N_Dijak STG_N_Idarr STG_N_Darr STG_N_Kaan STG_N_Maan
+				STG_N_Idrik STG_N_Tajan STG_N_Lijan STG_N_Darrak STG_N_Tanakarr STG_N_Karran
+				STG_N_Kadij STG_N_Kijran STG_N_Tordinarr STG_N_Tordarr STG_N_Taj STG_N_Kanin
+				STG_N_Kajak STG_N_Tijanarr STG_N_Rajarr STG_N_Tudanak STG_N_Kudanak STG_N_Kadarraj
+			}
+
+			second_names = {
+				STG_N_Davar STG_N_Decaren STG_N_Donik STG_N_Dossok STG_N_Gann STG_N_Hajur
+				STG_N_Harkan STG_N_Idrin STG_N_Jetarn STG_N_Jorik STG_N_Karon STG_N_Karr
+				STG_N_Kezal STG_N_Konuric STG_N_Netek STG_N_Ormoch STG_N_Ranjen STG_N_Saransk
+				STG_N_Takirac STG_N_Turanj STG_N_Vurond STG_N_Kinn STG_N_Koruj STG_N_Doranj
+			}
+		}
+	}
+}

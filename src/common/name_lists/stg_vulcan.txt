@@ -1,0 +1,642 @@
+﻿# Confederacy of Vulcan name list.
+#
+# Structure mirrors /stellaris/common/name_lists/HUMAN1.txt. Every name token
+# is an STG_N_ key in src/localisation/english/stg_names_l_english.yml.
+
+STG_VULCAN = {
+	category = "Humanoid"
+	randomized = no
+
+	ship_names = {
+		generic = {
+			STG_N_TPlanaHath STG_N_ShRethlan STG_N_NiVar STG_N_Surak STG_N_Seleya STG_N_Yaris
+			STG_N_TVran STG_N_Sarek STG_N_TalKir STG_N_Voroth STG_N_ShiKahr STG_N_KirShara
+			STG_N_Vahklas STG_N_Suurok STG_N_DVahl STG_N_TMir STG_N_Solkar STG_N_Skon
+			STG_N_Nyran STG_N_ShRaan STG_N_TiMur STG_N_TPlana STG_N_TPlana-Hath STG_N_Vaankara
+			STG_N_Tavek STG_N_Yarahla STG_N_DMur STG_N_DVar STG_N_TalVahl STG_N_ShKyr
+			STG_N_ShMur STG_N_ShVar STG_N_TalVar STG_N_TiKyr STG_N_VLaak STG_N_TKec
+			STG_N_Skijy STG_N_Hyjok STG_N_Veluk STG_N_Todith STG_N_Penn STG_N_Mol
+			STG_N_Vuth STG_N_TMi STG_N_Huk STG_N_Ivok STG_N_TRisik STG_N_TPlikang
+			STG_N_Nil STG_N_Naal STG_N_THo STG_N_TPi
+		}
+
+		corvette = {
+			STG_N_Suurok STG_N_DKyr STG_N_ShRaan STG_N_TiMur STG_N_Kuvak STG_N_Karatek
+			STG_N_Nil STG_N_Naal STG_N_THo STG_N_TPi STG_N_Tavek STG_N_TKok
+			STG_N_Skunn STG_N_Vohris STG_N_Vakh STG_N_Ekhlami STG_N_Saihatik STG_N_Slaron
+			STG_N_AbeRok STG_N_Denak STG_N_Dvir STG_N_Kawarda STG_N_Tkhut STG_N_TPravis
+			STG_N_Emmette STG_N_Eberswalde STG_N_Neptune STG_N_WarpDelta STG_N_Aardvark STG_N_Accentor
+			STG_N_Adder STG_N_Albatross STG_N_Alligator STG_N_Antelope STG_N_Armadillo STG_N_Asp
+			STG_N_Badger STG_N_Bass STG_N_Beagle STG_N_Bloodhound STG_N_Buffalo STG_N_Bulldog
+			STG_N_Buzzard STG_N_Camel STG_N_Cheetah STG_N_Cobra STG_N_Coyote STG_N_Dingo
+			STG_N_Dolphin STG_N_Dragonfly STG_N_Dromedary STG_N_Elephant STG_N_Falcon STG_N_Ferret
+			STG_N_Firefly STG_N_Fox STG_N_Gazelle STG_N_Glow-worm STG_N_GreyWolf STG_N_Greyhound
+			STG_N_Hawk STG_N_Jackal STG_N_Jackdaw STG_N_Jaguar STG_N_Kangaroo STG_N_Kestrel
+			STG_N_KingCobra STG_N_KingFish STG_N_Ladybird STG_N_Leopard STG_N_Lion STG_N_Lizard
+			STG_N_Lynx STG_N_Minx STG_N_Mongoose STG_N_Mosquito STG_N_Narwhal STG_N_Nighthawk
+			STG_N_Ocelot STG_N_Orca STG_N_Osprey STG_N_Panther STG_N_Peacock STG_N_Pelican
+			STG_N_Penguin STG_N_Petrel STG_N_Platypus STG_N_Polecat STG_N_Porcupine STG_N_Puma
+			STG_N_Python STG_N_Rattlesnake STG_N_Raven STG_N_Salamander STG_N_Sardine STG_N_Shark
+			STG_N_Shrike STG_N_Skylark STG_N_Sparrow STG_N_Spider STG_N_Starfish STG_N_Stingray
+			STG_N_Stork STG_N_Sturgeon STG_N_Swordfish STG_N_Tapir STG_N_Tiger STG_N_TigerShark
+			STG_N_Vulture STG_N_Walrus STG_N_Wolverine STG_N_Apache STG_N_Aztec STG_N_Cossack
+			STG_N_Dervish STG_N_Druid STG_N_Highlander STG_N_Janissary STG_N_Matador STG_N_Papillon
+			STG_N_Parthian STG_N_Patrician STG_N_Saracen STG_N_Sphinx STG_N_Tomahawk STG_N_Viking
+			STG_N_Zulu STG_N_Abhay STG_N_Akshay STG_N_Akula STG_N_Soyuz STG_N_Harrier
+			STG_N_TomoeGozen STG_N_Garuda STG_N_Yangwei STG_N_Datong STG_N_Haifeng STG_N_Hailong
+			STG_N_Yongcheng STG_N_Yinghao STG_N_Taiyang STG_N_Chaoyang STG_N_Qiuxing STG_N_Guangxing
+			STG_N_Zhengsheng STG_N_Taizhao STG_N_Meihong STG_N_Wulong STG_N_Jiangkun STG_N_Acorn
+			STG_N_Musketeer STG_N_Pharaoh STG_N_Mongol STG_N_Rickenbacker STG_N_JohnPaul STG_N_Doblestnyi
+			STG_N_Steregushchiy STG_N_Soobrazitelny STG_N_RodgerYoung STG_N_CrazyHorse STG_N_Richthofen STG_N_Boyington
+			STG_N_Fonck STG_N_Mannock STG_N_Bishop STG_N_Kazakov STG_N_Coppens STG_N_Brumowski
+			STG_N_Baracca STG_N_Hartmann STG_N_Juutilainen STG_N_Nishizawa STG_N_Sakai STG_N_Shestakov
+			STG_N_Kozhedub STG_N_Cantacuzino STG_N_VanLierde STG_N_Bong STG_N_Shaggo STG_N_Grinsel
+			STG_N_Zoom STG_N_Harel STG_N_Osito STG_N_Janack STG_N_Saladin STG_N_Adad
+			STG_N_Ahriman STG_N_Alaric STG_N_Alexander STG_N_Azrael STG_N_Darius STG_N_Etzel
+			STG_N_Hamilcar STG_N_Hannibal STG_N_Hashishiyun STG_N_Jenghiz STG_N_Kublai STG_N_Pompeii
+			STG_N_Rahman STG_N_Sargon STG_N_Shaitan STG_N_Suleiman STG_N_Tamerlane STG_N_Hathor
+			STG_N_Iblis STG_N_Jugurtha STG_N_Loki STG_N_Lucifer STG_N_Mars STG_N_Molock
+			STG_N_Siva STG_N_Tyr STG_N_AbuBekr STG_N_Achilles STG_N_Akbar STG_N_AlMahdi
+			STG_N_Alva STG_N_Alvarado STG_N_Appollyon STG_N_Cimon STG_N_Cochise STG_N_Cortez
+			STG_N_DeRuyter STG_N_Drake STG_N_ElCid STG_N_Geronimo STG_N_Hektor STG_N_Ivan
+			STG_N_Lysander STG_N_Martel STG_N_Ney STG_N_Perseus STG_N_Pontiac STG_N_Samson
+			STG_N_Scipio STG_N_Minotaur STG_N_LordWarden STG_N_Northumberland STG_N_Anaconda STG_N_Arafat
+			STG_N_Arcus STG_N_Thatcher STG_N_ThurmostIII STG_N_Ardzinba STG_N_Assad STG_N_Atilla
+			STG_N_Avalanche STG_N_Barzani STG_N_BrighamYoung STG_N_Bush STG_N_Buthelezi STG_N_Chantland
+			STG_N_Charlamagne STG_N_Chaudhry STG_N_Chissano STG_N_Chilingutila STG_N_Clinton STG_N_Cristiani
+			STG_N_Daniel STG_N_Morgan STG_N_David STG_N_Decker STG_N_Dostam STG_N_Dudayev
+			STG_N_Eisenhower STG_N_Fadlallah STG_N_Galtieri STG_N_Gemayal STG_N_Genghis STG_N_GoldaMeir
+			STG_N_Gorbachev STG_N_Grant STG_N_Gusmao STG_N_Hekmatyar STG_N_Hernandez STG_N_Hiawatha
+			STG_N_HumbertoOrtega STG_N_HunSen STG_N_Iskandarov STG_N_IsraelPutnam STG_N_Kennedy STG_N_KingDavid
+			STG_N_Kollmansberger STG_N_Kravchuk STG_N_Landsbergis STG_N_Leonidas STG_N_Mandela STG_N_Manuel
+			STG_N_Marcos STG_N_Marius STG_N_Massoud STG_N_Mitchell STG_N_Mitterand STG_N_Mojadeddi
+			STG_N_Murakami STG_N_Najibullah STG_N_Nasrallah STG_N_Nebuchadnezzar STG_N_Nixon STG_N_Ocalan
+			STG_N_Ortega STG_N_Pazuzu STG_N_Prabhakaran STG_N_Premadasa STG_N_Pundy STG_N_Rabin
+			STG_N_Rabbani STG_N_Ramos STG_N_Reagan STG_N_Regalado STG_N_Sadat STG_N_Safarov
+			STG_N_Shamir STG_N_Shevardnadze STG_N_Sihanouk STG_N_Skanderbeg STG_N_Sultan STG_N_Suvarov
+			STG_N_Talabani STG_N_Tamorra STG_N_Taylor STG_N_Tongogara STG_N_Tudjman STG_N_Turabi
+			STG_N_Villalobos STG_N_Challenger STG_N_MarcoPolo STG_N_Kearsarge STG_N_Xenophon STG_N_Apollo
+			STG_N_Bellerophon STG_N_Excalibur STG_N_Agrippa STG_N_Belisarius STG_N_Washington STG_N_Bismarck
+			STG_N_Actium STG_N_Agincourt STG_N_Austerlitz STG_N_Gettysburg STG_N_Jutland STG_N_Trafalgar
+			STG_N_Tsushima STG_N_ValleyForge STG_N_Mali STG_N_Verdun STG_N_Waterloo STG_N_Granicus
+			STG_N_Pharsalus STG_N_Charlemagne STG_N_Victory STG_N_Courage STG_N_Monitor STG_N_Endurance
+			STG_N_Resolute STG_N_Yamamoto STG_N_CoralSea STG_N_ArkRoyal STG_N_Akagi STG_N_Kaga
+			STG_N_Illustrious STG_N_Ranger STG_N_Century STG_N_Concord STG_N_Alexandra STG_N_Colbert
+			STG_N_California STG_N_Cerritos STG_N_Mercid STG_N_Azusa STG_N_Belmont STG_N_Burlingame
+			STG_N_Calexico STG_N_Claremont STG_N_Colfax STG_N_Cupertino STG_N_Duarte STG_N_Dixon
+			STG_N_Fairfax STG_N_Firebaugh STG_N_Fresno STG_N_Glendale STG_N_Gonzales STG_N_Guadalupe
+			STG_N_Healdsburg STG_N_Irvine STG_N_JurupaValley STG_N_LaHabra STG_N_Lakewood STG_N_Hollywood
+			STG_N_Lompoc STG_N_LosAngeles STG_N_LosAltos STG_N_Madera STG_N_Malibu STG_N_Maricopa
+			STG_N_Martinez STG_N_Merced STG_N_Modesto STG_N_Napa STG_N_Nevada STG_N_PalmSprings
+			STG_N_Pasadena STG_N_Rialto STG_N_Sacramento STG_N_SanDiego STG_N_SanFrancisco STG_N_SantaFe
+			STG_N_Yreka STG_N_Freedom STG_N_Franklin STG_N_Liberty STG_N_Liberation STG_N_Justice
+			STG_N_Amnesty STG_N_Independence STG_N_Candor STG_N_Adams STG_N_Monroe STG_N_Jackson
+			STG_N_Tyler STG_N_Cleveland STG_N_Garland STG_N_Charles STG_N_Roosevelt STG_N_Truman
+			STG_N_Biden STG_N_Shield STG_N_Portal STG_N_Robison STG_N_Malachowski STG_N_Clarke
+			STG_N_Sioux STG_N_Lewis STG_N_Cooper STG_N_Asimov STG_N_Miyamoto STG_N_Coohran
+			STG_N_Sullenburger STG_N_Auriol STG_N_LeVier STG_N_Mermoz STG_N_Orville STG_N_Wright
+			STG_N_Lilienthal STG_N_Howell STG_N_Anyadike STG_N_Arrachart STG_N_Armstrong STG_N_Kokkinaki
+			STG_N_Lemartin STG_N_Locklear STG_N_Newbery STG_N_Poberezny STG_N_Rousseau STG_N_Santos-Dumont
+			STG_N_Vacher STG_N_Vuia STG_N_Yancey STG_N_Ziegler STG_N_Bourdillon STG_N_Tereshkova
+			STG_N_Daedalus STG_N_Horizon STG_N_Essex STG_N_AGRobinson STG_N_Adirondack STG_N_Carolina
+			STG_N_NezPerce STG_N_Dykstra STG_N_Archon STG_N_Masao STG_N_ZeframCochrane STG_N_Kon-Tiki
+			STG_N_Jein STG_N_BenjaminFranklin STG_N_Bach STG_N_Probert STG_N_WilliamClark STG_N_Lindbergh
+			STG_N_Heinlein STG_N_Wakefield STG_N_Decatur STG_N_Discovery STG_N_Thylek STG_N_Soval
+			STG_N_Lahvishri STG_N_Kovan STG_N_Sarajevo STG_N_Berkhamsted STG_N_Bedford STG_N_Hampshire
+			STG_N_Devon STG_N_Cornwall STG_N_Oberth STG_N_Grissom STG_N_Aamot STG_N_Alacrity
+			STG_N_Aldrin STG_N_Andromede STG_N_Banting STG_N_Barracuda STG_N_Biko STG_N_Bonestell
+			STG_N_Broadsword STG_N_Carter STG_N_Carver STG_N_Cavalier STG_N_Cochrane STG_N_Copernicus
+			STG_N_Cortes STG_N_Faraday STG_N_FuPo STG_N_Garneau STG_N_Gato STG_N_Hawking
+			STG_N_Jacequai STG_N_JonathanLevy STG_N_Khartoum STG_N_Khyber STG_N_Lagrange STG_N_Lake
+			STG_N_Manatee STG_N_Martynov STG_N_Montgomery STG_N_Moray STG_N_Osiris STG_N_Pegasus
+			STG_N_Raman STG_N_RioBranco STG_N_Sandhusky STG_N_Seadragon STG_N_Shepherd STG_N_Smallwood
+			STG_N_SunYat STG_N_Sen STG_N_Surak STG_N_Sybil STG_N_Tinian STG_N_Tobias
+			STG_N_Trosper STG_N_Tudor STG_N_Vico STG_N_Yosemite STG_N_YungSheng STG_N_Firebrand
+			STG_N_Wells STG_N_Dolland STG_N_Kethkin STG_N_KKmarak STG_N_Sulek STG_N_Delgardo
+			STG_N_Schneider STG_N_Spinnler STG_N_Taniko STG_N_Mandel STG_N_Fredrickson STG_N_Westmore
+			STG_N_Pollard STG_N_Okuda STG_N_Eaves STG_N_Olympic STG_N_Hera STG_N_Pasteur
+			STG_N_Hippocrates STG_N_Lister STG_N_Blackwell STG_N_McCoy STG_N_Phlox STG_N_Apgar
+			STG_N_Jenner STG_N_Freud STG_N_Laennic STG_N_Flemming STG_N_Culver STG_N_Pocock
+			STG_N_Paracelsus STG_N_Doyle STG_N_Zakariya STG_N_Britannic STG_N_Turk STG_N_Dorian
+			STG_N_Herophilos STG_N_Erasistratus STG_N_Luciania STG_N_Campania STG_N_Teutonic STG_N_Bartholomew
+			STG_N_Dupuytren STG_N_Blalock STG_N_Whittey STG_N_Van-Tam STG_N_Boyce STG_N_Chapel
+			STG_N_Nova STG_N_Solar STG_N_Aurora STG_N_Binary STG_N_Charribey STG_N_Equinox
+			STG_N_Solstice STG_N_Quasar STG_N_Pulsar STG_N_Everett STG_N_RhodeIsland STG_N_Eclipse
+			STG_N_Ecliptic STG_N_Freeman STG_N_Dyson STG_N_Stellar STG_N_Atlas STG_N_Neutron
+			STG_N_Celest STG_N_Asterism STG_N_Astronomy STG_N_Astrology STG_N_Comet STG_N_Dobsonian
+			STG_N_Ephemeris STG_N_Meteor STG_N_Parallax STG_N_Twilight STG_N_Zenith
+		}
+
+		destroyer = {
+			STG_N_Vahklas STG_N_Maymora STG_N_TalKir STG_N_Seleya STG_N_TPau STG_N_Yarahla
+			STG_N_KirShara STG_N_Menos STG_N_ShRan STG_N_DVahl STG_N_NiVar STG_N_Nyran
+			STG_N_ShRaan STG_N_TiMur STG_N_TPaal STG_N_TRel STG_N_TVran STG_N_Simora
+			STG_N_TLen STG_N_OhVar STG_N_Vankaara STG_N_TalVar STG_N_TiKyr STG_N_VLaak
+			STG_N_TKec STG_N_Skijy STG_N_Hyjok STG_N_Veluk STG_N_Todith STG_N_Penn
+			STG_N_Mol STG_N_Vuth STG_N_TMi STG_N_Huk STG_N_Ivok STG_N_Intrepid
+			STG_N_Pioneer STG_N_Nelson STG_N_BlackPrince STG_N_Ramirez STG_N_Verne STG_N_Vanguard
+			STG_N_Arrow STG_N_Assist STG_N_Cavalry STG_N_Christopher STG_N_Cosmos STG_N_Doppler
+			STG_N_Hopkins STG_N_Liberty STG_N_Long STG_N_Marshall STG_N_Messier STG_N_Minuteman
+			STG_N_Strider STG_N_Aragorn STG_N_Elessar STG_N_Gondor STG_N_Carthage STG_N_Chagaris
+			STG_N_Chandalar STG_N_Grochenko STG_N_Gromykii STG_N_Bonaventure STG_N_Tereskova STG_N_Savitskaya
+			STG_N_JudithResnik STG_N_Sullivan STG_N_Fisher STG_N_Seddon STG_N_ShannonLucid STG_N_Cleave
+			STG_N_Baker STG_N_Thornton STG_N_Ivins STG_N_HelenSharman STG_N_TamaraJernigan STG_N_MillieHughes-Fulford
+			STG_N_RobertaBondar STG_N_JanDavis STG_N_MaeJemison STG_N_SusanHelms STG_N_Ochoa STG_N_Voss
+			STG_N_Currie STG_N_Mukai STG_N_Kondakova STG_N_Collins STG_N_Lawrence STG_N_Weber
+			STG_N_Coleman STG_N_Kilrain STG_N_Chawla STG_N_Hire STG_N_Kavandi STG_N_Payette
+			STG_N_Melroy STG_N_Whitson STG_N_Magnus STG_N_Clark STG_N_Wilson STG_N_Nowak
+			STG_N_Stefanyshyn-Piper STG_N_Ansari STG_N_SunitaWilliams STG_N_Higginbotham STG_N_Dyson STG_N_So-yeon
+			STG_N_Nyberg STG_N_McArthur STG_N_NicoleStott STG_N_Yamakazi STG_N_Walker STG_N_Yang
+			STG_N_Serova STG_N_Cristoforetti STG_N_Rubins STG_N_Shepard STG_N_Schirra STG_N_Irwin
+			STG_N_Eisele STG_N_Givens STG_N_Lovell STG_N_Stafford STG_N_Freeman STG_N_Anders
+			STG_N_Duke STG_N_Griggs STG_N_Springer STG_N_Creighton STG_N_Buchli STG_N_Coats
+			STG_N_Cabana STG_N_Leestma STG_N_Shepherd STG_N_Phillips STG_N_Oswald STG_N_Linenger
+			STG_N_Bowersox STG_N_Bursch STG_N_Foreman STG_N_Loria STG_N_McCool STG_N_Mann
+			STG_N_Gagarin STG_N_Kerala STG_N_Ride STG_N_Ford STG_N_Fuller STG_N_Gladstone
+			STG_N_Glorie STG_N_Kelvin STG_N_Newton STG_N_Hawking STG_N_Bohr STG_N_Feynman
+			STG_N_Galileo STG_N_Gauss STG_N_Einstein STG_N_Tesla STG_N_Galilei STG_N_Curie
+			STG_N_Lemaitre STG_N_Avicenna STG_N_Sagan STG_N_Archimedes STG_N_Oppenheimer STG_N_Faraday
+			STG_N_Heisenberg STG_N_Pascal STG_N_Hooke STG_N_Euler STG_N_Bose STG_N_Rutherford
+			STG_N_SallyRide STG_N_Planck STG_N_Fermi STG_N_Dirac STG_N_Thorne STG_N_Hertz
+			STG_N_Fuchs STG_N_Salam STG_N_Shockley STG_N_Bernoulli STG_N_Fourier STG_N_Cavendish
+			STG_N_Ohm STG_N_Boltzmann STG_N_Joule STG_N_Pauli STG_N_Moseley STG_N_Eddington
+			STG_N_Becquerel STG_N_Celsius STG_N_Fahrenheit STG_N_Mach STG_N_Foucault STG_N_Braun
+			STG_N_Hofstadter STG_N_Rayleigh STG_N_Nassau STG_N_Talas STG_N_Tpol STG_N_Gral
+			STG_N_Centaur STG_N_Arimathea STG_N_Carolina STG_N_Cheiron STG_N_Revere STG_N_Valor
+			STG_N_Dakota STG_N_Berlin STG_N_Paris STG_N_Prague STG_N_Bucharest STG_N_Constantinople
+			STG_N_Yeltsin STG_N_Zamora STG_N_Zoroaster STG_N_Moody STG_N_VeraRubin STG_N_Bolland
+			STG_N_Buck STG_N_Gloucestershire STG_N_Curry STG_N_Drexler STG_N_RagingQueen STG_N_Sternbach
+			STG_N_Emery STG_N_Hibbert STG_N_Hillenbrand STG_N_Hutzler STG_N_Phoenix STG_N_Okuda
+			STG_N_Bomquist STG_N_Bonchune STG_N_Bradbury STG_N_Chauvin STG_N_Richter STG_N_Stetson
+			STG_N_Weixelman STG_N_Kuramura STG_N_Lebowitz STG_N_Kingsnorth STG_N_Eaves STG_N_Gabl
+			STG_N_Pandhi STG_N_QueenAnne STG_N_Whydah STG_N_Kirkland STG_N_Korolev STG_N_Kortenauer
+			STG_N_Lachlan STG_N_Niagara STG_N_Princeton STG_N_Wellington STG_N_Westminster STG_N_Edison
+			STG_N_Trenton STG_N_Iguazu STG_N_Victoria STG_N_Yosemite STG_N_Gullfoss STG_N_Kalandula
+			STG_N_Inga STG_N_BlueNile STG_N_Ouzoud STG_N_Mutarazi STG_N_Kunchikal STG_N_DeSoto
+			STG_N_Ithaca STG_N_Alorin STG_N_Portland STG_N_Britannia STG_N_Callahan STG_N_Steamrunner
+			STG_N_Appalachia STG_N_Hiroshima STG_N_Adirondack STG_N_Alama STG_N_Arcadia STG_N_Archon
+			STG_N_Arizona STG_N_Aselin STG_N_Ballista STG_N_Bangkok STG_N_Benevolence STG_N_Caspars
+			STG_N_Cerberus STG_N_Circassia STG_N_Cimmeron STG_N_Columbia STG_N_Crowell STG_N_Denver
+			STG_N_Diligent STG_N_Dublin STG_N_Enforcer STG_N_Eureka STG_N_Franconia STG_N_Georgia
+			STG_N_GreatSmokey STG_N_IronHorse STG_N_Ironclad STG_N_Kevlar STG_N_Knox STG_N_Kodiak
+			STG_N_Kyushu STG_N_Maker STG_N_Maryland STG_N_Matewan STG_N_October STG_N_Patton
+			STG_N_Protector STG_N_Raal STG_N_Sacramento STG_N_SanDiego STG_N_Savior STG_N_Sierra
+			STG_N_Sloane STG_N_Solaris STG_N_SunTsu STG_N_Sutter STG_N_Tolstoy STG_N_Trebuchet
+			STG_N_Vambrace STG_N_VorothSea STG_N_Wanderer STG_N_Wyoming STG_N_Zephyr STG_N_Xerxes
+			STG_N_Musashi STG_N_Formidable STG_N_Indefatigable STG_N_Chivalrous STG_N_Bulwark STG_N_Defender
+			STG_N_Fortitude STG_N_Wasp STG_N_Providence STG_N_Pegasus STG_N_Saber STG_N_daVinci
+			STG_N_Garza STG_N_Montgolfier STG_N_Peterson STG_N_Sanders STG_N_Sentry STG_N_Yeager
+			STG_N_PiranesiFuseli STG_N_Canova STG_N_Phidias STG_N_Copernicus STG_N_Arian STG_N_Bellingham
+			STG_N_Bhutto STG_N_Chaka STG_N_Cutlass STG_N_Denmark STG_N_Dosalnar STG_N_Falchion
+			STG_N_Hrisal STG_N_KalHris STG_N_Khwarizmi STG_N_Laplace STG_N_Larue STG_N_Lughara
+			STG_N_Luxembough STG_N_MarcoPolo STG_N_Sharpes STG_N_Storta STG_N_Tpora STG_N_Triumph
+			STG_N_Tulwar STG_N_Veldar STG_N_Asama STG_N_Bardabunga STG_N_FalconIsland STG_N_Grimsvotn
+			STG_N_Taupo STG_N_Tofua STG_N_Manengouba STG_N_Koro STG_N_Lacona STG_N_Lagafell
+			STG_N_Sixx STG_N_Rotorua STG_N_Degrasse STG_N_DuBois STG_N_Garvey STG_N_Gleaves
+			STG_N_Halsey STG_N_Villeneuve STG_N_Parliament STG_N_Vancouver STG_N_Assembly STG_N_Association
+			STG_N_Caucus STG_N_Committee STG_N_Conclave STG_N_Conference STG_N_Senate STG_N_Chamber
+			STG_N_Vanuatu STG_N_London STG_N_Tuvalu STG_N_Micronesia STG_N_Leon STG_N_Cromwell
+			STG_N_Edinburgh STG_N_Holliwell STG_N_Kirkliston STG_N_Sicilian STG_N_Languedoc STG_N_Calgary
+			STG_N_Edmonton STG_N_Lloydminster STG_N_Beaumont STG_N_Saskatchewan STG_N_Manitoba STG_N_Challenger
+			STG_N_Excalibur STG_N_Discovery STG_N_Atlantis STG_N_Slayton STG_N_Endeavour STG_N_Lexington
+			STG_N_Avenger STG_N_Utopia STG_N_GreatRepublic STG_N_Pearl STG_N_Rose STG_N_Cardenas
+			STG_N_Buran STG_N_Energia STG_N_Mir STG_N_Kvant STG_N_Kristall STG_N_Baikal
+			STG_N_Baikonur STG_N_Skylon STG_N_Adeline STG_N_Ptichka STG_N_Vostok STG_N_Voskhod
+			STG_N_Gemini STG_N_Mercury STG_N_Apollo STG_N_Orion STG_N_Dragon STG_N_Falcon
+			STG_N_Damocles STG_N_Sarek STG_N_Preussen STG_N_Barque STG_N_Pamir STG_N_Harold
+			STG_N_Hartt STG_N_Helmsdale STG_N_Hoagland STG_N_Hoover STG_N_Dana STG_N_Cian
+			STG_N_Lindbergh STG_N_Doolittle STG_N_Alcock STG_N_Jawhari STG_N_Baldwin STG_N_Wright
+			STG_N_Thible STG_N_Labrosse STG_N_Blanchard STG_N_Reichard STG_N_Myers STG_N_Acosta
+			STG_N_Margherita STG_N_Hewlett STG_N_Quimby STG_N_Bailey STG_N_MacGill STG_N_Johnson
+			STG_N_Raskova STG_N_DeMilo STG_N_BlackPearl STG_N_Galley STG_N_Clancy STG_N_Miranda
+			STG_N_Reliant STG_N_Lantree STG_N_Antares STG_N_Brattain STG_N_Majestic STG_N_Nautilus
+			STG_N_Saratoga STG_N_ShirKahr STG_N_Sitak STG_N_TianAnMen STG_N_Trial STG_N_Alexandria
+			STG_N_Tempest STG_N_Aloia STG_N_Plato STG_N_Daring STG_N_Repulse STG_N_Andover
+			STG_N_Azov STG_N_BabaYaga STG_N_Beirut STG_N_Kathmandu STG_N_Islamabad STG_N_Karachi
+			STG_N_Delhi STG_N_Bangalore STG_N_TelAviv STG_N_Lima STG_N_Luxembourg STG_N_Geneva
+			STG_N_Gothenburg STG_N_Lyon STG_N_Bratislava STG_N_Tunis STG_N_Riyadh STG_N_Riga
+			STG_N_Valencia STG_N_Krakow STG_N_Vilnius STG_N_Tallinn STG_N_Tijuana STG_N_NewOrleans
+			STG_N_Amsterdam STG_N_Austin STG_N_Athens STG_N_Atlanta STG_N_Baghdad STG_N_Baltimore
+			STG_N_Barcelona STG_N_Beijing STG_N_Belfast STG_N_Bombay STG_N_Boston STG_N_Hyderabad
+			STG_N_Budapest STG_N_BuenosAires STG_N_Calcutta STG_N_CapeTown STG_N_Chicago STG_N_Copenhagen
+			STG_N_Damascus STG_N_DaresSalaam STG_N_Detroit STG_N_Dubai STG_N_Gibraltar STG_N_Glasgow
+			STG_N_Guangzhou STG_N_Hanoi STG_N_Havana STG_N_Helsinki STG_N_HongKong STG_N_Houston
+			STG_N_Istanbul STG_N_Jakarta STG_N_Jerusalem STG_N_Johannesburg STG_N_Madrid STG_N_Manila
+			STG_N_Minsk STG_N_Moscow STG_N_Mumbai STG_N_NewYork STG_N_Novgorod STG_N_Osaka
+			STG_N_Oslo STG_N_RiodeJaneiro STG_N_Rome STG_N_Rotterdam STG_N_SanFrancisco STG_N_Sarajevo
+			STG_N_Seattle STG_N_Seoul STG_N_Sevastopol STG_N_Shanghai STG_N_Singapore STG_N_StLouis
+			STG_N_Stockholm STG_N_Tokyo STG_N_Toronto STG_N_Vienna STG_N_Vladivostok STG_N_Warsaw
+			STG_N_Sydney STG_N_Brisbane STG_N_MexicoCity STG_N_Nairobi STG_N_Smolensk STG_N_Casablanca
+			STG_N_Venice STG_N_Mogadishu STG_N_Montreal STG_N_Birmingham STG_N_Liverpool STG_N_Manchester
+			STG_N_Kabul STG_N_Kyoto STG_N_Volgograd STG_N_StPetersburg STG_N_Frankfurt STG_N_Belgrade
+			STG_N_Marseille STG_N_Brussels STG_N_Tripoli STG_N_Tehran STG_N_Quebec STG_N_Florence
+			STG_N_Exeter STG_N_Dallas STG_N_Lagos STG_N_Melbourne STG_N_Ottawa STG_N_Algiers
+			STG_N_Brazzaville STG_N_Santiago STG_N_Montevideo STG_N_Bogota STG_N_Chengdu STG_N_Hangzhou
+			STG_N_Shaoxing STG_N_Yokohama STG_N_Pittsburgh STG_N_Philadelphia STG_N_Miami STG_N_Lisbon
+			STG_N_Hamburg STG_N_Bremen STG_N_Minneapolis STG_N_Milan STG_N_Surabaya STG_N_KualaLumpur
+			STG_N_AbuDhabi STG_N_Ankara STG_N_Cheyenne STG_N_Ahwahnee STG_N_Periyar STG_N_Utrecht
+			STG_N_Paiute STG_N_Haida STG_N_Pawnee STG_N_Navajo STG_N_Cherokee STG_N_Apache
+			STG_N_Amahami STG_N_Iroquois STG_N_Tuscarora STG_N_Sioux STG_N_Missouria STG_N_Anskowinis
+			STG_N_Comanche STG_N_Kiowa STG_N_Mohican STG_N_NezPerce STG_N_Shoshone STG_N_Goshute
+			STG_N_Ute STG_N_Sauk STG_N_Chemehuevi STG_N_Miwok STG_N_Quechan STG_N_Washoe
+			STG_N_Crow STG_N_Arapaho STG_N_Shawnee STG_N_Sacagawea STG_N_Pocahontas STG_N_Choctaw
+			STG_N_Apalachee STG_N_Timucua STG_N_KiriKinTha STG_N_Voyager STG_N_Pathfinder STG_N_Armstrong
+			STG_N_Barb STG_N_Basie STG_N_Henderson STG_N_Pollack STG_N_Bellerophon STG_N_Blackthorne
+			STG_N_Blakey STG_N_Christophe STG_N_Dessalines STG_N_Dolpin STG_N_Evans STG_N_Gallant
+			STG_N_Garrison STG_N_Goliath STG_N_Hawkins STG_N_Mako STG_N_Zealous STG_N_Rochambeau
+			STG_N_Opaka STG_N_StarTreader STG_N_Mendoza STG_N_Phoebus STG_N_Piorun STG_N_Bacchus
+			STG_N_Haddock STG_N_Halibut STG_N_Jefferson STG_N_Jones STG_N_Karr STG_N_Lincoln
+			STG_N_Mercutio STG_N_Mingus STG_N_Monk STG_N_Oliver STG_N_Parker STG_N_Permit
+			STG_N_Plunger STG_N_Puffer STG_N_Renown STG_N_Rollins STG_N_Rosenberg STG_N_Shorter
+			STG_N_Teagarden STG_N_Thresher STG_N_Toussaint STG_N_Tyner STG_N_Willard STG_N_Century
+			STG_N_Millenium STG_N_Decade STG_N_Aeon STG_N_Era STG_N_Generation STG_N_Centennial
+			STG_N_Centenary STG_N_Epoch STG_N_Juncture STG_N_Reign STG_N_Solar STG_N_Prime
+			STG_N_Millennial STG_N_Chiliadal STG_N_Chiliastic STG_N_Millesimal STG_N_Celestrial STG_N_Haignere
+			STG_N_Aunon-Chancellor STG_N_Schrodinger STG_N_Skogafoss STG_N_Rothbach STG_N_Protege STG_N_Zurich
+			STG_N_Dusseldorf STG_N_Munchen
+		}
+
+		cruiser = {
+			STG_N_DVahl STG_N_ShRethlan STG_N_NiVar STG_N_Voroth STG_N_KiriKinTha STG_N_Tavek
+			STG_N_Vahklas STG_N_Yarahla STG_N_DMur STG_N_DVar STG_N_TalVahl STG_N_ShKyr
+			STG_N_ShMur STG_N_ShVar STG_N_TalVar STG_N_TiKyr STG_N_Poseidon STG_N_Coto
+			STG_N_Homer STG_N_Olympia STG_N_Iliad STG_N_Odyssey STG_N_TrojanHorse STG_N_Ionia
+			STG_N_Helen STG_N_Aphrodite STG_N_Trion STG_N_Theseus STG_N_Hestia STG_N_Chiron
+			STG_N_Artemis STG_N_Athena STG_N_Dionysus STG_N_Hephaestus STG_N_Proteus STG_N_Tethys
+			STG_N_Ialmenus STG_N_Idomeneus STG_N_Leitus STG_N_Leonteus STG_N_Lycomedes STG_N_Machaon
+			STG_N_Medon STG_N_Meges STG_N_Menelaus STG_N_Menestheus STG_N_Meriones STG_N_Neoptolemus
+			STG_N_Nestor STG_N_Nireus STG_N_Odysseus STG_N_Palamedes STG_N_Patroclus STG_N_Peneleos
+			STG_N_Philoctetes STG_N_Podalirius STG_N_Podarces STG_N_Polites STG_N_Polypoetes STG_N_Promachus
+			STG_N_Protesilaus STG_N_Prothoenor STG_N_Schedius STG_N_Stentor STG_N_Sthenelus STG_N_Talthybius
+			STG_N_Teucer STG_N_Thersites STG_N_Thoas STG_N_Thrasymedes STG_N_Tlepolemus STG_N_LosAngeles
+			STG_N_Walker STG_N_Shenzhou STG_N_Tereskova STG_N_Savitskaya STG_N_JudithResnik STG_N_Sullivan
+			STG_N_Fisher STG_N_Seddon STG_N_ShannonLucid STG_N_Cleave STG_N_Baker STG_N_Thornton
+			STG_N_Ivins STG_N_HelenSharman STG_N_TamaraJernigan STG_N_MillieHughes-Fulford STG_N_RobertaBondar STG_N_JanDavis
+			STG_N_MaeJemison STG_N_SusanHelms STG_N_Ochoa STG_N_Voss STG_N_Currie STG_N_Mukai
+			STG_N_Kondakova STG_N_Collins STG_N_Lawrence STG_N_Weber STG_N_Coleman STG_N_Kilrain
+			STG_N_Chawla STG_N_Hire STG_N_Kavandi STG_N_Payette STG_N_Melroy STG_N_Whitson
+			STG_N_Magnus STG_N_Clark STG_N_Wilson STG_N_Nowak STG_N_Stefanyshyn-Piper STG_N_Ansari
+			STG_N_SunitaWilliams STG_N_Higginbotham STG_N_Dyson STG_N_So-yeon STG_N_Nyberg STG_N_McArthur
+			STG_N_NicoleStott STG_N_Yamakazi STG_N_Yang STG_N_Serova STG_N_Cristoforetti STG_N_Rubins
+			STG_N_Constellation STG_N_Aquarius STG_N_Aquila STG_N_Aries STG_N_Auriga STG_N_Caelum
+			STG_N_Cancer STG_N_Capricorn STG_N_Crux STG_N_Delphinus STG_N_Cygnus STG_N_Fornax
+			STG_N_Hydra STG_N_Leo STG_N_Sagittarius STG_N_Scorpius STG_N_Scorpio STG_N_Libra
+			STG_N_Taurus STG_N_Ursa STG_N_Betelgeuse STG_N_Callisto STG_N_Canopus STG_N_Ceres
+			STG_N_Diadem STG_N_Eridani STG_N_Indiri STG_N_Leonid STG_N_Minora STG_N_Pular
+			STG_N_Polaris STG_N_Pisces STG_N_Sirius STG_N_Stargazer STG_N_Valkyrie STG_N_Cassiopeia
+			STG_N_Zodiac STG_N_Keppler STG_N_Perth STG_N_Mahan STG_N_Nebula STG_N_Aldebaran
+			STG_N_Alnwick STG_N_Aristotle STG_N_Arlen STG_N_Barclay STG_N_Bell STG_N_Berkeley
+			STG_N_Berthonia STG_N_Boadicea STG_N_Boater STG_N_Bonchune STG_N_BonhommeRichard STG_N_Bostwick
+			STG_N_Bougainville STG_N_Boyle STG_N_Caddebostan STG_N_ChangTeh STG_N_Chatelain STG_N_Chesapeake
+			STG_N_Chin STG_N_Conklin STG_N_Courageous STG_N_Cousteau STG_N_Crick STG_N_Darwin
+			STG_N_Descartes STG_N_Douglass STG_N_Einstein STG_N_Euclid STG_N_Faraday STG_N_Farragut
+			STG_N_Fermi STG_N_Foucault STG_N_Galileo STG_N_Garuda STG_N_Gates STG_N_Godel
+			STG_N_Haley STG_N_Hawking STG_N_Hegel STG_N_Heisenberg STG_N_Hera STG_N_Himori
+			STG_N_Honshu STG_N_HsienNing STG_N_Hubble STG_N_Iowa STG_N_Jacobus STG_N_Jahtor
+			STG_N_Jasmine STG_N_Kelvin STG_N_Kerradon STG_N_Khitomer STG_N_Knoxville STG_N_Knuth
+			STG_N_Koerner STG_N_Lahr STG_N_Lancaster STG_N_Leeds STG_N_Leopard STG_N_MeiYuan
+			STG_N_Redoutable STG_N_MingChuen STG_N_Narnia STG_N_Newell STG_N_NewYork STG_N_Newton
+			STG_N_Nightingale STG_N_Nobel STG_N_ONeil STG_N_Oakham STG_N_Ockham STG_N_Oppenheimer
+			STG_N_Oxford STG_N_Pascal STG_N_Pasteur STG_N_Pavlov STG_N_Proxima STG_N_Pythagoras
+			STG_N_Salk STG_N_Reston STG_N_Schweitzer STG_N_Scott STG_N_Sutherland STG_N_TKumbra
+			STG_N_Temeraire STG_N_Tesla STG_N_Tintagel STG_N_Tomaselli STG_N_Tonawanda STG_N_Whitney
+			STG_N_Zee-Magnees STG_N_Zimmerman STG_N_LadyElizabeth STG_N_Akira STG_N_Derringer STG_N_Geronimo
+			STG_N_Osceola STG_N_BlackElk STG_N_Meteo STG_N_RedCloud STG_N_Thunderchild STG_N_Spector
+			STG_N_Devore STG_N_Antietam STG_N_Jupiter STG_N_LeyteGulf STG_N_Essex STG_N_Gryphon
+			STG_N_Kali STG_N_Sentinel STG_N_Singh STG_N_Templar STG_N_Sharanksy STG_N_Garneau
+			STG_N_Balclutha STG_N_Kruzenshtern STG_N_Esmeralda STG_N_StarFlyer STG_N_StarClipper STG_N_Norway
+			STG_N_Albany STG_N_Aliyah STG_N_Anderson STG_N_Arian STG_N_Assawari STG_N_Belair
+			STG_N_Bergen STG_N_Bodo STG_N_Budapest STG_N_Defence STG_N_Denmark STG_N_Groton
+			STG_N_Lillehammer STG_N_Medina STG_N_Michigan STG_N_Missouri STG_N_Mjolnir STG_N_Narvik
+			STG_N_Oslo STG_N_Stavanger STG_N_Tromso STG_N_Trondheim STG_N_Vosper STG_N_Maine
+			STG_N_Bashford STG_N_Brighton STG_N_Delbora STG_N_Groznyy STG_N_Mikasa STG_N_Milwaukee
+			STG_N_Moreno STG_N_Moscotivitch STG_N_Malkovich STG_N_Yorktown STG_N_Waterloo STG_N_Hastings
+			STG_N_Normandy STG_N_Washington STG_N_Adams STG_N_Shoemaker STG_N_Agincourt STG_N_Somme
+			STG_N_Stalingrad STG_N_Trafalagar STG_N_Passchendaele STG_N_Gettysburg STG_N_Bulge STG_N_Verdun
+			STG_N_Midway STG_N_Bosworth STG_N_Concord STG_N_Lexington STG_N_PearlHarbour STG_N_Nasebey
+			STG_N_Poitiers STG_N_Flodden STG_N_Blenheim STG_N_IwaJima STG_N_RorkesDrift STG_N_Nile
+			STG_N_Aachen STG_N_Bannockburn STG_N_Borodino STG_N_Rochambeau STG_N_deGrasse STG_N_Steuben
+			STG_N_Hamilton STG_N_Zizka STG_N_Wellington STG_N_Napoleon STG_N_Genghis STG_N_Adolphus
+			STG_N_Hannibal STG_N_Alexander STG_N_Nimitz STG_N_deAviles STG_N_McCain STG_N_Hart
+			STG_N_Hargood STG_N_lHermite STG_N_Suzuki STG_N_Durham STG_N_yNapoli STG_N_Codrington
+			STG_N_Milne STG_N_Cabecadas STG_N_Razumovsky STG_N_Grunewald STG_N_Laforey STG_N_Yonai
+			STG_N_Doria STG_N_Okada STG_N_Capel STG_N_Digby STG_N_Moorsom STG_N_Morris
+			STG_N_Butakov STG_N_Sporides STG_N_Cuauhtemoc STG_N_DeRuyter STG_N_Everett STG_N_Mutso
+			STG_N_Trinidad STG_N_Pillar STG_N_Ares STG_N_Garth STG_N_Tanaka STG_N_Wagner
+			STG_N_Leonov STG_N_Carter STG_N_Corax STG_N_Cross STG_N_Caine STG_N_Hyree
+			STG_N_Grace STG_N_Apollo STG_N_Glamdring STG_N_Sting STG_N_Trincomalee STG_N_Renfrew
+			STG_N_Cluster STG_N_Condamine STG_N_Coronado STG_N_Covington STG_N_Coyle STG_N_Daran
+			STG_N_Dayton STG_N_Littorio STG_N_London STG_N_NewMexico STG_N_Newport STG_N_Constitution
+			STG_N_Achernar STG_N_Tikopai STG_N_Boone STG_N_Huntington STG_N_Independence STG_N_Indomitable
+			STG_N_Kelleghan STG_N_Lucas STG_N_Rauer STG_N_Salazar STG_N_Surak STG_N_Somers
+			STG_N_TaoFeng STG_N_Tigress STG_N_Trojan STG_N_Vengeance STG_N_Potemkin STG_N_Hood
+			STG_N_Lexingon STG_N_Valiant STG_N_Defiant STG_N_Bismark STG_N_Defiance STG_N_Capella
+			STG_N_Furious STG_N_Isshasshte STG_N_JohnFKennedy STG_N_Ortisei STG_N_Zimbabwe STG_N_Kent
+			STG_N_Sol STG_N_RigilKentaurus STG_N_Quindar STG_N_Androcus STG_N_Astrad STG_N_Mondoloy
+			STG_N_SantissimaTrinidad STG_N_Thelonii STG_N_Shahr STG_N_Xanthii STG_N_Pilar STG_N_Tholus
+			STG_N_Horok STG_N_Ghondr STG_N_Langley STG_N_Pelione STG_N_Tali STG_N_Forrestal
+			STG_N_Annobon STG_N_Caspan STG_N_Java STG_N_Paegan STG_N_Procyon STG_N_Phardos
+			STG_N_Ndele STG_N_Zindar STG_N_Springfield STG_N_Austin STG_N_Chekov STG_N_Sulu
+			STG_N_Pike STG_N_Archer STG_N_McCoy STG_N_Tolstoy STG_N_Ashbrook STG_N_Wiggum
+			STG_N_Thaller STG_N_Plait STG_N_Kieper STG_N_Sizlac STG_N_Marcus STG_N_Propworx
+			STG_N_Miarecki STG_N_Sovereign STG_N_Faithful STG_N_Monarch STG_N_Calabria STG_N_Avalon
+			STG_N_Leviathan STG_N_Tirpitz STG_N_Gibraltar STG_N_Brusilov STG_N_Clausewitz STG_N_Garibaldi
+			STG_N_GustavusAdolphus STG_N_Hammurabi STG_N_JuliusCaesar STG_N_Justinian STG_N_Patton STG_N_Rommel
+			STG_N_SunTzu STG_N_Liberator STG_N_AlexanderNevsky STG_N_Pyrrhus STG_N_YiSun-sin STG_N_Heihachiro
+			STG_N_Khalidibnal-Walid STG_N_Vasa STG_N_Hindenburg STG_N_DeGaulle STG_N_Subutai STG_N_Nagato
+			STG_N_Scharnhorst STG_N_Clemenceau STG_N_Richelieu STG_N_JeanBart STG_N_Sparviero STG_N_Affondatore
+			STG_N_Tromp STG_N_Esperanza STG_N_Pelayo STG_N_Juneau STG_N_Sherwood STG_N_Alamo
+			STG_N_Breitenfeld STG_N_Cannae STG_N_ElAlamein STG_N_Gaugamela STG_N_Kadesh STG_N_Kursk
+			STG_N_Masada STG_N_Salamis STG_N_Sedan STG_N_Tannenberg STG_N_Ticonderoga STG_N_Thermopylae
+			STG_N_Marengo STG_N_Leipzig STG_N_Shiloh STG_N_Ypres STG_N_Suomussalmi STG_N_Kharkov
+			STG_N_Guadalcanal STG_N_DienBienPhu STG_N_Thymbra STG_N_Unicorn STG_N_Angel STG_N_Borealis
+			STG_N_Bounty STG_N_Emancipator STG_N_Ajax STG_N_Alaska STG_N_Albatross STG_N_Alexey
+			STG_N_Baracus STG_N_Barracuda STG_N_BatonRouge STG_N_Belfast STG_N_Bennington STG_N_Boxer
+			STG_N_Champion STG_N_Cheyenne STG_N_Cobra STG_N_Condor STG_N_Cormir STG_N_Corvus
+			STG_N_Dauntless STG_N_Eagle STG_N_Eclipse STG_N_Falkirk STG_N_Fargo STG_N_Franklin
+			STG_N_Galahad STG_N_Gauntlet STG_N_Gawain STG_N_Grant STG_N_Halberd STG_N_Havoc
+			STG_N_Helena STG_N_Hornet STG_N_Hurricane STG_N_Incessant STG_N_IwoJima STG_N_Javelin
+			STG_N_Kant STG_N_Kingfisher STG_N_Leyte STG_N_Logan STG_N_Loki STG_N_Man-o-War
+			STG_N_Matador STG_N_Maya STG_N_Medvedev STG_N_Mongoose STG_N_Monsoon STG_N_Morgana
+			STG_N_Moscow STG_N_Myrmidon STG_N_Narcissus STG_N_Neptune STG_N_Nomad STG_N_Pendragon
+			STG_N_Pleiades STG_N_Python STG_N_Quillon STG_N_Ramses STG_N_Raven STG_N_Redoubtable
+			STG_N_Relentless STG_N_Renegade STG_N_Rockford STG_N_Rome STG_N_SaoPaulo STG_N_Savannah
+			STG_N_Scorpion STG_N_Sioux STG_N_Sirocco STG_N_SnakeEyes STG_N_Spitfire STG_N_Stalwart
+			STG_N_Stromming STG_N_Tenacious STG_N_Thor STG_N_Titan STG_N_Treplev STG_N_Triton
+			STG_N_Tsunami STG_N_Turin STG_N_Valorous STG_N_Vanya STG_N_Victoria STG_N_Victorious
+			STG_N_Vigilant STG_N_Voltaire STG_N_Warspite STG_N_Wolverine STG_N_Zeppelin STG_N_Warrior
+			STG_N_Revenge STG_N_Prometheus STG_N_Cerberus STG_N_Icarus STG_N_Hercules STG_N_Myrtilus
+			STG_N_Meridian STG_N_Celestial STG_N_Zenith STG_N_Iphigenia STG_N_Panorama STG_N_Atlas
+			STG_N_Demeter STG_N_Hermes STG_N_Zeus STG_N_Nereus STG_N_Nerites STG_N_Amazonius
+			STG_N_Diomedes STG_N_Lahav STG_N_Elohim STG_N_Sarajevo STG_N_Balkan STG_N_Bosnia
+			STG_N_Herzegovina STG_N_Dinaric STG_N_Privredna STG_N_Belgrade STG_N_Tirana STG_N_Skopje
+			STG_N_Dubrovnik STG_N_Sofia STG_N_Mostar STG_N_Zagreb STG_N_Plovdiv STG_N_Kotor
+			STG_N_Bucharest STG_N_Budva STG_N_Podgorica STG_N_Prizren STG_N_Ohrid STG_N_Piran
+			STG_N_Varna STG_N_Rijeka STG_N_Labin STG_N_Danica STG_N_Erikson STG_N_Engle
+			STG_N_TPlana-Hath STG_N_Earhart STG_N_Andor STG_N_Schirra STG_N_Macedonia STG_N_Irwin
+			STG_N_Cardiff STG_N_Eisele STG_N_Givens STG_N_Lovell STG_N_Stafford STG_N_Freeman
+			STG_N_Anders STG_N_Duke STG_N_Griggs STG_N_Springer STG_N_Creighton STG_N_Buchli
+			STG_N_Coats STG_N_Cabana STG_N_Leestma STG_N_Shepherd STG_N_Phillips STG_N_Oswald
+			STG_N_Linenger STG_N_Bowersox STG_N_Bursch STG_N_Foreman STG_N_Loria STG_N_McCool
+			STG_N_Mann STG_N_Frick STG_N_Churchill STG_N_Cicada STG_N_Decatur STG_N_Roosevelt
+			STG_N_Lafayette STG_N_Vancouver STG_N_Clyde STG_N_Alabama STG_N_Laventure STG_N_Omaha
+			STG_N_Milford STG_N_WillingMind STG_N_Ptolomy STG_N_Ramesses STG_N_AlRashid STG_N_Anaxagoras
+			STG_N_Anaximander STG_N_Aristarchus STG_N_Copernicus STG_N_Eratosthenes STG_N_Galilei STG_N_Hevelius
+			STG_N_Hipparchus STG_N_IbnDaud STG_N_Philolaus STG_N_Thales STG_N_UlughBeg STG_N_Ambartsumian
+			STG_N_Brahe STG_N_Cassini STG_N_Deslandres STG_N_Donati STG_N_Flamarion STG_N_Kidinnu
+			STG_N_Leverrier STG_N_Luyten STG_N_Messier STG_N_Piazzi STG_N_Riccioli STG_N_Schiaparelli
+			STG_N_Sydney STG_N_Jenolen STG_N_Canberra STG_N_Marsh STG_N_Nash STG_N_Mobulai
+			STG_N_Chilton STG_N_Babcock STG_N_Bader STG_N_Armstrong STG_N_Sachs STG_N_Franking
+			STG_N_Kiski STG_N_Bradbury STG_N_Whofin STG_N_Deneva STG_N_Koala STG_N_Tripper
+			STG_N_Wallaby STG_N_Kethkin STG_N_Artic STG_N_Basilone STG_N_BelleauWood STG_N_Bodley
+			STG_N_Boynton STG_N_Carlson STG_N_Caron STG_N_ChateauThierry STG_N_Choisin STG_N_Cobb
+			STG_N_Culebra STG_N_DaNang STG_N_Gonzales STG_N_Hartman STG_N_Inchon STG_N_KheSanh
+			STG_N_Lejeune STG_N_Montezuma STG_N_NewGuinea STG_N_Okinawa STG_N_Panther STG_N_Peleliu
+			STG_N_Pendleton STG_N_Piranha STG_N_Quantico STG_N_Puller STG_N_RLErmey STG_N_Rowell
+			STG_N_Schilt STG_N_Solomon STG_N_StMihiel STG_N_Starlight STG_N_Tarawa STG_N_Tripoli
+			STG_N_WakeIsland STG_N_StatonIsland STG_N_Achilles STG_N_Gruganu STG_N_Harbinger STG_N_Imperius
+			STG_N_Katimi STG_N_Kelwyn STG_N_RoyalKnight STG_N_Wuuf STG_N_Argonaut STG_N_Haignere
+			STG_N_Aunon-Chancellor STG_N_Schrodinger STG_N_Koniggratz
+		}
+
+		battleship = {
+			STG_N_Surak STG_N_TPlanaHath STG_N_ShRan STG_N_Seleya STG_N_DKyr STG_N_Shvhal
+			STG_N_Vahklas STG_N_Yarahla STG_N_DMur STG_N_DVar STG_N_TalVahl STG_N_ShKyr
+			STG_N_ShMur STG_N_ShVar STG_N_TalVar STG_N_TiKyr STG_N_VLaak STG_N_NiVar
+			STG_N_NVea STG_N_Obena STG_N_Archimedes STG_N_Phidias STG_N_Diophantus STG_N_Plato
+			STG_N_Eudoxus STG_N_Apollonius STG_N_Leibniz STG_N_Ramanujan STG_N_McMahan STG_N_Newsome
+			STG_N_Cordero STG_N_Quaid STG_N_Wells STG_N_Tatasciore STG_N_Lewis STG_N_Vigman
+			STG_N_OConnell STG_N_Pythagoras STG_N_Fibonacci STG_N_Eratosthenes STG_N_Fermat STG_N_Skon
+			STG_N_Batai STG_N_Kustanovich STG_N_Syvaar STG_N_Crossfield STG_N_Discovery STG_N_Glenn
+			STG_N_Forrester STG_N_Freeman STG_N_Schirra STG_N_Irwin STG_N_Eisele STG_N_Givens
+			STG_N_Lovell STG_N_Stafford STG_N_Anders STG_N_Duke STG_N_Griggs STG_N_Springer
+			STG_N_Creighton STG_N_Walker STG_N_Buchli STG_N_Coats STG_N_Cabana STG_N_Leestma
+			STG_N_Shepherd STG_N_Phillips STG_N_Oswald STG_N_Linenger STG_N_Bowersox STG_N_Bursch
+			STG_N_Foreman STG_N_Lawrence STG_N_Loria STG_N_McCool STG_N_Nowak STG_N_Mann
+			STG_N_Frick STG_N_Cassidy STG_N_Excelsior STG_N_Republic STG_N_StanLee STG_N_Speaker
+			STG_N_Mauritius STG_N_Charleston STG_N_Fearless STG_N_Fredrickson STG_N_Gorkon STG_N_Lakota
+			STG_N_Malinche STG_N_Al-Batani STG_N_Crockett STG_N_Livingston STG_N_Tecumseh STG_N_Alliance
+			STG_N_Bearn STG_N_Carpenter STG_N_Chikuma STG_N_Fuso STG_N_Galacta STG_N_Hancock
+			STG_N_Juno STG_N_Montana STG_N_Ohio STG_N_Righteous STG_N_Ryujo STG_N_Sussex
+			STG_N_Thunderer STG_N_Yamashiro STG_N_Vesta STG_N_Aventine STG_N_Capitoline STG_N_Esquiline
+			STG_N_Quirinal STG_N_Viminal STG_N_Hypatia STG_N_Rademaker STG_N_MorningStar STG_N_ShiLang
+			STG_N_Vikramaditya STG_N_Viraat STG_N_Vikrant STG_N_Vishal STG_N_Napoleon STG_N_Kongo
+			STG_N_Oriskany STG_N_BunkerHill STG_N_KittyHawk STG_N_RoyalOak STG_N_Thunderbolt STG_N_RoyalSovereign
+			STG_N_Marathon STG_N_FrederickII STG_N_Eisenhower STG_N_Roland STG_N_TranHungDao STG_N_Themistocles
+			STG_N_Callister STG_N_RoyalFortune STG_N_GoldenHind STG_N_RisingSun STG_N_Knesset STG_N_Federation
+			STG_N_Entente STG_N_StarLeague STG_N_Unificatum STG_N_Compactat STG_N_Corporation STG_N_Konkordium
+			STG_N_StarSystem STG_N_Affiliation STG_N_Concordat STG_N_Directorate STG_N_Organization STG_N_StarUnion
+			STG_N_Confederation STG_N_Dominion STG_N_StarEmpire STG_N_Trusteeship STG_N_Association STG_N_Consortium
+			STG_N_Ambassador STG_N_Clearwater STG_N_Adelphi STG_N_Assurance STG_N_Aurora STG_N_Ayers
+			STG_N_Champlin STG_N_Crescent STG_N_Excalibur STG_N_Fury STG_N_Gandhi STG_N_Gravina
+			STG_N_Hannibal STG_N_Harding STG_N_Hawkesbury STG_N_Hickok STG_N_Horatio STG_N_Indianapolis
+			STG_N_Iroquois STG_N_Isis STG_N_Kadosca STG_N_Krotus STG_N_Loma STG_N_Prieta
+			STG_N_MacDonald STG_N_Manassas STG_N_Monroe STG_N_Montgomery STG_N_Norman STG_N_Quiberon
+			STG_N_Seattle STG_N_Shelton STG_N_Strong STG_N_Thelian STG_N_Thorn STG_N_Valdemar
+			STG_N_Velasco STG_N_Warakurna STG_N_Wilson STG_N_Winslow STG_N_Yamaguchi STG_N_Zarnitza
+			STG_N_Zhukov STG_N_YitzhakRabin STG_N_Jomini STG_N_Galaxy STG_N_Odyssey STG_N_Yamato
+			STG_N_Madison STG_N_Magellan STG_N_Adelaide STG_N_Allegheny STG_N_Andromeda STG_N_Argo
+			STG_N_Argonaut STG_N_Asgard STG_N_Asigara STG_N_Bermuda STG_N_Berry STG_N_Bolivar
+			STG_N_Bolzano STG_N_Blake STG_N_Breedlove STG_N_Canarias STG_N_Canterbury STG_N_Cervera
+			STG_N_Citadel STG_N_DeRuyter STG_N_Dominance STG_N_ElDorado STG_N_Endeavor STG_N_Frontier
+			STG_N_Galicia STG_N_Geronimo STG_N_Gloucester STG_N_Goodman STG_N_Hedderjin STG_N_Hurutaka
+			STG_N_Idaho STG_N_Jefferies STG_N_Jubei STG_N_Kinugasa STG_N_Krieger STG_N_Lazarev
+			STG_N_Lhasa STG_N_Makarov STG_N_Malevolent STG_N_Marquette STG_N_Merrimac STG_N_Molotov
+			STG_N_Mukaikubo STG_N_Murmansk STG_N_Navarra STG_N_Ning STG_N_Hai STG_N_Odysseus
+			STG_N_Ontario STG_N_Oraidhe STG_N_Oregon STG_N_Pequod STG_N_Perseus STG_N_Persia
+			STG_N_Phlox STG_N_Reverant STG_N_Reverent STG_N_Robinson STG_N_RonaldDMoore STG_N_Rylander
+			STG_N_Salem STG_N_SanFrancisco STG_N_Sequoia STG_N_Sorak STG_N_Swiftsure STG_N_Sumatra
+			STG_N_Taylor STG_N_Tikuma STG_N_Tori STG_N_Trident STG_N_Trieste STG_N_Trinculo
+			STG_N_Tyokai STG_N_Ulysses STG_N_Valhalla STG_N_Venture STG_N_Vindictive STG_N_Wichita
+			STG_N_Worcester STG_N_Zhurkov STG_N_Luna STG_N_Titan STG_N_Oberon STG_N_Europa
+			STG_N_Io STG_N_Triton STG_N_Ganymede STG_N_Amalthea STG_N_Callisto STG_N_Rhea
+			STG_N_Charon STG_N_Galatea STG_N_Mimas STG_N_Phobos STG_N_Halimede STG_N_Neso
+			STG_N_Ananke STG_N_Deimos STG_N_Daphnis STG_N_Fenrir STG_N_Helene STG_N_Pandora
+			STG_N_Cordelia STG_N_Cressida STG_N_Desdemona STG_N_Ophelia STG_N_Perdita STG_N_Portia
+			STG_N_Puck STG_N_Umbriel STG_N_Larissa STG_N_Nix STG_N_Kerberos STG_N_Dysnomia
+			STG_N_Sinope STG_N_Kallichore STG_N_Lysithea STG_N_Eukelade STG_N_Aitne STG_N_Inquiry
+			STG_N_Curiosity STG_N_Arbiter STG_N_Meknes STG_N_ZhengHe STG_N_MarcoPolo STG_N_Columbus
+			STG_N_daGama STG_N_Cabot STG_N_Thaller STG_N_Cabral STG_N_Vespucci STG_N_Elcano
+			STG_N_Drake STG_N_Raleigh STG_N_Amundsen STG_N_Cook STG_N_Earhart STG_N_Erikson
+			STG_N_Shackleton STG_N_Outen STG_N_Nazreen STG_N_Trevis STG_N_Yeltzin STG_N_Phinda
+			STG_N_Justicar STG_N_Bellipotent STG_N_Gral STG_N_Kirshnar STG_N_Verity STG_N_Columbia
+			STG_N_Houston STG_N_Endeavour STG_N_Sojourner STG_N_Dennison STG_N_Yorktown STG_N_Octavius
+			STG_N_Thelonious STG_N_Tiberius STG_N_Archer STG_N_Jaresh-Inyo STG_N_MinZife STG_N_Vanderbilt
+			STG_N_Ra-ghoratreii STG_N_TPragh STG_N_Pandril STG_N_Bacco STG_N_Rodirya STG_N_Sipak
+			STG_N_Obama STG_N_Kellessar STG_N_Churchill STG_N_Sato STG_N_Mandela STG_N_Caesar
+			STG_N_Mehmed STG_N_VLar STG_N_Solkar STG_N_KEhleyr STG_N_Rozhenko STG_N_Hammarskjold
+		}
+
+		titan = {
+			STG_N_KirShara STG_N_Kolinahr STG_N_Arev STG_N_Nirak STG_N_Enterprise STG_N_Columbia
+			STG_N_Endeavor STG_N_Constitution STG_N_Defiant STG_N_Hood STG_N_Excelsior STG_N_Ambassador
+			STG_N_Excalibur STG_N_Galaxy STG_N_Odyssey STG_N_Sovereign STG_N_ArkRoyal
+		}
+
+		science = {
+			STG_N_ShRan STG_N_Vulcana STG_N_Regar STG_N_TalShanar STG_N_Kolinahr STG_N_TKarath
+			STG_N_Shariel STG_N_TVran STG_N_Chulak STG_N_Syrak STG_N_Sulan STG_N_Tcael
+			STG_N_Delvok STG_N_Falor STG_N_Ferat STG_N_Haadok STG_N_Jossen STG_N_Kinis
+			STG_N_Kiri-kin-tha STG_N_Kess STG_N_Kov STG_N_Kuvak STG_N_Lojal STG_N_NEreon
+			STG_N_Gavek STG_N_NEvran
+		}
+
+		colonizer = {
+			STG_N_VulcansForge STG_N_Raal STG_N_Kir STG_N_Gol STG_N_Xirtan
+		}
+
+		constructor = {
+			STG_N_TKhut STG_N_Charis STG_N_Lyras STG_N_Nevasa STG_N_Valdena
+		}
+
+		research_station = {
+			STG_N_Skon
+		}
+
+		military_station_small = {
+			STG_N_Vulcan STG_N_Tkhut STG_N_Mercury STG_N_Venus STG_N_Terra STG_N_Mars
+			STG_N_Jupiter STG_N_Saturn STG_N_Uranus STG_N_Neptune STG_N_Phobos STG_N_Deimos
+			STG_N_Ceres STG_N_Ganymede STG_N_Callisto STG_N_Io STG_N_Europa STG_N_Titan
+			STG_N_Rhea STG_N_Iapetus STG_N_Dione STG_N_Tethys STG_N_Enceladus STG_N_Mimas
+			STG_N_Titania STG_N_Oberon STG_N_Umbriel STG_N_Ariel STG_N_Miranda STG_N_Triton
+			STG_N_Pluto STG_N_Charon STG_N_Galileo STG_N_Picasso STG_N_Dali STG_N_Einstein
+			STG_N_Setar STG_N_Columbus STG_N_Conrad STG_N_DaVinci STG_N_Piranesi STG_N_Warhol
+			STG_N_Michelangelo STG_N_vanGogh STG_N_Munch STG_N_Monet STG_N_Matisse STG_N_Caravaggio
+			STG_N_Raphael STG_N_Cezanne STG_N_Klimt STG_N_Titian STG_N_Miro STG_N_Kandinsky
+			STG_N_Vermeer STG_N_Klee STG_N_Tate STG_N_Rembrandt STG_N_AnselAdams STG_N_Clarke
+			STG_N_Copernicus STG_N_Cousteau STG_N_DAlison STG_N_Decartes STG_N_Feynman STG_N_Hawking
+			STG_N_IndianaJones STG_N_JFKennedy STG_N_Kotoi STG_N_McAuliffe STG_N_Sakharov STG_N_Tereshkova
+			STG_N_VonBraun STG_N_Danube STG_N_Gander STG_N_Ganges STG_N_Mekong STG_N_Orinoco
+			STG_N_RioGrande STG_N_Rubicon STG_N_Shenandoah STG_N_Volga STG_N_Yukon STG_N_Thames
+			STG_N_Rhine STG_N_Po STG_N_Tiber STG_N_Nile STG_N_Yangtze STG_N_Indus
+			STG_N_Zambezi STG_N_Yamuna STG_N_Seine STG_N_Congo STG_N_Godavari STG_N_Colorado
+			STG_N_Hudson STG_N_Euphrates STG_N_Koshi STG_N_Tigris STG_N_Sepik STG_N_Yarra
+			STG_N_Sulby STG_N_Mississippi STG_N_Amazon STG_N_Niger STG_N_Amur STG_N_WhiteNile
+			STG_N_BlueNile STG_N_Vilyuy STG_N_Japura STG_N_Dnieper STG_N_Kasai STG_N_Songhua
+			STG_N_StonyTunguska STG_N_Beni STG_N_Volta STG_N_Pecos STG_N_Vyatka STG_N_Liao
+			STG_N_Yalong STG_N_Iriri STG_N_Athabasca STG_N_Vistula STG_N_Vaal STG_N_Cimarron
+			STG_N_Loire STG_N_Flinders
+		}
+
+		military_station_medium = {
+			STG_N_Mercury STG_N_Venus STG_N_Terra STG_N_Mars STG_N_Jupiter STG_N_Saturn
+			STG_N_Uranus STG_N_Neptune STG_N_Phobos STG_N_Deimos STG_N_Ceres STG_N_Ganymede
+			STG_N_Callisto STG_N_Io STG_N_Europa STG_N_Titan STG_N_Rhea STG_N_Iapetus
+			STG_N_Dione STG_N_Tethys STG_N_Enceladus STG_N_Mimas STG_N_Titania STG_N_Oberon
+			STG_N_Umbriel STG_N_Ariel STG_N_Miranda STG_N_Triton STG_N_Pluto STG_N_Charon
+		}
+
+		military_station_large = {
+			STG_N_Mercury STG_N_Venus STG_N_Terra STG_N_Mars STG_N_Jupiter STG_N_Saturn
+			STG_N_Uranus STG_N_Neptune STG_N_Phobos STG_N_Deimos STG_N_Ceres STG_N_Ganymede
+			STG_N_Callisto STG_N_Io STG_N_Europa STG_N_Titan STG_N_Rhea STG_N_Iapetus
+			STG_N_Dione STG_N_Tethys STG_N_Enceladus STG_N_Mimas STG_N_Titania STG_N_Oberon
+			STG_N_Umbriel STG_N_Ariel STG_N_Miranda STG_N_Triton STG_N_Pluto STG_N_Charon
+		}
+	}
+
+	ship_class_names = {
+		generic = {
+			STG_N_Suurok STG_N_DKyr STG_N_ShRaan STG_N_Vahklas STG_N_Maymora
+			STG_N_NiVar STG_N_TPlanaHath STG_N_Surak STG_N_ShRan
+		}
+	}
+
+	fleet_names = {
+		sequential_name = STG_VULCAN_SQUADRON
+	}
+
+	army_names = {
+		machine_assault_1 = {
+			sequential_name = STG_VULCAN_ASSAULTCOHORT
+		}
+
+		machine_defense = {
+			sequential_name = STG_VULCAN_DEFENSECOHORT
+		}
+
+		defense_army = {
+			sequential_name = STG_VULCAN_PLANETARYDEFENSECOHORT
+		}
+
+		assault_army = {
+			sequential_name = STG_VULCAN_EXPEDITIONARYCOHORT
+		}
+
+		slave_army = {
+			sequential_name = STG_VULCAN_LABORCOHORT
+		}
+
+		clone_army = {
+			sequential_name = STG_VULCAN_REPLICATECOHORT
+		}
+
+		robotic_army = {
+			sequential_name = STG_VULCAN_AUTOMATEDCOHORT
+		}
+
+		psionic_army = {
+			sequential_name = STG_VULCAN_ADEPTCOHORT
+		}
+
+		xenomorph_army = {
+			sequential_name = STG_VULCAN_XENOMORPHCOHORT
+		}
+
+		gene_warrior_army = {
+			sequential_name = STG_VULCAN_AUGMENTEDCOHORT
+		}
+
+		occupation_army = {
+			sequential_name = STG_VULCAN_OCCUPATIONCOHORT
+		}
+
+		robotic_defense_army = {
+			sequential_name = STG_VULCAN_AUTOMATEDDEFENSECOHORT
+		}
+
+		industrial_army = {
+			sequential_name = STG_VULCAN_INDUSTRIALCOHORT
+		}
+
+		primitive_army = {
+			sequential_name = STG_VULCAN_MILITIA
+		}
+	}
+
+	planet_names = {
+		generic = {
+			names = {
+				STG_N_Vulcanis STG_N_TKhut STG_N_DeltaVega STG_N_Kir STG_N_Raal STG_N_Gol
+				STG_N_ShiKahr STG_N_Xirtan STG_N_Seleya STG_N_VulcanaRegar
+				STG_N_DaKal STG_N_KelProvek STG_N_Han-Shir STG_N_Tanjara STG_N_Voroth
+				STG_N_Nevasa STG_N_Valdena STG_N_KelRyk STG_N_Sherikahr STG_N_TPaal
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			weight = 100
+
+			first_names_male = {
+				STG_N_Sarek STG_N_Spock STG_N_Skon STG_N_Solkar STG_N_Sybok STG_N_Stonn STG_N_Sopek STG_N_Soval
+				STG_N_Syrran STG_N_Sonak STG_N_Surak STG_N_Sakonna STG_N_Tuvok STG_N_Taurik STG_N_Vorik
+				STG_N_Selek STG_N_Stron STG_N_Setek STG_N_Sirak STG_N_Senva STG_N_Salok STG_N_Sepel
+			}
+
+			first_names_female = {
+				STG_N_TPau STG_N_TPol STG_N_TPring STG_N_TLar STG_N_TLes
+				STG_N_TPel STG_N_TRea STG_N_TMir STG_N_TVran STG_N_TKhut
+				STG_N_TVora STG_N_TPaal STG_N_TSai STG_N_TLyn
+				STG_N_Saavik STG_N_Valeris STG_N_Selar STG_N_TShanik STG_N_TVrel STG_N_TMeni
+			}
+
+			second_names = {
+				STG_N_Sepel STG_N_Skon STG_N_Solkar STG_N_Stel STG_N_Sutok STG_N_Talok STG_N_Tekav
+				STG_N_Vanik STG_N_Velik STG_N_Verel STG_N_Vorik STG_N_Xon STG_N_Zakal STG_N_Kuvak
+				STG_N_Muroc STG_N_Nirak STG_N_Senek STG_N_Sitar STG_N_Sopek STG_N_Torek
+			}
+		}
+	}
+}

@@ -1,0 +1,161 @@
+﻿# Acamarian name list, for the AI-only minor powers that use it.
+#
+# CONVERTED from .source/688086068/common/name_lists/Acamarian.txt: the tokens are
+# STNH's, resolved through STNH's own localisation and re-keyed as STG_N_. The
+# ship-size buckets are rebuilt for VANILLA's ladder -- STNH's file buckets by
+# its own (saber, sovereign, steamrunner) and those keys mean nothing here.
+#
+# See .docs/decisions/19-stnh-minor-powers-as-ai-empires.md.
+
+STG_ACAMARIAN = {
+	category = "Humanoid"
+	randomized = no
+
+	ship_names = {
+		generic = {
+			STG_N_Gatherer STG_N_Savage STG_N_Barbarian STG_N_Huntsman STG_N_Tribal STG_N_Accumulator
+			STG_N_Gleaner STG_N_Fowler STG_N_Snarer STG_N_Watcher STG_N_Searcher STG_N_Quester
+			STG_N_Forager STG_N_Hunter STG_N_Compiler STG_N_Finder STG_N_PackRat STG_N_Hoarder
+			STG_N_Collector
+		}
+
+		corvette = {
+			STG_N_Quester STG_N_Forager STG_N_Hunter STG_N_Compiler STG_N_Finder
+		}
+
+		destroyer = {
+			STG_N_PackRat STG_N_Hoarder STG_N_Collector
+		}
+
+		cruiser = {
+			STG_N_Gatherer STG_N_Savage STG_N_Barbarian
+		}
+
+		battleship = {
+			STG_N_Gatherer STG_N_Savage STG_N_Barbarian
+		}
+
+		titan = {
+			STG_N_Gatherer STG_N_Savage STG_N_Barbarian
+		}
+
+		science = {
+			STG_N_Gatherer STG_N_Savage STG_N_Barbarian STG_N_Huntsman STG_N_Tribal STG_N_Accumulator
+		}
+
+		colonizer = {
+			STG_N_Gatherer STG_N_Savage STG_N_Barbarian STG_N_Huntsman STG_N_Tribal
+		}
+
+		constructor = {
+			STG_N_Gleaner STG_N_Fowler STG_N_Snarer STG_N_Watcher STG_N_Searcher
+		}
+	}
+
+	ship_class_names = {
+		generic = {
+			STG_N_Gatherer STG_N_Savage STG_N_Barbarian STG_N_Huntsman STG_N_Tribal STG_N_Accumulator
+			STG_N_Gleaner STG_N_Fowler STG_N_Snarer
+		}
+	}
+
+	fleet_names = {
+		sequential_name = STG_ACAMARIAN_GROUP
+	}
+
+	army_names = {
+		machine_assault_1 = {
+			sequential_name = STG_ACAMARIAN_ASSAULTAUXILIARY
+		}
+
+		machine_defense = {
+			sequential_name = STG_ACAMARIAN_DEFENSEAUXILIARY
+		}
+
+		defense_army = {
+			sequential_name = STG_ACAMARIAN_PLANETARYDEFENSEAUXILIARY
+		}
+
+		assault_army = {
+			sequential_name = STG_ACAMARIAN_EXPEDITIONARYAUXILIARY
+		}
+
+		slave_army = {
+			sequential_name = STG_ACAMARIAN_LABORAUXILIARY
+		}
+
+		clone_army = {
+			sequential_name = STG_ACAMARIAN_REPLICATEAUXILIARY
+		}
+
+		robotic_army = {
+			sequential_name = STG_ACAMARIAN_AUTOMATEDAUXILIARY
+		}
+
+		psionic_army = {
+			sequential_name = STG_ACAMARIAN_ADEPTAUXILIARY
+		}
+
+		xenomorph_army = {
+			sequential_name = STG_ACAMARIAN_XENOMORPHAUXILIARY
+		}
+
+		gene_warrior_army = {
+			sequential_name = STG_ACAMARIAN_AUGMENTEDAUXILIARY
+		}
+
+		occupation_army = {
+			sequential_name = STG_ACAMARIAN_OCCUPATIONAUXILIARY
+		}
+
+		robotic_defense_army = {
+			sequential_name = STG_ACAMARIAN_AUTOMATEDDEFENSEAUXILIARY
+		}
+
+		industrial_army = {
+			sequential_name = STG_ACAMARIAN_INDUSTRIALAUXILIARY
+		}
+
+		primitive_army = {
+			sequential_name = STG_ACAMARIAN_MILITIA
+		}
+	}
+
+	planet_names = {
+		generic = {
+			names = {
+				STG_N_Gatherer STG_N_Savage STG_N_Barbarian STG_N_Huntsman STG_N_Tribal STG_N_Accumulator
+				STG_N_Gleaner STG_N_Fowler STG_N_Snarer STG_N_Watcher STG_N_Searcher STG_N_Quester
+				STG_N_Forager STG_N_Hunter STG_N_Compiler STG_N_Finder STG_N_PackRat STG_N_Hoarder
+				STG_N_Collector
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			weight = 100
+
+			first_names_male = {
+				STG_N_Chorgen STG_N_Dongren STG_N_Oh STG_N_Brull STG_N_Mallon STG_N_Penthor
+				STG_N_Temarek STG_N_Tograf STG_N_Laurhafr STG_N_Volnoth STG_N_Chor STG_N_Penthorgen
+				STG_N_Dongrenthor STG_N_Don STG_N_Tografr STG_N_Dongraf STG_N_Dongrek STG_N_Temarenthor
+				STG_N_Brullongrek STG_N_Laurhaf STG_N_Pen STG_N_Volnothor STG_N_Togren STG_N_Mallongrek
+			}
+
+			first_names_female = {
+				STG_N_Mesabb STG_N_Yuta STG_N_Romybur STG_N_Meta STG_N_Yutabb STG_N_Uli
+				STG_N_Mo STG_N_Salouk STG_N_Hanouk STG_N_Patrouk STG_N_Ingirs STG_N_Yngris
+				STG_N_Yina STG_N_Yela STG_N_Jerouk STG_N_Roisi STG_N_Keyle STG_N_Vexha
+				STG_N_Piki STG_N_Allurouk STG_N_Jeina STG_N_Yin STG_N_Rois STG_N_Allur
+			}
+
+			second_names = {
+				STG_N_Chorgen STG_N_Dongren STG_N_Oh STG_N_Brull STG_N_Mallon STG_N_Penthor
+				STG_N_Temarek STG_N_Tograf STG_N_Laurhafr STG_N_Volnoth STG_N_Chor STG_N_Penthorgen
+				STG_N_Dongrenthor STG_N_Don STG_N_Tografr STG_N_Dongraf STG_N_Dongrek STG_N_Temarenthor
+				STG_N_Brullongrek STG_N_Laurhaf STG_N_Pen STG_N_Volnothor STG_N_Togren STG_N_Mallongrek
+			}
+		}
+	}
+}

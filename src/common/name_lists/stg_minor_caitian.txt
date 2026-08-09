@@ -1,0 +1,166 @@
+﻿# Caitian name list, for the AI-only minor powers that use it.
+#
+# CONVERTED from .source/688086068/common/name_lists/Caitian.txt: the tokens are
+# STNH's, resolved through STNH's own localisation and re-keyed as STG_N_. The
+# ship-size buckets are rebuilt for VANILLA's ladder -- STNH's file buckets by
+# its own (saber, sovereign, steamrunner) and those keys mean nothing here.
+#
+# See .docs/decisions/19-stnh-minor-powers-as-ai-empires.md.
+
+STG_CAITIAN = {
+	category = "Humanoid"
+	randomized = no
+
+	ship_names = {
+		generic = {
+			STG_N_Atrox STG_N_Ferox STG_N_Ferus STG_N_Torvus STG_N_Bestialis STG_N_Aspero
+			STG_N_Hadir STG_N_Stalker STG_N_Huntress STG_N_Tiger STG_N_Panther STG_N_Leo
+			STG_N_Pursuer STG_N_Hunter STG_N_Courser STG_N_Typhus STG_N_Panthera STG_N_Lynx
+			STG_N_Agility STG_N_Pouncer STG_N_Intruder STG_N_Feral STG_N_NineLives STG_N_Scratcher
+			STG_N_Claw STG_N_Clawer STG_N_SavageClaw STG_N_SavageBite STG_N_SilentStalker STG_N_Prowler
+			STG_N_Dralthi STG_N_Salthi STG_N_Sartha STG_N_Gratha STG_N_Jalthi STG_N_Hhriss
+			STG_N_Krant STG_N_Strakha STG_N_Bloodfang STG_N_Gothri STG_N_Jalkehi STG_N_Drakhri
+			STG_N_Grikath STG_N_Vaktoth STG_N_Sorthak STG_N_Paktahn
+		}
+
+		corvette = {
+			STG_N_Leo STG_N_Pursuer STG_N_Hunter STG_N_Courser STG_N_Typhus
+		}
+
+		destroyer = {
+			STG_N_Panthera STG_N_Lynx STG_N_Agility STG_N_Pouncer STG_N_Intruder
+		}
+
+		cruiser = {
+			STG_N_Feral STG_N_NineLives STG_N_Scratcher STG_N_Claw STG_N_Clawer
+		}
+
+		battleship = {
+			STG_N_SavageClaw STG_N_SavageBite STG_N_SilentStalker STG_N_Prowler STG_N_Dralthi
+		}
+
+		titan = {
+			STG_N_Salthi STG_N_Sartha STG_N_Gratha STG_N_Jalthi
+		}
+
+		science = {
+			STG_N_Atrox STG_N_Ferox STG_N_Ferus STG_N_Torvus STG_N_Bestialis STG_N_Aspero
+		}
+
+		colonizer = {
+			STG_N_Atrox STG_N_Ferox STG_N_Ferus STG_N_Torvus STG_N_Bestialis
+		}
+
+		constructor = {
+			STG_N_Hadir STG_N_Stalker STG_N_Huntress STG_N_Tiger STG_N_Panther
+		}
+	}
+
+	ship_class_names = {
+		generic = {
+			STG_N_Atrox STG_N_Ferox STG_N_Ferus STG_N_Torvus STG_N_Bestialis STG_N_Aspero
+			STG_N_Hadir STG_N_Stalker STG_N_Huntress
+		}
+	}
+
+	fleet_names = {
+		sequential_name = STG_CAITIAN_GROUP
+	}
+
+	army_names = {
+		machine_assault_1 = {
+			sequential_name = STG_CAITIAN_ASSAULTAUXILIARY
+		}
+
+		machine_defense = {
+			sequential_name = STG_CAITIAN_DEFENSEAUXILIARY
+		}
+
+		defense_army = {
+			sequential_name = STG_CAITIAN_PLANETARYDEFENSEAUXILIARY
+		}
+
+		assault_army = {
+			sequential_name = STG_CAITIAN_EXPEDITIONARYAUXILIARY
+		}
+
+		slave_army = {
+			sequential_name = STG_CAITIAN_LABORAUXILIARY
+		}
+
+		clone_army = {
+			sequential_name = STG_CAITIAN_REPLICATEAUXILIARY
+		}
+
+		robotic_army = {
+			sequential_name = STG_CAITIAN_AUTOMATEDAUXILIARY
+		}
+
+		psionic_army = {
+			sequential_name = STG_CAITIAN_ADEPTAUXILIARY
+		}
+
+		xenomorph_army = {
+			sequential_name = STG_CAITIAN_XENOMORPHAUXILIARY
+		}
+
+		gene_warrior_army = {
+			sequential_name = STG_CAITIAN_AUGMENTEDAUXILIARY
+		}
+
+		occupation_army = {
+			sequential_name = STG_CAITIAN_OCCUPATIONAUXILIARY
+		}
+
+		robotic_defense_army = {
+			sequential_name = STG_CAITIAN_AUTOMATEDDEFENSEAUXILIARY
+		}
+
+		industrial_army = {
+			sequential_name = STG_CAITIAN_INDUSTRIALAUXILIARY
+		}
+
+		primitive_army = {
+			sequential_name = STG_CAITIAN_MILITIA
+		}
+	}
+
+	planet_names = {
+		generic = {
+			names = {
+				STG_N_Atrox STG_N_Ferox STG_N_Ferus STG_N_Torvus STG_N_Bestialis STG_N_Aspero
+				STG_N_Hadir STG_N_Stalker STG_N_Huntress STG_N_Tiger STG_N_Panther STG_N_Leo
+				STG_N_Pursuer STG_N_Hunter STG_N_Courser STG_N_Typhus STG_N_Panthera STG_N_Lynx
+				STG_N_Agility STG_N_Pouncer STG_N_Intruder STG_N_Feral STG_N_NineLives STG_N_Scratcher
+				STG_N_Claw STG_N_Clawer STG_N_SavageClaw STG_N_SavageBite STG_N_SilentStalker STG_N_Prowler
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			weight = 100
+
+			first_names_male = {
+				STG_N_Dynkorra STG_N_Shevihh STG_N_Sunisr STG_N_Niruo STG_N_Marril STG_N_Davarl
+				STG_N_Deserr STG_N_Trarren STG_N_Trren STG_N_Mengir STG_N_Eldeer STG_N_Marari
+				STG_N_Gedryn STG_N_Manara STG_N_Vasura STG_N_Shara STG_N_Erovan STG_N_Caite
+				STG_N_Dynkirre STG_N_Kise STG_N_Trise STG_N_Tryss STG_N_Vyss STG_N_Alirr
+			}
+
+			first_names_female = {
+				STG_N_Mgrash STG_N_Mmorr STG_N_MNirl STG_N_MRess STG_N_MRoaa STG_N_MZeo
+				STG_N_Niwara STG_N_PTrell STG_N_RMiia STG_N_Rriarr STG_N_Srrel STG_N_Shaow
+				STG_N_Ferra STG_N_Velde STG_N_Kyona STG_N_Niwan STG_N_Rraak STG_N_Rmimae
+				STG_N_CMorra STG_N_CTarrsa STG_N_Liowan STG_N_Grinraar STG_N_Kassraia STG_N_Ketakr
+			}
+
+			second_names = {
+				STG_N_Dynkorra STG_N_Shevihh STG_N_Sunisr STG_N_Niruo STG_N_Marril STG_N_Davarl
+				STG_N_Deserr STG_N_Trarren STG_N_Trren STG_N_Mengir STG_N_Eldeer STG_N_Marari
+				STG_N_Gedryn STG_N_Manara STG_N_Vasura STG_N_Shara STG_N_Erovan STG_N_Caite
+				STG_N_Dynkirre STG_N_Kise STG_N_Trise STG_N_Tryss STG_N_Vyss STG_N_Alirr
+			}
+		}
+	}
+}

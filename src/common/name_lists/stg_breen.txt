@@ -1,0 +1,155 @@
+﻿# Breen Confederacy name list.
+#
+# Canon gives the Breen one named world and the Thot rank-title, so these names
+# are constructed rather than canonical: a rank plus a syllable, which is the
+# whole of what is known about how Breen are addressed.
+#
+# Structure mirrors /stellaris/common/name_lists/HUMAN1.txt. Every name token
+# is an STG_N_ key in src/localisation/english/stg_names_l_english.yml.
+
+STG_BREEN = {
+	category = "Humanoid"
+	randomized = no
+
+	ship_names = {
+		generic = {
+			STG_N_Gor STG_N_Pran STG_N_Sarr STG_N_Trell STG_N_Vekk STG_N_Rhun STG_N_Dissipator STG_N_ColdFront
+			STG_N_Whiteout STG_N_Rimefall STG_N_Glacier STG_N_Frostbite STG_N_LongWinter STG_N_SilentCold
+			STG_N_Icebound STG_N_Snowblind STG_N_Hoarfrost STG_N_Blizzard
+		}
+
+		science = {
+			STG_N_Rimefall STG_N_Whiteout STG_N_ColdFront STG_N_Snowblind STG_N_Hoarfrost STG_N_Icebound
+			STG_N_Dissipator
+		}
+
+		colonizer = {
+			STG_N_NewBreen STG_N_Portas STG_N_Dozaria STG_N_Rimefall STG_N_Glacier
+		}
+
+		constructor = {
+			STG_N_Frostbite STG_N_Blizzard STG_N_LongWinter STG_N_Icebound STG_N_Snowblind
+		}
+
+		corvette = {
+			STG_N_Sarr STG_N_Trell STG_N_Vekk STG_N_Rhun STG_N_Whiteout
+		}
+
+		destroyer = {
+			STG_N_Gor STG_N_Pran STG_N_ColdFront STG_N_Frostbite
+		}
+
+		cruiser = {
+			STG_N_Dissipator STG_N_Glacier STG_N_LongWinter STG_N_Blizzard
+		}
+
+		battleship = {
+			STG_N_SilentCold STG_N_Dissipator STG_N_Breen STG_N_LongWinter
+		}
+
+		titan = {
+			STG_N_Breen STG_N_SilentCold STG_N_Dissipator STG_N_Glacier
+		}
+	}
+
+	ship_class_names = {
+		generic = {
+			STG_N_Dissipator STG_N_Rimefall STG_N_Whiteout STG_N_Glacier STG_N_Frostbite STG_N_Blizzard
+			STG_N_Hoarfrost STG_N_Icebound STG_N_Snowblind
+		}
+	}
+
+	fleet_names = {
+		sequential_name = STG_BREEN_ARMADA
+	}
+
+	army_names = {
+		machine_assault_1 = {
+			sequential_name = STG_BREEN_ASSAULTPHALANX
+		}
+
+		machine_defense = {
+			sequential_name = STG_BREEN_DEFENSEPHALANX
+		}
+
+		defense_army = {
+			sequential_name = STG_BREEN_PLANETARYDEFENSEPHALANX
+		}
+
+		assault_army = {
+			sequential_name = STG_BREEN_EXPEDITIONARYPHALANX
+		}
+
+		slave_army = {
+			sequential_name = STG_BREEN_LABORPHALANX
+		}
+
+		clone_army = {
+			sequential_name = STG_BREEN_REPLICATEPHALANX
+		}
+
+		robotic_army = {
+			sequential_name = STG_BREEN_AUTOMATEDPHALANX
+		}
+
+		psionic_army = {
+			sequential_name = STG_BREEN_ADEPTPHALANX
+		}
+
+		xenomorph_army = {
+			sequential_name = STG_BREEN_XENOMORPHPHALANX
+		}
+
+		gene_warrior_army = {
+			sequential_name = STG_BREEN_AUGMENTEDPHALANX
+		}
+
+		occupation_army = {
+			sequential_name = STG_BREEN_OCCUPATIONPHALANX
+		}
+
+		robotic_defense_army = {
+			sequential_name = STG_BREEN_AUTOMATEDDEFENSEPHALANX
+		}
+
+		industrial_army = {
+			sequential_name = STG_BREEN_INDUSTRIALPHALANX
+		}
+
+		primitive_army = {
+			sequential_name = STG_BREEN_MILITIA
+		}
+	}
+
+	planet_names = {
+		generic = {
+			names = {
+				STG_N_PortasV STG_N_Dozaria STG_N_Rimefall STG_N_Glacier STG_N_Frostbite STG_N_Whiteout
+				STG_N_Snowblind STG_N_Hoarfrost STG_N_Icebound STG_N_Blizzard STG_N_LongWinter STG_N_SilentCold
+				STG_N_ColdFront STG_N_NewBreen STG_N_Sarr STG_N_Trell STG_N_Vekk STG_N_Rhun
+				STG_N_Dissipator
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			weight = 100
+
+			first_names_male = {
+				STG_N_Gor STG_N_Pran STG_N_Sarr STG_N_Trell STG_N_Vekk STG_N_Rhun STG_N_Kesh STG_N_Dral STG_N_Morn
+				STG_N_Vrenn STG_N_Thak STG_N_Zarr STG_N_Krell STG_N_Norr STG_N_Sett STG_N_Yarn
+			}
+
+			first_names_female = {
+				STG_N_Ashra STG_N_Berrn STG_N_Cynn STG_N_Dresh STG_N_Elth STG_N_Fenna STG_N_Grynn STG_N_Hessa
+				STG_N_Irr STG_N_Jenn STG_N_Kressa STG_N_Lynn
+			}
+
+			second_names = {
+				STG_N_Thot STG_N_Gor STG_N_Pran STG_N_Sarr STG_N_Trell STG_N_Vekk STG_N_Rhun STG_N_Kesh STG_N_Dral
+				STG_N_Vrenn STG_N_Thak STG_N_Zarr STG_N_Krell STG_N_Norr
+			}
+		}
+	}
+}

@@ -1,0 +1,166 @@
+﻿# Talarian name list, for the AI-only minor powers that use it.
+#
+# CONVERTED from .source/688086068/common/name_lists/Talarian.txt: the tokens are
+# STNH's, resolved through STNH's own localisation and re-keyed as STG_N_. The
+# ship-size buckets are rebuilt for VANILLA's ladder -- STNH's file buckets by
+# its own (saber, sovereign, steamrunner) and those keys mean nothing here.
+#
+# See .docs/decisions/19-stnh-minor-powers-as-ai-empires.md.
+
+STG_TALARIAN = {
+	category = "Humanoid"
+	randomized = no
+
+	ship_names = {
+		generic = {
+			STG_N_QMaire STG_N_Batris STG_N_QPetrana STG_N_QPatris STG_N_QEloneris STG_N_QElona
+			STG_N_QKayleth STG_N_QVoxhalia STG_N_QKalyee STG_N_QDeliah STG_N_QMid STG_N_QAifey
+			STG_N_QSirse STG_N_QCiree STG_N_QRoisin STG_N_QCidra STG_N_QMolla STG_N_QFidre
+			STG_N_QNidre STG_N_QClodagh STG_N_QEabha STG_N_QSarebh STG_N_QEvie STG_N_QWhinn
+			STG_N_QIsta STG_N_QAistine STG_N_QMaistic STG_N_QCihann STG_N_QMetah STG_N_QMaeta
+			STG_N_QDimear STG_N_QTora STG_N_QGroi STG_N_QShawa STG_N_QMihla STG_N_QAiney
+			STG_N_QOrlaty STG_N_QAilthe STG_N_QAimae STG_N_QAlotta STG_N_QFortha STG_N_QLise
+			STG_N_QTivvan
+		}
+
+		corvette = {
+			STG_N_QAifey STG_N_QSirse STG_N_QCiree STG_N_QRoisin STG_N_QCidra
+		}
+
+		destroyer = {
+			STG_N_QMolla STG_N_QFidre STG_N_QNidre STG_N_QClodagh STG_N_QEabha
+		}
+
+		cruiser = {
+			STG_N_QSarebh STG_N_QEvie STG_N_QWhinn STG_N_QIsta STG_N_QAistine
+		}
+
+		battleship = {
+			STG_N_QMaistic STG_N_QCihann STG_N_QMetah STG_N_QMaeta STG_N_QDimear
+		}
+
+		titan = {
+			STG_N_QTora STG_N_QGroi STG_N_QShawa STG_N_QMihla
+		}
+
+		science = {
+			STG_N_QMaire STG_N_Batris STG_N_QPetrana STG_N_QPatris STG_N_QEloneris STG_N_QElona
+		}
+
+		colonizer = {
+			STG_N_QMaire STG_N_Batris STG_N_QPetrana STG_N_QPatris STG_N_QEloneris
+		}
+
+		constructor = {
+			STG_N_QKayleth STG_N_QVoxhalia STG_N_QKalyee STG_N_QDeliah STG_N_QMid
+		}
+	}
+
+	ship_class_names = {
+		generic = {
+			STG_N_QMaire STG_N_Batris STG_N_QPetrana STG_N_QPatris STG_N_QEloneris STG_N_QElona
+			STG_N_QKayleth STG_N_QVoxhalia STG_N_QKalyee
+		}
+	}
+
+	fleet_names = {
+		sequential_name = STG_TALARIAN_GROUP
+	}
+
+	army_names = {
+		machine_assault_1 = {
+			sequential_name = STG_TALARIAN_ASSAULTAUXILIARY
+		}
+
+		machine_defense = {
+			sequential_name = STG_TALARIAN_DEFENSEAUXILIARY
+		}
+
+		defense_army = {
+			sequential_name = STG_TALARIAN_PLANETARYDEFENSEAUXILIARY
+		}
+
+		assault_army = {
+			sequential_name = STG_TALARIAN_EXPEDITIONARYAUXILIARY
+		}
+
+		slave_army = {
+			sequential_name = STG_TALARIAN_LABORAUXILIARY
+		}
+
+		clone_army = {
+			sequential_name = STG_TALARIAN_REPLICATEAUXILIARY
+		}
+
+		robotic_army = {
+			sequential_name = STG_TALARIAN_AUTOMATEDAUXILIARY
+		}
+
+		psionic_army = {
+			sequential_name = STG_TALARIAN_ADEPTAUXILIARY
+		}
+
+		xenomorph_army = {
+			sequential_name = STG_TALARIAN_XENOMORPHAUXILIARY
+		}
+
+		gene_warrior_army = {
+			sequential_name = STG_TALARIAN_AUGMENTEDAUXILIARY
+		}
+
+		occupation_army = {
+			sequential_name = STG_TALARIAN_OCCUPATIONAUXILIARY
+		}
+
+		robotic_defense_army = {
+			sequential_name = STG_TALARIAN_AUTOMATEDDEFENSEAUXILIARY
+		}
+
+		industrial_army = {
+			sequential_name = STG_TALARIAN_INDUSTRIALAUXILIARY
+		}
+
+		primitive_army = {
+			sequential_name = STG_TALARIAN_MILITIA
+		}
+	}
+
+	planet_names = {
+		generic = {
+			names = {
+				STG_N_QMaire STG_N_Batris STG_N_QPetrana STG_N_QPatris STG_N_QEloneris STG_N_QElona
+				STG_N_QKayleth STG_N_QVoxhalia STG_N_QKalyee STG_N_QDeliah STG_N_QMid STG_N_QAifey
+				STG_N_QSirse STG_N_QCiree STG_N_QRoisin STG_N_QCidra STG_N_QMolla STG_N_QFidre
+				STG_N_QNidre STG_N_QClodagh STG_N_QEabha STG_N_QSarebh STG_N_QEvie STG_N_QWhinn
+				STG_N_QIsta STG_N_QAistine STG_N_QMaistic STG_N_QCihann STG_N_QMetah STG_N_QMaeta
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			weight = 100
+
+			first_names_male = {
+				STG_N_Endar STG_N_Petor STG_N_Graff STG_N_Mazer STG_N_Ronzel STG_N_Enzel
+				STG_N_Alaizer STG_N_Dink STG_N_Bonzar STG_N_Shen STG_N_Carn STG_N_Imbu
+				STG_N_Ronzar STG_N_Bonzel STG_N_Alzer STG_N_Peet STG_N_Pembu STG_N_Grafor
+				STG_N_Imdar STG_N_Gretor STG_N_Mizeu STG_N_Mazerizk STG_N_Dhenbu STG_N_Shenbu
+			}
+
+			first_names_female = {
+				STG_N_Voxhalia STG_N_Kalyee STG_N_Deliah STG_N_Mid STG_N_Aifey STG_N_Sirse
+				STG_N_Ciree STG_N_Roisin STG_N_Cidra STG_N_Molla STG_N_Fidre STG_N_Nidre
+				STG_N_Clodagh STG_N_Eabha STG_N_Sarebh STG_N_Evie STG_N_Whinn STG_N_Ista
+				STG_N_Aistine STG_N_Maistic STG_N_Cihann STG_N_Metah STG_N_Maeta STG_N_Dimear
+			}
+
+			second_names = {
+				STG_N_Endar STG_N_Petor STG_N_Graff STG_N_Mazer STG_N_Ronzel STG_N_Enzel
+				STG_N_Alaizer STG_N_Dink STG_N_Bonzar STG_N_Shen STG_N_Carn STG_N_Imbu
+				STG_N_Ronzar STG_N_Bonzel STG_N_Alzer STG_N_Peet STG_N_Pembu STG_N_Grafor
+				STG_N_Imdar STG_N_Gretor STG_N_Mizeu STG_N_Mazerizk STG_N_Dhenbu STG_N_Shenbu
+			}
+		}
+	}
+}

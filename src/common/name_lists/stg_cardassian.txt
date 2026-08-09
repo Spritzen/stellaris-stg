@@ -1,0 +1,182 @@
+﻿# Cardassian Union name list.
+#
+# Structure mirrors /stellaris/common/name_lists/HUMAN1.txt. Every name token
+# is an STG_N_ key in src/localisation/english/stg_names_l_english.yml.
+#
+# Cardassian military units are Orders; the fleet and army naming reflects the
+# Central Command's habit of numbering everything.
+
+STG_CARDASSIAN = {
+	category = "Humanoid"
+	randomized = no
+
+	ship_names = {
+		generic = {
+			STG_N_Prakesh STG_N_Kraxon STG_N_Groumall STG_N_Rabol STG_N_Reklar STG_N_Trager
+			STG_N_Vetar STG_N_BokNor STG_N_Aldara STG_N_Koranak STG_N_Ravinok STG_N_ShervalDas
+			STG_N_Bralek STG_N_Kevarian STG_N_Lakota STG_N_Naprem STG_N_Sarcophagus STG_N_Vandir
+			STG_N_Shagesh STG_N_Grinsol STG_N_Swizok STG_N_Matixon STG_N_Barkano STG_N_Kroanak
+			STG_N_Kornaire STG_N_Nerok STG_N_Netel STG_N_Ranol STG_N_Telok STG_N_Tohond
+			STG_N_Duden STG_N_Tudea STG_N_Magad STG_N_Digond STG_N_Motil STG_N_Romet
+			STG_N_Gosers STG_N_Gelor STG_N_Tilot STG_N_Bilinm STG_N_Ruvul STG_N_Tojarl
+			STG_N_Bogora STG_N_Zetebl STG_N_Tirud STG_N_Tosedm STG_N_Tidon STG_N_Zojia
+			STG_N_Dusok STG_N_Tumogd STG_N_Dacaa STG_N_Potiss STG_N_Tujika STG_N_Sajam
+			STG_N_Linoa STG_N_Givetk
+		}
+
+		corvette = {
+			STG_N_Hideki STG_N_Selek STG_N_Marritza STG_N_Boheeka STG_N_Telle STG_N_Rasilak
+		}
+
+		destroyer = {
+			STG_N_Rabol STG_N_Groumall STG_N_Trager STG_N_Vetar STG_N_Kulinor STG_N_Glint
+		}
+
+		cruiser = {
+			STG_N_Galor STG_N_Reklar STG_N_Prakesh STG_N_Kraxon STG_N_Aldara
+		}
+
+		battleship = {
+			STG_N_Keldon STG_N_Koranak STG_N_ShervalDas STG_N_Vandir STG_N_Hutet STG_N_Norin
+			STG_N_Toran STG_N_Calet STG_N_Alaimo STG_N_Briggal STG_N_Doolak STG_N_Vaugon
+			STG_N_Hackor
+		}
+
+		titan = {
+			STG_N_Dominator STG_N_Obsidian STG_N_Ascendant STG_N_Cardassia
+		}
+
+		science = {
+			STG_N_Ravinok STG_N_Naprem STG_N_Bralek STG_N_Kevarian STG_N_Vandir
+		}
+
+		colonizer = {
+			STG_N_Lakat STG_N_Culat STG_N_Rondac STG_N_Septimus STG_N_Torros
+		}
+
+		constructor = {
+			STG_N_EmpokNor STG_N_TerokNor STG_N_BokNor STG_N_Kelvas STG_N_Loval
+		}
+
+		military_station_small = {
+			STG_N_EmpokVor STG_N_TerokVor STG_N_AldakVor STG_N_MirokVor STG_N_AstanaVor STG_N_GerokVor
+			STG_N_EssaVor STG_N_ValikVor STG_N_GurakVor STG_N_EmpiVor STG_N_ErusVor STG_N_FaldanVor
+		}
+
+		military_station_medium = {
+			STG_N_EmpokFal STG_N_TerokFal STG_N_AldakFal STG_N_MirokFal STG_N_AstanaFal STG_N_GerokFal
+			STG_N_EssaFal STG_N_ValikFal STG_N_GurakFal STG_N_EmpiFal STG_N_ErusFal STG_N_FaldanFal
+		}
+
+		military_station_large = {
+			STG_N_EmpokNor STG_N_TerokNor STG_N_AldakNor STG_N_MirokNor STG_N_AstanaNor STG_N_GerokNor
+			STG_N_EssaNor STG_N_ValikNor STG_N_GurakNor STG_N_EmpiNor STG_N_ErusNor STG_N_FaldanNor
+		}
+	}
+
+	ship_class_names = {
+		generic = {
+			STG_N_Galor STG_N_Keldon STG_N_Hideki STG_N_Groumall STG_N_Brinok
+			STG_N_Nokar STG_N_Rasilak STG_N_Sarcophagus STG_N_Vetar
+		}
+	}
+
+	fleet_names = {
+		sequential_name = STG_CARDASSIAN_ORDER
+	}
+
+	army_names = {
+		machine_assault_1 = {
+			sequential_name = STG_CARDASSIAN_ASSAULTORDER
+		}
+
+		machine_defense = {
+			sequential_name = STG_CARDASSIAN_DEFENSEORDER
+		}
+
+		defense_army = {
+			sequential_name = STG_CARDASSIAN_PLANETARYDEFENSEORDER
+		}
+
+		assault_army = {
+			sequential_name = STG_CARDASSIAN_GROUNDORDER
+		}
+
+		slave_army = {
+			sequential_name = STG_CARDASSIAN_LABORORDER
+		}
+
+		clone_army = {
+			sequential_name = STG_CARDASSIAN_BREDORDER
+		}
+
+		robotic_army = {
+			sequential_name = STG_CARDASSIAN_AUTOMATEDORDER
+		}
+
+		psionic_army = {
+			sequential_name = STG_CARDASSIAN_ADEPTORDER
+		}
+
+		xenomorph_army = {
+			sequential_name = STG_CARDASSIAN_BEASTORDER
+		}
+
+		gene_warrior_army = {
+			sequential_name = STG_CARDASSIAN_AUGMENTEDORDER
+		}
+
+		occupation_army = {
+			sequential_name = STG_CARDASSIAN_OCCUPATIONORDER
+		}
+
+		robotic_defense_army = {
+			sequential_name = STG_CARDASSIAN_AUTOMATEDDEFENSEORDER
+		}
+
+		industrial_army = {
+			sequential_name = STG_CARDASSIAN_LABORORDER
+		}
+
+		primitive_army = {
+			sequential_name = STG_CARDASSIAN_MILITIA
+		}
+	}
+
+	planet_names = {
+		generic = {
+			names = {
+				STG_N_CardassiaII STG_N_CardassiaIII STG_N_Lakat STG_N_Culat STG_N_Rondac STG_N_Septimus
+				STG_N_Torros STG_N_Kelvas STG_N_Loval STG_N_Chintoka STG_N_Dorvan STG_N_Hutet
+				STG_N_Lazon STG_N_MinosKorva STG_N_Orias STG_N_Quatal STG_N_Rakal STG_N_Setlik
+				STG_N_Soukara STG_N_Vandros
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			weight = 100
+
+			first_names_male = {
+				STG_N_Dukat STG_N_Damar STG_N_Garak STG_N_Evek STG_N_Macet STG_N_Tekeny STG_N_Corat
+				STG_N_GulMadred STG_N_Boheeka STG_N_Broca STG_N_Cardassia STG_N_Danar STG_N_Entek
+				STG_N_Joret STG_N_Kell STG_N_Lemec STG_N_Marritza STG_N_Nator STG_N_Ocett
+				STG_N_Parn STG_N_Rusot STG_N_Seskal STG_N_Tain STG_N_Toran STG_N_Ulani STG_N_Yaltar
+			}
+
+			first_names_female = {
+				STG_N_Ziyal STG_N_Natima STG_N_Kalita STG_N_Seska STG_N_Ilyra STG_N_Lyra
+				STG_N_Tora STG_N_Ocett STG_N_Mila STG_N_Iliana STG_N_Rakantha STG_N_Verise
+				STG_N_Kaleen STG_N_Tekla STG_N_Sorana STG_N_Vela STG_N_Yteppa
+			}
+
+			second_names = {
+				STG_N_Dukat STG_N_Damar STG_N_Evek STG_N_Macet STG_N_Marritza STG_N_Ocett
+				STG_N_Lang STG_N_Lemec STG_N_Madred STG_N_Nator STG_N_Parn STG_N_Rusot
+				STG_N_Seskal STG_N_Tain STG_N_Toran STG_N_Yaltar STG_N_Ghemor STG_N_Ranor
+				STG_N_Korinas STG_N_Turrel STG_N_Broca STG_N_Kell STG_N_Entek STG_N_Joret
+			}
+		}
+	}
+}

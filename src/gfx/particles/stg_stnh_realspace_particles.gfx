@@ -1,0 +1,97 @@
+# A REAL MERGE, not an override -- the same collision as
+# src/gfx/models/planets/stg_stnh_space_dust_meshes.gfx, one directory over.
+# Real Space 4.0 and STNH both ship gfx/particles/realspace_generic_particles.gfx;
+# Real Space wins the path, STNH is additive_only, and the STNH entity file we
+# DO vendor (gfx/models/ships/other/realspace_other_entities.asset) then names
+# dust-cloud and globule particles nothing declares.
+#
+# Only the declarations Real Space's copy does not make are below. Each `type`
+# resolves to a sibling .asset now vendored from STNH under gfx/particles/.
+
+objectTypes = {
+
+	
+	pdxparticle = {
+		name = "azure_dust_cloud_effect"
+		type = "azure_dust_cloud_effect"
+		scale = 1.0
+	}
+
+	pdxparticle = {
+		name = "red_dust_cloud_effect"
+		type = "red_dust_cloud_effect"
+		scale = 1.0
+	}
+
+	pdxparticle = {
+		name = "green_dust_cloud_effect"
+		type = "green_dust_cloud_effect"
+		scale = 1.0
+	}
+
+	pdxparticle = {
+		name = "purple_dust_cloud_effect"
+		type = "purple_dust_cloud_effect"
+		scale = 1.0
+	}
+
+	pdxparticle = {
+		name = "orange_dust_cloud_effect"
+		type = "orange_dust_cloud_effect"
+		scale = 1.0
+	}
+
+	pdxparticle = {
+		name = "blue_dust_cloud_effect"
+		type = "blue_dust_cloud_effect"
+		scale = 1.0
+	}
+
+	pdxparticle = {
+		name = "black_dust_cloud_effect"
+		type = "black_dust_cloud_effect"
+		scale = 1.0
+	}
+
+	pdxparticle = {
+		name = "dark_dust_cloud_effect"
+		type = "dark_dust_cloud_effect"
+		scale = 1.0
+	}
+
+	pdxparticle = {
+		name = "white_dust_cloud_effect"
+		type = "white_dust_cloud_effect"
+		scale = 1.0
+	}
+
+	pdxparticle = {
+		name = "yellow_dust_cloud_effect"
+		type = "yellow_dust_cloud_effect"
+		scale = 1.0
+	}
+
+	pdxparticle = {
+		name = "yellow_globule_effect"
+		type = "yellow_globule_effect"
+		scale = 1.0
+	}
+
+	pdxparticle = {
+		name = "green_globule_effect"
+		type = "green_globule_effect"
+		scale = 1.0
+	}
+
+	pdxparticle = {
+		name = "sth_warp_out_effect"
+		type = "sth_warp_out_effect"
+		scale = 7.0
+	}
+
+	pdxparticle = {
+		name = "sth_warp_in_effect"
+		type = "sth_warp_in_effect"
+		scale = 7.0
+	}
+}

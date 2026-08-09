@@ -1,0 +1,159 @@
+﻿# Tzenkethi name list, for the AI-only minor powers that use it.
+#
+# CONVERTED from .source/688086068/common/name_lists/Tzenkethi.txt: the tokens are
+# STNH's, resolved through STNH's own localisation and re-keyed as STG_N_. The
+# ship-size buckets are rebuilt for VANILLA's ladder -- STNH's file buckets by
+# its own (saber, sovereign, steamrunner) and those keys mean nothing here.
+#
+# See .docs/decisions/19-stnh-minor-powers-as-ai-empires.md.
+
+STG_TZENKETHI = {
+	category = "Humanoid"
+	randomized = no
+
+	ship_names = {
+		generic = {
+			STG_N_Zelear STG_N_Zeeska STG_N_Alirliad STG_N_Vonme STG_N_Veleer STG_N_Bevonar
+			STG_N_Nenzeska STG_N_Korcht STG_N_Choskank STG_N_Cojcome STG_N_Zeerazk STG_N_Corsarok
+			STG_N_Zaarigar STG_N_Nelzijska STG_N_Gtigvonar STG_N_Bezoj STG_N_Korzehger STG_N_VonaKohot
+			STG_N_Vonargar STG_N_Zohoska STG_N_Velentrigar STG_N_Klenin STG_N_Aztnelzik STG_N_Geizome
+			STG_N_Veleerenct STG_N_Konar STG_N_Bemra STG_N_Zeerd STG_N_Nenzetn STG_N_Zoleer
+		}
+
+		corvette = {
+			STG_N_Corsarok STG_N_Zaarigar STG_N_Nelzijska STG_N_Gtigvonar STG_N_Bezoj
+		}
+
+		destroyer = {
+			STG_N_Korzehger STG_N_VonaKohot STG_N_Vonargar STG_N_Zohoska STG_N_Velentrigar
+		}
+
+		cruiser = {
+			STG_N_Klenin STG_N_Aztnelzik STG_N_Geizome STG_N_Veleerenct STG_N_Konar
+		}
+
+		battleship = {
+			STG_N_Bemra STG_N_Zeerd STG_N_Nenzetn STG_N_Zoleer
+		}
+
+		titan = {
+			STG_N_Zelear STG_N_Zeeska STG_N_Alirliad
+		}
+
+		science = {
+			STG_N_Zelear STG_N_Zeeska STG_N_Alirliad STG_N_Vonme STG_N_Veleer STG_N_Bevonar
+		}
+
+		colonizer = {
+			STG_N_Kliradon
+		}
+
+		constructor = {
+			STG_N_Nenzeska STG_N_Korcht STG_N_Choskank STG_N_Cojcome STG_N_Zeerazk
+		}
+	}
+
+	ship_class_names = {
+		generic = {
+			STG_N_Zelear STG_N_Zeeska STG_N_Alirliad STG_N_Vonme STG_N_Veleer STG_N_Bevonar
+			STG_N_Nenzeska STG_N_Korcht STG_N_Choskank
+		}
+	}
+
+	fleet_names = {
+		sequential_name = STG_TZENKETHI_GROUP
+	}
+
+	army_names = {
+		machine_assault_1 = {
+			sequential_name = STG_TZENKETHI_ASSAULTAUXILIARY
+		}
+
+		machine_defense = {
+			sequential_name = STG_TZENKETHI_DEFENSEAUXILIARY
+		}
+
+		defense_army = {
+			sequential_name = STG_TZENKETHI_PLANETARYDEFENSEAUXILIARY
+		}
+
+		assault_army = {
+			sequential_name = STG_TZENKETHI_EXPEDITIONARYAUXILIARY
+		}
+
+		slave_army = {
+			sequential_name = STG_TZENKETHI_LABORAUXILIARY
+		}
+
+		clone_army = {
+			sequential_name = STG_TZENKETHI_REPLICATEAUXILIARY
+		}
+
+		robotic_army = {
+			sequential_name = STG_TZENKETHI_AUTOMATEDAUXILIARY
+		}
+
+		psionic_army = {
+			sequential_name = STG_TZENKETHI_ADEPTAUXILIARY
+		}
+
+		xenomorph_army = {
+			sequential_name = STG_TZENKETHI_XENOMORPHAUXILIARY
+		}
+
+		gene_warrior_army = {
+			sequential_name = STG_TZENKETHI_AUGMENTEDAUXILIARY
+		}
+
+		occupation_army = {
+			sequential_name = STG_TZENKETHI_OCCUPATIONAUXILIARY
+		}
+
+		robotic_defense_army = {
+			sequential_name = STG_TZENKETHI_AUTOMATEDDEFENSEAUXILIARY
+		}
+
+		industrial_army = {
+			sequential_name = STG_TZENKETHI_INDUSTRIALAUXILIARY
+		}
+
+		primitive_army = {
+			sequential_name = STG_TZENKETHI_MILITIA
+		}
+	}
+
+	planet_names = {
+		generic = {
+			names = {
+				STG_N_Kliradon
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			weight = 100
+
+			first_names_male = {
+				STG_N_Alizomeik STG_N_Ertome STG_N_Zeerend STG_N_Zormovoarok STG_N_Bezormk STG_N_Ermleer
+				STG_N_Choskat STG_N_Vonartdlin STG_N_Corchod STG_N_Mhgarigr STG_N_Vegedlin STG_N_Vooznkvarok
+				STG_N_Aztraoz STG_N_Zeegar STG_N_Ertoer STG_N_Votek STG_N_Korzcorliad STG_N_Alizomek
+				STG_N_Mechoj STG_N_Ametiger STG_N_Enten STG_N_Korzentegar STG_N_Nelzaarok STG_N_Cocorazak
+			}
+
+			first_names_female = {
+				STG_N_Mezormtiger STG_N_Aztraska STG_N_Kaztral STG_N_Erska STG_N_Gelente STG_N_Aztrad
+				STG_N_Chosdliad STG_N_Aztlin STG_N_Vonatri STG_N_Emraka STG_N_Bezorjlian STG_N_Zelenez
+				STG_N_Zeecorazame STG_N_Bdlin STG_N_Alizokd STG_N_Enska STG_N_Velent STG_N_Corlk
+				STG_N_Zeleeren STG_N_Zoril STG_N_Aztrasme STG_N_Emrhoska STG_N_Zaarokska STG_N_Metigcoran
+			}
+
+			second_names = {
+				STG_N_Alizomeik STG_N_Ertome STG_N_Zeerend STG_N_Zormovoarok STG_N_Bezormk STG_N_Ermleer
+				STG_N_Choskat STG_N_Vonartdlin STG_N_Corchod STG_N_Mhgarigr STG_N_Vegedlin STG_N_Vooznkvarok
+				STG_N_Aztraoz STG_N_Zeegar STG_N_Ertoer STG_N_Votek STG_N_Korzcorliad STG_N_Alizomek
+				STG_N_Mechoj STG_N_Ametiger STG_N_Enten STG_N_Korzentegar STG_N_Nelzaarok STG_N_Cocorazak
+			}
+		}
+	}
+}

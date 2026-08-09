@@ -1,0 +1,162 @@
+﻿# Lyridian name list, for the AI-only minor powers that use it.
+#
+# CONVERTED from .source/688086068/common/name_lists/Lyridian.txt: the tokens are
+# STNH's, resolved through STNH's own localisation and re-keyed as STG_N_. The
+# ship-size buckets are rebuilt for VANILLA's ladder -- STNH's file buckets by
+# its own (saber, sovereign, steamrunner) and those keys mean nothing here.
+#
+# See .docs/decisions/19-stnh-minor-powers-as-ai-empires.md.
+
+STG_LYRIDIAN = {
+	category = "Humanoid"
+	randomized = no
+
+	ship_names = {
+		generic = {
+			STG_N_Nunehz STG_N_Vascoh STG_N_Caboht STG_N_Carteer STG_N_Champlahn STG_N_Columbuh
+			STG_N_Draak STG_N_Gamah STG_N_Hudsoon STG_N_PonceDeeLeeon STG_N_LwisDeClaar STG_N_Magellaa
+			STG_N_Pizaarro STG_N_Sootoo STG_N_Vespuccih STG_N_ZheenGhe STG_N_Umaar STG_N_Taliir
+			STG_N_Faraang STG_N_Ulaan STG_N_Treeta STG_N_Iilii STG_N_Suutr STG_N_PoncedeeLeeon
+			STG_N_LwisdeClaar
+		}
+
+		corvette = {
+			STG_N_Magellaa STG_N_Pizaarro STG_N_Sootoo STG_N_Vespuccih STG_N_ZheenGhe
+		}
+
+		destroyer = {
+			STG_N_Umaar STG_N_Taliir STG_N_Faraang STG_N_Ulaan STG_N_Treeta
+		}
+
+		cruiser = {
+			STG_N_Iilii STG_N_Suutr
+		}
+
+		battleship = {
+			STG_N_Nunehz STG_N_Vascoh STG_N_Caboht
+		}
+
+		titan = {
+			STG_N_Nunehz STG_N_Vascoh STG_N_Caboht
+		}
+
+		science = {
+			STG_N_Nunehz STG_N_Vascoh STG_N_Caboht STG_N_Carteer STG_N_Champlahn STG_N_Columbuh
+		}
+
+		colonizer = {
+			STG_N_Nunehz STG_N_Vascoh STG_N_Caboht STG_N_Carteer STG_N_Champlahn
+		}
+
+		constructor = {
+			STG_N_Draak STG_N_Gamah STG_N_Hudsoon STG_N_PonceDeeLeeon STG_N_LwisDeClaar
+		}
+	}
+
+	ship_class_names = {
+		generic = {
+			STG_N_Nunehz STG_N_Vascoh STG_N_Caboht STG_N_Carteer STG_N_Champlahn STG_N_Columbuh
+			STG_N_Draak STG_N_Gamah STG_N_Hudsoon
+		}
+	}
+
+	fleet_names = {
+		sequential_name = STG_LYRIDIAN_GROUP
+	}
+
+	army_names = {
+		machine_assault_1 = {
+			sequential_name = STG_LYRIDIAN_ASSAULTAUXILIARY
+		}
+
+		machine_defense = {
+			sequential_name = STG_LYRIDIAN_DEFENSEAUXILIARY
+		}
+
+		defense_army = {
+			sequential_name = STG_LYRIDIAN_PLANETARYDEFENSEAUXILIARY
+		}
+
+		assault_army = {
+			sequential_name = STG_LYRIDIAN_EXPEDITIONARYAUXILIARY
+		}
+
+		slave_army = {
+			sequential_name = STG_LYRIDIAN_LABORAUXILIARY
+		}
+
+		clone_army = {
+			sequential_name = STG_LYRIDIAN_REPLICATEAUXILIARY
+		}
+
+		robotic_army = {
+			sequential_name = STG_LYRIDIAN_AUTOMATEDAUXILIARY
+		}
+
+		psionic_army = {
+			sequential_name = STG_LYRIDIAN_ADEPTAUXILIARY
+		}
+
+		xenomorph_army = {
+			sequential_name = STG_LYRIDIAN_XENOMORPHAUXILIARY
+		}
+
+		gene_warrior_army = {
+			sequential_name = STG_LYRIDIAN_AUGMENTEDAUXILIARY
+		}
+
+		occupation_army = {
+			sequential_name = STG_LYRIDIAN_OCCUPATIONAUXILIARY
+		}
+
+		robotic_defense_army = {
+			sequential_name = STG_LYRIDIAN_AUTOMATEDDEFENSEAUXILIARY
+		}
+
+		industrial_army = {
+			sequential_name = STG_LYRIDIAN_INDUSTRIALAUXILIARY
+		}
+
+		primitive_army = {
+			sequential_name = STG_LYRIDIAN_MILITIA
+		}
+	}
+
+	planet_names = {
+		generic = {
+			names = {
+				STG_N_Nunehz STG_N_Vascoh STG_N_Caboht STG_N_Carteer STG_N_Champlahn STG_N_Columbuh
+				STG_N_Draak STG_N_Gamah STG_N_Hudsoon STG_N_PonceDeeLeeon STG_N_LwisDeClaar STG_N_Magellaa
+				STG_N_Pizaarro STG_N_Sootoo STG_N_Vespuccih STG_N_ZheenGhe STG_N_Umaar STG_N_Taliir
+				STG_N_Faraang STG_N_Ulaan STG_N_Treeta STG_N_Iilii STG_N_Suutr
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			weight = 100
+
+			first_names_male = {
+				STG_N_Sabiin STG_N_Andraas STG_N_Juroot STG_N_Retitaan STG_N_Devinoon STG_N_Loon
+				STG_N_Staad STG_N_Amaan STG_N_Taam STG_N_Rennaan STG_N_Keent STG_N_Baeloo
+				STG_N_Cortoo STG_N_Sarkoo STG_N_Kojoo STG_N_Soneek STG_N_Daal STG_N_Eushoo
+				STG_N_Meroon STG_N_Gartaan STG_N_Haant STG_N_Bariin STG_N_Basiid STG_N_Praat
+			}
+
+			first_names_female = {
+				STG_N_Julah STG_N_Deenah STG_N_Lorellah STG_N_Ilirrah STG_N_Ellethah STG_N_Damirah
+				STG_N_Drennelah STG_N_Yulanah STG_N_Jirellah STG_N_Molarannah STG_N_Nerissah STG_N_Rhonah
+				STG_N_Mirah STG_N_Anissinah STG_N_Gwendah STG_N_Mallah STG_N_Rinah STG_N_Kestrah
+				STG_N_Xanah STG_N_Soranah STG_N_Gagah STG_N_Beebah STG_N_Jolee STG_N_Hudsohn
+			}
+
+			second_names = {
+				STG_N_Sabiin STG_N_Andraas STG_N_Juroot STG_N_Retitaan STG_N_Devinoon STG_N_Loon
+				STG_N_Staad STG_N_Amaan STG_N_Taam STG_N_Rennaan STG_N_Keent STG_N_Baeloo
+				STG_N_Cortoo STG_N_Sarkoo STG_N_Kojoo STG_N_Soneek STG_N_Daal STG_N_Eushoo
+				STG_N_Meroon STG_N_Gartaan STG_N_Haant STG_N_Bariin STG_N_Basiid STG_N_Praat
+			}
+		}
+	}
+}

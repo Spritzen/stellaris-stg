@@ -1,0 +1,166 @@
+﻿# Suliban Cabal name list.
+#
+# Silik, Sarin, Raan and the Tandar Sector are canon (ENT). The Cabal's helix
+# cell-ships give the ship names their shape.
+#
+# Structure mirrors /stellaris/common/name_lists/HUMAN1.txt, and the fourteen
+# beside it. Every name token is an STG_N_ key in
+# src/localisation/english/stg_names_l_english.yml.
+
+STG_SULIBAN = {
+	category = "Humanoid"
+	randomized = no
+
+	ship_names = {
+		generic = {
+			STG_N_Helix STG_N_Tandar STG_N_Silik STG_N_Sarin STG_N_Raan STG_N_Cabal
+			STG_N_Shroud STG_N_Cellship STG_N_Vanish STG_N_Nightfall STG_N_Chameleon STG_N_Quicksilver
+			STG_N_Unseen STG_N_Drift STG_N_Whisper STG_N_Shiftwing STG_N_Nomad STG_N_Farsight
+			STG_N_Coil STG_N_Splinter STG_N_CellShip106s STG_N_CellShip121c STG_N_CellShip143a STG_N_CellShip2p
+			STG_N_CellShip7s STG_N_CellShip7t STG_N_CellShip69 STG_N_CellShip7p STG_N_CellShip33q STG_N_CellShip2a
+			STG_N_CellShip9l STG_N_CellShip7j STG_N_CellShip5t STG_N_CellShip89k STG_N_CellShip76h STG_N_CellShip11d
+			STG_N_CellShip9c STG_N_CellShip8k STG_N_CellShip17c STG_N_CellShip99a STG_N_CellShip8b
+		}
+
+		corvette = {
+			STG_N_Unseen STG_N_Drift STG_N_Whisper STG_N_Shiftwing STG_N_Nomad
+		}
+
+		destroyer = {
+			STG_N_Raan STG_N_Cabal STG_N_Shroud STG_N_Cellship STG_N_Vanish
+		}
+
+		cruiser = {
+			STG_N_Nightfall STG_N_Chameleon STG_N_Quicksilver STG_N_Unseen STG_N_Drift
+		}
+
+		battleship = {
+			STG_N_Whisper STG_N_Shiftwing STG_N_Nomad STG_N_Farsight STG_N_Coil
+		}
+
+		titan = {
+			STG_N_Helix STG_N_Tandar STG_N_Silik STG_N_Sarin
+		}
+
+		science = {
+			STG_N_Helix STG_N_Tandar STG_N_Silik STG_N_Sarin STG_N_Raan STG_N_Cabal
+			STG_N_Shroud STG_N_ScienceVessel
+		}
+
+		colonizer = {
+			STG_N_Tandar STG_N_TandarPrime STG_N_TandarII STG_N_Sarin STG_N_Raan STG_N_ColonyVessel
+		}
+
+		constructor = {
+			STG_N_Cellship STG_N_Vanish STG_N_Nightfall STG_N_Chameleon STG_N_Quicksilver STG_N_ConstructionVessel
+		}
+
+		transport = {
+			STG_N_TransportVessel
+		}
+	}
+
+	ship_class_names = {
+		generic = {
+			STG_N_Helix STG_N_Tandar STG_N_Silik STG_N_Sarin STG_N_Raan STG_N_Cabal STG_N_Shroud
+			STG_N_Cellship STG_N_Vanish
+		}
+	}
+
+	fleet_names = {
+		sequential_name = STG_SULIBAN_GROUP
+	}
+
+	army_names = {
+		machine_assault_1 = {
+			sequential_name = STG_SULIBAN_ASSAULTAUXILIARY
+		}
+
+		machine_defense = {
+			sequential_name = STG_SULIBAN_DEFENSEAUXILIARY
+		}
+
+		defense_army = {
+			sequential_name = STG_SULIBAN_PLANETARYDEFENSEAUXILIARY
+		}
+
+		assault_army = {
+			sequential_name = STG_SULIBAN_EXPEDITIONARYAUXILIARY
+		}
+
+		slave_army = {
+			sequential_name = STG_SULIBAN_LABORAUXILIARY
+		}
+
+		clone_army = {
+			sequential_name = STG_SULIBAN_REPLICATEAUXILIARY
+		}
+
+		robotic_army = {
+			sequential_name = STG_SULIBAN_AUTOMATEDAUXILIARY
+		}
+
+		psionic_army = {
+			sequential_name = STG_SULIBAN_ADEPTAUXILIARY
+		}
+
+		xenomorph_army = {
+			sequential_name = STG_SULIBAN_XENOMORPHAUXILIARY
+		}
+
+		gene_warrior_army = {
+			sequential_name = STG_SULIBAN_AUGMENTEDAUXILIARY
+		}
+
+		occupation_army = {
+			sequential_name = STG_SULIBAN_OCCUPATIONAUXILIARY
+		}
+
+		robotic_defense_army = {
+			sequential_name = STG_SULIBAN_AUTOMATEDDEFENSEAUXILIARY
+		}
+
+		industrial_army = {
+			sequential_name = STG_SULIBAN_INDUSTRIALAUXILIARY
+		}
+
+		primitive_army = {
+			sequential_name = STG_SULIBAN_MILITIA
+		}
+	}
+
+	planet_names = {
+		generic = {
+			names = {
+				STG_N_TandarPrime STG_N_TandarII STG_N_Sarin STG_N_Raan STG_N_Helix STG_N_NewHelix
+				STG_N_Shroudhome STG_N_Driftfall STG_N_Silikaan STG_N_Coilworld STG_N_Splinter STG_N_Vanishing
+				STG_N_Farsight STG_N_Chameleon STG_N_Quicksand STG_N_Nightfall STG_N_Whisperhold STG_N_Unseen
+				STG_N_Nomad
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			weight = 100
+
+			first_names_male = {
+				STG_N_Silik STG_N_Raan STG_N_Tarel STG_N_Vesh STG_N_Krell STG_N_Danal STG_N_Sorin
+				STG_N_Marek STG_N_Jehn STG_N_Kalis STG_N_Toren STG_N_Ravik STG_N_Nesh STG_N_Corin
+				STG_N_Belan STG_N_Zeth
+			}
+
+			first_names_female = {
+				STG_N_Sarin STG_N_Nela STG_N_Vashi STG_N_Corra STG_N_Talen STG_N_Mira STG_N_Sela
+				STG_N_Ravi STG_N_Jenna STG_N_Kessa STG_N_Danla STG_N_Toria STG_N_Neshi STG_N_Belara
+				STG_N_Zetha STG_N_Kalia
+			}
+
+			second_names = {
+				STG_N_Tandar STG_N_Helix STG_N_Sarin STG_N_Raan STG_N_Silik STG_N_Coil STG_N_Splinter
+				STG_N_Drift STG_N_Shroud STG_N_Vanish STG_N_Farsight STG_N_Chameleon STG_N_Nightfall STG_N_Whisper
+				STG_N_Unseen STG_N_Nomad
+			}
+		}
+	}
+}

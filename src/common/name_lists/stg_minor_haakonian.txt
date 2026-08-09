@@ -1,0 +1,161 @@
+﻿# Haakonian name list, for the AI-only minor powers that use it.
+#
+# CONVERTED from .source/688086068/common/name_lists/Haakonian.txt: the tokens are
+# STNH's, resolved through STNH's own localisation and re-keyed as STG_N_. The
+# ship-size buckets are rebuilt for VANILLA's ladder -- STNH's file buckets by
+# its own (saber, sovereign, steamrunner) and those keys mean nothing here.
+#
+# See .docs/decisions/19-stnh-minor-powers-as-ai-empires.md.
+
+STG_HAAKONIAN = {
+	category = "Humanoid"
+	randomized = no
+
+	ship_names = {
+		generic = {
+			STG_N_Cascader STG_N_Penetrater STG_N_Flooder STG_N_Deluger STG_N_Torrenter STG_N_Avalanche
+			STG_N_Collapser STG_N_Diminisher STG_N_Gravitater STG_N_Dwindler STG_N_Regressor STG_N_Discharger
+			STG_N_Exuder STG_N_Invader STG_N_Intruder STG_N_Circulader STG_N_Vulganizer STG_N_Depositer
+			STG_N_Quitter STG_N_Eliminator STG_N_Rage-Quitter
+		}
+
+		corvette = {
+			STG_N_Discharger STG_N_Exuder STG_N_Invader STG_N_Intruder STG_N_Circulader
+		}
+
+		destroyer = {
+			STG_N_Vulganizer STG_N_Depositer STG_N_Quitter STG_N_Eliminator
+		}
+
+		cruiser = {
+			STG_N_Cascader STG_N_Penetrater STG_N_Flooder
+		}
+
+		battleship = {
+			STG_N_Cascader STG_N_Penetrater STG_N_Flooder
+		}
+
+		titan = {
+			STG_N_Cascader STG_N_Penetrater STG_N_Flooder
+		}
+
+		science = {
+			STG_N_Cascader STG_N_Penetrater STG_N_Flooder STG_N_Deluger STG_N_Torrenter STG_N_Avalanche
+		}
+
+		colonizer = {
+			STG_N_Cascader STG_N_Penetrater STG_N_Flooder STG_N_Deluger STG_N_Torrenter
+		}
+
+		constructor = {
+			STG_N_Collapser STG_N_Diminisher STG_N_Gravitater STG_N_Dwindler STG_N_Regressor
+		}
+	}
+
+	ship_class_names = {
+		generic = {
+			STG_N_Cascader STG_N_Penetrater STG_N_Flooder STG_N_Deluger STG_N_Torrenter STG_N_Avalanche
+			STG_N_Collapser STG_N_Diminisher STG_N_Gravitater
+		}
+	}
+
+	fleet_names = {
+		sequential_name = STG_HAAKONIAN_GROUP
+	}
+
+	army_names = {
+		machine_assault_1 = {
+			sequential_name = STG_HAAKONIAN_ASSAULTAUXILIARY
+		}
+
+		machine_defense = {
+			sequential_name = STG_HAAKONIAN_DEFENSEAUXILIARY
+		}
+
+		defense_army = {
+			sequential_name = STG_HAAKONIAN_PLANETARYDEFENSEAUXILIARY
+		}
+
+		assault_army = {
+			sequential_name = STG_HAAKONIAN_EXPEDITIONARYAUXILIARY
+		}
+
+		slave_army = {
+			sequential_name = STG_HAAKONIAN_LABORAUXILIARY
+		}
+
+		clone_army = {
+			sequential_name = STG_HAAKONIAN_REPLICATEAUXILIARY
+		}
+
+		robotic_army = {
+			sequential_name = STG_HAAKONIAN_AUTOMATEDAUXILIARY
+		}
+
+		psionic_army = {
+			sequential_name = STG_HAAKONIAN_ADEPTAUXILIARY
+		}
+
+		xenomorph_army = {
+			sequential_name = STG_HAAKONIAN_XENOMORPHAUXILIARY
+		}
+
+		gene_warrior_army = {
+			sequential_name = STG_HAAKONIAN_AUGMENTEDAUXILIARY
+		}
+
+		occupation_army = {
+			sequential_name = STG_HAAKONIAN_OCCUPATIONAUXILIARY
+		}
+
+		robotic_defense_army = {
+			sequential_name = STG_HAAKONIAN_AUTOMATEDDEFENSEAUXILIARY
+		}
+
+		industrial_army = {
+			sequential_name = STG_HAAKONIAN_INDUSTRIALAUXILIARY
+		}
+
+		primitive_army = {
+			sequential_name = STG_HAAKONIAN_MILITIA
+		}
+	}
+
+	planet_names = {
+		generic = {
+			names = {
+				STG_N_Cascader STG_N_Penetrater STG_N_Flooder STG_N_Deluger STG_N_Torrenter STG_N_Avalanche
+				STG_N_Collapser STG_N_Diminisher STG_N_Gravitater STG_N_Dwindler STG_N_Regressor STG_N_Discharger
+				STG_N_Exuder STG_N_Invader STG_N_Intruder STG_N_Circulader STG_N_Vulganizer STG_N_Depositer
+				STG_N_Quitter STG_N_Eliminator
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			weight = 100
+
+			first_names_male = {
+				STG_N_MaBor STG_N_AlBor STG_N_ArBor STG_N_BeBor STG_N_ChaBor STG_N_CheBor
+				STG_N_CloBor STG_N_DaBor STG_N_ElBor STG_N_GenoBor STG_N_GerBor STG_N_JamarBor
+				STG_N_JaquaBor STG_N_JaraBor STG_N_JarBor STG_N_JerBor STG_N_KellBor STG_N_KelBor
+				STG_N_KeBor STG_N_LatraBor STG_N_LoBor STG_N_MarBor STG_N_MelBor STG_N_PerBor
+			}
+
+			first_names_female = {
+				STG_N_Kelmel STG_N_Kemel STG_N_Latramel STG_N_Lomel STG_N_Marmel STG_N_Melmel
+				STG_N_Permel STG_N_Purmel STG_N_Quantamel STG_N_Tamel STG_N_Temel STG_N_Tramel
+				STG_N_Traymel STG_N_Tremel STG_N_Yoelmel STG_N_Jetrel STG_N_Hawrk STG_N_Peltral
+				STG_N_Euhla STG_N_Rultrel STG_N_Rutral STG_N_Ruva STG_N_Entare STG_N_Envarra
+			}
+
+			second_names = {
+				STG_N_MaBor STG_N_AlBor STG_N_ArBor STG_N_BeBor STG_N_ChaBor STG_N_CheBor
+				STG_N_CloBor STG_N_DaBor STG_N_ElBor STG_N_GenoBor STG_N_GerBor STG_N_JamarBor
+				STG_N_JaquaBor STG_N_JaraBor STG_N_JarBor STG_N_JerBor STG_N_KellBor STG_N_KelBor
+				STG_N_KeBor STG_N_LatraBor STG_N_LoBor STG_N_MarBor STG_N_MelBor STG_N_PerBor
+			}
+		}
+	}
+}

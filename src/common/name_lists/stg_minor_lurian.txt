@@ -1,0 +1,160 @@
+﻿# Lurian name list, for the AI-only minor powers that use it.
+#
+# CONVERTED from .source/688086068/common/name_lists/Lurian.txt: the tokens are
+# STNH's, resolved through STNH's own localisation and re-keyed as STG_N_. The
+# ship-size buckets are rebuilt for VANILLA's ladder -- STNH's file buckets by
+# its own (saber, sovereign, steamrunner) and those keys mean nothing here.
+#
+# See .docs/decisions/19-stnh-minor-powers-as-ai-empires.md.
+
+STG_LURIAN = {
+	category = "Humanoid"
+	randomized = no
+
+	ship_names = {
+		generic = {
+			STG_N_Arisan STG_N_RaChet STG_N_RaCn STG_N_RaMorn STG_N_EtKtKa STG_N_RaChesa
+			STG_N_Arisisa STG_N_Mornorn STG_N_MtKa STG_N_RaChismorn STG_N_Amorn STG_N_ArihetKa
+			STG_N_ArisetKaka STG_N_AmoKa STG_N_Ramorn STG_N_RaCheka STG_N_RaCheetKa STG_N_Tzakttka
+			STG_N_Uhlayr STG_N_Trnar STG_N_Hull STG_N_Breach STG_N_KalaMorn
+		}
+
+		corvette = {
+			STG_N_ArihetKa STG_N_ArisetKaka STG_N_AmoKa STG_N_Ramorn STG_N_RaCheka
+		}
+
+		destroyer = {
+			STG_N_RaCheetKa STG_N_Tzakttka STG_N_Uhlayr STG_N_Trnar STG_N_Hull
+		}
+
+		cruiser = {
+			STG_N_Breach STG_N_KalaMorn
+		}
+
+		battleship = {
+			STG_N_Arisan STG_N_RaChet STG_N_RaCn
+		}
+
+		titan = {
+			STG_N_Arisan STG_N_RaChet STG_N_RaCn
+		}
+
+		science = {
+			STG_N_Arisan STG_N_RaChet STG_N_RaCn STG_N_RaMorn STG_N_EtKtKa STG_N_RaChesa
+		}
+
+		colonizer = {
+			STG_N_Arisan STG_N_RaChet STG_N_RaCn STG_N_RaMorn STG_N_EtKtKa
+		}
+
+		constructor = {
+			STG_N_Arisisa STG_N_Mornorn STG_N_MtKa STG_N_RaChismorn STG_N_Amorn
+		}
+	}
+
+	ship_class_names = {
+		generic = {
+			STG_N_Arisan STG_N_RaChet STG_N_RaCn STG_N_RaMorn STG_N_EtKtKa STG_N_RaChesa
+			STG_N_Arisisa STG_N_Mornorn STG_N_MtKa
+		}
+	}
+
+	fleet_names = {
+		sequential_name = STG_LURIAN_GROUP
+	}
+
+	army_names = {
+		machine_assault_1 = {
+			sequential_name = STG_LURIAN_ASSAULTAUXILIARY
+		}
+
+		machine_defense = {
+			sequential_name = STG_LURIAN_DEFENSEAUXILIARY
+		}
+
+		defense_army = {
+			sequential_name = STG_LURIAN_PLANETARYDEFENSEAUXILIARY
+		}
+
+		assault_army = {
+			sequential_name = STG_LURIAN_EXPEDITIONARYAUXILIARY
+		}
+
+		slave_army = {
+			sequential_name = STG_LURIAN_LABORAUXILIARY
+		}
+
+		clone_army = {
+			sequential_name = STG_LURIAN_REPLICATEAUXILIARY
+		}
+
+		robotic_army = {
+			sequential_name = STG_LURIAN_AUTOMATEDAUXILIARY
+		}
+
+		psionic_army = {
+			sequential_name = STG_LURIAN_ADEPTAUXILIARY
+		}
+
+		xenomorph_army = {
+			sequential_name = STG_LURIAN_XENOMORPHAUXILIARY
+		}
+
+		gene_warrior_army = {
+			sequential_name = STG_LURIAN_AUGMENTEDAUXILIARY
+		}
+
+		occupation_army = {
+			sequential_name = STG_LURIAN_OCCUPATIONAUXILIARY
+		}
+
+		robotic_defense_army = {
+			sequential_name = STG_LURIAN_AUTOMATEDDEFENSEAUXILIARY
+		}
+
+		industrial_army = {
+			sequential_name = STG_LURIAN_INDUSTRIALAUXILIARY
+		}
+
+		primitive_army = {
+			sequential_name = STG_LURIAN_MILITIA
+		}
+	}
+
+	planet_names = {
+		generic = {
+			names = {
+				STG_N_Arisan STG_N_RaChet STG_N_RaCn STG_N_RaMorn STG_N_EtKtKa STG_N_RaChesa
+				STG_N_Arisisa STG_N_Mornorn STG_N_MtKa STG_N_RaChismorn STG_N_Amorn STG_N_ArihetKa
+				STG_N_ArisetKaka STG_N_AmoKa STG_N_Ramorn STG_N_RaCheka STG_N_RaCheetKa STG_N_Tzakttka
+				STG_N_Uhlayr STG_N_Trnar STG_N_Hull STG_N_Breach STG_N_KalaMorn
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			weight = 100
+
+			first_names_male = {
+				STG_N_RaCarorn STG_N_Morn STG_N_Arisamorn STG_N_RaChetKa STG_N_MieraCa STG_N_ArooCisa
+				STG_N_ChkaetKa STG_N_ArmorhetKa STG_N_Aarorn STG_N_Amorn STG_N_Cisoo STG_N_Araroo
+				STG_N_RaRorn STG_N_Cisan STG_N_Cisora STG_N_Chekao STG_N_RaCheorn STG_N_Isarisorn
+			}
+
+			first_names_female = {
+				STG_N_Arooa STG_N_RaMroo STG_N_Crorn STG_N_Arisa STG_N_ArornCa STG_N_Isheka
+				STG_N_MoraCa STG_N_ACheisa STG_N_Arocheka STG_N_RaCsa STG_N_Moeisa STG_N_Cisheka
+				STG_N_Chisa STG_N_ArKa STG_N_RaCiscisa STG_N_Aroeka STG_N_CistKa STG_N_AroKa
+				STG_N_Chesa
+			}
+
+			second_names = {
+				STG_N_RaCarorn STG_N_Morn STG_N_Arisamorn STG_N_RaChetKa STG_N_MieraCa STG_N_ArooCisa
+				STG_N_ChkaetKa STG_N_ArmorhetKa STG_N_Aarorn STG_N_Amorn STG_N_Cisoo STG_N_Araroo
+				STG_N_RaRorn STG_N_Cisan STG_N_Cisora STG_N_Chekao STG_N_RaCheorn STG_N_Isarisorn
+				STG_N_Arooa STG_N_RaMroo STG_N_Crorn STG_N_Arisa STG_N_ArornCa STG_N_Isheka
+			}
+		}
+	}
+}

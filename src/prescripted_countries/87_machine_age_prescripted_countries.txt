@@ -1,0 +1,5 @@
+# SHADOWS prescripted_countries/87_machine_age_prescripted_countries.txt —
+# deliberately empty, so vanilla's 3 empires (basidrix_cyber_ecclesia,
+# lacertan_techno_protectorate, free_sunbuilt_uplifters) drop out of the
+# empire picker and AI spawning. Ours are in stg_major_powers.txt.
+# See .docs/decisions/14-remove-vanilla-prescripted-empires.md

@@ -1,0 +1,161 @@
+﻿# Banean name list, for the AI-only minor powers that use it.
+#
+# CONVERTED from .source/688086068/common/name_lists/Banean.txt: the tokens are
+# STNH's, resolved through STNH's own localisation and re-keyed as STG_N_. The
+# ship-size buckets are rebuilt for VANILLA's ladder -- STNH's file buckets by
+# its own (saber, sovereign, steamrunner) and those keys mean nothing here.
+#
+# See .docs/decisions/19-stnh-minor-powers-as-ai-empires.md.
+
+STG_BANEAN = {
+	category = "Humanoid"
+	randomized = no
+
+	ship_names = {
+		generic = {
+			STG_N_Swann STG_N_Geyse STG_N_Ren STG_N_Hauron STG_N_Finzh STG_N_Suon
+			STG_N_Goll STG_N_Scoter STG_N_Terne STG_N_Cormarent STG_N_Pluver STG_N_Wagtoil
+			STG_N_Sparra STG_N_Kastreel STG_N_Perrygren STG_N_Poffin STG_N_Ruck STG_N_Ravin
+			STG_N_Renn STG_N_Harwk STG_N_Eygle
+		}
+
+		corvette = {
+			STG_N_Wagtoil STG_N_Sparra STG_N_Kastreel STG_N_Perrygren STG_N_Poffin
+		}
+
+		destroyer = {
+			STG_N_Ruck STG_N_Ravin STG_N_Renn STG_N_Harwk STG_N_Eygle
+		}
+
+		cruiser = {
+			STG_N_Swann STG_N_Geyse STG_N_Ren
+		}
+
+		battleship = {
+			STG_N_Swann STG_N_Geyse STG_N_Ren
+		}
+
+		titan = {
+			STG_N_Swann STG_N_Geyse STG_N_Ren
+		}
+
+		science = {
+			STG_N_Swann STG_N_Geyse STG_N_Ren STG_N_Hauron STG_N_Finzh STG_N_Suon
+		}
+
+		colonizer = {
+			STG_N_Swann STG_N_Geyse STG_N_Ren STG_N_Hauron STG_N_Finzh
+		}
+
+		constructor = {
+			STG_N_Goll STG_N_Scoter STG_N_Terne STG_N_Cormarent STG_N_Pluver
+		}
+	}
+
+	ship_class_names = {
+		generic = {
+			STG_N_Swann STG_N_Geyse STG_N_Ren STG_N_Hauron STG_N_Finzh STG_N_Suon
+			STG_N_Goll STG_N_Scoter STG_N_Terne
+		}
+	}
+
+	fleet_names = {
+		sequential_name = STG_BANEAN_GROUP
+	}
+
+	army_names = {
+		machine_assault_1 = {
+			sequential_name = STG_BANEAN_ASSAULTAUXILIARY
+		}
+
+		machine_defense = {
+			sequential_name = STG_BANEAN_DEFENSEAUXILIARY
+		}
+
+		defense_army = {
+			sequential_name = STG_BANEAN_PLANETARYDEFENSEAUXILIARY
+		}
+
+		assault_army = {
+			sequential_name = STG_BANEAN_EXPEDITIONARYAUXILIARY
+		}
+
+		slave_army = {
+			sequential_name = STG_BANEAN_LABORAUXILIARY
+		}
+
+		clone_army = {
+			sequential_name = STG_BANEAN_REPLICATEAUXILIARY
+		}
+
+		robotic_army = {
+			sequential_name = STG_BANEAN_AUTOMATEDAUXILIARY
+		}
+
+		psionic_army = {
+			sequential_name = STG_BANEAN_ADEPTAUXILIARY
+		}
+
+		xenomorph_army = {
+			sequential_name = STG_BANEAN_XENOMORPHAUXILIARY
+		}
+
+		gene_warrior_army = {
+			sequential_name = STG_BANEAN_AUGMENTEDAUXILIARY
+		}
+
+		occupation_army = {
+			sequential_name = STG_BANEAN_OCCUPATIONAUXILIARY
+		}
+
+		robotic_defense_army = {
+			sequential_name = STG_BANEAN_AUTOMATEDDEFENSEAUXILIARY
+		}
+
+		industrial_army = {
+			sequential_name = STG_BANEAN_INDUSTRIALAUXILIARY
+		}
+
+		primitive_army = {
+			sequential_name = STG_BANEAN_MILITIA
+		}
+	}
+
+	planet_names = {
+		generic = {
+			names = {
+				STG_N_Swann STG_N_Geyse STG_N_Ren STG_N_Hauron STG_N_Finzh STG_N_Suon
+				STG_N_Goll STG_N_Scoter STG_N_Terne STG_N_Cormarent STG_N_Pluver STG_N_Wagtoil
+				STG_N_Sparra STG_N_Kastreel STG_N_Perrygren STG_N_Poffin STG_N_Ruck STG_N_Ravin
+				STG_N_Renn STG_N_Harwk STG_N_Eygle
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			weight = 100
+
+			first_names_male = {
+				STG_N_Tolan STG_N_Tolen STG_N_Croden STG_N_Hadran STG_N_Valderel STG_N_Retayarl
+				STG_N_Dekorel STG_N_Falderel STG_N_Falderan STG_N_Fallan STG_N_Fellan STG_N_Mizan
+				STG_N_Vidron STG_N_Calvarel STG_N_Haderel STG_N_Vittorel STG_N_Nirelnyarl STG_N_Hirelnyarl
+				STG_N_Namaha STG_N_Grelnsen STG_N_Matixan STG_N_Onenon STG_N_Zimpulsan STG_N_Janacen
+			}
+
+			first_names_female = {
+				STG_N_Miollan STG_N_Molliela STG_N_Polinarela STG_N_Fidorela STG_N_Elnodaela STG_N_Elininela
+				STG_N_Evi STG_N_Eldiela STG_N_Dodaela STG_N_Doreoninela STG_N_Carininela STG_N_Cicilorela
+				STG_N_Claidiela STG_N_Calidiela STG_N_Gdaela STG_N_Kumdiela STG_N_Ravninela STG_N_Valderell
+				STG_N_Retayaela STG_N_Dekorell STG_N_Falderell STG_N_Faldedaela STG_N_Faldaela STG_N_Feldaela
+			}
+
+			second_names = {
+				STG_N_Tolan STG_N_Tolen STG_N_Croden STG_N_Hadran STG_N_Valderel STG_N_Retayarl
+				STG_N_Dekorel STG_N_Falderel STG_N_Falderan STG_N_Fallan STG_N_Fellan STG_N_Mizan
+				STG_N_Vidron STG_N_Calvarel STG_N_Haderel STG_N_Vittorel STG_N_Nirelnyarl STG_N_Hirelnyarl
+				STG_N_Namaha STG_N_Grelnsen STG_N_Matixan STG_N_Onenon STG_N_Zimpulsan STG_N_Janacen
+			}
+		}
+	}
+}

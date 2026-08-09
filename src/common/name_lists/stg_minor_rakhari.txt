@@ -1,0 +1,165 @@
+﻿# Rakhari name list, for the AI-only minor powers that use it.
+#
+# CONVERTED from .source/688086068/common/name_lists/Rakhari.txt: the tokens are
+# STNH's, resolved through STNH's own localisation and re-keyed as STG_N_. The
+# ship-size buckets are rebuilt for VANILLA's ladder -- STNH's file buckets by
+# its own (saber, sovereign, steamrunner) and those keys mean nothing here.
+#
+# See .docs/decisions/19-stnh-minor-powers-as-ai-empires.md.
+
+STG_RAKHARI = {
+	category = "Humanoid"
+	randomized = no
+
+	ship_names = {
+		generic = {
+			STG_N_Geminor STG_N_Microst STG_N_Serpens STG_N_Retic STG_N_Monoc STG_N_Chamajorn
+			STG_N_Lacern STG_N_Horon STG_N_Arin STG_N_Caphricoron STG_N_Chamael STG_N_Teleo
+			STG_N_Monocherta STG_N_Teleon STG_N_Lacerosh STG_N_Cornax STG_N_Leominith STG_N_Telesh
+			STG_N_Scorona STG_N_Caphricornath STG_N_Canchert STG_N_Leominorma STG_N_Sagitharina STG_N_Geminorma
+			STG_N_Canismini STG_N_Hydraco STG_N_Sagitharies STG_N_Caeles STG_N_Caeleomin STG_N_Caeleominor
+			STG_N_Caeleo STG_N_Chanceros STG_N_Teleomini STG_N_Chamaeles STG_N_Caeleon STG_N_Scornax
+			STG_N_Teleominoth STG_N_Cariesh STG_N_Telescoroth STG_N_Telescornath STG_N_Exarch
+		}
+
+		corvette = {
+			STG_N_Teleo STG_N_Monocherta STG_N_Teleon STG_N_Lacerosh STG_N_Cornax
+		}
+
+		destroyer = {
+			STG_N_Leominith STG_N_Telesh STG_N_Scorona STG_N_Caphricornath STG_N_Canchert
+		}
+
+		cruiser = {
+			STG_N_Leominorma STG_N_Sagitharina STG_N_Geminorma STG_N_Canismini STG_N_Hydraco
+		}
+
+		battleship = {
+			STG_N_Sagitharies STG_N_Caeles STG_N_Caeleomin STG_N_Caeleominor STG_N_Caeleo
+		}
+
+		titan = {
+			STG_N_Chanceros STG_N_Teleomini STG_N_Chamaeles STG_N_Caeleon
+		}
+
+		science = {
+			STG_N_Geminor STG_N_Microst STG_N_Serpens STG_N_Retic STG_N_Monoc STG_N_Chamajorn
+		}
+
+		colonizer = {
+			STG_N_Geminor STG_N_Microst STG_N_Serpens STG_N_Retic STG_N_Monoc
+		}
+
+		constructor = {
+			STG_N_Lacern STG_N_Horon STG_N_Arin STG_N_Caphricoron STG_N_Chamael
+		}
+	}
+
+	ship_class_names = {
+		generic = {
+			STG_N_Geminor STG_N_Microst STG_N_Serpens STG_N_Retic STG_N_Monoc STG_N_Chamajorn
+			STG_N_Lacern STG_N_Horon STG_N_Arin
+		}
+	}
+
+	fleet_names = {
+		sequential_name = STG_RAKHARI_GROUP
+	}
+
+	army_names = {
+		machine_assault_1 = {
+			sequential_name = STG_RAKHARI_ASSAULTAUXILIARY
+		}
+
+		machine_defense = {
+			sequential_name = STG_RAKHARI_DEFENSEAUXILIARY
+		}
+
+		defense_army = {
+			sequential_name = STG_RAKHARI_PLANETARYDEFENSEAUXILIARY
+		}
+
+		assault_army = {
+			sequential_name = STG_RAKHARI_EXPEDITIONARYAUXILIARY
+		}
+
+		slave_army = {
+			sequential_name = STG_RAKHARI_LABORAUXILIARY
+		}
+
+		clone_army = {
+			sequential_name = STG_RAKHARI_REPLICATEAUXILIARY
+		}
+
+		robotic_army = {
+			sequential_name = STG_RAKHARI_AUTOMATEDAUXILIARY
+		}
+
+		psionic_army = {
+			sequential_name = STG_RAKHARI_ADEPTAUXILIARY
+		}
+
+		xenomorph_army = {
+			sequential_name = STG_RAKHARI_XENOMORPHAUXILIARY
+		}
+
+		gene_warrior_army = {
+			sequential_name = STG_RAKHARI_AUGMENTEDAUXILIARY
+		}
+
+		occupation_army = {
+			sequential_name = STG_RAKHARI_OCCUPATIONAUXILIARY
+		}
+
+		robotic_defense_army = {
+			sequential_name = STG_RAKHARI_AUTOMATEDDEFENSEAUXILIARY
+		}
+
+		industrial_army = {
+			sequential_name = STG_RAKHARI_INDUSTRIALAUXILIARY
+		}
+
+		primitive_army = {
+			sequential_name = STG_RAKHARI_MILITIA
+		}
+	}
+
+	planet_names = {
+		generic = {
+			names = {
+				STG_N_Geminor STG_N_Microst STG_N_Serpens STG_N_Retic STG_N_Monoc STG_N_Chamajorn
+				STG_N_Lacern STG_N_Horon STG_N_Arin STG_N_Caphricoron STG_N_Chamael STG_N_Teleo
+				STG_N_Monocherta STG_N_Teleon STG_N_Lacerosh STG_N_Cornax STG_N_Leominith STG_N_Telesh
+				STG_N_Scorona STG_N_Caphricornath STG_N_Canchert STG_N_Leominorma STG_N_Sagitharina STG_N_Geminorma
+				STG_N_Canismini STG_N_Hydraco STG_N_Sagitharies STG_N_Caeles STG_N_Caeleomin STG_N_Caeleominor
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			weight = 100
+
+			first_names_male = {
+				STG_N_Croden STG_N_Hadran STG_N_Valderen STG_N_Retayan STG_N_Dekoren STG_N_Falderen
+				STG_N_Falderan STG_N_Faldan STG_N_Feldan STG_N_Mizan STG_N_Vidron STG_N_Calvaren
+				STG_N_Haderen STG_N_Vittoren STG_N_Nirennyan STG_N_Hirennyan STG_N_Namaha STG_N_Grennsin
+				STG_N_Matixan STG_N_Oninon STG_N_Zimpulsan STG_N_Janacin STG_N_Kodan STG_N_Timthehatin
+			}
+
+			first_names_female = {
+				STG_N_Badrinth STG_N_Baldith STG_N_Fadith STG_N_Gausdith STG_N_Fausdith STG_N_Flavi
+				STG_N_Fordith STG_N_Fulva STG_N_Fiola STG_N_Niolan STG_N_Miollan STG_N_Mollith
+				STG_N_Polinarth STG_N_Fidorth STG_N_Elnodath STG_N_Elininth STG_N_Evi STG_N_Eldith
+				STG_N_Dodath STG_N_Doreoninth STG_N_Carininth STG_N_Cicilorth STG_N_Claidith STG_N_Calidith
+			}
+
+			second_names = {
+				STG_N_Croden STG_N_Hadran STG_N_Valderen STG_N_Retayan STG_N_Dekoren STG_N_Falderen
+				STG_N_Falderan STG_N_Faldan STG_N_Feldan STG_N_Mizan STG_N_Vidron STG_N_Calvaren
+				STG_N_Haderen STG_N_Vittoren STG_N_Nirennyan STG_N_Hirennyan STG_N_Namaha STG_N_Grennsin
+				STG_N_Matixan STG_N_Oninon STG_N_Zimpulsan STG_N_Janacin STG_N_Kodan STG_N_Timthehatin
+			}
+		}
+	}
+}

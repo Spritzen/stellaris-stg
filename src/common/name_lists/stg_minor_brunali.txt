@@ -1,0 +1,164 @@
+﻿# Brunali name list, for the AI-only minor powers that use it.
+#
+# CONVERTED from .source/688086068/common/name_lists/Brunali.txt: the tokens are
+# STNH's, resolved through STNH's own localisation and re-keyed as STG_N_. The
+# ship-size buckets are rebuilt for VANILLA's ladder -- STNH's file buckets by
+# its own (saber, sovereign, steamrunner) and those keys mean nothing here.
+#
+# See .docs/decisions/19-stnh-minor-powers-as-ai-empires.md.
+
+STG_BRUNALI = {
+	category = "Humanoid"
+	randomized = no
+
+	ship_names = {
+		generic = {
+			STG_N_Burgdorferi STG_N_Garinii STG_N_Borrelia STG_N_Afzelii STG_N_Pertussi STG_N_Henselae
+			STG_N_Cereus STG_N_Anthracis STG_N_Jejuni STG_N_Pneumoniae STG_N_Diphtheriae STG_N_Botulinu
+			STG_N_Leprae STG_N_Aeruginosa STG_N_Sonnei STG_N_Aureus STG_N_Agalactiae STG_N_Pallidum
+			STG_N_Cholerae STG_N_Pestis STG_N_Enterocoli STG_N_Neisseria STG_N_Listeria STG_N_Helicobacter
+			STG_N_Francisella STG_N_Haemophilus STG_N_Treponema STG_N_Vibrio STG_N_Yersinia STG_N_Tularensis
+			STG_N_Pylori STG_N_Leptosira STG_N_Sphirochete STG_N_Bacillus STG_N_Cocci
+		}
+
+		corvette = {
+			STG_N_Botulinu STG_N_Leprae STG_N_Aeruginosa STG_N_Sonnei STG_N_Aureus
+		}
+
+		destroyer = {
+			STG_N_Agalactiae STG_N_Pallidum STG_N_Cholerae STG_N_Pestis STG_N_Enterocoli
+		}
+
+		cruiser = {
+			STG_N_Neisseria STG_N_Listeria STG_N_Helicobacter STG_N_Francisella STG_N_Haemophilus
+		}
+
+		battleship = {
+			STG_N_Treponema STG_N_Vibrio STG_N_Yersinia STG_N_Tularensis STG_N_Pylori
+		}
+
+		titan = {
+			STG_N_Leptosira STG_N_Sphirochete STG_N_Bacillus STG_N_Cocci
+		}
+
+		science = {
+			STG_N_Burgdorferi STG_N_Garinii STG_N_Borrelia STG_N_Afzelii STG_N_Pertussi STG_N_Henselae
+		}
+
+		colonizer = {
+			STG_N_Burgdorferi STG_N_Garinii STG_N_Borrelia STG_N_Afzelii STG_N_Pertussi
+		}
+
+		constructor = {
+			STG_N_Cereus STG_N_Anthracis STG_N_Jejuni STG_N_Pneumoniae STG_N_Diphtheriae
+		}
+	}
+
+	ship_class_names = {
+		generic = {
+			STG_N_Burgdorferi STG_N_Garinii STG_N_Borrelia STG_N_Afzelii STG_N_Pertussi STG_N_Henselae
+			STG_N_Cereus STG_N_Anthracis STG_N_Jejuni
+		}
+	}
+
+	fleet_names = {
+		sequential_name = STG_BRUNALI_GROUP
+	}
+
+	army_names = {
+		machine_assault_1 = {
+			sequential_name = STG_BRUNALI_ASSAULTAUXILIARY
+		}
+
+		machine_defense = {
+			sequential_name = STG_BRUNALI_DEFENSEAUXILIARY
+		}
+
+		defense_army = {
+			sequential_name = STG_BRUNALI_PLANETARYDEFENSEAUXILIARY
+		}
+
+		assault_army = {
+			sequential_name = STG_BRUNALI_EXPEDITIONARYAUXILIARY
+		}
+
+		slave_army = {
+			sequential_name = STG_BRUNALI_LABORAUXILIARY
+		}
+
+		clone_army = {
+			sequential_name = STG_BRUNALI_REPLICATEAUXILIARY
+		}
+
+		robotic_army = {
+			sequential_name = STG_BRUNALI_AUTOMATEDAUXILIARY
+		}
+
+		psionic_army = {
+			sequential_name = STG_BRUNALI_ADEPTAUXILIARY
+		}
+
+		xenomorph_army = {
+			sequential_name = STG_BRUNALI_XENOMORPHAUXILIARY
+		}
+
+		gene_warrior_army = {
+			sequential_name = STG_BRUNALI_AUGMENTEDAUXILIARY
+		}
+
+		occupation_army = {
+			sequential_name = STG_BRUNALI_OCCUPATIONAUXILIARY
+		}
+
+		robotic_defense_army = {
+			sequential_name = STG_BRUNALI_AUTOMATEDDEFENSEAUXILIARY
+		}
+
+		industrial_army = {
+			sequential_name = STG_BRUNALI_INDUSTRIALAUXILIARY
+		}
+
+		primitive_army = {
+			sequential_name = STG_BRUNALI_MILITIA
+		}
+	}
+
+	planet_names = {
+		generic = {
+			names = {
+				STG_N_Burgdorferi STG_N_Garinii STG_N_Borrelia STG_N_Afzelii STG_N_Pertussi STG_N_Henselae
+				STG_N_Cereus STG_N_Anthracis STG_N_Jejuni STG_N_Pneumoniae STG_N_Diphtheriae STG_N_Botulinu
+				STG_N_Leprae STG_N_Aeruginosa STG_N_Sonnei STG_N_Aureus STG_N_Agalactiae STG_N_Pallidum
+				STG_N_Cholerae STG_N_Pestis STG_N_Enterocoli STG_N_Neisseria STG_N_Listeria STG_N_Helicobacter
+				STG_N_Francisella STG_N_Haemophilus STG_N_Treponema STG_N_Vibrio STG_N_Yersinia STG_N_Tularensis
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			weight = 100
+
+			first_names_male = {
+				STG_N_Leucon STG_N_Icheb STG_N_Manu STG_N_Remi STG_N_Yivel STG_N_Roubbin
+				STG_N_Teilan STG_N_Chivdeb STG_N_Sihah STG_N_Saiwant STG_N_Utlercay STG_N_Raymi
+				STG_N_Intir STG_N_Azarpak STG_N_Nopet STG_N_Ronjerem STG_N_Pateb STG_N_Jaimeb
+				STG_N_Tyriab STG_N_Neb STG_N_Breb STG_N_Ocheb STG_N_Eddereb STG_N_Bacheb
+			}
+
+			first_names_female = {
+				STG_N_Mafay STG_N_Kadam STG_N_Gaikyad STG_N_Gojey STG_N_Gokhay STG_N_Emay
+				STG_N_Igpay STG_N_Esyay STG_N_Oonsay STG_N_Romfay STG_N_Amway STG_N_Iway
+				STG_N_Intiray STG_N_Lunalay STG_N_Sasagray STG_N_Vikivay STG_N_Miamalkovay STG_N_Jynxmay
+				STG_N_Sunnyley STG_N_Rilay STG_N_Asaykiray STG_N_Lexibey STG_N_Breolsey STG_N_Remylacray
+			}
+
+			second_names = {
+				STG_N_Leucon STG_N_Icheb STG_N_Manu STG_N_Remi STG_N_Yivel STG_N_Roubbin
+				STG_N_Teilan STG_N_Chivdeb STG_N_Sihah STG_N_Saiwant STG_N_Utlercay STG_N_Raymi
+				STG_N_Intir STG_N_Azarpak STG_N_Nopet STG_N_Ronjerem STG_N_Pateb STG_N_Jaimeb
+				STG_N_Tyriab STG_N_Neb STG_N_Breb STG_N_Ocheb STG_N_Eddereb STG_N_Bacheb
+			}
+		}
+	}
+}

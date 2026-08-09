@@ -1,0 +1,164 @@
+﻿# Argrathi name list, for the AI-only minor powers that use it.
+#
+# CONVERTED from .source/688086068/common/name_lists/Argrathi.txt: the tokens are
+# STNH's, resolved through STNH's own localisation and re-keyed as STG_N_. The
+# ship-size buckets are rebuilt for VANILLA's ladder -- STNH's file buckets by
+# its own (saber, sovereign, steamrunner) and those keys mean nothing here.
+#
+# See .docs/decisions/19-stnh-minor-powers-as-ai-empires.md.
+
+STG_ARGRATHI = {
+	category = "Humanoid"
+	randomized = no
+
+	ship_names = {
+		generic = {
+			STG_N_Justiciar STG_N_Jurist STG_N_Rectium STG_N_Jurisdiction STG_N_Bonita STG_N_Commissar
+			STG_N_Punishment STG_N_Lawspeaker STG_N_Tribunal STG_N_Penitent STG_N_Incarcerator STG_N_Jailer
+			STG_N_Guard STG_N_Confiner STG_N_Reformator STG_N_Corrector STG_N_Imprisoner STG_N_Impounder
+			STG_N_Cager STG_N_Sentencer STG_N_Justice STG_N_Reformer STG_N_Keeper STG_N_Authoritar
+			STG_N_Decreer STG_N_Judicator STG_N_Magistrate STG_N_Judger STG_N_Punisher STG_N_Rehabilitator
+			STG_N_Enforcer STG_N_PeaceKeeper STG_N_Order STG_N_Lawbringer
+		}
+
+		corvette = {
+			STG_N_Jailer STG_N_Guard STG_N_Confiner STG_N_Reformator STG_N_Corrector
+		}
+
+		destroyer = {
+			STG_N_Imprisoner STG_N_Impounder STG_N_Cager STG_N_Sentencer STG_N_Justice
+		}
+
+		cruiser = {
+			STG_N_Reformer STG_N_Keeper STG_N_Authoritar STG_N_Decreer STG_N_Judicator
+		}
+
+		battleship = {
+			STG_N_Magistrate STG_N_Judger STG_N_Punisher STG_N_Rehabilitator STG_N_Enforcer
+		}
+
+		titan = {
+			STG_N_PeaceKeeper STG_N_Order STG_N_Lawbringer
+		}
+
+		science = {
+			STG_N_Justiciar STG_N_Jurist STG_N_Rectium STG_N_Jurisdiction STG_N_Bonita STG_N_Commissar
+		}
+
+		colonizer = {
+			STG_N_Justiciar STG_N_Jurist STG_N_Rectium STG_N_Jurisdiction STG_N_Bonita
+		}
+
+		constructor = {
+			STG_N_Punishment STG_N_Lawspeaker STG_N_Tribunal STG_N_Penitent STG_N_Incarcerator
+		}
+	}
+
+	ship_class_names = {
+		generic = {
+			STG_N_Justiciar STG_N_Jurist STG_N_Rectium STG_N_Jurisdiction STG_N_Bonita STG_N_Commissar
+			STG_N_Punishment STG_N_Lawspeaker STG_N_Tribunal
+		}
+	}
+
+	fleet_names = {
+		sequential_name = STG_ARGRATHI_GROUP
+	}
+
+	army_names = {
+		machine_assault_1 = {
+			sequential_name = STG_ARGRATHI_ASSAULTAUXILIARY
+		}
+
+		machine_defense = {
+			sequential_name = STG_ARGRATHI_DEFENSEAUXILIARY
+		}
+
+		defense_army = {
+			sequential_name = STG_ARGRATHI_PLANETARYDEFENSEAUXILIARY
+		}
+
+		assault_army = {
+			sequential_name = STG_ARGRATHI_EXPEDITIONARYAUXILIARY
+		}
+
+		slave_army = {
+			sequential_name = STG_ARGRATHI_LABORAUXILIARY
+		}
+
+		clone_army = {
+			sequential_name = STG_ARGRATHI_REPLICATEAUXILIARY
+		}
+
+		robotic_army = {
+			sequential_name = STG_ARGRATHI_AUTOMATEDAUXILIARY
+		}
+
+		psionic_army = {
+			sequential_name = STG_ARGRATHI_ADEPTAUXILIARY
+		}
+
+		xenomorph_army = {
+			sequential_name = STG_ARGRATHI_XENOMORPHAUXILIARY
+		}
+
+		gene_warrior_army = {
+			sequential_name = STG_ARGRATHI_AUGMENTEDAUXILIARY
+		}
+
+		occupation_army = {
+			sequential_name = STG_ARGRATHI_OCCUPATIONAUXILIARY
+		}
+
+		robotic_defense_army = {
+			sequential_name = STG_ARGRATHI_AUTOMATEDDEFENSEAUXILIARY
+		}
+
+		industrial_army = {
+			sequential_name = STG_ARGRATHI_INDUSTRIALAUXILIARY
+		}
+
+		primitive_army = {
+			sequential_name = STG_ARGRATHI_MILITIA
+		}
+	}
+
+	planet_names = {
+		generic = {
+			names = {
+				STG_N_Justiciar STG_N_Jurist STG_N_Rectium STG_N_Jurisdiction STG_N_Bonita STG_N_Commissar
+				STG_N_Punishment STG_N_Lawspeaker STG_N_Tribunal STG_N_Penitent STG_N_Incarcerator STG_N_Jailer
+				STG_N_Guard STG_N_Confiner STG_N_Reformator STG_N_Corrector STG_N_Imprisoner STG_N_Impounder
+				STG_N_Cager STG_N_Sentencer STG_N_Justice STG_N_Reformer STG_N_Keeper STG_N_Authoritar
+				STG_N_Decreer STG_N_Judicator STG_N_Magistrate STG_N_Judger STG_N_Punisher STG_N_Rehabilitator
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			weight = 100
+
+			first_names_male = {
+				STG_N_Eechar STG_N_Luchar STG_N_Puchar STG_N_Pichar STG_N_Aachar STG_N_Iichar
+				STG_N_Oochar STG_N_Uuchar STG_N_Yychar STG_N_Nuchar STG_N_Muchar STG_N_Vechar
+				STG_N_Hechar STG_N_Kochar STG_N_Hachar STG_N_Wachar STG_N_Grchar STG_N_Zochar
+				STG_N_Kpar STG_N_Aacho STG_N_Kcho STG_N_Aapar STG_N_EePar STG_N_AaPar
+			}
+
+			first_names_female = {
+				STG_N_Kopar STG_N_Hapar STG_N_Wapar STG_N_Grpar STG_N_Zopar STG_N_Eecho
+				STG_N_Iicho STG_N_Oocho STG_N_Uucho STG_N_Lucho STG_N_Pucho STG_N_Yycho
+				STG_N_Nucho STG_N_Mucho STG_N_Vecho STG_N_Hecho STG_N_Kocho STG_N_Hacho
+				STG_N_Wacho STG_N_Grcho STG_N_Zocho STG_N_Rinn STG_N_Raan STG_N_Jaan
+			}
+
+			second_names = {
+				STG_N_Eechar STG_N_Luchar STG_N_Puchar STG_N_Pichar STG_N_Aachar STG_N_Iichar
+				STG_N_Oochar STG_N_Uuchar STG_N_Yychar STG_N_Nuchar STG_N_Muchar STG_N_Vechar
+				STG_N_Hechar STG_N_Kochar STG_N_Hachar STG_N_Wachar STG_N_Grchar STG_N_Zochar
+				STG_N_Kpar STG_N_Aacho STG_N_Kcho STG_N_Aapar STG_N_EePar STG_N_AaPar
+			}
+		}
+	}
+}

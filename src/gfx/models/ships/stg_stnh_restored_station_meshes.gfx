@@ -1,0 +1,282 @@
+# DECLARE, don't shadow (.docs/architecture/conflict-register.md). Five pdxmesh declarations re-issued from
+# STNH directories the ship prune removed, because .asset files in directories
+# we KEEP still use them:
+#
+#   cardassian_01_orbital_station_mesh  <- federation/federation_deep_space.asset
+#                                          andorian_01/andorian_01_deep_space.asset
+#   dominion_01_base_mesh               <- andorian_01/andorian_01_deep_space.asset
+#   klingon_shipyard_muesum_mesh        <- other/fed_ent_naval_museum.asset
+#   talaxian_particle_fountain_mesh     <- federation/particle_base/particle_base_2.asset
+#   voth_01_sovereign_coreA_mesh        <- federation/federation_special_ships.asset
+#
+# 26 of the 190 group-C records in the 2026-08-03 run. STNH's own .gfx files are
+# NOT vendored: the four they live in declare 2, 3, 11, 20 and 77 meshes, so
+# taking them whole would trade five dangling references for roughly a hundred
+# more, in cultures decision 18 pruned on purpose. Each block below is STNH's
+# verbatim, re-indented; the .mesh and .dds files they name are vendored by
+# explicit include: entries in vendor.yml.
+
+objectTypes = {
+
+	pdxmesh = {
+		name = "cardassian_01_orbital_station_mesh"
+		file = "gfx/models/ships/cardassian_01/cardassian_01_orbital_station.mesh"
+		scale = 2.25
+
+		meshsettings = {
+			texture_diffuse = "cardassian_01_orbital_station_diffuse.dds"
+			texture_normal = "cardassian_01_orbital_station_normal.dds"
+			texture_specular = "cardassian_01_orbital_station_specular.dds"
+			index = 0
+			shader = "PdxMeshShip"
+		}
+	}
+
+	pdxmesh = {
+		name = "dominion_01_base_mesh"
+		file = "gfx/models/ships/dominion_01/asteroid_prison/asteroid_base.mesh"
+		scale = 1.0
+
+		meshsettings = {
+			name = "1_rock1"
+			index = 0
+			texture_diffuse = "rock_texture.dds"
+			texture_normal = "nonormal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "2_fresear"
+			index = 0
+			texture_diffuse = "station_texture.dds"
+			texture_normal = "nonormal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+	}
+
+	pdxmesh = {
+		name = "klingon_shipyard_muesum_mesh"
+		file = "gfx/models/ships/klingon/kdf_yard/klingon_shipyard.mesh"
+		scale = 0.8
+
+		meshsettings = {
+			name = "Glow_Red"
+			index = 0
+			texture_diffuse = "glow_red_diffuse.dds"
+			texture_normal = "nonormal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshAlphaAdditiveAnimateUV"
+		}
+
+		meshsettings = {
+			name = "Grid"
+			index = 0
+			texture_diffuse = "grey_tall_grid_diffuse.dds"
+			texture_normal = "nonormal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+
+		meshsettings = {
+			name = "Hull_Dark_Green"
+			index = 0
+			texture_diffuse = "klingon_03_dark_green_hull_diffuse.dds"
+			texture_normal = "hull_type_2_normal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+
+		meshsettings = {
+			name = "Hull_Dark_Red"
+			index = 0
+			texture_diffuse = "klingon_03_dark_red_hull_diffuse.dds"
+			texture_normal = "hull_type_2_normal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+
+		meshsettings = {
+			name = "Hull_Darker_Red"
+			index = 0
+			texture_diffuse = "klingon_03_darker_red_hull_diffuse.dds"
+			texture_normal = "hull_type_2_normal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+
+		meshsettings = {
+			name = "Hull_Green"
+			index = 0
+			texture_diffuse = "klingon_03_green_hull_diffuse.dds"
+			texture_normal = "hull_type_2_normal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+
+		meshsettings = {
+			name = "Hull_Grey"
+			index = 0
+			texture_diffuse = "klingon_03_grey_hull_diffuse.dds"
+			texture_normal = "hull_type_2_normal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+
+		meshsettings = {
+			name = "Hull_Yellow"
+			index = 0
+			texture_diffuse = "klingon_03_yellow_hull_diffuse.dds"
+			texture_normal = "hull_type_2_normal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+
+		meshsettings = {
+			name = "Klingon_Logo"
+			index = 0
+			texture_diffuse = "KlingonLogoDecal.dds"
+			texture_normal = "nonormal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShipTransp"
+		}
+
+		meshsettings = {
+			name = "Windows"
+			index = 0
+			texture_diffuse = "windows_01_diffuse.dds"
+			texture_normal = "nonormal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshAlphaAdditiveAnimateUV"
+		}
+	}
+
+	pdxmesh = {
+		name = "talaxian_particle_fountain_mesh"
+		file = "gfx/models/ships/talaxian_01/stations/talaxian_deep_space_station.mesh"
+		scale = 1.0
+
+		meshsettings = {
+			name = "TALAX_MS_Particle"
+			index = 0
+			texture_diffuse = "talaxia_diffuse.dds"
+			texture_normal = "talaxia_normal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+	}
+
+	pdxmesh = {
+		name = "voth_01_sovereign_coreA_mesh"
+		file = "gfx/models/ships/voth_01/voth_01_sovereign_coreA.mesh"
+		scale = 1.2
+
+		meshsettings = {
+			name = "Lights"
+			index = 0
+			texture_diffuse = "voth_diffuse.dds"
+			texture_normal = "voth_normal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+
+		meshsettings = {
+			name = "voth_bastion_H"
+			index = 0
+			texture_diffuse = "voth_diffuse.dds"
+			texture_normal = "voth_normal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+
+		meshsettings = {
+			name = "voth_bastion_H.001"
+			index = 0
+			texture_diffuse = "voth_diffuse.dds"
+			texture_normal = "voth_normal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+
+		meshsettings = {
+			name = "voth_bastion_H.002"
+			index = 0
+			texture_diffuse = "voth_diffuse.dds"
+			texture_normal = "voth_normal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+
+		meshsettings = {
+			name = "voth_bastion_H.003"
+			index = 0
+			texture_diffuse = "voth_diffuse.dds"
+			texture_normal = "voth_normal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+
+		meshsettings = {
+			name = "voth_bastion_H.004"
+			index = 0
+			texture_diffuse = "voth_diffuse.dds"
+			texture_normal = "voth_normal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+
+		meshsettings = {
+			name = "voth_bastion_H.005"
+			index = 0
+			texture_diffuse = "voth_diffuse.dds"
+			texture_normal = "voth_normal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+
+		meshsettings = {
+			name = "voth_bastion_H.006"
+			index = 0
+			texture_diffuse = "voth_diffuse.dds"
+			texture_normal = "voth_normal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+
+		meshsettings = {
+			name = "voth_bastion_H.007"
+			index = 0
+			texture_diffuse = "voth_diffuse.dds"
+			texture_normal = "voth_normal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+
+		meshsettings = {
+			name = "voth_bastion_H.008"
+			index = 0
+			texture_diffuse = "voth_diffuse.dds"
+			texture_normal = "voth_normal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+
+		meshsettings = {
+			name = "voth_bastion_H.009"
+			index = 0
+			texture_diffuse = "voth_diffuse.dds"
+			texture_normal = "voth_normal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+
+		meshsettings = {
+			name = "voth_bastion_H.011"
+			index = 0
+			texture_diffuse = "voth_diffuse.dds"
+			texture_normal = "voth_normal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+	}
+}

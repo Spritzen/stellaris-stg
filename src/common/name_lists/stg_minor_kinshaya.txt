@@ -1,0 +1,158 @@
+﻿# Kinshaya name list, for the AI-only minor powers that use it.
+#
+# CONVERTED from .source/688086068/common/name_lists/Kinshaya.txt: the tokens are
+# STNH's, resolved through STNH's own localisation and re-keyed as STG_N_. The
+# ship-size buckets are rebuilt for VANILLA's ladder -- STNH's file buckets by
+# its own (saber, sovereign, steamrunner) and those keys mean nothing here.
+#
+# See .docs/decisions/19-stnh-minor-powers-as-ai-empires.md.
+
+STG_KINSHAYA = {
+	category = "Humanoid"
+	randomized = no
+
+	ship_names = {
+		generic = {
+			STG_N_HolyLight STG_N_Ayeh STG_N_DeaconOfVengance STG_N_BishopsWraith STG_N_VicarGeneralOfJanalwa STG_N_VicarOfWar
+			STG_N_DibleyFury STG_N_CathedralOfState STG_N_CathedralOfWar STG_N_CathedralOfVictory STG_N_BishopFury STG_N_HolyWraith
+			STG_N_DeaconofVengance STG_N_VicarGeneralofJanalwa STG_N_VicarofWar STG_N_CathedralofState STG_N_CathedralofWar STG_N_CathedralofVictory
+		}
+
+		corvette = {
+			STG_N_HolyWraith
+		}
+
+		destroyer = {
+			STG_N_HolyLight STG_N_Ayeh STG_N_DeaconOfVengance
+		}
+
+		cruiser = {
+			STG_N_HolyLight STG_N_Ayeh STG_N_DeaconOfVengance
+		}
+
+		battleship = {
+			STG_N_HolyLight STG_N_Ayeh STG_N_DeaconOfVengance
+		}
+
+		titan = {
+			STG_N_HolyLight STG_N_Ayeh STG_N_DeaconOfVengance
+		}
+
+		science = {
+			STG_N_HolyLight STG_N_Ayeh STG_N_DeaconOfVengance STG_N_BishopsWraith STG_N_VicarGeneralOfJanalwa STG_N_VicarOfWar
+		}
+
+		colonizer = {
+			STG_N_HolyLight STG_N_Ayeh STG_N_DeaconOfVengance STG_N_BishopsWraith STG_N_VicarGeneralOfJanalwa
+		}
+
+		constructor = {
+			STG_N_DibleyFury STG_N_CathedralOfState STG_N_CathedralOfWar STG_N_CathedralOfVictory STG_N_BishopFury
+		}
+	}
+
+	ship_class_names = {
+		generic = {
+			STG_N_HolyLight STG_N_Ayeh STG_N_DeaconOfVengance STG_N_BishopsWraith STG_N_VicarGeneralOfJanalwa STG_N_VicarOfWar
+			STG_N_DibleyFury STG_N_CathedralOfState STG_N_CathedralOfWar
+		}
+	}
+
+	fleet_names = {
+		sequential_name = STG_KINSHAYA_GROUP
+	}
+
+	army_names = {
+		machine_assault_1 = {
+			sequential_name = STG_KINSHAYA_ASSAULTAUXILIARY
+		}
+
+		machine_defense = {
+			sequential_name = STG_KINSHAYA_DEFENSEAUXILIARY
+		}
+
+		defense_army = {
+			sequential_name = STG_KINSHAYA_PLANETARYDEFENSEAUXILIARY
+		}
+
+		assault_army = {
+			sequential_name = STG_KINSHAYA_EXPEDITIONARYAUXILIARY
+		}
+
+		slave_army = {
+			sequential_name = STG_KINSHAYA_LABORAUXILIARY
+		}
+
+		clone_army = {
+			sequential_name = STG_KINSHAYA_REPLICATEAUXILIARY
+		}
+
+		robotic_army = {
+			sequential_name = STG_KINSHAYA_AUTOMATEDAUXILIARY
+		}
+
+		psionic_army = {
+			sequential_name = STG_KINSHAYA_ADEPTAUXILIARY
+		}
+
+		xenomorph_army = {
+			sequential_name = STG_KINSHAYA_XENOMORPHAUXILIARY
+		}
+
+		gene_warrior_army = {
+			sequential_name = STG_KINSHAYA_AUGMENTEDAUXILIARY
+		}
+
+		occupation_army = {
+			sequential_name = STG_KINSHAYA_OCCUPATIONAUXILIARY
+		}
+
+		robotic_defense_army = {
+			sequential_name = STG_KINSHAYA_AUTOMATEDDEFENSEAUXILIARY
+		}
+
+		industrial_army = {
+			sequential_name = STG_KINSHAYA_INDUSTRIALAUXILIARY
+		}
+
+		primitive_army = {
+			sequential_name = STG_KINSHAYA_MILITIA
+		}
+	}
+
+	planet_names = {
+		generic = {
+			names = {
+				STG_N_HolyLight STG_N_Ayeh STG_N_DeaconOfVengance STG_N_BishopsWraith STG_N_VicarGeneralOfJanalwa STG_N_VicarOfWar
+				STG_N_DibleyFury STG_N_CathedralOfState STG_N_CathedralOfWar STG_N_CathedralOfVictory STG_N_BishopFury STG_N_HolyWraith
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			weight = 100
+
+			first_names_male = {
+				STG_N_Noca STG_N_Ador STG_N_Adaspop STG_N_Adasop STG_N_Acost STG_N_Ykredna
+				STG_N_Redoj STG_N_Retej STG_N_Resac STG_N_Epesor STG_N_Tepesor STG_N_Yeffir
+				STG_N_Nagrom STG_N_Radrigi STG_N_Trarta STG_N_Renntra STG_N_Krentra STG_N_Braelkra
+				STG_N_Crokra STG_N_Srarkra STG_N_Krojora STG_N_Sronekra STG_N_Dralra STG_N_Erushra
+			}
+
+			first_names_female = {
+				STG_N_Brarkra STG_N_Brasidra STG_N_Mirasta STG_N_Lavel STG_N_Kavel STG_N_Yeffirm
+				STG_N_Nevel STG_N_Jhuvil STG_N_Dhannal STG_N_Lhel STG_N_Ihil STG_N_Norcan
+				STG_N_Dhavil STG_N_Dhal STG_N_Yhal STG_N_Jhrel STG_N_Mhal STG_N_Nhril
+				STG_N_Rhol STG_N_Mhil STG_N_Ahnesta STG_N_Ghendasta STG_N_Mhallasta STG_N_Rhinasta
+			}
+
+			second_names = {
+				STG_N_Noca STG_N_Ador STG_N_Adaspop STG_N_Adasop STG_N_Acost STG_N_Ykredna
+				STG_N_Redoj STG_N_Retej STG_N_Resac STG_N_Epesor STG_N_Tepesor STG_N_Yeffir
+				STG_N_Nagrom STG_N_Radrigi STG_N_Trarta STG_N_Renntra STG_N_Krentra STG_N_Braelkra
+				STG_N_Crokra STG_N_Srarkra STG_N_Krojora STG_N_Sronekra STG_N_Dralra STG_N_Erushra
+			}
+		}
+	}
+}

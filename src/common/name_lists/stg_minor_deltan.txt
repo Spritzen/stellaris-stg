@@ -1,0 +1,162 @@
+﻿# Deltan name list, for the AI-only minor powers that use it.
+#
+# CONVERTED from .source/688086068/common/name_lists/Deltan.txt: the tokens are
+# STNH's, resolved through STNH's own localisation and re-keyed as STG_N_. The
+# ship-size buckets are rebuilt for VANILLA's ladder -- STNH's file buckets by
+# its own (saber, sovereign, steamrunner) and those keys mean nothing here.
+#
+# See .docs/decisions/19-stnh-minor-powers-as-ai-empires.md.
+
+STG_DELTAN = {
+	category = "Humanoid"
+	randomized = no
+
+	ship_names = {
+		generic = {
+			STG_N_HarmonyCalling STG_N_DeltanCompassion STG_N_Seyann STG_N_Oath STG_N_Illia STG_N_Cinera
+			STG_N_Sage STG_N_Piro STG_N_Dall STG_N_Heat STG_N_Fascination STG_N_Niro
+			STG_N_Infatuation STG_N_Ardor STG_N_Motivation STG_N_Commitment STG_N_Clarze STG_N_Empathy
+			STG_N_Rapport STG_N_Solidarity STG_N_Affection STG_N_Sincerity STG_N_Nectar STG_N_Admiration
+			STG_N_Jedda-1
+		}
+
+		corvette = {
+			STG_N_Niro STG_N_Infatuation STG_N_Ardor STG_N_Motivation STG_N_Commitment
+		}
+
+		destroyer = {
+			STG_N_Clarze STG_N_Empathy STG_N_Rapport STG_N_Solidarity STG_N_Affection
+		}
+
+		cruiser = {
+			STG_N_Sincerity STG_N_Nectar STG_N_Admiration
+		}
+
+		battleship = {
+			STG_N_HarmonyCalling STG_N_DeltanCompassion STG_N_Seyann
+		}
+
+		titan = {
+			STG_N_HarmonyCalling STG_N_DeltanCompassion STG_N_Seyann
+		}
+
+		science = {
+			STG_N_HarmonyCalling STG_N_DeltanCompassion STG_N_Seyann STG_N_Oath STG_N_Illia STG_N_Cinera
+		}
+
+		colonizer = {
+			STG_N_HarmonyCalling STG_N_DeltanCompassion STG_N_Seyann STG_N_Oath STG_N_Illia
+		}
+
+		constructor = {
+			STG_N_Sage STG_N_Piro STG_N_Dall STG_N_Heat STG_N_Fascination
+		}
+	}
+
+	ship_class_names = {
+		generic = {
+			STG_N_HarmonyCalling STG_N_DeltanCompassion STG_N_Seyann STG_N_Oath STG_N_Illia STG_N_Cinera
+			STG_N_Sage STG_N_Piro STG_N_Dall
+		}
+	}
+
+	fleet_names = {
+		sequential_name = STG_DELTAN_GROUP
+	}
+
+	army_names = {
+		machine_assault_1 = {
+			sequential_name = STG_DELTAN_ASSAULTAUXILIARY
+		}
+
+		machine_defense = {
+			sequential_name = STG_DELTAN_DEFENSEAUXILIARY
+		}
+
+		defense_army = {
+			sequential_name = STG_DELTAN_PLANETARYDEFENSEAUXILIARY
+		}
+
+		assault_army = {
+			sequential_name = STG_DELTAN_EXPEDITIONARYAUXILIARY
+		}
+
+		slave_army = {
+			sequential_name = STG_DELTAN_LABORAUXILIARY
+		}
+
+		clone_army = {
+			sequential_name = STG_DELTAN_REPLICATEAUXILIARY
+		}
+
+		robotic_army = {
+			sequential_name = STG_DELTAN_AUTOMATEDAUXILIARY
+		}
+
+		psionic_army = {
+			sequential_name = STG_DELTAN_ADEPTAUXILIARY
+		}
+
+		xenomorph_army = {
+			sequential_name = STG_DELTAN_XENOMORPHAUXILIARY
+		}
+
+		gene_warrior_army = {
+			sequential_name = STG_DELTAN_AUGMENTEDAUXILIARY
+		}
+
+		occupation_army = {
+			sequential_name = STG_DELTAN_OCCUPATIONAUXILIARY
+		}
+
+		robotic_defense_army = {
+			sequential_name = STG_DELTAN_AUTOMATEDDEFENSEAUXILIARY
+		}
+
+		industrial_army = {
+			sequential_name = STG_DELTAN_INDUSTRIALAUXILIARY
+		}
+
+		primitive_army = {
+			sequential_name = STG_DELTAN_MILITIA
+		}
+	}
+
+	planet_names = {
+		generic = {
+			names = {
+				STG_N_HarmonyCalling STG_N_DeltanCompassion STG_N_Seyann STG_N_Oath STG_N_Illia STG_N_Cinera
+				STG_N_Sage STG_N_Piro STG_N_Dall STG_N_Heat STG_N_Fascination STG_N_Niro
+				STG_N_Infatuation STG_N_Ardor STG_N_Motivation STG_N_Commitment STG_N_Clarze STG_N_Empathy
+				STG_N_Rapport STG_N_Solidarity STG_N_Affection STG_N_Sincerity STG_N_Nectar STG_N_Admiration
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			weight = 100
+
+			first_names_male = {
+				STG_N_Jedda STG_N_Clarze STG_N_Arnet STG_N_Holencas STG_N_Harrad STG_N_Arias
+				STG_N_Dro STG_N_Helias STG_N_Gemkon STG_N_Jeliel STG_N_Kili STG_N_Lona
+				STG_N_Matarel STG_N_Muren STG_N_Niro STG_N_Orifiel STG_N_Purah STG_N_Raen
+				STG_N_Rro STG_N_Seth STG_N_Heliel STG_N_Jelias STG_N_Ilia STG_N_Zinaida
+			}
+
+			first_names_female = {
+				STG_N_Jalisa STG_N_Efimiia STG_N_Inna STG_N_Eline STG_N_Ogafia STG_N_Iana
+				STG_N_Arina STG_N_Tasia STG_N_Endzela STG_N_Annushka STG_N_Elena STG_N_Ksenya
+				STG_N_Polina STG_N_Nadezhda STG_N_Tuula STG_N_Yelizaveta STG_N_Masha STG_N_Svetlana
+				STG_N_Leontine STG_N_Mariya STG_N_Irina STG_N_Maaria STG_N_Ilya STG_N_Irene
+			}
+
+			second_names = {
+				STG_N_Jedda STG_N_Clarze STG_N_Arnet STG_N_Holencas STG_N_Harrad STG_N_Arias
+				STG_N_Dro STG_N_Helias STG_N_Gemkon STG_N_Jeliel STG_N_Kili STG_N_Lona
+				STG_N_Matarel STG_N_Muren STG_N_Niro STG_N_Orifiel STG_N_Purah STG_N_Raen
+				STG_N_Rro STG_N_Seth STG_N_Heliel STG_N_Jelias STG_N_Ilia STG_N_Zinaida
+			}
+		}
+	}
+}

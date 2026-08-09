@@ -1,0 +1,179 @@
+﻿# Antedian name list, for the AI-only minor powers that use it.
+#
+# CONVERTED from .source/688086068/common/name_lists/Antedian.txt: the tokens are
+# STNH's, resolved through STNH's own localisation and re-keyed as STG_N_. The
+# ship-size buckets are rebuilt for VANILLA's ladder -- STNH's file buckets by
+# its own (saber, sovereign, steamrunner) and those keys mean nothing here.
+#
+# See .docs/decisions/19-stnh-minor-powers-as-ai-empires.md.
+
+STG_ANTEDIAN = {
+	category = "Humanoid"
+	randomized = no
+
+	ship_names = {
+		generic = {
+			STG_N_SkyShoals STG_N_Anemani STG_N_Cnydarian STG_N_Anthozoa STG_N_Ctenophore STG_N_Bilateria
+			STG_N_Hydrazoa STG_N_Nemetocyst STG_N_Cnidocyst STG_N_Cnida STG_N_Cnidoblast STG_N_Chironex
+			STG_N_Ctenophora STG_N_Cnidosac STG_N_Lanatocnitan STG_N_Sandlantangus STG_N_Arapaimaeray STG_N_Bulltroughy
+			STG_N_Burracuda STG_N_Dogteel STG_N_Trigger STG_N_Parowana STG_N_Spricefin STG_N_Dottybacktuna
+			STG_N_Fanglerashlid STG_N_Sticklyshar STG_N_Coelass STG_N_Tubesnouth STG_N_Gurnardinang STG_N_Warmorid
+			STG_N_Bardinaltetra STG_N_Longershark STG_N_Priceel STG_N_Oscabbarray STG_N_Mantnosejaw STG_N_Spaddlefing
+			STG_N_Ambesnoek STG_N_Skipjack STG_N_Parracuda STG_N_Ghoster STG_N_Squaret STG_N_Incongehead
+			STG_N_Pollowjack STG_N_Barshark STG_N_Beaglera STG_N_Dolphine STG_N_Swamprey STG_N_Smeltail
+			STG_N_Bangler STG_N_Sturbot STG_N_Dottybacock STG_N_Candtigerside STG_N_Spikeper STG_N_Rashark
+			STG_N_Johndora STG_N_Silvershark STG_N_Plathesalmon STG_N_Megamout STG_N_Pearobia STG_N_Weasnail
+			STG_N_Crappleshark STG_N_Wobblenny STG_N_Bristlenny STG_N_Pufferflyray STG_N_Zebrass STG_N_Coffing
+			STG_N_Guitargin STG_N_Skateeth STG_N_Trumpsucker STG_N_Stargin STG_N_Cataluga STG_N_Baskipperch
+			STG_N_Sandlet STG_N_Hadentroughy STG_N_Fanglerflyray STG_N_Grenadiera STG_N_Sanderflyray STG_N_Ghostknife
+			STG_N_Throake STG_N_Cohostflaty STG_N_Lantang STG_N_Mullshark STG_N_Trouthshar STG_N_Snubnosejaw
+			STG_N_Yellock STG_N_Sillbacock STG_N_Mrigger STG_N_Tadpollet STG_N_Dartyanglera STG_N_Demoray
+			STG_N_Squaretailor STG_N_Pearobin STG_N_Lantnose STG_N_Burrowen STG_N_Dartern STG_N_Tangerpedo
+			STG_N_Zandlanch STG_N_Blowjacker STG_N_Gulpinksal STG_N_Weaveldiver STG_N_Skatern STG_N_Pickleback
+			STG_N_Sheeper STG_N_Cohostsha STG_N_Trumpkinseer STG_N_Lamandiru STG_N_Pikebacker STG_N_Skipperch
+			STG_N_Ridgeon STG_N_Manterflyray STG_N_Mahseed STG_N_Killagfin STG_N_Sillbasse STG_N_Loachovy
+			STG_N_Dragfin
+		}
+
+		corvette = {
+			STG_N_Chironex STG_N_Ctenophora STG_N_Cnidosac STG_N_Lanatocnitan STG_N_Sandlantangus
+		}
+
+		destroyer = {
+			STG_N_Arapaimaeray STG_N_Bulltroughy STG_N_Burracuda STG_N_Dogteel STG_N_Trigger
+		}
+
+		cruiser = {
+			STG_N_Parowana STG_N_Spricefin STG_N_Dottybacktuna STG_N_Fanglerashlid STG_N_Sticklyshar
+		}
+
+		battleship = {
+			STG_N_Coelass STG_N_Tubesnouth STG_N_Gurnardinang STG_N_Warmorid STG_N_Bardinaltetra
+		}
+
+		titan = {
+			STG_N_Longershark STG_N_Priceel STG_N_Oscabbarray STG_N_Mantnosejaw
+		}
+
+		science = {
+			STG_N_SkyShoals STG_N_Anemani STG_N_Cnydarian STG_N_Anthozoa STG_N_Ctenophore STG_N_Bilateria
+			STG_N_Oceanseeker
+		}
+
+		colonizer = {
+			STG_N_SkyShoals STG_N_Anemani STG_N_Cnydarian STG_N_Anthozoa STG_N_Ctenophore STG_N_NewShoals
+		}
+
+		constructor = {
+			STG_N_Hydrazoa STG_N_Nemetocyst STG_N_Cnidocyst STG_N_Cnida STG_N_Cnidoblast STG_N_Reefmaker
+		}
+	}
+
+	ship_class_names = {
+		generic = {
+			STG_N_SkyShoals STG_N_Anemani STG_N_Cnydarian STG_N_Anthozoa STG_N_Ctenophore STG_N_Bilateria
+			STG_N_Hydrazoa STG_N_Nemetocyst STG_N_Cnidocyst
+		}
+	}
+
+	fleet_names = {
+		sequential_name = STG_ANTEDIAN_GROUP
+	}
+
+	army_names = {
+		machine_assault_1 = {
+			sequential_name = STG_ANTEDIAN_ASSAULTAUXILIARY
+		}
+
+		machine_defense = {
+			sequential_name = STG_ANTEDIAN_DEFENSEAUXILIARY
+		}
+
+		defense_army = {
+			sequential_name = STG_ANTEDIAN_PLANETARYDEFENSEAUXILIARY
+		}
+
+		assault_army = {
+			sequential_name = STG_ANTEDIAN_EXPEDITIONARYAUXILIARY
+		}
+
+		slave_army = {
+			sequential_name = STG_ANTEDIAN_LABORAUXILIARY
+		}
+
+		clone_army = {
+			sequential_name = STG_ANTEDIAN_REPLICATEAUXILIARY
+		}
+
+		robotic_army = {
+			sequential_name = STG_ANTEDIAN_AUTOMATEDAUXILIARY
+		}
+
+		psionic_army = {
+			sequential_name = STG_ANTEDIAN_ADEPTAUXILIARY
+		}
+
+		xenomorph_army = {
+			sequential_name = STG_ANTEDIAN_XENOMORPHAUXILIARY
+		}
+
+		gene_warrior_army = {
+			sequential_name = STG_ANTEDIAN_AUGMENTEDAUXILIARY
+		}
+
+		occupation_army = {
+			sequential_name = STG_ANTEDIAN_OCCUPATIONAUXILIARY
+		}
+
+		robotic_defense_army = {
+			sequential_name = STG_ANTEDIAN_AUTOMATEDDEFENSEAUXILIARY
+		}
+
+		industrial_army = {
+			sequential_name = STG_ANTEDIAN_INDUSTRIALAUXILIARY
+		}
+
+		primitive_army = {
+			sequential_name = STG_ANTEDIAN_MILITIA
+		}
+	}
+
+	planet_names = {
+		generic = {
+			names = {
+				STG_N_SkyShoals STG_N_Anemani STG_N_Cnydarian STG_N_Anthozoa STG_N_Ctenophore STG_N_Bilateria
+				STG_N_Hydrazoa STG_N_Nemetocyst STG_N_Cnidocyst STG_N_Cnida STG_N_Cnidoblast STG_N_Chironex
+				STG_N_Ctenophora STG_N_Cnidosac STG_N_Lanatocnitan STG_N_Sandlantangus STG_N_Arapaimaeray STG_N_Bulltroughy
+				STG_N_Burracuda STG_N_Dogteel STG_N_Trigger STG_N_Parowana STG_N_Spricefin STG_N_Dottybacktuna
+				STG_N_Fanglerashlid STG_N_Sticklyshar STG_N_Coelass STG_N_Tubesnouth STG_N_Gurnardinang STG_N_Warmorid
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			weight = 100
+
+			first_names_male = {
+				STG_N_Saby STG_N_Stsh STG_N_Bra STG_N_Besh STG_N_Cish STG_N_Pan
+				STG_N_Rock STG_N_Ther STG_N_Bark STG_N_Fri STG_N_Kin STG_N_Guil
+				STG_N_Cato STG_N_Low STG_N_Bur STG_N_Sang STG_N_Nosh STG_N_Rago
+				STG_N_Lai STG_N_Zer STG_N_Bon STG_N_Tur STG_N_Dish STG_N_Salu
+			}
+
+			first_names_female = {
+				STG_N_Dus STG_N_Hark STG_N_Pra STG_N_Mon STG_N_Ter STG_N_Dra
+				STG_N_Rel STG_N_Gole STG_N_Bray STG_N_Pika STG_N_Cark STG_N_Bal
+				STG_N_Dant STG_N_Row STG_N_Bit STG_N_Gre STG_N_Lip STG_N_Goak
+				STG_N_Prog STG_N_Flin STG_N_Sta STG_N_Rout STG_N_Por STG_N_Sper
+			}
+
+			second_names = {
+				STG_N_Saby STG_N_Stsh STG_N_Bra STG_N_Besh STG_N_Cish STG_N_Pan
+				STG_N_Rock STG_N_Ther STG_N_Bark STG_N_Fri STG_N_Kin STG_N_Guil
+				STG_N_Cato STG_N_Low STG_N_Bur STG_N_Sang STG_N_Nosh STG_N_Rago
+				STG_N_Lai STG_N_Zer STG_N_Bon STG_N_Tur STG_N_Dish STG_N_Salu
+			}
+		}
+	}
+}

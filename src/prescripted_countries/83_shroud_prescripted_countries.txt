@@ -1,0 +1,5 @@
+# SHADOWS prescripted_countries/83_shroud_prescripted_countries.txt —
+# deliberately empty, so vanilla's 4 empires (mindwardens, tankbound, zrobots,
+# zrobots_machine_age) drop out of the empire picker and AI spawning. Ours are
+# in stg_major_powers.txt.
+# See .docs/decisions/14-remove-vanilla-prescripted-empires.md

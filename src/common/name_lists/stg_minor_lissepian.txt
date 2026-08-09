@@ -1,0 +1,161 @@
+﻿# Lissepian name list, for the AI-only minor powers that use it.
+#
+# CONVERTED from .source/688086068/common/name_lists/Lissepian.txt: the tokens are
+# STNH's, resolved through STNH's own localisation and re-keyed as STG_N_. The
+# ship-size buckets are rebuilt for VANILLA's ladder -- STNH's file buckets by
+# its own (saber, sovereign, steamrunner) and those keys mean nothing here.
+#
+# See .docs/decisions/19-stnh-minor-powers-as-ai-empires.md.
+
+STG_LISSEPIAN = {
+	category = "Humanoid"
+	randomized = no
+
+	ship_names = {
+		generic = {
+			STG_N_Ukauk STG_N_Martuktuk STG_N_Maagala STG_N_Mazahthi STG_N_Mlamaruk STG_N_Mukztuk
+			STG_N_Mazagaluk STG_N_Marali STG_N_Zgtuk STG_N_Artuk STG_N_MazagMazi STG_N_Mazagak
+			STG_N_Malanthi STG_N_Mazagalan STG_N_Mazahii STG_N_Mazaguk STG_N_Manthi STG_N_Mazahi
+			STG_N_Mazagali STG_N_Martukuhi STG_N_Matuk STG_N_Hizaartuk
+		}
+
+		corvette = {
+			STG_N_Mazagak STG_N_Malanthi STG_N_Mazagalan STG_N_Mazahii STG_N_Mazaguk
+		}
+
+		destroyer = {
+			STG_N_Manthi STG_N_Mazahi STG_N_Mazagali STG_N_Martukuhi STG_N_Matuk
+		}
+
+		cruiser = {
+			STG_N_Hizaartuk
+		}
+
+		battleship = {
+			STG_N_Ukauk STG_N_Martuktuk STG_N_Maagala
+		}
+
+		titan = {
+			STG_N_Ukauk STG_N_Martuktuk STG_N_Maagala
+		}
+
+		science = {
+			STG_N_Ukauk STG_N_Martuktuk STG_N_Maagala STG_N_Mazahthi STG_N_Mlamaruk STG_N_Mukztuk
+		}
+
+		colonizer = {
+			STG_N_Ukauk STG_N_Martuktuk STG_N_Maagala STG_N_Mazahthi STG_N_Mlamaruk
+		}
+
+		constructor = {
+			STG_N_Mazagaluk STG_N_Marali STG_N_Zgtuk STG_N_Artuk STG_N_MazagMazi
+		}
+	}
+
+	ship_class_names = {
+		generic = {
+			STG_N_Ukauk STG_N_Martuktuk STG_N_Maagala STG_N_Mazahthi STG_N_Mlamaruk STG_N_Mukztuk
+			STG_N_Mazagaluk STG_N_Marali STG_N_Zgtuk
+		}
+	}
+
+	fleet_names = {
+		sequential_name = STG_LISSEPIAN_GROUP
+	}
+
+	army_names = {
+		machine_assault_1 = {
+			sequential_name = STG_LISSEPIAN_ASSAULTAUXILIARY
+		}
+
+		machine_defense = {
+			sequential_name = STG_LISSEPIAN_DEFENSEAUXILIARY
+		}
+
+		defense_army = {
+			sequential_name = STG_LISSEPIAN_PLANETARYDEFENSEAUXILIARY
+		}
+
+		assault_army = {
+			sequential_name = STG_LISSEPIAN_EXPEDITIONARYAUXILIARY
+		}
+
+		slave_army = {
+			sequential_name = STG_LISSEPIAN_LABORAUXILIARY
+		}
+
+		clone_army = {
+			sequential_name = STG_LISSEPIAN_REPLICATEAUXILIARY
+		}
+
+		robotic_army = {
+			sequential_name = STG_LISSEPIAN_AUTOMATEDAUXILIARY
+		}
+
+		psionic_army = {
+			sequential_name = STG_LISSEPIAN_ADEPTAUXILIARY
+		}
+
+		xenomorph_army = {
+			sequential_name = STG_LISSEPIAN_XENOMORPHAUXILIARY
+		}
+
+		gene_warrior_army = {
+			sequential_name = STG_LISSEPIAN_AUGMENTEDAUXILIARY
+		}
+
+		occupation_army = {
+			sequential_name = STG_LISSEPIAN_OCCUPATIONAUXILIARY
+		}
+
+		robotic_defense_army = {
+			sequential_name = STG_LISSEPIAN_AUTOMATEDDEFENSEAUXILIARY
+		}
+
+		industrial_army = {
+			sequential_name = STG_LISSEPIAN_INDUSTRIALAUXILIARY
+		}
+
+		primitive_army = {
+			sequential_name = STG_LISSEPIAN_MILITIA
+		}
+	}
+
+	planet_names = {
+		generic = {
+			names = {
+				STG_N_Ukauk STG_N_Martuktuk STG_N_Maagala STG_N_Mazahthi STG_N_Mlamaruk STG_N_Mukztuk
+				STG_N_Mazagaluk STG_N_Marali STG_N_Zgtuk STG_N_Artuk STG_N_MazagMazi STG_N_Mazagak
+				STG_N_Malanthi STG_N_Mazagalan STG_N_Mazahii STG_N_Mazaguk STG_N_Manthi STG_N_Mazahi
+				STG_N_Mazagali STG_N_Martukuhi STG_N_Matuk STG_N_Hizaartuk
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			weight = 100
+
+			first_names_male = {
+				STG_N_Mechtenthi STG_N_Martterk STG_N_Marthi STG_N_Mamartterr STG_N_Mazagi STG_N_Melanthi
+				STG_N_Mecchter STG_N_Mazhi STG_N_Menthi STG_N_Mecnthi STG_N_Mechter STG_N_Galanenthi
+				STG_N_Martuter STG_N_Mechak STG_N_Meihi STG_N_Mechtemi STG_N_Mazagahter STG_N_Mechtchchi
+				STG_N_Marlanthi STG_N_Mechk STG_N_Mechtalai STG_N_Mazak STG_N_Galanthi STG_N_Mechti
+			}
+
+			first_names_female = {
+				STG_N_Megali STG_N_Marti STG_N_Mechker STG_N_Mechlanthi STG_N_Mechtu STG_N_Martuukr
+				STG_N_Mechr STG_N_Echthi STG_N_Martulauk STG_N_Ecnthi STG_N_Mechtezhi STG_N_Meter
+				STG_N_Mekzer STG_N_Meechter STG_N_Mechtek STG_N_Mecechter STG_N_Echterk STG_N_Mechtuk
+				STG_N_Echnthi STG_N_Mazaauk STG_N_Martuthi STG_N_Meclak STG_N_Egzagali STG_N_Echrtuu
+			}
+
+			second_names = {
+				STG_N_Mechtenthi STG_N_Martterk STG_N_Marthi STG_N_Mamartterr STG_N_Mazagi STG_N_Melanthi
+				STG_N_Mecchter STG_N_Mazhi STG_N_Menthi STG_N_Mecnthi STG_N_Mechter STG_N_Galanenthi
+				STG_N_Martuter STG_N_Mechak STG_N_Meihi STG_N_Mechtemi STG_N_Mazagahter STG_N_Mechtchchi
+				STG_N_Marlanthi STG_N_Mechk STG_N_Mechtalai STG_N_Mazak STG_N_Galanthi STG_N_Mechti
+			}
+		}
+	}
+}

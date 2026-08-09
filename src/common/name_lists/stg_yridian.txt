@@ -1,0 +1,163 @@
+﻿# Yridian League name list.
+#
+# Yridia, Jaglom Shrek and the Yridians' role as information brokers are canon
+# (TNG/DS9). The rest is constructed.
+#
+# Structure mirrors /stellaris/common/name_lists/HUMAN1.txt, and the fourteen
+# beside it. Every name token is an STG_N_ key in
+# src/localisation/english/stg_names_l_english.yml.
+
+STG_YRIDIAN = {
+	category = "Humanoid"
+	randomized = no
+
+	ship_names = {
+		generic = {
+			STG_N_Yridia STG_N_Shrek STG_N_Ledger STG_N_Broker STG_N_Confidence STG_N_Whisper
+			STG_N_Ransom STG_N_Bargain STG_N_Retainer STG_N_Consignment STG_N_Arrears STG_N_Tally
+			STG_N_Escrow STG_N_Surety STG_N_Dossier STG_N_Informant STG_N_Clearing STG_N_Debenture
+			STG_N_Auction STG_N_Bailment STG_N_Leck STG_N_Yeerdrin STG_N_Shrock STG_N_Jarek
+			STG_N_Yock STG_N_Palhrek STG_N_Yjaglom STG_N_Paltockk STG_N_Paltk STG_N_Ashrglom
+			STG_N_Yern STG_N_Asnac STG_N_Perdrin STG_N_Yerdek STG_N_Lekiss STG_N_Shrocanm
+			STG_N_Jain STG_N_Yxek STG_N_Cxy STG_N_Jiyen STG_N_Ilpha STG_N_YockYock
+			STG_N_Vry STG_N_Cyy
+		}
+
+		corvette = {
+			STG_N_Escrow STG_N_Surety STG_N_Dossier STG_N_Informant STG_N_Clearing
+		}
+
+		destroyer = {
+			STG_N_Confidence STG_N_Whisper STG_N_Ransom STG_N_Bargain STG_N_Retainer
+		}
+
+		cruiser = {
+			STG_N_Consignment STG_N_Arrears STG_N_Tally STG_N_Escrow STG_N_Surety
+		}
+
+		battleship = {
+			STG_N_Dossier STG_N_Informant STG_N_Clearing STG_N_Debenture STG_N_Auction
+		}
+
+		titan = {
+			STG_N_Yridia STG_N_Shrek STG_N_Ledger STG_N_Broker
+		}
+
+		science = {
+			STG_N_Yridia STG_N_Shrek STG_N_Ledger STG_N_Broker STG_N_Confidence STG_N_Whisper
+			STG_N_Ransom
+		}
+
+		colonizer = {
+			STG_N_YridiaII STG_N_YridiaIV STG_N_Yridia STG_N_YridiaPrime STG_N_Ledger
+		}
+
+		constructor = {
+			STG_N_Bargain STG_N_Retainer STG_N_Consignment STG_N_Arrears STG_N_Tally
+		}
+	}
+
+	ship_class_names = {
+		generic = {
+			STG_N_Yridia STG_N_Shrek STG_N_Ledger STG_N_Broker STG_N_Confidence STG_N_Whisper STG_N_Ransom
+			STG_N_Bargain STG_N_Retainer
+		}
+	}
+
+	fleet_names = {
+		sequential_name = STG_YRIDIAN_GROUP
+	}
+
+	army_names = {
+		machine_assault_1 = {
+			sequential_name = STG_YRIDIAN_ASSAULTAUXILIARY
+		}
+
+		machine_defense = {
+			sequential_name = STG_YRIDIAN_DEFENSEAUXILIARY
+		}
+
+		defense_army = {
+			sequential_name = STG_YRIDIAN_PLANETARYDEFENSEAUXILIARY
+		}
+
+		assault_army = {
+			sequential_name = STG_YRIDIAN_EXPEDITIONARYAUXILIARY
+		}
+
+		slave_army = {
+			sequential_name = STG_YRIDIAN_LABORAUXILIARY
+		}
+
+		clone_army = {
+			sequential_name = STG_YRIDIAN_REPLICATEAUXILIARY
+		}
+
+		robotic_army = {
+			sequential_name = STG_YRIDIAN_AUTOMATEDAUXILIARY
+		}
+
+		psionic_army = {
+			sequential_name = STG_YRIDIAN_ADEPTAUXILIARY
+		}
+
+		xenomorph_army = {
+			sequential_name = STG_YRIDIAN_XENOMORPHAUXILIARY
+		}
+
+		gene_warrior_army = {
+			sequential_name = STG_YRIDIAN_AUGMENTEDAUXILIARY
+		}
+
+		occupation_army = {
+			sequential_name = STG_YRIDIAN_OCCUPATIONAUXILIARY
+		}
+
+		robotic_defense_army = {
+			sequential_name = STG_YRIDIAN_AUTOMATEDDEFENSEAUXILIARY
+		}
+
+		industrial_army = {
+			sequential_name = STG_YRIDIAN_INDUSTRIALAUXILIARY
+		}
+
+		primitive_army = {
+			sequential_name = STG_YRIDIAN_MILITIA
+		}
+	}
+
+	planet_names = {
+		generic = {
+			names = {
+				STG_N_YridiaII STG_N_YridiaIV STG_N_YridiaPrime STG_N_Ledger STG_N_Clearing STG_N_Escrow
+				STG_N_Tally STG_N_Consignment STG_N_Retainer STG_N_Bargain STG_N_Surety STG_N_Arrears
+				STG_N_Debenture STG_N_Auction STG_N_Bailment STG_N_Dossier STG_N_Brokerage STG_N_Freeport
+				STG_N_Countinghouse
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			weight = 100
+
+			first_names_male = {
+				STG_N_Jaglom STG_N_Shrek STG_N_Nevil STG_N_Toran STG_N_Balek STG_N_Ressik STG_N_Danar
+				STG_N_Vorik STG_N_Kelen STG_N_Marn STG_N_Tovan STG_N_Grelic STG_N_Sennar STG_N_Belok
+				STG_N_Rethan STG_N_Corvik
+			}
+
+			first_names_female = {
+				STG_N_Nevalla STG_N_Toressa STG_N_Baleen STG_N_Ressa STG_N_Danara STG_N_Vorika STG_N_Kelenna
+				STG_N_Marna STG_N_Tovanna STG_N_Grelica STG_N_Sennara STG_N_Beloka STG_N_Rethana STG_N_Corvina
+				STG_N_Yridda STG_N_Lessa
+			}
+
+			second_names = {
+				STG_N_Yridia STG_N_Shrek STG_N_Ledger STG_N_Clearing STG_N_Escrow STG_N_Tally STG_N_Consignment
+				STG_N_Retainer STG_N_Bargain STG_N_Surety STG_N_Arrears STG_N_Debenture STG_N_Auction STG_N_Bailment
+				STG_N_Dossier STG_N_Brokerage
+			}
+		}
+	}
+}

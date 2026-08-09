@@ -1,0 +1,20 @@
+﻿l_english:
+ # Display names for the advisor voice types declared by vendored STNH art in
+ # sound/advisor_voice_types/STH_advisor_voice_types.txt.
+ #
+ # Keys are the vendored file's own `name =` values, which the game looks up
+ # verbatim, so they are unprefixed; only the FILE takes stg_. Decision 10.
+ #
+ # vo_breen and vo_rom weights gated on country flags nothing sets, so neither
+ # voice could ever be chosen. Fixed by the two vendor.yml patches to
+ # STH_advisor_voice_types.txt, which swap the flags for the same
+ # owner_species / is_species_class check stg_borg_triggers.txt settled on.
+ #
+ # ICON PROVENANCE, recorded here because a .dds carries no header comment:
+ #   trait_breen_vo.dds    is vanilla's trait_pc_arctic_preference.dds
+ #   trait_romulan_vo.dds  is vanilla's trait_deviants.dds
+ # Neither path exists in vanilla, so shipping them shadows nothing.
+
+ vo_borg:0 "Borg"
+ vo_breen:0 "Breen"
+ vo_rom:0 "Romulan"

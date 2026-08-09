@@ -1,0 +1,35 @@
+# Star Trek Galaxies — the empire designer's portrait category for our species.
+#
+# New prefixed file, so it merges with vanilla's 00_portrait_categories.txt.
+#
+# Without this the sets in stg_portrait_sets.txt have no tab to live under in
+# the empire designer, so a player building a custom empire cannot reach them —
+# though the prescripted empires would still work.
+#
+# `name` is a localisation key, defined in
+# src/localisation/english/stg_species_l_english.yml.
+
+# One tab, not one per archetype: these have the Alpha Quadrant in common
+# rather than an archetype, so BRG (MACHINE) and THO (LITHOID) sit here with the
+# rest. A portrait category is a UI grouping and imposes no archetype
+# constraint.
+stg_trek_powers = {
+	name = STG_PORTRAIT_CATEGORY_TREK
+
+	sets = {
+		stg_federation_portraits
+		stg_vulcan_portraits
+		stg_klingon_portraits
+		stg_romulan_portraits
+		stg_cardassian_portraits
+		stg_ferengi_portraits
+		stg_bajoran_portraits
+		stg_trill_portraits
+		stg_andorian_portraits
+		stg_bolian_portraits
+		stg_breen_portraits
+		stg_tholian_portraits
+		stg_dominion_portraits
+		stg_borg_portraits
+	}
+}

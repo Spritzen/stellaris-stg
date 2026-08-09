@@ -1,0 +1,168 @@
+﻿# Flaxian name list, for the AI-only minor powers that use it.
+#
+# CONVERTED from .source/688086068/common/name_lists/Flaxian.txt: the tokens are
+# STNH's, resolved through STNH's own localisation and re-keyed as STG_N_. The
+# ship-size buckets are rebuilt for VANILLA's ladder -- STNH's file buckets by
+# its own (saber, sovereign, steamrunner) and those keys mean nothing here.
+#
+# See .docs/decisions/19-stnh-minor-powers-as-ai-empires.md.
+
+STG_FLAXIAN = {
+	category = "Humanoid"
+	randomized = no
+
+	ship_names = {
+		generic = {
+			STG_N_Nimaria STG_N_ImprobableCause STG_N_FurtiveTrader STG_N_SurreptitiousTrader STG_N_SlyTrader STG_N_CautiousTrader
+			STG_N_CraftyTrader STG_N_ShiftyTrader STG_N_PrivateTrader STG_N_EnigmaticTrader STG_N_CunningTrader STG_N_UnderhandTrader
+			STG_N_WilyTrader STG_N_SkulkingTrader STG_N_QuietTrader STG_N_ConcealedTrader STG_N_ClandestineTrader STG_N_VeiledTrader
+			STG_N_FurtiveShadow STG_N_SurreptitiousShadow STG_N_SlyShadow STG_N_CautiousShadow STG_N_CraftyShadow STG_N_ShiftyShadow
+			STG_N_PrivateShadow STG_N_EnigmaticShadow STG_N_CunningShadow STG_N_UnderhandedShadow STG_N_WilyShadow STG_N_SkulkingShadow
+			STG_N_QuietShadow STG_N_ConcealedShadow STG_N_VeiledShadow STG_N_UlteriorShadow STG_N_BuriedShadow STG_N_ClandestineShadow
+			STG_N_FurtiveVenture STG_N_SurreptitiousVenture STG_N_SlyVenture STG_N_CautiousVenture STG_N_CraftyVenture STG_N_ShiftyVenture
+			STG_N_PrivateVenture STG_N_EnigmaticVenture STG_N_CunningVenture STG_N_UnderhandedVenture STG_N_WilyVenture STG_N_SkulkingVenture
+			STG_N_QuietVenture STG_N_ConcealedVenture STG_N_VeiledVenture STG_N_UlteriorVenture STG_N_BuriedVenture STG_N_HiddenBlade
+			STG_N_ConcealedBlade
+		}
+
+		corvette = {
+			STG_N_UnderhandTrader STG_N_WilyTrader STG_N_SkulkingTrader STG_N_QuietTrader STG_N_ConcealedTrader
+		}
+
+		destroyer = {
+			STG_N_ClandestineTrader STG_N_VeiledTrader STG_N_FurtiveShadow STG_N_SurreptitiousShadow STG_N_SlyShadow
+		}
+
+		cruiser = {
+			STG_N_CautiousShadow STG_N_CraftyShadow STG_N_ShiftyShadow STG_N_PrivateShadow STG_N_EnigmaticShadow
+		}
+
+		battleship = {
+			STG_N_CunningShadow STG_N_UnderhandedShadow STG_N_WilyShadow STG_N_SkulkingShadow STG_N_QuietShadow
+		}
+
+		titan = {
+			STG_N_ConcealedShadow STG_N_VeiledShadow STG_N_UlteriorShadow STG_N_BuriedShadow
+		}
+
+		science = {
+			STG_N_Nimaria STG_N_ImprobableCause STG_N_FurtiveTrader STG_N_SurreptitiousTrader STG_N_SlyTrader STG_N_CautiousTrader
+		}
+
+		colonizer = {
+			STG_N_Nimaria STG_N_ImprobableCause STG_N_FurtiveTrader STG_N_SurreptitiousTrader STG_N_SlyTrader
+		}
+
+		constructor = {
+			STG_N_CraftyTrader STG_N_ShiftyTrader STG_N_PrivateTrader STG_N_EnigmaticTrader STG_N_CunningTrader
+		}
+	}
+
+	ship_class_names = {
+		generic = {
+			STG_N_Nimaria STG_N_ImprobableCause STG_N_FurtiveTrader STG_N_SurreptitiousTrader STG_N_SlyTrader STG_N_CautiousTrader
+			STG_N_CraftyTrader STG_N_ShiftyTrader STG_N_PrivateTrader
+		}
+	}
+
+	fleet_names = {
+		sequential_name = STG_FLAXIAN_GROUP
+	}
+
+	army_names = {
+		machine_assault_1 = {
+			sequential_name = STG_FLAXIAN_ASSAULTAUXILIARY
+		}
+
+		machine_defense = {
+			sequential_name = STG_FLAXIAN_DEFENSEAUXILIARY
+		}
+
+		defense_army = {
+			sequential_name = STG_FLAXIAN_PLANETARYDEFENSEAUXILIARY
+		}
+
+		assault_army = {
+			sequential_name = STG_FLAXIAN_EXPEDITIONARYAUXILIARY
+		}
+
+		slave_army = {
+			sequential_name = STG_FLAXIAN_LABORAUXILIARY
+		}
+
+		clone_army = {
+			sequential_name = STG_FLAXIAN_REPLICATEAUXILIARY
+		}
+
+		robotic_army = {
+			sequential_name = STG_FLAXIAN_AUTOMATEDAUXILIARY
+		}
+
+		psionic_army = {
+			sequential_name = STG_FLAXIAN_ADEPTAUXILIARY
+		}
+
+		xenomorph_army = {
+			sequential_name = STG_FLAXIAN_XENOMORPHAUXILIARY
+		}
+
+		gene_warrior_army = {
+			sequential_name = STG_FLAXIAN_AUGMENTEDAUXILIARY
+		}
+
+		occupation_army = {
+			sequential_name = STG_FLAXIAN_OCCUPATIONAUXILIARY
+		}
+
+		robotic_defense_army = {
+			sequential_name = STG_FLAXIAN_AUTOMATEDDEFENSEAUXILIARY
+		}
+
+		industrial_army = {
+			sequential_name = STG_FLAXIAN_INDUSTRIALAUXILIARY
+		}
+
+		primitive_army = {
+			sequential_name = STG_FLAXIAN_MILITIA
+		}
+	}
+
+	planet_names = {
+		generic = {
+			names = {
+				STG_N_Nimaria STG_N_ImprobableCause STG_N_FurtiveTrader STG_N_SurreptitiousTrader STG_N_SlyTrader STG_N_CautiousTrader
+				STG_N_CraftyTrader STG_N_ShiftyTrader STG_N_PrivateTrader STG_N_EnigmaticTrader STG_N_CunningTrader STG_N_UnderhandTrader
+				STG_N_WilyTrader STG_N_SkulkingTrader STG_N_QuietTrader STG_N_ConcealedTrader STG_N_ClandestineTrader STG_N_VeiledTrader
+				STG_N_FurtiveShadow STG_N_SurreptitiousShadow STG_N_SlyShadow STG_N_CautiousShadow STG_N_CraftyShadow STG_N_ShiftyShadow
+				STG_N_PrivateShadow STG_N_EnigmaticShadow STG_N_CunningShadow STG_N_UnderhandedShadow STG_N_WilyShadow STG_N_SkulkingShadow
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			weight = 100
+
+			first_names_male = {
+				STG_N_Valderi STG_N_Retaya STG_N_Dekora STG_N_Faldera STG_N_Falderi STG_N_Mizael
+				STG_N_Vidro STG_N_Calvari STG_N_Haderi STG_N_Hadera STG_N_Vittori STG_N_Niranya
+				STG_N_Hiranya STG_N_Namaha STG_N_Grinsi STG_N_Matixi STG_N_Oninoni STG_N_Zimpulsi
+				STG_N_Janaci STG_N_Kodi STG_N_Timthehati STG_N_Kumbi STG_N_Vaxilda STG_N_Gilma
+			}
+
+			first_names_female = {
+				STG_N_Vidri STG_N_Calviri STG_N_Alonzi STG_N_Alberi STG_N_Agnese STG_N_Andri
+				STG_N_Adri STG_N_Badri STG_N_Balbi STG_N_Fabi STG_N_Gausti STG_N_Fausti
+				STG_N_Flavi STG_N_Forti STG_N_Fulva STG_N_Fiola STG_N_Niola STG_N_Miolla
+				STG_N_Molli STG_N_Pollina STG_N_Fideli STG_N_Elnora STG_N_Elini STG_N_Evi
+			}
+
+			second_names = {
+				STG_N_Valderi STG_N_Retaya STG_N_Dekora STG_N_Faldera STG_N_Falderi STG_N_Mizael
+				STG_N_Vidro STG_N_Calvari STG_N_Haderi STG_N_Hadera STG_N_Vittori STG_N_Niranya
+				STG_N_Hiranya STG_N_Namaha STG_N_Grinsi STG_N_Matixi STG_N_Oninoni STG_N_Zimpulsi
+				STG_N_Janaci STG_N_Kodi STG_N_Timthehati STG_N_Kumbi STG_N_Vaxilda STG_N_Gilma
+			}
+		}
+	}
+}

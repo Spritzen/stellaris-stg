@@ -1,0 +1,177 @@
+﻿# Ferengi Alliance name list.
+#
+# Ships are named for ventures and holdings rather than for heroes — the
+# canon vessels (Kreechta, Krayton, Quark's Treasure) sit alongside the
+# commercial vocabulary the Rules of Acquisition run on.
+#
+# Canon names almost no Ferengi women (Ishka and Pel excepted), so the rest of
+# first_names_female are constructed to the same phonology — an empty block
+# would make the game fall back to the male list.
+#
+# Structure mirrors /stellaris/common/name_lists/HUMAN1.txt. Every name token
+# is an STG_N_ key in src/localisation/english/stg_names_l_english.yml.
+
+STG_FERENGI = {
+	category = "Humanoid"
+	randomized = no
+
+	ship_names = {
+		generic = {
+			STG_N_Kreechta STG_N_Krayton STG_N_QuarksTreasure STG_N_DivineTreasury STG_N_GreatMaterialContinuum STG_N_TowerofCommerce
+			STG_N_LatinumStar STG_N_GoldenLedger STG_N_Acquisition STG_N_ProfitMargin STG_N_SacredMarketplace STG_N_Gint
+			STG_N_Zek STG_N_Brunt STG_N_Naftel STG_N_SlugCove STG_N_Wager STG_N_Bargain
+			STG_N_DKora STG_N_Nagus STG_N_Nandi STG_N_Fiscal STG_N_Pareto STG_N_Credit
+			STG_N_Marauder STG_N_Abundance STG_N_Actuary STG_N_Adeel STG_N_Affidavit STG_N_Affluence
+			STG_N_Allotment STG_N_Alltier STG_N_Amortize STG_N_Andrion STG_N_Annex STG_N_Annuity
+			STG_N_Appraiser STG_N_Arbitrage STG_N_Arbitration STG_N_Arrears STG_N_Asin STG_N_Assay
+			STG_N_Assessor STG_N_Auditor STG_N_Avarice STG_N_Avonia STG_N_Bestan STG_N_Bokira
+			STG_N_Bovris STG_N_Braktel STG_N_Capitalist STG_N_Chulebas STG_N_Climmakral STG_N_Client
+			STG_N_Commerce STG_N_Commission STG_N_Company STG_N_Compound STG_N_Contrarian STG_N_Contribution
+			STG_N_Crell STG_N_Dalion STG_N_Deyer STG_N_Domu STG_N_Dussooron STG_N_Edja
+			STG_N_Krannek STG_N_Garvan STG_N_Hartan STG_N_Hester STG_N_Himpos STG_N_Igen
+			STG_N_Karluk STG_N_Keechvar STG_N_Kekron STG_N_Kimel-Mirom STG_N_Korr STG_N_Kraalor
+			STG_N_Kramora STG_N_Krayvis STG_N_Kyrasam STG_N_LatinumQueen STG_N_LeveragedBuyout STG_N_Margin
+			STG_N_Merchant STG_N_Merger STG_N_Mes-Vatra STG_N_Moori STG_N_Nam-Breth STG_N_Negotiator
+			STG_N_Notary STG_N_Ob-Strori STG_N_Oetalgolor STG_N_Ondik STG_N_Preekon STG_N_Qartum
+			STG_N_Rard-Pis STG_N_RationalProfit STG_N_Seventy-FifthRule STG_N_Soodii STG_N_Tadinia STG_N_Tampanium
+			STG_N_Tenyt STG_N_Tinnarr STG_N_Togram STG_N_Usotroo STG_N_Varkart STG_N_Venture
+			STG_N_Wealth STG_N_Windfall
+		}
+
+		corvette = {
+			STG_N_Marauder STG_N_Skimmer STG_N_Haggler STG_N_Bargainer STG_N_Middleman
+		}
+
+		destroyer = {
+			STG_N_Enforcer STG_N_Collector STG_N_Repossessor STG_N_Foreclosure
+		}
+
+		cruiser = {
+			STG_N_DKora STG_N_Kreechta STG_N_Krayton STG_N_TradeWind
+		}
+
+		battleship = {
+			STG_N_GrandNagus STG_N_TowerofCommerce STG_N_DivineTreasury STG_N_GreatMaterialContinuum
+		}
+
+		titan = {
+			STG_N_Gint STG_N_Zek STG_N_LatinumStar STG_N_SacredMarketplace
+		}
+
+		science = {
+			STG_N_Assayer STG_N_Appraiser STG_N_Auditor STG_N_Prospect STG_N_FairMarket STG_N_SurveyorsDue
+			STG_N_Ledger
+		}
+
+		colonizer = {
+			STG_N_NewFerenginar STG_N_ClaimStake STG_N_Homestead STG_N_Venture STG_N_Prospector
+		}
+
+		constructor = {
+			STG_N_Fabricator STG_N_Subcontract STG_N_Tender STG_N_Scaffold STG_N_Bid
+		}
+	}
+
+	ship_class_names = {
+		generic = {
+			STG_N_DKora STG_N_Marauder STG_N_Kreechta STG_N_Krayton STG_N_Nagus STG_N_Ledger STG_N_Bargainer
+			STG_N_TradeWind STG_N_Venture
+		}
+	}
+
+	fleet_names = {
+		sequential_name = STG_FERENGI_CONSORTIUM
+	}
+
+	army_names = {
+		machine_assault_1 = {
+			sequential_name = STG_FERENGI_ASSAULTCONTRACT
+		}
+
+		machine_defense = {
+			sequential_name = STG_FERENGI_DEFENSECONTRACT
+		}
+
+		defense_army = {
+			sequential_name = STG_FERENGI_PLANETARYDEFENSECONTRACT
+		}
+
+		assault_army = {
+			sequential_name = STG_FERENGI_EXPEDITIONARYCONTRACT
+		}
+
+		slave_army = {
+			sequential_name = STG_FERENGI_LABORCONTRACT
+		}
+
+		clone_army = {
+			sequential_name = STG_FERENGI_REPLICATECONTRACT
+		}
+
+		robotic_army = {
+			sequential_name = STG_FERENGI_AUTOMATEDCONTRACT
+		}
+
+		psionic_army = {
+			sequential_name = STG_FERENGI_ADEPTCONTRACT
+		}
+
+		xenomorph_army = {
+			sequential_name = STG_FERENGI_XENOMORPHCONTRACT
+		}
+
+		gene_warrior_army = {
+			sequential_name = STG_FERENGI_AUGMENTEDCONTRACT
+		}
+
+		occupation_army = {
+			sequential_name = STG_FERENGI_OCCUPATIONCONTRACT
+		}
+
+		robotic_defense_army = {
+			sequential_name = STG_FERENGI_AUTOMATEDDEFENSECONTRACT
+		}
+
+		industrial_army = {
+			sequential_name = STG_FERENGI_INDUSTRIALCONTRACT
+		}
+
+		primitive_army = {
+			sequential_name = STG_FERENGI_MILITIA
+		}
+	}
+
+	planet_names = {
+		generic = {
+			names = {
+				STG_N_Clarus STG_N_Irtok STG_N_Balancar STG_N_VolchokPrime STG_N_GintsRest STG_N_NagusPrime
+				STG_N_Ferengal STG_N_SlugCove STG_N_Rainfall STG_N_Cascade STG_N_Torrent STG_N_Muck
+				STG_N_Ledger STG_N_Tally STG_N_Vault STG_N_Exchange STG_N_Bourse STG_N_CountingHouse
+				STG_N_Drip
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			weight = 100
+
+			first_names_male = {
+				STG_N_Quark STG_N_Rom STG_N_Nog STG_N_Zek STG_N_Brunt STG_N_Gint STG_N_Gral STG_N_Tog STG_N_Bok
+				STG_N_Krax STG_N_Kol STG_N_Lurin STG_N_Nava STG_N_Omag STG_N_Prak STG_N_Qol STG_N_Sovak STG_N_Taar
+				STG_N_Ulis STG_N_Goss STG_N_Arridor STG_N_Bractor STG_N_Keldar STG_N_Leck
+			}
+
+			first_names_female = {
+				STG_N_Ishka STG_N_Pel STG_N_Lumba STG_N_Vola STG_N_Nilka STG_N_Terga STG_N_Zeka STG_N_Mova
+				STG_N_Bruna STG_N_Kila STG_N_Grelka STG_N_Domma
+			}
+
+			second_names = {
+				STG_N_Zek STG_N_Keldar STG_N_Gral STG_N_Tog STG_N_Bok STG_N_Krax STG_N_Nava STG_N_Prak STG_N_Sovak
+				STG_N_Ulis STG_N_Goss STG_N_Bractor STG_N_Omag STG_N_Lurin STG_N_Qol STG_N_Taar STG_N_Arridor
+				STG_N_Leck
+			}
+		}
+	}
+}

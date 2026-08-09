@@ -1,0 +1,173 @@
+﻿# MAM1 name list, for the AI-only minor powers that use it.
+#
+# CONVERTED from .source/688086068/common/name_lists/MAM1.txt: the tokens are
+# STNH's, resolved through STNH's own localisation and re-keyed as STG_N_. The
+# ship-size buckets are rebuilt for VANILLA's ladder -- STNH's file buckets by
+# its own (saber, sovereign, steamrunner) and those keys mean nothing here.
+#
+# See .docs/decisions/19-stnh-minor-powers-as-ai-empires.md.
+
+STG_MAM1 = {
+	category = "Humanoid"
+	randomized = no
+
+	ship_names = {
+		generic = {
+			STG_N_TTanak STG_N_TTuda STG_N_TTimonok STG_N_TDimik STG_N_TDerikam STG_N_DDana
+			STG_N_DVormat STG_N_DKirmik STG_N_TKana STG_N_TTamik STG_N_DTirak STG_N_TKomot
+			STG_N_DValam STG_N_TLigam STG_N_DTunak STG_N_TKolbak STG_N_DTuma STG_N_TTollok
+			STG_N_YTharak STG_N_YGora STG_N_YFalsek STG_N_YKono STG_N_YJargam STG_N_YLambak
+			STG_N_YNoro STG_N_YLoram STG_N_YValdim STG_N_YSoram STG_N_DDirim STG_N_DMoro
+			STG_N_DFarak STG_N_TTimin STG_N_TVorg STG_N_TLirmak STG_N_DJolsik STG_N_YBamta
+			STG_N_YBarra STG_N_DSoto STG_N_TRalsak STG_N_DOrom STG_N_DOh STG_N_DIrim
+			STG_N_TYlgar STG_N_TTorga STG_N_TUgana STG_N_YLesmag STG_N_YSorom STG_N_YParga
+			STG_N_THarik STG_N_TSirom STG_N_YGlara STG_N_DNaka STG_N_TMiri STG_N_TSirma
+			STG_N_TTaco STG_N_DTarga STG_N_DIrfa STG_N_DPollog STG_N_DVirbo STG_N_TNara
+			STG_N_TMigor STG_N_DAnara STG_N_DAram STG_N_TTalok STG_N_YArio STG_N_YMaggro
+			STG_N_DVarik STG_N_DOrang STG_N_DRila STG_N_TTyrik STG_N_TTerell STG_N_TTynnia
+			STG_N_TNerok STG_N_DAllas STG_N_TVojak STG_N_TNir STG_N_DDamma STG_N_DPenek
+			STG_N_DIrio STG_N_DTarikon STG_N_DSaba STG_N_DEviko STG_N_TBlirak STG_N_TKanor
+			STG_N_YPana STG_N_YViram STG_N_YKanas STG_N_YSarik STG_N_YPanjik STG_N_TKlea
+			STG_N_YVardos STG_N_YCaram STG_N_DBuris STG_N_DBanna STG_N_DKuru STG_N_DMarov
+			STG_N_DSagri STG_N_TBomka STG_N_TSaris
+		}
+
+		corvette = {
+			STG_N_TKomot STG_N_DValam STG_N_TLigam STG_N_DTunak STG_N_TKolbak
+		}
+
+		destroyer = {
+			STG_N_DTuma STG_N_TTollok STG_N_YTharak STG_N_YGora STG_N_YFalsek
+		}
+
+		cruiser = {
+			STG_N_YKono STG_N_YJargam STG_N_YLambak STG_N_YNoro STG_N_YLoram
+		}
+
+		battleship = {
+			STG_N_YValdim STG_N_YSoram STG_N_DDirim STG_N_DMoro STG_N_DFarak
+		}
+
+		titan = {
+			STG_N_TTimin STG_N_TVorg STG_N_TLirmak STG_N_DJolsik
+		}
+
+		science = {
+			STG_N_TTanak STG_N_TTuda STG_N_TTimonok STG_N_TDimik STG_N_TDerikam STG_N_DDana
+		}
+
+		colonizer = {
+			STG_N_Korrim STG_N_CaldansFirst STG_N_RivnsBurrow STG_N_Rattia STG_N_Fortana
+		}
+
+		constructor = {
+			STG_N_DVormat STG_N_DKirmik STG_N_TKana STG_N_TTamik STG_N_DTirak
+		}
+	}
+
+	ship_class_names = {
+		generic = {
+			STG_N_TTanak STG_N_TTuda STG_N_TTimonok STG_N_TDimik STG_N_TDerikam STG_N_DDana
+			STG_N_DVormat STG_N_DKirmik STG_N_TKana
+		}
+	}
+
+	fleet_names = {
+		sequential_name = STG_MAM1_GROUP
+	}
+
+	army_names = {
+		machine_assault_1 = {
+			sequential_name = STG_MAM1_ASSAULTAUXILIARY
+		}
+
+		machine_defense = {
+			sequential_name = STG_MAM1_DEFENSEAUXILIARY
+		}
+
+		defense_army = {
+			sequential_name = STG_MAM1_PLANETARYDEFENSEAUXILIARY
+		}
+
+		assault_army = {
+			sequential_name = STG_MAM1_EXPEDITIONARYAUXILIARY
+		}
+
+		slave_army = {
+			sequential_name = STG_MAM1_LABORAUXILIARY
+		}
+
+		clone_army = {
+			sequential_name = STG_MAM1_REPLICATEAUXILIARY
+		}
+
+		robotic_army = {
+			sequential_name = STG_MAM1_AUTOMATEDAUXILIARY
+		}
+
+		psionic_army = {
+			sequential_name = STG_MAM1_ADEPTAUXILIARY
+		}
+
+		xenomorph_army = {
+			sequential_name = STG_MAM1_XENOMORPHAUXILIARY
+		}
+
+		gene_warrior_army = {
+			sequential_name = STG_MAM1_AUGMENTEDAUXILIARY
+		}
+
+		occupation_army = {
+			sequential_name = STG_MAM1_OCCUPATIONAUXILIARY
+		}
+
+		robotic_defense_army = {
+			sequential_name = STG_MAM1_AUTOMATEDDEFENSEAUXILIARY
+		}
+
+		industrial_army = {
+			sequential_name = STG_MAM1_INDUSTRIALAUXILIARY
+		}
+
+		primitive_army = {
+			sequential_name = STG_MAM1_MILITIA
+		}
+	}
+
+	planet_names = {
+		generic = {
+			names = {
+				STG_N_Korrim STG_N_CaldansFirst STG_N_RivnsBurrow STG_N_Rattia STG_N_Fortana STG_N_Pollimin
+				STG_N_Firren STG_N_Carimal STG_N_Mehrnana STG_N_Finton STG_N_RoriensGrove STG_N_Fortalia
+				STG_N_Biroi STG_N_Varnia STG_N_Cardilia STG_N_Kormli STG_N_DarposCommunion STG_N_Dissadia
+				STG_N_UltiasShelter STG_N_ManisDen STG_N_FirtlesWeb STG_N_PottlesPantry STG_N_MortinsMarrow STG_N_Tourivale
+				STG_N_Droitandir STG_N_Lavelkor STG_N_ColloniasHomestead STG_N_UthiansShrine STG_N_Forfion STG_N_Carnaloa
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			weight = 100
+
+			first_names_male = {
+				STG_N_Tig STG_N_Ser STG_N_Vak STG_N_Mor STG_N_Gan STG_N_Pud
+				STG_N_Cal STG_N_Vir STG_N_Bur STG_N_Tan STG_N_Mik STG_N_Gor
+				STG_N_Oro STG_N_Dim
+			}
+
+			first_names_female = {
+				STG_N_Ban STG_N_Gar STG_N_Sok STG_N_JKhanna STG_N_JKir STG_N_JDallot
+				STG_N_JGhor STG_N_JBassim STG_N_BDonag STG_N_BThan STG_N_BScorak STG_N_BEren
+				STG_N_BTorak STG_N_Sakir
+			}
+
+			second_names = {
+				STG_N_Tig STG_N_Ser STG_N_Vak STG_N_Mor STG_N_Gan STG_N_Pud
+				STG_N_Cal STG_N_Vir STG_N_Bur STG_N_Tan STG_N_Mik STG_N_Gor
+				STG_N_Oro STG_N_Dim STG_N_Ban STG_N_Gar STG_N_Sok STG_N_JKhanna
+				STG_N_JKir STG_N_JDallot STG_N_JGhor STG_N_JBassim STG_N_BDonag STG_N_BThan
+			}
+		}
+	}
+}

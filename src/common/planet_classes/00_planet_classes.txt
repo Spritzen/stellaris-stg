@@ -1,0 +1,1675 @@
+# 00_planet_classes.txt -- OVERRIDE. Shadows vanilla and every vendored copy.
+#
+# Three-way merge of vanilla + Real Space 4.0 + Planetary Diversity, required
+# because both mods rewrite this file and last-wins would silently discard one
+# of them. Load-bearing for habitability: a bad merge produces empires that
+# cannot colonise. See .docs/architecture/conflict-register.md.
+#
+# Base: Planetary Diversity (purely additive conditional_icon lines), then Real
+# Space's delta on top. Two things about that delta are easy to get wrong:
+#   * The 11 star and singularity classes it drops are MOVED, not deleted, to
+#     common/planet_classes/realspace_planet_classes.txt. Restoring vanilla's
+#     copies here would duplicate every one of them.
+#   * Its asteroid/gas-giant rescales use @giant_standard_scale and
+#     @asteroid_standard_scale, which resolve from Real Space - System Scale,
+#     not Real Space itself.
+#
+# Regenerate by re-deriving from the sources; do not hand-patch. Source state
+# when this was merged (sha256/12, line endings normalised):
+#   vanilla         27f033feb03a
+#   Real Space 4.0  eb2f617ff327
+#   Planetary Div.  080e5530aa05
+# If those no longer match /stellaris and /workshop, this merge is stale.
+
+# Star glow from sun is set under atmosphere in	00_planet_classes
+# Star surface is set in worldgfx file for each star
+# Effects are set in particle effect for each star
+# New planets also need planet tiles (game\gfx\interface\icons\tile_backgrounds)
+# New planets need surface background (game\gfx\portraits\environments)
+
+### EXAMPLE:
+#pc_tropical = {
+#	entity = "gaia_planet"
+#	entity_scale = 8.0
+#
+#	picture = pc_tropical	# Use tropical portrait art instead of gaia
+#
+#	atmosphere_color		= hsv { 0.58	0.3 0.7 }
+#	atmosphere_intensity	= 1.0
+#	atmosphere_width		= 0.5
+#
+#	city_color_lut = "gfx/portraits/misc/colorcorrection_neutral.tga"
+#
+#	min_distance_from_sun = 60
+#	max_distance_from_sun = 80
+#	spawn_odds = 10
+#
+#
+#	extra_orbit_size = 0
+#	extra_planet_count = 0
+#
+#	chance_of_ring = 0.2
+#
+#	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+#	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+#
+#	colonizable = yes
+#	colonization_tech = { "tech_tropical_colonization@1" }
+#	district_set = <string>		# Use any string here, for use in the uses_district_set trigger for easy compatibility
+#	initial = yes # Default is no, only specified for planets available as starting classes for custom species
+#	potential = { host_has_dlc = "Infernals Species Pack" } # Trigger for the planet class to spawn, no scope check
+#
+#	uses_alternative_skies_for_moons = yes				# Will set planet background for moon
+#	uses_alternative_skies_if_has_orbital_ring = yes	# Will set planet background if has orbital ring, Default is no.
+#
+#	space_monster_target = yes	# Country types with space monster AI will wander to this planet type if set to yes
+#
+#	is_artificial_planet = yes	# Will make sure that modifiers for non artificial planets are not added, e.g. max districts
+#	inherit_country_building_modifiers = yes/no # default = yes; Can be used to block all other additions of max building and district modifiers except the planet class specific ones.
+#
+#	conditional_icon = {
+#		trigger = {
+#			# scope: colony_carrier (planet or ship depending on carrier type)
+#			ship = { is_ship_size = science_arkship_tier_1 }
+#		}
+#		icon = GFX_planet_type_science_arkship_1
+#		icon_large = GFX_planet_type_science_arkship_1_big
+#	}
+#	# Overrides icon and icon_large based on colony-carrier conditions. Evaluated in order; first match wins.
+#	# Falls back to the top-level icon/icon_large if no conditions match, or when no carrier context is
+#	# available (e.g. when showing the class generically in a terraforming target list).
+#
+#	single_build_queue = yes	# Default: no. If yes, merges all build queues from the colony and carrier into a single one
+#								# If the carrier is also a starbase, this includes build queues in the starbase as well
+#								# Build queues for external buildings like holdings ignore this parameter and are kept separate
+#}
+###
+
+####################
+# Habitable Planets
+####################
+
+# Dry
+pc_desert = {
+	entity = "desert_planet"
+	icon = GFX_planet_type_desert
+	icon_large = GFX_planet_type_desert_big
+
+	climate = "dry"
+	initial = yes
+
+	auto_trait_prio = {
+		trait_auto_dry_preference
+	}
+
+	entity_scale = @planet_standard_scale
+
+	atmosphere_color		= hsv { 0.50 0.2 0.8 }
+	atmosphere_intensity	= 1.0
+	atmosphere_width		= 0.5
+
+	min_distance_from_sun = @habitable_min_distance
+	max_distance_from_sun = @habitable_max_distance
+	spawn_odds = @habitable_spawn_odds
+
+	city_color_lut = "gfx/portraits/misc/colorcorrection_desert.dds"
+
+	extra_orbit_size = 0
+	extra_planet_count = 0
+
+	chance_of_ring = 0.2
+
+	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+
+	production_spawn_chance = 0.4
+
+	colonizable = yes
+	district_set = standard
+	uses_alternative_skies_for_moons = yes
+	uses_alternative_skies_if_has_orbital_ring = yes
+
+	carry_cap_per_free_district = @carry_cap_normal
+
+	conditional_icon = { trigger = { has_modifier = pd_dune }     icon = GFX_planet_type_pd_dune     icon_large = GFX_planet_type_pd_dune_big }
+	conditional_icon = { trigger = { has_modifier = pd_oasis }    icon = GFX_planet_type_pd_oasis    icon_large = GFX_planet_type_pd_oasis_big }
+	conditional_icon = { trigger = { has_modifier = pd_outback }  icon = GFX_planet_type_pd_outback  icon_large = GFX_planet_type_pd_outback_big }
+	conditional_icon = { trigger = { has_modifier = pd_coastal }  icon = GFX_planet_type_pd_coastal  icon_large = GFX_planet_type_pd_coastal_big }
+	conditional_icon = { trigger = { has_modifier = pd_fungi }    icon = GFX_planet_type_pd_fungi    icon_large = GFX_planet_type_pd_fungi_big }
+	conditional_icon = { trigger = { has_modifier = pd_ironsand } icon = GFX_planet_type_pd_ironsand icon_large = GFX_planet_type_pd_ironsand_big }
+	conditional_icon = { trigger = { has_modifier = pd_cactus }   icon = GFX_planet_type_pd_cactus   icon_large = GFX_planet_type_pd_cactus_big }
+	conditional_icon = { trigger = { has_modifier = pd_dust }     icon = GFX_planet_type_pd_dust     icon_large = GFX_planet_type_pd_dust_big }
+	conditional_icon = { trigger = { has_modifier = pd_sodalite } icon = GFX_planet_type_pd_sodalite icon_large = GFX_planet_type_pd_sodalite_big }
+	conditional_icon = { trigger = { has_modifier = pd_salt }     icon = GFX_planet_type_pd_salt     icon_large = GFX_planet_type_pd_salt_big }
+	conditional_icon = { trigger = { has_modifier = pd_aquifer }  icon = GFX_planet_type_pd_aquifer  icon_large = GFX_planet_type_pd_aquifer_big }
+}
+
+pc_arid = {
+	entity = "arid_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_arid
+	icon_large = GFX_planet_type_arid_big
+
+	climate = "dry"
+	initial = yes
+
+	auto_trait_prio = {
+		trait_auto_dry_preference
+	}
+
+	atmosphere_color		= hsv { 0.50 0.3 0.7 }
+	atmosphere_intensity	= 1.0
+	atmosphere_width		= 0.5
+
+	min_distance_from_sun = @habitable_min_distance
+	max_distance_from_sun = @habitable_max_distance
+	spawn_odds = @habitable_spawn_odds
+
+	city_color_lut = "gfx/portraits/misc/colorcorrection_arid.dds"
+
+	extra_orbit_size = 0
+	extra_planet_count = 0
+
+	chance_of_ring = 0.2
+
+	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+
+	colonizable = yes
+	district_set = standard
+	uses_alternative_skies_for_moons = yes
+	uses_alternative_skies_if_has_orbital_ring = yes
+
+	carry_cap_per_free_district = @carry_cap_normal
+
+	conditional_icon = { trigger = { has_modifier = pd_mesa }          icon = GFX_planet_type_pd_mesa          icon_large = GFX_planet_type_pd_mesa_big }
+	conditional_icon = { trigger = { has_modifier = pd_fog_desert }    icon = GFX_planet_type_pd_fog_desert    icon_large = GFX_planet_type_pd_fog_desert_big }
+	conditional_icon = { trigger = { has_modifier = pd_mediterranean } icon = GFX_planet_type_pd_mediterranean icon_large = GFX_planet_type_pd_mediterranean_big }
+	conditional_icon = { trigger = { has_modifier = pd_badlands }      icon = GFX_planet_type_pd_badlands      icon_large = GFX_planet_type_pd_badlands_big }
+	conditional_icon = { trigger = { has_modifier = pd_succulent }     icon = GFX_planet_type_pd_succulent     icon_large = GFX_planet_type_pd_succulent_big }
+	conditional_icon = { trigger = { has_modifier = pd_striped }       icon = GFX_planet_type_pd_striped       icon_large = GFX_planet_type_pd_striped_big }
+	conditional_icon = { trigger = { has_modifier = pd_amethyst }      icon = GFX_planet_type_pd_amethyst      icon_large = GFX_planet_type_pd_amethyst_big }
+	conditional_icon = { trigger = { has_modifier = pd_opal }          icon = GFX_planet_type_pd_opal          icon_large = GFX_planet_type_pd_opal_big }
+	conditional_icon = { trigger = { has_modifier = pd_superbloom }    icon = GFX_planet_type_pd_superbloom    icon_large = GFX_planet_type_pd_superbloom_big }
+	conditional_icon = { trigger = { has_modifier = pd_coral }         icon = GFX_planet_type_pd_coral         icon_large = GFX_planet_type_pd_coral_big }
+	conditional_icon = { trigger = { has_modifier = pd_primal }        icon = GFX_planet_type_pd_primal        icon_large = GFX_planet_type_pd_primal_big }
+}
+
+pc_savannah = {
+	entity = "savannah_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_savannah
+	icon_large = GFX_planet_type_savannah_big
+
+	climate = "dry"
+	initial = yes
+
+	auto_trait_prio = {
+		trait_auto_dry_preference
+	}
+
+	atmosphere_color		= hsv { 0.50 0.3 0.7 }
+	atmosphere_intensity	= 1.0
+	atmosphere_width		= 0.5
+
+	min_distance_from_sun = @habitable_min_distance
+	max_distance_from_sun = @habitable_max_distance
+	spawn_odds = @habitable_spawn_odds
+
+	city_color_lut = "gfx/portraits/misc/colorcorrection_savannah.dds"
+
+	extra_orbit_size = 0
+	extra_planet_count = 0
+
+	chance_of_ring = 0.2
+
+	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+
+	colonizable = yes
+	district_set = standard
+	uses_alternative_skies_for_moons = yes
+	uses_alternative_skies_if_has_orbital_ring = yes
+
+	carry_cap_per_free_district = @carry_cap_normal
+
+	conditional_icon = { trigger = { has_modifier = pd_steppe }         icon = GFX_planet_type_pd_steppe         icon_large = GFX_planet_type_pd_steppe_big }
+	conditional_icon = { trigger = { has_modifier = pd_prairie }        icon = GFX_planet_type_pd_prairie        icon_large = GFX_planet_type_pd_prairie_big }
+	conditional_icon = { trigger = { has_modifier = pd_semi_arid }      icon = GFX_planet_type_pd_semi_arid      icon_large = GFX_planet_type_pd_semi_arid_big }
+	conditional_icon = { trigger = { has_modifier = pd_aspen }          icon = GFX_planet_type_pd_aspen          icon_large = GFX_planet_type_pd_aspen_big }
+	conditional_icon = { trigger = { has_modifier = pd_sandstone }      icon = GFX_planet_type_pd_sandstone      icon_large = GFX_planet_type_pd_sandstone_big }
+	conditional_icon = { trigger = { has_modifier = pd_turquoise }      icon = GFX_planet_type_pd_turquoise      icon_large = GFX_planet_type_pd_turquoise_big }
+	conditional_icon = { trigger = { has_modifier = pd_calcite }        icon = GFX_planet_type_pd_calcite        icon_large = GFX_planet_type_pd_calcite_big }
+	conditional_icon = { trigger = { has_modifier = pd_monsoon }        icon = GFX_planet_type_pd_monsoon        icon_large = GFX_planet_type_pd_monsoon_big }
+	conditional_icon = { trigger = { has_modifier = pd_silvergrass }    icon = GFX_planet_type_pd_silvergrass    icon_large = GFX_planet_type_pd_silvergrass_big }
+	conditional_icon = { trigger = { has_modifier = pd_supercontinent } icon = GFX_planet_type_pd_supercontinent icon_large = GFX_planet_type_pd_supercontinent_big }
+	conditional_icon = { trigger = { has_modifier = pd_sinkhole }       icon = GFX_planet_type_pd_sinkhole       icon_large = GFX_planet_type_pd_sinkhole_big }
+}
+
+# Temperate
+pc_tropical = {
+	entity = "tropical_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_tropical
+	icon_large = GFX_planet_type_tropical_big
+
+	climate = "wet"
+	initial = yes
+
+	auto_trait_prio = {
+		trait_auto_wet_preference
+	}
+
+	atmosphere_color		= hsv { 0.58	0.3 0.7 }
+	atmosphere_intensity	= 1.0
+	atmosphere_width		= 0.5
+
+	city_color_lut = "gfx/portraits/misc/colorcorrection_tropical.dds"
+
+	min_distance_from_sun = @habitable_min_distance
+	max_distance_from_sun = @habitable_max_distance
+	spawn_odds = @habitable_spawn_odds
+
+	extra_orbit_size = 0
+	extra_planet_count = 0
+
+	chance_of_ring = 0.2
+
+	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+
+	colonizable = yes
+	district_set = standard
+	uses_alternative_skies_for_moons = yes
+	uses_alternative_skies_if_has_orbital_ring = yes
+
+	carry_cap_per_free_district = @carry_cap_normal
+
+	conditional_icon = { trigger = { has_modifier = pd_atoll }     icon = GFX_planet_type_pd_atoll     icon_large = GFX_planet_type_pd_atoll_big }
+	conditional_icon = { trigger = { has_modifier = pd_tepui }     icon = GFX_planet_type_pd_tepui     icon_large = GFX_planet_type_pd_tepui_big }
+	conditional_icon = { trigger = { has_modifier = pd_mangrove }  icon = GFX_planet_type_pd_mangrove  icon_large = GFX_planet_type_pd_mangrove_big }
+	conditional_icon = { trigger = { has_modifier = pd_cenote }    icon = GFX_planet_type_pd_cenote    icon_large = GFX_planet_type_pd_cenote_big }
+	conditional_icon = { trigger = { has_modifier = pd_fungal }    icon = GFX_planet_type_pd_fungal    icon_large = GFX_planet_type_pd_fungal_big }
+	conditional_icon = { trigger = { has_modifier = pd_aerial }    icon = GFX_planet_type_pd_aerial    icon_large = GFX_planet_type_pd_aerial_big }
+	conditional_icon = { trigger = { has_modifier = pd_lilypad }   icon = GFX_planet_type_pd_lilypad   icon_large = GFX_planet_type_pd_lilypad_big }
+	conditional_icon = { trigger = { has_modifier = pd_obsidian }  icon = GFX_planet_type_pd_obsidian  icon_large = GFX_planet_type_pd_obsidian_big }
+	conditional_icon = { trigger = { has_modifier = pd_thunder }   icon = GFX_planet_type_pd_thunder   icon_large = GFX_planet_type_pd_thunder_big }
+	conditional_icon = { trigger = { has_modifier = pd_geothermal } icon = GFX_planet_type_pd_geothermal icon_large = GFX_planet_type_pd_geothermal_big }
+	conditional_icon = { trigger = { has_modifier = pd_biolumen }  icon = GFX_planet_type_pd_biolumen  icon_large = GFX_planet_type_pd_biolumen_big }
+	conditional_icon = { trigger = { has_modifier = pd_crystal }   icon = GFX_planet_type_pd_crystal   icon_large = GFX_planet_type_pd_crystal_big }
+}
+
+pc_continental = {
+	entity = "continental_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_continental
+	icon_large = GFX_planet_type_continental_big
+
+	climate = "wet"
+	initial = yes
+
+	auto_trait_prio = {
+		trait_auto_wet_preference
+	}
+
+	atmosphere_color		= hsv { 0.59 0.45 0.95 }
+	atmosphere_intensity	= 1.0
+	atmosphere_width		= 0.5
+
+	city_color_lut = "gfx/portraits/misc/colorcorrection_continental.dds"
+
+
+	min_distance_from_sun = @habitable_min_distance
+	max_distance_from_sun = @habitable_max_distance
+	spawn_odds = @habitable_spawn_odds
+
+	extra_orbit_size = 0
+	extra_planet_count = 0
+
+	chance_of_ring = 0.2
+
+	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+
+	colonizable = yes
+	district_set = standard
+	uses_alternative_skies_for_moons = yes
+	uses_alternative_skies_if_has_orbital_ring = yes
+
+	carry_cap_per_free_district = @carry_cap_normal
+
+	conditional_icon = { trigger = { has_modifier = pd_retinal }   icon = GFX_planet_type_pd_retinal   icon_large = GFX_planet_type_pd_retinal_big }
+	conditional_icon = { trigger = { has_modifier = pd_lake }      icon = GFX_planet_type_pd_lake      icon_large = GFX_planet_type_pd_lake_big }
+	conditional_icon = { trigger = { has_modifier = pd_tepid }     icon = GFX_planet_type_pd_tepid     icon_large = GFX_planet_type_pd_tepid_big }
+	conditional_icon = { trigger = { has_modifier = pd_mushroom }  icon = GFX_planet_type_pd_mushroom  icon_large = GFX_planet_type_pd_mushroom_big }
+	conditional_icon = { trigger = { has_modifier = pd_sakura }    icon = GFX_planet_type_pd_sakura    icon_large = GFX_planet_type_pd_sakura_big }
+	conditional_icon = { trigger = { has_modifier = pd_moss }      icon = GFX_planet_type_pd_moss      icon_large = GFX_planet_type_pd_moss_big }
+	conditional_icon = { trigger = { has_modifier = pd_marsh }     icon = GFX_planet_type_pd_marsh     icon_large = GFX_planet_type_pd_marsh_big }
+	conditional_icon = { trigger = { has_modifier = pd_carotene }  icon = GFX_planet_type_pd_carotene  icon_large = GFX_planet_type_pd_carotene_big }
+	conditional_icon = { trigger = { has_modifier = pd_forest }    icon = GFX_planet_type_pd_forest    icon_large = GFX_planet_type_pd_forest_big }
+	conditional_icon = { trigger = { has_modifier = pd_megaflora } icon = GFX_planet_type_pd_megaflora icon_large = GFX_planet_type_pd_megaflora_big }
+	conditional_icon = { trigger = { has_modifier = pd_petrified } icon = GFX_planet_type_pd_petrified icon_large = GFX_planet_type_pd_petrified_big }
+	conditional_icon = { trigger = { has_modifier = pd_floating }  icon = GFX_planet_type_pd_floating  icon_large = GFX_planet_type_pd_floating_big }
+}
+
+pc_ocean = {
+	entity = "ocean_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_ocean
+	icon_large = GFX_planet_type_ocean_big
+
+	climate = "wet"
+	initial = yes
+
+	auto_trait_prio = {
+		trait_auto_wet_preference
+	}
+
+	atmosphere_color		= hsv { 0.58 0.5 0.9 }
+	atmosphere_intensity	= 1.0
+	atmosphere_width		= 0.5
+
+	city_color_lut = "gfx/portraits/misc/colorcorrection_ocean.dds"
+
+	min_distance_from_sun = @habitable_min_distance
+	max_distance_from_sun = @habitable_max_distance
+	spawn_odds = @habitable_spawn_odds
+
+	extra_orbit_size = 0
+	extra_planet_count = 0
+
+	chance_of_ring = 0.2
+
+	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+
+	colonizable = yes
+	district_set = standard
+	uses_alternative_skies_for_moons = yes
+	uses_alternative_skies_if_has_orbital_ring = yes
+
+	carry_cap_per_free_district = @carry_cap_normal
+
+	conditional_icon = { trigger = { has_modifier = pd_cascadian }   icon = GFX_planet_type_pd_cascadian   icon_large = GFX_planet_type_pd_cascadian_big }
+	conditional_icon = { trigger = { has_modifier = pd_swamp }       icon = GFX_planet_type_pd_swamp       icon_large = GFX_planet_type_pd_swamp_big }
+	conditional_icon = { trigger = { has_modifier = pd_crag }        icon = GFX_planet_type_pd_crag        icon_large = GFX_planet_type_pd_crag_big }
+	conditional_icon = { trigger = { has_modifier = pd_fog }         icon = GFX_planet_type_pd_fog         icon_large = GFX_planet_type_pd_fog_big }
+	conditional_icon = { trigger = { has_modifier = pd_kelp }        icon = GFX_planet_type_pd_kelp        icon_large = GFX_planet_type_pd_kelp_big }
+	conditional_icon = { trigger = { has_modifier = pd_algae }       icon = GFX_planet_type_pd_algae       icon_large = GFX_planet_type_pd_algae_big }
+	conditional_icon = { trigger = { has_modifier = pd_columnar }    icon = GFX_planet_type_pd_columnar    icon_large = GFX_planet_type_pd_columnar_big }
+	conditional_icon = { trigger = { has_modifier = pd_tidepool }    icon = GFX_planet_type_pd_tidepool    icon_large = GFX_planet_type_pd_tidepool_big }
+	conditional_icon = { trigger = { has_modifier = pd_barnacle }    icon = GFX_planet_type_pd_barnacle    icon_large = GFX_planet_type_pd_barnacle_big }
+	conditional_icon = { trigger = { has_modifier = pd_reef }        icon = GFX_planet_type_pd_reef        icon_large = GFX_planet_type_pd_reef_big }
+	conditional_icon = { trigger = { has_modifier = pd_archipelago } icon = GFX_planet_type_pd_archipelago icon_large = GFX_planet_type_pd_archipelago_big }
+}
+
+# Cold
+pc_tundra = {
+	entity = "tundra_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_tundra
+	icon_large = GFX_planet_type_tundra_big
+
+	climate = "cold"
+	initial = yes
+
+	auto_trait_prio = {
+		trait_auto_cold_preference
+	}
+
+	atmosphere_color		= hsv { 0.58 0.3 0.8 }
+	atmosphere_intensity	= 1.0
+	atmosphere_width		= 0.5
+
+	city_color_lut = "gfx/portraits/misc/colorcorrection_tundra.dds"
+
+	min_distance_from_sun = @habitable_min_distance
+	max_distance_from_sun = @habitable_max_distance
+	spawn_odds = @habitable_spawn_odds
+
+	extra_orbit_size = 0
+	extra_planet_count = 0
+
+	chance_of_ring = 0.2
+
+	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+
+	colonizable = yes
+	district_set = standard
+	uses_alternative_skies_for_moons = yes
+	uses_alternative_skies_if_has_orbital_ring = yes
+
+	carry_cap_per_free_district = @carry_cap_normal
+
+	conditional_icon = { trigger = { has_modifier = pd_bog }        icon = GFX_planet_type_pd_bog        icon_large = GFX_planet_type_pd_bog_big }
+	conditional_icon = { trigger = { has_modifier = pd_mycelium }   icon = GFX_planet_type_pd_mycelium   icon_large = GFX_planet_type_pd_mycelium_big }
+	conditional_icon = { trigger = { has_modifier = pd_mud }        icon = GFX_planet_type_pd_mud        icon_large = GFX_planet_type_pd_mud_big }
+	conditional_icon = { trigger = { has_modifier = pd_basalt }     icon = GFX_planet_type_pd_basalt     icon_large = GFX_planet_type_pd_basalt_big }
+	conditional_icon = { trigger = { has_modifier = pd_tuya }       icon = GFX_planet_type_pd_tuya       icon_large = GFX_planet_type_pd_tuya_big }
+	conditional_icon = { trigger = { has_modifier = pd_cryovolcano } icon = GFX_planet_type_pd_cryovolcano icon_large = GFX_planet_type_pd_cryovolcano_big }
+	conditional_icon = { trigger = { has_modifier = pd_treeline }   icon = GFX_planet_type_pd_treeline   icon_large = GFX_planet_type_pd_treeline_big }
+	conditional_icon = { trigger = { has_modifier = pd_peatland }   icon = GFX_planet_type_pd_peatland   icon_large = GFX_planet_type_pd_peatland_big }
+	conditional_icon = { trigger = { has_modifier = pd_travertine } icon = GFX_planet_type_pd_travertine icon_large = GFX_planet_type_pd_travertine_big }
+	conditional_icon = { trigger = { has_modifier = pd_cryoflora }  icon = GFX_planet_type_pd_cryoflora  icon_large = GFX_planet_type_pd_cryoflora_big }
+	conditional_icon = { trigger = { has_modifier = pd_lichen }     icon = GFX_planet_type_pd_lichen     icon_large = GFX_planet_type_pd_lichen_big }
+}
+
+pc_arctic = {
+	entity = "arctic_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_arctic
+	icon_large = GFX_planet_type_arctic_big
+
+	climate = "cold"
+	initial = yes
+
+	auto_trait_prio = {
+		trait_auto_cold_preference
+	}
+
+	atmosphere_color		= hsv { 0.48 0.15 0.8 }
+	atmosphere_intensity	= 1.0
+	atmosphere_width		= 0.5
+
+	city_color_lut = "gfx/portraits/misc/colorcorrection_arctic.dds"
+
+	min_distance_from_sun = @habitable_min_distance
+	max_distance_from_sun = @habitable_max_distance
+	spawn_odds = @habitable_spawn_odds
+
+	extra_orbit_size = 0
+	extra_planet_count = 0
+
+	chance_of_ring = 0.2
+
+	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+
+	colonizable = yes
+	district_set = standard
+	uses_alternative_skies_for_moons = yes
+	uses_alternative_skies_if_has_orbital_ring = yes
+
+	carry_cap_per_free_district = @carry_cap_normal
+
+	conditional_icon = { trigger = { has_modifier = pd_cold_desert }        icon = GFX_planet_type_pd_cold_desert        icon_large = GFX_planet_type_pd_cold_desert_big }
+	conditional_icon = { trigger = { has_modifier = pd_glacial }            icon = GFX_planet_type_pd_glacial            icon_large = GFX_planet_type_pd_glacial_big }
+	conditional_icon = { trigger = { has_modifier = pd_antarctic }          icon = GFX_planet_type_pd_antarctic          icon_large = GFX_planet_type_pd_antarctic_big }
+	conditional_icon = { trigger = { has_modifier = pd_aeolian }            icon = GFX_planet_type_pd_aeolian            icon_large = GFX_planet_type_pd_aeolian_big }
+	conditional_icon = { trigger = { has_modifier = pd_ice_spike }          icon = GFX_planet_type_pd_ice_spike          icon_large = GFX_planet_type_pd_ice_spike_big }
+	conditional_icon = { trigger = { has_modifier = pd_crevasse }           icon = GFX_planet_type_pd_crevasse           icon_large = GFX_planet_type_pd_crevasse_big }
+	conditional_icon = { trigger = { has_modifier = pd_ice_dunes }          icon = GFX_planet_type_pd_ice_dunes          icon_large = GFX_planet_type_pd_ice_dunes_big }
+	conditional_icon = { trigger = { has_modifier = pd_ferrospring }        icon = GFX_planet_type_pd_ferrospring        icon_large = GFX_planet_type_pd_ferrospring_big }
+	conditional_icon = { trigger = { has_modifier = pd_supraglacial_lakes } icon = GFX_planet_type_pd_supraglacial_lakes icon_large = GFX_planet_type_pd_supraglacial_lakes_big }
+	conditional_icon = { trigger = { has_modifier = pd_storm }              icon = GFX_planet_type_pd_storm              icon_large = GFX_planet_type_pd_storm_big }
+	conditional_icon = { trigger = { has_modifier = pd_iceberg }            icon = GFX_planet_type_pd_iceberg            icon_large = GFX_planet_type_pd_iceberg_big }
+}
+
+pc_alpine = {
+	entity = "alpine_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_alpine
+	icon_large = GFX_planet_type_alpine_big
+
+	climate = "cold"
+	initial = yes
+
+	auto_trait_prio = {
+		trait_auto_cold_preference
+	}
+
+	atmosphere_color		= hsv { 0.48 0.15 0.8 }
+	atmosphere_intensity	= 1.0
+	atmosphere_width		= 0.5
+
+	city_color_lut = "gfx/portraits/misc/colorcorrection_alpine.dds"
+
+	min_distance_from_sun = @habitable_min_distance
+	max_distance_from_sun = @habitable_max_distance
+	spawn_odds = @habitable_spawn_odds
+
+	extra_orbit_size = 0
+	extra_planet_count = 0
+
+	chance_of_ring = 0.2
+
+	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+
+	colonizable = yes
+	district_set = standard
+	uses_alternative_skies_for_moons = yes
+	uses_alternative_skies_if_has_orbital_ring = yes
+
+	carry_cap_per_free_district = @carry_cap_normal
+
+	conditional_icon = { trigger = { has_modifier = pd_boreal }        icon = GFX_planet_type_pd_boreal        icon_large = GFX_planet_type_pd_boreal_big }
+	conditional_icon = { trigger = { has_modifier = pd_snow }          icon = GFX_planet_type_pd_snow          icon_large = GFX_planet_type_pd_snow_big }
+	conditional_icon = { trigger = { has_modifier = pd_highland }      icon = GFX_planet_type_pd_highland      icon_large = GFX_planet_type_pd_highland_big }
+	conditional_icon = { trigger = { has_modifier = pd_dune_forest }   icon = GFX_planet_type_pd_dune_forest   icon_large = GFX_planet_type_pd_dune_forest_big }
+	conditional_icon = { trigger = { has_modifier = pd_fjord }         icon = GFX_planet_type_pd_fjord         icon_large = GFX_planet_type_pd_fjord_big }
+	conditional_icon = { trigger = { has_modifier = pd_blossom }       icon = GFX_planet_type_pd_blossom       icon_large = GFX_planet_type_pd_blossom_big }
+	conditional_icon = { trigger = { has_modifier = pd_taiga }         icon = GFX_planet_type_pd_taiga         icon_large = GFX_planet_type_pd_taiga_big }
+	conditional_icon = { trigger = { has_modifier = pd_craton }        icon = GFX_planet_type_pd_craton        icon_large = GFX_planet_type_pd_craton_big }
+	conditional_icon = { trigger = { has_modifier = pd_ravine }        icon = GFX_planet_type_pd_ravine        icon_large = GFX_planet_type_pd_ravine_big }
+	conditional_icon = { trigger = { has_modifier = pd_glaciovolcanic } icon = GFX_planet_type_pd_glaciovolcanic icon_large = GFX_planet_type_pd_glaciovolcanic_big }
+	conditional_icon = { trigger = { has_modifier = pd_lanthanide }    icon = GFX_planet_type_pd_lanthanide    icon_large = GFX_planet_type_pd_lanthanide_big }
+	conditional_icon = { trigger = { has_modifier = pd_biosynth }  icon = GFX_planet_type_pd_biosynth  icon_large = GFX_planet_type_pd_biosynth_big }
+}
+
+pc_volcanic = {
+	entity = "volcanic_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_volcanic
+	icon_large = GFX_planet_type_volcanic_big
+	climate = "dry"
+	initial = yes
+	potential = { host_has_dlc = "Infernals Species Pack" }
+	auto_trait_prio = {
+		trait_auto_pc_volcanic_preference
+	}
+	atmosphere_color		= hsv { 0.05 0.65 1.4 }
+	atmosphere_intensity	= 0.05
+	atmosphere_width		= 1.0
+	min_distance_from_sun = @volcanic_min_distance
+	max_distance_from_sun = @volcanic_max_distance
+	spawn_odds = @habitable_volcanic_spawn_odds
+	city_color_lut = "gfx/portraits/misc/colorcorrection_volcanic.dds"
+	extra_orbit_size = 0
+	extra_planet_count = 0
+	chance_of_ring = 0.33
+	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+	colonizable = yes
+	district_set = volcanic_world
+	uses_alternative_skies_for_moons = yes
+	uses_alternative_skies_if_has_orbital_ring = yes
+	starting_planet = no
+	modifier = {
+		planet_jobs_alloys_produces_mult = 0.05
+	}
+	carry_cap_per_free_district = @carry_cap_normal
+}
+
+########################
+# Uninhabitable Planets
+########################
+
+pc_gas_giant = {
+	entity = "gas_giant"
+	entity_scale = @giant_standard_scale
+	icon = GFX_planet_type_gas_giant
+	icon_large = GFX_planet_type_gas_giant_big
+
+	atmosphere_color		= hsv { 0.1 0.15 1.1 }
+	atmosphere_intensity	= 1.1
+	atmosphere_width		= 0.5
+
+	min_distance_from_sun = 40
+	max_distance_from_sun = 1000
+
+	spawn_odds = 6
+	extra_orbit_size = 1
+	extra_planet_count = 2
+
+	can_be_moon = no
+	chance_of_ring = 0.6
+
+	planet_size = { min = 18 max = 35 }
+	moon_size = { min = 8 max = 15 }
+
+	production_spawn_chance = 0.5
+
+	space_monster_target = yes
+
+	colonizable = no
+}
+
+pc_asteroid = {
+	entity = "asteroid"
+	entity_scale = @asteroid_standard_scale
+	icon = GFX_planet_type_asteroid
+	icon_large = GFX_planet_type_asteroid_big
+
+	asteroid = yes
+
+	spawn_odds = 10
+
+	extra_orbit_size = 0
+	extra_planet_count = 0
+
+	chance_of_ring = 0
+
+	planet_size = 5
+
+	colonizable = no
+	survey_time_factor = 0.5
+}
+
+pc_ice_asteroid = {
+	entity = "asteroid_ice_large"
+	entity_scale = @asteroid_standard_scale
+	icon = GFX_planet_type_asteroid
+	icon_large = GFX_planet_type_asteroid_big
+
+	asteroid = yes
+
+	spawn_odds = 10
+
+	extra_orbit_size = 0
+	extra_planet_count = 0
+
+	chance_of_ring = 0
+
+	planet_size = 5
+
+	colonizable = no
+	survey_time_factor = 0.5
+}
+
+pc_rare_crystal_asteroid = {
+	entity = "asteroid_crystal_large"
+	picture = pc_crystal_asteroid
+	entity_scale = @asteroid_standard_scale
+	icon = GFX_planet_type_asteroid
+	icon_large = GFX_planet_type_asteroid_big
+
+	asteroid = yes
+
+	spawn_odds = 10
+
+	extra_orbit_size = 0
+	extra_planet_count = 0
+
+	chance_of_ring = 0
+
+	planet_size = 5
+
+	colonizable = no
+	survey_time_factor = 0.5
+}
+
+pc_molten = {
+	entity = "molten_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_molten
+	icon_large = GFX_planet_type_molten_big
+
+	atmosphere_color		= hsv { 0.05 1 1.4 }
+	atmosphere_intensity	= 0.05
+	atmosphere_width		= 1.0
+
+	min_distance_from_sun = 0
+	max_distance_from_sun = 60
+	spawn_odds = 10
+
+	extra_orbit_size = 0
+	extra_planet_count = 0
+
+	chance_of_ring = 0
+
+	planet_size = { min = 14 max = 30 }
+	moon_size = { min = 6 max = 12 }
+
+	colonizable = no
+}
+
+pc_barren = {
+	entity = "barren_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_barren
+	icon_large = GFX_planet_type_barren_big
+
+	atmosphere_color		= hsv { 0.1 0.4 0.7 }
+	atmosphere_intensity	= 1.0
+	atmosphere_width		= 0.5
+
+	min_distance_from_sun = 40
+	max_distance_from_sun = 200
+	spawn_odds = 10
+
+	extra_orbit_size = 0
+	extra_planet_count = 0
+
+	chance_of_ring = 0.2
+
+	planet_size = { min = 12 max = 30 }
+	moon_size = { min = 6 max = 10 }
+
+	colonizable = no
+}
+
+pc_barren_cold = {
+	entity = "cold_barren_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_barren_cold
+	icon_large = GFX_planet_type_barren_cold_big
+
+	atmosphere_color		= hsv { 0.55 0.3 0.75 }
+	atmosphere_intensity	= 1.0
+	atmosphere_width		= 0.5
+
+	min_distance_from_sun = 40
+	max_distance_from_sun = 200
+	spawn_odds = 10
+
+	extra_orbit_size = 0
+	extra_planet_count = 0
+
+	chance_of_ring = 0.2
+
+	planet_size = { min = 12 max = 30 }
+	moon_size = { min = 6 max = 10 }
+
+	colonizable = no
+}
+
+pc_toxic = {
+	entity = "toxic_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_toxic
+	icon_large = GFX_planet_type_toxic_big
+
+	atmosphere_color		= hsv { 0.19 0.45 0.9 }
+	atmosphere_intensity	= 0.1
+	atmosphere_width		= 1.2
+
+	min_distance_from_sun = 60
+	max_distance_from_sun = 110
+
+	spawn_odds = 10
+
+	extra_orbit_size = 0
+	extra_planet_count = 0
+
+	chance_of_ring = 0.2
+
+	planet_size = { min = 12 max = 25 }
+	moon_size = { min = 6 max = 10 }
+
+	colonizable = no
+	show_city = no
+}
+
+pc_frozen = {
+	entity = "frozen_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_frozen
+	icon_large = GFX_planet_type_frozen_big
+
+	atmosphere_color		= hsv { 0.55 0.15 0.7 }
+	atmosphere_intensity	= 1.0
+	atmosphere_width		= 0.5
+
+	min_distance_from_sun = 120
+	max_distance_from_sun = 1000
+	spawn_odds = 10
+
+	extra_orbit_size = 0
+	extra_planet_count = 0
+
+	chance_of_ring = 0
+
+	planet_size = { min = 10 max = 25 }
+	moon_size = { min = 6 max = 10 }
+
+	colonizable = no
+}
+
+##################
+# Special Planets
+##################
+
+pc_nuked = {
+	entity = "nuked_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_nuked
+	icon_large = GFX_planet_type_nuked_big
+
+	auto_trait_prio = {
+		trait_auto_pc_nuked_preference
+	}
+
+	atmosphere_color		= hsv { 0.6 0.4 0.5 }
+	atmosphere_intensity	= 1.0
+	atmosphere_width		= 0.85
+
+	city_color_lut = "gfx/portraits/misc/colorcorrection_neutral.dds"
+
+	min_distance_from_sun = 60
+	max_distance_from_sun = 110
+	spawn_odds = 0.15
+
+	extra_orbit_size = 0
+	extra_planet_count = 0
+
+	chance_of_ring = 0.2
+
+	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+
+	starting_planet = no
+	colonizable = yes
+	district_set = standard
+	uses_alternative_skies_for_moons = no
+
+	carry_cap_per_free_district = @carry_cap_low
+}
+
+pc_hive = {
+	entity = "infested_planet"
+	picture = pc_infested
+	entity_scale = @planet_standard_scale
+
+	icon = GFX_planet_type_hive
+	icon_large = GFX_planet_type_hive_big
+
+	atmosphere_color		= hsv { 0.75 0.2 0.7 }
+	atmosphere_intensity	= 0.1
+	atmosphere_width		= 1.2
+
+	city_color_lut = "gfx/portraits/misc/colorcorrection_neutral.dds"
+
+	min_distance_from_sun = 40
+	max_distance_from_sun = 1000
+
+	modifier = {
+		planet_jobs_produces_mult = 0.10
+		planet_resettlement_unemployed_destination_mult = 0.5
+		pop_environment_tolerance = 1.0
+	}
+
+	spawn_odds = 0
+	extra_orbit_size = 1
+	extra_planet_count = 2
+
+	can_be_moon = no
+	chance_of_ring = 0.0
+
+	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+
+	colonizable = yes
+	district_set = hive_world
+	ideal = yes
+	starting_planet = no
+	show_city = no
+
+	carry_cap_per_free_district = @carry_cap_high
+
+	planet_custom_label_offset = 0.3
+}
+
+pc_machine = {
+	entity = "machine_planet"
+	entity_scale = @planet_standard_scale
+	picture = pc_ai
+
+	icon = GFX_planet_type_machine
+	icon_large = GFX_planet_type_machine_big
+
+	atmosphere_color		= hsv { 0.09 0.8 0.7 }
+	atmosphere_intensity	= 0.4
+	atmosphere_width		= 1.0
+
+	city_color_lut = "gfx/portraits/misc/colorcorrection_neutral.dds"
+
+	min_distance_from_sun = 40
+	max_distance_from_sun = 1000
+
+	modifier = {
+		planet_jobs_produces_mult = 0.10
+		pop_housing_usage_mult = -0.10
+		pop_environment_tolerance = 0.0
+		planet_resettlement_unemployed_destination_mult = 0.5
+	}
+
+	spawn_odds = 0
+	extra_orbit_size = 1
+	extra_planet_count = 2
+
+	can_be_moon = no
+	chance_of_ring = 0.0
+
+	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+
+	colonizable = yes
+	district_set = machine_world
+	starting_planet = no
+	show_city = no
+	carry_cap_per_free_district = @carry_cap_low
+}
+
+pc_machine_broken = { #Similar concept to pc_ai, but not bound to Contingency
+	entity = "machine_planet"
+	entity_scale = @planet_standard_scale
+	picture = pc_ai
+
+	icon = GFX_planet_type_machine
+	icon_large = GFX_planet_type_machine_big
+
+	atmosphere_color		= hsv { 0.09 0.8 0.7 }
+	atmosphere_intensity	= 0.4
+	atmosphere_width		= 1.0
+
+	city_color_lut = "gfx/portraits/misc/colorcorrection_neutral.dds"
+
+	min_distance_from_sun = 40
+	max_distance_from_sun = 1000
+
+	spawn_odds = 0
+	extra_orbit_size = 0
+	extra_planet_count = 0
+
+	can_be_moon = no
+	chance_of_ring = 0.0
+
+	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+
+	colonizable = no
+	starting_planet = no
+}
+
+pc_shielded = {
+	entity = "shielded_planet"
+	overlay_entity = "planet_shield_effect_entity"
+	icon = GFX_planet_type_desert # Uses custom logic
+	icon_large = GFX_planet_type_desert_big # Uses custom logic
+
+	entity_scale = @planet_standard_scale
+
+	atmosphere_color		= hsv { 0.25 0.9 0.8 }
+	atmosphere_intensity	= 1.0
+	atmosphere_width		= 1.2
+
+	min_distance_from_sun = 60
+	max_distance_from_sun = 80
+	spawn_odds = 0
+
+	show_city = no
+	city_color_lut = "gfx/portraits/misc/colorcorrection_desert.dds"
+
+	extra_orbit_size = 0
+	extra_planet_count = 0
+
+	chance_of_ring = 0.2
+
+	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+
+	production_spawn_chance = 0.4
+
+	colonizable = no
+	starting_planet = no
+}
+
+pc_ai = {
+	entity = "ai_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_machine
+	icon_large = GFX_planet_type_machine_big
+
+	atmosphere_color		= hsv { 0.09 0.8 0.7 }
+	atmosphere_intensity	= 0.4
+	atmosphere_width		= 1.0
+
+	city_color_lut = "gfx/portraits/misc/colorcorrection_neutral.dds"
+
+	modifier = {
+		planet_orbital_bombardment_damage = -0.75
+	}
+
+	min_distance_from_sun = 40
+	max_distance_from_sun = 1000
+
+	spawn_odds = 0
+	extra_orbit_size = 1
+	extra_planet_count = 2
+
+	can_be_moon = no
+	chance_of_ring = 0.0
+
+	can_have_no_pop_colony = yes
+	can_be_invaded = no
+	show_health_bar_in_planet_view = yes # Determines whether to display 'surface integrity' gui component
+
+	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+
+	colonizable = no
+	show_city = no
+}
+
+pc_infested = {
+	entity = "infested_planet"
+	picture = pc_infested
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_hive
+	icon_large = GFX_planet_type_hive_big
+
+	atmosphere_color		= hsv { 0.75 0.2 0.7 }
+	atmosphere_intensity	= 0.1
+	atmosphere_width		= 1.2
+
+	# Should not really be needed, because swarm should not have cities, but they do currently, and if this is not here, you get lots of errors
+	city_color_lut = "gfx/portraits/misc/colorcorrection_neutral.dds"
+
+	modifier = {
+		planet_orbital_bombardment_damage = -0.5
+	}
+
+	min_distance_from_sun = 120
+	max_distance_from_sun = 1000
+	spawn_odds = 0
+
+	extra_orbit_size = 0
+	extra_planet_count = 0
+
+	chance_of_ring = 0
+
+	can_have_no_pop_colony = yes
+	can_be_invaded = no
+	show_health_bar_in_planet_view = yes # Determines whether to display 'surface integrity' gui component
+
+	planet_size = { min = 12 max = 25 }
+	moon_size = { min = 7 max = 12 }
+
+	colonizable = no
+	colonizable_by_event = yes	# Ensure colonization mechanics are handled even if the planet cannot be colonized the usual way
+
+	show_city = no
+}
+
+pc_gaia = {
+	entity = "gaia_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_gaia
+	icon_large = GFX_planet_type_gaia_big
+
+	auto_trait_prio = {
+		trait_auto_pc_gaia_preference
+	}
+
+	atmosphere_color		= hsv { 0.58	0.3 0.7 }
+	atmosphere_intensity	= 1.0
+	atmosphere_width		= 0.5
+
+	city_color_lut = "gfx/portraits/misc/colorcorrection_tropical.dds"
+
+	modifier = {
+		planet_jobs_produces_mult = 0.10
+		pop_happiness = 0.10
+		logistic_growth_mult = 0.15
+		planet_resettlement_unemployed_destination_mult = 0.5
+		pop_environment_tolerance = 1.0
+	}
+
+	min_distance_from_sun = 60
+	max_distance_from_sun = 95
+	spawn_odds = 0.05
+
+	extra_orbit_size = 0
+	extra_planet_count = 0
+
+	chance_of_ring = 0.2
+
+	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+
+	colonizable = yes
+	district_set = standard
+	ideal = yes
+	starting_planet = no
+	uses_alternative_skies_for_moons = yes
+	uses_alternative_skies_if_has_orbital_ring = yes
+	can_have_no_pop_colony = yes
+
+	carry_cap_per_free_district = @carry_cap_high
+}
+
+pc_cybrex = {
+	ringworld = yes
+	entity = "ringworld_habitable_entity"
+	picture = pc_ai
+	icon = GFX_planet_type_ringworld
+	icon_large = GFX_planet_type_ringworld_big
+	entity_scale = 1.0
+	enable_tilt = no
+	fixed_entity_scale = yes
+	atmosphere_color		= hsv { 0.50 0.2 0.8 }
+	atmosphere_intensity	= 1.0
+	atmosphere_width		= 0.5
+	city_color_lut = "gfx/portraits/misc/colorcorrection_desert.dds"
+	extra_orbit_size = 0
+	extra_planet_count = 0
+	chance_of_ring = 0.0
+	planet_size = 10
+	moon_size = 1
+	colonizable = no
+	show_city = no
+	orbit_lines = no
+	can_have_no_pop_colony = yes
+	can_be_invaded = no
+	district_set = ring_world
+	show_health_bar_in_planet_view = yes # Determines whether to display 'surface integrity' gui component
+	is_artificial_planet = yes
+}
+
+pc_nanotech = {
+	entity = "gray_goo_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_toxic
+	icon_large = GFX_planet_type_toxic_big
+
+	atmosphere_color		= hsv { 0.19 0.45 0.9 }		#DONE
+	atmosphere_intensity	= 0.1
+	atmosphere_width		= 1.2
+
+	city_color_lut = "gfx/portraits/misc/colorcorrection_neutral.dds"
+
+	min_distance_from_sun = @habitable_min_distance
+	max_distance_from_sun = @habitable_max_distance
+
+	spawn_odds = 0
+
+	extra_orbit_size = 0
+	extra_planet_count = 0
+
+	chance_of_ring = 0.2
+
+	planet_size = { min = 12 max = 25 }
+	moon_size = { min = 6 max = 10 }
+
+	can_be_invaded = yes
+	can_have_no_pop_colony = no
+	colonizable = yes
+	district_set = machine_world
+	starting_planet = no
+	show_city = no
+}
+
+
+#################
+# Megastructures
+#################
+
+pc_ringworld_habitable = {
+	ringworld = yes
+	entity = "ringworld_habitable_entity"
+	preview_entity = "ringworld_01_damaged_full_entity"
+	picture = pc_ringworld
+	icon = GFX_planet_type_ringworld
+	icon_large = GFX_planet_type_ringworld_big
+	entity_scale = 1.0
+	enable_tilt = no
+	fixed_entity_scale = yes
+	atmosphere_color		= hsv { 0.0 0.0 1.0 }
+	atmosphere_intensity	= 1.0
+	atmosphere_width		= 0.5
+	show_city = yes
+	city_color_lut = "gfx/portraits/misc/colorcorrection_continental.dds"
+	extra_orbit_size = 0
+	extra_planet_count = 0
+	chance_of_ring = 0.0
+	planet_size = 10
+	moon_size = 1
+	colonizable = yes
+	district_set = ring_world
+	starting_district = district_rw_city
+	ideal = yes
+	starting_planet = no
+	orbit_lines = no
+	has_colonization_influence_cost = no		# applies when within own borders
+
+	climate = "artificial"
+	is_artificial_planet = yes
+	uses_alternative_skies_for_moons = yes
+
+	auto_trait_prio = {
+		trait_auto_pc_ringworld_habitable_preference
+	}
+
+	modifier = {
+		planet_resettlement_unemployed_destination_mult = 0.5
+		pop_environment_tolerance = 1.0
+	}
+
+	carry_cap_per_free_district = @carry_cap_high
+}
+
+pc_ringworld_habitable_damaged = {
+	ringworld = yes
+	entity = "ringworld_habitable_damaged_entity"
+	preview_entity = "ringworld_01_damaged_full_entity"
+	picture = pc_ringworld_broken
+	icon = GFX_planet_type_ringworld
+	icon_large = GFX_planet_type_ringworld_big
+	entity_scale = 1.0
+	enable_tilt = no
+	fixed_entity_scale = yes
+	atmosphere_color		= hsv { 0.50 0.2 0.8 }
+	atmosphere_intensity	= 1.0
+	atmosphere_width		= 0.5
+	city_color_lut = "gfx/portraits/misc/colorcorrection_desert.dds"
+	extra_orbit_size = 0
+	extra_planet_count = 0
+	chance_of_ring = 0.0
+	planet_size = 10
+	moon_size = 1
+	colonizable = no
+	orbit_lines = no
+}
+
+pc_ringworld_tech = {
+	ringworld = yes
+	entity = "ringworld_tech_entity"
+	preview_entity = "ringworld_01_damaged_full_entity"
+	picture = pc_ringworld_section
+	icon = GFX_planet_type_ringworld
+	icon_large = GFX_planet_type_ringworld_big
+	entity_scale = 1.0
+	enable_tilt = no
+	fixed_entity_scale = yes
+	atmosphere_color		= hsv { 0.50 0.2 0.8 }
+	atmosphere_intensity	= 1.0
+	atmosphere_width		= 0.5
+	city_color_lut = "gfx/portraits/misc/colorcorrection_desert.dds"
+	extra_orbit_size = 0
+	extra_planet_count = 0
+	chance_of_ring = 0.0
+	planet_size = 10
+	moon_size = 1
+	colonizable = no
+	orbit_lines = no
+
+	is_artificial_planet = yes
+}
+
+pc_ringworld_tech_damaged = {
+	ringworld = yes
+	entity = "ringworld_tech_damaged_entity"
+	preview_entity = "ringworld_01_damaged_full_entity"
+	picture = pc_ringworld_broken
+	icon = GFX_planet_type_ringworld
+	icon_large = GFX_planet_type_ringworld_big
+	entity_scale = 1.0
+	enable_tilt = no
+	fixed_entity_scale = yes
+	atmosphere_color		= hsv { 0.50 0.2 0.8 }
+	atmosphere_intensity	= 1.0
+	atmosphere_width		= 0.5
+	city_color_lut = "gfx/portraits/misc/colorcorrection_desert.dds"
+	extra_orbit_size = 0
+	extra_planet_count = 0
+	chance_of_ring = 0.0
+	planet_size = 10
+	moon_size = 1
+	colonizable = no
+	orbit_lines = no
+
+	is_artificial_planet = yes
+
+}
+
+pc_ringworld_seam = {
+	ringworld = yes
+	entity = "ringworld_seam_entity"
+	preview_entity = "ringworld_01_damaged_full_entity"
+	picture = pc_ringworld_section
+	icon = GFX_planet_type_ringworld
+	icon_large = GFX_planet_type_ringworld_big
+	entity_scale = 1.0
+	enable_tilt = no
+	fixed_entity_scale = yes
+	atmosphere_color		= hsv { 0.50 0.2 0.8 }
+	atmosphere_intensity	= 1.0
+	atmosphere_width		= 0.5
+	city_color_lut = "gfx/portraits/misc/colorcorrection_desert.dds"
+	extra_orbit_size = 0
+	extra_planet_count = 0
+	chance_of_ring = 0.0
+	planet_size = 10
+	moon_size = 1
+	colonizable = no
+	orbit_lines = no
+
+	is_artificial_planet = yes
+
+}
+
+pc_ringworld_seam_damaged = {
+	ringworld = yes
+	entity = "ringworld_seam_damaged_entity"
+	preview_entity = "ringworld_01_damaged_full_entity"
+	picture = pc_ringworld_broken
+	icon = GFX_planet_type_ringworld
+	icon_large = GFX_planet_type_ringworld_big
+	entity_scale = 1.0
+	enable_tilt = no
+	fixed_entity_scale = yes
+	atmosphere_color		= hsv { 0.50 0.2 0.8 }
+	atmosphere_intensity	= 1.0
+	atmosphere_width		= 0.5
+	city_color_lut = "gfx/portraits/misc/colorcorrection_desert.dds"
+	extra_orbit_size = 0
+	extra_planet_count = 0
+	chance_of_ring = 0.0
+	planet_size = 10
+	moon_size = 1
+	colonizable = no
+	orbit_lines = no
+
+	is_artificial_planet = yes
+
+}
+
+pc_shattered_ring_habitable = {
+	ringworld = yes
+	entity = "ringworld_habitable_entity"
+	preview_entity = "ringworld_01_damaged_full_entity"
+	picture = pc_ringworld
+	icon = GFX_planet_type_ringworld
+	icon_large = GFX_planet_type_ringworld_big
+	entity_scale = 1.0
+	enable_tilt = no
+	fixed_entity_scale = yes
+	atmosphere_color		= hsv { 0.0 0.0 1.0 }
+	atmosphere_intensity	= 1.0
+	atmosphere_width		= 0.5
+	show_city = yes
+	city_color_lut = "gfx/portraits/misc/colorcorrection_continental.dds"
+	extra_orbit_size = 0
+	extra_planet_count = 0
+	chance_of_ring = 0.0
+	planet_size = 25
+	moon_size = 1
+	colonizable = yes
+	district_set = shattered_ring_world
+	starting_planet = no
+	orbit_lines = no
+	has_colonization_influence_cost = no		# applies when within own borders
+
+	climate = "artificial"
+	is_artificial_planet = yes
+
+	auto_trait_prio = {
+		trait_auto_pc_ringworld_habitable_preference
+	}
+
+	carry_cap_per_free_district = @carry_cap_normal
+
+	modifier = {
+		pop_environment_tolerance = 1.0
+	}
+}
+
+pc_habitat = {
+	habitat = yes
+	entity = "orbital_habitat"
+	icon = GFX_planet_type_habitat
+	icon_large = GFX_planet_type_habitat_big
+	entity_scale = 1.0
+	enable_tilt = no
+	fixed_entity_scale = yes
+	place_entity_on_planet_plane = no
+	entity_face_object = no #disable rotation towards sun or planet we orbit around
+	auto_trait_prio = {
+		trait_auto_pc_habitat_preference
+	}
+	atmosphere_color		= hsv { 0.0 0.0 1.0 }
+	atmosphere_intensity	= 1.0
+	atmosphere_width		= 0.5
+	#show_city = no
+	city_color_lut = "gfx/portraits/misc/colorcorrection_continental.dds"
+	extra_orbit_size = 0
+	extra_planet_count = 0
+	chance_of_ring = 0.0
+	planet_size = 6
+	moon_size = 1
+	colonizable = yes
+	district_set = habitat
+	starting_district = district_hab_housing
+#	ideal = yes
+	starting_planet = no
+	orbit_lines = no
+	has_colonization_influence_cost = no			# applies when within own borders
+
+	climate = "artificial"
+	is_artificial_planet = yes
+	default_planet_selection = yes
+
+	modifier = {
+		planet_colony_development_speed_mult = 2.0 # Habitats should be fast to colonize
+		pop_environment_tolerance = 0.40
+	}
+
+	carry_cap_per_free_district = @carry_cap_low
+}
+
+pc_cosmogenesis_world = {
+	synaptic_lathe = yes
+	entity = "orbital_habitat"
+	icon = GFX_planet_type_synaptic_lathe
+	icon_large = GFX_planet_type_synaptic_lathe_big
+	entity_scale = 1.0
+	enable_tilt = no
+	fixed_entity_scale = yes
+	place_entity_on_planet_plane = yes
+	entity_face_object = no #disable rotation towards sun or planet we orbit around
+	atmosphere_color		= hsv { 0.0 0.0 1.0 }		#DONE
+	atmosphere_intensity	= 1.0
+	atmosphere_width		= 0.5
+	show_city = no
+	city_color_lut = "gfx/portraits/misc/colorcorrection_continental.dds"
+	extra_orbit_size = 0
+	extra_planet_count = 0
+	chance_of_ring = 0.0
+	planet_size = 6
+	moon_size = 1
+	colonizable = yes
+	district_set = cosmogenesis_world
+	starting_district = district_cosmogenesis_goverment
+	#holdings = no
+	#ideal = yes
+	starting_planet = no
+	orbit_lines = no
+	has_colonization_influence_cost = no			# applies when within own borders
+
+	climate = "artificial"
+	is_artificial_planet = yes
+	default_planet_selection = yes
+	inherit_country_building_modifiers = no
+
+	auto_trait_prio = {
+		trait_auto_pc_cosmogenesis_world_preference
+	}
+
+	modifier = {
+		pop_environment_tolerance = 0.85
+		district_cosmogenesis_goverment_max_add = 1
+		logistic_growth_mult = -1
+		planet_crime_mult = -1
+	}
+
+	carry_cap_per_free_district = @carry_cap_low
+	can_be_invaded = no
+}
+
+##########################
+# Altered/Damaged Planets
+##########################
+
+pc_shrouded = {
+	entity = "shroud_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_shrouded
+	icon_large = GFX_planet_type_shrouded_big
+
+	atmosphere_color		= hsv { 0.0 0.9 0.45	}
+	atmosphere_intensity	= 0.5
+	atmosphere_width		= 1.5
+
+	spawn_odds = 0
+
+	extra_orbit_size = 0
+	extra_planet_count = 0
+
+	planet_size = { min = 10 max = 25 }
+	moon_size = { min = 6 max = 10 }
+
+	colonizable = no
+	show_city = no
+}
+
+pc_broken = {
+	entity = "broken_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_barren
+	icon_large = GFX_planet_type_barren_big
+
+	atmosphere_color		= hsv { 0.1 0.4 0.7 }
+	atmosphere_intensity	= 1.0
+	atmosphere_width		= 0.5
+
+	spawn_odds = 0
+
+	extra_orbit_size = 0
+	extra_planet_count = 0
+
+	planet_size = { min = 12 max = 30 }
+	moon_size = { min = 6 max = 10 }
+
+	colonizable = no
+	show_city = no
+}
+
+pc_shattered = {
+	entity = "shattered_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_barren
+	icon_large = GFX_planet_type_barren_big
+
+	atmosphere_color		= hsv { 0.1 0.4 0.7 }
+	atmosphere_intensity	= 1.0
+	atmosphere_width		= 0.5
+
+	spawn_odds = 0
+
+	extra_orbit_size = 0
+	extra_planet_count = 0
+
+	planet_size = { min = 12 max = 30 }
+	moon_size = { min = 6 max = 10 }
+
+	colonizable = no
+	show_city = no
+}
+
+pc_toxoid_star = {
+	entity = "toxoid_star_class_star_entity"
+	entity_scale = 20.0
+	picture = "pc_x_star"
+	icon = GFX_planet_type_toxoid_star
+	icon_large = GFX_planet_type_toxoid_star_big
+
+	atmosphere_color		= hsv { 0.19 1 0.7 }
+	atmosphere_intensity	= 0.5
+	atmosphere_width		= 1.9
+
+	climate = "luminosity_2"
+	star = yes
+
+	min_distance_from_sun = 0
+	max_distance_from_sun = 0
+	spawn_odds = 0
+
+	extra_orbit_size = 0
+	extra_planet_count = 0
+
+	chance_of_ring = 0
+
+	planet_size = { min = 20 max = 35 }
+
+	colonizable = no
+
+	planet_custom_label_offset = 0.03
+}
+
+###############
+# Random Lists
+###############
+
+random_list = {
+	name = "rl_habitable_normal"
+	planets = {
+		"pc_desert"
+		"pc_tropical"
+		"pc_arid"
+		"pc_ocean"
+		"pc_tundra"
+		"pc_arctic"
+		"pc_continental"
+		"pc_alpine"
+		"pc_savannah"
+	}
+}
+
+random_list = {
+	name = "rl_habitable_special"
+	planets = {
+		"pc_gaia"
+		"pc_nuked"
+	}
+}
+
+random_list = {
+	name = "rl_unhabitable_planets"
+	planets = {
+		"pc_gas_giant"
+		"pc_molten"
+		"pc_barren"
+		"pc_barren_cold"
+		"pc_toxic"
+		"pc_frozen"
+	}
+}
+
+random_list = {
+	name = "rl_barren_planets"
+	planets = {
+		"pc_barren"
+		"pc_barren_cold"
+	}
+}
+
+random_list = {
+	name = "rl_all_planets"
+	planets = {
+		"pc_continental"
+		"pc_desert"
+		"pc_tropical"
+		"pc_arid"
+		"pc_ocean"
+		"pc_tundra"
+		"pc_arctic"
+		"pc_alpine"
+		"pc_savannah"
+		"pc_asteroid"
+		"pc_gas_giant"
+		"pc_molten"
+		"pc_barren"
+		"pc_barren_cold"
+		"pc_toxic"
+		"pc_frozen"
+		"pc_nuked"
+		"pc_ai"
+		"pc_infested"
+		"pc_shielded"
+		"pc_gaia"
+		"pc_shrouded"
+		"pc_broken"
+	}
+}

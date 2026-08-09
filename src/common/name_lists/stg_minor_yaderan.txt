@@ -1,0 +1,157 @@
+﻿# Yaderan name list, for the AI-only minor powers that use it.
+#
+# CONVERTED from .source/688086068/common/name_lists/Yaderan.txt: the tokens are
+# STNH's, resolved through STNH's own localisation and re-keyed as STG_N_. The
+# ship-size buckets are rebuilt for VANILLA's ladder -- STNH's file buckets by
+# its own (saber, sovereign, steamrunner) and those keys mean nothing here.
+#
+# See .docs/decisions/19-stnh-minor-powers-as-ai-empires.md.
+
+STG_YADERAN = {
+	category = "Humanoid"
+	randomized = no
+
+	ship_names = {
+		generic = {
+			STG_N_Holopresence STG_N_Holo-ghost STG_N_Holo-spectre STG_N_Holo-wraith STG_N_Holo-phantom STG_N_Holo-spirit
+			STG_N_Holo-demon STG_N_Holo-devil STG_N_Holo-soul STG_N_Holo-vampire STG_N_Holo-vision STG_N_Holo-apparition
+			STG_N_Holo-banshee STG_N_Holo-daemon STG_N_Holo-gaunt STG_N_Holo-haunt STG_N_Holo-manes STG_N_Holo-phantasm
+			STG_N_Holo-geist STG_N_Holo-visitor STG_N_Holo-shade STG_N_Holo-Eidolon
+		}
+
+		corvette = {
+			STG_N_Holopresence
+		}
+
+		destroyer = {
+			STG_N_Holopresence
+		}
+
+		cruiser = {
+			STG_N_Holopresence
+		}
+
+		battleship = {
+			STG_N_Holopresence
+		}
+
+		titan = {
+			STG_N_Holopresence
+		}
+
+		science = {
+			STG_N_Holopresence
+		}
+
+		colonizer = {
+			STG_N_Holopresence
+		}
+
+		constructor = {
+			STG_N_Holopresence
+		}
+	}
+
+	ship_class_names = {
+		generic = {
+			STG_N_Holopresence
+		}
+	}
+
+	fleet_names = {
+		sequential_name = STG_YADERAN_GROUP
+	}
+
+	army_names = {
+		machine_assault_1 = {
+			sequential_name = STG_YADERAN_ASSAULTAUXILIARY
+		}
+
+		machine_defense = {
+			sequential_name = STG_YADERAN_DEFENSEAUXILIARY
+		}
+
+		defense_army = {
+			sequential_name = STG_YADERAN_PLANETARYDEFENSEAUXILIARY
+		}
+
+		assault_army = {
+			sequential_name = STG_YADERAN_EXPEDITIONARYAUXILIARY
+		}
+
+		slave_army = {
+			sequential_name = STG_YADERAN_LABORAUXILIARY
+		}
+
+		clone_army = {
+			sequential_name = STG_YADERAN_REPLICATEAUXILIARY
+		}
+
+		robotic_army = {
+			sequential_name = STG_YADERAN_AUTOMATEDAUXILIARY
+		}
+
+		psionic_army = {
+			sequential_name = STG_YADERAN_ADEPTAUXILIARY
+		}
+
+		xenomorph_army = {
+			sequential_name = STG_YADERAN_XENOMORPHAUXILIARY
+		}
+
+		gene_warrior_army = {
+			sequential_name = STG_YADERAN_AUGMENTEDAUXILIARY
+		}
+
+		occupation_army = {
+			sequential_name = STG_YADERAN_OCCUPATIONAUXILIARY
+		}
+
+		robotic_defense_army = {
+			sequential_name = STG_YADERAN_AUTOMATEDDEFENSEAUXILIARY
+		}
+
+		industrial_army = {
+			sequential_name = STG_YADERAN_INDUSTRIALAUXILIARY
+		}
+
+		primitive_army = {
+			sequential_name = STG_YADERAN_MILITIA
+		}
+	}
+
+	planet_names = {
+		generic = {
+			names = {
+				STG_N_Holopresence
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			weight = 100
+
+			first_names_male = {
+				STG_N_Rurigan STG_N_Merruk STG_N_Depnen STG_N_Colyus STG_N_Maren STG_N_Luigen
+				STG_N_Giovanen STG_N_Guisepnen STG_N_Antunuk STG_N_Robertuk STG_N_Andrek STG_N_Stefgan
+				STG_N_Marcok STG_N_Franscen STG_N_Angelen STG_N_Vincen STG_N_Pietrok STG_N_Salvatuk
+				STG_N_Carluk STG_N_Francuk STG_N_Domenan STG_N_Brunan STG_N_Paulan STG_N_Michele
+			}
+
+			first_names_female = {
+				STG_N_Guiduk STG_N_Lorenzan STG_N_Tommak STG_N_Fabik STG_N_Anetra STG_N_Taya
+				STG_N_Mara STG_N_Maray STG_N_Annay STG_N_Guisepa STG_N_Rosay STG_N_Rosa
+				STG_N_Angeya STG_N_Giovaya STG_N_Tereya STG_N_Lucya STG_N_Carmeya STG_N_Cateriya
+				STG_N_Franceya STG_N_Antonieya STG_N_Cara STG_N_Eleya STG_N_Conceya STG_N_Riya
+			}
+
+			second_names = {
+				STG_N_Rurigan STG_N_Merruk STG_N_Depnen STG_N_Colyus STG_N_Maren STG_N_Luigen
+				STG_N_Giovanen STG_N_Guisepnen STG_N_Antunuk STG_N_Robertuk STG_N_Andrek STG_N_Stefgan
+				STG_N_Marcok STG_N_Franscen STG_N_Angelen STG_N_Vincen STG_N_Pietrok STG_N_Salvatuk
+				STG_N_Carluk STG_N_Francuk STG_N_Domenan STG_N_Brunan STG_N_Paulan STG_N_Michele
+			}
+		}
+	}
+}

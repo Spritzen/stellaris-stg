@@ -1,0 +1,26 @@
+# Stubs for the STNH SPECIES traits that STNH's ART depends on. Companion to
+# src/common/scripted_triggers/stg_stnh_art_triggers.txt — the vendored
+# selectors gate on `has_trait` as well as on triggers, and the traits they
+# name are STNH's. Leader traits are a separate vanilla database, so those live
+# in stg_stnh_art_leader_traits.txt.
+#
+# Defined inert (`initial = no`, `randomized = no`, never assigned from src/),
+# so `has_trait` resolves and the selector falls through instead of erroring.
+# Why not vendor STNH's real definitions, in
+# .docs/decisions/08-stnh-art-shadows-vanilla.md.
+#
+# New prefixed FILE; KEYS unprefixed because the art references them verbatim
+# (decision 10). Icons are vanilla substitutes — STNH's own are not vendored,
+# and neither trait is ever displayed.
+
+# Referenced once, inside a NOT, by
+# gfx/portraits/asset_selectors/zahl/zahl_female_01_hair.txt: the selector wants
+# "not a Borg-assimilated species", which a bare marker satisfies. STNH's
+# version carries habitability modifiers for planet classes we do not vendor.
+trait_pc_assimilated_preference = {
+	icon = "gfx/interface/icons/traits/trait_pc_desert_preference.dds"
+	allowed_archetypes = { BIOLOGICAL PRESAPIENT }
+	sorting_priority = 30
+	initial = no
+	randomized = no
+}

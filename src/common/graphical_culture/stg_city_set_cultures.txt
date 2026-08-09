@@ -1,0 +1,56 @@
+# Star Trek Galaxies -- the city-set-only graphical cultures.
+#
+# Five STNH city sets ship complete art (six layers each, in
+# gfx/portraits/city_sets/) that no `common/graphical_culture/` entry declared,
+# so the empire designer rejected every empire naming one and hid it from the
+# picker. The art resolving is not the same question as the culture being
+# declared. See .docs/decisions/62-city-set-cultures-undeclared.md.
+#
+# KEYS ARE DELIBERATELY UNPREFIXED, for the same reason the species classes are
+# (.docs/decisions/10-species-class-keys-unprefixed.md): the engine finds a city
+# set by the bare name `<key>_city_l01.dds`, so the key has to be the name of the
+# vendored STNH art. `STG_vulcan_01` would resolve to nothing.
+#
+# These are CITY sets, not shipsets -- each of these empires names a separate
+# `graphical_culture` for its ships -- so `ship_selection_weight = { base = 0 }`
+# keeps them out of ship selection entirely. That is vanilla's own shape for a
+# city-only culture (`solarpunk_01`, `industrial_01` in 00_graphical_culture.txt).
+#
+# `fallback = mammalian_01`: vanilla's only culture declared in full, the same
+# choice and the same reason as stg_graphical_culture.txt --
+# .docs/decisions/17-stnh-shipsets-on-a-vanilla-chassis.md.
+
+vulcan_01 = {
+	fallback = mammalian_01
+	ship_selection_weight = {
+		base = 0
+	}
+}
+
+cardassian_01 = {
+	fallback = mammalian_01
+	ship_selection_weight = {
+		base = 0
+	}
+}
+
+tholian_01 = {
+	fallback = mammalian_01
+	ship_selection_weight = {
+		base = 0
+	}
+}
+
+borg_01 = {
+	fallback = mammalian_01
+	ship_selection_weight = {
+		base = 0
+	}
+}
+
+undine_01 = {
+	fallback = mammalian_01
+	ship_selection_weight = {
+		base = 0
+	}
+}

@@ -1,0 +1,272 @@
+﻿# Romulan Star Empire name list.
+#
+# Structure mirrors /stellaris/common/name_lists/HUMAN1.txt. Every name token
+# is an STG_N_ key in src/localisation/english/stg_names_l_english.yml.
+#
+# Ship names lean on the canonical warbirds and on the Romulan habit of naming
+# vessels for virtues and birds of prey.
+
+STG_ROMULAN = {
+	category = "Humanoid"
+	randomized = no
+
+	ship_names = {
+		generic = {
+			STG_N_Valdore STG_N_Khazara STG_N_Terix STG_N_Devoras STG_N_Belak STG_N_Haakona
+			STG_N_Genorex STG_N_Decius STG_N_Gasko STG_N_Makar STG_N_Praetus STG_N_Tomal
+			STG_N_Vorn STG_N_AjRmr STG_N_Bloodwing STG_N_Javelin STG_N_Talvath STG_N_Dhael
+			STG_N_Shagus STG_N_Grinselius STG_N_Swiselas STG_N_Matixas STG_N_Ajrmr STG_N_Beijus
+			STG_N_Dridthau STG_N_Dividices STG_N_Harelax STG_N_Koderex STG_N_Narada STG_N_Precetor
+			STG_N_TMet STG_N_TTpalok STG_N_Dhelan STG_N_Mogai STG_N_ArKif STG_N_Hafeh
+			STG_N_Haapax STG_N_Daeinos STG_N_Hanom STG_N_Faeht STG_N_Shamshir STG_N_Tulwar
+			STG_N_Khaiell STG_N_Kara STG_N_Jaeih STG_N_DKhellra STG_N_Jhuaek STG_N_Deihu
+			STG_N_Okhala STG_N_Malem STG_N_Vastam STG_N_Morrigu STG_N_Khopesh STG_N_Falchion
+			STG_N_Drenet STG_N_Dretex STG_N_Dridren STG_N_Rderex STG_N_Rtan STG_N_Ddredar
+			STG_N_Shavohk STG_N_Adjacian STG_N_Adversarius STG_N_Albius STG_N_Antius STG_N_Araram
+			STG_N_Atrox STG_N_Auleius STG_N_Auspex STG_N_BattleRoc STG_N_Battlecrow STG_N_Braken
+			STG_N_Cacivus STG_N_Caelum STG_N_Calaf STG_N_Chairo STG_N_Clania STG_N_Clenos
+			STG_N_Crolvius STG_N_DArvuk STG_N_Ddara STG_N_Ddereq STG_N_Ddesedex STG_N_Dentin
+			STG_N_Deranas STG_N_Trennis STG_N_Dereq STG_N_Dmerak STG_N_Dseret STG_N_Dsoria
+			STG_N_Dtavet STG_N_Dteres STG_N_Dtervik STG_N_DTrell STG_N_Dvarian STG_N_Dvairin
+			STG_N_Dvinn STG_N_FidelesMiles STG_N_FireEagle STG_N_FireKite STG_N_FireMartin STG_N_FireOwl
+			STG_N_FirePetrel STG_N_Firecrow STG_N_Firehawk STG_N_Fortiter STG_N_Furens STG_N_Ganelax
+			STG_N_Gannius STG_N_GAnohok STG_N_Garelon STG_N_Goraxus STG_N_Hadargeros STG_N_Harax
+			STG_N_Hiyllaeh STG_N_Impavidus STG_N_Inclutus STG_N_Irix STG_N_Ishae STG_N_Javlek
+			STG_N_Joran STG_N_Jpax STG_N_Kaja STG_N_Kazar STG_N_Khnial STG_N_Kormoran
+			STG_N_Lacrius STG_N_Lhorakis STG_N_Livex STG_N_Lubato STG_N_Ludelvius STG_N_Macro
+			STG_N_Maricus STG_N_Maruccius STG_N_Mentenius STG_N_Menvutus STG_N_Mereidex STG_N_Metuendus
+			STG_N_Munia STG_N_Narrocian STG_N_Nventnar STG_N_Octius STG_N_Onus STG_N_Opalius
+			STG_N_Pacestius STG_N_Paeso STG_N_Pecassia STG_N_Pellecia STG_N_Pesanius STG_N_Petrask
+			STG_N_Plaurullius STG_N_Pola STG_N_Provocatio STG_N_Querulbo STG_N_Rea STG_N_Romdrex
+			STG_N_Rovaran STG_N_Rucorius STG_N_Sakti STG_N_Saneraspis STG_N_Sapotius STG_N_Scrillius
+			STG_N_Sedunius STG_N_Seganico STG_N_Serrola STG_N_Setro STG_N_Shaarik STG_N_Sia
+			STG_N_Sistius STG_N_Solius STG_N_Solus STG_N_Soryak STG_N_Stema STG_N_StormPetrel
+			STG_N_StormRoc STG_N_StormWing STG_N_Strages STG_N_Strato STG_N_Sulvian STG_N_Sutian
+			STG_N_Suttius STG_N_Tabodus STG_N_Tarlon STG_N_Tderet STG_N_Tdir STG_N_Tekel
+			STG_N_Telbostius STG_N_ThunderOwl STG_N_Thunderbird STG_N_Tmet STG_N_Tovarek STG_N_Tridonius
+			STG_N_Triumpho STG_N_Trocus STG_N_Trolarak STG_N_Truntis STG_N_Tsalvan STG_N_Tseren
+			STG_N_Tuttialius STG_N_Vadenius STG_N_Vashan STG_N_Vattilius STG_N_Vellius STG_N_Velosh
+			STG_N_Vencus STG_N_Vicilius STG_N_Vilus STG_N_Vindex STG_N_Visidix STG_N_Visis
+			STG_N_Vopputus STG_N_Votantius STG_N_Vrela STG_N_Vrelnec STG_N_Vrenek STG_N_Zokoras
+		}
+
+		corvette = {
+			STG_N_Talon STG_N_Shrike STG_N_Kestrel STG_N_Harrier STG_N_Falcon STG_N_Rea
+			STG_N_Stanet STG_N_Jorek STG_N_Arhael STG_N_Tvaro STG_N_Eisn STG_N_Msarr
+			STG_N_Rerik STG_N_Sharrdar STG_N_Tliss STG_N_Opalius STG_N_Orudain STG_N_Pesanius
+			STG_N_Pola STG_N_Raptor STG_N_Sapotius STG_N_Sculex STG_N_Setro STG_N_Selus
+			STG_N_Strato STG_N_Suran STG_N_Turovek STG_N_Tarovek STG_N_Truntis STG_N_Velosh
+			STG_N_Vrenek STG_N_Tmara STG_N_Bloodwing STG_N_Braken STG_N_Destrix STG_N_Dsoria
+			STG_N_Dtervik STG_N_Elizsen STG_N_GalGaththong STG_N_Nhorazz STG_N_Joran STG_N_Keterix
+			STG_N_Llemnim STG_N_Lubato STG_N_Maruccius STG_N_Mentenius STG_N_Munia STG_N_Narrocian
+			STG_N_Tdair
+		}
+
+		destroyer = {
+			STG_N_Belak STG_N_Decius STG_N_Gasko STG_N_Makar STG_N_Tomal
+		}
+
+		cruiser = {
+			STG_N_Khazara STG_N_Devoras STG_N_Terix STG_N_Haakona STG_N_Genorex STG_N_Tellus
+			STG_N_Stasek STG_N_Sharien STG_N_Kanassarum STG_N_Valdore STG_N_Mogai STG_N_Ajrmr
+			STG_N_Areinnye STG_N_Bloodfire STG_N_Dekkona STG_N_Dominus STG_N_Eletrix STG_N_Elieth
+			STG_N_Esemar STG_N_Intrakhu STG_N_Koval STG_N_Kytonis STG_N_Makar STG_N_Rohallhik
+			STG_N_Soterus STG_N_Taseiv STG_N_Terrinex STG_N_Tyrava
+		}
+
+		battleship = {
+			STG_N_Valdore STG_N_Scimitar STG_N_Bloodwing STG_N_Praetus STG_N_AjRmr STG_N_Tshen
+			STG_N_Debrune STG_N_Valkis STG_N_Kaskara STG_N_Praetor STG_N_Colius STG_N_Neral
+			STG_N_Nerix STG_N_VraxII STG_N_VarusII STG_N_Ayel STG_N_Vrax STG_N_Ayexl
+			STG_N_Tricameron STG_N_TRehu STG_N_Hermeticus STG_N_TellusII STG_N_Tellexis STG_N_Siedhri
+			STG_N_Maehhli STG_N_Bervas STG_N_Pontilus STG_N_Sartorix STG_N_Comilius STG_N_Gileus
+			STG_N_VarusIII STG_N_Karzan STG_N_Gaius STG_N_Aratenik STG_N_Dralath STG_N_Narviat
+			STG_N_Hiren STG_N_GellKamemor STG_N_Chulan STG_N_Taris STG_N_Dderidex STG_N_Belak
+			STG_N_Devoras STG_N_Haakona STG_N_Khazara STG_N_Makar STG_N_TMet STG_N_Terix
+			STG_N_DKazanak STG_N_Telis STG_N_Devorona
+		}
+
+		titan = {
+			STG_N_DDeridex STG_N_Scimitar STG_N_Vengeance STG_N_Ascendancy STG_N_Decius STG_N_Falchion
+			STG_N_Tulwar STG_N_Lleiset STG_N_Kopesh STG_N_Rapier STG_N_Cutlass STG_N_Spadroon
+			STG_N_Acinaces STG_N_Ida STG_N_Kaskara STG_N_Nimcha STG_N_Shotel STG_N_Billao
+			STG_N_Takoba STG_N_Kampilan STG_N_Kalis STG_N_Barong STG_N_Panabas STG_N_Gulok
+			STG_N_Parang STG_N_Bolo STG_N_Balisword STG_N_Dahong STG_N_Palay STG_N_Pinuti
+			STG_N_Klewang STG_N_Sundang STG_N_Langgai STG_N_Tinggang STG_N_Nabur STG_N_Sikin
+			STG_N_Panjang STG_N_Mandau STG_N_Niabor STG_N_Balato STG_N_Gari STG_N_Surik
+			STG_N_Leahval STG_N_Jambiya
+		}
+
+		science = {
+			STG_N_Talvath STG_N_Apnex STG_N_Nemor STG_N_Sithesh STG_N_Verelan STG_N_ExploratesCordia
+			STG_N_ExploratesCastell STG_N_ExploratesCaglia STG_N_ExploratesColonia STG_N_ExploratesSoluni STG_N_ExploratesCalcari STG_N_ExploratesDKhell
+			STG_N_ExploratesDridensca STG_N_ExploratesDretell STG_N_ExploratesSciacaenina STG_N_ExploratesDurocoria STG_N_ExploratesDecium STG_N_ExploratesMontinum
+			STG_N_ExploratesDaedar STG_N_ExploratesVennata STG_N_ExploratesCefala STG_N_ExploratesTusculamium STG_N_ExploratesCoridreda STG_N_ExploratesChieria
+			STG_N_ExploratesArdotagenoa STG_N_ExploratesNavennatan STG_N_ExploratesBelas STG_N_ExploratesJaeihu STG_N_ExploratesTalvatriano STG_N_ExploratesEntium
+			STG_N_ExploratesAnaventum STG_N_ExploratesDhelandate STG_N_ExploratesPrecetorton STG_N_ExploratesConcorium STG_N_ExploratesDurocordia STG_N_ExploratesSegontinum
+			STG_N_ExploratesConda STG_N_ExploratesDderex STG_N_ExploratesForum STG_N_ExploratesVentempedar STG_N_ExploratesDurovillae STG_N_ExploratesCamerix
+			STG_N_ExploratesDubraevagna STG_N_ExploratesLetorton STG_N_ExploratesGabiae STG_N_ExploratesBanna STG_N_ExploratesDurolica STG_N_ExploratesBevath
+			STG_N_ExploratesEvidices STG_N_ExploratesStabii STG_N_ExploratesDurovia STG_N_ExploratesDaeihu STG_N_ExploratesSwisell STG_N_ExploratesTusca
+			STG_N_ExploratesVerulan STG_N_ExploratesBrutum STG_N_ExploratesNaconcangis STG_N_ExploratesKhaiellae STG_N_ExploratesVindolaneum STG_N_ExploratesSoluna
+			STG_N_ExploratesCurinium STG_N_ExploratesLondinis STG_N_ExploratesMediolanda STG_N_ExploratesMisenoa STG_N_ExploratesMisentum STG_N_ExploratesMamucius
+			STG_N_ExploratesApiolandate STG_N_ExploratesTeria STG_N_ExploratesRicum STG_N_ExploratesTusfelia STG_N_ExploratesVaromago STG_N_ExploratesHorton
+			STG_N_ExploratesTorres STG_N_ExploratesEvidex STG_N_ExploratesBevagnia STG_N_ExploratesCoridren STG_N_ExploratesEtrurin STG_N_ExploratesVerulaneum
+			STG_N_ExploratesCalcaricina STG_N_ExploratesOlitum STG_N_ExploratesGerex STG_N_ExploratesColonda STG_N_ExploratesColoniacate STG_N_ExploratesDhellra
+			STG_N_ExploratesVinos STG_N_ExploratesRegula STG_N_ExploratesSalius STG_N_ExploratesDKhelas STG_N_ExploratesSciacae STG_N_ExploratesDurolicana
+			STG_N_ExploratesHercell STG_N_ExploratesCondinis STG_N_ExploratesOlica STG_N_ExploratesPotentium STG_N_ExploratesLetor STG_N_ExploratesValdorex
+			STG_N_ExploratesLoniacae STG_N_ExploratesCasti STG_N_ExploratesDividex STG_N_ExploratesPetelseprio STG_N_ExploratesDurocorium STG_N_ExploratesKoderix
+			STG_N_ExploratesRegillusca
+		}
+
+		colonizer = {
+			STG_N_Rateg STG_N_Chaltok STG_N_Unroth STG_N_Xanitla STG_N_Dartha STG_N_ColoniAuxilia
+			STG_N_ColoniCordia STG_N_ColoniCastell STG_N_ColoniCaglia STG_N_ColoniColonia STG_N_ColoniSoluni STG_N_ColoniCalcari
+			STG_N_ColoniDKhell STG_N_ColoniDridensca STG_N_ColoniDretell STG_N_ColoniSciacaenina STG_N_ColoniDurocoria STG_N_ColoniDecium
+			STG_N_ColoniMontinum STG_N_ColoniDaedar STG_N_ColoniVennata STG_N_ColoniCefala STG_N_ColoniTusculamium STG_N_ColoniCoridreda
+			STG_N_ColoniChieria STG_N_ColoniArdotagenoa STG_N_ColoniNavennatan STG_N_ColoniBelas STG_N_ColoniJaeihu STG_N_ColoniTalvatriano
+			STG_N_ColoniEntium STG_N_ColoniAnaventum STG_N_ColoniDhelandate STG_N_ColoniPrecetorton STG_N_ColoniConcorium STG_N_ColoniDurocordia
+			STG_N_ColoniSegontinum STG_N_ColoniConda STG_N_ColoniDderex STG_N_ColoniForum STG_N_ColoniVentempedar STG_N_ColoniDurovillae
+			STG_N_ColoniCamerix STG_N_ColoniDubraevagna STG_N_ColoniLetorton STG_N_ColoniGabiae STG_N_ColoniBanna STG_N_ColoniDurolica
+			STG_N_ColoniBevath STG_N_ColoniEvidices STG_N_ColoniStabii STG_N_ColoniDurovia STG_N_ColoniDaeihu STG_N_ColoniSwisell
+			STG_N_ColoniTusca STG_N_ColoniVerulan STG_N_ColoniBrutum STG_N_ColoniNaconcangis STG_N_ColoniKhaiellae STG_N_ColoniVindolaneum
+			STG_N_ColoniSoluna STG_N_ColoniCurinium STG_N_ColoniLondinis STG_N_ColoniMediolanda STG_N_ColoniMisenoa STG_N_ColoniMisentum
+			STG_N_ColoniMamucius STG_N_ColoniApiolandate STG_N_ColoniTeria STG_N_ColoniRicum STG_N_ColoniTusfelia STG_N_ColoniVaromago
+			STG_N_ColoniHorton STG_N_ColoniTorres STG_N_ColoniEvidex STG_N_ColoniBevagnia STG_N_ColoniCoridren STG_N_ColoniEtrurin
+			STG_N_ColoniVerulaneum STG_N_ColoniCalcaricina STG_N_ColoniOlitum STG_N_ColoniGerex STG_N_ColoniColonda STG_N_ColoniColoniacate
+			STG_N_ColoniDhellra STG_N_ColoniVinos STG_N_ColoniRegula STG_N_ColoniSalius STG_N_ColoniDKhelas STG_N_ColoniSciacae
+			STG_N_ColoniDurolicana STG_N_ColoniHercell STG_N_ColoniCondinis STG_N_ColoniOlica STG_N_ColoniPotentium STG_N_ColoniLetor
+			STG_N_ColoniValdorex STG_N_ColoniLoniacae STG_N_ColoniCasti STG_N_ColoniDividex STG_N_ColoniPetelseprio STG_N_ColoniDurocorium
+			STG_N_ColoniKoderix STG_N_ColoniRegillusca
+		}
+
+		constructor = {
+			STG_N_Algeron STG_N_Nequencia STG_N_Galorndon STG_N_Hobus STG_N_Rator STG_N_ArchitectiAuxilia
+			STG_N_ArchiteciCordia STG_N_ArchiteciCastell STG_N_ArchiteciCaglia STG_N_ArchiteciColonia STG_N_ArchiteciSoluni STG_N_ArchiteciCalcari
+			STG_N_ArchiteciDKhell STG_N_ArchiteciDridensca STG_N_ArchiteciDretell STG_N_ArchiteciSciacaenina STG_N_ArchiteciDurocoria STG_N_ArchiteciDecium
+			STG_N_ArchiteciMontinum STG_N_ArchiteciDaedar STG_N_ArchiteciVennata STG_N_ArchiteciCefala STG_N_ArchiteciTusculamium STG_N_ArchiteciCoridreda
+			STG_N_ArchiteciChieria STG_N_ArchiteciArdotagenoa STG_N_ArchiteciNavennatan STG_N_ArchiteciBelas STG_N_ArchiteciJaeihu STG_N_ArchiteciTalvatriano
+			STG_N_ArchiteciEntium STG_N_ArchiteciAnaventum STG_N_ArchiteciDhelandate STG_N_ArchiteciPrecetorton STG_N_ArchiteciConcorium STG_N_ArchiteciDurocordia
+			STG_N_ArchiteciSegontinum STG_N_ArchiteciConda STG_N_ArchiteciDderex STG_N_ArchiteciForum STG_N_ArchiteciVentempedar STG_N_ArchiteciDurovillae
+			STG_N_ArchiteciCamerix STG_N_ArchiteciDubraevagna STG_N_ArchiteciLetorton STG_N_ArchiteciGabiae STG_N_ArchiteciBanna STG_N_ArchiteciDurolica
+			STG_N_ArchiteciBevath STG_N_ArchiteciEvidices STG_N_ArchiteciStabii STG_N_ArchiteciDurovia STG_N_ArchiteciDaeihu STG_N_ArchiteciSwisell
+			STG_N_ArchiteciTusca STG_N_ArchiteciVerulan STG_N_ArchiteciBrutum STG_N_ArchiteciNaconcangis STG_N_ArchiteciKhaiellae STG_N_ArchiteciVindolaneum
+			STG_N_ArchiteciSoluna STG_N_ArchiteciCurinium STG_N_ArchiteciLondinis STG_N_ArchiteciMediolanda STG_N_ArchiteciMisenoa STG_N_ArchiteciMisentum
+			STG_N_ArchiteciMamucius STG_N_ArchiteciApiolandate STG_N_ArchiteciTeria STG_N_ArchiteciRicum STG_N_ArchiteciTusfelia STG_N_ArchiteciVaromago
+			STG_N_ArchiteciHorton STG_N_ArchiteciTorres STG_N_ArchiteciEvidex STG_N_ArchiteciBevagnia STG_N_ArchiteciCoridren STG_N_ArchiteciEtrurin
+			STG_N_ArchiteciVerulaneum STG_N_ArchiteciCalcaricina STG_N_ArchiteciOlitum STG_N_ArchiteciGerex STG_N_ArchiteciColonda STG_N_ArchiteciColoniacate
+			STG_N_ArchiteciDhellra STG_N_ArchiteciVinos STG_N_ArchiteciRegula STG_N_ArchiteciSalius STG_N_ArchiteciDKhelas STG_N_ArchiteciSciacae
+			STG_N_ArchiteciDurolicana STG_N_ArchiteciHercell STG_N_ArchiteciCondinis STG_N_ArchiteciOlica STG_N_ArchiteciPotentium STG_N_ArchiteciLetor
+			STG_N_ArchiteciValdorex STG_N_ArchiteciLoniacae STG_N_ArchiteciCasti STG_N_ArchiteciDividex STG_N_ArchiteciPetelseprio STG_N_ArchiteciDurocorium
+			STG_N_ArchiteciKoderix STG_N_ArchiteciRegillusca
+		}
+
+		transport = {
+			STG_N_LegionaryTransport
+		}
+	}
+
+	ship_class_names = {
+		generic = {
+			STG_N_DDeridex STG_N_Valdore STG_N_Norexan STG_N_Talon STG_N_BirdofPrey
+			STG_N_Scimitar STG_N_Mogai STG_N_Shrike STG_N_Whitewind
+		}
+	}
+
+	fleet_names = {
+		sequential_name = STG_ROMULAN_WING
+	}
+
+	army_names = {
+		machine_assault_1 = {
+			sequential_name = STG_ROMULAN_ASSAULTCENTURY
+		}
+
+		machine_defense = {
+			sequential_name = STG_ROMULAN_DEFENSECENTURY
+		}
+
+		defense_army = {
+			sequential_name = STG_ROMULAN_PLANETARYDEFENSECENTURY
+		}
+
+		assault_army = {
+			sequential_name = STG_ROMULAN_LEGIONARYCENTURY
+		}
+
+		slave_army = {
+			sequential_name = STG_ROMULAN_SUBJECTCENTURY
+		}
+
+		clone_army = {
+			sequential_name = STG_ROMULAN_BREDCENTURY
+		}
+
+		robotic_army = {
+			sequential_name = STG_ROMULAN_AUTOMATEDCENTURY
+		}
+
+		psionic_army = {
+			sequential_name = STG_ROMULAN_ADEPTCENTURY
+		}
+
+		xenomorph_army = {
+			sequential_name = STG_ROMULAN_BEASTCENTURY
+		}
+
+		gene_warrior_army = {
+			sequential_name = STG_ROMULAN_AUGMENTEDCENTURY
+		}
+
+		occupation_army = {
+			sequential_name = STG_ROMULAN_OCCUPATIONCENTURY
+		}
+
+		robotic_defense_army = {
+			sequential_name = STG_ROMULAN_AUTOMATEDDEFENSECENTURY
+		}
+
+		industrial_army = {
+			sequential_name = STG_ROMULAN_LABORCENTURY
+		}
+
+		primitive_army = {
+			sequential_name = STG_ROMULAN_MILITIA
+		}
+	}
+
+	planet_names = {
+		generic = {
+			names = {
+				STG_N_Remus STG_N_Rator STG_N_Dartha STG_N_Rateg STG_N_Chaltok STG_N_Unroth
+				STG_N_Nequencia STG_N_Galorndon STG_N_Hobus STG_N_Algeron STG_N_Nelvana STG_N_Devolin
+				STG_N_Xanitla STG_N_Artaleirh STG_N_Achernar STG_N_Terix STG_N_Constanthus STG_N_Ralatak
+				STG_N_Virinat STG_N_Mylasa
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			weight = 100
+
+			first_names_male = {
+				STG_N_Tomalak STG_N_Sela STG_N_Donatra STG_N_Suran STG_N_Koval STG_N_Neral STG_N_Pardek
+				STG_N_Movar STG_N_Mendak STG_N_Jarok STG_N_Taris STG_N_Toreth STG_N_Tebok STG_N_Alidar
+				STG_N_Vreenak STG_N_Talok STG_N_Rekar STG_N_Sirol STG_N_Nevala STG_N_Hiren
+				STG_N_Shinzon STG_N_Xiomek STG_N_Telek STG_N_Setal STG_N_Danar STG_N_Aehallh
+			}
+
+			first_names_female = {
+				STG_N_Sela STG_N_Donatra STG_N_Toreth STG_N_Taris STG_N_Selveth STG_N_Varel
+				STG_N_Cretak STG_N_Nvek STG_N_Tal STG_N_Rehaek STG_N_Verelan STG_N_Nanclus
+				STG_N_Vrelnec STG_N_Anlikar STG_N_Livara STG_N_Valdore STG_N_Cretak
+			}
+
+			second_names = {
+				STG_N_tRehu STG_N_tAegis STG_N_iRamnau STG_N_tKhellian
+				STG_N_iMhiessan STG_N_tLlweiir STG_N_iRhehiv STG_N_tAldani
+				STG_N_Talvath STG_N_Hiren STG_N_Nevala STG_N_Sirol STG_N_Mendak STG_N_Rekar
+			}
+		}
+	}
+}

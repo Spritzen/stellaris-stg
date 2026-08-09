@@ -1,0 +1,349 @@
+﻿# Borg Collective name list.
+#
+# The Collective numbers things rather than naming them: cube and matrix
+# designations for ships, unicomplex and grid for planets, and the canon drone
+# form — Third of Five — plus Hugh and Locutus. Both first_names blocks hold the
+# same designations; a drone's is not gendered, and an empty block falls back.
+#
+# Structure mirrors /stellaris/common/name_lists/HUMAN1.txt. Every name token
+# is an STG_N_ key in src/localisation/english/stg_names_l_english.yml.
+
+STG_BORG = {
+	category = "Machine"
+	randomized = no
+
+	ship_names = {
+		generic = {
+			STG_N_UnimatrixZeroOne STG_N_UnimatrixZeroTwo STG_N_UnimatrixThreeTwoFive STG_N_Cube461 STG_N_Cube630 STG_N_Cube1184
+			STG_N_TacticalCube138 STG_N_Sphere878 STG_N_Sphere634 STG_N_Probe6263 STG_N_Grid92 STG_N_Grid649
+			STG_N_Matrix010 STG_N_Matrix933 STG_N_QueensVessel STG_N_Assimilation STG_N_Perfection STG_N_Irrelevance
+			STG_N_Vessel0001 STG_N_Vessel0002 STG_N_Vessel0003 STG_N_Vessel0004 STG_N_Vessel0005 STG_N_Vessel0006
+			STG_N_Vessel0007 STG_N_Vessel0008 STG_N_Vessel0009 STG_N_Vessel0010 STG_N_Vessel0011 STG_N_Vessel0012
+			STG_N_Vessel0013 STG_N_Vessel0014 STG_N_Vessel0015 STG_N_Vessel0016 STG_N_Vessel0017 STG_N_Vessel0018
+			STG_N_Vessel0019 STG_N_Vessel0020 STG_N_Vessel0021 STG_N_Vessel0022 STG_N_Vessel0023 STG_N_Vessel0024
+			STG_N_Vessel0025 STG_N_Vessel0026 STG_N_Vessel0027 STG_N_Vessel0028 STG_N_Vessel0029 STG_N_Vessel0030
+			STG_N_Vessel0031 STG_N_Vessel0032 STG_N_Vessel0033 STG_N_Vessel0034 STG_N_Vessel0035 STG_N_Vessel0036
+			STG_N_Vessel0037 STG_N_Vessel0038 STG_N_Vessel0039 STG_N_Vessel0040 STG_N_Vessel0041 STG_N_Vessel0042
+			STG_N_Vessel0043 STG_N_Vessel0044 STG_N_Vessel0045 STG_N_Vessel0046 STG_N_Vessel0047 STG_N_Vessel0048
+			STG_N_Vessel0049 STG_N_Vessel0050 STG_N_Vessel0051 STG_N_Vessel0052 STG_N_Vessel0053 STG_N_Vessel0054
+			STG_N_Vessel0055 STG_N_Vessel0056 STG_N_Vessel0057 STG_N_Vessel0058 STG_N_Vessel0059 STG_N_Vessel0060
+			STG_N_Vessel0061 STG_N_Vessel0062 STG_N_Vessel0063 STG_N_Vessel0064 STG_N_Vessel0065 STG_N_Vessel0066
+			STG_N_Vessel0067 STG_N_Vessel0068 STG_N_Vessel0069 STG_N_Vessel0070 STG_N_Vessel0071 STG_N_Vessel0072
+			STG_N_Vessel0073 STG_N_Vessel0074 STG_N_Vessel0075 STG_N_Vessel0076 STG_N_Vessel0077 STG_N_Vessel0078
+			STG_N_Vessel0079 STG_N_Vessel0080 STG_N_Vessel0081 STG_N_Vessel0082 STG_N_Vessel0083 STG_N_Vessel0084
+			STG_N_Vessel0085 STG_N_Vessel0086 STG_N_Vessel0087 STG_N_Vessel0088 STG_N_Vessel0089 STG_N_Vessel0090
+			STG_N_Vessel0091 STG_N_Vessel0092 STG_N_Vessel0093 STG_N_Vessel0094 STG_N_Vessel0095 STG_N_Vessel0096
+			STG_N_Vessel0097 STG_N_Vessel0098 STG_N_Vessel0099 STG_N_Vessel0100 STG_N_Vessel0101 STG_N_Vessel0102
+			STG_N_Vessel0103 STG_N_Vessel0104 STG_N_Vessel0105 STG_N_Vessel0106 STG_N_Vessel0107 STG_N_Vessel0108
+			STG_N_Vessel0109 STG_N_Vessel0110 STG_N_Vessel0111 STG_N_Vessel0112 STG_N_Vessel0113 STG_N_Vessel0114
+			STG_N_Vessel0115 STG_N_Vessel0116 STG_N_Vessel0117 STG_N_Vessel0118 STG_N_Vessel0119 STG_N_Vessel0120
+			STG_N_Vessel0121 STG_N_Vessel0122 STG_N_Vessel0123 STG_N_Vessel0124 STG_N_Vessel0125 STG_N_Vessel0126
+			STG_N_Vessel0127 STG_N_Vessel0128 STG_N_Vessel0129 STG_N_Vessel0130 STG_N_Vessel0131 STG_N_Vessel0132
+			STG_N_Vessel0133 STG_N_Vessel0134 STG_N_Vessel0135 STG_N_Vessel0136 STG_N_Vessel0137 STG_N_Vessel0138
+			STG_N_Vessel0139 STG_N_Vessel0140 STG_N_Vessel0141 STG_N_Vessel0142 STG_N_Vessel0143 STG_N_Vessel0144
+			STG_N_Vessel0145 STG_N_Vessel0146 STG_N_Vessel0147 STG_N_Vessel0148 STG_N_Vessel0149 STG_N_Vessel0150
+			STG_N_Vessel0151 STG_N_Vessel0152 STG_N_Vessel0153 STG_N_Vessel0154 STG_N_Vessel0155 STG_N_Vessel0156
+			STG_N_Vessel0157 STG_N_Vessel0158 STG_N_Vessel0159 STG_N_Vessel0160 STG_N_Vessel0161 STG_N_Vessel0162
+			STG_N_Vessel0163 STG_N_Vessel0164 STG_N_Vessel0165 STG_N_Vessel0166 STG_N_Vessel0167 STG_N_Vessel0168
+			STG_N_Vessel0169 STG_N_Vessel0170 STG_N_Vessel0171 STG_N_Vessel0172 STG_N_Vessel0173 STG_N_Vessel0174
+			STG_N_Vessel0175 STG_N_Vessel0176 STG_N_Vessel0177 STG_N_Vessel0178 STG_N_Vessel0179 STG_N_Vessel0180
+			STG_N_Vessel0181 STG_N_Vessel0182 STG_N_Vessel0183 STG_N_Vessel0184 STG_N_Vessel0185 STG_N_Vessel0186
+			STG_N_Vessel0187 STG_N_Vessel0188 STG_N_Vessel0189 STG_N_Vessel0190 STG_N_Vessel0191 STG_N_Vessel0192
+			STG_N_Vessel0193 STG_N_Vessel0194 STG_N_Vessel0195 STG_N_Vessel0196 STG_N_Vessel0197 STG_N_Vessel0198
+			STG_N_Vessel0199 STG_N_Vessel0200 STG_N_Vessel0201 STG_N_Vessel0202 STG_N_Vessel0203 STG_N_Vessel0204
+			STG_N_Vessel0205 STG_N_Vessel0206 STG_N_Vessel0207 STG_N_Vessel0208 STG_N_Vessel0209 STG_N_Vessel0210
+			STG_N_Vessel0211 STG_N_Vessel0212 STG_N_Vessel0213 STG_N_Vessel0214 STG_N_Vessel0215 STG_N_Vessel0216
+			STG_N_Vessel0217 STG_N_Vessel0218 STG_N_Vessel0219 STG_N_Vessel0220 STG_N_Vessel0221 STG_N_Vessel0222
+			STG_N_Vessel0223 STG_N_Vessel0224 STG_N_Vessel0225 STG_N_Vessel0226 STG_N_Vessel0227 STG_N_Vessel0228
+			STG_N_Vessel0229 STG_N_Vessel0230 STG_N_Vessel0231 STG_N_Vessel0232 STG_N_Vessel0233 STG_N_Vessel0234
+			STG_N_Vessel0235 STG_N_Vessel0236 STG_N_Vessel0237 STG_N_Vessel0238 STG_N_Vessel0239 STG_N_Vessel0240
+			STG_N_Vessel0241 STG_N_Vessel0242 STG_N_Vessel0243 STG_N_Vessel0244 STG_N_Vessel0245 STG_N_Vessel0246
+			STG_N_Vessel0247 STG_N_Vessel0248 STG_N_Vessel0249 STG_N_Vessel0250 STG_N_Vessel0251 STG_N_Vessel0252
+			STG_N_Vessel0253 STG_N_Vessel0254 STG_N_Vessel0255 STG_N_Vessel0256 STG_N_Vessel0257 STG_N_Vessel0258
+			STG_N_Vessel0259 STG_N_Vessel0260 STG_N_Vessel0261 STG_N_Vessel0262 STG_N_Vessel0263 STG_N_Vessel0264
+			STG_N_Vessel0265 STG_N_Vessel0266 STG_N_Vessel0267 STG_N_Vessel0268 STG_N_Vessel0269 STG_N_Vessel0270
+			STG_N_Vessel0271 STG_N_Vessel0272 STG_N_Vessel0273 STG_N_Vessel0274 STG_N_Vessel0275 STG_N_Vessel0276
+			STG_N_Vessel0277 STG_N_Vessel0278 STG_N_Vessel0279 STG_N_Vessel0280 STG_N_Vessel0281 STG_N_Vessel0282
+			STG_N_Vessel0283 STG_N_Vessel0284 STG_N_Vessel0285 STG_N_Vessel0286 STG_N_Vessel0287 STG_N_Vessel0288
+			STG_N_Vessel0289 STG_N_Vessel0290 STG_N_Vessel0291 STG_N_Vessel0292 STG_N_Vessel0293 STG_N_Vessel0294
+			STG_N_Vessel0295 STG_N_Vessel0296 STG_N_Vessel0297 STG_N_Vessel0298 STG_N_Vessel0299 STG_N_Vessel0300
+			STG_N_Vessel0301 STG_N_Vessel0302 STG_N_Vessel0303 STG_N_Vessel0304 STG_N_Vessel0305 STG_N_Vessel0306
+			STG_N_Vessel0307 STG_N_Vessel0308 STG_N_Vessel0309 STG_N_Vessel0310 STG_N_Vessel0311 STG_N_Vessel0312
+			STG_N_Vessel0313 STG_N_Vessel0314 STG_N_Vessel0315 STG_N_Vessel0316 STG_N_Vessel0317 STG_N_Vessel0318
+			STG_N_Vessel0319 STG_N_Vessel0320 STG_N_Vessel0321 STG_N_Vessel0322 STG_N_Vessel0323 STG_N_Vessel0324
+			STG_N_Vessel0325 STG_N_Vessel0326 STG_N_Vessel0327 STG_N_Vessel0328 STG_N_Vessel0329 STG_N_Vessel0330
+			STG_N_Vessel0331 STG_N_Vessel0332 STG_N_Vessel0333 STG_N_Vessel0334 STG_N_Vessel0335 STG_N_Vessel0336
+			STG_N_Vessel0337 STG_N_Vessel0338 STG_N_Vessel0339 STG_N_Vessel0340 STG_N_Vessel0341 STG_N_Vessel0342
+			STG_N_Vessel0343 STG_N_Vessel0344 STG_N_Vessel0345 STG_N_Vessel0346 STG_N_Vessel0347 STG_N_Vessel0348
+			STG_N_Vessel0349 STG_N_Vessel0350 STG_N_Vessel0351 STG_N_Vessel0352 STG_N_Vessel0353 STG_N_Vessel0354
+			STG_N_Vessel0355 STG_N_Vessel0356 STG_N_Vessel0357 STG_N_Vessel0358 STG_N_Vessel0359 STG_N_Vessel0360
+			STG_N_Vessel0361 STG_N_Vessel0362 STG_N_Vessel0363 STG_N_Vessel0364 STG_N_Vessel0365 STG_N_Vessel0366
+			STG_N_Vessel0367 STG_N_Vessel0368 STG_N_Vessel0369 STG_N_Vessel0370 STG_N_Vessel0371 STG_N_Vessel0372
+			STG_N_Vessel0373 STG_N_Vessel0374 STG_N_Vessel0375 STG_N_Vessel0376 STG_N_Vessel0377 STG_N_Vessel0378
+			STG_N_Vessel0379 STG_N_Vessel0380 STG_N_Vessel0381 STG_N_Vessel0382 STG_N_Vessel0383 STG_N_Vessel0384
+			STG_N_Vessel0385 STG_N_Vessel0386 STG_N_Vessel0387 STG_N_Vessel0388 STG_N_Vessel0389 STG_N_Vessel0390
+			STG_N_Vessel0391 STG_N_Vessel0392 STG_N_Vessel0393 STG_N_Vessel0394 STG_N_Vessel0395 STG_N_Vessel0396
+			STG_N_Vessel0397 STG_N_Vessel0398 STG_N_Vessel0399 STG_N_Vessel0400 STG_N_Vessel0401 STG_N_Vessel0402
+			STG_N_Vessel0403 STG_N_Vessel0404 STG_N_Vessel0405 STG_N_Vessel0406 STG_N_Vessel0407 STG_N_Vessel0408
+			STG_N_Vessel0409 STG_N_Vessel0410 STG_N_Vessel0411 STG_N_Vessel0412 STG_N_Vessel0413 STG_N_Vessel0414
+			STG_N_Vessel0415 STG_N_Vessel0416 STG_N_Vessel0417 STG_N_Vessel0418 STG_N_Vessel0419 STG_N_Vessel0420
+			STG_N_Vessel0421 STG_N_Vessel0422 STG_N_Vessel0423 STG_N_Vessel0424 STG_N_Vessel0425 STG_N_Vessel0426
+			STG_N_Vessel0427 STG_N_Vessel0428 STG_N_Vessel0429 STG_N_Vessel0430 STG_N_Vessel0431 STG_N_Vessel0432
+			STG_N_Vessel0433 STG_N_Vessel0434 STG_N_Vessel0435 STG_N_Vessel0436 STG_N_Vessel0437 STG_N_Vessel0438
+			STG_N_Vessel0439 STG_N_Vessel0440 STG_N_Vessel0441 STG_N_Vessel0442 STG_N_Vessel0443 STG_N_Vessel0444
+			STG_N_Vessel0445 STG_N_Vessel0446 STG_N_Vessel0447 STG_N_Vessel0448 STG_N_Vessel0449 STG_N_Vessel0450
+			STG_N_Vessel0451 STG_N_Vessel0452 STG_N_Vessel0453 STG_N_Vessel0454 STG_N_Vessel0455 STG_N_Vessel0456
+			STG_N_Vessel0457 STG_N_Vessel0458 STG_N_Vessel0459 STG_N_Vessel0460 STG_N_Vessel0461 STG_N_Vessel0462
+			STG_N_Vessel0463 STG_N_Vessel0464 STG_N_Vessel0465 STG_N_Vessel0466 STG_N_Vessel0467 STG_N_Vessel0468
+			STG_N_Vessel0469 STG_N_Vessel0470 STG_N_Vessel0471 STG_N_Vessel0472 STG_N_Vessel0473 STG_N_Vessel0474
+			STG_N_Vessel0475 STG_N_Vessel0476 STG_N_Vessel0477 STG_N_Vessel0478 STG_N_Vessel0479 STG_N_Vessel0480
+			STG_N_Vessel0481 STG_N_Vessel0482 STG_N_Vessel0483 STG_N_Vessel0484 STG_N_Vessel0485 STG_N_Vessel0486
+			STG_N_Vessel0487 STG_N_Vessel0488 STG_N_Vessel0489 STG_N_Vessel0490 STG_N_Vessel0491 STG_N_Vessel0492
+			STG_N_Vessel0493 STG_N_Vessel0494 STG_N_Vessel0495 STG_N_Vessel0496 STG_N_Vessel0497 STG_N_Vessel0498
+			STG_N_Vessel0499 STG_N_Vessel0500 STG_N_Vessel0501 STG_N_Vessel0502 STG_N_Vessel0503 STG_N_Vessel0504
+			STG_N_Vessel0505 STG_N_Vessel0506 STG_N_Vessel0507 STG_N_Vessel0508 STG_N_Vessel0509 STG_N_Vessel0510
+			STG_N_Vessel0511 STG_N_Vessel0512 STG_N_Vessel0513 STG_N_Vessel0514 STG_N_Vessel0515 STG_N_Vessel0516
+			STG_N_Vessel0517 STG_N_Vessel0518 STG_N_Vessel0519 STG_N_Vessel0520 STG_N_Vessel0521 STG_N_Vessel0522
+			STG_N_Vessel0523 STG_N_Vessel0524 STG_N_Vessel0525 STG_N_Vessel0526 STG_N_Vessel0527 STG_N_Vessel0528
+			STG_N_Vessel0529 STG_N_Vessel0530 STG_N_Vessel0531 STG_N_Vessel0532 STG_N_Vessel0533 STG_N_Vessel0534
+			STG_N_Vessel0535 STG_N_Vessel0536 STG_N_Vessel0537 STG_N_Vessel0538 STG_N_Vessel0539 STG_N_Vessel0540
+			STG_N_Vessel0541 STG_N_Vessel0542 STG_N_Vessel0543 STG_N_Vessel0544 STG_N_Vessel0545 STG_N_Vessel0546
+			STG_N_Vessel0547 STG_N_Vessel0548 STG_N_Vessel0549 STG_N_Vessel0550 STG_N_Vessel0551 STG_N_Vessel0552
+			STG_N_Vessel0553 STG_N_Vessel0554 STG_N_Vessel0555 STG_N_Vessel0556 STG_N_Vessel0557 STG_N_Vessel0558
+			STG_N_Vessel0559 STG_N_Vessel0560 STG_N_Vessel0561 STG_N_Vessel0562 STG_N_Vessel0563 STG_N_Vessel0564
+			STG_N_Vessel0565 STG_N_Vessel0566 STG_N_Vessel0567 STG_N_Vessel0568 STG_N_Vessel0569 STG_N_Vessel0570
+			STG_N_Vessel0571 STG_N_Vessel0572 STG_N_Vessel0573 STG_N_Vessel0574 STG_N_Vessel0575 STG_N_Vessel0576
+			STG_N_Vessel0577 STG_N_Vessel0578 STG_N_Vessel0579 STG_N_Vessel0580 STG_N_Vessel0581 STG_N_Vessel0582
+			STG_N_Vessel0583 STG_N_Vessel0584 STG_N_Vessel0585 STG_N_Vessel0586 STG_N_Vessel0587 STG_N_Vessel0588
+			STG_N_Vessel0589 STG_N_Vessel0590 STG_N_Vessel0591 STG_N_Vessel0592 STG_N_Vessel0593 STG_N_Vessel0594
+			STG_N_Vessel0595 STG_N_Vessel0596 STG_N_Vessel0597 STG_N_Vessel0598 STG_N_Vessel0599 STG_N_Vessel0600
+			STG_N_Vessel0601 STG_N_Vessel0602 STG_N_Vessel0603 STG_N_Vessel0604 STG_N_Vessel0605 STG_N_Vessel0606
+			STG_N_Vessel0607 STG_N_Vessel0608 STG_N_Vessel0609 STG_N_Vessel0610 STG_N_Vessel0611 STG_N_Vessel0612
+			STG_N_Vessel0613 STG_N_Vessel0614 STG_N_Vessel0615 STG_N_Vessel0616 STG_N_Vessel0617 STG_N_Vessel0618
+			STG_N_Vessel0619 STG_N_Vessel0620 STG_N_Vessel0621 STG_N_Vessel0622 STG_N_Vessel0623 STG_N_Vessel0624
+			STG_N_Vessel0625 STG_N_Vessel0626 STG_N_Vessel0627 STG_N_Vessel0628 STG_N_Vessel0629 STG_N_Vessel0630
+			STG_N_Vessel0631 STG_N_Vessel0632 STG_N_Vessel0633 STG_N_Vessel0634 STG_N_Vessel0635 STG_N_Vessel0636
+			STG_N_Vessel0637 STG_N_Vessel0638 STG_N_Vessel0639 STG_N_Vessel0640 STG_N_Vessel0641 STG_N_Vessel0642
+			STG_N_Vessel0643 STG_N_Vessel0644 STG_N_Vessel0645 STG_N_Vessel0646 STG_N_Vessel0647 STG_N_Vessel0648
+			STG_N_Vessel0649 STG_N_Vessel0650 STG_N_Vessel0651 STG_N_Vessel0652 STG_N_Vessel0653 STG_N_Vessel0654
+			STG_N_Vessel0655 STG_N_Vessel0656 STG_N_Vessel0657 STG_N_Vessel0658 STG_N_Vessel0659 STG_N_Vessel0660
+			STG_N_Vessel0661 STG_N_Vessel0662 STG_N_Vessel0663 STG_N_Vessel0664 STG_N_Vessel0665 STG_N_Vessel0666
+			STG_N_Vessel0667 STG_N_Vessel0668 STG_N_Vessel0669 STG_N_Vessel0670 STG_N_Vessel0671 STG_N_Vessel0672
+			STG_N_Vessel0673 STG_N_Vessel0674 STG_N_Vessel0675 STG_N_Vessel0676 STG_N_Vessel0677 STG_N_Vessel0678
+			STG_N_Vessel0679 STG_N_Vessel0680 STG_N_Vessel0681 STG_N_Vessel0682 STG_N_Vessel0683 STG_N_Vessel0684
+			STG_N_Vessel0685 STG_N_Vessel0686 STG_N_Vessel0687 STG_N_Vessel0688 STG_N_Vessel0689 STG_N_Vessel0690
+			STG_N_Vessel0691 STG_N_Vessel0692 STG_N_Vessel0693 STG_N_Vessel0694 STG_N_Vessel0695 STG_N_Vessel0696
+			STG_N_Vessel0697 STG_N_Vessel0698 STG_N_Vessel0699 STG_N_Vessel0700 STG_N_Vessel0701 STG_N_Vessel0702
+			STG_N_Vessel0703 STG_N_Vessel0704 STG_N_Vessel0705 STG_N_Vessel0706 STG_N_Vessel0707 STG_N_Vessel0708
+			STG_N_Vessel0709 STG_N_Vessel0710 STG_N_Vessel0711 STG_N_Vessel0712 STG_N_Vessel0713 STG_N_Vessel0714
+			STG_N_Vessel0715 STG_N_Vessel0716 STG_N_Vessel0717 STG_N_Vessel0718 STG_N_Vessel0719 STG_N_Vessel0720
+			STG_N_Vessel0721 STG_N_Vessel0722 STG_N_Vessel0723 STG_N_Vessel0724 STG_N_Vessel0725 STG_N_Vessel0726
+			STG_N_Vessel0727 STG_N_Vessel0728 STG_N_Vessel0729 STG_N_Vessel0730 STG_N_Vessel0731 STG_N_Vessel0732
+			STG_N_Vessel0733 STG_N_Vessel0734 STG_N_Vessel0735 STG_N_Vessel0736 STG_N_Vessel0737 STG_N_Vessel0738
+			STG_N_Vessel0739 STG_N_Vessel0740 STG_N_Vessel0741 STG_N_Vessel0742 STG_N_Vessel0743 STG_N_Vessel0744
+			STG_N_Vessel0745 STG_N_Vessel0746 STG_N_Vessel0747 STG_N_Vessel0748 STG_N_Vessel0749 STG_N_Vessel0750
+			STG_N_Vessel0751 STG_N_Vessel0752 STG_N_Vessel0753 STG_N_Vessel0754 STG_N_Vessel0755 STG_N_Vessel0756
+			STG_N_Vessel0757 STG_N_Vessel0758 STG_N_Vessel0759 STG_N_Vessel0760 STG_N_Vessel0761 STG_N_Vessel0762
+			STG_N_Vessel0763 STG_N_Vessel0764 STG_N_Vessel0765 STG_N_Vessel0766 STG_N_Vessel0767 STG_N_Vessel0768
+			STG_N_Vessel0769 STG_N_Vessel0770 STG_N_Vessel0771 STG_N_Vessel0772 STG_N_Vessel0773 STG_N_Vessel0774
+			STG_N_Vessel0775 STG_N_Vessel0776 STG_N_Vessel0777 STG_N_Vessel0778 STG_N_Vessel0779 STG_N_Vessel0780
+			STG_N_Vessel0781 STG_N_Vessel0782 STG_N_Vessel0783 STG_N_Vessel0784 STG_N_Vessel0785 STG_N_Vessel0786
+			STG_N_Vessel0787 STG_N_Vessel0788 STG_N_Vessel0789 STG_N_Vessel0790 STG_N_Vessel0791 STG_N_Vessel0792
+			STG_N_Vessel0793 STG_N_Vessel0794 STG_N_Vessel0795 STG_N_Vessel0796 STG_N_Vessel0797 STG_N_Vessel0798
+			STG_N_Vessel0799 STG_N_Vessel0800 STG_N_Vessel0801 STG_N_Vessel0802 STG_N_Vessel0803 STG_N_Vessel0804
+			STG_N_Vessel0805 STG_N_Vessel0806 STG_N_Vessel0807 STG_N_Vessel0808 STG_N_Vessel0809 STG_N_Vessel0810
+			STG_N_Vessel0811 STG_N_Vessel0812 STG_N_Vessel0813 STG_N_Vessel0814 STG_N_Vessel0815 STG_N_Vessel0816
+			STG_N_Vessel0817 STG_N_Vessel0818 STG_N_Vessel0819 STG_N_Vessel0820 STG_N_Vessel0821 STG_N_Vessel0822
+			STG_N_Vessel0823 STG_N_Vessel0824 STG_N_Vessel0825 STG_N_Vessel0826 STG_N_Vessel0827 STG_N_Vessel0828
+			STG_N_Vessel0829 STG_N_Vessel0830 STG_N_Vessel0831 STG_N_Vessel0832 STG_N_Vessel0833 STG_N_Vessel0834
+			STG_N_Vessel0835 STG_N_Vessel0836 STG_N_Vessel0837 STG_N_Vessel0838 STG_N_Vessel0839 STG_N_Vessel0840
+			STG_N_Vessel0841 STG_N_Vessel0842 STG_N_Vessel0843 STG_N_Vessel0844 STG_N_Vessel0845 STG_N_Vessel0846
+			STG_N_Vessel0847 STG_N_Vessel0848 STG_N_Vessel0849 STG_N_Vessel0850 STG_N_Vessel0851 STG_N_Vessel0852
+			STG_N_Vessel0853 STG_N_Vessel0854 STG_N_Vessel0855 STG_N_Vessel0856 STG_N_Vessel0857 STG_N_Vessel0858
+			STG_N_Vessel0859 STG_N_Vessel0860 STG_N_Vessel0861 STG_N_Vessel0862 STG_N_Vessel0863 STG_N_Vessel0864
+			STG_N_Vessel0865 STG_N_Vessel0866 STG_N_Vessel0867 STG_N_Vessel0868 STG_N_Vessel0869 STG_N_Vessel0870
+			STG_N_Vessel0871 STG_N_Vessel0872 STG_N_Vessel0873 STG_N_Vessel0874 STG_N_Vessel0875 STG_N_Vessel0876
+			STG_N_Vessel0877 STG_N_Vessel0878 STG_N_Vessel0879 STG_N_Vessel0880 STG_N_Vessel0881 STG_N_Vessel0882
+			STG_N_Vessel0883 STG_N_Vessel0884 STG_N_Vessel0885 STG_N_Vessel0886 STG_N_Vessel0887 STG_N_Vessel0888
+			STG_N_Vessel0889 STG_N_Vessel0890 STG_N_Vessel0891 STG_N_Vessel0892 STG_N_Vessel0893 STG_N_Vessel0894
+			STG_N_Vessel0895 STG_N_Vessel0896 STG_N_Vessel0897 STG_N_Vessel0898 STG_N_Vessel0899 STG_N_Vessel0900
+			STG_N_Vessel0901 STG_N_Vessel0902 STG_N_Vessel0903 STG_N_Vessel0904 STG_N_Vessel0905 STG_N_Vessel0906
+			STG_N_Vessel0907 STG_N_Vessel0908 STG_N_Vessel0909 STG_N_Vessel0910 STG_N_Vessel0911 STG_N_Vessel0912
+			STG_N_Vessel0913 STG_N_Vessel0914 STG_N_Vessel0915 STG_N_Vessel0916 STG_N_Vessel0917 STG_N_Vessel0918
+			STG_N_Vessel0919 STG_N_Vessel0920 STG_N_Vessel0921 STG_N_Vessel0922 STG_N_Vessel0923 STG_N_Vessel0924
+			STG_N_Vessel0925 STG_N_Vessel0926 STG_N_Vessel0927 STG_N_Vessel0928 STG_N_Vessel0929 STG_N_Vessel0930
+			STG_N_Vessel0931 STG_N_Vessel0932 STG_N_Vessel0933 STG_N_Vessel0934 STG_N_Vessel0935 STG_N_Vessel0936
+			STG_N_Vessel0937 STG_N_Vessel0938 STG_N_Vessel0939 STG_N_Vessel0940 STG_N_Vessel0941 STG_N_Vessel0942
+			STG_N_Vessel0943 STG_N_Vessel0944 STG_N_Vessel0945 STG_N_Vessel0946 STG_N_Vessel0947 STG_N_Vessel0948
+			STG_N_Vessel0949 STG_N_Vessel0950 STG_N_Vessel0951 STG_N_Vessel0952 STG_N_Vessel0953 STG_N_Vessel0954
+			STG_N_Vessel0955 STG_N_Vessel0956 STG_N_Vessel0957 STG_N_Vessel0958 STG_N_Vessel0959 STG_N_Vessel0960
+			STG_N_Vessel0961 STG_N_Vessel0962 STG_N_Vessel0963 STG_N_Vessel0964 STG_N_Vessel0965 STG_N_Vessel0966
+			STG_N_Vessel0967 STG_N_Vessel0968 STG_N_Vessel0969 STG_N_Vessel0970 STG_N_Vessel0971 STG_N_Vessel0972
+			STG_N_Vessel0973 STG_N_Vessel0974 STG_N_Vessel0975 STG_N_Vessel0976 STG_N_Vessel0977 STG_N_Vessel0978
+			STG_N_Vessel0979 STG_N_Vessel0980 STG_N_Vessel0981 STG_N_Vessel0982 STG_N_Vessel0983 STG_N_Vessel0984
+			STG_N_Vessel0985 STG_N_Vessel0986 STG_N_Vessel0987 STG_N_Vessel0988 STG_N_Vessel0989 STG_N_Vessel0990
+			STG_N_Vessel0991 STG_N_Vessel0992 STG_N_Vessel0993 STG_N_Vessel0994 STG_N_Vessel0995 STG_N_Vessel0996
+			STG_N_Vessel0997 STG_N_Vessel0998 STG_N_Vessel0999 STG_N_Vessel1000
+		}
+
+		corvette = {
+			STG_N_Probe6263 STG_N_Scout4132 STG_N_Grid92 STG_N_Matrix933 STG_N_Node7
+		}
+
+		destroyer = {
+			STG_N_Sphere878 STG_N_Sphere634 STG_N_Sphere4270 STG_N_Sphere936
+		}
+
+		cruiser = {
+			STG_N_Cube461 STG_N_Cube630 STG_N_Cube1184 STG_N_Cube2381
+		}
+
+		battleship = {
+			STG_N_TacticalCube138 STG_N_TacticalCube9 STG_N_QueensVessel STG_N_UnimatrixZeroOne
+		}
+
+		titan = {
+			STG_N_UnimatrixZeroOne STG_N_QueensVessel STG_N_Perfection STG_N_Irrelevance
+		}
+
+		science = {
+			STG_N_Adaptation STG_N_Assimilation STG_N_Perfection STG_N_Analysis STG_N_Designation STG_N_Probe6263
+			STG_N_Grid92
+		}
+
+		colonizer = {
+			STG_N_Unicomplex STG_N_Grid649 STG_N_Matrix010 STG_N_Nucleus STG_N_Expansion
+		}
+
+		constructor = {
+			STG_N_FabricationNode STG_N_AssemblyNode STG_N_MaturationChamber STG_N_Alcove STG_N_Conduit
+		}
+
+		research_station = {
+			STG_N_Station
+		}
+
+		observation_station = {
+			STG_N_Station
+		}
+
+		mining_station = {
+			STG_N_Station
+		}
+
+		military_station_small = {
+			STG_N_Outpost
+		}
+
+		military_station_medium = {
+			STG_N_Outpost
+		}
+
+		military_station_large = {
+			STG_N_Outpost
+		}
+	}
+
+	ship_class_names = {
+		generic = {
+			STG_N_Cube STG_N_TacticalCube STG_N_Sphere STG_N_Probe STG_N_Diamond STG_N_Scout STG_N_Unimatrix
+			STG_N_Node STG_N_Conduit
+		}
+	}
+
+	fleet_names = {
+		sequential_name = STG_BORG_TACTICALGROUP
+	}
+
+	army_names = {
+		machine_assault_1 = {
+			sequential_name = STG_BORG_ASSAULTUNIMATRIX
+		}
+
+		machine_defense = {
+			sequential_name = STG_BORG_DEFENSEUNIMATRIX
+		}
+
+		defense_army = {
+			sequential_name = STG_BORG_PLANETARYDEFENSEUNIMATRIX
+		}
+
+		assault_army = {
+			sequential_name = STG_BORG_EXPEDITIONARYUNIMATRIX
+		}
+
+		slave_army = {
+			sequential_name = STG_BORG_LABORUNIMATRIX
+		}
+
+		clone_army = {
+			sequential_name = STG_BORG_REPLICATEUNIMATRIX
+		}
+
+		robotic_army = {
+			sequential_name = STG_BORG_AUTOMATEDUNIMATRIX
+		}
+
+		psionic_army = {
+			sequential_name = STG_BORG_ADEPTUNIMATRIX
+		}
+
+		xenomorph_army = {
+			sequential_name = STG_BORG_XENOMORPHUNIMATRIX
+		}
+
+		gene_warrior_army = {
+			sequential_name = STG_BORG_AUGMENTEDUNIMATRIX
+		}
+
+		occupation_army = {
+			sequential_name = STG_BORG_OCCUPATIONUNIMATRIX
+		}
+
+		robotic_defense_army = {
+			sequential_name = STG_BORG_AUTOMATEDDEFENSEUNIMATRIX
+		}
+
+		industrial_army = {
+			sequential_name = STG_BORG_INDUSTRIALUNIMATRIX
+		}
+
+		primitive_army = {
+			sequential_name = STG_BORG_MILITIA
+		}
+	}
+
+	planet_names = {
+		generic = {
+			names = {
+				STG_N_UnimatrixZeroTwo STG_N_UnimatrixThreeTwoFive STG_N_Grid92 STG_N_Grid649 STG_N_Matrix010 STG_N_Matrix933
+				STG_N_Node7 STG_N_Node41 STG_N_MaturationChamber STG_N_FabricationNode STG_N_AssemblyNode STG_N_Nucleus
+				STG_N_Expansion STG_N_Alcove STG_N_Conduit STG_N_Regeneration STG_N_Adaptation STG_N_Designation
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			weight = 100
+
+			first_names_male = {
+				STG_N_Locutus STG_N_Hugh STG_N_FirstofFive STG_N_SecondofFive STG_N_ThirdofFive STG_N_FourthofFive
+				STG_N_FifthofFive STG_N_OneofNine STG_N_TwoofNine STG_N_ThreeofNine STG_N_FourofNine
+				STG_N_FiveofNine STG_N_SixofNine STG_N_SevenofNine STG_N_EightofNine STG_N_NineofNine
+			}
+
+			first_names_female = {
+				STG_N_Locutus STG_N_Hugh STG_N_FirstofFive STG_N_SecondofFive STG_N_ThirdofFive STG_N_FourthofFive
+				STG_N_FifthofFive STG_N_OneofNine STG_N_TwoofNine STG_N_ThreeofNine STG_N_FourofNine
+				STG_N_FiveofNine STG_N_SixofNine STG_N_SevenofNine STG_N_EightofNine STG_N_NineofNine
+			}
+
+			second_names = {
+				STG_N_TertiaryAdjunct STG_N_SecondaryAdjunct STG_N_PrimaryAdjunct STG_N_UnimatrixZeroOne
+				STG_N_UnimatrixZeroTwo STG_N_UnimatrixThreeTwoFive STG_N_Grid92 STG_N_Grid649 STG_N_Matrix010
+				STG_N_Matrix933 STG_N_Node7 STG_N_Node41
+			}
+		}
+	}
+}

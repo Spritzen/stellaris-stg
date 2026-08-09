@@ -1,0 +1,160 @@
+# What is actually open
+
+> **What** — the questions still live, split by what would settle them: a live
+> run, somebody's eyes, or a decision nobody has made yet.
+> **Open when** — asking what to do next, or after the user reports a live run
+> and you need to know what to look for.
+> **Then** — [Live runs](../guides/live-runs.md) · [Status](status.md) · [Phases](phases.md)
+
+Every question the plan originally marked `[OPEN]` is decided, and the
+keep-or-drop calls on source mods are closed. The *rule* that closed them is what
+carries forward, not the verdicts: **error count is a cost to pay down, not a
+reason to drop a mod; sources go on content grounds only**
+([decision 12](../decisions/12-fix-source-errors-dont-drop.md)).
+
+---
+
+## Needs a live run to settle — and all of it is eyes-only
+
+**A reference that resolves produces no log record.** `make validate` clean is not
+evidence for anything in this section — the standing lesson of decisions
+[08](../decisions/08-stnh-art-shadows-vanilla.md) and
+[42](../decisions/42-event-picture-geometry.md).
+
+### The shipsets' weapons
+
+Whether the nine Walshicus shipsets draw their weapons, and whether the pruned
+event pictures took anything visible with them.
+
+Then the weapon-mount re-derivation
+([60](../decisions/60-mounts-share-existing-points.md),
+[67](../decisions/67-source-art-hardpoint-names.md)) across all 27 shipsets — the
+thing to look for is a mount that no longer breaks the pattern of the ones beside
+it, and, on the 66% still placed from the bounding box, whether any of them reads
+as badly as the corvette's third gun did.
+
+> **Two shipsets graded, both on the corvette: Klingon and Cardassian, 2026-08-08.**
+> The user reports the mounts on the Bortas-class and then on the Hideki-class —
+> all three of the latter — well placed. Two of 27, and the corvette is the hull
+> class the original defect was found on, so these are the strongest single checks
+> available rather than a sample of the rest. **25 shipsets still ungraded.**
+
+### The ruler clothes
+
+The plainest form this question has ever taken: **the president in a Starfleet
+formal robe, the Vulcan councillor in her white robe, the Terran empress in the ENT
+mirror coat** — each empire in exactly the garment its `game_setup` row names, with
+no index between the two.
+
+If any one of them is still wrong, the one-texture selector is not being reached at
+all and the portrait clone is the thing to doubt, not a number.
+[Decision 69](../decisions/69-ruler-clothes-dedicated-selectors.md), which
+falsified [68](../decisions/68-ruler-clothes-index-restored.md).
+
+### The 2026-08-08 warning triage
+
+Six `vendor.yml` renames changed which declaration the engine is left with, and a
+rename that works produces no log record. Worth a look: whether habitats draw as
+vanilla's orbital ring rather than a Suliban helix, and whether Real Space's nebula
+globules and debris fields look the size the systems around them are built at.
+[Decision 53](../decisions/53-duplicate-entity-triage.md).
+
+### Music
+
+The Federation anthem is in the ambient rotation and takes one hearing to confirm
+([55](../decisions/55-federation-anthem.md)). Then the 22 track names now that they
+have titles ([61](../decisions/61-music-player-track-names.md)) — what to listen
+for is whether the four chosen main-theme titles sit right beside the eighteen
+derived ones. And whether the rotation reads as 27 distinct recordings
+([65](../decisions/65-music-rotation-dedupe.md)).
+
+### Ship registries
+
+Whether the Trek registries read right on the right hulls.
+[Decision 59](../decisions/59-ship-name-pools.md)'s tonnage table is a judgement,
+and **a Nebula-class name turning up on a corvette is the way it would be wrong.**
+
+### Answered, kept here for the shape of the answer
+
+- **Rooms and hidden empires — confirmed on the Cardassian run of 2026-08-08.**
+  All four hidden empires are back in the empire list, and the designer's room list
+  is *"realistically over 300"* against the 19 of
+  [decision 48](../decisions/48-room-selector-merge.md).
+- **Five of the six city sets were declared nowhere** — the Klingon run of
+  2026-08-08 found it: the designer hid Vulcan, Cardassia, the Tholians and the
+  Borg outright with `EMPIRE_DESIGN_INVALID_GFX_CULTURE`. The art was complete and
+  the `room_selector` was right — only the `common/graphical_culture/` entry was
+  missing, which nothing dangles on. Klingon was the one that worked, because its
+  city name is also its *shipset* culture name and that is declared. Sweeping the
+  rule found a fifth, `stg_minor_undine_vanguard`, which is AI-only and so can
+  never appear in any log.
+  [Decision 62](../decisions/62-city-set-cultures-undeclared.md).
+- **Star names append rather than replace — settled 2026-08-08.**
+  [Decision 44](../decisions/44-random-names-pools-append.md) had inferred it from
+  two mods' file layouts and labelled itself as inference; the Cardassian run
+  reports the galaxy map carrying *"a mix — Trek names, real stars, and catalogue
+  designations (HD/HIP numbers)"*, which is exactly the three-way mix that
+  distinguishes append from replace. The effective pool is **6,531**, not the 1,584
+  decision 44 recorded. [Decision 52](../decisions/52-trek-star-names.md).
+- **The city framing.** Answered and needed no change
+  ([70](../decisions/70-vulcan-city-framing.md)).
+
+---
+
+## Log-level leftovers
+
+*With their share of the 2026-08-07 run's 1,308 records.*
+
+- **ASB's projectile reimplementations — 213 records, the largest class left.**
+  `alt_*` and `ap_*` in `gfx/projectiles/` redeclare vanilla names and the engine
+  keeps one. **Still open: which one renders.**
+- **SBX — 67 records**, naming techs from an older Stellaris, plus the only in-play
+  findings in that run. SBX also renumbers vanilla's citadel gun slots, breaking
+  vanilla's own design ([39](../decisions/39-sbx-citadel-slot-renumbering.md)). Its
+  `advanced_military_program` — the one `potential` block in either its file or
+  vanilla's that switched to `solar_system` unguarded — is patched as of 2026-08-07
+  ([46](../decisions/46-coalition-of-hope-takes-vul.md)).
+- **143 duplicate textures** where STNH's `shared_assets/` meets Walshicus'
+  `stnc_shipset_shared/` — [the conflict register](../architecture/conflict-register.md)
+  explains why last-wins is correct here. Now watched by
+  `check_duplicate_textures` and acked by directory, so the reviewed library stays
+  silent and a *new* collision reports.
+- **`legend` — 2 records**, inside vendored Klingon art at
+  `gfx/portraits/asset_selectors/klingon/klingon_male_clothes_combined.txt:42,48`.
+- The small defects of that run and what each cost are in
+  [decision 40](../decisions/40-live-run-2026-08-07-repairs.md).
+
+---
+
+## Reviewed and deliberately left alone — do not reopen without new evidence
+
+- **Real Space's oversized systems.** `System Mintaka … is too big` is Real Space's
+  own initializer against Real Space's own raised threshold, five of its 198
+  systems exceed it, and System Scale makes them *smaller*. Changing either the
+  geometry or the threshold would be inventing or silencing. STG's own home systems
+  top out at 515 and are clear.
+  [Decision 36](../decisions/36-oversized-real-space-systems.md).
+- **`PLANET_SCALE_SYSTEM` keeps its 8 entries.** The engine measures it against
+  `ZOOM_STEPS_SYSTEM`, an array no script can set, and the visual test found
+  13-against-8 rendering correctly.
+  [Decision 43](../decisions/43-planet-scale-system-length.md).
+- **706 report-tier orphans** from the clutter closure. At vanilla's own 4.9%
+  leftover rate in `gfx/models`, a finding there is indistinguishable from
+  Paradox's. Widening the prune scope means moving a tier in `tools/clutter.py`
+  **with a new ratio written beside it**. [The clutter closure](../validation/clutter.md).
+- **`descriptor.mod` declares `"Total Conversion"`, `"Species"`, `"Events"`,
+  `"Graphics"`.** Accurate for a vendored merge, and cosmetic since STG is never
+  published. Leave it.
+- **The prescripted-power sweep is done and clean.** `stg_minor_powers` shipped
+  with 78 of its 79 empire names truncated and 16 loc values that were the loc key
+  itself; all 100 are repaired
+  ([47](../decisions/47-minor-power-names-truncated.md)). The other three files —
+  `stg_frontier_powers.txt`, `stg_major_powers.txt`, `stg_quadrant_powers.txt` —
+  were swept and are clean: **0 leaked loc keys, 0 truncations** across all 22
+  empires, against all 111 STNH empires.
+
+  > The premise behind worrying about them was wrong in a specific way worth
+  > keeping: **those three were hand-authored and only the minors were generated**,
+  > and truncation is a *generator* failure. "Same hand" describes who chose the
+  > content, not what produced the file, and only the second matters for this
+  > defect class. [Decision 51](../decisions/51-prescripted-loc-scope.md).

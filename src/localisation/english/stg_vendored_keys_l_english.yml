@@ -1,0 +1,34 @@
+﻿l_english:
+ # Localisation for keys that vendored sources declare and never name.
+ #
+ # Every key here is a THIRD PARTY's database key, which the engine looks up
+ # verbatim, so none of them may take the STG_ prefix -- only the FILE does.
+ # Same rule as the species classes in decision 10 / decision 21.
+ #
+ # All six were reported by the 2026-08-07 live run. See
+ # .docs/decisions/40-live-run-2026-08-07-repairs.md.
+
+ # Real Space 4.0 declares these three dark-matter deposits in
+ # common/deposits/realspace_sr_deposits.txt and localises none of them:
+ # `Missing name localisation for deposit rs_d_dark_matter_deposit_N` x3.
+ # Yields are read from that file (1, 2, 3); the wording and the £sr_dark_matter£
+ # icon are vanilla's own from d_dark_matter_deposit_N in megacorp_l_english.yml.
+ rs_d_dark_matter_deposit_1:0 "£sr_dark_matter£ §Y+1§!"
+ rs_d_dark_matter_deposit_2:0 "£sr_dark_matter£ §Y+2§!"
+ rs_d_dark_matter_deposit_3:0 "£sr_dark_matter£ §Y+3§!"
+ rs_d_dark_matter_deposit_1_desc:0 "$rs_d_dark_matter_deposit_1$"
+ rs_d_dark_matter_deposit_2_desc:0 "$rs_d_dark_matter_deposit_2$"
+ rs_d_dark_matter_deposit_3_desc:0 "$rs_d_dark_matter_deposit_3$"
+
+ # Two static modifiers declared by Ships in Scaling in
+ # common/static_modifiers/shipsinscaling_modifiers.txt with no loc, so they
+ # showed as raw keys in any tooltip that listed them. Names describe what the
+ # file actually sets: ship_fire_rate_mult = -0.50, and hull/shield/armor x1.5.
+ fire_rate_reduction:0 "Reduced Rate of Fire"
+ hp_increased:0 "Reinforced Structure"
+
+ # Starbase Extended's asteroid-mining module gates itself on a custom_tooltip
+ # whose fail_text names an NSC key that does not exist here: `Missing
+ # localization key [nsc.requires.asteroid] for custom tooltip fail_text`.
+ # Without it the requirement line is blank in the build tooltip.
+ nsc.requires.asteroid:0 "Requires an asteroid in this system"

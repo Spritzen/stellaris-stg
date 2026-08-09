@@ -1,0 +1,167 @@
+﻿# Karemman name list, for the AI-only minor powers that use it.
+#
+# CONVERTED from .source/688086068/common/name_lists/Karemman.txt: the tokens are
+# STNH's, resolved through STNH's own localisation and re-keyed as STG_N_. The
+# ship-size buckets are rebuilt for VANILLA's ladder -- STNH's file buckets by
+# its own (saber, sovereign, steamrunner) and those keys mean nothing here.
+#
+# See .docs/decisions/19-stnh-minor-powers-as-ai-empires.md.
+
+STG_KAREMMAN = {
+	category = "Humanoid"
+	randomized = no
+
+	ship_names = {
+		generic = {
+			STG_N_Annex STG_N_Annuity STG_N_Appraiser STG_N_Arbitrage STG_N_Arbitration STG_N_Arrears
+			STG_N_Assay STG_N_Assessor STG_N_Auditor STG_N_Avarice STG_N_Capitalist STG_N_Client
+			STG_N_Commerce STG_N_Commission STG_N_Company STG_N_Compound STG_N_Contrarian STG_N_Contribution
+			STG_N_Credit STG_N_WilyMerchant STG_N_LatinumQueen STG_N_LeveragedBuyout STG_N_Margin STG_N_Isik
+			STG_N_Merchant STG_N_Merger STG_N_ExtraDelight STG_N_Negotiator STG_N_Notary STG_N_Strorith
+			STG_N_Goloth STG_N_Ondith STG_N_Preekoth STG_N_Qartum STG_N_RationalProfit STG_N_BenevolentRule
+			STG_N_Varkart STG_N_Venture STG_N_Wealth STG_N_Windfall STG_N_Rard-Pis STG_N_BeltofPlunder
+			STG_N_FearfulTrident STG_N_WanderingBlade STG_N_OpportuneExploit STG_N_Kingpin STG_N_Endowment STG_N_Speakeasy
+			STG_N_Constite STG_N_Invigorator STG_N_Innervater STG_N_Animater STG_N_Tradesman STG_N_Ransom
+		}
+
+		corvette = {
+			STG_N_Client STG_N_Commerce STG_N_Commission STG_N_Company STG_N_Compound
+		}
+
+		destroyer = {
+			STG_N_Contrarian STG_N_Contribution STG_N_Credit STG_N_WilyMerchant STG_N_LatinumQueen
+		}
+
+		cruiser = {
+			STG_N_LeveragedBuyout STG_N_Margin STG_N_Isik STG_N_Merchant STG_N_Merger
+		}
+
+		battleship = {
+			STG_N_ExtraDelight STG_N_Negotiator STG_N_Notary STG_N_Strorith STG_N_Goloth
+		}
+
+		titan = {
+			STG_N_Ondith STG_N_Preekoth STG_N_Qartum STG_N_RationalProfit
+		}
+
+		science = {
+			STG_N_Annex STG_N_Annuity STG_N_Appraiser STG_N_Arbitrage STG_N_Arbitration STG_N_Arrears
+		}
+
+		colonizer = {
+			STG_N_Annex STG_N_Annuity STG_N_Appraiser STG_N_Arbitrage STG_N_Arbitration
+		}
+
+		constructor = {
+			STG_N_Assay STG_N_Assessor STG_N_Auditor STG_N_Avarice STG_N_Capitalist
+		}
+	}
+
+	ship_class_names = {
+		generic = {
+			STG_N_Annex STG_N_Annuity STG_N_Appraiser STG_N_Arbitrage STG_N_Arbitration STG_N_Arrears
+			STG_N_Assay STG_N_Assessor STG_N_Auditor
+		}
+	}
+
+	fleet_names = {
+		sequential_name = STG_KAREMMAN_GROUP
+	}
+
+	army_names = {
+		machine_assault_1 = {
+			sequential_name = STG_KAREMMAN_ASSAULTAUXILIARY
+		}
+
+		machine_defense = {
+			sequential_name = STG_KAREMMAN_DEFENSEAUXILIARY
+		}
+
+		defense_army = {
+			sequential_name = STG_KAREMMAN_PLANETARYDEFENSEAUXILIARY
+		}
+
+		assault_army = {
+			sequential_name = STG_KAREMMAN_EXPEDITIONARYAUXILIARY
+		}
+
+		slave_army = {
+			sequential_name = STG_KAREMMAN_LABORAUXILIARY
+		}
+
+		clone_army = {
+			sequential_name = STG_KAREMMAN_REPLICATEAUXILIARY
+		}
+
+		robotic_army = {
+			sequential_name = STG_KAREMMAN_AUTOMATEDAUXILIARY
+		}
+
+		psionic_army = {
+			sequential_name = STG_KAREMMAN_ADEPTAUXILIARY
+		}
+
+		xenomorph_army = {
+			sequential_name = STG_KAREMMAN_XENOMORPHAUXILIARY
+		}
+
+		gene_warrior_army = {
+			sequential_name = STG_KAREMMAN_AUGMENTEDAUXILIARY
+		}
+
+		occupation_army = {
+			sequential_name = STG_KAREMMAN_OCCUPATIONAUXILIARY
+		}
+
+		robotic_defense_army = {
+			sequential_name = STG_KAREMMAN_AUTOMATEDDEFENSEAUXILIARY
+		}
+
+		industrial_army = {
+			sequential_name = STG_KAREMMAN_INDUSTRIALAUXILIARY
+		}
+
+		primitive_army = {
+			sequential_name = STG_KAREMMAN_MILITIA
+		}
+	}
+
+	planet_names = {
+		generic = {
+			names = {
+				STG_N_Annex STG_N_Annuity STG_N_Appraiser STG_N_Arbitrage STG_N_Arbitration STG_N_Arrears
+				STG_N_Assay STG_N_Assessor STG_N_Auditor STG_N_Avarice STG_N_Capitalist STG_N_Client
+				STG_N_Commerce STG_N_Commission STG_N_Company STG_N_Compound STG_N_Contrarian STG_N_Contribution
+				STG_N_Credit STG_N_WilyMerchant STG_N_LatinumQueen STG_N_LeveragedBuyout STG_N_Margin STG_N_Isik
+				STG_N_Merchant STG_N_Merger STG_N_ExtraDelight STG_N_Negotiator STG_N_Notary STG_N_Strorith
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			weight = 100
+
+			first_names_male = {
+				STG_N_Hanok STG_N_Ornithar STG_N_Atteracar STG_N_Atteem STG_N_Malkadt STG_N_Torosek
+				STG_N_Malkadosek STG_N_Tottar STG_N_Ornsek STG_N_Torithar STG_N_Thar STG_N_Nithar
+				STG_N_Olkorhanot STG_N_Malrosar STG_N_Malkadsek STG_N_Ornthark STG_N_Torot STG_N_Malnohar
+				STG_N_Korok STG_N_Harek STG_N_Grinok STG_N_Harok STG_N_Kodok STG_N_Shaggok
+			}
+
+			first_names_female = {
+				STG_N_Malrose STG_N_Malarose STG_N_Malkadseek STG_N_Ornthara STG_N_Toro STG_N_Malnohare
+				STG_N_Orntroce STG_N_Ornitha STG_N_Atmadose STG_N_Orntohace STG_N_Malrlroitha STG_N_Malka
+				STG_N_Hanose STG_N_Nitharcece STG_N_Nithara STG_N_Nitharace STG_N_Orattece STG_N_Toritattece
+				STG_N_Tharace STG_N_Mkorhce STG_N_Saramearsce STG_N_Angface STG_N_Prees STG_N_Looos
+			}
+
+			second_names = {
+				STG_N_Hanok STG_N_Ornithar STG_N_Atteracar STG_N_Atteem STG_N_Malkadt STG_N_Torosek
+				STG_N_Malkadosek STG_N_Tottar STG_N_Ornsek STG_N_Torithar STG_N_Thar STG_N_Nithar
+				STG_N_Olkorhanot STG_N_Malrosar STG_N_Malkadsek STG_N_Ornthark STG_N_Torot STG_N_Malnohar
+				STG_N_Korok STG_N_Harek STG_N_Grinok STG_N_Harok STG_N_Kodok STG_N_Shaggok
+			}
+		}
+	}
+}

@@ -1,0 +1,2597 @@
+# Star Trek Galaxies — species classes for the major powers.
+#
+# New prefixed file, so it merges with vanilla's species class databases.
+# KEYS ARE DELIBERATELY UNPREFIXED: the vendored STNH clothing selectors gate
+# every Trek uniform on `is_species_class = FED / VUL / KDF / …` and cannot be
+# edited. See .docs/decisions/10-species-class-keys-unprefixed.md.
+#
+# The same rule binds the SPELLING, not just the absence of a prefix. Eight
+# minor powers here carry STNH's key rather than a plausible one of our own —
+# BEN not BENZ, DEN not DENO, HYDR not HYD, KES not KESS, NYG not NYGE,
+# TEL not TELL, TUR not TURE, VAU not VAUN — because the master clothes
+# selectors name those eight and a near miss dresses the species in human
+# civilian clothes. See .docs/decisions/20-minor-power-species-class-keys.md.
+#
+# Archetypes are vanilla's. STNH's own (HUMANOID, CRYSTALLINE, CHANGELING,
+# SYMBIONT) are defined in its common/species_archetypes/, which we do not
+# vendor — naming one here gets the class silently dropped.
+#
+# `graphical_culture` names a vendored ship set, and comes from one of two
+# places. Nine of the fourteen name a Walshicus standalone shipset, which
+# declares its own culture and all 44 of vanilla's section entities — nothing of
+# ours is involved. The other five (BAJ, TRI, ADR, BOL, BRE) have no such set and
+# stay on STNH art, whose culture and vanilla-shaped entities are generated into
+# src/ by tools/gen_shipsets.py. Either way the key is the art's to choose, not
+# ours, for the same reason these keys are unprefixed.
+# See .docs/decisions/18-walshicus-shipsets-replace-stnh-hulls.md.
+#
+# `randomized = no` throughout: these appear only as the prescripted empires in
+# src/prescripted_countries/.
+
+# United Federation of Planets — humans and the founding members.
+FED = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = starfleet_tng
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Vulcans.
+VUL = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = vulcan
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Klingons.
+KDF = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = klingon
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Romulans.
+ROM = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = romulan
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Cardassians.
+CAR = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = cardassian
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# ── Phase 2 ────────────────────────────────────────────────────────────────
+
+# Ferengi.
+FER = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = ferengi
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Bajorans.
+BAJ = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = bajoran_01
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Trill. The symbiont is a trait on the joined pop, not a second class — STNH's
+# TSYM class needs its SYMBIONT archetype, which is not vendored.
+TRI = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = federation_32
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Andorians.
+ADR = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = andorian_01
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Bolians.
+BOL = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = bolian_01
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Breen. Genderless: the portrait group is one refrigeration-suited entity.
+BRE = {
+	archetype = BIOLOGICAL
+	randomized = no
+	gender = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = breen_01
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Tholians. LITHOID for the mineral metabolism, gated on the Lithoids DLC as
+# vanilla's own LITHOID class is. Genderless: one crystalline entity portrait.
+THO = {
+	archetype = LITHOID
+	randomized = no
+	gender = no
+
+	playable = {
+		has_lithoids = yes
+	}
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_lithoid"
+	graphical_culture = tholian
+	move_pop_sound_effect = "reptilian_pops_move"
+}
+
+# Changelings — the Founders of the Dominion. BIOLOGICAL is vanilla's closest
+# archetype for a liquid-state life form.
+DOM = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = dominion
+	move_pop_sound_effect = "molluscoid_pops_move"
+}
+
+# Borg drones. MACHINE, and machine intelligence only: vanilla's MACHINE class
+# would otherwise let a player build an individualist Borg empire.
+BRG = {
+	archetype = MACHINE
+	randomized = no
+	use_climate_preference = no
+	portrait_modding = yes
+
+	leader_age_min = 5
+	leader_age_max = 10
+
+	possible = {
+		authority = { # prunes every authority except machine intelligence
+			NOR = {
+				value = auth_democratic
+				value = auth_oligarchic
+				value = auth_dictatorial
+				value = auth_imperial
+				value = auth_hive_mind
+				value = auth_ancient_machine_intelligence
+				value = auth_corporate
+				text = SPECIES_CLASS_MUST_USE_MACHINE_INTELLIGENCE
+			}
+		}
+		ethics = { # prunes every ethic except gestalt consciousness
+			NOR = {
+				value = ethic_fanatic_authoritarian
+				value = ethic_authoritarian
+				value = ethic_fanatic_egalitarian
+				value = ethic_egalitarian
+				value = ethic_fanatic_xenophobe
+				value = ethic_xenophobe
+				value = ethic_fanatic_xenophile
+				value = ethic_xenophile
+				value = ethic_fanatic_militarist
+				value = ethic_militarist
+				value = ethic_fanatic_pacifist
+				value = ethic_pacifist
+				value = ethic_fanatic_spiritualist
+				value = ethic_spiritualist
+				value = ethic_fanatic_materialist
+				value = ethic_materialist
+				text = SPECIES_CLASS_MUST_USE_GESTALT_CONSCIOUSNESS
+			}
+		}
+	}
+
+	trait = "trait_machine_unit"
+	graphical_culture = borg
+	move_pop_sound_effect = "robot_pops_move"
+}
+
+# ── The eight frontier powers ──────────────────────────────────────────────
+# Each names a Walshicus shipset culture directly. None is referenced by an STNH
+# clothing selector — STNH has no uniform art for these eight — so they wear the
+# selector's default. See .docs/decisions/18-walshicus-shipsets-replace-stnh-hulls.md.
+
+# Caitian Union.
+CAI = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = caitian
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+
+# Xindi Council.
+XIN = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = xindi
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+
+# Suliban Cabal.
+SUL = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = suliban
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+
+# Yridian League.
+YRI = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = yridian
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+
+# Krenim Imperium.
+KRE = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = krenim
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+
+# Malon Sanctity.
+MAL = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = malon
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+
+# Vidiian Sodality.
+VID = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = vidiian
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+
+# Terran Empire.
+TER = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = terran_nx
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# ── The minor powers ───────────────────────────────────────────────────────
+# One class per AI-only empire in stg_minor_powers.txt. Keys are derived from
+# the empire name and checked against BOTH the twenty-two above and the fifty
+# STNH clothing selectors reference, so none of them can collide with a
+# uniform rule. See .docs/decisions/19-stnh-minor-powers-as-ai-empires.md.
+
+# Sovereignty.
+ACA = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = generic_05
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Shoals.
+ANT = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = generic_06
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Packs.
+ANTI = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = cardassian
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Commonwealth.
+ARG = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = generic_01
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Commonwealth.
+BEN = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = generic_05
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Houses.
+BET = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = generic_01
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Empire.
+BRU = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = generic_02
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Domains.
+BYN = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = generic_01
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Sovereignty.
+CHE = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = generic_06
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Commission.
+CHER = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = generic_01
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# of Earth.
+CON = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = starfleet_tng
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# CravicImperative.
+CRA = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = borg
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Deltan.
+DEL = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = generic_01
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Unity.
+DEN = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = starfleet_tng
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Imperium.
+DEV = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = vidiian
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Confederacy.
+DOS = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = generic_02
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# -Aurian Auditorium.
+ELA = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = lukari
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Domar States.
+FEN = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = generic_01
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Hegemony.
+FLA = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = generic_01
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Republic.
+GAR = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = romulan
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Hegemony.
+GOR = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = xindi
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Order.
+HAA = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = generic_01
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Tuatara.
+HAZ = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = krenim
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Hunters.
+HIR = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = krenim
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# 'Q Stagnancy.
+HUR = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = generic_01
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Ascendency.
+HUS = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = elachi
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Kingdom.
+HYDR = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = elachi
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Foundation.
+KAR = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = dominion
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Sects.
+KAZ = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = malon
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Kessok.
+KES = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = cardassian
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Order of the Kinshaya.
+KIN = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = klingon
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Republic.
+KOB = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = vidiian
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Sanctum.
+KRA = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = malon
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Dynasty of Krios Prime.
+KRI = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = generic_01
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Kzinti.
+KZI = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = caitian
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Parliaments.
+LIS = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = generic_02
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Principality.
+LUR = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = generic_02
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Star Empire.
+LYR = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = caitian
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Diaspora.
+LYRI = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = malon
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Corporium.
+MED = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = generic_07
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Maritime Sovereignty.
+MON = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = generic_06
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# States.
+MOR = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = generic_05
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Tribes.
+NAU = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = klingon
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Harmony.
+NOR = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = generic_01
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Alliance.
+NYB = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = dominion
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Sector Authority.
+NYG = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = malon
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Orion.
+ORI = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = ferengi
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Hunters.
+OSC = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = dominion
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Clan Groups.
+PAK = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = cardassian
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Commonwealth.
+PAR = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = dominion
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Auxiliary.
+PRA = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = borg
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Third Imperium.
+RAK = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = generic_01
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Consortium.
+RIG = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = generic_05
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# League.
+SAU = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = generic_02
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Clutches.
+SEL = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = xindi
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Corporate.
+SHE = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = tholian
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Republic.
+SKR = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = generic_02
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# 'Rogoran Empire.
+TRO = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = generic_01
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Republic.
+TAL = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = generic_02
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Commonality.
+TALA = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = malon
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Unity.
+TAM = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = lukari
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Technocracy.
+TEL = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = starfleet_tng
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Alliance.
+TRA = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = malon
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Commonwealth.
+TUR = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = generic_02
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Coalition.
+TZE = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = tuterian
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Undine.
+UND = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = elachi
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Congress of Banea.
+UNI = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = malon
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Supremacy.
+VAA = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = vidiian
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Freeholds.
+VAL = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = generic_02
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Senate.
+VALT = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = generic_05
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# N'Akat Order.
+VAU = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = malon
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Theocracy.
+VOT = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = krenim
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Emirates.
+WAD = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = generic_02
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Guilds.
+XEP = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = generic_02
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Union.
+YAD = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = dominion
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Technocracy.
+ZAH = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = malon
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Comity.
+ZAK = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = generic_05
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# of Hope (2300s). Currently claimed by no empire: the Coalition of Hope took
+# STNH's own VUL so the master clothes selectors would dress it.
+# See .docs/decisions/46-coalition-of-hope-takes-vul.md.
+TNG = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = starfleet_tng
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Klingon-Cardassian Alliance (2300s).
+TNGK = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = starfleet_tng
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# ============================================================================
+# STUBS FOR CLASSES THE VENDORED ART NAMES AND NO EMPIRE OF OURS DECLARES.
+#
+# STNH's master clothes selectors gate 439 wardrobe branches on these 30 keys.
+# Undeclared, each one is a `Failed to deferred read key reference` at load --
+# 439 records in the 2026-08-07 run, 22% of error.log -- and the species that
+# would have worn them falls through to the selector's `default`, i.e. human
+# civilian clothes. Declaring the key is what makes the reference resolve;
+# see .docs/decisions/10-species-class-keys-unprefixed.md.
+#
+# `graphical_culture = generic_01` throughout, and it is INERT: no empire
+# declares these classes, so nothing ever resolves ship art through them. A kin
+# culture is not guessed here rather than asserting a relationship the sources
+# do not state.
+#
+# Spelling is STNH's, not ours, for the same reason the keys are unprefixed --
+# and four of these keys REPLACED a near miss of our own (DELT->DEL,
+# ELAU->ELA, MONE->MON, PARA->PAR), which is decision 20 applied again.
+# ============================================================================
+
+# Aenar -- referenced by the vendored clothes selectors, no empire of ours.
+AEN = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = generic_01
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Altairian -- referenced by the vendored clothes selectors, no empire of ours.
+ALTAIR = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = generic_01
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Alydian -- referenced by the vendored clothes selectors, no empire of ours.
+ALY = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = generic_01
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Barzan -- referenced by the vendored clothes selectors, no empire of ours.
+BAR = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = generic_01
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Bomar -- referenced by the vendored clothes selectors, no empire of ours.
+BOM = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = generic_01
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Brekkian -- referenced by the vendored clothes selectors, no empire of ours.
+BREK = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = generic_01
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Brikar -- referenced by the vendored clothes selectors, no empire of ours.
+BRIK = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = generic_01
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Caldonian -- referenced by the vendored clothes selectors, no empire of ours.
+CAL = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = generic_01
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Capellan -- referenced by the vendored clothes selectors, no empire of ours.
+CAPELLA = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = generic_01
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Dorvanite -- referenced by the vendored clothes selectors, no empire of ours.
+DORVAN = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = generic_01
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Edo -- referenced by the vendored clothes selectors, no empire of ours.
+EDO = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = generic_01
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Edosian -- referenced by the vendored clothes selectors, no empire of ours.
+EDOS = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = generic_01
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Evora -- referenced by the vendored clothes selectors, no empire of ours.
+EVO = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = generic_01
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Hotari -- referenced by the vendored clothes selectors, no empire of ours.
+HOT = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = generic_01
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Hupyrian -- referenced by the vendored clothes selectors, no empire of ours.
+HUP = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = generic_01
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Illyrian -- referenced by the vendored clothes selectors, no empire of ours.
+ILL = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = generic_01
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Kelpien -- referenced by the vendored clothes selectors, no empire of ours.
+KEL = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = generic_01
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Kobliad -- referenced by the vendored clothes selectors, no empire of ours.
+KOBL = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = generic_01
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Kreetassan -- referenced by the vendored clothes selectors, no empire of ours.
+KREE = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = generic_01
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Kressari -- referenced by the vendored clothes selectors, no empire of ours.
+KRESS = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = generic_01
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Mintakan -- referenced by the vendored clothes selectors, no empire of ours.
+MIN = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = generic_01
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Miradorn -- referenced by the vendored clothes selectors, no empire of ours.
+MIR = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = generic_01
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Mizarian -- referenced by the vendored clothes selectors, no empire of ours.
+MIZ = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = generic_01
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Ornaran -- referenced by the vendored clothes selectors, no empire of ours.
+ORN = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = generic_01
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Renao -- referenced by the vendored clothes selectors, no empire of ours.
+REN = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = generic_01
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Tarkalean -- referenced by the vendored clothes selectors, no empire of ours.
+TARK = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = generic_01
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Talosian -- referenced by the vendored clothes selectors, no empire of ours.
+TLS = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = generic_01
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Xahean -- referenced by the vendored clothes selectors, no empire of ours.
+XAH = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = generic_01
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Xyrillian -- referenced by the vendored clothes selectors, no empire of ours.
+XYR = {
+	archetype = BIOLOGICAL
+	randomized = no
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+
+	trait = "trait_organic"
+	graphical_culture = generic_01
+	move_pop_sound_effect = "moving_pop_confirmation"
+}
+
+# Photonic lifeforms. Vanilla's ROBOT is the shape here -- BIOLOGICAL with
+# trait_organic would be wrong, and STNH's own archetypes are in a
+# common/species_archetypes/ we do not vendor, so naming one drops the class.
+HOLO = {
+	archetype = ROBOT
+	randomized = no
+
+	gender = yes
+	use_climate_preference = no
+	graphical_culture = generic_01
+	move_pop_sound_effect = "robot_pops_move"
+}
+

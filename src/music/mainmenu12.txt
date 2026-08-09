@@ -1,0 +1,6 @@
+# SHADOWS music/mainmenu12.txt (Star Trek: New Horizons) — deliberately empty.
+#
+# Declares `maintheme12`, which names newhorizonstheme.ogg — the same recording
+# as `maintheme` and as maintheme7/8/9/10. Same reasoning as the four
+# src/music/maintheme*.txt beside this file: one recording, one playlist entry.
+# See .docs/decisions/61-music-player-track-names.md

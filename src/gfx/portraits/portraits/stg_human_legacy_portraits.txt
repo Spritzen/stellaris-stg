@@ -1,0 +1,197 @@
+# Restores vanilla's human_legacy portraits.
+#
+# STNH's 07_portraits_human.txt shadows vanilla's, which we want — it repoints
+# human_male/female_01..05 at Starfleet-uniformed textures. It also DELETES the
+# ten human_legacy_* portraits and their group, which vanilla's
+# common/portrait_sets/00_portrait_sets.txt still references.
+#
+# Copied verbatim from vanilla 4.4; additive by key, so this filename merges
+# rather than shadows. Re-copy if a Stellaris patch changes the originals.
+# See .docs/decisions/08-stnh-art-shadows-vanilla.md
+
+portraits = {
+	human_legacy_female_01 = {	entity = "portrait_human_female_01_entity"	clothes_selector = "mammalian_human_female_clothes_01" attachment_selector = "human_female_hair_01"	greeting_sound = "human_female_greetings_03" custom_attachment_label = "HAIR_STYLE" }
+	human_legacy_female_02 = {	entity = "portrait_human_female_02_entity"	clothes_selector = "mammalian_human_female_clothes_01" attachment_selector = "human_female_hair_02"	greeting_sound = "human_female_greetings_04" custom_attachment_label = "HAIR_STYLE" }
+	human_legacy_female_03 = {	entity = "portrait_human_female_03_entity"	clothes_selector = "mammalian_human_female_clothes_01" attachment_selector = "human_female_hair_03"	greeting_sound = "human_female_greetings_05" custom_attachment_label = "HAIR_STYLE" }
+	human_legacy_female_04 = {	entity = "portrait_human_female_04_entity"			clothes_selector = "mammalian_human_female_clothes_01" 	attachment_selector = "human_female_hair_04"	greeting_sound = "human_female_greetings_01" custom_attachment_label = "HAIR_STYLE" }
+	human_legacy_female_05 = {	entity = "portrait_human_female_05_entity"			clothes_selector = "mammalian_human_female_clothes_01" 	attachment_selector = "human_female_hair_05"	greeting_sound = "human_female_greetings_02" custom_attachment_label = "HAIR_STYLE" }
+	human_legacy_male_01 = {	entity = "portrait_human_male_01_entity"	clothes_selector = "mammalian_human_male_clothes_01" attachment_selector = "human_male_hair_01"	greeting_sound = "human_male_greetings_03" custom_attachment_label = "HAIR_STYLE" }
+	human_legacy_male_02 = {	entity = "portrait_human_male_02_entity"	clothes_selector = "mammalian_human_male_clothes_01" attachment_selector = "human_male_hair_02"	greeting_sound = "human_male_greetings_04" custom_attachment_label = "HAIR_STYLE" }
+	human_legacy_male_03 = {	entity = "portrait_human_male_03_entity"	clothes_selector = "mammalian_human_male_clothes_01" attachment_selector = "human_male_hair_03"	greeting_sound = "human_male_greetings_05" custom_attachment_label = "HAIR_STYLE" }
+	human_legacy_male_04 = {	entity = "portrait_human_male_04_entity"			clothes_selector = "mammalian_human_male_clothes_01" 	attachment_selector = "human_male_hair_04"	greeting_sound = "human_male_greetings_01" custom_attachment_label = "HAIR_STYLE" }
+	human_legacy_male_05 = {	entity = "portrait_human_male_05_entity"			clothes_selector = "mammalian_human_male_clothes_01" 	attachment_selector = "human_male_hair_05"	greeting_sound = "human_male_greetings_02" custom_attachment_label = "HAIR_STYLE" }
+}
+
+portrait_groups = {
+	human_legacy = {
+		default = human_legacy_male_01
+		game_setup = { #will run with a limited country scope. species and government is set but the country does not actually exist
+			add = {
+				trigger = {
+					ruler = {
+						OR = {
+							gender = male
+							gender = indeterminable
+						}
+					}
+				}
+				portraits = {
+					human_legacy_male_01
+					human_legacy_male_02
+					human_legacy_male_03
+					human_legacy_male_04
+					human_legacy_male_05
+				}
+			}
+			add = {
+				trigger = {
+					ruler = {
+						OR = {
+							gender = female
+							gender = indeterminable
+						}
+					}
+				}
+				portraits = {
+					human_legacy_female_01
+					human_legacy_female_02
+					human_legacy_female_03
+					human_legacy_female_04
+					human_legacy_female_05
+				}
+			}
+			#set = {
+			#	trigger = { ... }
+			#	portraits = { ... }
+			#	#using "set =" instead of "add" will first clear any portraits already added
+			#}
+		}
+
+		#species scope
+		species = { #generic portrait for a species
+			add = {
+				trigger = {
+					exists = species
+					NOT = { species = { species_gender = male } }
+				}
+				portraits = {
+					human_legacy_female_01
+					human_legacy_female_02
+					human_legacy_female_03
+					human_legacy_female_04
+					human_legacy_female_05
+				}
+			}
+			add = {
+				trigger = {
+					exists = species
+					NOT = { species = { species_gender = female } }
+				}
+				portraits = {
+					human_legacy_male_01
+					human_legacy_male_02
+					human_legacy_male_03
+					human_legacy_male_04
+					human_legacy_male_05
+				}
+			}
+		}
+
+		#pop scope
+		pop = { #for a specific pop
+			add = {
+				trigger = {
+					NOT = { species = { species_gender = male } }
+				}
+				portraits = {
+					human_legacy_female_01
+					human_legacy_female_02
+					human_legacy_female_03
+					human_legacy_female_04
+					human_legacy_female_05
+				}
+			}
+			add = {
+				trigger = {
+					NOT = { species = { species_gender = female } }
+				}
+				portraits = {
+					human_legacy_male_01
+					human_legacy_male_02
+					human_legacy_male_03
+					human_legacy_male_04
+					human_legacy_male_05
+				}
+			}
+		}
+
+		#leader scope
+		leader = { #scientists, generals, admirals, governor
+			add = {
+				trigger = {
+					OR = {
+						gender = female
+						gender = indeterminable
+					}
+				}
+				portraits = {
+					human_legacy_female_01
+					human_legacy_female_02
+					human_legacy_female_03
+					human_legacy_female_04
+					human_legacy_female_05
+				}
+			}
+			add = {
+				trigger = {
+					OR = {
+						gender = male
+						gender = indeterminable
+					}
+				}
+				portraits = {
+					human_legacy_male_01
+					human_legacy_male_02
+					human_legacy_male_03
+					human_legacy_male_04
+					human_legacy_male_05
+				}
+			}
+		}
+
+
+		#leader scope
+		ruler = {
+			add = {
+				trigger = {
+					OR = {
+						gender = female
+						gender = indeterminable
+					}
+				}
+				portraits = {
+					human_legacy_female_01
+					human_legacy_female_02
+					human_legacy_female_03
+					human_legacy_female_04
+					human_legacy_female_05
+				}
+			}
+			add = {
+				trigger = {
+					OR = {
+						gender = male
+						gender = indeterminable
+					}
+				}
+				portraits = {
+					human_legacy_male_01
+					human_legacy_male_02
+					human_legacy_male_03
+					human_legacy_male_04
+					human_legacy_male_05
+				}
+			}
+		}
+	}
+}

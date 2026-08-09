@@ -1,0 +1,290 @@
+﻿# Klingon name list, for the AI-only minor powers that use it.
+#
+# CONVERTED from .source/688086068/common/name_lists/Klingon.txt: the tokens are
+# STNH's, resolved through STNH's own localisation and re-keyed as STG_N_. The
+# ship-size buckets are rebuilt for VANILLA's ladder -- STNH's file buckets by
+# its own (saber, sovereign, steamrunner) and those keys mean nothing here.
+#
+# See .docs/decisions/19-stnh-minor-powers-as-ai-empires.md.
+
+STG_KLINGON = {
+	category = "Humanoid"
+	randomized = no
+
+	ship_names = {
+		generic = {
+			STG_N_Shago STG_N_Grinzel STG_N_Switsel STG_N_Matix STG_N_Bortras STG_N_Amar
+			STG_N_BMoth STG_N_Bortas STG_N_Buruk STG_N_ChTang STG_N_Drovana STG_N_HorCha
+			STG_N_Kitang STG_N_Koraga STG_N_Korinar STG_N_Malpara STG_N_NeghVar STG_N_Ningtao
+			STG_N_Orantho STG_N_Pagh STG_N_Partok STG_N_PRang STG_N_QuVat STG_N_Somraw
+			STG_N_Slivin STG_N_TAcog STG_N_TohKaht STG_N_Vornak STG_N_Ytem STG_N_YaVang
+			STG_N_Kvort STG_N_Charghwl STG_N_KTInga STG_N_Llwl STG_N_MayDuj STG_N_Brel
+			STG_N_DughDuy STG_N_Dughjup STG_N_Dughla STG_N_DughQu STG_N_WahsHiqus STG_N_Maht-Ha
+			STG_N_Dughro STG_N_DughwoQ STG_N_DughyaS STG_N_Etam STG_N_GhungDol STG_N_Ghunglom
+			STG_N_GhungQa STG_N_GhungQogh STG_N_Heghta STG_N_Hembu STG_N_HemDuy STG_N_Hemghol
+			STG_N_Hemlom STG_N_Hovpeng STG_N_MChar STG_N_NaSbutlh STG_N_NaSDol STG_N_NaSDup
+			STG_N_NaSgho STG_N_NaSghong STG_N_NaStaj STG_N_Rotarran STG_N_Vorn STG_N_QaDwI
+			STG_N_SuDwI STG_N_ChungwI STG_N_ChavwI STG_N_VangwI STG_N_ChuwI STG_N_VaQwI
+			STG_N_GhuHwI STG_N_QeHwI STG_N_NuQwI STG_N_GhoHwI STG_N_HIvwI STG_N_QabwI
+			STG_N_QImwI STG_N_ChopwI STG_N_BotwI STG_N_JaqwI STG_N_MeQwI STG_N_MolwI
+			STG_N_JonwI STG_N_QengwI STG_N_CharghwI STG_N_SeHwI STG_N_QughwI STG_N_HubwI
+			STG_N_PejwI STG_N_HeghwI STG_N_QawwI STG_N_VerghwI STG_N_YotwI STG_N_Aktuh
+			STG_N_Azetbur STG_N_BiJik STG_N_Chang STG_N_Divok STG_N_Feklhr STG_N_Giral
+			STG_N_Gorkon STG_N_JDdan STG_N_Kahless STG_N_Kang STG_N_KEhleyr STG_N_Klag
+			STG_N_Kmpec STG_N_Knera STG_N_Korris STG_N_Konmel STG_N_KRatak STG_N_Koloth
+			STG_N_Koord STG_N_Kor STG_N_KTemoc STG_N_Kurn STG_N_Kruge STG_N_LKor
+			STG_N_Lorgh STG_N_Maltz STG_N_Melota STG_N_Morath STG_N_NuDaq STG_N_DajDuS
+			STG_N_Dajghol STG_N_Dajghu STG_N_Dochbeq STG_N_Dochqup STG_N_DoqbaS STG_N_Doqcha
+			STG_N_DoqghuH STG_N_DoqHegh STG_N_DoqHo STG_N_DoqmaS STG_N_Doqram STG_N_HurghSan
+			STG_N_Husghaj STG_N_Lebatlh STG_N_Lechav STG_N_LeHov STG_N_LeqorDu STG_N_Qanmang
+			STG_N_Qanvaj STG_N_QIjbaS STG_N_QIjcha STG_N_QIjHegh STG_N_QIjHo STG_N_QIjmaS
+			STG_N_QIjram STG_N_Qutbe STG_N_QutHol STG_N_Qutqempa STG_N_QutSa STG_N_BIvwI
+			STG_N_BoQwI STG_N_BoSwI STG_N_BuvwI STG_N_ChelwI STG_N_ChenwI STG_N_ChoHwI
+			STG_N_ChovwI STG_N_DaqwI STG_N_GhorwI STG_N_HeQwI STG_N_HujwI STG_N_LIwI
+			STG_N_LoHwI STG_N_MIywI STG_N_MobwI STG_N_NajwI STG_N_NgIlwI STG_N_NgongwI
+			STG_N_QaHwI STG_N_QemwI STG_N_QeSwI STG_N_QIchwI STG_N_QochbewI STG_N_QolwI
+			STG_N_SepwI STG_N_TawI STG_N_TaymoHwI STG_N_TlheDwI STG_N_VIwI STG_N_BoHcha
+			STG_N_BoHDol STG_N_BoHDegh STG_N_BoHDuS STG_N_BoHtIq STG_N_BoHpeng STG_N_BoHyaS
+			STG_N_Ngojcha STG_N_NgojDegh STG_N_NgojDol STG_N_NgojDuS STG_N_Ngojpeng STG_N_Ngojporgh
+			STG_N_Ngotlhbe STG_N_NgotlhchoH STG_N_NgotlhDa STG_N_NgotlhDol STG_N_Ngotlhpuq STG_N_Noychapuj
+			STG_N_NoyDaS STG_N_NoyDuj STG_N_Noyqech STG_N_NoyvI STG_N_VaQbach STG_N_VaQDoch
+			STG_N_VaQDol STG_N_VaQDup STG_N_VaQpeng STG_N_VaQto STG_N_VaQyaS STG_N_BIrHegh
+			STG_N_BIrHom STG_N_BIrruv STG_N_BochbaS STG_N_BochHeH STG_N_BochHov STG_N_BochlIy
+			STG_N_Bochqut STG_N_Bochtev STG_N_HoSbatlh STG_N_HoSbegh STG_N_HoSDuj STG_N_HoSjagh
+			STG_N_HoSloD STG_N_HoSmu STG_N_HoSqempa STG_N_Jaqbach STG_N_Jaqbeq STG_N_Jaqbutlh
+			STG_N_JaqDup STG_N_JaqHoq STG_N_JaqtIq STG_N_QarbeH STG_N_QarchetvI STG_N_QarDuS
+			STG_N_QarHIch STG_N_QarmIn STG_N_QarnuH STG_N_Qarpeng STG_N_Boreth STG_N_DighreS
+			STG_N_Drovna STG_N_Erikang STG_N_Grethor STG_N_Khitomer STG_N_Kirom STG_N_Kristak
+			STG_N_Lursor STG_N_Morska STG_N_NoMat STG_N_Praxis STG_N_QalIape STG_N_Quinlat
+			STG_N_QuprIp STG_N_QuiTu STG_N_Rokegh STG_N_TOng STG_N_VorcaS STG_N_Vorcha
+			STG_N_Yavang STG_N_Bortasqu STG_N_KalRuq
+		}
+
+		corvette = {
+			STG_N_HorCha STG_N_Kitang STG_N_Koraga STG_N_Korinar STG_N_Malpara STG_N_Borghel
+			STG_N_BaHwil STG_N_BeghpoQ STG_N_BImoqu STG_N_BInep STG_N_BIngo STG_N_BIQango
+			STG_N_Bllugh STG_N_Bowiee STG_N_Brel STG_N_Buruk STG_N_Chongpogh STG_N_ChTang
+			STG_N_DakhyiDIL STG_N_Dakronh STG_N_KlaDIyuS STG_N_DebchoS STG_N_Doh STG_N_DoHa
+			STG_N_DomSIS STG_N_DughDuy STG_N_Dughjup STG_N_Dughla STG_N_DughQu STG_N_Dughro
+			STG_N_DughwoQ STG_N_DughyaS STG_N_Dunwo STG_N_DuyHub STG_N_Emree STG_N_Etam
+			STG_N_GharQotlh STG_N_Ghobe STG_N_Ghochragh STG_N_GhoHSot STG_N_GhungDol STG_N_Ghunglom
+			STG_N_GhungQa STG_N_GhungQogh STG_N_Gondev STG_N_Grerr STG_N_guhMoh STG_N_HeghQeDp
+			STG_N_Heghta STG_N_Hembu STG_N_HemDuy STG_N_Hemghol STG_N_Hemlom STG_N_Hijolpeng
+			STG_N_HobDIS STG_N_Hovpeng STG_N_HujaSIp STG_N_Hurghragh STG_N_HuSngeb STG_N_JiblalDan
+			STG_N_Jiyajbe STG_N_Jolylchu STG_N_Jor STG_N_JuSmung STG_N_Kadnra STG_N_KahlessRo
+			STG_N_Khich STG_N_Koroth STG_N_Krogshat STG_N_Kruge STG_N_Ktisuka STG_N_LoSmaH
+			STG_N_Luqargh STG_N_MajQabe STG_N_Mavjop STG_N_MawHeSwI STG_N_MChar STG_N_Michpagh
+			STG_N_Moktal STG_N_NaSbutlh STG_N_NaSDol STG_N_NaSDup STG_N_NaSgho STG_N_NaSghong
+			STG_N_NaSpuchpa STG_N_NaStaj STG_N_Naypar STG_N_Ningtao STG_N_Ningtau STG_N_NKghar
+			STG_N_PiqaDnem STG_N_Plath STG_N_Qapghargh STG_N_Qo STG_N_Qovin STG_N_Qughtung
+			STG_N_QuHvajQob STG_N_QulbIQ STG_N_QuocTruong STG_N_QupSoH STG_N_QutSuch STG_N_RanKuf
+			STG_N_RaQpojuS STG_N_Rotarran STG_N_Sapleng STG_N_SIDghom STG_N_Slivin STG_N_TaDmoH
+			STG_N_TajHu STG_N_Tarbe STG_N_Targ STG_N_Tazhat STG_N_TIHHich STG_N_TIQIwSev
+			STG_N_TlhIHHu STG_N_Trayor STG_N_Tuarop STG_N_VIghajbe STG_N_Vorka STG_N_Vorn
+			STG_N_Vutbol STG_N_Wobortas STG_N_Wuvatem STG_N_Yaja STG_N_YijatlhQo STG_N_Ylje
+			STG_N_Ytem STG_N_HomChaPar STG_N_ChaJoh STG_N_PaghHaw STG_N_ChavRalquje STG_N_ChenmoHmeh
+			STG_N_Chochota STG_N_Daghajchugh STG_N_DahMaw STG_N_DaraDmo STG_N_Darapubogh STG_N_DaqunmeH
+			STG_N_DunaDchoh STG_N_HeghGhah STG_N_Herghvetlh STG_N_Hlingong STG_N_Hutegh STG_N_MaQmIgh
+			STG_N_QamchoH STG_N_QaQbogh STG_N_QongDlj STG_N_Qunasvad STG_N_ShoSquqech STG_N_SoSllDaq
+			STG_N_SuHDaH STG_N_SumchughVay STG_N_Yachchuq STG_N_Sech STG_N_Kutluch STG_N_Aktuh
+			STG_N_Azetbur STG_N_BiJik STG_N_Chang STG_N_Divok STG_N_Feklhr STG_N_Giral
+			STG_N_Gorkon STG_N_Grokan STG_N_JDdan STG_N_Kahless STG_N_Kang STG_N_KEhleyr
+			STG_N_Klag STG_N_Kmpec STG_N_Knera STG_N_Koloth STG_N_Konmel STG_N_Kor
+			STG_N_Kormag STG_N_Korris STG_N_KRatak STG_N_Kreltek STG_N_KTemoc STG_N_Kurn
+			STG_N_Kvort STG_N_LKor STG_N_Lorgh STG_N_Lukara STG_N_Maltz STG_N_Melota
+			STG_N_Morath STG_N_NuDaq STG_N_Pagh STG_N_Tagak STG_N_Taj STG_N_Kivra
+			STG_N_Kla STG_N_LRell STG_N_Daqtagh STG_N_dktahg STG_N_Mekleth STG_N_Paqbatlh
+			STG_N_Batleth STG_N_Grethor STG_N_Ghargh STG_N_QawHaq STG_N_Kuvahmagh STG_N_GhIntaq
+			STG_N_GhIt STG_N_GhonDoq STG_N_HoHbIH STG_N_Iwpub STG_N_JachSaj1 STG_N_JeqqIj
+			STG_N_JeynaS STG_N_LeSpoHqI STG_N_JIHwIv STG_N_JorwIapoq STG_N_MeqleH STG_N_NaghSIS
+			STG_N_Naqjej STG_N_NgeHche STG_N_NIyIN STG_N_Nonurgh STG_N_obmaQ STG_N_PolQuj
+			STG_N_QunjIH STG_N_QutaDol STG_N_SuptIch STG_N_TajtIq STG_N_WIHHotlh STG_N_Yan
+			STG_N_YepHaHub
+		}
+
+		destroyer = {
+			STG_N_NeghVar STG_N_Ningtao STG_N_Orantho STG_N_Pagh STG_N_Partok STG_N_AmwI
+			STG_N_Balth STG_N_Barak STG_N_Bokor STG_N_Ditkra STG_N_Gantin STG_N_KaraH
+			STG_N_Keylat STG_N_NupaH STG_N_NuTal STG_N_Patan STG_N_Rmora STG_N_Roklor
+			STG_N_Somraw STG_N_Veng STG_N_PeDNIHwI STG_N_Cheleth STG_N_Bortas STG_N_JevChapar
+			STG_N_Klothos STG_N_Groth STG_N_HeghJop STG_N_SCha STG_N_MeHadRaw STG_N_Chorachugh
+			STG_N_DaDabej STG_N_DawmehDuhlvDi STG_N_DolMuSHabogh STG_N_Dotlh STG_N_HaQeDjaj STG_N_HeghtameH
+			STG_N_IwwIjayHom STG_N_Jawbogh STG_N_LununglawHoch STG_N_NabVad STG_N_NumeghmehDuj STG_N_QochbemeH
+			STG_N_QoJoh STG_N_QonoSTarghmey STG_N_QongDaqDajDaq STG_N_QumHabogh STG_N_QuSmey STG_N_QutaDlHegh
+			STG_N_SatlhoQutlh STG_N_SepboghYabvad STG_N_TuQmeh STG_N_Vuplubejnes STG_N_Waghqungeh
+		}
+
+		cruiser = {
+			STG_N_PRang STG_N_QuVat STG_N_Somraw STG_N_Slivin STG_N_TAcog STG_N_Jach
+			STG_N_BeghpoQ STG_N_Blortlh STG_N_Chongpogh STG_N_DebchoS STG_N_DkTahg STG_N_DuyHub
+			STG_N_Ectacus STG_N_Ghobe STG_N_GhoHSot STG_N_Groth STG_N_HobDiS STG_N_Hurghragh
+			STG_N_Korthos STG_N_Luqargh STG_N_MajQabe STG_N_NaSpuchpa STG_N_Naypar STG_N_OghwI
+			STG_N_PiqaDnem STG_N_Qawqay STG_N_Qughtung STG_N_QupSoH STG_N_QutSuch STG_N_Quv
+			STG_N_Roney STG_N_TaDmoH STG_N_TajHu STG_N_Tarbe STG_N_Trloth STG_N_Varchas
+			STG_N_Voqleng STG_N_Wuvatem STG_N_Arekkieh STG_N_Bardur STG_N_BMoth STG_N_Bortas
+			STG_N_Chargh STG_N_DajDuS STG_N_Dajghol STG_N_Dajghu STG_N_Dochbeq STG_N_Dochqup
+			STG_N_DoqbaS STG_N_Doqcha STG_N_DoqghuH STG_N_DoqHegh STG_N_DoqHo STG_N_DoqmaS
+			STG_N_Doqram STG_N_Ghaklor STG_N_GhIqtal STG_N_Ghob STG_N_HaHvat STG_N_Kelric
+			STG_N_Vatal STG_N_Hakkarl STG_N_HobDIS STG_N_HurghSan STG_N_Husghaj STG_N_LIbatlh
+			STG_N_LIchav STG_N_LeHov STG_N_LeqorDu STG_N_Kartadza STG_N_Kluggoth STG_N_KolTargh
+			STG_N_Korvat STG_N_Ktanco STG_N_Ktinga STG_N_Melikaphkaz STG_N_Pefak STG_N_QaD
+			STG_N_Qanmang STG_N_Qanvaj STG_N_Qapla STG_N_QIjbaS STG_N_QIjcha STG_N_QIjHegh
+			STG_N_QIjHo STG_N_QIjmaS STG_N_QIjram STG_N_QItInga STG_N_Qob STG_N_Qutbe
+			STG_N_QutHol STG_N_Qutqempa STG_N_QutSa STG_N_TNek STG_N_Tebtivu STG_N_Tewniwa
+			STG_N_Tevekh STG_N_TOng STG_N_VaH STG_N_Votaq STG_N_YaVang STG_N_Zajikh
+			STG_N_Norgh STG_N_AchloDnI STG_N_TohKaht STG_N_Avwi STG_N_Akua STG_N_Akva
+			STG_N_Amar STG_N_Arslek STG_N_Baqghol STG_N_Bejjoq STG_N_BighHa STG_N_BIQDep
+			STG_N_Boreth STG_N_BortaStej STG_N_ChenameQ STG_N_Daqchov STG_N_DaQQat STG_N_DaSpuDal
+			STG_N_DighreS STG_N_DoppuS STG_N_Drovana STG_N_Erikang STG_N_GarTukh STG_N_Grethor
+			STG_N_Heghta STG_N_Hejleng STG_N_Hohegh STG_N_HoSghaj STG_N_Hurgha STG_N_Jan
+			STG_N_JaqHom STG_N_JonKa STG_N_JorwIHegh STG_N_Kelest STG_N_Kerla STG_N_Keyvong
+			STG_N_Khitomer STG_N_Kirom STG_N_Kohna STG_N_Kristak STG_N_KTang STG_N_LengwIqet
+			STG_N_Lursor STG_N_Mahktar STG_N_MaHmuSSoH STG_N_Maht-Ha STG_N_Maymorgh STG_N_MepreH
+			STG_N_Mganath STG_N_MIva STG_N_Morska STG_N_NaghnuS STG_N_NavDon STG_N_Neng-ta
+			STG_N_NoMat STG_N_NongngIv STG_N_Olav STG_N_PIvghor STG_N_Pojqumpa STG_N_Praxis
+			STG_N_QalIape STG_N_Qam-Chee STG_N_QapHurgh STG_N_QaylIng STG_N_QighyoD STG_N_Qitong
+			STG_N_QoghaHuy STG_N_Quinlat STG_N_QuiTu STG_N_QueloDmI STG_N_QuprIp STG_N_QuvPatlh
+			STG_N_Rkang STG_N_RoghvaH STG_N_Rokegh STG_N_Segpa STG_N_SIHchor STG_N_StoVoKor
+			STG_N_Taral STG_N_Tchavoth STG_N_TivoH STG_N_TKora STG_N_TlhuH STG_N_VatlhvI
+			STG_N_veScharga STG_N_VorcaS STG_N_Vorcha STG_N_Vornak STG_N_Vumghargh STG_N_VupQuj
+			STG_N_WamwI STG_N_Waqbach STG_N_YabloD
+		}
+
+		battleship = {
+			STG_N_TohKaht STG_N_Vornak STG_N_Ytem STG_N_YaVang STG_N_Kvort STG_N_Jejha
+			STG_N_RojPar STG_N_Kvek STG_N_BajnISlu STG_N_Bey STG_N_Bom STG_N_CharghwI
+			STG_N_Chonbom STG_N_Chang STG_N_Chong STG_N_Chot STG_N_GhatlhIq STG_N_Ghob
+			STG_N_GholquS STG_N_GhuHnov STG_N_Giztabek STG_N_Hargh STG_N_Heghmar STG_N_HIapIm
+			STG_N_HoachaID STG_N_Hurghragh STG_N_JeHjhong STG_N_Kang STG_N_Kmpec STG_N_Koloth
+			STG_N_Kormat STG_N_Lojboq STG_N_Lop STG_N_LoSSaD STG_N_Matlhej STG_N_Mogh
+			STG_N_Nan STG_N_NeghVar STG_N_BaghVar STG_N_NovHoch STG_N_Peegh STG_N_PeySuq
+			STG_N_PoHmeyvav STG_N_QajunpaQ STG_N_QaStaHvIS STG_N_QaVak STG_N_Qetbogh STG_N_QIghpej
+			STG_N_Qom STG_N_SatlhQaH STG_N_SIQwI STG_N_Tarom STG_N_Vangshua STG_N_VaQ
+			STG_N_YinlutaH STG_N_YoHwI
+		}
+
+		titan = {
+			STG_N_Charghwl STG_N_KTInga STG_N_Llwl STG_N_MayDuj STG_N_JeHjhong
+		}
+
+		science = {
+			STG_N_Shago STG_N_Grinzel STG_N_Switsel STG_N_Matix STG_N_Bortras STG_N_Amar
+		}
+
+		colonizer = {
+			STG_N_Shago STG_N_Grinzel STG_N_Switsel STG_N_Matix STG_N_Bortras
+		}
+
+		constructor = {
+			STG_N_BMoth STG_N_Bortas STG_N_Buruk STG_N_ChTang STG_N_Drovana
+		}
+	}
+
+	ship_class_names = {
+		generic = {
+			STG_N_Shago STG_N_Grinzel STG_N_Switsel STG_N_Matix STG_N_Bortras STG_N_Amar
+			STG_N_BMoth STG_N_Bortas STG_N_Buruk
+		}
+	}
+
+	fleet_names = {
+		sequential_name = STG_KLINGON_GROUP
+	}
+
+	army_names = {
+		machine_assault_1 = {
+			sequential_name = STG_KLINGON_ASSAULTAUXILIARY
+		}
+
+		machine_defense = {
+			sequential_name = STG_KLINGON_DEFENSEAUXILIARY
+		}
+
+		defense_army = {
+			sequential_name = STG_KLINGON_PLANETARYDEFENSEAUXILIARY
+		}
+
+		assault_army = {
+			sequential_name = STG_KLINGON_EXPEDITIONARYAUXILIARY
+		}
+
+		slave_army = {
+			sequential_name = STG_KLINGON_LABORAUXILIARY
+		}
+
+		clone_army = {
+			sequential_name = STG_KLINGON_REPLICATEAUXILIARY
+		}
+
+		robotic_army = {
+			sequential_name = STG_KLINGON_AUTOMATEDAUXILIARY
+		}
+
+		psionic_army = {
+			sequential_name = STG_KLINGON_ADEPTAUXILIARY
+		}
+
+		xenomorph_army = {
+			sequential_name = STG_KLINGON_XENOMORPHAUXILIARY
+		}
+
+		gene_warrior_army = {
+			sequential_name = STG_KLINGON_AUGMENTEDAUXILIARY
+		}
+
+		occupation_army = {
+			sequential_name = STG_KLINGON_OCCUPATIONAUXILIARY
+		}
+
+		robotic_defense_army = {
+			sequential_name = STG_KLINGON_AUTOMATEDDEFENSEAUXILIARY
+		}
+
+		industrial_army = {
+			sequential_name = STG_KLINGON_INDUSTRIALAUXILIARY
+		}
+
+		primitive_army = {
+			sequential_name = STG_KLINGON_MILITIA
+		}
+	}
+
+	planet_names = {
+		generic = {
+			names = {
+				STG_N_Shago STG_N_Grinzel STG_N_Switsel STG_N_Matix STG_N_Bortras STG_N_Amar
+				STG_N_BMoth STG_N_Bortas STG_N_Buruk STG_N_ChTang STG_N_Drovana STG_N_HorCha
+				STG_N_Kitang STG_N_Koraga STG_N_Korinar STG_N_Malpara STG_N_NeghVar STG_N_Ningtao
+				STG_N_Orantho STG_N_Pagh STG_N_Partok STG_N_PRang STG_N_QuVat STG_N_Somraw
+				STG_N_Slivin STG_N_TAcog STG_N_TohKaht STG_N_Vornak STG_N_Ytem STG_N_YaVang
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			weight = 100
+
+			first_names_male = {
+				STG_N_Beetor STG_N_Torgh STG_N_Rtani STG_N_Mordok STG_N_Karthag STG_N_Worf
+				STG_N_Martok STG_N_Gowron STG_N_Amar STG_N_Antaak STG_N_Atrom STG_N_Atul
+				STG_N_Barel STG_N_Barot STG_N_Beiju STG_N_Korath STG_N_Koral STG_N_Kor
+				STG_N_Kmpec STG_N_Ortakin STG_N_Mogh STG_N_Koth STG_N_Kolor STG_N_Chang
+			}
+
+			first_names_female = {
+				STG_N_Orak STG_N_Ortikan STG_N_MKota STG_N_Rejac STG_N_Rorg STG_N_Rurik
+				STG_N_Rynar STG_N_Sarpek STG_N_ShiVang STG_N_Shovak STG_N_Silrek STG_N_Sorval
+				STG_N_Stex STG_N_Tvis STG_N_Tanas STG_N_TGreth STG_N_Thopok STG_N_TKar
+				STG_N_Toq STG_N_Toral STG_N_Torath STG_N_Torg STG_N_Torin STG_N_Tumek
+			}
+
+			second_names = {
+				STG_N_Beetor STG_N_Torgh STG_N_Rtani STG_N_Mordok STG_N_Karthag STG_N_Worf
+				STG_N_Martok STG_N_Gowron STG_N_Amar STG_N_Antaak STG_N_Atrom STG_N_Atul
+				STG_N_Barel STG_N_Barot STG_N_Beiju STG_N_Korath STG_N_Koral STG_N_Kor
+				STG_N_Kmpec STG_N_Ortakin STG_N_Mogh STG_N_Koth STG_N_Kolor STG_N_Chang
+			}
+		}
+	}
+}

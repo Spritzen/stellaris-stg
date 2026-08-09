@@ -1,0 +1,189 @@
+﻿# Kessok name list, for the AI-only minor powers that use it.
+#
+# CONVERTED from .source/688086068/common/name_lists/Kessok.txt: the tokens are
+# STNH's, resolved through STNH's own localisation and re-keyed as STG_N_. The
+# ship-size buckets are rebuilt for VANILLA's ladder -- STNH's file buckets by
+# its own (saber, sovereign, steamrunner) and those keys mean nothing here.
+#
+# See .docs/decisions/19-stnh-minor-powers-as-ai-empires.md.
+
+STG_KESSOK = {
+	category = "Humanoid"
+	randomized = no
+
+	ship_names = {
+		generic = {
+			STG_N_AflrnaR STG_N_Aglhafhm STG_N_AhbosyAgl STG_N_BsnaRuazhro STG_N_Bsnyhah STG_N_BiyLal
+			STG_N_EnffHyeF STG_N_EioRo STG_N_EyaZhro STG_N_Fmlatn STG_N_Fnorahyazhro STG_N_Fnorglazh
+			STG_N_Fnorglbthn STG_N_Fnorglchhro STG_N_Fnorgldgfnor STG_N_Fnorgldgzhro STG_N_Fnorglzhro STG_N_FnorgRngl
+			STG_N_Fnortgh STG_N_Heeyhanro STG_N_Heulnzhro STG_N_Hugofmaffc STG_N_IlghLelz STG_N_Kchtendua
+			STG_N_Kyarnaktho STG_N_MaHta STG_N_MgUeal STG_N_Mlatgzhro STG_N_NakkaR STG_N_Nghft
+			STG_N_Nhafhathg STG_N_Nilrgh STG_N_Nkfhkad STG_N_Nzzhroaglh STG_N_Os STG_N_Phlegetzhro
+			STG_N_PhRPhleg STG_N_RbsnaSt STG_N_RbthnhyeF STG_N_Rchro STG_N_Abote-Gealesh STG_N_Afht-Nugg
+			STG_N_Aflr-na-R STG_N_Ag-lhafh-m STG_N_Ahbosy-Agl STG_N_Arnak-Sel STG_N_Bos-tenf STG_N_Bsna-Ruaz-hro
+			STG_N_Bsn-y-hah STG_N_Biy-Lal STG_N_Din-Vulz STG_N_Dis-Tut STG_N_Der-Fenz STG_N_Erf-Nan
+			STG_N_Enff-Hye-F STG_N_Eio-Ro STG_N_Eya-Zhro STG_N_Fly-Pezl STG_N_Fm-latn STG_N_Fes-Teaz
+			STG_N_Fnorah-ya-zhro STG_N_Fey-Org STG_N_Fnor-Erlz STG_N_Fnor-Nah STG_N_Getz-Iuez STG_N_Geltx-Hzel
+			STG_N_Gecss-Isasa STG_N_Gyez-Jelk STG_N_Gell-Jeal STG_N_Fnorgl-azh STG_N_Fnorgl-bthn STG_N_Fnorgl-chhro
+			STG_N_Fnorgl-d-gfnor STG_N_Fnorgl-dgzhro STG_N_Hael-Jezlw STG_N_Hezgr-Pemsd STG_N_Fnorgl-Pex STG_N_Huex-Yzld
+			STG_N_F-norg-R-ngl STG_N_Ghl-Ros STG_N_Hak-Kelxa STG_N_heey-ha-nro STG_N_He-ul-nzhro STG_N_Hrii-Pxla
+			STG_N_Hro-Xezl STG_N_Hu-gof-ma-ffc STG_N_Ilgh-Lelz STG_N_K-cht-end-ua STG_N_Kikz-Oezl STG_N_K-yarnak-tho
+			STG_N_Lgcz-Ale STG_N_Ma-Hta STG_N_Mg-Ueal STG_N_Nak-kaR STG_N_Nak-Jak STG_N_nghft
+			STG_N_Nha-fh-athg STG_N_PhRphleg STG_N_Rbsnast STG_N_Rbthnhyef STG_N_Rcwnzhro STG_N_RdrRor
+			STG_N_RegethRoflR STG_N_ReRogl STG_N_Ret STG_N_Reulnilsll STG_N_Rfhalmafh STG_N_RFnordishthn
+			STG_N_RFnorgladi STG_N_Rgahhthro STG_N_Rgnm STG_N_Rhnsg STG_N_Rhp STG_N_Rhrluhhrnh
+			STG_N_Rhro STG_N_Rihthro STG_N_Rkadi STG_N_Rkadirg STG_N_Rkakthro STG_N_Rkkadish
+			STG_N_Rkronvu STG_N_Rlabtell STG_N_Rluhzhro STG_N_Rluzhrczhro STG_N_Rlzhro STG_N_Rmgoogh
+			STG_N_Rmgzhro STG_N_RmnaflRzhro STG_N_Rmnzhro STG_N_Rnakadish STG_N_Rnro STG_N_Rnyt
+			STG_N_Rnythp STG_N_RnythRothr STG_N_Rnyzehro STG_N_Roror STG_N_RRngzzhro STG_N_Rro
+			STG_N_RRphRff STG_N_Rsg STG_N_Rshtung STG_N_Rshugg STG_N_Rshuggsllh STG_N_Rsna
+			STG_N_Rtenffero STG_N_Rthnllo STG_N_Rthrodrnyboshro STG_N_RthRothph STG_N_Rugofn STG_N_Rvulgtlagla
+			STG_N_Rvupad STG_N_Rw STG_N_RyarnythRor STG_N_Ryazhro STG_N_Rythftnafro STG_N_Rzhr
+			STG_N_Rzhro STG_N_Sho-Pewql STG_N_Shtu-nggli STG_N_Slye-fik STG_N_Thphl STG_N_Them-Relz
+			STG_N_Th-r-uh STG_N_Thro-Tor STG_N_Tm-r-arn STG_N_Uggsgnulgtm STG_N_Uhp-Selc STG_N_Uknali
+			STG_N_Ung-gli-sh STG_N_Up-Rnglui STG_N_Ya-Zelo STG_N_Yha-h-tha STG_N_Yha-h-vo STG_N_Yhahuhc
+			STG_N_Yhawaahzhro STG_N_Y-kadis-hl STG_N_Zh-Fexl STG_N_Zal-Xecls STG_N_Zhro STG_N_Zhronron
+			STG_N_Zhrzhro STG_N_Zed-Kelz
+		}
+
+		corvette = {
+			STG_N_Fnorglazh STG_N_Fnorglbthn STG_N_Fnorglchhro STG_N_Fnorgldgfnor STG_N_Fnorgldgzhro
+		}
+
+		destroyer = {
+			STG_N_Fnorglzhro STG_N_FnorgRngl STG_N_Fnortgh STG_N_Heeyhanro STG_N_Heulnzhro
+		}
+
+		cruiser = {
+			STG_N_Hugofmaffc STG_N_IlghLelz STG_N_Kchtendua STG_N_Kyarnaktho STG_N_MaHta
+		}
+
+		battleship = {
+			STG_N_MgUeal STG_N_Mlatgzhro STG_N_NakkaR STG_N_Nghft STG_N_Nhafhathg
+		}
+
+		titan = {
+			STG_N_Nilrgh STG_N_Nkfhkad STG_N_Nzzhroaglh STG_N_Os
+		}
+
+		science = {
+			STG_N_AflrnaR STG_N_Aglhafhm STG_N_AhbosyAgl STG_N_BsnaRuazhro STG_N_Bsnyhah STG_N_BiyLal
+		}
+
+		colonizer = {
+			STG_N_AflrnaR STG_N_Aglhafhm STG_N_AhbosyAgl STG_N_BsnaRuazhro STG_N_Bsnyhah
+		}
+
+		constructor = {
+			STG_N_EnffHyeF STG_N_EioRo STG_N_EyaZhro STG_N_Fmlatn STG_N_Fnorahyazhro
+		}
+	}
+
+	ship_class_names = {
+		generic = {
+			STG_N_AflrnaR STG_N_Aglhafhm STG_N_AhbosyAgl STG_N_BsnaRuazhro STG_N_Bsnyhah STG_N_BiyLal
+			STG_N_EnffHyeF STG_N_EioRo STG_N_EyaZhro
+		}
+	}
+
+	fleet_names = {
+		sequential_name = STG_KESSOK_GROUP
+	}
+
+	army_names = {
+		machine_assault_1 = {
+			sequential_name = STG_KESSOK_ASSAULTAUXILIARY
+		}
+
+		machine_defense = {
+			sequential_name = STG_KESSOK_DEFENSEAUXILIARY
+		}
+
+		defense_army = {
+			sequential_name = STG_KESSOK_PLANETARYDEFENSEAUXILIARY
+		}
+
+		assault_army = {
+			sequential_name = STG_KESSOK_EXPEDITIONARYAUXILIARY
+		}
+
+		slave_army = {
+			sequential_name = STG_KESSOK_LABORAUXILIARY
+		}
+
+		clone_army = {
+			sequential_name = STG_KESSOK_REPLICATEAUXILIARY
+		}
+
+		robotic_army = {
+			sequential_name = STG_KESSOK_AUTOMATEDAUXILIARY
+		}
+
+		psionic_army = {
+			sequential_name = STG_KESSOK_ADEPTAUXILIARY
+		}
+
+		xenomorph_army = {
+			sequential_name = STG_KESSOK_XENOMORPHAUXILIARY
+		}
+
+		gene_warrior_army = {
+			sequential_name = STG_KESSOK_AUGMENTEDAUXILIARY
+		}
+
+		occupation_army = {
+			sequential_name = STG_KESSOK_OCCUPATIONAUXILIARY
+		}
+
+		robotic_defense_army = {
+			sequential_name = STG_KESSOK_AUTOMATEDDEFENSEAUXILIARY
+		}
+
+		industrial_army = {
+			sequential_name = STG_KESSOK_INDUSTRIALAUXILIARY
+		}
+
+		primitive_army = {
+			sequential_name = STG_KESSOK_MILITIA
+		}
+	}
+
+	planet_names = {
+		generic = {
+			names = {
+				STG_N_AflrnaR STG_N_Aglhafhm STG_N_AhbosyAgl STG_N_BsnaRuazhro STG_N_Bsnyhah STG_N_BiyLal
+				STG_N_EnffHyeF STG_N_EioRo STG_N_EyaZhro STG_N_Fmlatn STG_N_Fnorahyazhro STG_N_Fnorglazh
+				STG_N_Fnorglbthn STG_N_Fnorglchhro STG_N_Fnorgldgfnor STG_N_Fnorgldgzhro STG_N_Fnorglzhro STG_N_FnorgRngl
+				STG_N_Fnortgh STG_N_Heeyhanro STG_N_Heulnzhro STG_N_Hugofmaffc STG_N_IlghLelz STG_N_Kchtendua
+				STG_N_Kyarnaktho STG_N_MaHta STG_N_MgUeal STG_N_Mlatgzhro STG_N_NakkaR STG_N_Nghft
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			weight = 100
+
+			first_names_male = {
+				STG_N_AbraLel STG_N_AflRnaR STG_N_AnakThro STG_N_Cthgdirgn STG_N_CthglnffEhye STG_N_CthglnVul
+				STG_N_Cthglodzhro STG_N_CthglOgzna STG_N_CthglRnyth STG_N_CthglRon STG_N_Cththsyhahir STG_N_CthuiyeogO
+				STG_N_DinVul STG_N_EfNang STG_N_EnffEhyeF STG_N_EllRo STG_N_FthaRlye STG_N_HeUlnz
+				STG_N_HriiAglnvu STG_N_HuGofmaffc STG_N_KimZro
+			}
+
+			first_names_female = {
+				STG_N_NAfhAthg STG_N_PhRLeg STG_N_RdrRor STG_N_RegethRoflR STG_N_ReRog STG_N_Rhrluhhrnh
+				STG_N_RlyeglnnnRWk STG_N_RRlyeglAdi STG_N_RshuggSllh STG_N_Rsna STG_N_SlyeFkr STG_N_Thrluh
+				STG_N_TmrYarn STG_N_Uknali STG_N_UngGlish STG_N_UpLuiRer STG_N_Yhahharh STG_N_Yhahuhc
+				STG_N_ZehRivm STG_N_ZhrTes STG_N_ZhroHel
+			}
+
+			second_names = {
+				STG_N_AbraLel STG_N_AflRnaR STG_N_AnakThro STG_N_Cthgdirgn STG_N_CthglnffEhye STG_N_CthglnVul
+				STG_N_Cthglodzhro STG_N_CthglOgzna STG_N_CthglRnyth STG_N_CthglRon STG_N_Cththsyhahir STG_N_CthuiyeogO
+				STG_N_DinVul STG_N_EfNang STG_N_EnffEhyeF STG_N_EllRo STG_N_FthaRlye STG_N_HeUlnz
+				STG_N_HriiAglnvu STG_N_HuGofmaffc STG_N_KimZro STG_N_NAfhAthg STG_N_PhRLeg STG_N_RdrRor
+			}
+		}
+	}
+}

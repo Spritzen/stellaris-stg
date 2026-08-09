@@ -1,0 +1,29 @@
+# A REAL MERGE, not an override. STNH forked Real Space's
+# gfx/models/planets/rs_star_meshes.gfx and added entries; Real Space wins that
+# path and STNH is additive_only, so STNH's additions vanished while the STNH
+# entity file we DO vendor called for them 48 times — 48 `Couldn't find mesh`
+# records in the 2026-08-02 live run.
+#
+# .docs/architecture/conflict-register.md's "needs a real merge — write the file in src/" case, kept narrow:
+# only the declarations Real Space's copy does not make. Real Space's file is
+# untouched and still wins its own path. The two .mesh files these name are
+# vendored from STNH by an explicit include: in vendor.yml.
+
+objectTypes = {
+
+	
+	pdxmesh = {
+		name = "space_dust_01_mesh"
+		file = "gfx/models/space_dust_01.mesh"
+		scale = 10
+		meshsettings = { shader = "PdxMeshAlphaAdditiveAnimateUVNoDissolve" }	
+	}
+
+	
+	pdxmesh = {
+		name = "space_dust_02_mesh"
+		file = "gfx/models/space_dust_02.mesh"
+		scale = 10
+		meshsettings = { shader = "PdxMeshAlphaAdditiveAnimateUVNoDissolve" }	
+	}
+}

@@ -1,0 +1,157 @@
+﻿# Xepolite name list, for the AI-only minor powers that use it.
+#
+# CONVERTED from .source/688086068/common/name_lists/Xepolite.txt: the tokens are
+# STNH's, resolved through STNH's own localisation and re-keyed as STG_N_. The
+# ship-size buckets are rebuilt for VANILLA's ladder -- STNH's file buckets by
+# its own (saber, sovereign, steamrunner) and those keys mean nothing here.
+#
+# See .docs/decisions/19-stnh-minor-powers-as-ai-empires.md.
+
+STG_XEPOLITE = {
+	category = "Humanoid"
+	randomized = no
+
+	ship_names = {
+		generic = {
+			STG_N_Forawe STG_N_Forawa STG_N_Drofdroe STG_N_Awao STG_N_Droofo STG_N_Adrofo
+			STG_N_Forwe STG_N_Fore STG_N_Fooe STG_N_Drodra STG_N_Dwaa STG_N_Awdrofoe
+			STG_N_Fawa STG_N_Adoroe STG_N_Farafo STG_N_Drefo STG_N_Doofo STG_N_Farofa
+		}
+
+		corvette = {
+			STG_N_Awdrofoe STG_N_Fawa STG_N_Adoroe STG_N_Farafo STG_N_Drefo
+		}
+
+		destroyer = {
+			STG_N_Doofo STG_N_Farofa
+		}
+
+		cruiser = {
+			STG_N_Forawe STG_N_Forawa STG_N_Drofdroe
+		}
+
+		battleship = {
+			STG_N_Forawe STG_N_Forawa STG_N_Drofdroe
+		}
+
+		titan = {
+			STG_N_Forawe STG_N_Forawa STG_N_Drofdroe
+		}
+
+		science = {
+			STG_N_Forawe STG_N_Forawa STG_N_Drofdroe STG_N_Awao STG_N_Droofo STG_N_Adrofo
+		}
+
+		colonizer = {
+			STG_N_Forawe STG_N_Forawa STG_N_Drofdroe STG_N_Awao STG_N_Droofo
+		}
+
+		constructor = {
+			STG_N_Forwe STG_N_Fore STG_N_Fooe STG_N_Drodra STG_N_Dwaa
+		}
+	}
+
+	ship_class_names = {
+		generic = {
+			STG_N_Forawe STG_N_Forawa STG_N_Drofdroe STG_N_Awao STG_N_Droofo STG_N_Adrofo
+			STG_N_Forwe STG_N_Fore STG_N_Fooe
+		}
+	}
+
+	fleet_names = {
+		sequential_name = STG_XEPOLITE_GROUP
+	}
+
+	army_names = {
+		machine_assault_1 = {
+			sequential_name = STG_XEPOLITE_ASSAULTAUXILIARY
+		}
+
+		machine_defense = {
+			sequential_name = STG_XEPOLITE_DEFENSEAUXILIARY
+		}
+
+		defense_army = {
+			sequential_name = STG_XEPOLITE_PLANETARYDEFENSEAUXILIARY
+		}
+
+		assault_army = {
+			sequential_name = STG_XEPOLITE_EXPEDITIONARYAUXILIARY
+		}
+
+		slave_army = {
+			sequential_name = STG_XEPOLITE_LABORAUXILIARY
+		}
+
+		clone_army = {
+			sequential_name = STG_XEPOLITE_REPLICATEAUXILIARY
+		}
+
+		robotic_army = {
+			sequential_name = STG_XEPOLITE_AUTOMATEDAUXILIARY
+		}
+
+		psionic_army = {
+			sequential_name = STG_XEPOLITE_ADEPTAUXILIARY
+		}
+
+		xenomorph_army = {
+			sequential_name = STG_XEPOLITE_XENOMORPHAUXILIARY
+		}
+
+		gene_warrior_army = {
+			sequential_name = STG_XEPOLITE_AUGMENTEDAUXILIARY
+		}
+
+		occupation_army = {
+			sequential_name = STG_XEPOLITE_OCCUPATIONAUXILIARY
+		}
+
+		robotic_defense_army = {
+			sequential_name = STG_XEPOLITE_AUTOMATEDDEFENSEAUXILIARY
+		}
+
+		industrial_army = {
+			sequential_name = STG_XEPOLITE_INDUSTRIALAUXILIARY
+		}
+
+		primitive_army = {
+			sequential_name = STG_XEPOLITE_MILITIA
+		}
+	}
+
+	planet_names = {
+		generic = {
+			names = {
+				STG_N_Forawe STG_N_Forawa STG_N_Drofdroe STG_N_Awao STG_N_Droofo STG_N_Adrofo
+				STG_N_Forwe STG_N_Fore STG_N_Fooe STG_N_Drodra STG_N_Dwaa STG_N_Awdrofoe
+				STG_N_Fawa STG_N_Adoroe STG_N_Farafo STG_N_Drefo STG_N_Doofo STG_N_Farofa
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			weight = 100
+
+			first_names_male = {
+				STG_N_Awa STG_N_Forowa STG_N_Foroe STG_N_Adroroe STG_N_Droa STG_N_Drooroe
+				STG_N_Awaawa STG_N_Drowa STG_N_Foro STG_N_Droforoe STG_N_Awroe STG_N_Drdrofo
+				STG_N_Fofo STG_N_Drofowa STG_N_Foe STG_N_Drof
+			}
+
+			first_names_female = {
+				STG_N_Awaoroe STG_N_Foreo STG_N_Droroe STG_N_Awrofo STG_N_Forfo STG_N_Foroewa
+				STG_N_Drofofo STG_N_Forforoe STG_N_Forow STG_N_Awae STG_N_Adroe STG_N_Foroea
+				STG_N_Drofroe STG_N_Froe STG_N_Foofo STG_N_Foroeawa STG_N_Aroee
+			}
+
+			second_names = {
+				STG_N_Awa STG_N_Forowa STG_N_Foroe STG_N_Adroroe STG_N_Droa STG_N_Drooroe
+				STG_N_Awaawa STG_N_Drowa STG_N_Foro STG_N_Droforoe STG_N_Awroe STG_N_Drdrofo
+				STG_N_Fofo STG_N_Drofowa STG_N_Foe STG_N_Drof STG_N_Awaoroe STG_N_Foreo
+				STG_N_Droroe STG_N_Awrofo STG_N_Forfo STG_N_Foroewa STG_N_Drofofo STG_N_Forforoe
+			}
+		}
+	}
+}

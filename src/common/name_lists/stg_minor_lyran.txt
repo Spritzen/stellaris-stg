@@ -1,0 +1,167 @@
+﻿# Lyran name list, for the AI-only minor powers that use it.
+#
+# CONVERTED from .source/688086068/common/name_lists/Lyran.txt: the tokens are
+# STNH's, resolved through STNH's own localisation and re-keyed as STG_N_. The
+# ship-size buckets are rebuilt for VANILLA's ladder -- STNH's file buckets by
+# its own (saber, sovereign, steamrunner) and those keys mean nothing here.
+#
+# See .docs/decisions/19-stnh-minor-powers-as-ai-empires.md.
+
+STG_LYRAN = {
+	category = "Humanoid"
+	randomized = no
+
+	ship_names = {
+		generic = {
+			STG_N_BlackStripe STG_N_PeltHunter STG_N_Battleclaw STG_N_Demonclaw STG_N_Scarclaw STG_N_Ironclaw
+			STG_N_GoldenFang STG_N_Predator STG_N_PredatorCounty STG_N_WhiteStripe STG_N_HiddenDagger STG_N_BloodyClaw
+			STG_N_DarkStar STG_N_DoomStar STG_N_BloodStar STG_N_Panther STG_N_Leo STG_N_Apex
+			STG_N_Hunter STG_N_SilverMoon STG_N_BlackClaw STG_N_NightRoar STG_N_Courser STG_N_Typhus
+			STG_N_Panthera STG_N_Lynx STG_N_Agility STG_N_Pouncer STG_N_Intruder STG_N_Feral
+			STG_N_NineLives STG_N_Scratcher STG_N_Claw STG_N_Clawer STG_N_SavageClaw STG_N_SavageBite
+			STG_N_SilentStalker STG_N_Prowler STG_N_Dralthi STG_N_Salthi STG_N_Sartha STG_N_Gratha
+			STG_N_Jalthi STG_N_Hhriss STG_N_Krant STG_N_Strakha STG_N_Bloodfang STG_N_Gothri
+			STG_N_Jalkehi STG_N_Drakhri STG_N_Grikath STG_N_Vaktoth STG_N_Sorthak STG_N_Paktahn
+		}
+
+		corvette = {
+			STG_N_BloodyClaw STG_N_DarkStar STG_N_DoomStar STG_N_BloodStar STG_N_Panther
+		}
+
+		destroyer = {
+			STG_N_Leo STG_N_Apex STG_N_Hunter STG_N_SilverMoon STG_N_BlackClaw
+		}
+
+		cruiser = {
+			STG_N_NightRoar STG_N_Courser STG_N_Typhus STG_N_Panthera STG_N_Lynx
+		}
+
+		battleship = {
+			STG_N_Agility STG_N_Pouncer STG_N_Intruder STG_N_Feral STG_N_NineLives
+		}
+
+		titan = {
+			STG_N_Scratcher STG_N_Claw STG_N_Clawer STG_N_SavageClaw
+		}
+
+		science = {
+			STG_N_BlackStripe STG_N_PeltHunter STG_N_Battleclaw STG_N_Demonclaw STG_N_Scarclaw STG_N_Ironclaw
+		}
+
+		colonizer = {
+			STG_N_BlackStripe STG_N_PeltHunter STG_N_Battleclaw STG_N_Demonclaw STG_N_Scarclaw
+		}
+
+		constructor = {
+			STG_N_GoldenFang STG_N_Predator STG_N_PredatorCounty STG_N_WhiteStripe STG_N_HiddenDagger
+		}
+	}
+
+	ship_class_names = {
+		generic = {
+			STG_N_BlackStripe STG_N_PeltHunter STG_N_Battleclaw STG_N_Demonclaw STG_N_Scarclaw STG_N_Ironclaw
+			STG_N_GoldenFang STG_N_Predator STG_N_PredatorCounty
+		}
+	}
+
+	fleet_names = {
+		sequential_name = STG_LYRAN_GROUP
+	}
+
+	army_names = {
+		machine_assault_1 = {
+			sequential_name = STG_LYRAN_ASSAULTAUXILIARY
+		}
+
+		machine_defense = {
+			sequential_name = STG_LYRAN_DEFENSEAUXILIARY
+		}
+
+		defense_army = {
+			sequential_name = STG_LYRAN_PLANETARYDEFENSEAUXILIARY
+		}
+
+		assault_army = {
+			sequential_name = STG_LYRAN_EXPEDITIONARYAUXILIARY
+		}
+
+		slave_army = {
+			sequential_name = STG_LYRAN_LABORAUXILIARY
+		}
+
+		clone_army = {
+			sequential_name = STG_LYRAN_REPLICATEAUXILIARY
+		}
+
+		robotic_army = {
+			sequential_name = STG_LYRAN_AUTOMATEDAUXILIARY
+		}
+
+		psionic_army = {
+			sequential_name = STG_LYRAN_ADEPTAUXILIARY
+		}
+
+		xenomorph_army = {
+			sequential_name = STG_LYRAN_XENOMORPHAUXILIARY
+		}
+
+		gene_warrior_army = {
+			sequential_name = STG_LYRAN_AUGMENTEDAUXILIARY
+		}
+
+		occupation_army = {
+			sequential_name = STG_LYRAN_OCCUPATIONAUXILIARY
+		}
+
+		robotic_defense_army = {
+			sequential_name = STG_LYRAN_AUTOMATEDDEFENSEAUXILIARY
+		}
+
+		industrial_army = {
+			sequential_name = STG_LYRAN_INDUSTRIALAUXILIARY
+		}
+
+		primitive_army = {
+			sequential_name = STG_LYRAN_MILITIA
+		}
+	}
+
+	planet_names = {
+		generic = {
+			names = {
+				STG_N_BlackStripe STG_N_PeltHunter STG_N_Battleclaw STG_N_Demonclaw STG_N_Scarclaw STG_N_Ironclaw
+				STG_N_GoldenFang STG_N_Predator STG_N_PredatorCounty STG_N_WhiteStripe STG_N_HiddenDagger STG_N_BloodyClaw
+				STG_N_DarkStar STG_N_DoomStar STG_N_BloodStar STG_N_Panther STG_N_Leo STG_N_Apex
+				STG_N_Hunter STG_N_SilverMoon STG_N_BlackClaw STG_N_NightRoar STG_N_Courser STG_N_Typhus
+				STG_N_Panthera STG_N_Lynx STG_N_Agility STG_N_Pouncer STG_N_Intruder STG_N_Feral
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			weight = 100
+
+			first_names_male = {
+				STG_N_Clawfist STG_N_Clawraker STG_N_Ffirrah STG_N_Frannic STG_N_Frowgark STG_N_Goldenclaw
+				STG_N_Deserr STG_N_Iblis STG_N_Meow STG_N_Prozhoti STG_N_Eldeer STG_N_Zaowgron
+				STG_N_Howleszh STG_N_Meatnea STG_N_Hissraker STG_N_Shara STG_N_Erovan STG_N_Snarlpride
+				STG_N_Lynxesz STG_N_Jelz STG_N_Lyera STG_N_Dynkirre STG_N_Kise STG_N_Hisstime
+			}
+
+			first_names_female = {
+				STG_N_Tryss STG_N_Vyss STG_N_Alirr STG_N_Bernire STG_N_Mergi STG_N_Shuvle
+				STG_N_Rishe STG_N_Nesara STG_N_Shiboline STG_N_Ghee STG_N_Greer STG_N_Kiki
+				STG_N_Irongfang STG_N_Howlrazer STG_N_Danbarker STG_N_Slasherz STG_N_Sharpfang STG_N_Darkclaw
+				STG_N_Savagebite STG_N_Hissmaker STG_N_Clawsz STG_N_Furstalker STG_N_Biteclaw STG_N_Darkstar
+			}
+
+			second_names = {
+				STG_N_Clawfist STG_N_Clawraker STG_N_Ffirrah STG_N_Frannic STG_N_Frowgark STG_N_Goldenclaw
+				STG_N_Deserr STG_N_Iblis STG_N_Meow STG_N_Prozhoti STG_N_Eldeer STG_N_Zaowgron
+				STG_N_Howleszh STG_N_Meatnea STG_N_Hissraker STG_N_Shara STG_N_Erovan STG_N_Snarlpride
+				STG_N_Lynxesz STG_N_Jelz STG_N_Lyera STG_N_Dynkirre STG_N_Kise STG_N_Hisstime
+			}
+		}
+	}
+}

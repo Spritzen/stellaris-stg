@@ -1,0 +1,251 @@
+﻿# Pralor name list, for the AI-only minor powers that use it.
+#
+# CONVERTED from .source/688086068/common/name_lists/Pralor.txt: the tokens are
+# STNH's, resolved through STNH's own localisation and re-keyed as STG_N_. The
+# ship-size buckets are rebuilt for VANILLA's ladder -- STNH's file buckets by
+# its own (saber, sovereign, steamrunner) and those keys mean nothing here.
+#
+# See .docs/decisions/19-stnh-minor-powers-as-ai-empires.md.
+
+STG_PRALOR = {
+	category = "Humanoid"
+	randomized = no
+
+	ship_names = {
+		generic = {
+			STG_N_AutomatedVessel11 STG_N_AutomatedVessel14 STG_N_AutomatedVessel17 STG_N_AutomatedVessel20 STG_N_AutomatedVessel23 STG_N_AutomatedVessel26
+			STG_N_AutomatedVessel29 STG_N_AutomatedVessel32 STG_N_AutomatedVessel35 STG_N_AutomatedVessel38 STG_N_AutomatedVessel41 STG_N_AutomatedVessel44
+			STG_N_AutomatedVessel47 STG_N_AutomatedVessel50 STG_N_AutomatedVessel53 STG_N_AutomatedVessel56 STG_N_AutomatedVessel59 STG_N_AutomatedVessel62
+			STG_N_AutomatedVessel65 STG_N_AutomatedVessel68 STG_N_AutomatedVessel71 STG_N_AutomatedVessel74 STG_N_AutomatedVessel77 STG_N_AutomatedVessel80
+			STG_N_AutomatedVessel83 STG_N_AutomatedVessel86 STG_N_AutomatedVessel89 STG_N_AutomatedVessel92 STG_N_AutomatedVessel95 STG_N_AutomatedVessel98
+			STG_N_AutomatedVessel101 STG_N_AutomatedVessel104 STG_N_AutomatedVessel107 STG_N_AutomatedVessel110 STG_N_AutomatedVessel113 STG_N_AutomatedVessel116
+			STG_N_AutomatedVessel119 STG_N_AutomatedVessel122 STG_N_AutomatedVessel125 STG_N_AutomatedVessel128 STG_N_AutomatedVessel131 STG_N_AutomatedVessel134
+			STG_N_AutomatedVessel137 STG_N_AutomatedVessel140 STG_N_AutomatedVessel143 STG_N_AutomatedVessel146 STG_N_AutomatedVessel149 STG_N_AutomatedVessel152
+			STG_N_AutomatedVessel155 STG_N_AutomatedVessel158 STG_N_AutomatedVessel161 STG_N_AutomatedVessel164 STG_N_AutomatedVessel167 STG_N_AutomatedVessel170
+			STG_N_AutomatedVessel173 STG_N_AutomatedVessel176 STG_N_AutomatedVessel179 STG_N_AutomatedVessel182 STG_N_AutomatedVessel185 STG_N_AutomatedVessel188
+			STG_N_AutomatedVessel191 STG_N_AutomatedVessel194 STG_N_AutomatedVessel197 STG_N_AutomatedVessel200 STG_N_AutomatedVessel203 STG_N_AutomatedVessel206
+			STG_N_AutomatedVessel209 STG_N_AutomatedVessel212 STG_N_AutomatedVessel215 STG_N_AutomatedVessel218 STG_N_AutomatedVessel221 STG_N_AutomatedVessel224
+			STG_N_AutomatedVessel227 STG_N_AutomatedVessel230 STG_N_AutomatedVessel233 STG_N_AutomatedVessel236 STG_N_AutomatedVessel239 STG_N_AutomatedVessel242
+			STG_N_AutomatedVessel245 STG_N_AutomatedVessel248 STG_N_AutomatedVessel251 STG_N_AutomatedVessel254 STG_N_AutomatedVessel257 STG_N_AutomatedVessel260
+			STG_N_AutomatedVessel263 STG_N_AutomatedVessel266 STG_N_AutomatedVessel269 STG_N_AutomatedVessel272 STG_N_AutomatedVessel275 STG_N_AutomatedVessel278
+			STG_N_AutomatedVessel281 STG_N_AutomatedVessel284 STG_N_AutomatedVessel287 STG_N_AutomatedVessel290 STG_N_AutomatedVessel293 STG_N_AutomatedVessel296
+			STG_N_AutomatedVessel299 STG_N_AutomatedVessel302 STG_N_AutomatedVessel305 STG_N_AutomatedVessel308 STG_N_AutomatedVessel311 STG_N_AutomatedVessel314
+			STG_N_AutomatedVessel317 STG_N_AutomatedVessel320 STG_N_AutomatedVessel323 STG_N_AutomatedVessel326 STG_N_AutomatedVessel329 STG_N_AutomatedVessel332
+			STG_N_AutomatedVessel335 STG_N_AutomatedVessel338 STG_N_AutomatedVessel341 STG_N_AutomatedVessel344 STG_N_AutomatedVessel347 STG_N_AutomatedVessel350
+			STG_N_AutomatedVessel353 STG_N_AutomatedVessel356 STG_N_AutomatedVessel359 STG_N_AutomatedVessel362 STG_N_AutomatedVessel365 STG_N_AutomatedVessel368
+			STG_N_AutomatedVessel371 STG_N_AutomatedVessel374 STG_N_AutomatedVessel377 STG_N_AutomatedVessel380 STG_N_AutomatedVessel383 STG_N_AutomatedVessel386
+			STG_N_AutomatedVessel389 STG_N_AutomatedVessel392 STG_N_AutomatedVessel395 STG_N_AutomatedVessel398 STG_N_AutomatedVessel401 STG_N_AutomatedVessel404
+			STG_N_AutomatedVessel407 STG_N_AutomatedVessel410 STG_N_AutomatedVessel413 STG_N_AutomatedVessel416 STG_N_AutomatedVessel419 STG_N_AutomatedVessel422
+			STG_N_AutomatedVessel425 STG_N_AutomatedVessel428 STG_N_AutomatedVessel431 STG_N_AutomatedVessel434 STG_N_AutomatedVessel437 STG_N_AutomatedVessel440
+			STG_N_AutomatedVessel443 STG_N_AutomatedVessel446 STG_N_AutomatedVessel449 STG_N_AutomatedVessel452 STG_N_AutomatedVessel455 STG_N_AutomatedVessel458
+			STG_N_AutomatedVessel461 STG_N_AutomatedVessel464 STG_N_AutomatedVessel467 STG_N_AutomatedVessel470 STG_N_AutomatedVessel473 STG_N_AutomatedVessel476
+			STG_N_AutomatedVessel479 STG_N_AutomatedVessel482 STG_N_AutomatedVessel485 STG_N_AutomatedVessel488 STG_N_AutomatedVessel491 STG_N_AutomatedVessel494
+			STG_N_AutomatedVessel497 STG_N_AutomatedVessel500 STG_N_AutomatedVessel503 STG_N_AutomatedVessel506 STG_N_AutomatedVessel509 STG_N_AutomatedVessel512
+			STG_N_AutomatedVessel515 STG_N_AutomatedVessel518 STG_N_AutomatedVessel521 STG_N_AutomatedVessel524 STG_N_AutomatedVessel527 STG_N_AutomatedVessel530
+			STG_N_AutomatedVessel533 STG_N_AutomatedVessel536 STG_N_AutomatedVessel539 STG_N_AutomatedVessel542 STG_N_AutomatedVessel545 STG_N_AutomatedVessel548
+			STG_N_AutomatedVessel551 STG_N_AutomatedVessel554 STG_N_AutomatedVessel557 STG_N_AutomatedVessel560 STG_N_AutomatedVessel563 STG_N_AutomatedVessel566
+			STG_N_AutomatedVessel569 STG_N_AutomatedVessel572 STG_N_AutomatedVessel575 STG_N_AutomatedVessel578 STG_N_AutomatedVessel581 STG_N_AutomatedVessel584
+			STG_N_AutomatedVessel587 STG_N_AutomatedVessel590 STG_N_AutomatedVessel593 STG_N_AutomatedVessel596 STG_N_AutomatedVessel599 STG_N_AutomatedVessel602
+			STG_N_AutomatedVessel605 STG_N_AutomatedVessel608 STG_N_AutomatedVessel611 STG_N_AutomatedVessel614 STG_N_AutomatedVessel617 STG_N_AutomatedVessel620
+			STG_N_AutomatedVessel623 STG_N_AutomatedVessel626 STG_N_AutomatedVessel629 STG_N_AutomatedVessel632 STG_N_AutomatedVessel635 STG_N_AutomatedVessel638
+			STG_N_AutomatedVessel641 STG_N_AutomatedVessel644 STG_N_AutomatedVessel647 STG_N_AutomatedVessel650 STG_N_AutomatedVessel653 STG_N_AutomatedVessel656
+			STG_N_AutomatedVessel659 STG_N_AutomatedVessel662 STG_N_AutomatedVessel665 STG_N_AutomatedVessel668 STG_N_AutomatedVessel671 STG_N_AutomatedVessel674
+			STG_N_AutomatedVessel677 STG_N_AutomatedVessel680 STG_N_AutomatedVessel683 STG_N_AutomatedVessel686 STG_N_AutomatedVessel689 STG_N_AutomatedVessel692
+			STG_N_AutomatedVessel695 STG_N_AutomatedVessel698 STG_N_AutomatedVessel701 STG_N_AutomatedVessel704 STG_N_AutomatedVessel707 STG_N_AutomatedVessel710
+			STG_N_AutomatedVessel713 STG_N_AutomatedVessel716 STG_N_AutomatedVessel719 STG_N_AutomatedVessel722 STG_N_AutomatedVessel725 STG_N_AutomatedVessel728
+			STG_N_AutomatedVessel731 STG_N_AutomatedVessel734 STG_N_AutomatedVessel737 STG_N_AutomatedVessel740 STG_N_AutomatedVessel743 STG_N_AutomatedVessel746
+			STG_N_AutomatedVessel749 STG_N_AutomatedVessel752 STG_N_AutomatedVessel755 STG_N_AutomatedVessel758 STG_N_AutomatedVessel761 STG_N_AutomatedVessel764
+			STG_N_AutomatedVessel767 STG_N_AutomatedVessel770 STG_N_AutomatedVessel773 STG_N_AutomatedVessel776 STG_N_AutomatedVessel779 STG_N_AutomatedVessel782
+			STG_N_AutomatedVessel785 STG_N_AutomatedVessel788 STG_N_AutomatedVessel791 STG_N_AutomatedVessel794 STG_N_AutomatedVessel797 STG_N_AutomatedVessel800
+			STG_N_AutomatedVessel803 STG_N_AutomatedVessel806 STG_N_AutomatedVessel809 STG_N_AutomatedVessel812 STG_N_AutomatedVessel815 STG_N_AutomatedVessel818
+			STG_N_AutomatedVessel821 STG_N_AutomatedVessel824 STG_N_AutomatedVessel827 STG_N_AutomatedVessel830 STG_N_AutomatedVessel833 STG_N_AutomatedVessel836
+			STG_N_AutomatedVessel839 STG_N_AutomatedVessel842 STG_N_AutomatedVessel845 STG_N_AutomatedVessel848 STG_N_AutomatedVessel851 STG_N_AutomatedVessel854
+			STG_N_AutomatedVessel857 STG_N_AutomatedVessel860 STG_N_AutomatedVessel863 STG_N_AutomatedVessel866 STG_N_AutomatedVessel869 STG_N_AutomatedVessel872
+			STG_N_AutomatedVessel875 STG_N_AutomatedVessel878 STG_N_AutomatedVessel881 STG_N_AutomatedVessel884 STG_N_AutomatedVessel887 STG_N_AutomatedVessel890
+			STG_N_AutomatedVessel893 STG_N_AutomatedVessel896 STG_N_AutomatedVessel899 STG_N_AutomatedVessel902 STG_N_AutomatedVessel905 STG_N_AutomatedVessel908
+			STG_N_AutomatedVessel911 STG_N_AutomatedVessel914 STG_N_AutomatedVessel917 STG_N_AutomatedVessel920 STG_N_AutomatedVessel923 STG_N_AutomatedVessel926
+			STG_N_AutomatedVessel929 STG_N_AutomatedVessel932 STG_N_AutomatedVessel935 STG_N_AutomatedVessel938 STG_N_AutomatedVessel941 STG_N_AutomatedVessel944
+			STG_N_AutomatedVessel947 STG_N_AutomatedVessel950 STG_N_AutomatedVessel953 STG_N_AutomatedVessel956 STG_N_AutomatedVessel959 STG_N_AutomatedVessel962
+			STG_N_AutomatedVessel965 STG_N_AutomatedVessel968 STG_N_AutomatedVessel971 STG_N_AutomatedVessel974 STG_N_AutomatedVessel977 STG_N_AutomatedVessel980
+			STG_N_AutomatedVessel983 STG_N_AutomatedVessel986 STG_N_AutomatedVessel989 STG_N_AutomatedVessel992 STG_N_AutomatedVessel995 STG_N_AutomatedVessel998
+		}
+
+		corvette = {
+			STG_N_AutomatedVessel44 STG_N_AutomatedVessel47 STG_N_AutomatedVessel50 STG_N_AutomatedVessel53 STG_N_AutomatedVessel56
+		}
+
+		destroyer = {
+			STG_N_AutomatedVessel59 STG_N_AutomatedVessel62 STG_N_AutomatedVessel65 STG_N_AutomatedVessel68 STG_N_AutomatedVessel71
+		}
+
+		cruiser = {
+			STG_N_AutomatedVessel74 STG_N_AutomatedVessel77 STG_N_AutomatedVessel80 STG_N_AutomatedVessel83 STG_N_AutomatedVessel86
+		}
+
+		battleship = {
+			STG_N_AutomatedVessel89 STG_N_AutomatedVessel92 STG_N_AutomatedVessel95 STG_N_AutomatedVessel98 STG_N_AutomatedVessel101
+		}
+
+		titan = {
+			STG_N_AutomatedVessel104 STG_N_AutomatedVessel107 STG_N_AutomatedVessel110 STG_N_AutomatedVessel113
+		}
+
+		science = {
+			STG_N_AutomatedVessel11 STG_N_AutomatedVessel14 STG_N_AutomatedVessel17 STG_N_AutomatedVessel20 STG_N_AutomatedVessel23 STG_N_AutomatedVessel26
+			STG_N_AnalysisUnit44 STG_N_AnalysisUnit53 STG_N_AnalysisUnit62 STG_N_AnalysisUnit71 STG_N_AnalysisUnit80 STG_N_AnalysisUnit89
+			STG_N_AnalysisUnit98 STG_N_AnalysisUnit107 STG_N_AnalysisUnit116 STG_N_AnalysisUnit125 STG_N_AnalysisUnit134 STG_N_AnalysisUnit143
+			STG_N_AnalysisUnit152 STG_N_AnalysisUnit161 STG_N_AnalysisUnit170 STG_N_AnalysisUnit179 STG_N_AnalysisUnit188 STG_N_AnalysisUnit197
+			STG_N_AnalysisUnit206 STG_N_AnalysisUnit215 STG_N_AnalysisUnit224 STG_N_AnalysisUnit233 STG_N_AnalysisUnit242 STG_N_AnalysisUnit251
+			STG_N_AnalysisUnit260 STG_N_AnalysisUnit269 STG_N_AnalysisUnit278 STG_N_AnalysisUnit287 STG_N_AnalysisUnit296 STG_N_AnalysisUnit305
+			STG_N_AnalysisUnit314 STG_N_AnalysisUnit323 STG_N_AnalysisUnit332 STG_N_AnalysisUnit341 STG_N_AnalysisUnit350 STG_N_AnalysisUnit359
+			STG_N_AnalysisUnit368 STG_N_AnalysisUnit377 STG_N_AnalysisUnit386 STG_N_AnalysisUnit395 STG_N_AnalysisUnit404 STG_N_AnalysisUnit413
+			STG_N_AnalysisUnit422 STG_N_AnalysisUnit431 STG_N_AnalysisUnit440 STG_N_AnalysisUnit449 STG_N_AnalysisUnit458 STG_N_AnalysisUnit467
+			STG_N_AnalysisUnit476 STG_N_AnalysisUnit485 STG_N_AnalysisUnit494 STG_N_AnalysisUnit503 STG_N_AnalysisUnit512 STG_N_AnalysisUnit521
+			STG_N_AnalysisUnit530 STG_N_AnalysisUnit539 STG_N_AnalysisUnit548 STG_N_AnalysisUnit557 STG_N_AnalysisUnit566 STG_N_AnalysisUnit575
+			STG_N_AnalysisUnit584 STG_N_AnalysisUnit593 STG_N_AnalysisUnit602 STG_N_AnalysisUnit611 STG_N_AnalysisUnit620 STG_N_AnalysisUnit629
+			STG_N_AnalysisUnit638 STG_N_AnalysisUnit647 STG_N_AnalysisUnit656 STG_N_AnalysisUnit665 STG_N_AnalysisUnit674 STG_N_AnalysisUnit683
+			STG_N_AnalysisUnit692 STG_N_AnalysisUnit701 STG_N_AnalysisUnit710 STG_N_AnalysisUnit719 STG_N_AnalysisUnit728 STG_N_AnalysisUnit737
+			STG_N_AnalysisUnit746 STG_N_AnalysisUnit755 STG_N_AnalysisUnit764 STG_N_AnalysisUnit773 STG_N_AnalysisUnit782 STG_N_AnalysisUnit791
+			STG_N_AnalysisUnit800 STG_N_AnalysisUnit809 STG_N_AnalysisUnit818 STG_N_AnalysisUnit827 STG_N_AnalysisUnit836 STG_N_AnalysisUnit845
+			STG_N_AnalysisUnit854 STG_N_AnalysisUnit863 STG_N_AnalysisUnit872 STG_N_AnalysisUnit881 STG_N_AnalysisUnit890 STG_N_AnalysisUnit899
+			STG_N_AnalysisUnit908 STG_N_AnalysisUnit917 STG_N_AnalysisUnit926 STG_N_AnalysisUnit935 STG_N_AnalysisUnit944 STG_N_AnalysisUnit953
+		}
+
+		colonizer = {
+			STG_N_AutomatedVessel11 STG_N_AutomatedVessel14 STG_N_AutomatedVessel17 STG_N_AutomatedVessel20 STG_N_AutomatedVessel23 STG_N_ExpansionUnit
+		}
+
+		constructor = {
+			STG_N_AutomatedVessel29 STG_N_AutomatedVessel32 STG_N_AutomatedVessel35 STG_N_AutomatedVessel38 STG_N_AutomatedVessel41 STG_N_AssemblyUnit77
+			STG_N_AssemblyUnit86 STG_N_AssemblyUnit95 STG_N_AssemblyUnit104 STG_N_AssemblyUnit113 STG_N_AssemblyUnit122 STG_N_AssemblyUnit131
+			STG_N_AssemblyUnit140 STG_N_AssemblyUnit149 STG_N_AssemblyUnit158 STG_N_AssemblyUnit167 STG_N_AssemblyUnit176 STG_N_AssemblyUnit185
+			STG_N_AssemblyUnit194 STG_N_AssemblyUnit203 STG_N_AssemblyUnit212 STG_N_AssemblyUnit221 STG_N_AssemblyUnit230 STG_N_AssemblyUnit239
+			STG_N_AssemblyUnit248 STG_N_AssemblyUnit257 STG_N_AssemblyUnit266 STG_N_AssemblyUnit275 STG_N_AssemblyUnit284 STG_N_AssemblyUnit293
+			STG_N_AssemblyUnit302 STG_N_AssemblyUnit311 STG_N_AssemblyUnit320 STG_N_AssemblyUnit329 STG_N_AssemblyUnit338 STG_N_AssemblyUnit347
+			STG_N_AssemblyUnit356 STG_N_AssemblyUnit365 STG_N_AssemblyUnit374 STG_N_AssemblyUnit383 STG_N_AssemblyUnit392 STG_N_AssemblyUnit401
+			STG_N_AssemblyUnit410 STG_N_AssemblyUnit419 STG_N_AssemblyUnit428 STG_N_AssemblyUnit437 STG_N_AssemblyUnit446 STG_N_AssemblyUnit455
+			STG_N_AssemblyUnit464 STG_N_AssemblyUnit473 STG_N_AssemblyUnit482 STG_N_AssemblyUnit491 STG_N_AssemblyUnit500 STG_N_AssemblyUnit509
+			STG_N_AssemblyUnit518 STG_N_AssemblyUnit527 STG_N_AssemblyUnit536 STG_N_AssemblyUnit545 STG_N_AssemblyUnit554 STG_N_AssemblyUnit563
+			STG_N_AssemblyUnit572 STG_N_AssemblyUnit581 STG_N_AssemblyUnit590 STG_N_AssemblyUnit599 STG_N_AssemblyUnit608 STG_N_AssemblyUnit617
+			STG_N_AssemblyUnit626 STG_N_AssemblyUnit635 STG_N_AssemblyUnit644 STG_N_AssemblyUnit653 STG_N_AssemblyUnit662 STG_N_AssemblyUnit671
+			STG_N_AssemblyUnit680 STG_N_AssemblyUnit689 STG_N_AssemblyUnit698 STG_N_AssemblyUnit707 STG_N_AssemblyUnit716 STG_N_AssemblyUnit725
+			STG_N_AssemblyUnit734 STG_N_AssemblyUnit743 STG_N_AssemblyUnit752 STG_N_AssemblyUnit761 STG_N_AssemblyUnit770 STG_N_AssemblyUnit779
+			STG_N_AssemblyUnit788 STG_N_AssemblyUnit797 STG_N_AssemblyUnit806 STG_N_AssemblyUnit815 STG_N_AssemblyUnit824 STG_N_AssemblyUnit833
+			STG_N_AssemblyUnit842 STG_N_AssemblyUnit851 STG_N_AssemblyUnit860 STG_N_AssemblyUnit869 STG_N_AssemblyUnit878 STG_N_AssemblyUnit887
+			STG_N_AssemblyUnit896 STG_N_AssemblyUnit905 STG_N_AssemblyUnit914 STG_N_AssemblyUnit923 STG_N_AssemblyUnit932 STG_N_AssemblyUnit941
+			STG_N_AssemblyUnit950 STG_N_AssemblyUnit959 STG_N_AssemblyUnit968 STG_N_AssemblyUnit977 STG_N_AssemblyUnit986
+		}
+
+		transport = {
+			STG_N_TransportUnit
+		}
+	}
+
+	ship_class_names = {
+		generic = {
+			STG_N_AutomatedVessel11 STG_N_AutomatedVessel14 STG_N_AutomatedVessel17 STG_N_AutomatedVessel20 STG_N_AutomatedVessel23 STG_N_AutomatedVessel26
+			STG_N_AutomatedVessel29 STG_N_AutomatedVessel32 STG_N_AutomatedVessel35
+		}
+	}
+
+	fleet_names = {
+		sequential_name = STG_PRALOR_GROUP
+	}
+
+	army_names = {
+		machine_assault_1 = {
+			sequential_name = STG_PRALOR_ASSAULTAUXILIARY
+		}
+
+		machine_defense = {
+			sequential_name = STG_PRALOR_DEFENSEAUXILIARY
+		}
+
+		defense_army = {
+			sequential_name = STG_PRALOR_PLANETARYDEFENSEAUXILIARY
+		}
+
+		assault_army = {
+			sequential_name = STG_PRALOR_EXPEDITIONARYAUXILIARY
+		}
+
+		slave_army = {
+			sequential_name = STG_PRALOR_LABORAUXILIARY
+		}
+
+		clone_army = {
+			sequential_name = STG_PRALOR_REPLICATEAUXILIARY
+		}
+
+		robotic_army = {
+			sequential_name = STG_PRALOR_AUTOMATEDAUXILIARY
+		}
+
+		psionic_army = {
+			sequential_name = STG_PRALOR_ADEPTAUXILIARY
+		}
+
+		xenomorph_army = {
+			sequential_name = STG_PRALOR_XENOMORPHAUXILIARY
+		}
+
+		gene_warrior_army = {
+			sequential_name = STG_PRALOR_AUGMENTEDAUXILIARY
+		}
+
+		occupation_army = {
+			sequential_name = STG_PRALOR_OCCUPATIONAUXILIARY
+		}
+
+		robotic_defense_army = {
+			sequential_name = STG_PRALOR_AUTOMATEDDEFENSEAUXILIARY
+		}
+
+		industrial_army = {
+			sequential_name = STG_PRALOR_INDUSTRIALAUXILIARY
+		}
+
+		primitive_army = {
+			sequential_name = STG_PRALOR_MILITIA
+		}
+	}
+
+	planet_names = {
+		generic = {
+			names = {
+				STG_N_AutomatedVessel11 STG_N_AutomatedVessel14 STG_N_AutomatedVessel17 STG_N_AutomatedVessel20 STG_N_AutomatedVessel23 STG_N_AutomatedVessel26
+				STG_N_AutomatedVessel29 STG_N_AutomatedVessel32 STG_N_AutomatedVessel35 STG_N_AutomatedVessel38 STG_N_AutomatedVessel41 STG_N_AutomatedVessel44
+				STG_N_AutomatedVessel47 STG_N_AutomatedVessel50 STG_N_AutomatedVessel53 STG_N_AutomatedVessel56 STG_N_AutomatedVessel59 STG_N_AutomatedVessel62
+				STG_N_AutomatedVessel65 STG_N_AutomatedVessel68 STG_N_AutomatedVessel71 STG_N_AutomatedVessel74 STG_N_AutomatedVessel77 STG_N_AutomatedVessel80
+				STG_N_AutomatedVessel83 STG_N_AutomatedVessel86 STG_N_AutomatedVessel89 STG_N_AutomatedVessel92 STG_N_AutomatedVessel95 STG_N_AutomatedVessel98
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			weight = 100
+
+			first_names_male = {
+				STG_N_AutomatedUnit STG_N_1084 STG_N_1115 STG_N_1146 STG_N_1177 STG_N_1208
+				STG_N_1239 STG_N_1270 STG_N_1301 STG_N_1332 STG_N_1363 STG_N_1394
+				STG_N_1425 STG_N_1456 STG_N_1487 STG_N_1518 STG_N_1549 STG_N_1580
+				STG_N_1611 STG_N_1642 STG_N_1673 STG_N_1704 STG_N_1735 STG_N_1766
+			}
+
+			first_names_female = {
+				STG_N_5517 STG_N_5548 STG_N_5579 STG_N_5610 STG_N_5641 STG_N_5672
+				STG_N_5703 STG_N_5734 STG_N_5765 STG_N_5796 STG_N_5827 STG_N_5858
+				STG_N_5889 STG_N_5920 STG_N_5951 STG_N_5982 STG_N_6013 STG_N_6044
+				STG_N_6075 STG_N_6106 STG_N_6137 STG_N_6168 STG_N_6199 STG_N_6230
+			}
+
+			second_names = {
+				STG_N_AutomatedUnit STG_N_1084 STG_N_1115 STG_N_1146 STG_N_1177 STG_N_1208
+				STG_N_1239 STG_N_1270 STG_N_1301 STG_N_1332 STG_N_1363 STG_N_1394
+				STG_N_1425 STG_N_1456 STG_N_1487 STG_N_1518 STG_N_1549 STG_N_1580
+				STG_N_1611 STG_N_1642 STG_N_1673 STG_N_1704 STG_N_1735 STG_N_1766
+			}
+		}
+	}
+}

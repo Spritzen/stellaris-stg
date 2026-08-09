@@ -1,0 +1,164 @@
+﻿# Trabe name list, for the AI-only minor powers that use it.
+#
+# CONVERTED from .source/688086068/common/name_lists/Trabe.txt: the tokens are
+# STNH's, resolved through STNH's own localisation and re-keyed as STG_N_. The
+# ship-size buckets are rebuilt for VANILLA's ladder -- STNH's file buckets by
+# its own (saber, sovereign, steamrunner) and those keys mean nothing here.
+#
+# See .docs/decisions/19-stnh-minor-powers-as-ai-empires.md.
+
+STG_TRABE = {
+	category = "Humanoid"
+	randomized = no
+
+	ship_names = {
+		generic = {
+			STG_N_RegentsPride STG_N_RegentsStrength STG_N_RegentsHonour STG_N_RegentsVictory STG_N_RegentsJustice STG_N_RegentsCommission
+			STG_N_RegentsLaw STG_N_RegentsTribune STG_N_RegentsReformer STG_N_RegentsEnforcer STG_N_RegentsWill STG_N_ViceroysPride
+			STG_N_ViceroysStrength STG_N_ViceroysHonour STG_N_ViceroysVictory STG_N_ViceroysJustice STG_N_ViceroysCommission STG_N_ViceroysLaw
+			STG_N_ViceroysTribune STG_N_ViceroysReformer STG_N_ViceroysEnforcer STG_N_ViceroysWill STG_N_GovernorsPride STG_N_GovernorsStrength
+			STG_N_GovernorsHonour STG_N_GovernorsVictory STG_N_GovernorsJustice STG_N_GovernorsCommission STG_N_GovernorsLaw STG_N_GovernorsTribune
+			STG_N_GovernorsReformer STG_N_GovernorsEnforcer STG_N_GovernorsWill
+		}
+
+		corvette = {
+			STG_N_ViceroysPride STG_N_ViceroysStrength STG_N_ViceroysHonour STG_N_ViceroysVictory STG_N_ViceroysJustice
+		}
+
+		destroyer = {
+			STG_N_ViceroysCommission STG_N_ViceroysLaw STG_N_ViceroysTribune STG_N_ViceroysReformer STG_N_ViceroysEnforcer
+		}
+
+		cruiser = {
+			STG_N_ViceroysWill STG_N_GovernorsPride STG_N_GovernorsStrength STG_N_GovernorsHonour STG_N_GovernorsVictory
+		}
+
+		battleship = {
+			STG_N_GovernorsJustice STG_N_GovernorsCommission STG_N_GovernorsLaw STG_N_GovernorsTribune STG_N_GovernorsReformer
+		}
+
+		titan = {
+			STG_N_GovernorsEnforcer STG_N_GovernorsWill
+		}
+
+		science = {
+			STG_N_RegentsPride STG_N_RegentsStrength STG_N_RegentsHonour STG_N_RegentsVictory STG_N_RegentsJustice STG_N_RegentsCommission
+		}
+
+		colonizer = {
+			STG_N_RegentsPride STG_N_RegentsStrength STG_N_RegentsHonour STG_N_RegentsVictory STG_N_RegentsJustice
+		}
+
+		constructor = {
+			STG_N_RegentsLaw STG_N_RegentsTribune STG_N_RegentsReformer STG_N_RegentsEnforcer STG_N_RegentsWill
+		}
+	}
+
+	ship_class_names = {
+		generic = {
+			STG_N_RegentsPride STG_N_RegentsStrength STG_N_RegentsHonour STG_N_RegentsVictory STG_N_RegentsJustice STG_N_RegentsCommission
+			STG_N_RegentsLaw STG_N_RegentsTribune STG_N_RegentsReformer
+		}
+	}
+
+	fleet_names = {
+		sequential_name = STG_TRABE_GROUP
+	}
+
+	army_names = {
+		machine_assault_1 = {
+			sequential_name = STG_TRABE_ASSAULTAUXILIARY
+		}
+
+		machine_defense = {
+			sequential_name = STG_TRABE_DEFENSEAUXILIARY
+		}
+
+		defense_army = {
+			sequential_name = STG_TRABE_PLANETARYDEFENSEAUXILIARY
+		}
+
+		assault_army = {
+			sequential_name = STG_TRABE_EXPEDITIONARYAUXILIARY
+		}
+
+		slave_army = {
+			sequential_name = STG_TRABE_LABORAUXILIARY
+		}
+
+		clone_army = {
+			sequential_name = STG_TRABE_REPLICATEAUXILIARY
+		}
+
+		robotic_army = {
+			sequential_name = STG_TRABE_AUTOMATEDAUXILIARY
+		}
+
+		psionic_army = {
+			sequential_name = STG_TRABE_ADEPTAUXILIARY
+		}
+
+		xenomorph_army = {
+			sequential_name = STG_TRABE_XENOMORPHAUXILIARY
+		}
+
+		gene_warrior_army = {
+			sequential_name = STG_TRABE_AUGMENTEDAUXILIARY
+		}
+
+		occupation_army = {
+			sequential_name = STG_TRABE_OCCUPATIONAUXILIARY
+		}
+
+		robotic_defense_army = {
+			sequential_name = STG_TRABE_AUTOMATEDDEFENSEAUXILIARY
+		}
+
+		industrial_army = {
+			sequential_name = STG_TRABE_INDUSTRIALAUXILIARY
+		}
+
+		primitive_army = {
+			sequential_name = STG_TRABE_MILITIA
+		}
+	}
+
+	planet_names = {
+		generic = {
+			names = {
+				STG_N_RegentsPride STG_N_RegentsStrength STG_N_RegentsHonour STG_N_RegentsVictory STG_N_RegentsJustice STG_N_RegentsCommission
+				STG_N_RegentsLaw STG_N_RegentsTribune STG_N_RegentsReformer STG_N_RegentsEnforcer STG_N_RegentsWill STG_N_ViceroysPride
+				STG_N_ViceroysStrength STG_N_ViceroysHonour STG_N_ViceroysVictory STG_N_ViceroysJustice STG_N_ViceroysCommission STG_N_ViceroysLaw
+				STG_N_ViceroysTribune STG_N_ViceroysReformer STG_N_ViceroysEnforcer STG_N_ViceroysWill STG_N_GovernorsPride STG_N_GovernorsStrength
+				STG_N_GovernorsHonour STG_N_GovernorsVictory STG_N_GovernorsJustice STG_N_GovernorsCommission STG_N_GovernorsLaw STG_N_GovernorsTribune
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			weight = 100
+
+			first_names_male = {
+				STG_N_Mabus STG_N_Albus STG_N_Arbus STG_N_Bebus STG_N_Chabus STG_N_Chebus
+				STG_N_Clobus STG_N_Dabus STG_N_Elbus STG_N_Genobus STG_N_Gerbus STG_N_Jamarbus
+				STG_N_Jaquabus STG_N_Jarabus STG_N_Jarbus STG_N_Jerbus STG_N_Kellbus STG_N_Kelbus
+				STG_N_Kebus STG_N_Latrabus STG_N_Lobus STG_N_Marbus STG_N_Melbus STG_N_Perbus
+			}
+
+			first_names_female = {
+				STG_N_Maril STG_N_Annash STG_N_Emmash STG_N_Elizash STG_N_Margash STG_N_Minniett
+				STG_N_Idash STG_N_Berthash STG_N_Clarash STG_N_Alicki STG_N_Anniki STG_N_Florencki
+				STG_N_Bessiki STG_N_Gracki STG_N_Ethesh STG_N_Sarash STG_N_Ellash STG_N_Marthash
+				STG_N_Nelliki STG_N_Mabash STG_N_Mamel STG_N_Almel STG_N_Armel STG_N_Bemel
+			}
+
+			second_names = {
+				STG_N_Mabus STG_N_Albus STG_N_Arbus STG_N_Bebus STG_N_Chabus STG_N_Chebus
+				STG_N_Clobus STG_N_Dabus STG_N_Elbus STG_N_Genobus STG_N_Gerbus STG_N_Jamarbus
+				STG_N_Jaquabus STG_N_Jarabus STG_N_Jarbus STG_N_Jerbus STG_N_Kellbus STG_N_Kelbus
+				STG_N_Kebus STG_N_Latrabus STG_N_Lobus STG_N_Marbus STG_N_Melbus STG_N_Perbus
+			}
+		}
+	}
+}

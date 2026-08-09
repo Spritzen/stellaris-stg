@@ -1,0 +1,163 @@
+﻿# Krenim Imperium name list.
+#
+# Annorax, Obrist, Kyana Prime, the temporal weapon ship and the chroniton
+# torpedo are canon (VOY 'Year of Hell'). civic_environmentalist reads as the
+# Imperium's project of restoring what the incursions erased.
+#
+# Structure mirrors /stellaris/common/name_lists/HUMAN1.txt, and the fourteen
+# beside it. Every name token is an STG_N_ key in
+# src/localisation/english/stg_names_l_english.yml.
+
+STG_KRENIM = {
+	category = "Humanoid"
+	randomized = no
+
+	ship_names = {
+		generic = {
+			STG_N_Annorax STG_N_Obrist STG_N_Kyana STG_N_Chroniton STG_N_Temporal STG_N_Erasure
+			STG_N_Restoration STG_N_Incursion STG_N_Causality STG_N_Continuum STG_N_Paradox STG_N_Recursion
+			STG_N_Antecedent STG_N_Precedent STG_N_Rewind STG_N_Nullify STG_N_Timeline STG_N_Excision
+			STG_N_Reversion STG_N_Persistence STG_N_Ishtar STG_N_Fate STG_N_Aion STG_N_Aeon
+			STG_N_Chrono STG_N_Moros STG_N_Atropos STG_N_Entropy STG_N_FatesPromise STG_N_Decima
+			STG_N_Time STG_N_Fortuna STG_N_Millennium STG_N_Era STG_N_Epoch STG_N_Cycle
+			STG_N_Kairos STG_N_Anachronism STG_N_Chronicle STG_N_Eternity STG_N_Ouroboros STG_N_Infinity
+			STG_N_Infinite
+		}
+
+		corvette = {
+			STG_N_Antecedent STG_N_Precedent STG_N_Rewind STG_N_Nullify STG_N_Timeline
+		}
+
+		destroyer = {
+			STG_N_Temporal STG_N_Erasure STG_N_Restoration STG_N_Incursion STG_N_Causality
+		}
+
+		cruiser = {
+			STG_N_Continuum STG_N_Paradox STG_N_Recursion STG_N_Antecedent STG_N_Precedent
+		}
+
+		battleship = {
+			STG_N_Rewind STG_N_Nullify STG_N_Timeline STG_N_Excision STG_N_Reversion
+		}
+
+		titan = {
+			STG_N_Annorax STG_N_Obrist STG_N_Kyana STG_N_Chroniton
+		}
+
+		science = {
+			STG_N_Annorax STG_N_Obrist STG_N_Kyana STG_N_Chroniton STG_N_Temporal STG_N_Erasure
+			STG_N_Restoration
+		}
+
+		colonizer = {
+			STG_N_KyanaPrime STG_N_Kyana STG_N_KyanaII STG_N_Restoration STG_N_Continuum
+		}
+
+		constructor = {
+			STG_N_Incursion STG_N_Causality STG_N_Continuum STG_N_Paradox STG_N_Recursion
+		}
+	}
+
+	ship_class_names = {
+		generic = {
+			STG_N_Annorax STG_N_Obrist STG_N_Kyana STG_N_Chroniton STG_N_Temporal STG_N_Erasure STG_N_Restoration
+			STG_N_Incursion STG_N_Causality
+		}
+	}
+
+	fleet_names = {
+		sequential_name = STG_KRENIM_GROUP
+	}
+
+	army_names = {
+		machine_assault_1 = {
+			sequential_name = STG_KRENIM_ASSAULTAUXILIARY
+		}
+
+		machine_defense = {
+			sequential_name = STG_KRENIM_DEFENSEAUXILIARY
+		}
+
+		defense_army = {
+			sequential_name = STG_KRENIM_PLANETARYDEFENSEAUXILIARY
+		}
+
+		assault_army = {
+			sequential_name = STG_KRENIM_EXPEDITIONARYAUXILIARY
+		}
+
+		slave_army = {
+			sequential_name = STG_KRENIM_LABORAUXILIARY
+		}
+
+		clone_army = {
+			sequential_name = STG_KRENIM_REPLICATEAUXILIARY
+		}
+
+		robotic_army = {
+			sequential_name = STG_KRENIM_AUTOMATEDAUXILIARY
+		}
+
+		psionic_army = {
+			sequential_name = STG_KRENIM_ADEPTAUXILIARY
+		}
+
+		xenomorph_army = {
+			sequential_name = STG_KRENIM_XENOMORPHAUXILIARY
+		}
+
+		gene_warrior_army = {
+			sequential_name = STG_KRENIM_AUGMENTEDAUXILIARY
+		}
+
+		occupation_army = {
+			sequential_name = STG_KRENIM_OCCUPATIONAUXILIARY
+		}
+
+		robotic_defense_army = {
+			sequential_name = STG_KRENIM_AUTOMATEDDEFENSEAUXILIARY
+		}
+
+		industrial_army = {
+			sequential_name = STG_KRENIM_INDUSTRIALAUXILIARY
+		}
+
+		primitive_army = {
+			sequential_name = STG_KRENIM_MILITIA
+		}
+	}
+
+	planet_names = {
+		generic = {
+			names = {
+				STG_N_KyanaII STG_N_Restoration STG_N_Continuum STG_N_Causality STG_N_Antecedent STG_N_Precedent
+				STG_N_Persistence STG_N_Reversion STG_N_Recursion STG_N_Timeline STG_N_Erasure STG_N_Excision
+				STG_N_Nullity STG_N_Paradox STG_N_Chroniton STG_N_Obrist STG_N_Annoraxis STG_N_NewKyana
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			weight = 100
+
+			first_names_male = {
+				STG_N_Annorax STG_N_Obrist STG_N_Rekar STG_N_Talik STG_N_Vesarn STG_N_Corin STG_N_Delen
+				STG_N_Marent STG_N_Sovar STG_N_Nerek STG_N_Tavik STG_N_Belen STG_N_Korath STG_N_Renar
+				STG_N_Sethan STG_N_Varik
+			}
+
+			first_names_female = {
+				STG_N_Kyanna STG_N_Talika STG_N_Vesara STG_N_Corinna STG_N_Delena STG_N_Marenta STG_N_Sovara
+				STG_N_Nerekka STG_N_Tavika STG_N_Belena STG_N_Korra STG_N_Renara STG_N_Sethana STG_N_Varika
+				STG_N_Annora STG_N_Obrista
+			}
+
+			second_names = {
+				STG_N_Kyana STG_N_Annorax STG_N_Obrist STG_N_Continuum STG_N_Causality STG_N_Antecedent STG_N_Precedent
+				STG_N_Persistence STG_N_Reversion STG_N_Recursion STG_N_Timeline STG_N_Erasure STG_N_Excision STG_N_Chroniton
+				STG_N_Paradox STG_N_Nullity
+			}
+		}
+	}
+}

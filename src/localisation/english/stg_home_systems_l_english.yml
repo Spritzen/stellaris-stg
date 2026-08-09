@@ -1,0 +1,76 @@
+﻿l_english:
+ # Body names for the home systems in
+ # src/common/solar_system_initializers/stg_home_systems.txt.
+ #
+ # Only names that need a KEY are here. STNH writes most of its planet names as
+ # bare literals ("Keid", "T'Khut", "Praxis") and the engine displays a literal
+ # unchanged when no key matches, so converting those to keys would be work with
+ # no effect. Two classes do need one:
+ #
+ #  1. NAME_* keys STNH's initializers reference. STNH's localisation is NOT
+ #     vendored (its include: list is art only), so these three would have shown
+ #     as raw keys on the map. Values copied from STNH's own english loc.
+ #  2. STG_N_* for the nine home systems tools/gen_home_systems.py authors
+ #     itself, because STNH's versions of those are procedural — see
+ #     .docs/decisions/25-real-home-systems.md.
+
+ NAME_Vulcan:0 "Vulcan"
+ NAME_Unicomplex_Section_Alpha:0 "Unicomplex 01 Hub"
+ NAME_Unicomplex_Section_Beta:0 "Unicomplex 02 Hub"
+
+ # Ferenginar — Ferengi Alliance
+ STG_N_FerengiI:0 "Ferenginar I"
+ STG_N_FerengiII:0 "Ferenginar II"
+ STG_N_Gorlack:0 "Gorlack"
+ STG_N_Clarus:0 "Clarus"
+
+ # Trillius — Trill Symbiosis
+ STG_N_TrilliusI:0 "Trillius I"
+ STG_N_TrilliusII:0 "Trillius II"
+ STG_N_Mak_ala:0 "Mak'ala"
+ STG_N_TrilliusVI:0 "Trillius VI"
+
+ # Bolarus — Bolian Union. Bolarus IX is the ninth planet, so the eight ahead
+ # of it are named rather than invented away.
+ STG_N_BolarusI:0 "Bolarus I"
+ STG_N_BolarusII:0 "Bolarus II"
+ STG_N_BolarusIII:0 "Bolarus III"
+ STG_N_BolarusIV:0 "Bolarus IV"
+ STG_N_BolarusV:0 "Bolarus V"
+ STG_N_BolarusVI:0 "Bolarus VI"
+ STG_N_BolarusVII:0 "Bolarus VII"
+ STG_N_BolarusVIII:0 "Bolarus VIII"
+
+ # Breen — Breen Confederacy
+ STG_N_BreenI:0 "Breen I"
+ STG_N_Portas:0 "Portas V"
+ STG_N_Dozaria:0 "Dozaria"
+ STG_N_BreenVI:0 "Breen VI"
+
+ # Tholia — Tholian Assembly
+ STG_N_TholiaI:0 "Tholia I"
+ STG_N_TholiaIII:0 "Tholia III"
+ STG_N_TholiaIV:0 "Tholia IV"
+ STG_N_TholiaV:0 "Tholia V"
+
+ # Yridia — Yridian Empire
+ STG_N_YridiaI:0 "Yridia I"
+ STG_N_YridiaIII:0 "Yridia III"
+ STG_N_YridiaIV:0 "Yridia IV"
+
+ # Kyana — Krenim Empire
+ STG_N_KyanaI:0 "Kyana I"
+ STG_N_KyanaIII:0 "Kyana III"
+ STG_N_KyanaIV:0 "Kyana IV"
+ STG_N_KyanaV:0 "Kyana V"
+
+ # Malon — Malon Empire
+ STG_N_MalonI:0 "Malon I"
+ STG_N_Neled:0 "Neled"
+ STG_N_MalonIV:0 "Malon IV"
+ STG_N_MalonV:0 "Malon V"
+
+ # Vidiia — Vidiian Sodality
+ STG_N_VidiiaI:0 "Vidiia I"
+ STG_N_Fina_Prime:0 "Fina Prime"
+ STG_N_VidiiaIV:0 "Vidiia IV"

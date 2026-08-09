@@ -1,0 +1,843 @@
+# Restores the ten Sol-neighbour initializers Real Space 4.0 drops.
+#
+# Real Space's copy of common/solar_system_initializers/sol_initializers.txt
+# shadows vanilla's path and replaces vanilla's generic `sol_neighbor_t*`
+# systems with real stars (Alpha Centauri, Barnard's Star, Sirius, Procyon).
+# Planetary Diversity still references three of the dropped keys, so the engine
+# threw `Invalid initializer` four times per run and those neighbour systems
+# were never generated.
+#
+# Additive, not a shadow: Real Space's file declares none of these keys, so
+# nothing here contests it and its real-star systems are untouched.
+#
+# Bodies are vanilla's verbatim except that vanilla's file-local @distance (50),
+# @base_moon_distance (10) and @jumps (3) are substituted as literals — this
+# file cannot inherit them and redeclaring them would add to the
+# `Variable name ... is already taken` noise this directory already produces.
+#
+# See .docs/decisions/38-real-space-drops-sol-neighbours.md.
+
+sol_neighbor_t1 = {
+	name = "NAME_Barnards_Star"
+	class = sc_m
+
+	init_effect = {
+		every_neighbor_system = { set_star_flag = empire_cluster }
+	}
+
+	planet = {
+		count = 1
+		class = star
+		orbit_distance = 0
+		orbit_angle = 1
+		size = { min = 20 max = 30 }
+		has_ring = no
+	}
+
+	change_orbit = 45
+
+	planet = {
+		count = { min = 0 max = 2 }
+		orbit_distance = 20
+		change_orbit = 10
+
+		moon = {
+			count = { min = 0 max = 1 }
+			orbit_distance = 5
+		}
+	}
+
+	planet = {
+		count = { min = 2 max = 5 }
+		orbit_distance = 20
+	}
+
+	neighbor_system = {
+		trigger = { num_guaranteed_colonies >= 2 }
+		hyperlane_jumps = { min = 1 max = 3 }
+		initializer = "sol_neighbor_t2_second_colony"
+	}
+	neighbor_system = {
+		trigger = { num_guaranteed_colonies < 2 }
+		hyperlane_jumps = { min = 1 max = 3 }
+		initializer = "sol_neighbor_t2_no_guaranteed_colony"
+	}
+}
+
+sol_neighbor_t1_no_guaranteed_colony = {
+	name = "NAME_Alpha_Centauri"
+	class = sc_trinary_1
+
+	init_effect = {
+		every_neighbor_system = { set_star_flag = empire_cluster }
+	}
+
+	planet = {
+		name = "NAME_Alpha_Centauri_A"
+		count = 1
+		class = pc_g_star
+		orbit_distance = 15
+		orbit_angle = 350
+		size = 32
+		has_ring = no
+	}
+
+	planet = {
+		name = "NAME_Alpha_Centauri_B"
+		count = 1
+		class = pc_k_star
+		orbit_distance = -35
+		orbit_angle = 10
+		size = 27
+		has_ring = no
+	}
+
+	planet = {
+		name = "NAME_Proxima_Centauri"
+		count = 1
+		class = pc_m_star
+		orbit_distance = 260
+		orbit_angle = 130
+		size = 15
+		has_ring = no
+
+		planet = {
+			name = "NAME_Proxima_Centauri_b"
+			class = pc_barren_cold
+			size = 20
+			orbit_distance = 35
+			init_effect = {
+				prevent_anomaly = yes
+				add_anomaly = {
+					category = ALPHA_CENTAURI_CAT
+				}
+				add_modifier = {
+					modifier = "tidal_locked"
+					days = -1
+				}
+			}
+		}
+
+		planet = {
+			name = "NAME_Proxima_Centauri_c"
+			class = pc_gas_giant
+			size = 18
+			orbit_distance = 25
+		}
+	}
+
+	change_orbit = -220
+
+	planet = {
+		count = 2
+		orbit_distance = 25
+
+		change_orbit = 10
+
+		moon = {
+			count = { min = 0 max = 1 }
+			orbit_distance = 5
+		}
+	}
+
+	planet = {
+		count = 1
+		orbit_distance = 30
+		orbit_angle = { min = 90 max = 270 }
+		size = { min = 12 max = 18 }
+	}
+
+	planet = {
+		count = 3
+		orbit_distance = 25
+
+		change_orbit = 10
+
+		moon = {
+			count = { min = 0 max = 1 }
+			orbit_distance = 5
+		}
+	}
+
+	neighbor_system = {
+		hyperlane_jumps = { min = 1 max = 3 }
+		initializer = "sol_neighbor_t2"
+	}
+}
+
+sol_neighbor_t2 = {
+	name = "NAME_Procyon"
+	class = sc_binary_8
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 120
+	}
+
+	init_effect = {
+		every_neighbor_system = { set_star_flag = empire_cluster }
+	}
+
+	planet = {
+		name = "NAME_Procyon_A"
+		count = 1
+		class = pc_f_star
+		orbit_distance = 30
+		orbit_angle = 1
+		size = 35
+		has_ring = no
+	}
+
+	planet = {
+		name = "NAME_Procyon_B"
+		count = 1
+		class = pc_f_star
+		orbit_distance = 0
+		orbit_angle = 125
+		size = 20
+		has_ring = no
+	}
+
+	planet = {
+		count = 1
+		orbit_distance = 65
+	}
+
+	change_orbit = 25
+
+	planet = {
+		count = { min = 1 max = 3 }
+		class = pc_asteroid
+		orbit_distance = 0
+		orbit_angle = { min = 0 max = 360 }
+	}
+
+	planet = {
+		count = { min = 2 max = 5 }
+		orbit_distance = 25
+
+		change_orbit = 10
+
+		moon = {
+			count = { min = 0 max = 1 }
+			orbit_distance = 5
+		}
+	}
+}
+
+sol_neighbor_t2_no_guaranteed_colony = {
+	name = "NAME_Sirius"
+	class = sc_binary_9
+
+	init_effect = {
+		every_neighbor_system = { set_star_flag = empire_cluster }
+	}
+
+	planet = {
+		name = "NAME_Sirius_A"
+		count = 1
+		class = pc_a_star
+		orbit_distance = 30
+		orbit_angle = 1
+		size = 35
+		has_ring = no
+	}
+
+	planet = {
+		name = "NAME_Sirius_B"
+		count = 1
+		class = pc_f_star
+		orbit_distance = 0
+		orbit_angle = 120
+		size = 15
+		has_ring = no
+	}
+
+	change_orbit = 45
+
+	planet = {
+		count = 2
+		orbit_angle = { min = 90 max = 270 }
+		orbit_distance = 20
+	}
+
+	planet = {
+		count = 1
+		orbit_distance = 25
+		orbit_angle = { min = 90 max = 270 }
+		size = { min = 14 max = 24 }
+
+		change_orbit = 10
+
+		moon = {
+			count = { min = 0 max = 1 }
+			class = random_non_colonizable
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 5
+		}
+	}
+
+	planet = {
+		count = 2
+		orbit_angle = { min = 90 max = 270 }
+		orbit_distance = 20
+
+		change_orbit = 10
+
+		moon = {
+			count = { min = 0 max = 1 }
+			class = random_non_colonizable
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 5
+		}
+	}
+
+	planet = {
+		count = { min = 0 max = 2 }
+		orbit_angle = { min = 90 max = 270 }
+		orbit_distance = 20
+	}
+}
+
+sol_neighbor_t2_second_colony = {
+	name = "NAME_Sirius"
+	class = sc_binary_9
+	flags = { neighbor_t2_second_colony }
+
+	init_effect = {
+		every_neighbor_system = { set_star_flag = empire_cluster }
+	}
+
+	planet = {
+		name = "NAME_Sirius_A"
+		count = 1
+		class = pc_a_star
+		orbit_distance = 30
+		orbit_angle = 1
+		size = 35
+		has_ring = no
+	}
+
+	planet = {
+		name = "NAME_Sirius_B"
+		count = 1
+		class = pc_f_star
+		orbit_distance = 0
+		orbit_angle = 120
+		size = 15
+		has_ring = no
+	}
+
+	change_orbit = 45
+
+	planet = {
+		count = 2
+		orbit_angle = { min = 90 max = 270 }
+		orbit_distance = 20
+	}
+
+	planet = {
+		count = 1
+		orbit_distance = 25
+		class = ideal_design_class
+		orbit_angle = { min = 90 max = 270 }
+		size = { min = 14 max = 24 }
+
+		init_effect = {
+			prevent_anomaly = yes
+			set_carrier_flag = prescripted_ideal		# used by code, do not remove
+		}
+
+		change_orbit = 10
+
+		moon = {
+			count = { min = 0 max = 1 }
+			class = random_non_colonizable
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 5
+		}
+	}
+
+	planet = {
+		count = 2
+		orbit_angle = { min = 90 max = 270 }
+		orbit_distance = 20
+
+		change_orbit = 10
+
+		moon = {
+			count = { min = 0 max = 1 }
+			class = random_non_colonizable
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 5
+		}
+	}
+
+	planet = {
+		count = { min = 0 max = 2 }
+		orbit_angle = { min = 90 max = 270 }
+		orbit_distance = 20
+	}
+}
+
+com_sol_neighbor_t1 = {
+	name = "NAME_Barnards_Star"
+	class = sc_m
+	flags = { com_barnards_star }
+
+	init_effect = {
+		every_neighbor_system = { set_star_flag = empire_cluster }
+	}
+
+	planet = {
+		count = 1
+		class = star
+		orbit_distance = 0
+		orbit_angle = 1
+		size = { min = 20 max = 30 }
+		has_ring = no
+	}
+
+	change_orbit = 45
+
+	planet = {
+		count = { min = 0 max = 2 }
+		orbit_distance = 20
+		change_orbit = 10
+
+		moon = {
+			count = { min = 0 max = 1 }
+			orbit_distance = 5
+		}
+	}
+
+	planet = {
+		count = { min = 2 max = 5 }
+		orbit_distance = 20
+	}
+
+	init_effect = {
+		random_system = {
+			limit = { has_star_flag = com_sol }
+			save_event_target_as = com_sol
+		}
+		if = {
+			limit = {
+				NOT = { has_hyperlane_to = event_target:com_sol }
+			}
+			add_hyperlane = { from = this to = event_target:com_sol }
+		}
+		create_starbase = {
+			size = starbase_outpost
+			owner = event_target:npc_UNoE
+		}
+	}
+
+	neighbor_system = {
+		trigger = { num_guaranteed_colonies >= 2 }
+		hyperlane_jumps = { min = 1 max = 3 }
+		initializer = "com_sol_neighbor_t2_second_colony"
+	}
+	neighbor_system = {
+		trigger = { num_guaranteed_colonies < 2 }
+		hyperlane_jumps = { min = 1 max = 3 }
+		initializer = "sol_neighbor_t2_no_guaranteed_colony"
+	}
+}
+
+com_sol_neighbor_t1_first_colony = {
+	name = "NAME_Alpha_Centauri"
+	class = sc_trinary_1
+	flags = { neighbor_t1_first_colony }
+
+	init_effect = {
+		every_neighbor_system = { set_star_flag = empire_cluster }
+	}
+
+	planet = {
+		name = "NAME_Alpha_Centauri_A"
+		count = 1
+		class = pc_g_star
+		orbit_distance = 15
+		orbit_angle = 350
+		size = 32
+		has_ring = no
+	}
+
+	planet = {
+		name = "NAME_Alpha_Centauri_B"
+		count = 1
+		class = pc_k_star
+		orbit_distance = -35
+		orbit_angle = 10
+		size = 27
+		has_ring = no
+	}
+
+	planet = {
+		name = "NAME_Proxima_Centauri"
+		count = 1
+		class = pc_m_star
+		orbit_distance = 260
+		orbit_angle = 130
+		size = 15
+		has_ring = no
+
+		planet = {
+			name = "NAME_Proxima_Centauri_b"
+			class = pc_barren_cold
+			size = 20
+			orbit_distance = 35
+			init_effect = {
+				prevent_anomaly = yes
+				add_anomaly = {
+					category = ALPHA_CENTAURI_CAT
+				}
+				add_modifier = {
+					modifier = "tidal_locked"
+					days = -1
+				}
+			}
+		}
+
+		planet = {
+			name = "NAME_Proxima_Centauri_c"
+			class = pc_gas_giant
+			size = 18
+			orbit_distance = 25
+		}
+	}
+
+	change_orbit = -220
+
+	planet = {
+		count = 2
+		orbit_distance = 25
+
+		change_orbit = 10
+
+		moon = {
+			count = { min = 0 max = 1 }
+			orbit_distance = 5
+		}
+	}
+
+	planet = {
+		count = 1
+		orbit_distance = 30
+		class = "pc_continental"
+		orbit_angle = { min = 90 max = 270 }
+		size = { min = 12 max = 18 }
+
+		init_effect = {
+			create_colony = {
+				owner = event_target:npc_UNoE
+			}
+			colony = {
+				generate_lost_colony_parent_colony_1 = yes
+			}
+		}
+	}
+
+	planet = {
+		count = 2
+		orbit_distance = 25
+
+		change_orbit = 10
+
+		moon = {
+			count = { min = 0 max = 1 }
+			orbit_distance = 5
+		}
+	}
+
+	init_effect = {
+		random_system = {
+			limit = { has_star_flag = com_sol }
+			save_event_target_as = com_sol
+		}
+		if = {
+			limit = {
+				NOT = { has_hyperlane_to = event_target:com_sol }
+			}
+			add_hyperlane = { from = this to = event_target:com_sol }
+		}
+		create_starbase = {
+			size = starbase_outpost
+			owner = event_target:npc_UNoE
+		}
+	}
+
+	neighbor_system = {
+		hyperlane_jumps = { min = 1 max = 3 }
+		initializer = "sol_neighbor_t2"
+	}
+}
+
+com_sol_neighbor_t2_second_colony = {
+	name = "NAME_Sirius"
+	class = sc_binary_9
+	flags = { neighbor_t2_second_colony }
+
+	init_effect = {
+		every_neighbor_system = { set_star_flag = empire_cluster }
+	}
+
+	planet = {
+		name = "NAME_Sirius_A"
+		count = 1
+		class = pc_a_star
+		orbit_distance = 30
+		orbit_angle = 1
+		size = 35
+		has_ring = no
+	}
+
+	planet = {
+		name = "NAME_Sirius_B"
+		count = 1
+		class = pc_f_star
+		orbit_distance = 0
+		orbit_angle = 120
+		size = 15
+		has_ring = no
+	}
+
+	change_orbit = 45
+
+	planet = {
+		count = 2
+		orbit_angle = { min = 90 max = 270 }
+		orbit_distance = 20
+	}
+
+	planet = {
+		count = 1
+		orbit_distance = 25
+		class = "pc_continental"
+		orbit_angle = { min = 90 max = 270 }
+		size = { min = 14 max = 24 }
+
+		init_effect = {
+			create_colony = {
+				owner = event_target:npc_UNoE
+			}
+			colony = {
+				generate_lost_colony_parent_colony_2 = yes
+			}
+		}
+
+		change_orbit = 10
+
+		moon = {
+			count = { min = 0 max = 1 }
+			class = random_non_colonizable
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 5
+		}
+	}
+
+	planet = {
+		count = 2
+		orbit_angle = { min = 90 max = 270 }
+		orbit_distance = 20
+
+		change_orbit = 10
+
+		moon = {
+			count = { min = 0 max = 1 }
+			class = random_non_colonizable
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 5
+		}
+	}
+
+	planet = {
+		count = { min = 0 max = 2 }
+		orbit_angle = { min = 90 max = 270 }
+		orbit_distance = 20
+	}
+
+	init_effect = {
+		random_system = {
+			limit = { has_star_flag = com_barnards_star }
+			save_event_target_as = com_barnards_star
+		}
+		if = {
+			limit = {
+				NOT = { has_hyperlane_to = event_target:com_barnards_star }
+			}
+			add_hyperlane = { from = this to = event_target:com_barnards_star }
+		}
+		create_starbase = {
+			size = starbase_outpost
+			owner = event_target:npc_UNoE
+		}
+	}
+}
+
+lost_colony_sol_neighbor_t1 = {
+	name = "NAME_Barnards_Star"
+	class = sc_m
+	flags = { lost_colony_barnards_star }
+
+	init_effect = {
+		every_neighbor_system = { set_star_flag = empire_cluster }
+	}
+
+	planet = {
+		count = 1
+		class = star
+		orbit_distance = 0
+		orbit_angle = 1
+		size = { min = 20 max = 30 }
+		has_ring = no
+	}
+
+	change_orbit = 45
+
+	planet = {
+		count = { min = 0 max = 2 }
+		orbit_distance = 20
+		change_orbit = 10
+
+		moon = {
+			count = { min = 0 max = 1 }
+			orbit_distance = 5
+		}
+	}
+
+	planet = {
+		count = { min = 2 max = 5 }
+		orbit_distance = 20
+	}
+
+	init_effect = {
+		random_system = {
+			limit = { has_star_flag = lost_colony_sol }
+			save_event_target_as = lost_colony_sol
+		}
+		if = {
+			limit = {
+				NOT = { has_hyperlane_to = event_target:lost_colony_sol }
+			}
+			add_hyperlane = { from = this to = event_target:lost_colony_sol }
+		}
+		create_starbase = {
+			size = starbase_outpost
+			owner = event_target:lost_colony_parent
+		}
+	}
+
+	neighbor_system = {
+		trigger = { num_guaranteed_colonies >= 2 }
+		hyperlane_jumps = { min = 1 max = 3 }
+		initializer = "lost_colony_sol_neighbor_t2_second_colony"
+	}
+	neighbor_system = {
+		trigger = { num_guaranteed_colonies < 2 }
+		hyperlane_jumps = { min = 1 max = 3 }
+		initializer = "sol_neighbor_t2_no_guaranteed_colony"
+	}
+}
+
+lost_colony_sol_neighbor_t2_second_colony = {
+	name = "NAME_Sirius"
+	class = sc_binary_9
+	flags = { neighbor_t2_second_colony }
+
+	init_effect = {
+		every_neighbor_system = { set_star_flag = empire_cluster }
+	}
+
+	planet = {
+		name = "NAME_Sirius_A"
+		count = 1
+		class = pc_a_star
+		orbit_distance = 30
+		orbit_angle = 1
+		size = 35
+		has_ring = no
+	}
+
+	planet = {
+		name = "NAME_Sirius_B"
+		count = 1
+		class = pc_f_star
+		orbit_distance = 0
+		orbit_angle = 120
+		size = 15
+		has_ring = no
+	}
+
+	change_orbit = 45
+
+	planet = {
+		count = 2
+		orbit_angle = { min = 90 max = 270 }
+		orbit_distance = 20
+	}
+
+	planet = {
+		count = 1
+		orbit_distance = 25
+		class = "pc_continental"
+		orbit_angle = { min = 90 max = 270 }
+		size = { min = 14 max = 24 }
+
+		init_effect = {
+			create_colony = {
+				owner = event_target:lost_colony_parent
+			}
+			colony = {
+				generate_lost_colony_parent_colony_2 = yes
+			}
+		}
+
+		change_orbit = 10
+
+		moon = {
+			count = { min = 0 max = 1 }
+			class = random_non_colonizable
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 5
+		}
+	}
+
+	planet = {
+		count = 2
+		orbit_angle = { min = 90 max = 270 }
+		orbit_distance = 20
+
+		change_orbit = 10
+
+		moon = {
+			count = { min = 0 max = 1 }
+			class = random_non_colonizable
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 5
+		}
+	}
+
+	planet = {
+		count = { min = 0 max = 2 }
+		orbit_angle = { min = 90 max = 270 }
+		orbit_distance = 20
+	}
+
+	init_effect = {
+		random_system = {
+			limit = { has_star_flag = lost_colony_barnards_star }
+			save_event_target_as = lost_colony_barnards_star
+		}
+		if = {
+			limit = {
+				NOT = { has_hyperlane_to = event_target:lost_colony_barnards_star }
+			}
+			add_hyperlane = { from = this to = event_target:lost_colony_barnards_star }
+		}
+		create_starbase = {
+			size = starbase_outpost
+			owner = event_target:lost_colony_parent
+		}
+	}
+}

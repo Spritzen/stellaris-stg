@@ -1,0 +1,172 @@
+﻿# Orion name list, for the AI-only minor powers that use it.
+#
+# CONVERTED from .source/688086068/common/name_lists/Orion.txt: the tokens are
+# STNH's, resolved through STNH's own localisation and re-keyed as STG_N_. The
+# ship-size buckets are rebuilt for VANILLA's ladder -- STNH's file buckets by
+# its own (saber, sovereign, steamrunner) and those keys mean nothing here.
+#
+# See .docs/decisions/19-stnh-minor-powers-as-ai-empires.md.
+
+STG_ORION = {
+	category = "Humanoid"
+	randomized = no
+
+	ship_names = {
+		generic = {
+			STG_N_ProfitsGrasp STG_N_Flight STG_N_Robber STG_N_Looter STG_N_Corsair STG_N_Warbarge
+			STG_N_Slavemaster STG_N_Ravager STG_N_Pillager STG_N_Brigand STG_N_Marauder STG_N_Despoiler
+			STG_N_Hijacker STG_N_Prowler STG_N_Hunter STG_N_Cardsharp STG_N_Buccaneer STG_N_Jackal
+			STG_N_Opportunity STG_N_OpportuneExploit STG_N_Exploiter STG_N_Escapade STG_N_Feat STG_N_Adventure
+			STG_N_Enterprise STG_N_OpportuneEnterprise STG_N_Bazaar STG_N_Medina STG_N_Attainer STG_N_Kingmaker
+			STG_N_Venture STG_N_ErrantVenture STG_N_Freebooter STG_N_Cutpurse STG_N_Endowment STG_N_Speakeasy
+			STG_N_Constite STG_N_Invigorator STG_N_Innervater STG_N_Animater STG_N_Tradesman STG_N_Ransom
+			STG_N_Bandit STG_N_Highwayman STG_N_Rustler STG_N_Raider STG_N_Plunderer STG_N_Pirate
+			STG_N_Partisan STG_N_Banditry STG_N_Slaver STG_N_Outlaw STG_N_Kingpin STG_N_Vigilante
+			STG_N_HandsomeRansom STG_N_VileBuccaneer STG_N_VilePride STG_N_WanderingShame STG_N_BeltofPlunder STG_N_FearfulTrident
+			STG_N_WanderingBlade STG_N_Footpad STG_N_Crook STG_N_Gangster STG_N_Hooligan STG_N_Racketeer
+			STG_N_Fugitive STG_N_Pariah STG_N_Mobster STG_N_Drifter STG_N_BreakEven STG_N_InvisibleHand
+			STG_N_Vixen STG_N_Harpy STG_N_Virago STG_N_Harridan STG_N_She-Devil STG_N_Heartbreaker
+			STG_N_Slattern STG_N_Wench STG_N_Strumpet
+		}
+
+		corvette = {
+			STG_N_Despoiler STG_N_Hijacker STG_N_Prowler STG_N_Hunter STG_N_Cardsharp
+		}
+
+		destroyer = {
+			STG_N_Buccaneer STG_N_Jackal STG_N_Opportunity STG_N_OpportuneExploit STG_N_Exploiter
+		}
+
+		cruiser = {
+			STG_N_Escapade STG_N_Feat STG_N_Adventure STG_N_Enterprise STG_N_OpportuneEnterprise
+		}
+
+		battleship = {
+			STG_N_Bazaar STG_N_Medina STG_N_Attainer STG_N_Kingmaker STG_N_Venture
+		}
+
+		titan = {
+			STG_N_ErrantVenture STG_N_Freebooter STG_N_Cutpurse STG_N_Endowment
+		}
+
+		science = {
+			STG_N_ProfitsGrasp STG_N_Flight STG_N_Robber STG_N_Looter STG_N_Corsair STG_N_Warbarge
+		}
+
+		colonizer = {
+			STG_N_ProfitsGrasp STG_N_Flight STG_N_Robber STG_N_Looter STG_N_Corsair
+		}
+
+		constructor = {
+			STG_N_Slavemaster STG_N_Ravager STG_N_Pillager STG_N_Brigand STG_N_Marauder
+		}
+	}
+
+	ship_class_names = {
+		generic = {
+			STG_N_ProfitsGrasp STG_N_Flight STG_N_Robber STG_N_Looter STG_N_Corsair STG_N_Warbarge
+			STG_N_Slavemaster STG_N_Ravager STG_N_Pillager
+		}
+	}
+
+	fleet_names = {
+		sequential_name = STG_ORION_GROUP
+	}
+
+	army_names = {
+		machine_assault_1 = {
+			sequential_name = STG_ORION_ASSAULTAUXILIARY
+		}
+
+		machine_defense = {
+			sequential_name = STG_ORION_DEFENSEAUXILIARY
+		}
+
+		defense_army = {
+			sequential_name = STG_ORION_PLANETARYDEFENSEAUXILIARY
+		}
+
+		assault_army = {
+			sequential_name = STG_ORION_EXPEDITIONARYAUXILIARY
+		}
+
+		slave_army = {
+			sequential_name = STG_ORION_LABORAUXILIARY
+		}
+
+		clone_army = {
+			sequential_name = STG_ORION_REPLICATEAUXILIARY
+		}
+
+		robotic_army = {
+			sequential_name = STG_ORION_AUTOMATEDAUXILIARY
+		}
+
+		psionic_army = {
+			sequential_name = STG_ORION_ADEPTAUXILIARY
+		}
+
+		xenomorph_army = {
+			sequential_name = STG_ORION_XENOMORPHAUXILIARY
+		}
+
+		gene_warrior_army = {
+			sequential_name = STG_ORION_AUGMENTEDAUXILIARY
+		}
+
+		occupation_army = {
+			sequential_name = STG_ORION_OCCUPATIONAUXILIARY
+		}
+
+		robotic_defense_army = {
+			sequential_name = STG_ORION_AUTOMATEDDEFENSEAUXILIARY
+		}
+
+		industrial_army = {
+			sequential_name = STG_ORION_INDUSTRIALAUXILIARY
+		}
+
+		primitive_army = {
+			sequential_name = STG_ORION_MILITIA
+		}
+	}
+
+	planet_names = {
+		generic = {
+			names = {
+				STG_N_ProfitsGrasp STG_N_Flight STG_N_Robber STG_N_Looter STG_N_Corsair STG_N_Warbarge
+				STG_N_Slavemaster STG_N_Ravager STG_N_Pillager STG_N_Brigand STG_N_Marauder STG_N_Despoiler
+				STG_N_Hijacker STG_N_Prowler STG_N_Hunter STG_N_Cardsharp STG_N_Buccaneer STG_N_Jackal
+				STG_N_Opportunity STG_N_OpportuneExploit STG_N_Exploiter STG_N_Escapade STG_N_Feat STG_N_Adventure
+				STG_N_Enterprise STG_N_OpportuneEnterprise STG_N_Bazaar STG_N_Medina STG_N_Attainer STG_N_Kingmaker
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			weight = 100
+
+			first_names_male = {
+				STG_N_Prasad STG_N_Shretsh STG_N_Jagadish STG_N_Abbran STG_N_Amaar STG_N_Tadji
+				STG_N_DOnni STG_N_Harrad STG_N_Arnet STG_N_Thelev STG_N_Holencas STG_N_Kai
+				STG_N_Herrod STG_N_Nalur STG_N_Tevar STG_N_Nallin STG_N_Hubin STG_N_Agachi
+				STG_N_Albrek STG_N_Abnel STG_N_Barak STG_N_Althori STG_N_Balun STG_N_Beldav
+			}
+
+			first_names_female = {
+				STG_N_Chellix STG_N_Torvili STG_N_Fthi STG_N_BRt STG_N_Risik STG_N_Navaar
+				STG_N_Seema STG_N_Partha STG_N_Maras STG_N_DErika STG_N_DVana STG_N_DNesh
+				STG_N_DNavaar STG_N_Devna STG_N_Vila STG_N_Gaila STG_N_Naila STG_N_DNala
+				STG_N_Leata STG_N_Marta STG_N_Treir STG_N_Anaria STG_N_Gaeta STG_N_Baeta
+			}
+
+			second_names = {
+				STG_N_Prasad STG_N_Shretsh STG_N_Jagadish STG_N_Abbran STG_N_Amaar STG_N_Tadji
+				STG_N_DOnni STG_N_Harrad STG_N_Arnet STG_N_Thelev STG_N_Holencas STG_N_Kai
+				STG_N_Herrod STG_N_Nalur STG_N_Tevar STG_N_Nallin STG_N_Hubin STG_N_Agachi
+				STG_N_Albrek STG_N_Abnel STG_N_Barak STG_N_Althori STG_N_Balun STG_N_Beldav
+			}
+		}
+	}
+}

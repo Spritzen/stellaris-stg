@@ -1,0 +1,158 @@
+﻿# Kriosian name list, for the AI-only minor powers that use it.
+#
+# CONVERTED from .source/688086068/common/name_lists/Kriosian.txt: the tokens are
+# STNH's, resolved through STNH's own localisation and re-keyed as STG_N_. The
+# ship-size buckets are rebuilt for VANILLA's ladder -- STNH's file buckets by
+# its own (saber, sovereign, steamrunner) and those keys mean nothing here.
+#
+# See .docs/decisions/19-stnh-minor-powers-as-ai-empires.md.
+
+STG_KRIOSIAN = {
+	category = "Humanoid"
+	randomized = no
+
+	ship_names = {
+		generic = {
+			STG_N_AncientGlory STG_N_AncientHonour STG_N_ForgottenRealm STG_N_BrokenPromises STG_N_KriossGain STG_N_KriossPride
+			STG_N_PrideOfKrios STG_N_HonourOfKrios STG_N_BrokenFamily STG_N_HoldFast STG_N_PastGlory STG_N_PrideofKrios
+			STG_N_HonourofKrios
+		}
+
+		corvette = {
+			STG_N_AncientGlory STG_N_AncientHonour STG_N_ForgottenRealm
+		}
+
+		destroyer = {
+			STG_N_AncientGlory STG_N_AncientHonour STG_N_ForgottenRealm
+		}
+
+		cruiser = {
+			STG_N_AncientGlory STG_N_AncientHonour STG_N_ForgottenRealm
+		}
+
+		battleship = {
+			STG_N_AncientGlory STG_N_AncientHonour STG_N_ForgottenRealm
+		}
+
+		titan = {
+			STG_N_AncientGlory STG_N_AncientHonour STG_N_ForgottenRealm
+		}
+
+		science = {
+			STG_N_AncientGlory STG_N_AncientHonour STG_N_ForgottenRealm STG_N_BrokenPromises STG_N_KriossGain STG_N_KriossPride
+		}
+
+		colonizer = {
+			STG_N_AncientGlory STG_N_AncientHonour STG_N_ForgottenRealm STG_N_BrokenPromises STG_N_KriossGain
+		}
+
+		constructor = {
+			STG_N_PrideOfKrios STG_N_HonourOfKrios STG_N_BrokenFamily STG_N_HoldFast STG_N_PastGlory
+		}
+	}
+
+	ship_class_names = {
+		generic = {
+			STG_N_AncientGlory STG_N_AncientHonour STG_N_ForgottenRealm STG_N_BrokenPromises STG_N_KriossGain STG_N_KriossPride
+			STG_N_PrideOfKrios STG_N_HonourOfKrios STG_N_BrokenFamily
+		}
+	}
+
+	fleet_names = {
+		sequential_name = STG_KRIOSIAN_GROUP
+	}
+
+	army_names = {
+		machine_assault_1 = {
+			sequential_name = STG_KRIOSIAN_ASSAULTAUXILIARY
+		}
+
+		machine_defense = {
+			sequential_name = STG_KRIOSIAN_DEFENSEAUXILIARY
+		}
+
+		defense_army = {
+			sequential_name = STG_KRIOSIAN_PLANETARYDEFENSEAUXILIARY
+		}
+
+		assault_army = {
+			sequential_name = STG_KRIOSIAN_EXPEDITIONARYAUXILIARY
+		}
+
+		slave_army = {
+			sequential_name = STG_KRIOSIAN_LABORAUXILIARY
+		}
+
+		clone_army = {
+			sequential_name = STG_KRIOSIAN_REPLICATEAUXILIARY
+		}
+
+		robotic_army = {
+			sequential_name = STG_KRIOSIAN_AUTOMATEDAUXILIARY
+		}
+
+		psionic_army = {
+			sequential_name = STG_KRIOSIAN_ADEPTAUXILIARY
+		}
+
+		xenomorph_army = {
+			sequential_name = STG_KRIOSIAN_XENOMORPHAUXILIARY
+		}
+
+		gene_warrior_army = {
+			sequential_name = STG_KRIOSIAN_AUGMENTEDAUXILIARY
+		}
+
+		occupation_army = {
+			sequential_name = STG_KRIOSIAN_OCCUPATIONAUXILIARY
+		}
+
+		robotic_defense_army = {
+			sequential_name = STG_KRIOSIAN_AUTOMATEDDEFENSEAUXILIARY
+		}
+
+		industrial_army = {
+			sequential_name = STG_KRIOSIAN_INDUSTRIALAUXILIARY
+		}
+
+		primitive_army = {
+			sequential_name = STG_KRIOSIAN_MILITIA
+		}
+	}
+
+	planet_names = {
+		generic = {
+			names = {
+				STG_N_AncientGlory STG_N_AncientHonour STG_N_ForgottenRealm STG_N_BrokenPromises STG_N_KriossGain STG_N_KriossPride
+				STG_N_PrideOfKrios STG_N_HonourOfKrios STG_N_BrokenFamily STG_N_HoldFast STG_N_PastGlory
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			weight = 100
+
+			first_names_male = {
+				STG_N_Krios STG_N_Briam STG_N_Euam STG_N_Juam STG_N_Logam STG_N_Etham
+				STG_N_Julam STG_N_Ryam STG_N_Natham STG_N_Dylam STG_N_Istiam STG_N_Driam
+				STG_N_Nolam STG_N_Jodam STG_N_Evam STG_N_Iram STG_N_Inatham STG_N_Romam
+				STG_N_Ristam STG_N_Reclam STG_N_Diam STG_N_Rowam STG_N_Ivam STG_N_Deam
+			}
+
+			first_names_female = {
+				STG_N_Garachele STG_N_Garadha STG_N_Garadhika STG_N_Garadka STG_N_Garadlee STG_N_Garadomira
+				STG_N_Garae STG_N_Garaea STG_N_Garaeanne STG_N_Garaechelle STG_N_Garaegan STG_N_Garaelie
+				STG_N_Garaelin STG_N_Garaelle STG_N_Garaelyn STG_N_Garaen STG_N_Garaena STG_N_Garaewyn
+				STG_N_Garaffia STG_N_Pharahel STG_N_Pharahil STG_N_Pharahima STG_N_Pharahma STG_N_Pharahne
+			}
+
+			second_names = {
+				STG_N_Krios STG_N_Briam STG_N_Euam STG_N_Juam STG_N_Logam STG_N_Etham
+				STG_N_Julam STG_N_Ryam STG_N_Natham STG_N_Dylam STG_N_Istiam STG_N_Driam
+				STG_N_Nolam STG_N_Jodam STG_N_Evam STG_N_Iram STG_N_Inatham STG_N_Romam
+				STG_N_Ristam STG_N_Reclam STG_N_Diam STG_N_Rowam STG_N_Ivam STG_N_Deam
+			}
+		}
+	}
+}

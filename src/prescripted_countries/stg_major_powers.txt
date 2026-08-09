@@ -1,0 +1,404 @@
+# Star Trek Galaxies — the five major powers as prescripted empires.
+#
+# New prefixed file, merging with stg_quadrant_powers.txt beside it. Together
+# the two are the whole empire picker: vanilla's 52 are removed by the 19
+# comment-only shadow files here (decision 14), and default.txt is untouched so
+# custom empire creation still works.
+#
+# Every authority / government / civic / ethic combination is checked against
+# the `possible` block of the thing it names, because the game does not report
+# an invalid prescripted empire — it just refuses to start. The authority-ethic
+# constraints are tabulated in stg_quadrant_powers.txt; the governments used
+# here want:
+#
+#   gov_representative_democracy  is_democratic_authority
+#   gov_science_directorate       is_oligarchic_authority + civic_technocracy
+#   gov_martial_empire            is_imperial_authority   + civic_warrior_culture
+#   gov_star_empire               is_imperial_authority   + is_militarist
+#   gov_military_junta            is_oligarchic_authority + is_militarist
+#
+# Trait budgets are the vanilla default of 2 points.
+#
+# `initializer =` names a REAL home system, added 2026-08-03. It used to be
+# absent on §1's "no hand-placed homeworlds" grounds, and that was wrong in a
+# way only play showed: `planet_name`/`system_name` are labels, not contents,
+# so "Sol" was a label on a randomly generated system whose other planets were
+# named from the Federation's `planet_names` pool — a list of MEMBER worlds.
+# Sol contained Bajor and Andoria. See
+# .docs/decisions/25-real-home-systems.md; the systems themselves are
+# GENERATED into src/common/solar_system_initializers/stg_home_systems.txt by
+# tools/gen_home_systems.py. `planet_name`/`planet_class` still override the
+# initializer's capital, exactly as vanilla's plantoid_humans does with Sol.
+#
+# `graphical_culture` names the ship set for the species and must match
+# stg_species_classes.txt — it is set HERE TOO and overrides the species class,
+# so remapping one without the other silently drops the empire to
+# `fallback = mammalian_01`. All five majors are on Walshicus shipsets
+# (.docs/decisions/18-walshicus-shipsets-replace-stnh-hulls.md).
+# `city_graphical_culture` is a bare texture PREFIX, not a declared key:
+# `= "klingon"` finds gfx/portraits/city_sets/klingon_city_l01.dds. STNH
+# re-skins vanilla's own humanoid_01/reptilian_01/… sets at vanilla's paths, so
+# an empire left on those is already drawing Trek cities; the four Trek-only
+# sets STNH ships under their own prefix are named here. Flags are vendored
+# STNH heraldry at flags/trek/. See .docs/decisions/49-flags-city-sets.md.
+
+# `ruler = { }` pins NO `clothes` index on 95 of the 101 empires. Decision 23
+# set them all to 0 believing that meant "let the selector decide"; 0 is a real
+# index, and a pinned ruler keeps it for life while every other leader
+# re-evaluates the selector — so the starting president wore the empire
+# designer's pick while his own officials wore the ruler scope's.
+# `texture = 0` stays: it is the one index with a declared length to check.
+# See .docs/decisions/57-prescripted-rulers-unpin-clothes.md
+#
+# THE SEVEN THAT PIN `clothes = 0` are the seven whose species portrait uses a
+# `humanoid_master_*` selector shared by 44 species classes, where index 0 is
+# that file's human-civilian `default`. They name a GENERATED `stg_*_ruler`
+# portrait instead — a clone of the species portrait carrying a one-texture
+# clothes selector, so index 0 IS the intended garment and no index into the
+# master selector is ever taken. Decision 68 tried to compute that index and a
+# live run falsified it at all six positions it set.
+# tools/gen_ruler_clothes.py writes both generated files; make validate checks
+# the selector is one-deep rather than re-deriving a number.
+# See .docs/decisions/69-ruler-clothes-dedicated-selectors.md
+
+# `room =` is STNH's own assignment for the same empire, restored 2026-08-08 by
+# tools/fix_prescripted_rooms.py — it had been replaced wholesale by vanilla
+# personality rooms, which cost the 20 empires STNH gives a Trek room. The three
+# rows where STG keeps its own answer are listed in that script.
+# See .docs/decisions/48-room-selector-merge.md
+
+# ── United Federation of Planets ───────────────────────────────────────────
+stg_united_federation_of_planets = {
+	name = "STG_EMPIRE_federation"
+	adjective = "STG_adjective_federation"
+	spawn_enabled = always
+
+	ship_prefix = "STG_ship_prefix_federation"
+
+	species = {
+		class = "FED"
+		portrait = "human"
+		name = "STG_species_name_federation"
+		plural = "STG_species_plural_federation"
+		adjective = "STG_species_adjective_federation"
+		name_list = "STG_FEDERATION"
+		trait = "trait_organic"
+		trait = "trait_adaptive"
+		trait = "trait_nomadic"
+		trait = "trait_wasteful"
+	}
+
+	room = "earth_room"
+
+	authority = "auth_democratic"
+	civics = { "civic_beacon_of_liberty" "civic_diplomatic_corps" }
+	government = gov_representative_democracy
+	origin = "origin_default"
+
+	ethic = "ethic_fanatic_xenophile"
+	ethic = "ethic_egalitarian"
+
+	initializer = "sol_system_initializer"
+	planet_name = "STG_planet_name_federation"
+	planet_class = "pc_continental"
+	system_name = "STG_system_name_federation"
+
+	graphical_culture = "starfleet_tng"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "trek"
+			file = "Federation1.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"blue"
+			"light_blue"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_federation"
+		gender = male
+		portrait = "stg_fed_ruler"
+		texture = 0
+		clothes = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+# ── Confederacy of Vulcan ──────────────────────────────────────────────────
+stg_confederacy_of_vulcan = {
+	name = "STG_EMPIRE_vulcan"
+	adjective = "STG_adjective_vulcan"
+	spawn_enabled = yes
+
+	ship_prefix = "STG_ship_prefix_vulcan"
+
+	species = {
+		class = "VUL"
+		portrait = "vulcan"
+		name = "STG_species_name_vulcan"
+		plural = "STG_species_plural_vulcan"
+		adjective = "STG_species_adjective_vulcan"
+		name_list = "STG_VULCAN"
+		trait = "trait_organic"
+		trait = "trait_intelligent"
+		trait = "trait_enduring"
+		trait = "trait_conservational"
+		trait = "trait_slow_breeders"
+	}
+
+	room = "vulcan_room"
+
+	authority = "auth_oligarchic"
+	civics = { "civic_technocracy" "civic_meritocracy" }
+	government = gov_science_directorate
+	origin = "origin_default"
+
+	ethic = "ethic_fanatic_materialist"
+	ethic = "ethic_pacifist"
+
+	initializer = "stg_confederacy_of_vulcan_home"
+	planet_name = "STG_planet_name_vulcan"
+	planet_class = "pc_desert"
+	system_name = "STG_system_name_vulcan"
+
+	graphical_culture = "vulcan"
+	city_graphical_culture = "vulcan_01"
+
+	empire_flag = {
+		icon = {
+			category = "trek"
+			file = "Vulcan.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "circle.dds"
+		}
+		colors = {
+			"burgundy"
+			"desert_yellow"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_vulcan"
+		gender = female
+		portrait = "stg_vul_ruler"
+		texture = 0
+		clothes = 0
+		trait = "trait_ruler_architectural_sense"
+		leader_class = official
+	}
+}
+
+# ── Klingon Empire ─────────────────────────────────────────────────────────
+stg_klingon_empire = {
+	name = "STG_EMPIRE_klingon"
+	adjective = "STG_adjective_klingon"
+	spawn_enabled = yes
+
+	ship_prefix = "STG_ship_prefix_klingon"
+
+	species = {
+		class = "KDF"
+		portrait = "klingon"
+		name = "STG_species_name_klingon"
+		plural = "STG_species_plural_klingon"
+		adjective = "STG_species_adjective_klingon"
+		name_list = "STG_KLINGON"
+		trait = "trait_organic"
+		trait = "trait_very_strong"
+		trait = "trait_resilient"
+		trait = "trait_quarrelsome"
+		trait = "trait_fleeting"
+	}
+
+	room = "klingon_room"
+
+	authority = "auth_imperial"
+	civics = { "civic_warrior_culture" "civic_aristocratic_elite" }
+	government = gov_martial_empire
+	origin = "origin_default"
+
+	ethic = "ethic_fanatic_militarist"
+	ethic = "ethic_authoritarian"
+
+	initializer = "stg_klingon_empire_home"
+	planet_name = "STG_planet_name_klingon"
+	planet_class = "pc_continental"
+	system_name = "STG_system_name_klingon"
+
+	graphical_culture = "klingon"
+	city_graphical_culture = "klingon"
+
+	empire_flag = {
+		icon = {
+			category = "trek"
+			file = "Klingon.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "triangle_split.dds"
+		}
+		colors = {
+			"dark_red"
+			"dark_grey"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_klingon"
+		gender = male
+		portrait = "klingon_male_05"
+		texture = 0
+		trait = "trait_ruler_fortifier"
+		leader_class = commander
+	}
+}
+
+# ── Romulan Star Empire ────────────────────────────────────────────────────
+stg_romulan_star_empire = {
+	name = "STG_EMPIRE_romulan"
+	adjective = "STG_adjective_romulan"
+	spawn_enabled = yes
+
+	ship_prefix = "STG_ship_prefix_romulan"
+
+	species = {
+		class = "ROM"
+		portrait = "romulan"
+		name = "STG_species_name_romulan"
+		plural = "STG_species_plural_romulan"
+		adjective = "STG_species_adjective_romulan"
+		name_list = "STG_ROMULAN"
+		trait = "trait_organic"
+		trait = "trait_intelligent"
+		trait = "trait_natural_engineers"
+		trait = "trait_deviants"
+	}
+
+	room = "romulan_room"
+
+	authority = "auth_imperial"
+	civics = { "civic_police_state" "civic_aristocratic_elite" }
+	government = gov_star_empire
+	origin = "origin_default"
+
+	ethic = "ethic_fanatic_authoritarian"
+	ethic = "ethic_militarist"
+
+	initializer = "stg_romulan_star_empire_home"
+	planet_name = "STG_planet_name_romulan"
+	planet_class = "pc_continental"
+	system_name = "STG_system_name_romulan"
+
+	graphical_culture = "romulan"
+	city_graphical_culture = "avian_01"
+
+	empire_flag = {
+		icon = {
+			category = "trek"
+			file = "Romulan1.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "double_hemispheres.dds"
+		}
+		colors = {
+			"dark_green"
+			"green"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_romulan"
+		gender = female
+		portrait = "romulan_female_01"
+		texture = 0
+		trait = "trait_ruler_deep_connections"
+		leader_class = official
+	}
+}
+
+# ── Cardassian Union ───────────────────────────────────────────────────────
+# ethic_authoritarian, not fanatic: auth_oligarchic forbids the fanatic form.
+stg_cardassian_union = {
+	name = "STG_EMPIRE_cardassian"
+	adjective = "STG_adjective_cardassian"
+	spawn_enabled = yes
+
+	ship_prefix = "STG_ship_prefix_cardassian"
+
+	species = {
+		class = "CAR"
+		portrait = "cardassian"
+		name = "STG_species_name_cardassian"
+		plural = "STG_species_plural_cardassian"
+		adjective = "STG_species_adjective_cardassian"
+		name_list = "STG_CARDASSIAN"
+		trait = "trait_organic"
+		trait = "trait_industrious"
+		trait = "trait_conformists"
+		trait = "trait_decadent"
+		trait = "trait_quarrelsome"
+	}
+
+	room = "cardassian_room"
+
+	authority = "auth_oligarchic"
+	civics = { "civic_police_state" "civic_shadow_council" }
+	government = gov_military_junta
+	origin = "origin_default"
+
+	ethic = "ethic_authoritarian"
+	ethic = "ethic_fanatic_militarist"
+
+	initializer = "stg_cardassian_union_home"
+	planet_name = "STG_planet_name_cardassian"
+	planet_class = "pc_arid"
+	system_name = "STG_system_name_cardassian"
+
+	graphical_culture = "cardassian"
+	city_graphical_culture = "cardassian_01"
+
+	empire_flag = {
+		icon = {
+			category = "trek"
+			file = "Cardassian1.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "v.dds"
+		}
+		colors = {
+			"dark_teal"
+			"desert_yellow"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_cardassian"
+		gender = male
+		portrait = "cardassian_male_01"
+		texture = 0
+		trait = "trait_ruler_warlike"
+		leader_class = commander
+	}
+}

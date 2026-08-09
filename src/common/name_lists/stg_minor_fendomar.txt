@@ -1,0 +1,169 @@
+﻿# Fendomar name list, for the AI-only minor powers that use it.
+#
+# CONVERTED from .source/688086068/common/name_lists/Fendomar.txt: the tokens are
+# STNH's, resolved through STNH's own localisation and re-keyed as STG_N_. The
+# ship-size buckets are rebuilt for VANILLA's ladder -- STNH's file buckets by
+# its own (saber, sovereign, steamrunner) and those keys mean nothing here.
+#
+# See .docs/decisions/19-stnh-minor-powers-as-ai-empires.md.
+
+STG_FENDOMAR = {
+	category = "Humanoid"
+	randomized = no
+
+	ship_names = {
+		generic = {
+			STG_N_BlazeOfDomar STG_N_BrillianceOfDomar STG_N_DazzlingOfDomar STG_N_FlashingOfDomar STG_N_GlisteningOfDomar STG_N_GlitteringOfDomar
+			STG_N_GoldenOfDomar STG_N_IntensityOfDomar STG_N_LuminousDomar STG_N_RadianceOfDomar STG_N_RadiantDomar STG_N_ShimmeringOfDomar
+			STG_N_ShineOfDomar STG_N_SilverOfDomar STG_N_SparklingOfDomar STG_N_VividDomar STG_N_GlowOfDomar STG_N_LightOfDomar
+			STG_N_ArgentOfDomar STG_N_AuroraOfDomar STG_N_BeamOfDomar STG_N_DomarsFlame STG_N_BurnishedOfDomar STG_N_CoruscateOfDomar
+			STG_N_GlaringOfDomar STG_N_GleamingOfDomar STG_N_GlossOfDomar STG_N_IlluminatedOfDomar STG_N_LuminatedOfDomar STG_N_IncandescentOfDomar
+			STG_N_LambentOfDomar STG_N_LightedOfDomar STG_N_LustrousDomar STG_N_PhosphorescentDomar STG_N_ResplendentDomar STG_N_ScintillatingDomar
+			STG_N_BlazeofDomar STG_N_BrillianceofDomar STG_N_DazzlingofDomar STG_N_FlashingofDomar STG_N_GlisteningofDomar STG_N_GlitteringofDomar
+			STG_N_GoldenofDomar STG_N_IntensityofDomar STG_N_RadianceofDomar STG_N_ShimmeringofDomar STG_N_ShineofDomar STG_N_SilverofDomar
+			STG_N_SparklingofDomar STG_N_GlowofDomar STG_N_LightofDomar STG_N_ArgentofDomar STG_N_AuroraofDomar STG_N_BeamofDomar
+			STG_N_BurnishedofDomar STG_N_CoruscateofDomar STG_N_GlaringofDomar STG_N_GleamingofDomar STG_N_GlossofDomar STG_N_IlluminatedofDomar
+			STG_N_LuminatedofDomar STG_N_IncandescentofDomar STG_N_LambentofDomar STG_N_LightedofDomar
+		}
+
+		corvette = {
+			STG_N_ShimmeringOfDomar STG_N_ShineOfDomar STG_N_SilverOfDomar STG_N_SparklingOfDomar STG_N_VividDomar
+		}
+
+		destroyer = {
+			STG_N_GlowOfDomar STG_N_LightOfDomar STG_N_ArgentOfDomar STG_N_AuroraOfDomar STG_N_BeamOfDomar
+		}
+
+		cruiser = {
+			STG_N_DomarsFlame STG_N_BurnishedOfDomar STG_N_CoruscateOfDomar STG_N_GlaringOfDomar STG_N_GleamingOfDomar
+		}
+
+		battleship = {
+			STG_N_GlossOfDomar STG_N_IlluminatedOfDomar STG_N_LuminatedOfDomar STG_N_IncandescentOfDomar STG_N_LambentOfDomar
+		}
+
+		titan = {
+			STG_N_LightedOfDomar STG_N_LustrousDomar STG_N_PhosphorescentDomar STG_N_ResplendentDomar
+		}
+
+		science = {
+			STG_N_BlazeOfDomar STG_N_BrillianceOfDomar STG_N_DazzlingOfDomar STG_N_FlashingOfDomar STG_N_GlisteningOfDomar STG_N_GlitteringOfDomar
+		}
+
+		colonizer = {
+			STG_N_BlazeOfDomar STG_N_BrillianceOfDomar STG_N_DazzlingOfDomar STG_N_FlashingOfDomar STG_N_GlisteningOfDomar
+		}
+
+		constructor = {
+			STG_N_GoldenOfDomar STG_N_IntensityOfDomar STG_N_LuminousDomar STG_N_RadianceOfDomar STG_N_RadiantDomar
+		}
+	}
+
+	ship_class_names = {
+		generic = {
+			STG_N_BlazeOfDomar STG_N_BrillianceOfDomar STG_N_DazzlingOfDomar STG_N_FlashingOfDomar STG_N_GlisteningOfDomar STG_N_GlitteringOfDomar
+			STG_N_GoldenOfDomar STG_N_IntensityOfDomar STG_N_LuminousDomar
+		}
+	}
+
+	fleet_names = {
+		sequential_name = STG_FENDOMAR_GROUP
+	}
+
+	army_names = {
+		machine_assault_1 = {
+			sequential_name = STG_FENDOMAR_ASSAULTAUXILIARY
+		}
+
+		machine_defense = {
+			sequential_name = STG_FENDOMAR_DEFENSEAUXILIARY
+		}
+
+		defense_army = {
+			sequential_name = STG_FENDOMAR_PLANETARYDEFENSEAUXILIARY
+		}
+
+		assault_army = {
+			sequential_name = STG_FENDOMAR_EXPEDITIONARYAUXILIARY
+		}
+
+		slave_army = {
+			sequential_name = STG_FENDOMAR_LABORAUXILIARY
+		}
+
+		clone_army = {
+			sequential_name = STG_FENDOMAR_REPLICATEAUXILIARY
+		}
+
+		robotic_army = {
+			sequential_name = STG_FENDOMAR_AUTOMATEDAUXILIARY
+		}
+
+		psionic_army = {
+			sequential_name = STG_FENDOMAR_ADEPTAUXILIARY
+		}
+
+		xenomorph_army = {
+			sequential_name = STG_FENDOMAR_XENOMORPHAUXILIARY
+		}
+
+		gene_warrior_army = {
+			sequential_name = STG_FENDOMAR_AUGMENTEDAUXILIARY
+		}
+
+		occupation_army = {
+			sequential_name = STG_FENDOMAR_OCCUPATIONAUXILIARY
+		}
+
+		robotic_defense_army = {
+			sequential_name = STG_FENDOMAR_AUTOMATEDDEFENSEAUXILIARY
+		}
+
+		industrial_army = {
+			sequential_name = STG_FENDOMAR_INDUSTRIALAUXILIARY
+		}
+
+		primitive_army = {
+			sequential_name = STG_FENDOMAR_MILITIA
+		}
+	}
+
+	planet_names = {
+		generic = {
+			names = {
+				STG_N_BlazeOfDomar STG_N_BrillianceOfDomar STG_N_DazzlingOfDomar STG_N_FlashingOfDomar STG_N_GlisteningOfDomar STG_N_GlitteringOfDomar
+				STG_N_GoldenOfDomar STG_N_IntensityOfDomar STG_N_LuminousDomar STG_N_RadianceOfDomar STG_N_RadiantDomar STG_N_ShimmeringOfDomar
+				STG_N_ShineOfDomar STG_N_SilverOfDomar STG_N_SparklingOfDomar STG_N_VividDomar STG_N_GlowOfDomar STG_N_LightOfDomar
+				STG_N_ArgentOfDomar STG_N_AuroraOfDomar STG_N_BeamOfDomar STG_N_DomarsFlame STG_N_BurnishedOfDomar STG_N_CoruscateOfDomar
+				STG_N_GlaringOfDomar STG_N_GleamingOfDomar STG_N_GlossOfDomar STG_N_IlluminatedOfDomar STG_N_LuminatedOfDomar STG_N_IncandescentOfDomar
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			weight = 100
+
+			first_names_male = {
+				STG_N_Ael STG_N_Ronarg STG_N_Agerli STG_N_Dausfer STG_N_Rung STG_N_Fharris
+				STG_N_AgFen STG_N_Rfen STG_N_Domauss STG_N_Foci STG_N_Isca STG_N_Fever
+				STG_N_Doci STG_N_Fenver STG_N_Fes STG_N_Ager STG_N_Ronar STG_N_Agern
+				STG_N_Afaodan STG_N_Domerlin STG_N_Ociver STG_N_Fekalla STG_N_Dohanng STG_N_Dofen
+			}
+
+			first_names_female = {
+				STG_N_Agerhver STG_N_Iscat STG_N_Ronaran STG_N_Iscciver STG_N_Fver STG_N_Dommartfen
+				STG_N_Fefen STG_N_Ifarseker STG_N_Dnnen STG_N_Iscategatn STG_N_Ronarthfen STG_N_Dsallisver
+				STG_N_Domaver STG_N_Iscatsver STG_N_Issver STG_N_Ronaraver STG_N_Imaisver STG_N_Ronara
+				STG_N_Iglsodan STG_N_Aguskver STG_N_Fngaraver STG_N_Sodan STG_N_Agerhdan STG_N_Iscmen
+			}
+
+			second_names = {
+				STG_N_Ael STG_N_Ronarg STG_N_Agerli STG_N_Dausfer STG_N_Rung STG_N_Fharris
+				STG_N_AgFen STG_N_Rfen STG_N_Domauss STG_N_Foci STG_N_Isca STG_N_Fever
+				STG_N_Doci STG_N_Fenver STG_N_Fes STG_N_Ager STG_N_Ronar STG_N_Agern
+				STG_N_Afaodan STG_N_Domerlin STG_N_Ociver STG_N_Fekalla STG_N_Dohanng STG_N_Dofen
+			}
+		}
+	}
+}

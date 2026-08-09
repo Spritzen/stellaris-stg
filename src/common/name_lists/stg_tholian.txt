@@ -1,0 +1,162 @@
+﻿# Tholian Assembly name list.
+#
+# Two canon names exist — Loskene and Nezhek. The rest are built from the web
+# and from crystal geometry: single words with no soft consonants, matching the
+# two canon ones.
+#
+# Structure mirrors /stellaris/common/name_lists/HUMAN1.txt. Every name token
+# is an STG_N_ key in src/localisation/english/stg_names_l_english.yml.
+
+STG_THOLIAN = {
+	category = "Lithoid"
+	randomized = no
+
+	ship_names = {
+		generic = {
+			STG_N_Loskene STG_N_Nezhek STG_N_Tholia STG_N_Web STG_N_Lattice STG_N_Facet
+			STG_N_Prism STG_N_CleavagePlane STG_N_Annealing STG_N_Vitrification STG_N_Silica STG_N_Quartzite
+			STG_N_Feldspar STG_N_Obsidian STG_N_Chert STG_N_Nacre STG_N_Spinel STG_N_Rutile
+			STG_N_Orbweaver STG_N_Tarantula STG_N_BrownTarantula STG_N_BlueTarantula STG_N_BlackTarantula STG_N_Meshweaver
+			STG_N_Widow STG_N_Recluse STG_N_Zygiella STG_N_Pholcus STG_N_Dolomedes STG_N_RedWidow
+			STG_N_BrownWidow STG_N_BlackWidow STG_N_GreenWidow STG_N_BlueWidow STG_N_Micrathena STG_N_GreenLynx
+			STG_N_BlueLynx STG_N_RedLynx STG_N_BlackLynx STG_N_BrownLynx STG_N_Cyclosa STG_N_Triangleweaver
+			STG_N_Loxosceles STG_N_Misumena STG_N_Phidippus STG_N_Sicarius STG_N_Tibellus STG_N_Lynx
+			STG_N_GreenJumper STG_N_SlenderJumper STG_N_GrayJumper STG_N_BronzeJumper STG_N_Pamphobeteus STG_N_Castianeira
+			STG_N_Theraphosa STG_N_Arachnid STG_N_Aranea
+		}
+
+		corvette = {
+			STG_N_Chert STG_N_Spinel STG_N_Rutile STG_N_Feldspar STG_N_Quartzite
+		}
+
+		destroyer = {
+			STG_N_Obsidian STG_N_Silica STG_N_CleavagePlane STG_N_Facet
+		}
+
+		cruiser = {
+			STG_N_Loskene STG_N_Nezhek STG_N_Lattice STG_N_Prism
+		}
+
+		battleship = {
+			STG_N_Tholia STG_N_Web STG_N_Annealing STG_N_Vitrification
+		}
+
+		titan = {
+			STG_N_Tholia STG_N_Web STG_N_Loskene STG_N_Lattice
+		}
+
+		science = {
+			STG_N_Refraction STG_N_Spectrum STG_N_Prism STG_N_Facet STG_N_Annealing STG_N_Vitrification
+			STG_N_Nacre
+		}
+
+		colonizer = {
+			STG_N_NewTholia STG_N_Seedcrystal STG_N_Nucleation STG_N_GrowthFront STG_N_Accretion STG_N_Webspinner
+		}
+
+		constructor = {
+			STG_N_Spinneret STG_N_Weaver STG_N_Filament STG_N_Strand STG_N_AnchorPoint
+		}
+	}
+
+	ship_class_names = {
+		generic = {
+			STG_N_Loskene STG_N_Nezhek STG_N_Lattice STG_N_Prism STG_N_Facet STG_N_Spinneret STG_N_Obsidian
+			STG_N_Quartzite STG_N_Spinel
+		}
+	}
+
+	fleet_names = {
+		sequential_name = STG_THOLIAN_WEB
+	}
+
+	army_names = {
+		machine_assault_1 = {
+			sequential_name = STG_THOLIAN_ASSAULTLATTICE
+		}
+
+		machine_defense = {
+			sequential_name = STG_THOLIAN_DEFENSELATTICE
+		}
+
+		defense_army = {
+			sequential_name = STG_THOLIAN_PLANETARYDEFENSELATTICE
+		}
+
+		assault_army = {
+			sequential_name = STG_THOLIAN_EXPEDITIONARYLATTICE
+		}
+
+		slave_army = {
+			sequential_name = STG_THOLIAN_LABORLATTICE
+		}
+
+		clone_army = {
+			sequential_name = STG_THOLIAN_REPLICATELATTICE
+		}
+
+		robotic_army = {
+			sequential_name = STG_THOLIAN_AUTOMATEDLATTICE
+		}
+
+		psionic_army = {
+			sequential_name = STG_THOLIAN_ADEPTLATTICE
+		}
+
+		xenomorph_army = {
+			sequential_name = STG_THOLIAN_XENOMORPHLATTICE
+		}
+
+		gene_warrior_army = {
+			sequential_name = STG_THOLIAN_AUGMENTEDLATTICE
+		}
+
+		occupation_army = {
+			sequential_name = STG_THOLIAN_OCCUPATIONLATTICE
+		}
+
+		robotic_defense_army = {
+			sequential_name = STG_THOLIAN_AUTOMATEDDEFENSELATTICE
+		}
+
+		industrial_army = {
+			sequential_name = STG_THOLIAN_INDUSTRIALLATTICE
+		}
+
+		primitive_army = {
+			sequential_name = STG_THOLIAN_MILITIA
+		}
+	}
+
+	planet_names = {
+		generic = {
+			names = {
+				STG_N_TholiaPrime STG_N_Seedcrystal STG_N_Nucleation STG_N_Accretion STG_N_GrowthFront STG_N_Silica
+				STG_N_Quartzite STG_N_Feldspar STG_N_Obsidian STG_N_Chert STG_N_Nacre STG_N_Spinel
+				STG_N_Rutile STG_N_Annealing STG_N_Vitrification STG_N_CleavagePlane STG_N_Refraction STG_N_Spectrum
+				STG_N_Lattice
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			weight = 100
+
+			first_names_male = {
+				STG_N_Loskene STG_N_Nezhek STG_N_Tarkh STG_N_Vresh STG_N_Krenth STG_N_Selth STG_N_Prith STG_N_Zhent
+				STG_N_Marth STG_N_Korth STG_N_Venth STG_N_Tesk STG_N_Rhenth STG_N_Skorn STG_N_Valth STG_N_Nerth
+			}
+
+			first_names_female = {
+				STG_N_Ashenth STG_N_Bralth STG_N_Cerith STG_N_Delth STG_N_Ensk STG_N_Firth STG_N_Gralth STG_N_Herth
+				STG_N_Ilth STG_N_Jenth STG_N_Kesth STG_N_Lorth
+			}
+
+			second_names = {
+				STG_N_Assembly STG_N_Loskene STG_N_Nezhek STG_N_Tarkh STG_N_Vresh STG_N_Krenth STG_N_Selth
+				STG_N_Prith STG_N_Zhent STG_N_Marth STG_N_Korth STG_N_Venth STG_N_Tesk STG_N_Skorn
+			}
+		}
+	}
+}

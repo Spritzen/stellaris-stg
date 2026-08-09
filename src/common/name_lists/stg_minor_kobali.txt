@@ -1,0 +1,165 @@
+﻿# Kobali name list, for the AI-only minor powers that use it.
+#
+# CONVERTED from .source/688086068/common/name_lists/Kobali.txt: the tokens are
+# STNH's, resolved through STNH's own localisation and re-keyed as STG_N_. The
+# ship-size buckets are rebuilt for VANILLA's ladder -- STNH's file buckets by
+# its own (saber, sovereign, steamrunner) and those keys mean nothing here.
+#
+# See .docs/decisions/19-stnh-minor-powers-as-ai-empires.md.
+
+STG_KOBALI = {
+	category = "Humanoid"
+	randomized = no
+
+	ship_names = {
+		generic = {
+			STG_N_Samsar STG_N_Manusi STG_N_KVena STG_N_Sotunde STG_N_Wayfarer STG_N_SamVena
+			STG_N_Kimsar STG_N_Samusmur STG_N_KVenade STG_N_Sotund STG_N_Sanusi STG_N_Saanusi
+			STG_N_Sai STG_N_Sosi STG_N_Otunde STG_N_Ktunde STG_N_Manuser STG_N_Sotumsar
+			STG_N_Sotundei STG_N_Soi STG_N_Soti STG_N_Saena STG_N_Manur STG_N_Manue
+			STG_N_KVenmde STG_N_Kotun STG_N_Sounde STG_N_SotVena STG_N_Mai STG_N_ManuKi
+			STG_N_KVenai STG_N_Moa STG_N_Detu STG_N_Samuse STG_N_Samussi STG_N_Saotunde
+			STG_N_MaManusa STG_N_Mausi STG_N_Sotena STG_N_Sade STG_N_Mar STG_N_Sodesi
+		}
+
+		corvette = {
+			STG_N_Saanusi STG_N_Sai STG_N_Sosi STG_N_Otunde STG_N_Ktunde
+		}
+
+		destroyer = {
+			STG_N_Manuser STG_N_Sotumsar STG_N_Sotundei STG_N_Soi STG_N_Soti
+		}
+
+		cruiser = {
+			STG_N_Saena STG_N_Manur STG_N_Manue STG_N_KVenmde STG_N_Kotun
+		}
+
+		battleship = {
+			STG_N_Sounde STG_N_SotVena STG_N_Mai STG_N_ManuKi STG_N_KVenai
+		}
+
+		titan = {
+			STG_N_Moa STG_N_Detu STG_N_Samuse STG_N_Samussi
+		}
+
+		science = {
+			STG_N_Samsar STG_N_Manusi STG_N_KVena STG_N_Sotunde STG_N_Wayfarer STG_N_SamVena
+		}
+
+		colonizer = {
+			STG_N_Samsar STG_N_Manusi STG_N_KVena STG_N_Sotunde STG_N_Wayfarer
+		}
+
+		constructor = {
+			STG_N_Kimsar STG_N_Samusmur STG_N_KVenade STG_N_Sotund STG_N_Sanusi
+		}
+	}
+
+	ship_class_names = {
+		generic = {
+			STG_N_Samsar STG_N_Manusi STG_N_KVena STG_N_Sotunde STG_N_Wayfarer STG_N_SamVena
+			STG_N_Kimsar STG_N_Samusmur STG_N_KVenade
+		}
+	}
+
+	fleet_names = {
+		sequential_name = STG_KOBALI_GROUP
+	}
+
+	army_names = {
+		machine_assault_1 = {
+			sequential_name = STG_KOBALI_ASSAULTAUXILIARY
+		}
+
+		machine_defense = {
+			sequential_name = STG_KOBALI_DEFENSEAUXILIARY
+		}
+
+		defense_army = {
+			sequential_name = STG_KOBALI_PLANETARYDEFENSEAUXILIARY
+		}
+
+		assault_army = {
+			sequential_name = STG_KOBALI_EXPEDITIONARYAUXILIARY
+		}
+
+		slave_army = {
+			sequential_name = STG_KOBALI_LABORAUXILIARY
+		}
+
+		clone_army = {
+			sequential_name = STG_KOBALI_REPLICATEAUXILIARY
+		}
+
+		robotic_army = {
+			sequential_name = STG_KOBALI_AUTOMATEDAUXILIARY
+		}
+
+		psionic_army = {
+			sequential_name = STG_KOBALI_ADEPTAUXILIARY
+		}
+
+		xenomorph_army = {
+			sequential_name = STG_KOBALI_XENOMORPHAUXILIARY
+		}
+
+		gene_warrior_army = {
+			sequential_name = STG_KOBALI_AUGMENTEDAUXILIARY
+		}
+
+		occupation_army = {
+			sequential_name = STG_KOBALI_OCCUPATIONAUXILIARY
+		}
+
+		robotic_defense_army = {
+			sequential_name = STG_KOBALI_AUTOMATEDDEFENSEAUXILIARY
+		}
+
+		industrial_army = {
+			sequential_name = STG_KOBALI_INDUSTRIALAUXILIARY
+		}
+
+		primitive_army = {
+			sequential_name = STG_KOBALI_MILITIA
+		}
+	}
+
+	planet_names = {
+		generic = {
+			names = {
+				STG_N_Samsar STG_N_Manusi STG_N_KVena STG_N_Sotunde STG_N_Wayfarer STG_N_SamVena
+				STG_N_Kimsar STG_N_Samusmur STG_N_KVenade STG_N_Sotund STG_N_Sanusi STG_N_Saanusi
+				STG_N_Sai STG_N_Sosi STG_N_Otunde STG_N_Ktunde STG_N_Manuser STG_N_Sotumsar
+				STG_N_Sotundei STG_N_Soi STG_N_Soti STG_N_Saena STG_N_Manur STG_N_Manue
+				STG_N_KVenmde STG_N_Kotun STG_N_Sounde STG_N_SotVena STG_N_Mai STG_N_ManuKi
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			weight = 100
+
+			first_names_male = {
+				STG_N_Qret STG_N_Sadalore STG_N_QNel STG_N_Noscwedel STG_N_Lenest STG_N_Keten
+				STG_N_Jetanian STG_N_Grazer STG_N_Qre STG_N_Kewedel STG_N_Sarazer STG_N_Graztan
+				STG_N_SaNel STG_N_Jetadtan STG_N_Jenest STG_N_Jeten STG_N_Jeeten STG_N_Len
+				STG_N_Keteire STG_N_Kian STG_N_QNean STG_N_Ganian
+			}
+
+			first_names_female = {
+				STG_N_Sadalo STG_N_Jhetleya STG_N_Tynsiya STG_N_Mhetya STG_N_Lims STG_N_Jhetya
+				STG_N_Tyna STG_N_Tynsiyms STG_N_Tynsiyas STG_N_Lhetya STG_N_Itya STG_N_Jhea
+				STG_N_Lya STG_N_Jhya STG_N_Letya STG_N_Tyleya STG_N_Mheta STG_N_Mhetma
+				STG_N_Hetya STG_N_Leya STG_N_Lietya STG_N_Liiya
+			}
+
+			second_names = {
+				STG_N_Qret STG_N_Sadalore STG_N_QNel STG_N_Noscwedel STG_N_Lenest STG_N_Keten
+				STG_N_Jetanian STG_N_Grazer STG_N_Qre STG_N_Kewedel STG_N_Sarazer STG_N_Graztan
+				STG_N_SaNel STG_N_Jetadtan STG_N_Jenest STG_N_Jeten STG_N_Jeeten STG_N_Len
+				STG_N_Keteire STG_N_Kian STG_N_QNean STG_N_Ganian STG_N_Sadalo STG_N_Jhetleya
+			}
+		}
+	}
+}

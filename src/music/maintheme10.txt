@@ -1,0 +1,10 @@
+# SHADOWS music/maintheme10.txt (Star Trek: New Horizons) — deliberately empty.
+#
+# maintheme10 declares newhorizonstheme.ogg, the SAME recording as `maintheme`
+# and as maintheme7/8/9/10/12. Six playlist entries, one piece of music, so
+# STNH's theme took 6 of the rotation's 32 slots. Removing the entry leaves the
+# `music = { }` declaration in maintheme10.asset alone, so nothing dangles;
+# it only stops the engine listing this alias as a separate track.
+#
+# `maintheme` is the one kept — it is vanilla's own name and the main menu's.
+# See .docs/decisions/61-music-player-track-names.md

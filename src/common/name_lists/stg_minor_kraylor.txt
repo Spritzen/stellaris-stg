@@ -1,0 +1,169 @@
+﻿# Kraylor name list, for the AI-only minor powers that use it.
+#
+# CONVERTED from .source/688086068/common/name_lists/Kraylor.txt: the tokens are
+# STNH's, resolved through STNH's own localisation and re-keyed as STG_N_. The
+# ship-size buckets are rebuilt for VANILLA's ladder -- STNH's file buckets by
+# its own (saber, sovereign, steamrunner) and those keys mean nothing here.
+#
+# See .docs/decisions/19-stnh-minor-powers-as-ai-empires.md.
+
+STG_KRAYLOR = {
+	category = "Humanoid"
+	randomized = no
+
+	ship_names = {
+		generic = {
+			STG_N_Design1 STG_N_Design27 STG_N_Design53 STG_N_Design79 STG_N_Design105 STG_N_Design131
+			STG_N_Design157 STG_N_Design183 STG_N_Design209 STG_N_Design235 STG_N_Design261 STG_N_Design287
+			STG_N_Design313 STG_N_Design339 STG_N_Design365 STG_N_Design391 STG_N_Design417 STG_N_Design443
+			STG_N_Design469 STG_N_Design495 STG_N_Design521 STG_N_Design547 STG_N_Design573 STG_N_Design599
+			STG_N_Design625 STG_N_Design651 STG_N_Design677 STG_N_Design703 STG_N_Design729 STG_N_Design755
+			STG_N_Design781 STG_N_Design807 STG_N_Design833 STG_N_Design859 STG_N_Design885 STG_N_Design911
+			STG_N_Design937 STG_N_Design963 STG_N_Design989 STG_N_Variant42 STG_N_Variant83 STG_N_Variant124
+			STG_N_Variant165 STG_N_Variant206 STG_N_Variant247 STG_N_Variant288 STG_N_Variant329 STG_N_Variant370
+			STG_N_Variant411 STG_N_Variant452 STG_N_Variant493 STG_N_Variant534 STG_N_Variant575 STG_N_Variant616
+			STG_N_Variant657 STG_N_Variant698 STG_N_Variant739 STG_N_Variant780 STG_N_Variant821 STG_N_Variant862
+			STG_N_Variant903 STG_N_Variant944 STG_N_Variant985
+		}
+
+		corvette = {
+			STG_N_Design287 STG_N_Design313 STG_N_Design339 STG_N_Design365 STG_N_Design391
+		}
+
+		destroyer = {
+			STG_N_Design417 STG_N_Design443 STG_N_Design469 STG_N_Design495 STG_N_Design521
+		}
+
+		cruiser = {
+			STG_N_Design547 STG_N_Design573 STG_N_Design599 STG_N_Design625 STG_N_Design651
+		}
+
+		battleship = {
+			STG_N_Design677 STG_N_Design703 STG_N_Design729 STG_N_Design755 STG_N_Design781
+		}
+
+		titan = {
+			STG_N_Design807 STG_N_Design833 STG_N_Design859 STG_N_Design885
+		}
+
+		science = {
+			STG_N_Design1 STG_N_Design27 STG_N_Design53 STG_N_Design79 STG_N_Design105 STG_N_Design131
+		}
+
+		colonizer = {
+			STG_N_Design1 STG_N_Design27 STG_N_Design53 STG_N_Design79 STG_N_Design105
+		}
+
+		constructor = {
+			STG_N_Design157 STG_N_Design183 STG_N_Design209 STG_N_Design235 STG_N_Design261
+		}
+	}
+
+	ship_class_names = {
+		generic = {
+			STG_N_Design1 STG_N_Design27 STG_N_Design53 STG_N_Design79 STG_N_Design105 STG_N_Design131
+			STG_N_Design157 STG_N_Design183 STG_N_Design209
+		}
+	}
+
+	fleet_names = {
+		sequential_name = STG_KRAYLOR_GROUP
+	}
+
+	army_names = {
+		machine_assault_1 = {
+			sequential_name = STG_KRAYLOR_ASSAULTAUXILIARY
+		}
+
+		machine_defense = {
+			sequential_name = STG_KRAYLOR_DEFENSEAUXILIARY
+		}
+
+		defense_army = {
+			sequential_name = STG_KRAYLOR_PLANETARYDEFENSEAUXILIARY
+		}
+
+		assault_army = {
+			sequential_name = STG_KRAYLOR_EXPEDITIONARYAUXILIARY
+		}
+
+		slave_army = {
+			sequential_name = STG_KRAYLOR_LABORAUXILIARY
+		}
+
+		clone_army = {
+			sequential_name = STG_KRAYLOR_REPLICATEAUXILIARY
+		}
+
+		robotic_army = {
+			sequential_name = STG_KRAYLOR_AUTOMATEDAUXILIARY
+		}
+
+		psionic_army = {
+			sequential_name = STG_KRAYLOR_ADEPTAUXILIARY
+		}
+
+		xenomorph_army = {
+			sequential_name = STG_KRAYLOR_XENOMORPHAUXILIARY
+		}
+
+		gene_warrior_army = {
+			sequential_name = STG_KRAYLOR_AUGMENTEDAUXILIARY
+		}
+
+		occupation_army = {
+			sequential_name = STG_KRAYLOR_OCCUPATIONAUXILIARY
+		}
+
+		robotic_defense_army = {
+			sequential_name = STG_KRAYLOR_AUTOMATEDDEFENSEAUXILIARY
+		}
+
+		industrial_army = {
+			sequential_name = STG_KRAYLOR_INDUSTRIALAUXILIARY
+		}
+
+		primitive_army = {
+			sequential_name = STG_KRAYLOR_MILITIA
+		}
+	}
+
+	planet_names = {
+		generic = {
+			names = {
+				STG_N_Design1 STG_N_Design27 STG_N_Design53 STG_N_Design79 STG_N_Design105 STG_N_Design131
+				STG_N_Design157 STG_N_Design183 STG_N_Design209 STG_N_Design235 STG_N_Design261 STG_N_Design287
+				STG_N_Design313 STG_N_Design339 STG_N_Design365 STG_N_Design391 STG_N_Design417 STG_N_Design443
+				STG_N_Design469 STG_N_Design495 STG_N_Design521 STG_N_Design547 STG_N_Design573 STG_N_Design599
+				STG_N_Design625 STG_N_Design651 STG_N_Design677 STG_N_Design703 STG_N_Design729 STG_N_Design755
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			weight = 100
+
+			first_names_male = {
+				STG_N_Geral STG_N_Terek STG_N_Brell STG_N_Loken STG_N_Petek STG_N_Larak
+				STG_N_Rurigen STG_N_Merrken STG_N_Depnell STG_N_Colyus STG_N_Marell STG_N_Luigell
+				STG_N_Giovanell STG_N_Guisepnell STG_N_Antunken STG_N_Robertken STG_N_Andrek STG_N_Stefgell
+				STG_N_Marcoken STG_N_Franscell STG_N_Angelell STG_N_Vincell STG_N_Pietrok STG_N_Salvatken
+			}
+
+			first_names_female = {
+				STG_N_Lorellzan STG_N_Tommak STG_N_Fabikan STG_N_Grogikan STG_N_Vaxildan STG_N_Percigel
+				STG_N_Scangel STG_N_Krayla STG_N_Dayla STG_N_Anetra STG_N_Tayla STG_N_Mayla
+				STG_N_Maralya STG_N_Annayla STG_N_Guisepa STG_N_Rosay STG_N_Rosa STG_N_Angeyla
+				STG_N_Giovayla STG_N_Tereyla STG_N_Lucyla STG_N_Carmeyla STG_N_Cateriyla STG_N_Franceyla
+			}
+
+			second_names = {
+				STG_N_Geral STG_N_Terek STG_N_Brell STG_N_Loken STG_N_Petek STG_N_Larak
+				STG_N_Rurigen STG_N_Merrken STG_N_Depnell STG_N_Colyus STG_N_Marell STG_N_Luigell
+				STG_N_Giovanell STG_N_Guisepnell STG_N_Antunken STG_N_Robertken STG_N_Andrek STG_N_Stefgell
+				STG_N_Marcoken STG_N_Franscell STG_N_Angelell STG_N_Vincell STG_N_Pietrok STG_N_Salvatken
+			}
+		}
+	}
+}

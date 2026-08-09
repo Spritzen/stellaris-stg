@@ -1,0 +1,166 @@
+﻿# Bynar name list, for the AI-only minor powers that use it.
+#
+# CONVERTED from .source/688086068/common/name_lists/Bynar.txt: the tokens are
+# STNH's, resolved through STNH's own localisation and re-keyed as STG_N_. The
+# ship-size buckets are rebuilt for VANILLA's ladder -- STNH's file buckets by
+# its own (saber, sovereign, steamrunner) and those keys mean nothing here.
+#
+# See .docs/decisions/19-stnh-minor-powers-as-ai-empires.md.
+
+STG_BYNAR = {
+	category = "Humanoid"
+	randomized = no
+
+	ship_names = {
+		generic = {
+			STG_N_0 STG_N_1 STG_N_10 STG_N_11 STG_N_100 STG_N_101
+			STG_N_110 STG_N_111 STG_N_1000 STG_N_1001 STG_N_1010 STG_N_1011
+			STG_N_1100 STG_N_1101 STG_N_1110 STG_N_1111 STG_N_10000 STG_N_10001
+			STG_N_10010 STG_N_10011 STG_N_10100 STG_N_10101 STG_N_10110 STG_N_10111
+			STG_N_11000 STG_N_11001 STG_N_11010 STG_N_11011 STG_N_11100 STG_N_11101
+			STG_N_11110 STG_N_11111 STG_N_100000 STG_N_100001 STG_N_100010 STG_N_100011
+			STG_N_100100 STG_N_100101 STG_N_100110 STG_N_100111 STG_N_101000 STG_N_101001
+			STG_N_101010 STG_N_101011 STG_N_101100 STG_N_101101 STG_N_101110 STG_N_101111
+			STG_N_110000 STG_N_110001 STG_N_110010 STG_N_110011 STG_N_110100 STG_N_110101
+			STG_N_110110 STG_N_110111 STG_N_111000 STG_N_111001 STG_N_111010 STG_N_111011
+			STG_N_111100 STG_N_111101 STG_N_111110 STG_N_111111 STG_N_1000000 STG_N_1000001
+			STG_N_1000010 STG_N_1000011 STG_N_1000100 STG_N_1000101 STG_N_1000110 STG_N_1000111
+			STG_N_1001000 STG_N_1001001 STG_N_1001010 STG_N_1001011 STG_N_1001100 STG_N_1001101
+			STG_N_1001110 STG_N_1001111 STG_N_1010000 STG_N_1010001 STG_N_1010010 STG_N_1010011
+			STG_N_1010100 STG_N_1010101 STG_N_1010110 STG_N_1010111 STG_N_1011000 STG_N_1011001
+			STG_N_1011010 STG_N_1011011 STG_N_1011100 STG_N_1011101 STG_N_1011110 STG_N_1011111
+			STG_N_1100000 STG_N_1100001 STG_N_1100010 STG_N_1100011 STG_N_1100100
+		}
+
+		corvette = {
+			STG_N_1011 STG_N_1100 STG_N_1101 STG_N_1110 STG_N_1111
+		}
+
+		destroyer = {
+			STG_N_10000 STG_N_10001 STG_N_10010 STG_N_10011 STG_N_10100
+		}
+
+		cruiser = {
+			STG_N_10101 STG_N_10110 STG_N_10111 STG_N_11000 STG_N_11001
+		}
+
+		battleship = {
+			STG_N_11010 STG_N_11011 STG_N_11100 STG_N_11101 STG_N_11110
+		}
+
+		titan = {
+			STG_N_11111 STG_N_100000 STG_N_100001 STG_N_100010
+		}
+
+		science = {
+			STG_N_0 STG_N_1 STG_N_10 STG_N_11 STG_N_100 STG_N_101
+		}
+
+		colonizer = {
+			STG_N_101100000000000 STG_N_1100111100 STG_N_100000000000 STG_N_10100100000000000 STG_N_101E11
+		}
+
+		constructor = {
+			STG_N_110 STG_N_111 STG_N_1000 STG_N_1001 STG_N_1010
+		}
+	}
+
+	ship_class_names = {
+		generic = {
+			STG_N_0 STG_N_1 STG_N_10 STG_N_11 STG_N_100 STG_N_101
+			STG_N_110 STG_N_111 STG_N_1000
+		}
+	}
+
+	fleet_names = {
+		sequential_name = STG_BYNAR_GROUP
+	}
+
+	army_names = {
+		machine_assault_1 = {
+			sequential_name = STG_BYNAR_ASSAULTAUXILIARY
+		}
+
+		machine_defense = {
+			sequential_name = STG_BYNAR_DEFENSEAUXILIARY
+		}
+
+		defense_army = {
+			sequential_name = STG_BYNAR_PLANETARYDEFENSEAUXILIARY
+		}
+
+		assault_army = {
+			sequential_name = STG_BYNAR_EXPEDITIONARYAUXILIARY
+		}
+
+		slave_army = {
+			sequential_name = STG_BYNAR_LABORAUXILIARY
+		}
+
+		clone_army = {
+			sequential_name = STG_BYNAR_REPLICATEAUXILIARY
+		}
+
+		robotic_army = {
+			sequential_name = STG_BYNAR_AUTOMATEDAUXILIARY
+		}
+
+		psionic_army = {
+			sequential_name = STG_BYNAR_ADEPTAUXILIARY
+		}
+
+		xenomorph_army = {
+			sequential_name = STG_BYNAR_XENOMORPHAUXILIARY
+		}
+
+		gene_warrior_army = {
+			sequential_name = STG_BYNAR_AUGMENTEDAUXILIARY
+		}
+
+		occupation_army = {
+			sequential_name = STG_BYNAR_OCCUPATIONAUXILIARY
+		}
+
+		robotic_defense_army = {
+			sequential_name = STG_BYNAR_AUTOMATEDDEFENSEAUXILIARY
+		}
+
+		industrial_army = {
+			sequential_name = STG_BYNAR_INDUSTRIALAUXILIARY
+		}
+
+		primitive_army = {
+			sequential_name = STG_BYNAR_MILITIA
+		}
+	}
+
+	planet_names = {
+		generic = {
+			names = {
+				STG_N_101100000000000 STG_N_1100111100 STG_N_100000000000 STG_N_10100100000000000 STG_N_101E11 STG_N_101101001
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			weight = 100
+
+			first_names_male = {
+				STG_N_100 STG_N_1011 STG_N_1111 STG_N_111 STG_N_101 STG_N_1000
+				STG_N_1010 STG_N_1101
+			}
+
+			first_names_female = {
+				STG_N_1110 STG_N_11 STG_N_1001 STG_N_1 STG_N_10 STG_N_110
+				STG_N_1100 STG_N_0
+			}
+
+			second_names = {
+				STG_N_100 STG_N_1011 STG_N_1111 STG_N_111 STG_N_101 STG_N_1000
+				STG_N_1010 STG_N_1101 STG_N_1110 STG_N_11 STG_N_1001 STG_N_1
+				STG_N_10 STG_N_110 STG_N_1100 STG_N_0
+			}
+		}
+	}
+}

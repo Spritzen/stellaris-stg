@@ -1,0 +1,165 @@
+﻿# Dominion name list — the Founders, not the Vorta or the Jem'Hadar.
+#
+# Changelings do not name each other, so every personal name here is one a
+# Founder took for dealing with solids (Odo, Laas) or a Vorta/Jem'Hadar name
+# from the client species — the population a Dominion empire's leaders come
+# from. Ships take Jem'Hadar names and the vocabulary of the Link.
+#
+# Structure mirrors /stellaris/common/name_lists/HUMAN1.txt. Every name token
+# is an STG_N_ key in src/localisation/english/stg_names_l_english.yml.
+
+STG_DOMINION = {
+	category = "Humanoid"
+	randomized = no
+
+	ship_names = {
+		generic = {
+			STG_N_GreatLink STG_N_Omarion STG_N_Founder STG_N_Karemma STG_N_Rondac STG_N_KurillPrime
+			STG_N_Vorta STG_N_JemHadar STG_N_Ketracel STG_N_Obedience STG_N_VictoryisLife STG_N_Order
+			STG_N_Dominion STG_N_Sanctuary STG_N_Quadrant STG_N_Solid STG_N_Changeling STG_N_Shapeshifter
+			STG_N_AttackShip STG_N_Kazakime STG_N_Loganogar STG_N_Ammutalar STG_N_KudakEtan STG_N_Subeksomac
+			STG_N_Jakar STG_N_Tenaktalar STG_N_Karukal STG_N_Vilakiklan STG_N_Talanatar STG_N_Malarta
+			STG_N_Malar STG_N_Marha STG_N_Marhala STG_N_Kudakmatan STG_N_Ammutselsel STG_N_Karpla
+			STG_N_Jakarte
+		}
+
+		corvette = {
+			STG_N_JemHadar STG_N_Ketracel STG_N_Obedience STG_N_Solid STG_N_Torga STG_N_FighterWing
+			STG_N_AttackWing STG_N_AttackShip STG_N_HeavyAttackShip
+		}
+
+		destroyer = {
+			STG_N_VictoryisLife STG_N_Order STG_N_Vorta STG_N_Callinon STG_N_Battlecruiser STG_N_HeavyAttackShip
+		}
+
+		cruiser = {
+			STG_N_GreatLink STG_N_Omarion STG_N_Founder STG_N_Dominion STG_N_AttackCruiser
+		}
+
+		battleship = {
+			STG_N_GreatLink STG_N_Dominion STG_N_VictoryisLife STG_N_KurillPrime STG_N_Battleship
+		}
+
+		titan = {
+			STG_N_GreatLink STG_N_Founder STG_N_Dominion STG_N_Omarion
+		}
+
+		science = {
+			STG_N_Omarion STG_N_GreatLink STG_N_Founder STG_N_Rondac STG_N_KurillPrime STG_N_Karemma
+			STG_N_Sanctuary STG_N_ScienceVessel
+		}
+
+		colonizer = {
+			STG_N_NewLink STG_N_Rondac STG_N_Kurill STG_N_Callinon STG_N_Vandros STG_N_ColonyVessel
+		}
+
+		constructor = {
+			STG_N_Karemma STG_N_Rondac STG_N_Callinon STG_N_Vandros STG_N_Torga STG_N_ConstructionVessel
+		}
+
+		transport = {
+			STG_N_TransportVessel
+		}
+	}
+
+	ship_class_names = {
+		generic = {
+			STG_N_JemHadar STG_N_Vorta STG_N_Karemma STG_N_Rondac STG_N_Omarion STG_N_Kurill STG_N_Vandros
+			STG_N_Callinon STG_N_Torga
+		}
+	}
+
+	fleet_names = {
+		sequential_name = STG_DOMINION_ORDER
+	}
+
+	army_names = {
+		machine_assault_1 = {
+			sequential_name = STG_DOMINION_ASSAULTBATTALION
+		}
+
+		machine_defense = {
+			sequential_name = STG_DOMINION_DEFENSEBATTALION
+		}
+
+		defense_army = {
+			sequential_name = STG_DOMINION_PLANETARYDEFENSEBATTALION
+		}
+
+		assault_army = {
+			sequential_name = STG_DOMINION_EXPEDITIONARYBATTALION
+		}
+
+		slave_army = {
+			sequential_name = STG_DOMINION_LABORBATTALION
+		}
+
+		clone_army = {
+			sequential_name = STG_DOMINION_REPLICATEBATTALION
+		}
+
+		robotic_army = {
+			sequential_name = STG_DOMINION_AUTOMATEDBATTALION
+		}
+
+		psionic_army = {
+			sequential_name = STG_DOMINION_ADEPTBATTALION
+		}
+
+		xenomorph_army = {
+			sequential_name = STG_DOMINION_XENOMORPHBATTALION
+		}
+
+		gene_warrior_army = {
+			sequential_name = STG_DOMINION_AUGMENTEDBATTALION
+		}
+
+		occupation_army = {
+			sequential_name = STG_DOMINION_OCCUPATIONBATTALION
+		}
+
+		robotic_defense_army = {
+			sequential_name = STG_DOMINION_AUTOMATEDDEFENSEBATTALION
+		}
+
+		industrial_army = {
+			sequential_name = STG_DOMINION_INDUSTRIALBATTALION
+		}
+
+		primitive_army = {
+			sequential_name = STG_DOMINION_MILITIA
+		}
+	}
+
+	planet_names = {
+		generic = {
+			names = {
+				STG_N_KurillPrime STG_N_RondacIII STG_N_CallinonVII STG_N_VandrosIV STG_N_TorgaII STG_N_NewLink
+				STG_N_FoundersWorld STG_N_GreatLink STG_N_Sanctuary STG_N_Quadrant STG_N_DominionPrime STG_N_OverneIII
+				STG_N_Merik STG_N_Sappora STG_N_Ennis STG_N_Nol-Ennis STG_N_VandenPrime STG_N_Teplan
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			weight = 100
+
+			first_names_male = {
+				STG_N_Odo STG_N_Laas STG_N_Weyoun STG_N_Eris STG_N_Keevan STG_N_Yelgrun STG_N_Borath STG_N_Kilana
+				STG_N_Gelnon STG_N_Luaran STG_N_Ometiklan STG_N_Ixtanarax STG_N_Remataklan STG_N_Tomantorax
+				STG_N_Goranagar STG_N_Kudaketan STG_N_Virakkara STG_N_Talaktalan
+			}
+
+			first_names_female = {
+				STG_N_Kilana STG_N_Luaran STG_N_Eris STG_N_Salome STG_N_Vantika STG_N_Neral STG_N_Ariza STG_N_Melora
+				STG_N_Dinah STG_N_Rekelen STG_N_Ulani STG_N_Gilora
+			}
+
+			second_names = {
+				STG_N_Founder STG_N_Link STG_N_Omarion STG_N_Rondac STG_N_Kurill STG_N_Vorta STG_N_Karemma
+				STG_N_Vandros STG_N_Callinon STG_N_Torga STG_N_Overne STG_N_Merik STG_N_Ennis STG_N_Teplan
+			}
+		}
+	}
+}

@@ -1,0 +1,713 @@
+# Star Trek Galaxies — the nine powers that fill out the quadrant.
+#
+# Phase 2's first bullet (.docs/planning/phases.md). New prefixed file, merging with
+# stg_major_powers.txt beside it; between them they are the whole empire picker.
+#
+# The game does not report an invalid prescripted empire — it refuses to start,
+# or quietly drops the entry — so every authority / government / civic / ethic
+# here was read against the `possible` block of the thing it names. The
+# constraints that actually bind:
+#
+#   auth_democratic       forbids ethic_(fanatic_)authoritarian
+#   auth_oligarchic       forbids ethic_fanatic_egalitarian AND
+#                                 ethic_fanatic_authoritarian
+#   auth_dictatorial      forbids ethic_(fanatic_)egalitarian
+#   auth_imperial         forbids ethic_(fanatic_)egalitarian
+#   auth_machine_intel.   REQUIRES ethic_gestalt_consciousness and a species
+#                                 whose archetype is MACHINE
+#
+#   gov_trade_league            is_megacorp + civic_free_traders|trading_posts
+#   gov_theocratic_republic     is_democratic_authority + is_spiritualist
+#   gov_direct_democracy        is_democratic_authority + is_materialist
+#   gov_moral_democracy         is_democratic_authority + is_pacifist
+#   gov_citizen_stratocracy     is_oligarchic_authority + civic_citizen_service
+#   gov_irenic_bureaucracy      is_oligarchic_authority + is_pacifist
+#   gov_military_dictatorship   is_dictatorial_authority + is_militarist
+#   gov_divine_empire           is_imperial_authority + civic_imperial_cult
+#   gov_machine_assimilator     is_machine_empire + civic_machine_assimilator
+#
+# Trait budgets are the vanilla default of 2 points and every list below sums
+# to exactly 2. Archetype matters: trait_adaptive, trait_slow_breeders and
+# trait_fleeting are BIOLOGICAL-only, so the Tholians take lithoid-legal traits
+# and the Borg robot ones.
+#
+# `initializer =` names a real home system, as for the majors — see the header
+# of stg_major_powers.txt and .docs/decisions/25-real-home-systems.md.
+# `graphical_culture` is
+# set HERE TOO and overrides the species class, so it must match
+# stg_species_classes.txt — remapping one without the other silently drops the
+# empire to `fallback = mammalian_01`. Four of these nine are on Walshicus
+# shipsets and five (BAJ, TRI, ADR, BOL, BRE) are still on STNH art through
+# tools/gen_shipsets.py; see
+# .docs/decisions/18-walshicus-shipsets-replace-stnh-hulls.md.
+# `city_graphical_culture` names one of STNH's Trek city sets where it ships one
+# (borg_01, tholian_01, undine_01) and vanilla's otherwise — which STNH re-skins
+# anyway. Flags are vendored STNH heraldry at flags/trek/, the Bolians excepted:
+# STNH ships none, and neither does any Walshicus shipset.
+# See .docs/decisions/49-flags-city-sets.md.
+
+# `room =` is STNH's own assignment for the same empire, restored 2026-08-08 by
+# tools/fix_prescripted_rooms.py — it had been replaced wholesale by vanilla
+# personality rooms, which cost the 20 empires STNH gives a Trek room. The three
+# rows where STG keeps its own answer are listed in that script.
+# See .docs/decisions/48-room-selector-merge.md
+
+# ── Ferengi Alliance ───────────────────────────────────────────────────────
+# auth_corporate ⇒ is_megacorp, which gov_trade_league wants together with
+# civic_free_traders. Both civics are corporate-only.
+stg_ferengi_alliance = {
+	name = "STG_EMPIRE_ferengi"
+	adjective = "STG_adjective_ferengi"
+	spawn_enabled = yes
+
+	playable = has_megacorp
+
+	ship_prefix = "STG_ship_prefix_ferengi"
+
+	species = {
+		class = "FER"
+		portrait = "ferengi"
+		name = "STG_species_name_ferengi"
+		plural = "STG_species_plural_ferengi"
+		adjective = "STG_species_adjective_ferengi"
+		name_list = "STG_FERENGI"
+		trait = "trait_organic"
+		trait = "trait_thrifty"
+		trait = "trait_talented"
+		trait = "trait_quick_learners"
+		trait = "trait_repugnant"
+	}
+
+	room = "ferengi_room"
+
+	authority = "auth_corporate"
+	civics = { "civic_free_traders" "civic_trading_posts" }
+	government = gov_trade_league
+	origin = "origin_default"
+
+	ethic = "ethic_fanatic_materialist"
+	ethic = "ethic_authoritarian"
+
+	initializer = "stg_ferengi_alliance_home"
+	planet_name = "STG_planet_name_ferengi"
+	planet_class = "pc_tropical"
+	system_name = "STG_system_name_ferengi"
+
+	graphical_culture = "ferengi"
+	city_graphical_culture = "molluscoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "trek"
+			file = "ferengi.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "00_solid.dds"
+		}
+		colors = {
+			"orange"
+			"dark_brown"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_ferengi"
+		gender = male
+		portrait = "ferengi_male_01"
+		texture = 0
+		trait = "trait_ruler_eye_for_talent"
+		leader_class = official
+	}
+}
+
+# ── Bajoran Republic ───────────────────────────────────────────────────────
+# civic_agrarian_idyll excludes a pc_volcanic homeworld; Bajor is continental,
+# so it passes.
+stg_bajoran_republic = {
+	name = "STG_EMPIRE_bajoran"
+	adjective = "STG_adjective_bajoran"
+	spawn_enabled = yes
+
+	ship_prefix = "STG_ship_prefix_bajoran"
+
+	species = {
+		class = "BAJ"
+		portrait = "bajoran"
+		name = "STG_species_name_bajoran"
+		plural = "STG_species_plural_bajoran"
+		adjective = "STG_species_adjective_bajoran"
+		name_list = "STG_BAJORAN"
+		trait = "trait_organic"
+		trait = "trait_agrarian"
+		trait = "trait_traditional"
+		trait = "trait_deviants"
+	}
+
+	room = "bajoran_room"
+
+	authority = "auth_democratic"
+	civics = { "civic_agrarian_idyll" "civic_parliamentary_system" }
+	government = gov_theocratic_republic
+	origin = "origin_default"
+
+	ethic = "ethic_fanatic_spiritualist"
+	ethic = "ethic_pacifist"
+
+	initializer = "stg_bajoran_republic_home"
+	planet_name = "STG_planet_name_bajoran"
+	planet_class = "pc_continental"
+	system_name = "STG_system_name_bajoran"
+
+	graphical_culture = "bajoran_01"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "trek"
+			file = "Bajor.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "circle.dds"
+		}
+		colors = {
+			"burgundy"
+			"desert_yellow"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_bajoran"
+		gender = male
+		portrait = "stg_baj_ruler"
+		texture = 0
+		clothes = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+# ── Trill Symbiosis ────────────────────────────────────────────────────────
+# The symbiont is trait_enduring + trait_slow_breeders rather than a second
+# species — see the note on TRI in stg_species_classes.txt.
+stg_trill_symbiosis = {
+	name = "STG_EMPIRE_trill"
+	adjective = "STG_adjective_trill"
+	spawn_enabled = yes
+
+	ship_prefix = "STG_ship_prefix_trill"
+
+	species = {
+		class = "TRI"
+		portrait = "trill"
+		name = "STG_species_name_trill"
+		plural = "STG_species_plural_trill"
+		adjective = "STG_species_adjective_trill"
+		name_list = "STG_TRILL"
+		trait = "trait_organic"
+		trait = "trait_intelligent"
+		trait = "trait_enduring"
+		trait = "trait_talented"
+		trait = "trait_slow_breeders"
+	}
+
+	room = "trillsym_room"
+
+	authority = "auth_democratic"
+	civics = { "civic_technocracy" "civic_idealistic_foundation" }
+	government = gov_direct_democracy
+	origin = "origin_default"
+
+	ethic = "ethic_fanatic_materialist"
+	ethic = "ethic_egalitarian"
+
+	initializer = "stg_trill_symbiosis_home"
+	planet_name = "STG_planet_name_trill"
+	planet_class = "pc_continental"
+	system_name = "STG_system_name_trill"
+
+	graphical_culture = "federation_32"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "trek"
+			file = "trill.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "double_hemispheres.dds"
+		}
+		colors = {
+			"teal"
+			"beige"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_trill"
+		gender = female
+		portrait = "stg_tri_ruler"
+		texture = 0
+		clothes = 0
+		# Not trait_ruler_architectural_sense: it is leader_class = { official },
+		# so pairing it with a scientist ruler hid the empire from the picker
+		# (live run 2026-08-02 17:59). This is vanilla's scientist-ruler pairing.
+		trait = "leader_trait_spark_of_genius"
+		leader_class = scientist
+	}
+}
+
+# ── Andorian Empire ────────────────────────────────────────────────────────
+# Oligarchic rather than imperial despite the name: the Imperial Guard answers
+# to a parliament, and auth_oligarchic is what gov_citizen_stratocracy needs.
+# ethic_egalitarian is deliberately NOT fanatic — auth_oligarchic forbids that.
+stg_andorian_empire = {
+	name = "STG_EMPIRE_andorian"
+	adjective = "STG_adjective_andorian"
+	spawn_enabled = yes
+
+	ship_prefix = "STG_ship_prefix_andorian"
+
+	species = {
+		class = "ADR"
+		portrait = "andorian"
+		name = "STG_species_name_andorian"
+		plural = "STG_species_plural_andorian"
+		adjective = "STG_species_adjective_andorian"
+		name_list = "STG_ANDORIAN"
+		trait = "trait_organic"
+		trait = "trait_very_strong"
+		trait = "trait_talented"
+		trait = "trait_quarrelsome"
+		trait = "trait_fleeting"
+	}
+
+	room = "andorian_room"
+
+	authority = "auth_oligarchic"
+	civics = { "civic_citizen_service" "civic_warrior_culture" }
+	government = gov_citizen_stratocracy
+	origin = "origin_default"
+
+	ethic = "ethic_fanatic_militarist"
+	ethic = "ethic_egalitarian"
+
+	initializer = "stg_andorian_empire_home"
+	planet_name = "STG_planet_name_andorian"
+	planet_class = "pc_arctic"
+	system_name = "STG_system_name_andorian"
+
+	graphical_culture = "andorian_01"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "trek"
+			file = "Andorian.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "triangle_split.dds"
+		}
+		colors = {
+			"intense_blue"
+			"white"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_andorian"
+		gender = male
+		portrait = "stg_adr_ruler"
+		texture = 0
+		clothes = 0
+		trait = "trait_ruler_fortifier"
+		leader_class = commander
+	}
+}
+
+# ── Bolian Union ───────────────────────────────────────────────────────────
+# The only empire here on a vanilla flag: STNH ships no Bolian heraldry.
+stg_bolian_union = {
+	name = "STG_EMPIRE_bolian"
+	adjective = "STG_adjective_bolian"
+	spawn_enabled = yes
+
+	ship_prefix = "STG_ship_prefix_bolian"
+
+	species = {
+		class = "BOL"
+		portrait = "bolian"
+		name = "STG_species_name_bolian"
+		plural = "STG_species_plural_bolian"
+		adjective = "STG_species_adjective_bolian"
+		name_list = "STG_BOLIAN"
+		trait = "trait_organic"
+		trait = "trait_thrifty"
+		trait = "trait_communal"
+		trait = "trait_sedentary"
+	}
+
+	room = "bolian_room"
+
+	authority = "auth_democratic"
+	civics = { "civic_idealistic_foundation" "civic_functional_architecture" }
+	government = gov_moral_democracy
+	origin = "origin_default"
+
+	ethic = "ethic_fanatic_egalitarian"
+	ethic = "ethic_pacifist"
+
+	initializer = "stg_bolian_union_home"
+	planet_name = "STG_planet_name_bolian"
+	planet_class = "pc_ocean"
+	system_name = "STG_system_name_bolian"
+
+	graphical_culture = "bolian_01"
+	city_graphical_culture = "humanoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "spherical"
+			file = "flag_spherical_5.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "horizontal.dds"
+		}
+		colors = {
+			"sky_blue"
+			"off_white"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_bolian"
+		gender = female
+		portrait = "bolian_female_02"
+		texture = 0
+		trait = "trait_ruler_charismatic"
+		leader_class = official
+	}
+}
+
+# ── Breen Confederacy ──────────────────────────────────────────────────────
+# `gender = indeterminable`: one refrigeration-suited portrait, no male/female
+# split — same reason BRE takes `gender = no` in stg_species_classes.txt.
+stg_breen_confederacy = {
+	name = "STG_EMPIRE_breen"
+	adjective = "STG_adjective_breen"
+	spawn_enabled = yes
+
+	ship_prefix = "STG_ship_prefix_breen"
+
+	species = {
+		class = "BRE"
+		portrait = "breen"
+		name = "STG_species_name_breen"
+		plural = "STG_species_plural_breen"
+		adjective = "STG_species_adjective_breen"
+		name_list = "STG_BREEN"
+		gender = indeterminable
+		trait = "trait_organic"
+		trait = "trait_industrious"
+		trait = "trait_resilient"
+		trait = "trait_talented"
+		trait = "trait_repugnant"
+	}
+
+	room = "personality_fanatic_purifier_room"
+
+	authority = "auth_dictatorial"
+	civics = { "civic_police_state" "civic_distinguished_admiralty" }
+	government = gov_military_dictatorship
+	origin = "origin_default"
+
+	ethic = "ethic_fanatic_xenophobe"
+	ethic = "ethic_militarist"
+
+	initializer = "stg_breen_confederacy_home"
+	planet_name = "STG_planet_name_breen"
+	planet_class = "pc_arctic"
+	system_name = "STG_system_name_breen"
+
+	graphical_culture = "breen_01"
+	city_graphical_culture = "molluscoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "trek"
+			file = "breen.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "v.dds"
+		}
+		colors = {
+			"dark_steel"
+			"ice_turquoise"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_breen"
+		gender = indeterminable
+		portrait = "breen_entity_01"
+		texture = 0
+		trait = "trait_ruler_warlike"
+		leader_class = commander
+	}
+}
+
+# ── Tholian Assembly ───────────────────────────────────────────────────────
+# LITHOID, gated on the Lithoids DLC as vanilla's own lithoid empire is;
+# trait_lithoid is mandatory and free. civic_inwards_perfection needs pacifist
+# AND xenophobe, which is the whole of the Assembly's foreign policy.
+stg_tholian_assembly = {
+	name = "STG_EMPIRE_tholian"
+	adjective = "STG_adjective_tholian"
+	spawn_enabled = yes
+
+	playable = has_lithoids
+
+	ship_prefix = "STG_ship_prefix_tholian"
+
+	species = {
+		class = "THO"
+		portrait = "tholian"
+		name = "STG_species_name_tholian"
+		plural = "STG_species_plural_tholian"
+		adjective = "STG_species_adjective_tholian"
+		name_list = "STG_THOLIAN"
+		gender = indeterminable
+		trait = "trait_lithoid"
+		trait = "trait_industrious"
+		trait = "trait_talented"
+		trait = "trait_solitary"
+	}
+
+	room = "lithoid_room"
+
+	authority = "auth_oligarchic"
+	civics = { "civic_inwards_perfection" "civic_mining_guilds" }
+	government = gov_irenic_bureaucracy
+	origin = "origin_default"
+
+	ethic = "ethic_fanatic_xenophobe"
+	ethic = "ethic_pacifist"
+
+	initializer = "stg_tholian_assembly_home"
+	planet_name = "STG_planet_name_tholian"
+	planet_class = "pc_desert"
+	system_name = "STG_system_name_tholian"
+
+	graphical_culture = "tholian"
+	city_graphical_culture = "tholian_01"
+
+	empire_flag = {
+		icon = {
+			category = "trek"
+			file = "tholian.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "hexagon.dds"
+		}
+		colors = {
+			"intense_orange"
+			"dark_red"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_tholian"
+		gender = indeterminable
+		portrait = "tholian_01"
+		texture = 0
+		trait = "trait_ruler_architectural_sense"
+		leader_class = official
+	}
+}
+
+# ── The Dominion ───────────────────────────────────────────────────────────
+# civic_imperial_cult wants imperial + authoritarian + spiritualist, which is
+# an unusually exact description of a polity whose soldiers worship its rulers
+# as gods. gov_divine_empire follows from the civic.
+stg_dominion = {
+	name = "STG_EMPIRE_dominion"
+	adjective = "STG_adjective_dominion"
+	spawn_enabled = yes
+
+	ship_prefix = "STG_ship_prefix_dominion"
+
+	species = {
+		class = "DOM"
+		portrait = "changeling"
+		name = "STG_species_name_dominion"
+		plural = "STG_species_plural_dominion"
+		adjective = "STG_species_adjective_dominion"
+		name_list = "STG_DOMINION"
+		trait = "trait_organic"
+		trait = "trait_adaptive"
+		trait = "trait_enduring"
+		trait = "trait_talented"
+		trait = "trait_slow_breeders"
+	}
+
+	room = "dominion_room"
+
+	authority = "auth_imperial"
+	civics = { "civic_imperial_cult" "civic_slaver_guilds" }
+	government = gov_divine_empire
+	origin = "origin_default"
+
+	ethic = "ethic_fanatic_authoritarian"
+	ethic = "ethic_spiritualist"
+
+	initializer = "stg_dominion_home"
+	planet_name = "STG_planet_name_dominion"
+	planet_class = "pc_ocean"
+	system_name = "STG_system_name_dominion"
+
+	graphical_culture = "dominion"
+	city_graphical_culture = "molluscoid_01"
+
+	empire_flag = {
+		icon = {
+			category = "trek"
+			file = "Dominion.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "delta.dds"
+		}
+		colors = {
+			"dark_purple"
+			"sun_green"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_dominion"
+		gender = female
+		portrait = "changeling_female_01"
+		texture = 0
+		trait = "trait_ruler_deep_connections"
+		leader_class = official
+	}
+}
+
+# ── Borg Collective ────────────────────────────────────────────────────────
+# The one gestalt here, so exactly one ethic: auth_machine_intelligence requires
+# ethic_gestalt_consciousness and a MACHINE species. Structure copied from
+# vanilla's Driven Assimilator, the Tebrid Homolog.
+stg_borg_collective = {
+	name = "STG_EMPIRE_borg"
+	adjective = "STG_adjective_borg"
+	spawn_enabled = yes
+	ignore_portrait_duplication = yes
+
+	ship_prefix = "STG_ship_prefix_borg"
+
+	species = {
+		class = "BRG"
+		portrait = "borg"
+		name = "STG_species_name_borg"
+		plural = "STG_species_plural_borg"
+		adjective = "STG_species_adjective_borg"
+		name_list = "STG_BORG"
+		trait = "trait_machine_unit"
+		trait = "trait_robot_enhanced_memory"		# 2
+		trait = "trait_robot_learning_algorithms"	# 1
+		trait = "trait_robot_uncanny"				# -1
+		# Brings the total to 1, which is all the MACHINE archetype gets
+		# (@machine_trait_points, against BIOLOGICAL's 2). At 2 the game hid the
+		# empire for exceeding its trait points — live run 2026-08-02 17:59.
+		trait = "trait_robot_high_maintenance"		# -1
+		# trait_robot_durable was added here to spend the point back up to 2, but
+		# vanilla declares it `opposites` with high_maintenance above, so the
+		# engine dropped it and reported both faults. Budget is 1, not 2.
+	}
+
+	# civic_machine_assimilator requires a SECOND, organic species for the
+	# drones; the empire is invalid without one. Shape copied from vanilla's
+	# Tebrid Homolog, down to trait_cybernetic, which is what empire_design.cpp
+	# checks the assimilated for.
+	#
+	# FED, because the drones Star Trek shows are assimilated Federation humans.
+	# The class must be BIOLOGICAL or LITHOID — trait_cybernetic refuses the
+	# rest.
+	secondary_species = {
+		class = "FED"
+		portrait = "human"
+		name = "STG_species_name_borg_drone"
+		plural = "STG_species_plural_borg_drone"
+		adjective = "STG_species_adjective_borg_drone"
+		name_list = "STG_FEDERATION"
+		trait = "trait_organic"
+		trait = "trait_cybernetic"
+		trait = "trait_strong"			# 1
+		trait = "trait_industrious"		# 2
+		trait = "trait_slow_learners"	# -1  → 2, BIOLOGICAL's full budget
+	}
+
+	room = "borg_room"
+
+	ethic = ethic_gestalt_consciousness
+	authority = "auth_machine_intelligence"
+	civics = { "civic_machine_assimilator" "civic_machine_predictive_analysis" }
+	government = gov_machine_assimilator
+	origin = "origin_default"
+
+	initializer = "stg_borg_collective_home"
+	planet_name = "STG_planet_name_borg"
+	planet_class = "pc_continental"
+	system_name = "STG_system_name_borg"
+
+	graphical_culture = "borg"
+	city_graphical_culture = "borg_01"
+
+	empire_flag = {
+		icon = {
+			category = "trek"
+			file = "borg.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "square.dds"
+		}
+		colors = {
+			"dark_grey"
+			"toxic_green"
+			"null"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "STG_ruler_name_borg"
+		gender = female
+		portrait = "borg_female_01"
+		texture = 0
+		trait = "trait_ruler_logistic_understanding"
+		leader_class = official
+	}
+}

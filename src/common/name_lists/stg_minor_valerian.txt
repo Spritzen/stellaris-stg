@@ -1,0 +1,157 @@
+﻿# Valerian name list, for the AI-only minor powers that use it.
+#
+# CONVERTED from .source/688086068/common/name_lists/Valerian.txt: the tokens are
+# STNH's, resolved through STNH's own localisation and re-keyed as STG_N_. The
+# ship-size buckets are rebuilt for VANILLA's ladder -- STNH's file buckets by
+# its own (saber, sovereign, steamrunner) and those keys mean nothing here.
+#
+# See .docs/decisions/19-stnh-minor-powers-as-ai-empires.md.
+
+STG_VALERIAN = {
+	category = "Humanoid"
+	randomized = no
+
+	ship_names = {
+		generic = {
+			STG_N_Veluh STG_N_Zelek STG_N_Hervaldanik STG_N_Velear STG_N_Shear STG_N_Arbbus
+			STG_N_Shervsus STG_N_Herik STG_N_Heruhnik STG_N_Velus STG_N_Shedruatbus STG_N_Velal
+			STG_N_Arlear STG_N_Hesihervat STG_N_Dheruh STG_N_Drunik STG_N_Zelearnik
+		}
+
+		corvette = {
+			STG_N_Velal STG_N_Arlear STG_N_Hesihervat STG_N_Dheruh STG_N_Drunik
+		}
+
+		destroyer = {
+			STG_N_Zelearnik
+		}
+
+		cruiser = {
+			STG_N_Veluh STG_N_Zelek STG_N_Hervaldanik
+		}
+
+		battleship = {
+			STG_N_Veluh STG_N_Zelek STG_N_Hervaldanik
+		}
+
+		titan = {
+			STG_N_Veluh STG_N_Zelek STG_N_Hervaldanik
+		}
+
+		science = {
+			STG_N_Veluh STG_N_Zelek STG_N_Hervaldanik STG_N_Velear STG_N_Shear STG_N_Arbbus
+		}
+
+		colonizer = {
+			STG_N_Veluh STG_N_Zelek STG_N_Hervaldanik STG_N_Velear STG_N_Shear
+		}
+
+		constructor = {
+			STG_N_Shervsus STG_N_Herik STG_N_Heruhnik STG_N_Velus STG_N_Shedruatbus
+		}
+	}
+
+	ship_class_names = {
+		generic = {
+			STG_N_Veluh STG_N_Zelek STG_N_Hervaldanik STG_N_Velear STG_N_Shear STG_N_Arbbus
+			STG_N_Shervsus STG_N_Herik STG_N_Heruhnik
+		}
+	}
+
+	fleet_names = {
+		sequential_name = STG_VALERIAN_GROUP
+	}
+
+	army_names = {
+		machine_assault_1 = {
+			sequential_name = STG_VALERIAN_ASSAULTAUXILIARY
+		}
+
+		machine_defense = {
+			sequential_name = STG_VALERIAN_DEFENSEAUXILIARY
+		}
+
+		defense_army = {
+			sequential_name = STG_VALERIAN_PLANETARYDEFENSEAUXILIARY
+		}
+
+		assault_army = {
+			sequential_name = STG_VALERIAN_EXPEDITIONARYAUXILIARY
+		}
+
+		slave_army = {
+			sequential_name = STG_VALERIAN_LABORAUXILIARY
+		}
+
+		clone_army = {
+			sequential_name = STG_VALERIAN_REPLICATEAUXILIARY
+		}
+
+		robotic_army = {
+			sequential_name = STG_VALERIAN_AUTOMATEDAUXILIARY
+		}
+
+		psionic_army = {
+			sequential_name = STG_VALERIAN_ADEPTAUXILIARY
+		}
+
+		xenomorph_army = {
+			sequential_name = STG_VALERIAN_XENOMORPHAUXILIARY
+		}
+
+		gene_warrior_army = {
+			sequential_name = STG_VALERIAN_AUGMENTEDAUXILIARY
+		}
+
+		occupation_army = {
+			sequential_name = STG_VALERIAN_OCCUPATIONAUXILIARY
+		}
+
+		robotic_defense_army = {
+			sequential_name = STG_VALERIAN_AUTOMATEDDEFENSEAUXILIARY
+		}
+
+		industrial_army = {
+			sequential_name = STG_VALERIAN_INDUSTRIALAUXILIARY
+		}
+
+		primitive_army = {
+			sequential_name = STG_VALERIAN_MILITIA
+		}
+	}
+
+	planet_names = {
+		generic = {
+			names = {
+				STG_N_Veluh STG_N_Zelek STG_N_Hervaldanik STG_N_Velear STG_N_Shear STG_N_Arbbus
+				STG_N_Shervsus STG_N_Herik STG_N_Heruhnik STG_N_Velus STG_N_Shedruatbus STG_N_Velal
+				STG_N_Arlear STG_N_Hesihervat STG_N_Dheruh STG_N_Drunik STG_N_Zelearnik
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			weight = 100
+
+			first_names_male = {
+				STG_N_Ervs STG_N_Zelet STG_N_Sherd STG_N_Erval STG_N_Velek STG_N_Zelervh
+				STG_N_Sherrbus STG_N_Drulee STG_N_Arburvh STG_N_Arbusvat STG_N_Shervaus STG_N_Shervatat
+				STG_N_Shervhus STG_N_Veleert STG_N_Hehervat STG_N_Zelenik STG_N_Shervak
+			}
+
+			first_names_female = {
+				STG_N_Danvelear STG_N_Daveleer STG_N_Vele STG_N_Shvel STG_N_Helear STG_N_Velur
+				STG_N_Hervhdar STG_N_Sheer STG_N_Shzeleer STG_N_Zeleear STG_N_Hezeruh STG_N_Herueruh
+				STG_N_Drheruh STG_N_Zeleer STG_N_Shersherval STG_N_Sheruhuh STG_N_Sheruht
+			}
+
+			second_names = {
+				STG_N_Ervs STG_N_Zelet STG_N_Sherd STG_N_Erval STG_N_Velek STG_N_Zelervh
+				STG_N_Sherrbus STG_N_Drulee STG_N_Arburvh STG_N_Arbusvat STG_N_Shervaus STG_N_Shervatat
+				STG_N_Shervhus STG_N_Veleert STG_N_Hehervat STG_N_Zelenik STG_N_Shervak STG_N_Danvelear
+				STG_N_Daveleer STG_N_Vele STG_N_Shvel STG_N_Helear STG_N_Velur STG_N_Hervhdar
+			}
+		}
+	}
+}

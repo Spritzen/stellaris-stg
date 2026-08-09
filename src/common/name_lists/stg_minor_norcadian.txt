@@ -1,0 +1,163 @@
+﻿# Norcadian name list, for the AI-only minor powers that use it.
+#
+# CONVERTED from .source/688086068/common/name_lists/Norcadian.txt: the tokens are
+# STNH's, resolved through STNH's own localisation and re-keyed as STG_N_. The
+# ship-size buckets are rebuilt for VANILLA's ladder -- STNH's file buckets by
+# its own (saber, sovereign, steamrunner) and those keys mean nothing here.
+#
+# See .docs/decisions/19-stnh-minor-powers-as-ai-empires.md.
+
+STG_NORCADIAN = {
+	category = "Humanoid"
+	randomized = no
+
+	ship_names = {
+		generic = {
+			STG_N_MunkatsePlena STG_N_Nissio STG_N_Ponpa STG_N_PolliceVerso STG_N_Pugnare STG_N_ReciperFertsun
+			STG_N_Ludi STG_N_Tsunkatse STG_N_SineNitsun STG_N_Spectsun STG_N_Essedarikatse STG_N_Gallkatse
+			STG_N_Liberatse STG_N_Manica STG_N_Murmillo STG_N_Retiarikatse STG_N_Rudiarikatse STG_N_Hoplonachkatse
+			STG_N_Sannis STG_N_Thrax STG_N_Venator STG_N_Fascia STG_N_Veteratse STG_N_Rudis
+			STG_N_Sica STG_N_Scutun STG_N_Victor STG_N_Polliceverso STG_N_Sinenitsun
+		}
+
+		corvette = {
+			STG_N_Gallkatse STG_N_Liberatse STG_N_Manica STG_N_Murmillo STG_N_Retiarikatse
+		}
+
+		destroyer = {
+			STG_N_Rudiarikatse STG_N_Hoplonachkatse STG_N_Sannis STG_N_Thrax STG_N_Venator
+		}
+
+		cruiser = {
+			STG_N_Fascia STG_N_Veteratse STG_N_Rudis STG_N_Sica STG_N_Scutun
+		}
+
+		battleship = {
+			STG_N_Victor
+		}
+
+		titan = {
+			STG_N_MunkatsePlena STG_N_Nissio STG_N_Ponpa
+		}
+
+		science = {
+			STG_N_MunkatsePlena STG_N_Nissio STG_N_Ponpa STG_N_PolliceVerso STG_N_Pugnare STG_N_ReciperFertsun
+		}
+
+		colonizer = {
+			STG_N_MunkatsePlena STG_N_Nissio STG_N_Ponpa STG_N_PolliceVerso STG_N_Pugnare
+		}
+
+		constructor = {
+			STG_N_Ludi STG_N_Tsunkatse STG_N_SineNitsun STG_N_Spectsun STG_N_Essedarikatse
+		}
+	}
+
+	ship_class_names = {
+		generic = {
+			STG_N_MunkatsePlena STG_N_Nissio STG_N_Ponpa STG_N_PolliceVerso STG_N_Pugnare STG_N_ReciperFertsun
+			STG_N_Ludi STG_N_Tsunkatse STG_N_SineNitsun
+		}
+	}
+
+	fleet_names = {
+		sequential_name = STG_NORCADIAN_GROUP
+	}
+
+	army_names = {
+		machine_assault_1 = {
+			sequential_name = STG_NORCADIAN_ASSAULTAUXILIARY
+		}
+
+		machine_defense = {
+			sequential_name = STG_NORCADIAN_DEFENSEAUXILIARY
+		}
+
+		defense_army = {
+			sequential_name = STG_NORCADIAN_PLANETARYDEFENSEAUXILIARY
+		}
+
+		assault_army = {
+			sequential_name = STG_NORCADIAN_EXPEDITIONARYAUXILIARY
+		}
+
+		slave_army = {
+			sequential_name = STG_NORCADIAN_LABORAUXILIARY
+		}
+
+		clone_army = {
+			sequential_name = STG_NORCADIAN_REPLICATEAUXILIARY
+		}
+
+		robotic_army = {
+			sequential_name = STG_NORCADIAN_AUTOMATEDAUXILIARY
+		}
+
+		psionic_army = {
+			sequential_name = STG_NORCADIAN_ADEPTAUXILIARY
+		}
+
+		xenomorph_army = {
+			sequential_name = STG_NORCADIAN_XENOMORPHAUXILIARY
+		}
+
+		gene_warrior_army = {
+			sequential_name = STG_NORCADIAN_AUGMENTEDAUXILIARY
+		}
+
+		occupation_army = {
+			sequential_name = STG_NORCADIAN_OCCUPATIONAUXILIARY
+		}
+
+		robotic_defense_army = {
+			sequential_name = STG_NORCADIAN_AUTOMATEDDEFENSEAUXILIARY
+		}
+
+		industrial_army = {
+			sequential_name = STG_NORCADIAN_INDUSTRIALAUXILIARY
+		}
+
+		primitive_army = {
+			sequential_name = STG_NORCADIAN_MILITIA
+		}
+	}
+
+	planet_names = {
+		generic = {
+			names = {
+				STG_N_MunkatsePlena STG_N_Nissio STG_N_Ponpa STG_N_PolliceVerso STG_N_Pugnare STG_N_ReciperFertsun
+				STG_N_Ludi STG_N_Tsunkatse STG_N_SineNitsun STG_N_Spectsun STG_N_Essedarikatse STG_N_Gallkatse
+				STG_N_Liberatse STG_N_Manica STG_N_Murmillo STG_N_Retiarikatse STG_N_Rudiarikatse STG_N_Hoplonachkatse
+				STG_N_Sannis STG_N_Thrax STG_N_Venator STG_N_Fascia STG_N_Veteratse STG_N_Rudis
+				STG_N_Sica STG_N_Scutun STG_N_Victor
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			weight = 100
+
+			first_names_male = {
+				STG_N_Penk STG_N_Lenk STG_N_Harank STG_N_Bulhak STG_N_Engelbak STG_N_Urnk
+				STG_N_Holenk STG_N_Hork STG_N_Herk STG_N_Koin STG_N_Harrk STG_N_Nolur
+				STG_N_Tevor STG_N_Noll STG_N_Hubin STG_N_Ugok STG_N_Ulbrak STG_N_Holen
+				STG_N_Uben STG_N_Borok STG_N_Barok STG_N_Ulthor STG_N_Bolunk STG_N_Beldon
+			}
+
+			first_names_female = {
+				STG_N_Viritzita STG_N_Jaratiz STG_N_Shanna STG_N_Zheeggu STG_N_Shairur STG_N_Maggizh
+				STG_N_Vazhkinati STG_N_Nigelti STG_N_Gegazu STG_N_Jigutitizh STG_N_Haditzilu STG_N_Shezzo
+				STG_N_Taydati STG_N_Dadder STG_N_Geezzu STG_N_Taiddi STG_N_Thezizeti STG_N_Nezozo
+				STG_N_Thiza STG_N_Jezzati STG_N_Jannizati STG_N_Thahnu STG_N_Mede STG_N_Hedez
+			}
+
+			second_names = {
+				STG_N_Penk STG_N_Lenk STG_N_Harank STG_N_Bulhak STG_N_Engelbak STG_N_Urnk
+				STG_N_Holenk STG_N_Hork STG_N_Herk STG_N_Koin STG_N_Harrk STG_N_Nolur
+				STG_N_Tevor STG_N_Noll STG_N_Hubin STG_N_Ugok STG_N_Ulbrak STG_N_Holen
+				STG_N_Uben STG_N_Borok STG_N_Barok STG_N_Ulthor STG_N_Bolunk STG_N_Beldon
+			}
+		}
+	}
+}

@@ -1,0 +1,156 @@
+﻿# Bolian Union name list.
+#
+# The thinnest canon of the nine — Bolians appear as Starfleet crew and almost
+# never as a polity. Beyond Bolarus IX, the Bank of Bolias and a handful of
+# officers, these names are constructed to Bolian phonology, not canon.
+#
+# Structure mirrors /stellaris/common/name_lists/HUMAN1.txt. Every name token
+# is an STG_N_ key in src/localisation/english/stg_names_l_english.yml.
+
+STG_BOLIAN = {
+	category = "Humanoid"
+	randomized = no
+
+	ship_names = {
+		generic = {
+			STG_N_Bolarus STG_N_BankofBolias STG_N_Bolias STG_N_Zhukova STG_N_Chell STG_N_Rixx STG_N_Boqta
+			STG_N_Adislo STG_N_Haro STG_N_Brott STG_N_Ansata STG_N_Corvan STG_N_Tenara STG_N_Melona STG_N_Vandor
+			STG_N_Barisa STG_N_Nelvana STG_N_Sappora
+		}
+
+		science = {
+			STG_N_BankofBolias STG_N_Ansata STG_N_Corvan STG_N_Adislo STG_N_Tenara STG_N_Melona STG_N_Sappora
+		}
+
+		colonizer = {
+			STG_N_NewBolarus STG_N_Corvan STG_N_Melona STG_N_Vandor STG_N_Barisa
+		}
+
+		constructor = {
+			STG_N_Ansata STG_N_Tenara STG_N_Sappora STG_N_Nelvana STG_N_Bolias
+		}
+
+		corvette = {
+			STG_N_Chell STG_N_Boqta STG_N_Haro STG_N_Brott STG_N_Zhukova
+		}
+
+		destroyer = {
+			STG_N_Rixx STG_N_Adislo STG_N_Barisa STG_N_Vandor
+		}
+
+		cruiser = {
+			STG_N_Bolarus STG_N_Bolias STG_N_Ansata STG_N_Corvan
+		}
+
+		battleship = {
+			STG_N_BankofBolias STG_N_Bolarus STG_N_Sappora STG_N_Nelvana
+		}
+
+		titan = {
+			STG_N_Bolarus STG_N_BankofBolias STG_N_Bolias STG_N_Ansata
+		}
+	}
+
+	ship_class_names = {
+		generic = {
+			STG_N_Bolarus STG_N_Bolias STG_N_Ansata STG_N_Corvan STG_N_Tenara STG_N_Sappora STG_N_Nelvana
+			STG_N_Melona STG_N_Barisa
+		}
+	}
+
+	fleet_names = {
+		sequential_name = STG_BOLIAN_GROUP
+	}
+
+	army_names = {
+		machine_assault_1 = {
+			sequential_name = STG_BOLIAN_ASSAULTAUXILIARY
+		}
+
+		machine_defense = {
+			sequential_name = STG_BOLIAN_DEFENSEAUXILIARY
+		}
+
+		defense_army = {
+			sequential_name = STG_BOLIAN_PLANETARYDEFENSEAUXILIARY
+		}
+
+		assault_army = {
+			sequential_name = STG_BOLIAN_EXPEDITIONARYAUXILIARY
+		}
+
+		slave_army = {
+			sequential_name = STG_BOLIAN_LABORAUXILIARY
+		}
+
+		clone_army = {
+			sequential_name = STG_BOLIAN_REPLICATEAUXILIARY
+		}
+
+		robotic_army = {
+			sequential_name = STG_BOLIAN_AUTOMATEDAUXILIARY
+		}
+
+		psionic_army = {
+			sequential_name = STG_BOLIAN_ADEPTAUXILIARY
+		}
+
+		xenomorph_army = {
+			sequential_name = STG_BOLIAN_XENOMORPHAUXILIARY
+		}
+
+		gene_warrior_army = {
+			sequential_name = STG_BOLIAN_AUGMENTEDAUXILIARY
+		}
+
+		occupation_army = {
+			sequential_name = STG_BOLIAN_OCCUPATIONAUXILIARY
+		}
+
+		robotic_defense_army = {
+			sequential_name = STG_BOLIAN_AUTOMATEDDEFENSEAUXILIARY
+		}
+
+		industrial_army = {
+			sequential_name = STG_BOLIAN_INDUSTRIALAUXILIARY
+		}
+
+		primitive_army = {
+			sequential_name = STG_BOLIAN_MILITIA
+		}
+	}
+
+	planet_names = {
+		generic = {
+			names = {
+				STG_N_Bolias STG_N_CorvanII STG_N_MelonaIV STG_N_VandorIV STG_N_BarisaPrime STG_N_NelvanaIII
+				STG_N_SapporaVII STG_N_Ansata STG_N_Tenara STG_N_NewBolarus STG_N_Zhukova STG_N_BolarusVII
+				STG_N_BolarusIII STG_N_ChellsLanding STG_N_Rixxa STG_N_Boqta STG_N_Adisla STG_N_Harova
+				STG_N_Brottan
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			weight = 100
+
+			first_names_male = {
+				STG_N_Chell STG_N_Rixx STG_N_Zim STG_N_Hars STG_N_Boqta STG_N_Morn STG_N_Krit STG_N_Danlo STG_N_Fenn
+				STG_N_Orum STG_N_Talek STG_N_Vrell STG_N_Bral STG_N_Jaresh STG_N_Larim STG_N_Sennek STG_N_Torvan
+				STG_N_Yannick
+			}
+
+			first_names_female = {
+				STG_N_Mitena STG_N_Anara STG_N_Belana STG_N_Corla STG_N_Delna STG_N_Ferra STG_N_Hanna STG_N_Ilva
+				STG_N_Jenna STG_N_Kalla STG_N_Lonna STG_N_Mella STG_N_Narra STG_N_Ossa STG_N_Prela STG_N_Renna
+			}
+
+			second_names = {
+				STG_N_Brott STG_N_Adislo STG_N_Haro STG_N_Boqta STG_N_Rixx STG_N_Chell STG_N_Ansata STG_N_Corvan
+				STG_N_Sappora STG_N_Nelvana STG_N_Melona STG_N_Barisa STG_N_Tenara STG_N_Vandor STG_N_Bolias
+				STG_N_Zhukova
+			}
+		}
+	}
+}

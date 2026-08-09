@@ -1,0 +1,162 @@
+﻿# Wadi name list, for the AI-only minor powers that use it.
+#
+# CONVERTED from .source/688086068/common/name_lists/Wadi.txt: the tokens are
+# STNH's, resolved through STNH's own localisation and re-keyed as STG_N_. The
+# ship-size buckets are rebuilt for VANILLA's ladder -- STNH's file buckets by
+# its own (saber, sovereign, steamrunner) and those keys mean nothing here.
+#
+# See .docs/decisions/19-stnh-minor-powers-as-ai-empires.md.
+
+STG_WADI = {
+	category = "Humanoid"
+	randomized = no
+
+	ship_names = {
+		generic = {
+			STG_N_Chula STG_N_Arbitrage STG_N_BeginnersLuck STG_N_BankBreaker STG_N_GamblersFallacy STG_N_GamblersConceit
+			STG_N_HighRoller STG_N_Holdout STG_N_HoleCard STG_N_Advantage STG_N_OddsCompiler STG_N_DoubleOrNothing
+			STG_N_EvenMoney STG_N_ExpectedValue STG_N_LowRoller STG_N_LootBox STG_N_LootCrate STG_N_Sweepstake
+			STG_N_Jackpot STG_N_RiskPremium STG_N_TableLimit STG_N_SpreadBet STG_N_SnakeEyes STG_N_HouseAdvantage
+			STG_N_DoubleorNothing
+		}
+
+		corvette = {
+			STG_N_DoubleOrNothing STG_N_EvenMoney STG_N_ExpectedValue STG_N_LowRoller STG_N_LootBox
+		}
+
+		destroyer = {
+			STG_N_LootCrate STG_N_Sweepstake STG_N_Jackpot STG_N_RiskPremium STG_N_TableLimit
+		}
+
+		cruiser = {
+			STG_N_SpreadBet STG_N_SnakeEyes STG_N_HouseAdvantage
+		}
+
+		battleship = {
+			STG_N_Chula STG_N_Arbitrage STG_N_BeginnersLuck
+		}
+
+		titan = {
+			STG_N_Chula STG_N_Arbitrage STG_N_BeginnersLuck
+		}
+
+		science = {
+			STG_N_Chula STG_N_Arbitrage STG_N_BeginnersLuck STG_N_BankBreaker STG_N_GamblersFallacy STG_N_GamblersConceit
+		}
+
+		colonizer = {
+			STG_N_Chula STG_N_Arbitrage STG_N_BeginnersLuck STG_N_BankBreaker STG_N_GamblersFallacy
+		}
+
+		constructor = {
+			STG_N_HighRoller STG_N_Holdout STG_N_HoleCard STG_N_Advantage STG_N_OddsCompiler
+		}
+	}
+
+	ship_class_names = {
+		generic = {
+			STG_N_Chula STG_N_Arbitrage STG_N_BeginnersLuck STG_N_BankBreaker STG_N_GamblersFallacy STG_N_GamblersConceit
+			STG_N_HighRoller STG_N_Holdout STG_N_HoleCard
+		}
+	}
+
+	fleet_names = {
+		sequential_name = STG_WADI_GROUP
+	}
+
+	army_names = {
+		machine_assault_1 = {
+			sequential_name = STG_WADI_ASSAULTAUXILIARY
+		}
+
+		machine_defense = {
+			sequential_name = STG_WADI_DEFENSEAUXILIARY
+		}
+
+		defense_army = {
+			sequential_name = STG_WADI_PLANETARYDEFENSEAUXILIARY
+		}
+
+		assault_army = {
+			sequential_name = STG_WADI_EXPEDITIONARYAUXILIARY
+		}
+
+		slave_army = {
+			sequential_name = STG_WADI_LABORAUXILIARY
+		}
+
+		clone_army = {
+			sequential_name = STG_WADI_REPLICATEAUXILIARY
+		}
+
+		robotic_army = {
+			sequential_name = STG_WADI_AUTOMATEDAUXILIARY
+		}
+
+		psionic_army = {
+			sequential_name = STG_WADI_ADEPTAUXILIARY
+		}
+
+		xenomorph_army = {
+			sequential_name = STG_WADI_XENOMORPHAUXILIARY
+		}
+
+		gene_warrior_army = {
+			sequential_name = STG_WADI_AUGMENTEDAUXILIARY
+		}
+
+		occupation_army = {
+			sequential_name = STG_WADI_OCCUPATIONAUXILIARY
+		}
+
+		robotic_defense_army = {
+			sequential_name = STG_WADI_AUTOMATEDDEFENSEAUXILIARY
+		}
+
+		industrial_army = {
+			sequential_name = STG_WADI_INDUSTRIALAUXILIARY
+		}
+
+		primitive_army = {
+			sequential_name = STG_WADI_MILITIA
+		}
+	}
+
+	planet_names = {
+		generic = {
+			names = {
+				STG_N_Chula STG_N_Arbitrage STG_N_BeginnersLuck STG_N_BankBreaker STG_N_GamblersFallacy STG_N_GamblersConceit
+				STG_N_HighRoller STG_N_Holdout STG_N_HoleCard STG_N_Advantage STG_N_OddsCompiler STG_N_DoubleOrNothing
+				STG_N_EvenMoney STG_N_ExpectedValue STG_N_LowRoller STG_N_LootBox STG_N_LootCrate STG_N_Sweepstake
+				STG_N_Jackpot STG_N_RiskPremium STG_N_TableLimit STG_N_SpreadBet STG_N_SnakeEyes STG_N_HouseAdvantage
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			weight = 100
+
+			first_names_male = {
+				STG_N_Coamis STG_N_Tellow STG_N_Drannfa STG_N_Primmin STG_N_Falow STG_N_Valderow
+				STG_N_Retayow STG_N_Dekow STG_N_Faldow STG_N_Falderow STG_N_Mizow STG_N_Vidrow
+				STG_N_Calvarow STG_N_Hadow STG_N_Haderow STG_N_Vittow STG_N_Nirow STG_N_Hirow
+				STG_N_Namow STG_N_Grinow STG_N_Matow STG_N_Oninow STG_N_Zimpow STG_N_Janacow
+			}
+
+			first_names_female = {
+				STG_N_Hadera STG_N_Alonzi STG_N_Alberi STG_N_Agnese STG_N_Andra STG_N_Adri
+				STG_N_Badri STG_N_Balbi STG_N_Fabi STG_N_Gausti STG_N_Fausti STG_N_Flavi
+				STG_N_Forti STG_N_Fulvra STG_N_Fiolra STG_N_Niola STG_N_Miolla STG_N_Molli
+				STG_N_Pollina STG_N_Fidelri STG_N_Elnora STG_N_Elini STG_N_Evi STG_N_Eldra
+			}
+
+			second_names = {
+				STG_N_Coamis STG_N_Tellow STG_N_Drannfa STG_N_Primmin STG_N_Falow STG_N_Valderow
+				STG_N_Retayow STG_N_Dekow STG_N_Faldow STG_N_Falderow STG_N_Mizow STG_N_Vidrow
+				STG_N_Calvarow STG_N_Hadow STG_N_Haderow STG_N_Vittow STG_N_Nirow STG_N_Hirow
+				STG_N_Namow STG_N_Grinow STG_N_Matow STG_N_Oninow STG_N_Zimpow STG_N_Janacow
+			}
+		}
+	}
+}

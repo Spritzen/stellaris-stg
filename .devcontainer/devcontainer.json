@@ -1,0 +1,137 @@
+{
+	"name": "Star Trek Galaxies (Stellaris 4.4)",
+	"build": {
+		"dockerfile": "Dockerfile"
+	},
+
+	"features": {
+		// Node powers the Claude Code CLI installed in post-create.sh.
+		"ghcr.io/devcontainers/features/node:1": {
+			"version": "lts"
+		},
+		// The CWTools language server is a .NET application.
+		"ghcr.io/devcontainers/features/dotnet:2": {
+			"version": "8.0"
+		}
+	},
+
+	"mounts": [
+		// Vanilla game files, read-only. CWTools indexes these to validate mod
+		// script against real vanilla definitions instead of its stale embedded cache.
+		"source=/home/odin/.local/share/Steam/steamapps/common/Stellaris,target=/stellaris,type=bind,readonly",
+
+		// The LIVE Stellaris user-data folder, read-write. Stellaris here is the
+		// NATIVE LINUX build (Steam compatibility mode was turned off on
+		// 2026-08-02), so gameDataPath is $LINUX_DATA_HOME/Paradox Interactive/
+		// Stellaris -- the ordinary XDG data dir, no Proton prefix involved.
+		// Holds mod/ (the deploy target), launcher-v2.sqlite (mod registry AND
+		// playsets) and logs/error.log.
+		//
+		// NOT .../compatdata/281990/pfx/drive_c/users/steamuser/Documents/... --
+		// that prefix is what the Windows build used, and is now the stale one.
+		// Both paths are real on this disk and only one is live; which, follows
+		// from the installed depot. See decision 15, and 07 for the first time
+		// deploying into the wrong one cost a session.
+		//
+		// Mounting the parent rather than mod/ directly keeps this to a single
+		// bind whose source is known to exist; tools reach the mod folder as
+		// /paradox/stellaris/mod. Back up launcher-v2.sqlite before writing to
+		// it -- your playsets are in there.
+		"source=/home/odin/.local/share/Paradox Interactive/Stellaris,target=/paradox/stellaris,type=bind",
+
+		// Subscribed Steam Workshop mods, read-only. Lets you read how other
+		// mods solve things and check for conflicts. Subscribing/unsubscribing
+		// still happens in the Steam client on the host.
+		"source=/home/odin/.local/share/Steam/steamapps/workshop/content/281990,target=/workshop,type=bind,readonly",
+
+		// Persistent Claude Code state: credentials, session transcripts, todos.
+		// Shared with the host, so sessions survive rebuilds and continue across
+		// host <-> container. See CLAUDE_CONFIG_DIR below.
+		"source=/home/odin/.claude,target=/home/vscode/.claude,type=bind",
+
+		// Persistent GitHub CLI auth, on the same principle as ~/.claude above.
+		// hosts.yml holds the OAuth token `gh auth login` writes, so logging in
+		// once on either side survives every container rebuild -- and `gh auth
+		// setup-git` then makes that token git's credential helper for HTTPS
+		// push. Create the host directory before first build; an absent bind
+		// source is an error, not an empty mount.
+		"source=/home/odin/.config/gh,target=/home/vscode/.config/gh,type=bind"
+	],
+
+	"containerEnv": {
+		"CLAUDE_CONFIG_DIR": "/home/vscode/.claude",
+		"STELLARIS_GAME_DIR": "/stellaris",
+		// The live mod folder, inside the user-data folder mounted at
+		// /paradox/stellaris. NOT /paradox/mod -- see decision 07.
+		"PARADOX_MOD_DIR": "/paradox/stellaris/mod",
+		"WORKSHOP_DIR": "/workshop",
+		"MOD_ID": "star_trek_galaxies",
+		// Absolute path to this workspace *on the host*. The Stellaris launcher
+		// runs outside the container, so deploy --link needs host-side paths.
+		"HOST_WORKSPACE": "/home/odin/Desktop/dev/mods/stellaris"
+	},
+
+	// Default bridge networking: full outbound internet for Claude, npm,
+	// CWTools rule updates and the Paradox wiki. No firewall script is applied.
+	"runArgs": [
+		"--name=star-trek-galaxies-dev"
+	],
+
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"milleniumdawnmodteam.cwtools-md-edition",
+				"anthropic.claude-code",
+				"ms-python.python",
+				"editorconfig.editorconfig",
+				"redhat.vscode-yaml"
+			],
+			"settings": {
+				"cwtools.cache.stellaris": "/stellaris",
+				"cwtools.rules_version": "latest",
+				"cwtools.errors.vanilla": false,
+				"cwtools.localisation.languages": [
+					"English"
+				],
+				"cwtools.ignore_patterns": [
+					".devcontainer/**",
+					"tools/**",
+					"dist/**",
+					".git/**"
+				],
+				// Workshop mods are reference material, not part of this mod —
+				// keep them out of the file watcher and search results.
+				"files.watcherExclude": {
+					"/workshop/**": true,
+					"/stellaris/**": true
+				},
+				"search.exclude": {
+					"/workshop/**": true
+				},
+				// CWTools registers .txt for nine different Paradox games; pin the
+				// mod's script files to the Stellaris grammar explicitly.
+				"files.associations": {
+					"**/common/**/*.txt": "stellaris",
+					"**/events/**/*.txt": "stellaris",
+					"**/map/**/*.txt": "stellaris",
+					"**/prescripted_countries/**/*.txt": "stellaris",
+					"descriptor.mod": "stellaris",
+					"*.gui": "stellaris",
+					"*.gfx": "stellaris",
+					"*.asset": "stellaris",
+					"*.cwt": "stellaris"
+				},
+				"[stellaris]": {
+					"editor.insertSpaces": false,
+					"editor.tabSize": 4
+				},
+				"files.eol": "\n",
+				"terminal.integrated.defaultProfile.linux": "bash"
+			}
+		}
+	},
+
+	"postCreateCommand": "bash .devcontainer/post-create.sh",
+	"waitFor": "postCreateCommand",
+	"remoteUser": "vscode"
+}

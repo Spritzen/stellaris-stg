@@ -1,0 +1,87 @@
+# Vanilla 4.4 entity declarations that a vendored file at the same path drops.
+#
+# A NEW file, not a shadow. Real Space - System Scale wins
+# gfx/models/effects/_system_effects_entities.asset and its copy predates the
+# five entities below, which vanilla's common/ambient_objects/ still references.
+# Latent rather than measured — the 2026-08-02 session entered no starlit-core
+# system — but found by comparing declared entity names, so the reference is
+# real either way.
+#
+# Copied from vanilla verbatim, so these carry vanilla's scale and not Real
+# Space's 6x. Applying that factor would be a guess about effects Real Space
+# never saw, and an unscaled effect is cosmetic where a missing one is invisible.
+# Rescale freely if they look small in game.
+
+entity = {
+	name = "starlit_core_entity"
+	pdxmesh = "starlit_core_mesh"
+	
+		game_data = {
+		bloom_factor			= .6
+		uv_animation_speed 		= 0.04
+		uv_animation_direction 	= { 1 -.85 }
+		}
+		scale = 7
+}
+
+entity = {
+	name = "starlit_core_2_entity"
+	pdxmesh = "starlit_core_mesh"
+	
+		game_data = {
+		bloom_factor			= .2	
+		uv_animation_speed 		= 0.04
+		uv_animation_direction 	= { .7 -.82 }
+		}
+		scale = 5
+}
+
+entity = {
+	name = "starlit_core_stars_entity"
+	pdxmesh = "starlit_core_stars_mesh"
+	
+		game_data = {
+		bloom_factor			= .3
+		uv_animation_speed 		= 0.03
+		uv_animation_direction 	= { 0.15 -0.6 }
+		}
+		scale = 6
+}
+
+entity = {
+	name = "starlit_effect_entity"
+	locator = { name = "core" position = { 0 0 0 }}
+	locator = { name = "root" position = { 0 -40 0 } scale = 0.9 }
+	scale = 4
+
+	default_state = "idle"
+	state = { name = "idle" 		state_time = 5
+		event = { time = 0 node = "root" particle = "starlit_energy_effect" keep_particle = yes trigger_once = yes }
+
+        }
+	
+	attach = { "core" = "starlit_core_entity" }
+	attach = { "core" = "starlit_core_2_entity" }
+	attach = { "core" = "starlit_core_stars_entity" }
+
+	cull_radius = 10000
+}
+
+entity = {
+	name = "voidspawn_storm_entity"
+	locator = { name = "core" position = { 0 0 0 }}
+	locator = { name = "root" position = { 0 -8 0 } }
+	scale = 15
+
+	default_state = "idle"
+	state = { name = "idle" 		state_time = 5
+		event = { time = 0 node = "root" particle = "voidspawn_storm_effect" keep_particle = yes trigger_once = yes }
+
+        }
+	
+#	attach = { "core" = "starlit_core_entity" }
+#	attach = { "core" = "starlit_core_2_entity" }
+#	attach = { "core" = "starlit_core_stars_entity" }
+
+	cull_radius = 10000
+}

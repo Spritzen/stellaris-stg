@@ -1,0 +1,163 @@
+﻿# Malon Sanctity name list.
+#
+# Emck, Fesek, Vrelk, the export vessels and the Malon economy built on
+# antimatter waste are canon (VOY). ethic_pacifist and civic_mining_guilds are
+# the reading that they are hauliers first and never raiders.
+#
+# Structure mirrors /stellaris/common/name_lists/HUMAN1.txt, and the fourteen
+# beside it. Every name token is an STG_N_ key in
+# src/localisation/english/stg_names_l_english.yml.
+
+STG_MALON = {
+	category = "Humanoid"
+	randomized = no
+
+	ship_names = {
+		generic = {
+			STG_N_Emck STG_N_Fesek STG_N_Vrelk STG_N_Controller STG_N_Export STG_N_Hauler
+			STG_N_Tanker STG_N_Reclaimer STG_N_Discharge STG_N_Scupper STG_N_Freightline STG_N_Bulkhead
+			STG_N_Cargomaster STG_N_Deadweight STG_N_Manifest STG_N_Ballast STG_N_Consignor STG_N_Dumpline
+			STG_N_Overflow STG_N_Ventwork STG_N_Salvager STG_N_Exporter STG_N_Exposure STG_N_Sculpter
+			STG_N_Scowl STG_N_Theta1 STG_N_Theta2 STG_N_Theta3 STG_N_Theta4 STG_N_Theta5
+			STG_N_Theta6 STG_N_Urgion STG_N_Datarrion STG_N_Lurrion STG_N_Nargion STG_N_Astarion
+			STG_N_Peragion STG_N_Selemarion STG_N_Lysargion STG_N_Lusmargion STG_N_Hemberarion STG_N_Eshnenarion
+			STG_N_Satharion STG_N_Sulugarion
+		}
+
+		corvette = {
+			STG_N_Cargomaster STG_N_Deadweight STG_N_Manifest STG_N_Ballast STG_N_Consignor
+		}
+
+		destroyer = {
+			STG_N_Export STG_N_Hauler STG_N_Tanker STG_N_Reclaimer STG_N_Discharge
+		}
+
+		cruiser = {
+			STG_N_Scupper STG_N_Freightline STG_N_Bulkhead STG_N_Cargomaster STG_N_Deadweight
+		}
+
+		battleship = {
+			STG_N_Manifest STG_N_Ballast STG_N_Consignor STG_N_Dumpline STG_N_Overflow
+		}
+
+		titan = {
+			STG_N_Emck STG_N_Fesek STG_N_Vrelk STG_N_Controller
+		}
+
+		science = {
+			STG_N_Emck STG_N_Fesek STG_N_Vrelk STG_N_Controller STG_N_Export STG_N_Hauler
+			STG_N_Tanker
+		}
+
+		colonizer = {
+			STG_N_MalonPrime STG_N_Malon STG_N_MalonII STG_N_Fesek STG_N_Vrelk
+		}
+
+		constructor = {
+			STG_N_Reclaimer STG_N_Discharge STG_N_Scupper STG_N_Freightline STG_N_Bulkhead
+		}
+	}
+
+	ship_class_names = {
+		generic = {
+			STG_N_Emck STG_N_Fesek STG_N_Vrelk STG_N_Controller STG_N_Export STG_N_Hauler STG_N_Tanker
+			STG_N_Reclaimer STG_N_Discharge
+		}
+	}
+
+	fleet_names = {
+		sequential_name = STG_MALON_GROUP
+	}
+
+	army_names = {
+		machine_assault_1 = {
+			sequential_name = STG_MALON_ASSAULTAUXILIARY
+		}
+
+		machine_defense = {
+			sequential_name = STG_MALON_DEFENSEAUXILIARY
+		}
+
+		defense_army = {
+			sequential_name = STG_MALON_PLANETARYDEFENSEAUXILIARY
+		}
+
+		assault_army = {
+			sequential_name = STG_MALON_EXPEDITIONARYAUXILIARY
+		}
+
+		slave_army = {
+			sequential_name = STG_MALON_LABORAUXILIARY
+		}
+
+		clone_army = {
+			sequential_name = STG_MALON_REPLICATEAUXILIARY
+		}
+
+		robotic_army = {
+			sequential_name = STG_MALON_AUTOMATEDAUXILIARY
+		}
+
+		psionic_army = {
+			sequential_name = STG_MALON_ADEPTAUXILIARY
+		}
+
+		xenomorph_army = {
+			sequential_name = STG_MALON_XENOMORPHAUXILIARY
+		}
+
+		gene_warrior_army = {
+			sequential_name = STG_MALON_AUGMENTEDAUXILIARY
+		}
+
+		occupation_army = {
+			sequential_name = STG_MALON_OCCUPATIONAUXILIARY
+		}
+
+		robotic_defense_army = {
+			sequential_name = STG_MALON_AUTOMATEDDEFENSEAUXILIARY
+		}
+
+		industrial_army = {
+			sequential_name = STG_MALON_INDUSTRIALAUXILIARY
+		}
+
+		primitive_army = {
+			sequential_name = STG_MALON_MILITIA
+		}
+	}
+
+	planet_names = {
+		generic = {
+			names = {
+				STG_N_MalonII STG_N_Fesek STG_N_Vrelk STG_N_Reclaimer STG_N_Ventwork STG_N_Overflow
+				STG_N_Ballast STG_N_Deadweight STG_N_Bulkhead STG_N_Freightline STG_N_Dumpline STG_N_Scupper
+				STG_N_Discharge STG_N_Manifest STG_N_Cargomaster STG_N_Consignor STG_N_NewMalon STG_N_Tankerhome
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			weight = 100
+
+			first_names_male = {
+				STG_N_Emck STG_N_Fesek STG_N_Vrelk STG_N_Torath STG_N_Delok STG_N_Marn STG_N_Restek
+				STG_N_Kolen STG_N_Varek STG_N_Senok STG_N_Belok STG_N_Grethan STG_N_Novak STG_N_Terrek
+				STG_N_Solek STG_N_Danok
+			}
+
+			first_names_female = {
+				STG_N_Emcka STG_N_Feseka STG_N_Vrelka STG_N_Torratha STG_N_Deloka STG_N_Marna STG_N_Resteka
+				STG_N_Kolena STG_N_Vareka STG_N_Senoka STG_N_Beloka STG_N_Grethana STG_N_Novaka STG_N_Terreka
+				STG_N_Soleka STG_N_Danoka
+			}
+
+			second_names = {
+				STG_N_Malon STG_N_Emck STG_N_Fesek STG_N_Vrelk STG_N_Controller STG_N_Export STG_N_Hauler
+				STG_N_Tanker STG_N_Reclaimer STG_N_Ventwork STG_N_Overflow STG_N_Ballast STG_N_Bulkhead STG_N_Manifest
+				STG_N_Consignor STG_N_Freightline
+			}
+		}
+	}
+}

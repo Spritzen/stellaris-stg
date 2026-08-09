@@ -1,0 +1,166 @@
+﻿# Denobulan name list, for the AI-only minor powers that use it.
+#
+# CONVERTED from .source/688086068/common/name_lists/Denobulan.txt: the tokens are
+# STNH's, resolved through STNH's own localisation and re-keyed as STG_N_. The
+# ship-size buckets are rebuilt for VANILLA's ladder -- STNH's file buckets by
+# its own (saber, sovereign, steamrunner) and those keys mean nothing here.
+#
+# See .docs/decisions/19-stnh-minor-powers-as-ai-empires.md.
+
+STG_DENOBULAN = {
+	category = "Humanoid"
+	randomized = no
+
+	ship_names = {
+		generic = {
+			STG_N_Barzai STG_N_Atal STG_N_Sansu STG_N_Kadath STG_N_Ulthar STG_N_Lerion
+			STG_N_Thurai STG_N_Hatheg STG_N_Spalga STG_N_Boyya STG_N_Daman STG_N_Sande
+			STG_N_Nasai STG_N_Gwal STG_N_Nisai STG_N_Shalman STG_N_Ghar STG_N_Quezi
+			STG_N_Ghani STG_N_Surgat STG_N_TorKade STG_N_Breghal STG_N_Kamar STG_N_Tole
+			STG_N_Bulochi STG_N_Astor STG_N_Harchu STG_N_Malik STG_N_Bien STG_N_Bisil
+			STG_N_Chutran STG_N_Dogoro STG_N_Niaslo STG_N_Phuldo STG_N_Arondu STG_N_Chungo
+			STG_N_Dassu STG_N_Foljo STG_N_Nala STG_N_Bruk STG_N_Biensla STG_N_Varcha
+			STG_N_Chitral STG_N_Suntree
+		}
+
+		corvette = {
+			STG_N_Sande STG_N_Nasai STG_N_Gwal STG_N_Nisai STG_N_Shalman
+		}
+
+		destroyer = {
+			STG_N_Ghar STG_N_Quezi STG_N_Ghani STG_N_Surgat STG_N_TorKade
+		}
+
+		cruiser = {
+			STG_N_Breghal STG_N_Kamar STG_N_Tole STG_N_Bulochi STG_N_Astor
+		}
+
+		battleship = {
+			STG_N_Harchu STG_N_Malik STG_N_Bien STG_N_Bisil STG_N_Chutran
+		}
+
+		titan = {
+			STG_N_Dogoro STG_N_Niaslo STG_N_Phuldo STG_N_Arondu
+		}
+
+		science = {
+			STG_N_Barzai STG_N_Atal STG_N_Sansu STG_N_Kadath STG_N_Ulthar STG_N_Lerion
+		}
+
+		colonizer = {
+			STG_N_Barzai STG_N_Atal STG_N_Sansu STG_N_Kadath STG_N_Ulthar
+		}
+
+		constructor = {
+			STG_N_Thurai STG_N_Hatheg STG_N_Spalga STG_N_Boyya STG_N_Daman
+		}
+	}
+
+	ship_class_names = {
+		generic = {
+			STG_N_Barzai STG_N_Atal STG_N_Sansu STG_N_Kadath STG_N_Ulthar STG_N_Lerion
+			STG_N_Thurai STG_N_Hatheg STG_N_Spalga
+		}
+	}
+
+	fleet_names = {
+		sequential_name = STG_DENOBULAN_GROUP
+	}
+
+	army_names = {
+		machine_assault_1 = {
+			sequential_name = STG_DENOBULAN_ASSAULTAUXILIARY
+		}
+
+		machine_defense = {
+			sequential_name = STG_DENOBULAN_DEFENSEAUXILIARY
+		}
+
+		defense_army = {
+			sequential_name = STG_DENOBULAN_PLANETARYDEFENSEAUXILIARY
+		}
+
+		assault_army = {
+			sequential_name = STG_DENOBULAN_EXPEDITIONARYAUXILIARY
+		}
+
+		slave_army = {
+			sequential_name = STG_DENOBULAN_LABORAUXILIARY
+		}
+
+		clone_army = {
+			sequential_name = STG_DENOBULAN_REPLICATEAUXILIARY
+		}
+
+		robotic_army = {
+			sequential_name = STG_DENOBULAN_AUTOMATEDAUXILIARY
+		}
+
+		psionic_army = {
+			sequential_name = STG_DENOBULAN_ADEPTAUXILIARY
+		}
+
+		xenomorph_army = {
+			sequential_name = STG_DENOBULAN_XENOMORPHAUXILIARY
+		}
+
+		gene_warrior_army = {
+			sequential_name = STG_DENOBULAN_AUGMENTEDAUXILIARY
+		}
+
+		occupation_army = {
+			sequential_name = STG_DENOBULAN_OCCUPATIONAUXILIARY
+		}
+
+		robotic_defense_army = {
+			sequential_name = STG_DENOBULAN_AUTOMATEDDEFENSEAUXILIARY
+		}
+
+		industrial_army = {
+			sequential_name = STG_DENOBULAN_INDUSTRIALAUXILIARY
+		}
+
+		primitive_army = {
+			sequential_name = STG_DENOBULAN_MILITIA
+		}
+	}
+
+	planet_names = {
+		generic = {
+			names = {
+				STG_N_Barzai STG_N_Atal STG_N_Sansu STG_N_Kadath STG_N_Ulthar STG_N_Lerion
+				STG_N_Thurai STG_N_Hatheg STG_N_Spalga STG_N_Boyya STG_N_Daman STG_N_Sande
+				STG_N_Nasai STG_N_Gwal STG_N_Nisai STG_N_Shalman STG_N_Ghar STG_N_Quezi
+				STG_N_Ghani STG_N_Surgat STG_N_TorKade STG_N_Breghal STG_N_Kamar STG_N_Tole
+				STG_N_Bulochi STG_N_Astor STG_N_Harchu STG_N_Malik STG_N_Bien STG_N_Bisil
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			weight = 100
+
+			first_names_male = {
+				STG_N_Parnikee STG_N_Phlox STG_N_Masc STG_N_Threx STG_N_Struhlem STG_N_Vindeilin
+				STG_N_Tropp STG_N_Vleb STG_N_Phloben STG_N_Stresc STG_N_Bek STG_N_Sonden
+				STG_N_Zela STG_N_Mebingin STG_N_Vlon STG_N_Throrneilikee STG_N_Groznin STG_N_Stretlun
+				STG_N_Phlesc STG_N_Vlottis STG_N_Grom STG_N_Grog STG_N_Sorn STG_N_Belakee
+			}
+
+			first_names_female = {
+				STG_N_Terim STG_N_Telles STG_N_Crenfel STG_N_Ghrex STG_N_Grazna STG_N_Yelauna
+				STG_N_Ephrix STG_N_Grellasa STG_N_Trephta STG_N_Eklara STG_N_Yeenfera STG_N_Telbem
+				STG_N_Aza STG_N_Stephax STG_N_Birlura STG_N_Trisim STG_N_Grevex STG_N_Velesa
+				STG_N_Fesel STG_N_Talphil STG_N_Gesela STG_N_Thabena STG_N_Treesel STG_N_Thophres
+			}
+
+			second_names = {
+				STG_N_Parnikee STG_N_Phlox STG_N_Masc STG_N_Threx STG_N_Struhlem STG_N_Vindeilin
+				STG_N_Tropp STG_N_Vleb STG_N_Phloben STG_N_Stresc STG_N_Bek STG_N_Sonden
+				STG_N_Zela STG_N_Mebingin STG_N_Vlon STG_N_Throrneilikee STG_N_Groznin STG_N_Stretlun
+				STG_N_Phlesc STG_N_Vlottis STG_N_Grom STG_N_Grog STG_N_Sorn STG_N_Belakee
+			}
+		}
+	}
+}

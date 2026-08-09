@@ -1,0 +1,159 @@
+﻿# Vaadwaur name list, for the AI-only minor powers that use it.
+#
+# CONVERTED from .source/688086068/common/name_lists/Vaadwaur.txt: the tokens are
+# STNH's, resolved through STNH's own localisation and re-keyed as STG_N_. The
+# ship-size buckets are rebuilt for VANILLA's ladder -- STNH's file buckets by
+# its own (saber, sovereign, steamrunner) and those keys mean nothing here.
+#
+# See .docs/decisions/19-stnh-minor-powers-as-ai-empires.md.
+
+STG_VAADWAUR = {
+	category = "Humanoid"
+	randomized = no
+
+	ship_names = {
+		generic = {
+			STG_N_Snake STG_N_Asp STG_N_Adder STG_N_Cascabel STG_N_Krait STG_N_Kadru
+			STG_N_Yarara STG_N_Garuda STG_N_Taipan STG_N_Shiva STG_N_Sidewinder STG_N_Naga
+			STG_N_Cobra STG_N_Viper STG_N_Mamba STG_N_Astika STG_N_Manasa STG_N_Boa
+			STG_N_Keelback STG_N_Anaconda STG_N_Python STG_N_Vasuki STG_N_Nagaraja STG_N_Reclaimer
+		}
+
+		corvette = {
+			STG_N_Naga STG_N_Cobra STG_N_Viper STG_N_Mamba STG_N_Astika
+		}
+
+		destroyer = {
+			STG_N_Manasa STG_N_Boa STG_N_Keelback STG_N_Anaconda STG_N_Python
+		}
+
+		cruiser = {
+			STG_N_Vasuki STG_N_Nagaraja STG_N_Reclaimer
+		}
+
+		battleship = {
+			STG_N_Snake STG_N_Asp STG_N_Adder
+		}
+
+		titan = {
+			STG_N_Snake STG_N_Asp STG_N_Adder
+		}
+
+		science = {
+			STG_N_Snake STG_N_Asp STG_N_Adder STG_N_Cascabel STG_N_Krait STG_N_Kadru
+		}
+
+		colonizer = {
+			STG_N_Snake STG_N_Asp STG_N_Adder STG_N_Cascabel STG_N_Krait
+		}
+
+		constructor = {
+			STG_N_Yarara STG_N_Garuda STG_N_Taipan STG_N_Shiva STG_N_Sidewinder
+		}
+	}
+
+	ship_class_names = {
+		generic = {
+			STG_N_Snake STG_N_Asp STG_N_Adder STG_N_Cascabel STG_N_Krait STG_N_Kadru
+			STG_N_Yarara STG_N_Garuda STG_N_Taipan
+		}
+	}
+
+	fleet_names = {
+		sequential_name = STG_VAADWAUR_GROUP
+	}
+
+	army_names = {
+		machine_assault_1 = {
+			sequential_name = STG_VAADWAUR_ASSAULTAUXILIARY
+		}
+
+		machine_defense = {
+			sequential_name = STG_VAADWAUR_DEFENSEAUXILIARY
+		}
+
+		defense_army = {
+			sequential_name = STG_VAADWAUR_PLANETARYDEFENSEAUXILIARY
+		}
+
+		assault_army = {
+			sequential_name = STG_VAADWAUR_EXPEDITIONARYAUXILIARY
+		}
+
+		slave_army = {
+			sequential_name = STG_VAADWAUR_LABORAUXILIARY
+		}
+
+		clone_army = {
+			sequential_name = STG_VAADWAUR_REPLICATEAUXILIARY
+		}
+
+		robotic_army = {
+			sequential_name = STG_VAADWAUR_AUTOMATEDAUXILIARY
+		}
+
+		psionic_army = {
+			sequential_name = STG_VAADWAUR_ADEPTAUXILIARY
+		}
+
+		xenomorph_army = {
+			sequential_name = STG_VAADWAUR_XENOMORPHAUXILIARY
+		}
+
+		gene_warrior_army = {
+			sequential_name = STG_VAADWAUR_AUGMENTEDAUXILIARY
+		}
+
+		occupation_army = {
+			sequential_name = STG_VAADWAUR_OCCUPATIONAUXILIARY
+		}
+
+		robotic_defense_army = {
+			sequential_name = STG_VAADWAUR_AUTOMATEDDEFENSEAUXILIARY
+		}
+
+		industrial_army = {
+			sequential_name = STG_VAADWAUR_INDUSTRIALAUXILIARY
+		}
+
+		primitive_army = {
+			sequential_name = STG_VAADWAUR_MILITIA
+		}
+	}
+
+	planet_names = {
+		generic = {
+			names = {
+				STG_N_Snake STG_N_Asp STG_N_Adder STG_N_Cascabel STG_N_Krait STG_N_Kadru
+				STG_N_Yarara STG_N_Garuda STG_N_Taipan STG_N_Shiva STG_N_Sidewinder STG_N_Naga
+				STG_N_Cobra STG_N_Viper STG_N_Mamba STG_N_Astika STG_N_Manasa STG_N_Boa
+				STG_N_Keelback STG_N_Anaconda STG_N_Python STG_N_Vasuki STG_N_Nagaraja STG_N_Reclaimer
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			weight = 100
+
+			first_names_male = {
+				STG_N_Galik STG_N_Garik STG_N_Gaul STG_N_Keld STG_N_Relin STG_N_Verik
+				STG_N_Trell STG_N_Traken STG_N_Telen STG_N_Mengin STG_N_Eldex STG_N_Marari
+				STG_N_Gedrin STG_N_Manasa STG_N_Vasuka
+			}
+
+			first_names_female = {
+				STG_N_Takshaka STG_N_Jisa STG_N_Gisa STG_N_Kisa STG_N_Trisa STG_N_Triss
+				STG_N_Viss STG_N_Aliss STG_N_Bernisa STG_N_Mengis STG_N_Shukla STG_N_Risha
+				STG_N_Rishis STG_N_Kalisa STG_N_Marisa STG_N_Nesara
+			}
+
+			second_names = {
+				STG_N_Galik STG_N_Garik STG_N_Gaul STG_N_Keld STG_N_Relin STG_N_Verik
+				STG_N_Trell STG_N_Traken STG_N_Telen STG_N_Mengin STG_N_Eldex STG_N_Marari
+				STG_N_Gedrin STG_N_Manasa STG_N_Vasuka STG_N_Takshaka STG_N_Jisa STG_N_Gisa
+				STG_N_Kisa STG_N_Trisa STG_N_Triss STG_N_Viss STG_N_Aliss STG_N_Bernisa
+			}
+		}
+	}
+}

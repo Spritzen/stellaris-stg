@@ -1,0 +1,219 @@
+# Star Trek Galaxies — portrait sets for the major powers.
+#
+# New prefixed file, so it merges with vanilla's 00_portrait_sets.txt.
+#
+# The names in `portraits = { }` are portrait GROUPS, not individual portraits
+# (vanilla's `humans` set lists "human" and "human_legacy"). Every group named
+# below is declared by a vendored STNH file under gfx/portraits/portraits/.
+#
+# Clothing is not wired here. The vendored selectors pick a uniform from the
+# species class and the STNH triggers in
+# src/common/scripted_triggers/stg_stnh_art_triggers.txt, which have real bodies
+# since .docs/decisions/16-phase-3-clothing-triggers.md. A species whose class no
+# selector names falls through to human civilian clothes — `make validate`
+# reports that, and it is not fixed in this file.
+
+stg_federation_portraits = {
+	species_class = FED
+
+	portraits = {
+		"human"
+	}
+}
+
+stg_vulcan_portraits = {
+	species_class = VUL
+
+	portraits = {
+		"vulcan"
+	}
+}
+
+stg_klingon_portraits = {
+	species_class = KDF
+
+	portraits = {
+		"klingon"
+	}
+}
+
+stg_romulan_portraits = {
+	species_class = ROM
+
+	portraits = {
+		"romulan"
+	}
+}
+
+stg_cardassian_portraits = {
+	species_class = CAR
+
+	portraits = {
+		"cardassian"
+	}
+}
+
+# ── Phase 2 ────────────────────────────────────────────────────────────────
+#
+# Nine more sets. The species_class ↔ group pairings are taken from STNH's own
+# common/portrait_sets/sth_portrait_sets.txt rather than guessed.
+#
+# The Trill set deliberately omits "trill_symbiont": that group is for STNH's
+# separate TSYM class, which needs an archetype we do not vendor — see the note
+# on TRI in stg_species_classes.txt.
+
+stg_ferengi_portraits = {
+	species_class = FER
+
+	portraits = {
+		"ferengi"
+	}
+}
+
+stg_bajoran_portraits = {
+	species_class = BAJ
+
+	portraits = {
+		"bajoran"
+	}
+}
+
+stg_trill_portraits = {
+	species_class = TRI
+
+	portraits = {
+		"trill"
+	}
+}
+
+stg_andorian_portraits = {
+	species_class = ADR
+
+	portraits = {
+		"andorian"
+	}
+}
+
+stg_bolian_portraits = {
+	species_class = BOL
+
+	portraits = {
+		"bolian"
+	}
+}
+
+stg_breen_portraits = {
+	species_class = BRE
+
+	portraits = {
+		"breen"
+	}
+}
+
+stg_tholian_portraits = {
+	species_class = THO
+
+	portraits = {
+		"tholian"
+	}
+}
+
+stg_dominion_portraits = {
+	species_class = DOM
+
+	portraits = {
+		"changeling"
+	}
+}
+
+stg_borg_portraits = {
+	species_class = BRG
+
+	portraits = {
+		"borg"
+	}
+}
+
+# ── The eight Walshicus-culture classes ────────────────────────────────────
+#
+# Without a set here the empire designer has no portrait to offer and hides the
+# prescripted empire outright — seven of the nine that a live run caught that
+# way, reported as `select_empire_design_view.cpp:714`.
+#
+# Pairings are STNH's own (sth_portrait_sets.txt) for KRE, MAL, SUL, VID, YRI,
+# whose class tokens match ours. Three do not and are noted where they differ.
+
+# STNH calls this class CAT; ours is CAI and nothing in the vendored art
+# references either, so the group pairing carries over unchanged.
+stg_caitian_portraits = {
+	species_class = CAI
+
+	portraits = {
+		"caitian"
+	}
+}
+
+# STNH splits the Xindi across six classes (XINAQU/ARB/AVI/INS/MAM/REP); STG has
+# one XIN for the Council, so it takes all five groups the build declares.
+# There is no xindi_aquatic group to take.
+stg_xindi_portraits = {
+	species_class = XIN
+
+	portraits = {
+		"xindi_reptilian"
+		"xindi_mammalian"
+		"xindi_arboreal"
+		"xindi_avian"
+		"xindi_insectoid"
+	}
+}
+
+stg_suliban_portraits = {
+	species_class = SUL
+
+	portraits = {
+		"suliban"
+	}
+}
+
+stg_yridian_portraits = {
+	species_class = YRI
+
+	portraits = {
+		"yridian"
+	}
+}
+
+stg_krenim_portraits = {
+	species_class = KRE
+
+	portraits = {
+		"krenim"
+	}
+}
+
+stg_malon_portraits = {
+	species_class = MAL
+
+	portraits = {
+		"malon"
+	}
+}
+
+stg_vidiian_portraits = {
+	species_class = VID
+
+	portraits = {
+		"vidiian"
+	}
+}
+
+# No STNH equivalent — the Terran Empire is mirror-universe humans, so TER shares
+# FED's group deliberately.
+stg_terran_portraits = {
+	species_class = TER
+
+	portraits = {
+		"human"
+	}
+}

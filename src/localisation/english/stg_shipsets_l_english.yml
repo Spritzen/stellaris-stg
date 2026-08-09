@@ -1,0 +1,23 @@
+﻿l_english:
+ # Star Trek Galaxies — shipset descriptions for the Trek graphical cultures
+ # declared in src/common/graphical_culture/stg_graphical_culture.txt.
+ #
+ # `<culture>_shipset_desc` is the only per-culture key vanilla defines
+ # (localisation/english/biogenesis_bioships_l_english.yml). Vanilla defines no
+ # display-NAME key for a shipset, so none is invented here — what the browser
+ # shows as the name is an in-game observation still to be collected.
+
+ federation_shipset_desc:0 "Starfleet's exploratory cruisers carry a crew as readily as a weapon. Saucer sections, warp nacelles and a hull built for a five-year mission rather than a five-minute engagement."
+ vulcan_01_shipset_desc:0 "Ringed ring-drive hulls of Vulcan design, unhurried and unadorned. Logic dictates that a ship built well need not be built twice."
+ klingon_shipset_desc:0 "Bird-of-prey wings and forward-swept disruptor booms. A Klingon vessel is a weapon with a crew compartment attached, and every line of it says so."
+ romulan_shipset_desc:0 "Predatory green hulls with raptor wings, built around the singularity cores and cloaking devices the Star Empire guards jealously."
+ cardassian_01_shipset_desc:0 "Angular ochre warships of the Cardassian Union, all forward spine and armoured flanks — designed to intimidate at the border as much as to fight past it."
+ ferengi_01_shipset_desc:0 "Marauders and D'Kora traders, hulls shaped by profit margins. Cargo capacity first, armament second, and both negotiable."
+ bajoran_01_shipset_desc:0 "Impulse-era Bajoran hulls and repurposed raiders — the militia's ships, built during the Occupation from whatever the Cardassians left behind."
+ federation_32_shipset_desc:0 "Trill vessels built to Federation standards, with the long service lives a joined species expects of anything it entrusts with a symbiont."
+ andorian_01_shipset_desc:0 "Imperial Guard cruisers of Andorian make, cold-running and heavily armed, their hulls ridged for the atmospheres of an ice world."
+ bolian_01_shipset_desc:0 "Bolian Union transports and escorts, unglamorous and immaculately maintained — a merchant fleet with guns bolted on where the manifest allows."
+ breen_01_shipset_desc:0 "Breen warships, refrigerated hull to hull, mounting the energy-dampening weapons the Confederacy has never explained to anyone."
+ tholian_01_shipset_desc:0 "Crystalline Tholian hulls that run at temperatures no other species can board. Fast, fragile, and never encountered alone."
+ dominion_01_shipset_desc:0 "Attack ships and battlecruisers of the Dominion, grown to a Founder's specification and crewed by Jem'Hadar who require nothing else."
+ borg_01_shipset_desc:0 "Cubes, spheres and pyramids. Borg vessels are not designed so much as accreted, and repair themselves faster than they can be disassembled."

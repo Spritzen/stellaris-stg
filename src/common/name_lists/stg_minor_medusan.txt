@@ -1,0 +1,166 @@
+﻿# Medusan name list, for the AI-only minor powers that use it.
+#
+# CONVERTED from .source/688086068/common/name_lists/Medusan.txt: the tokens are
+# STNH's, resolved through STNH's own localisation and re-keyed as STG_N_. The
+# ship-size buckets are rebuilt for VANILLA's ladder -- STNH's file buckets by
+# its own (saber, sovereign, steamrunner) and those keys mean nothing here.
+#
+# See .docs/decisions/19-stnh-minor-powers-as-ai-empires.md.
+
+STG_MEDUSAN = {
+	category = "Humanoid"
+	randomized = no
+
+	ship_names = {
+		generic = {
+			STG_N_Kollos STG_N_Zero STG_N_Alpha STG_N_Kellan STG_N_Kella STG_N_Gamma
+			STG_N_Korgan STG_N_Chanx STG_N_Fettas STG_N_Boba STG_N_Hellas STG_N_Holla
+			STG_N_Pessi STG_N_Dannan STG_N_Tollas STG_N_Tollom STG_N_Yollo STG_N_Jrmma
+			STG_N_Jennon STG_N_Rusoo STG_N_Lorrom STG_N_Lerrel STG_N_Omicron STG_N_Fortana
+			STG_N_Pollimin STG_N_Firren STG_N_Carimal STG_N_Mehrnana STG_N_Finton STG_N_Visalayan
+			STG_N_FleetArrayHK-48
+		}
+
+		corvette = {
+			STG_N_Holla STG_N_Pessi STG_N_Dannan STG_N_Tollas STG_N_Tollom
+		}
+
+		destroyer = {
+			STG_N_Yollo STG_N_Jrmma STG_N_Jennon STG_N_Rusoo STG_N_Lorrom
+		}
+
+		cruiser = {
+			STG_N_Lerrel STG_N_Omicron STG_N_Fortana STG_N_Pollimin STG_N_Firren
+		}
+
+		battleship = {
+			STG_N_Carimal STG_N_Mehrnana STG_N_Finton STG_N_Visalayan
+		}
+
+		titan = {
+			STG_N_Kollos STG_N_Zero STG_N_Alpha
+		}
+
+		science = {
+			STG_N_Kollos STG_N_Zero STG_N_Alpha STG_N_Kellan STG_N_Kella STG_N_Gamma
+		}
+
+		colonizer = {
+			STG_N_Kollos STG_N_Zero STG_N_Alpha STG_N_Kellan STG_N_Kella
+		}
+
+		constructor = {
+			STG_N_Korgan STG_N_Chanx STG_N_Fettas STG_N_Boba STG_N_Hellas STG_N_UtilityUnit1X-5
+		}
+
+		transport = {
+			STG_N_TransportUnitD-56-1
+		}
+	}
+
+	ship_class_names = {
+		generic = {
+			STG_N_Kollos STG_N_Zero STG_N_Alpha STG_N_Kellan STG_N_Kella STG_N_Gamma
+			STG_N_Korgan STG_N_Chanx STG_N_Fettas
+		}
+	}
+
+	fleet_names = {
+		sequential_name = STG_MEDUSAN_GROUP
+	}
+
+	army_names = {
+		machine_assault_1 = {
+			sequential_name = STG_MEDUSAN_ASSAULTAUXILIARY
+		}
+
+		machine_defense = {
+			sequential_name = STG_MEDUSAN_DEFENSEAUXILIARY
+		}
+
+		defense_army = {
+			sequential_name = STG_MEDUSAN_PLANETARYDEFENSEAUXILIARY
+		}
+
+		assault_army = {
+			sequential_name = STG_MEDUSAN_EXPEDITIONARYAUXILIARY
+		}
+
+		slave_army = {
+			sequential_name = STG_MEDUSAN_LABORAUXILIARY
+		}
+
+		clone_army = {
+			sequential_name = STG_MEDUSAN_REPLICATEAUXILIARY
+		}
+
+		robotic_army = {
+			sequential_name = STG_MEDUSAN_AUTOMATEDAUXILIARY
+		}
+
+		psionic_army = {
+			sequential_name = STG_MEDUSAN_ADEPTAUXILIARY
+		}
+
+		xenomorph_army = {
+			sequential_name = STG_MEDUSAN_XENOMORPHAUXILIARY
+		}
+
+		gene_warrior_army = {
+			sequential_name = STG_MEDUSAN_AUGMENTEDAUXILIARY
+		}
+
+		occupation_army = {
+			sequential_name = STG_MEDUSAN_OCCUPATIONAUXILIARY
+		}
+
+		robotic_defense_army = {
+			sequential_name = STG_MEDUSAN_AUTOMATEDDEFENSEAUXILIARY
+		}
+
+		industrial_army = {
+			sequential_name = STG_MEDUSAN_INDUSTRIALAUXILIARY
+		}
+
+		primitive_army = {
+			sequential_name = STG_MEDUSAN_MILITIA
+		}
+	}
+
+	planet_names = {
+		generic = {
+			names = {
+				STG_N_Kollos STG_N_Zero STG_N_Alpha STG_N_Kellan STG_N_Kella STG_N_Gamma
+				STG_N_Korgan STG_N_Chanx STG_N_Fettas STG_N_Boba STG_N_Hellas STG_N_Holla
+				STG_N_Pessi STG_N_Dannan STG_N_Tollas STG_N_Tollom STG_N_Yollo STG_N_Jrmma
+				STG_N_Jennon STG_N_Rusoo STG_N_Lorrom STG_N_Lerrel STG_N_Omicron STG_N_Fortana
+				STG_N_Pollimin STG_N_Firren STG_N_Carimal STG_N_Mehrnana STG_N_Finton
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			weight = 100
+
+			first_names_male = {
+				STG_N_Kollos STG_N_Zero STG_N_Alpha STG_N_Kellan STG_N_Kella STG_N_Gamma
+				STG_N_Korgan STG_N_Chanx STG_N_Fettas STG_N_Boba STG_N_Hellas STG_N_Holla
+				STG_N_Pessi STG_N_Dannan STG_N_Tollas
+			}
+
+			first_names_female = {
+				STG_N_Tollom STG_N_Yollo STG_N_Jrmma STG_N_Jennon STG_N_Rusoo STG_N_Lorrom
+				STG_N_Lerrel STG_N_Omicron STG_N_Fortana STG_N_Pollimin STG_N_Firren STG_N_Carimal
+				STG_N_Mehrnana STG_N_Finton STG_N_Visalayan
+			}
+
+			second_names = {
+				STG_N_Kollos STG_N_Zero STG_N_Alpha STG_N_Kellan STG_N_Kella STG_N_Gamma
+				STG_N_Korgan STG_N_Chanx STG_N_Fettas STG_N_Boba STG_N_Hellas STG_N_Holla
+				STG_N_Pessi STG_N_Dannan STG_N_Tollas STG_N_Tollom STG_N_Yollo STG_N_Jrmma
+				STG_N_Jennon STG_N_Rusoo STG_N_Lorrom STG_N_Lerrel STG_N_Omicron STG_N_Fortana
+			}
+		}
+	}
+}

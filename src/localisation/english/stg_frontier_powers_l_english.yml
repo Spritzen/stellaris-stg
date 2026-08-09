@@ -1,0 +1,93 @@
+﻿l_english:
+
+# Star Trek Galaxies — the eight frontier powers.
+# Empire, species and home-system strings for
+# src/prescripted_countries/stg_frontier_powers.txt. Ship and character name
+# tokens live in stg_names_l_english.yml with the other fourteen.
+
+ STG_EMPIRE_caitian:0 "Caitian Union"
+ STG_adjective_caitian:0 "Caitian"
+ STG_ship_prefix_caitian:0 "CUV"
+ STG_species_name_caitian:0 "Caitian"
+ STG_species_plural_caitian:0 "Caitians"
+ STG_species_adjective_caitian:0 "Caitian"
+ STG_planet_name_caitian:0 "Cait"
+ STG_system_name_caitian:0 "Ferasa"
+ STG_ruler_name_caitian:0 "Shreleen"
+
+
+ STG_EMPIRE_xindi:0 "Xindi Council"
+ STG_adjective_xindi:0 "Xindi"
+ STG_ship_prefix_xindi:0 "XCV"
+ STG_species_name_xindi:0 "Xindi"
+ STG_species_plural_xindi:0 "Xindi"
+ STG_species_adjective_xindi:0 "Xindi"
+ STG_planet_name_xindi:0 "Xindus"
+ STG_system_name_xindi:0 "Azati"
+ STG_ruler_name_xindi:0 "Degra"
+
+
+ STG_EMPIRE_suliban:0 "Suliban Cabal"
+ STG_adjective_suliban:0 "Suliban"
+ STG_ship_prefix_suliban:0 "SCV"
+ STG_species_name_suliban:0 "Suliban"
+ STG_species_plural_suliban:0 "Suliban"
+ STG_species_adjective_suliban:0 "Suliban"
+ STG_planet_name_suliban:0 "Tandar"
+ STG_system_name_suliban:0 "Tandar"
+ STG_ruler_name_suliban:0 "Silik"
+
+
+ STG_EMPIRE_yridian:0 "Yridian League"
+ STG_adjective_yridian:0 "Yridian"
+ STG_ship_prefix_yridian:0 "YLV"
+ STG_species_name_yridian:0 "Yridian"
+ STG_species_plural_yridian:0 "Yridians"
+ STG_species_adjective_yridian:0 "Yridian"
+ STG_planet_name_yridian:0 "Yridia"
+ STG_system_name_yridian:0 "Yridia"
+ STG_ruler_name_yridian:0 "Jaglom"
+
+
+ STG_EMPIRE_krenim:0 "Krenim Imperium"
+ STG_adjective_krenim:0 "Krenim"
+ STG_ship_prefix_krenim:0 "KIV"
+ STG_species_name_krenim:0 "Krenim"
+ STG_species_plural_krenim:0 "Krenim"
+ STG_species_adjective_krenim:0 "Krenim"
+ STG_planet_name_krenim:0 "Kyana Prime"
+ STG_system_name_krenim:0 "Kyana"
+ STG_ruler_name_krenim:0 "Annorax"
+
+
+ STG_EMPIRE_malon:0 "Malon Sanctity"
+ STG_adjective_malon:0 "Malon"
+ STG_ship_prefix_malon:0 "MEV"
+ STG_species_name_malon:0 "Malon"
+ STG_species_plural_malon:0 "Malon"
+ STG_species_adjective_malon:0 "Malon"
+ STG_planet_name_malon:0 "Malon Prime"
+ STG_system_name_malon:0 "Malon"
+ STG_ruler_name_malon:0 "Emck"
+
+
+ STG_EMPIRE_vidiian:0 "Vidiian Sodality"
+ STG_adjective_vidiian:0 "Vidiian"
+ STG_ship_prefix_vidiian:0 "VSV"
+ STG_species_name_vidiian:0 "Vidiian"
+ STG_species_plural_vidiian:0 "Vidiians"
+ STG_species_adjective_vidiian:0 "Vidiian"
+ STG_planet_name_vidiian:0 "Vidiia"
+ STG_system_name_vidiian:0 "Vidiia"
+ STG_ruler_name_vidiian:0 "Danara"
+
+
+ STG_EMPIRE_terran:0 "Terran Empire"
+ STG_adjective_terran:0 "Terran"
+ STG_ship_prefix_terran:0 "ISS"
+ STG_species_name_terran:0 "Terran"
+ STG_species_plural_terran:0 "Terrans"
+ STG_species_adjective_terran:0 "Terran"
+ STG_planet_name_terran:0 "Earth"
+ STG_system_name_terran:0 "Sol"
+ STG_ruler_name_terran:0 "Hoshi Sato"

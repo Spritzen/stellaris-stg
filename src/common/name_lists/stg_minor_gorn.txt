@@ -1,0 +1,166 @@
+﻿# Gorn name list, for the AI-only minor powers that use it.
+#
+# CONVERTED from .source/688086068/common/name_lists/Gorn.txt: the tokens are
+# STNH's, resolved through STNH's own localisation and re-keyed as STG_N_. The
+# ship-size buckets are rebuilt for VANILLA's ladder -- STNH's file buckets by
+# its own (saber, sovereign, steamrunner) and those keys mean nothing here.
+#
+# See .docs/decisions/19-stnh-minor-powers-as-ai-empires.md.
+
+STG_GORN = {
+	category = "Humanoid"
+	randomized = no
+
+	ship_names = {
+		generic = {
+			STG_N_Vishap STG_N_Kkethess STG_N_Naga STG_N_Tuatara STG_N_Draguas STG_N_Zilant
+			STG_N_Varanus STG_N_Balaur STG_N_Cuelebre STG_N_Kulshedra STG_N_Coca STG_N_Slibinas
+			STG_N_Drakon STG_N_Evren STG_N_Dreq STG_N_Bolla STG_N_VereCelen STG_N_Zburator
+			STG_N_Hydra STG_N_Makar STG_N_Neak STG_N_Imoogi STG_N_Bakunawa STG_N_Vibria
+			STG_N_Wyvern STG_N_Bisterne STG_N_Azazek STG_N_AzhiDahaka STG_N_Qinglong STG_N_Fafnir
+			STG_N_Gorynych STG_N_Guivres STG_N_Jormungandr STG_N_Kur STG_N_Illuyankas STG_N_Lagarfljotsormurinn
+			STG_N_Ladon STG_N_Ikuchi STG_N_Leviathan STG_N_Lotan STG_N_Sirrush STG_N_Nidhogg
+			STG_N_Ouroboros STG_N_Orochi STG_N_Ryujin STG_N_Sarkany STG_N_Tarasque STG_N_Thevetat
+			STG_N_Tiamat STG_N_Abzu STG_N_Thordak STG_N_Umbrasyl STG_N_Raishan STG_N_Amaru
+			STG_N_Brimscythe STG_N_Voragul STG_N_Vritra STG_N_Typhon STG_N_Alduin STG_N_Exeron
+		}
+
+		corvette = {
+			STG_N_Slibinas STG_N_Drakon STG_N_Evren STG_N_Dreq STG_N_Bolla
+		}
+
+		destroyer = {
+			STG_N_VereCelen STG_N_Zburator STG_N_Hydra STG_N_Makar STG_N_Neak
+		}
+
+		cruiser = {
+			STG_N_Imoogi STG_N_Bakunawa STG_N_Vibria STG_N_Wyvern STG_N_Bisterne
+		}
+
+		battleship = {
+			STG_N_Azazek STG_N_AzhiDahaka STG_N_Qinglong STG_N_Fafnir STG_N_Gorynych
+		}
+
+		titan = {
+			STG_N_Guivres STG_N_Jormungandr STG_N_Kur STG_N_Illuyankas
+		}
+
+		science = {
+			STG_N_Vishap STG_N_Kkethess STG_N_Naga STG_N_Tuatara STG_N_Draguas STG_N_Zilant
+		}
+
+		colonizer = {
+			STG_N_Vishap STG_N_Kkethess STG_N_Naga STG_N_Tuatara STG_N_Draguas
+		}
+
+		constructor = {
+			STG_N_Varanus STG_N_Balaur STG_N_Cuelebre STG_N_Kulshedra STG_N_Coca
+		}
+	}
+
+	ship_class_names = {
+		generic = {
+			STG_N_Vishap STG_N_Kkethess STG_N_Naga STG_N_Tuatara STG_N_Draguas STG_N_Zilant
+			STG_N_Varanus STG_N_Balaur STG_N_Cuelebre
+		}
+	}
+
+	fleet_names = {
+		sequential_name = STG_GORN_GROUP
+	}
+
+	army_names = {
+		machine_assault_1 = {
+			sequential_name = STG_GORN_ASSAULTAUXILIARY
+		}
+
+		machine_defense = {
+			sequential_name = STG_GORN_DEFENSEAUXILIARY
+		}
+
+		defense_army = {
+			sequential_name = STG_GORN_PLANETARYDEFENSEAUXILIARY
+		}
+
+		assault_army = {
+			sequential_name = STG_GORN_EXPEDITIONARYAUXILIARY
+		}
+
+		slave_army = {
+			sequential_name = STG_GORN_LABORAUXILIARY
+		}
+
+		clone_army = {
+			sequential_name = STG_GORN_REPLICATEAUXILIARY
+		}
+
+		robotic_army = {
+			sequential_name = STG_GORN_AUTOMATEDAUXILIARY
+		}
+
+		psionic_army = {
+			sequential_name = STG_GORN_ADEPTAUXILIARY
+		}
+
+		xenomorph_army = {
+			sequential_name = STG_GORN_XENOMORPHAUXILIARY
+		}
+
+		gene_warrior_army = {
+			sequential_name = STG_GORN_AUGMENTEDAUXILIARY
+		}
+
+		occupation_army = {
+			sequential_name = STG_GORN_OCCUPATIONAUXILIARY
+		}
+
+		robotic_defense_army = {
+			sequential_name = STG_GORN_AUTOMATEDDEFENSEAUXILIARY
+		}
+
+		industrial_army = {
+			sequential_name = STG_GORN_INDUSTRIALAUXILIARY
+		}
+
+		primitive_army = {
+			sequential_name = STG_GORN_MILITIA
+		}
+	}
+
+	planet_names = {
+		generic = {
+			names = {
+				STG_N_Vishap STG_N_Kkethess STG_N_Naga STG_N_Tuatara STG_N_Draguas STG_N_Zilant
+				STG_N_Varanus STG_N_Balaur STG_N_Cuelebre STG_N_Kulshedra STG_N_Coca STG_N_Slibinas
+				STG_N_Drakon STG_N_Evren STG_N_Dreq STG_N_Bolla STG_N_VereCelen STG_N_Zburator
+				STG_N_Makar STG_N_Neak STG_N_Imoogi STG_N_Bakunawa STG_N_Vibria STG_N_Wyvern
+				STG_N_Bisterne STG_N_Azazek STG_N_AzhiDahaka STG_N_Qinglong STG_N_Fafnir
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			weight = 100
+
+			first_names_male = {
+				STG_N_Ssslaa STG_N_Dasuzzan STG_N_Zhoyah STG_N_Ssnerd STG_N_Kan STG_N_Xeetar
+				STG_N_Feerozs STG_N_Graand STG_N_Hedrees STG_N_Sogirz STG_N_Morsiget STG_N_Hemal
+				STG_N_Stathis STG_N_Gadaar STG_N_Ksallk STG_N_Seezaar
+			}
+
+			first_names_female = {
+				STG_N_Xeelath STG_N_Teelet STG_N_Azakazs STG_N_Staalet STG_N_Masandas STG_N_Ssleerith
+				STG_N_Lerayith STG_N_Hesakazs STG_N_Ezayak STG_N_Fidin STG_N_Bazin STG_N_Trakazs
+				STG_N_Skaachat STG_N_Xar STG_N_Sloth STG_N_Arijog STG_N_Iksytish
+			}
+
+			second_names = {
+				STG_N_Ssslaa STG_N_Dasuzzan STG_N_Zhoyah STG_N_Ssnerd STG_N_Kan STG_N_Xeetar
+				STG_N_Feerozs STG_N_Graand STG_N_Hedrees STG_N_Sogirz STG_N_Morsiget STG_N_Hemal
+				STG_N_Stathis STG_N_Gadaar STG_N_Ksallk STG_N_Seezaar STG_N_Xeelath STG_N_Teelet
+				STG_N_Azakazs STG_N_Staalet STG_N_Masandas STG_N_Ssleerith STG_N_Lerayith STG_N_Hesakazs
+			}
+		}
+	}
+}

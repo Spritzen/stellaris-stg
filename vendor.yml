@@ -1,0 +1,2869 @@
+# Star Trek Galaxies — vendoring manifest
+#
+# The source of truth for everything vendored. `make vendor` replays this file
+# to produce the mod tree; nothing under the generated tree is ever hand-edited.
+# See .docs/architecture/vendored-merge.md (architecture), §3 (harvest order) and §4
+# (conflict register) for the reasoning behind every choice below.
+#
+# Rules this file encodes:
+#   * Sources apply in listed order. Later sources overwrite earlier ones on
+#     identical paths — a load order resolved at build time, so we can see it.
+#   * `src/` is applied after everything here and always wins. It is not a
+#     source; tools/vendor.py overlays it unconditionally.
+#   * Root-level files in a source are NEVER vendored (descriptor.mod,
+#     thumbnails, licences, changelogs — and, while Kammarheit was still in the
+#     harvest, its dead songs.asset, which referenced .ogg files the mod did not
+#     ship). Only directories are harvested.
+#
+# Fields per source:
+#   id             Steam Workshop ID; the directory under source_root.
+#   name           Human name, for provenance.md and log output.
+#   zip            Source ships as an archive; unpack it and treat the archive
+#                  root as the mod root.
+#   include        If present, take ONLY these path prefixes.
+#   exclude        Glob patterns dropped from this source.
+#   additive_only  `yes` — skip any path an earlier source already claims, for
+#                  the whole source (STNH; the rule is .docs/architecture/stnh-art.md). A LIST of
+#                  path prefixes scopes it, for a source that must beat an
+#                  earlier one somewhere and lose to it elsewhere — the
+#                  shipsets' `flags`, where STNH stays the flag source.
+
+version: 1
+
+# Where `make vendor` reads the source mods FROM: our own pinned snapshot, not
+# Steam's directory. `/workshop` changes whenever a mod author publishes and
+# vanishes if we unsubscribe, so the build must not depend on it directly.
+# `make sources-sync` is the only thing that copies one to the other, and
+# `make sources-status` / `make sources-diff` show the gap first.
+# See tools/sources.py and .docs/decisions/09-source-snapshot.md.
+source_root: .source
+workshop_root: /workshop
+
+# Dropped from every source. Editor and Explorer junk shipped by the Planetary
+# Diversity family — 12 files, two of them contested. Nothing reads them.
+# (.docs/architecture/conflict-register.md, "Explicit excludes")
+#
+# The extension list below is the clutter pass's junk tier
+# (.docs/decisions/45-clutter-pass.md, phase 1). These are not a reachability
+# question and `make clutter` is deliberately not asked to answer one: they are
+# authoring by-products that name no Stellaris format at all. Vanilla ships the
+# same class itself — 99 `.editordata`, 6 `.bak`, 2 `.ods` — which is what
+# makes it a category rather than a judgement about one mod.
+global_excludes:
+  - "**/desktop.ini"
+  - "**/Thumbs.db"
+  - "**/*.psd"
+  - "**/*.bak"        # editor backups, incl. two `*.gfx.bak` — 3 files
+  - "**/*.wip"        # UIOD's interface/wip/ work-in-progress .gui — 3
+  - "**/*.wavorig"    # STNH's pre-conversion audio, beside its .wav — 2
+  - "**/*.pdn"        # Paint.NET source art — 1
+  - "**/*.dcm"        # STNH portrait-tool intermediates — 2
+  # Source art left beside its export. Each of the three has a .dds twin at the
+  # same path, and it is the .dds that every declaration names by path — 1, 7
+  # and 19 references respectively, none to the .png. Shipped by all 22
+  # Walshicus shipsets through their shared texture directory, so this is one
+  # rule rather than 22 excludes.
+  - "gfx/models/ships/stnc_shipset_shared/textures/*.png"
+  # Nine non-English localisation trees, 235 files and 3.8 MB, plus the loose
+  # per-language files at localisation/ root and in localisation/replace/.
+  # Not unreachable — deliberate upstream content STG has no use for. STG is
+  # personal and never published (.docs/planning/scope.md) and is played in English, so
+  # every one of these is a file the engine parses and then never reads a key
+  # from. This is a taste call in the shape of decision 11's, taken explicitly
+  # rather than swept: see .docs/decisions/45-clutter-pass.md, phase 3.
+  #
+  # Both forms are needed. The directory glob catches the four files whose
+  # names do not carry the tag (`pd_uniques_l_spanish..yml`,
+  # `..._l_vanilla_overwrites_french.yml`, one `_l_chinese` inside
+  # simp_chinese/); the filename glob catches the 38 that live at
+  # localisation/ root and under replace/, where no directory names a language.
+  - "localisation/braz_por/**"
+  - "localisation/french/**"
+  - "localisation/german/**"
+  - "localisation/japanese/**"
+  - "localisation/korean/**"
+  - "localisation/polish/**"
+  - "localisation/russian/**"
+  - "localisation/simp_chinese/**"
+  - "localisation/spanish/**"
+  - "**/*_l_braz_por.yml"
+  - "**/*_l_french.yml"
+  - "**/*_l_german.yml"
+  - "**/*_l_japanese.yml"
+  - "**/*_l_korean.yml"
+  - "**/*_l_polish.yml"
+  - "**/*_l_russian.yml"
+  - "**/*_l_simp_chinese.yml"
+  - "**/*_l_spanish.yml"
+
+# Files the reachability closure proves nothing names, which it is nonetheless
+# NOT allowed to remove. Every entry needs a correctness argument — why the
+# engine reaches this file by a route `make clutter` cannot see — and never a
+# cost estimate. An ack justified by "it's only load time" is what
+# dangling_identifier_ack cost: 439 errors, 21.8% of a run's error.log, behind
+# an estimate nobody revisited (decision 32). If the fix is cheap, take the fix.
+clutter_keep: []
+
+# Vendored files that shadow a vanilla file and drop a definition, where the
+# drop has been checked and is fine. tools/validate.py's vanilla-regression
+# check (decision 08) warns about every one of these otherwise. Anything NOT
+# listed here is an unreviewed regression -- go and look at it.
+vanilla_regression_ack:
+  # Vanilla defines avian_hair_1 / molluscoid_hair_1 in several clothes files at
+  # once; STNH's copies drop it, but the vanilla avian_* and molluscoid_*
+  # clothes files still define it and we don't shadow those.
+  - gfx/portraits/asset_selectors/humanoid_02_male_clothes_01.txt
+  - gfx/portraits/asset_selectors/humanoid_03_male_clothes_01.txt
+  - gfx/portraits/asset_selectors/humanoid_04_clothes_01.txt
+  - gfx/portraits/asset_selectors/humanoid_05_female_clothes_01.txt
+  - gfx/portraits/asset_selectors/humanoid_05_male_clothes_01.txt
+  # STNH comments out every vanilla song and main theme, replacing the Stellaris
+  # soundtrack with its own Trek one. That is on-theme and deliberate, and the
+  # Trek tracks plus Extended Soundtrack still play. (Kammarheit and Apocryphos
+  # were also playing when this was written; both dropped 2026-08-02, below.)
+  # Restoring the vanilla songs means an src/ copy of these three files.
+  - music/songs.txt
+  - music/maintheme2.txt
+  - music/maintheme3.txt
+
+# ── Cross-reference check acknowledgements ───────────────────────────────────
+# Three lists, all read by tools/validate.py, all the same idea as
+# vanilla_regression_ack above: a known and understood case that would
+# otherwise keep a check permanently red. A check that cannot be silenced for a
+# case someone has actually looked at gets ignored wholesale, which is worse
+# than not having the check. Anything NOT listed is a new finding.
+
+# Names the vendored STNH art references that nothing defines.
+#
+# dangling_identifier_ack: GONE, and deliberately empty rather than deleted.
+#
+# It held 33 species classes -- every key STNH's master clothes selectors gate a
+# wardrobe branch on and STG did not declare. The reasoning for acking them was
+# that declaring empty classes "would create species that appear nowhere and
+# have to be rewritten in Phase 2", with the cost scored as load-time only.
+#
+# The 2026-08-07 live run priced that properly: 439 records, 22% of error.log,
+# and the cost is NOT confined to load time -- a species whose class does not
+# resolve falls through to the selector's `default`, which is human civilian
+# clothing. The ack made a silent defect permanently silent, which is what
+# .docs/validation/acks.md warns an ack does.
+#
+# All 34 are now declared as stubs in src/common/species_classes/, four of them
+# by correcting a near miss of our own (DELT->DEL, ELAU->ELA, MONE->MON,
+# PARA->PAR -- decision 20 again). The list stays here, empty, because the next
+# reader needs to find this note rather than wonder why there is no ack.
+# See .docs/decisions/32-declare-stub-species-classes.md.
+dangling_identifier_ack: []
+
+# Prescripted empires whose species class is named by no line of the class-gated
+# clothes selector their portraits use, and where that is CORRECT.
+# See .docs/decisions/20-minor-power-species-class-keys.md and
+# check_portrait_clothes_selectors in tools/validate.py.
+#
+# All four wear human art. The master selector's `default` IS human civilian
+# clothing, so falling through to it produces exactly the right result and
+# declaring a class for them would change nothing on screen.
+#
+# NOT acked, deliberately, and still reported every run: KRI, MONE, PARA, TNG
+# and VALT. Those five have their own art and no clothing to go with it — a
+# Phase 2 content gap, not a settled exception. Do not silence them here.
+portrait_clothes_ack:
+  - stg_terran_empire            # human art (mirror universe)
+  - stg_minor_confederation_earth  # human art
+  # stg_minor_deltan_union and stg_minor_elaurian_auditorium were removed
+  # 2026-08-07: both were acked as "generic human_02 art" while their real
+  # defect was the decision-20 misspelling, and decision 32's DELT→DEL /
+  # ELAU→ELA rename gave each people the clothing that was already vendored.
+  # The ack outlived the fix and would have hidden a regression.
+
+# Shader effects a vendored mesh names that no .shader file declares.
+# Engine built-ins are allowed automatically (validate.py takes them from what
+# vanilla itself references but never declares — "Collision" and friends), so a
+# name here is a genuine dangling reference in a source mod.
+dangling_shader_ack:
+  # A typo in STNH's own gfx/models/ships/borg_01/borg_01_all_ships.gfx:96.
+  # Vanilla declares PdxMeshAlphaAdditiveAnimateUVNoDissolve; there is no "123"
+  # variant in vanilla 4.4 OR in STNH's own gfx/FX/pdxmesh.shader, so this has
+  # never resolved for anyone. One material on one Borg mesh. Not ours to fix,
+  # and not worth an src/ override of a 10 MB .gfx to correct one string.
+  - PdxMeshAlphaAdditiveAnimateUVNoDissolve123
+
+# Meshes and particles a vendored file names that NOTHING declares -- not the
+# merged tree, not vanilla, not the source mod's own .source/ snapshot. Read by
+# tools/validate.py's check_dangling_art_references.
+#
+# Unlike the three lists above these are not ours to fix and not fixable by
+# vendoring differently: the declaration does not exist anywhere to vendor. Each
+# one is a source mod referencing art it never shipped, which is a bug in that
+# mod. The cost is one error.log record per name, at load, and the effect it
+# drives does not play.
+dangling_art_ack:
+  # ── FIVE ENTRIES REMOVED 2026-08-07, because they had stopped suppressing
+  # anything. dominion_01_base_mesh, cardassian_01_orbital_station_mesh,
+  # voth_01_sovereign_coreA_mesh, talaxian_particle_fountain_mesh and
+  # klingon_shipyard_muesum_mesh were acked when decision 18's prune stranded
+  # them; decision 24 then REDECLARED all five in
+  # src/gfx/models/ships/stg_stnh_restored_station_meshes.gfx and nobody
+  # deleted the ack. Verified by removing each entry and re-running the check:
+  # the findings are identical either way. This is the failure mode .docs/validation/acks.md
+  # names — an ack entry stays silent forever, including after its fix lands.
+  #
+  # Starbase Extended references a toxoid ship-light particle in its toxoid
+  # starbase entities (51 sites in _starbase_entities_SBX_3_0_toxoid.asset).
+  # There is no toxoid_01_ship_light_effect in vanilla 4.4, in SBX's own
+  # snapshot, or in any other source -- SBX appears to have copied the humanoid
+  # file and renamed the prefix. The starbase draws; only its window lights do
+  # not. Same for the two ion-core effects, one site each.
+  - toxoid_01_ship_light_effect
+  - toxoid_01_ion_core_effect
+  - aquatic_01_ion_core_effect
+  # ASB Ironman names muzzle-bullet particles for four weapon families it does
+  # not ship a definition for. Its own gfx/particles/ has the corresponding
+  # _muzzle assets but no *_muzzle_bullets_effect. One reference each.
+  - auto_cannons_small_muzzle_bullets_effect
+  - auto_cannons_medium_muzzle_bullets_effect
+  - auto_cannons_large_muzzle_bullets_effect
+  - ripper_cannons_small_muzzle_bullets_effect
+  - ripper_cannons_medium_muzzle_bullets_effect
+  - ripper_cannons_large_muzzle_bullets_effect
+  - stormfire_cannons_small_muzzle_bullets_effect
+  - stormfire_cannons_medium_muzzle_bullets_effect
+  - stormfire_cannons_large_muzzle_bullets_effect
+  - nanite_cannons_small_muzzle_bullets_effect
+  - nanite_cannons_medium_muzzle_bullets_effect
+  - nanite_cannons_large_muzzle_bullets_effect
+  # ASB's arc emitter names a flash and a trail particle it never declares.
+  - arc_emitter_flash_particle
+  - arc_emitter_trail_particle
+  # STNH declares fluidic_rift_effect_particle only in its copy of
+  # gfx/particles/_projectiles_particles.gfx, which is EXCLUDED above because it
+  # is a 3.12-era shadow of a vanilla 4.4 file. One reference; taking the whole
+  # file back to fix it would trade one record for decision 08's failure mode.
+  - fluidic_rift_effect_particle
+
+# Art files a vendored .gfx/.asset names by PATH that are not on disk. Listed =
+# looked at and accepted. check_gfx_file_refs reports everything else; its
+# docstring in tools/validate.py says what it was built to catch.
+gfx_file_ref_ack:
+  # ASB Ironman's neutron-torpedo windup names gfx/particles/Cloud_3.dds at 14
+  # sites. The file is in no source and in no vanilla 4.4 install -- ASB ships
+  # Cloud_1/2/4 and appears to have dropped 3. Two records in the live log
+  # (texturehandler.cpp:66 and :350), long-standing group C, and the torpedo
+  # itself draws; only its cloud puff does not.
+  - gfx/particles/Cloud_3.dds
+
+# Bare texture filenames named by vendored art that exist in no source and in no
+# vanilla install — check_texture_basenames. Listed = looked for in .source/ and
+# in /stellaris and genuinely absent, so no include: can fix them. These are
+# upstream bugs in someone else's art, which decision 12 says we repair rather
+# than drop the mod for — but a texture nobody ships cannot be repaired from
+# here, and the cost is one untextured material, not a missing mesh.
+texture_basename_ack:
+  # Real Space – System Scale's copy of the planetary entities asset names six
+  # Infernals ring-world textures. Vanilla 4.4's own _planetary_entities.asset
+  # names none of them and vanilla ships no file of that name, so these are not
+  # a 4.4 regression the way decision 08's dropped entities were — System Scale
+  # invented references to art it does not carry.
+  - infernal_ring_world_habitat_diffuse.dds
+  - infernal_ring_world_habitat_normal.dds
+  - infernal_ring_world_habitat_specular.dds
+  - infernal_ring_world_tech_diffuse.dds
+  - infernal_ring_world_tech_normal.dds
+  - infernal_ring_world_tech_specular.dds
+  # Two STNH ones, same shape: named by art we keep, shipped by nobody. The USS
+  # Ross' outer deflector and one Borg transparency. Both meshes draw; one
+  # material on each is untextured.
+  - ross_deflector_out_diffuse.dds
+  - transp_green.dds
+
+# Defines set by more than one source. Listed = the last-wins outcome has been
+# checked and is the one we want. This is the check that finds a key two mods
+# contest through differently-named files, which .docs/architecture/conflict-register.md's path register
+# structurally cannot see.
+# Keys contested across mod families, reviewed and accepted. Accepts a bare
+# key, `<database>/<key>`, or `<database>/*` for a whole database.
+key_conflict_ack:
+  # on_actions APPEND, they do not replace. Every mod that wants something to
+  # happen at game start adds its own on_game_start block and all of them fire
+  # -- that is the entire design of the database, and ten sources contesting it
+  # here is ten mods working correctly. Reporting it would train us to ignore
+  # the check.
+  - on_actions/*
+  # common/random_names/base pools APPEND across differently-named files, so a
+  # pool smaller than vanilla's adds to it rather than replacing it. Settled
+  # 2026-08-07 from the sources' own layouts: Real Space ships BOTH
+  # 00_random_names.txt (1,569 star names) and a 15-name patron file with zero
+  # overlap, which only makes sense if the second adds to the first; YAGEM's 60
+  # asteroid prefixes likewise share none of the 136 already there.
+  # See .docs/decisions/44-random-names-pools-append.md.
+  - random_names/base/*
+
+defines_conflict_ack:
+  # The Real Space family layers on purpose, and its submods must beat the base
+  # — the same reasoning that puts System Scale after Real Space in the harvest
+  # order. `systemscale_` and `shipsinscaling_` both sort after `realspace_`,
+  # so the in-game outcome matches the intended one.
+  - NCamera.SYSTEM_FAR_PLANE_DISTANCE_BASE
+  - NGraphics.SHIP_RANDOM_HEIGHT_OFFSET
+  # UIOD - Extended Topbar overriding its own base mod, as designed. Its file
+  # sorts after UIOD's by name, matching the harvest order.
+  - NInterface.NOTIFICATION_MESSAGE_XPOS
+  #
+  # ── Cinematic Camera beating Real Space - System Scale, chosen 2026-08-07 ──
+  # Restoring Cinematic Camera (see its entry above) IS choosing its camera over
+  # System Scale's: the mod is nothing but these keys, `zzzzz_` sorts last, so
+  # it takes all 17. That is not a defect to fix, it is what the mod does, and
+  # there is no narrower version of it — patching out the contested keys leaves
+  # three vanilla-owned scalars and nothing else.
+  #
+  # ACKED AS A GROUP, WHICH IS THE WEAKER KIND OF ACK, and it is worth knowing
+  # why it is acceptable here: normally a content comparison beats an ack
+  # because it starts firing again when the two values diverge (decision 29).
+  # These are acked precisely BECAUSE they differ and we want the newer one to
+  # win, so divergence is the intended state and there is nothing for a
+  # comparison to catch. If Cinematic Camera is ever dropped again, delete this
+  # block with it — left behind, it would silence a real conflict with whatever
+  # sets these next.
+  - NCamera.ENTER_SYSTEM_ZOOM_STEP
+  - NCamera.FOCUSED_MAX_PITCH
+  - NCamera.FOCUSED_MIN_PITCH
+  - NCamera.FOCUSED_MIN_ZOOM_BASE
+  - NCamera.FOCUSED_MIN_ZOOM_MULT
+  - NCamera.FOCUSED_PLANET_MIN_ZOOM_MULT
+  - NCamera.FOCUS_START_ZOOM_STEP
+  - NCamera.FOV
+  - NCamera.GALAXY_SHOW_FLEETS_ZOOM
+  - NCamera.LEAVE_SYSTEM_ZOOM_STEP
+  - NCamera.MOUSE_MOVEMENT_TO_START_ROTATION_SQ
+  - NCamera.ROTATION_RADIANS_PER_MOUSE_UNIT
+  - NCamera.SYSTEM_MAX_PITCH
+  - NCamera.SYSTEM_MIN_PITCH
+  - NCamera.SYSTEM_SLIDE_RADIUS_FACTOR
+  - NCamera.ZOOM_STEPS_GALAXY
+  - NCamera.ZOOM_STEPS_SYSTEM_PERCENTAGES
+  #
+  # ── Real Space - System Scale's 8-entry planet scale ramp, kept 2026-08-07 ──
+  # Silences BOTH array-length checks for this key: the engine-fixed-length one
+  # (8 against the un-scriptable NCamera.ZOOM_STEPS_SYSTEM's 7) and the
+  # coherence one (8 against Cinematic Camera's 13 percentages).
+  #
+  # The engine logs `PLANET_SCALE_SYSTEM does not match in size with
+  # ZOOM_STEPS_SYSTEM` once per run, outside the startup window. The 2026-08-07
+  # visual test says the scaling WORKS ANYWAY: planets rescale across the zoom
+  # steps at System Scale's sizes. Vanilla's ramp is 3-4.5x smaller through the
+  # middle of the range, so a fallback to it would be unmistakable in a system
+  # System Scale has enlarged, and it is not what is on screen.
+  #
+  # NOT a cost estimate -- the correctness question was answered in game, which
+  # is the distinction .docs/validation/acks.md draws between an ack that holds and one that
+  # rots. DELETE THIS ENTRY IF SYSTEM SCALE GOES, or if its ramp changes: the
+  # argument is about these eight values, not about the key.
+  # See .docs/decisions/43-planet-scale-system-length.md.
+  - NGraphics.PLANET_SCALE_SYSTEM
+  #
+  # NShip.FLEET_BASE_FORMATION_SCALE and NInterface.NOTIFICATION_MESSAGE_YPOS
+  # WERE HERE AND ARE DELIBERATELY GONE (2026-08-03). Both are set by two
+  # sources to the SAME value — 0.6 and 0 — so neither was ever a conflict, and
+  # check_defines_conflicts now compares values instead of counting setters
+  # (decision 29). Removing them is the safer state, not the laxer one: an ack
+  # would go on saying nothing if a source update made the two values diverge,
+  # where now the check simply starts firing again.
+
+# Order-sensitive databases fed by more than one source, reviewed and accepted.
+# These five carry meaning in the ORDER their entries are declared across the
+# whole directory, so two sources contributing files interleave into an order
+# neither chose (decision 29). Listed by directory, e.g. `common/ethics`.
+order_sensitive_ack:
+  # Looked at 2026-08-08, which is what this check asks for, and the interleaving
+  # it warns about does not happen here. Sorted, the directory reads: vanilla's
+  # seven 00_* files, then PD - Unique Worlds' one, then Starbase Extended's two
+  # in their own order. Every source's entries stay CONTIGUOUS and each keeps its
+  # internal order — the merged sequence is the harvest order, not a shuffle.
+  #
+  # What order does in this database is the construction list: modules group by
+  # `category` (a bare loc key with no declaring database) and list in
+  # declaration order within the group. PD contributes 3 waystation_* modules,
+  # all sm_utility_cat; SBX contributes 24, all sm_defense/economy/naval_support/
+  # research_cat. NO CATEGORY IS SHARED, so no list exists in which one source's
+  # entries are ordered against the other's.
+  #
+  # Not this check's business, recorded so the next reader does not re-derive it:
+  # SBX also redefines seven vanilla keys (gun_battery, missile_battery,
+  # hangar_bay, detection_array and three orbital_ring_*). starbase_modules is
+  # LIOS, sbx_* sorts after 00_*, so SBX wins — which is what SBX intends
+  # (decision 39). That is check_key_conflicts' question, not this one's.
+  # See .docs/decisions/56-starbase-modules-order.md.
+  - common/starbase_modules
+
+# Entity names declared twice with bodies that differ, reviewed and accepted.
+# Read by tools/validate.py's check_duplicate_entities. Keyed by entity name.
+#
+# THE LIST WAS MISSING UNTIL 2026-08-07 while the check that reads it shipped, so
+# its 13 findings had no triage path at all. All 13 were triaged on 2026-08-08:
+# six suppress themselves by content (one body is vanilla's own and the other is
+# a live 4.x mod's deliberate override of it), six are repaired by the renames in
+# `patches:`, and this is the one that is genuinely inert.
+# See .docs/decisions/53-duplicate-entity-triage.md.
+duplicate_entity_ack:
+  # PD - More Arcologies' _pd_gestalt_arcologies.asset and PD's own
+  # _pd_ma_hive_arcologies.asset both declare it, pointing at
+  # pd_machine_planet_shield_effect_mesh and pd_ma_machine_planet_shield_effect_mesh
+  # respectively. THE WINNER CANNOT CHANGE WHAT RENDERS: both meshes name the same
+  # planet_shield_effect.mesh with the same PdxMeshAlphaAdditiveAnimateUV shader,
+  # and their two diffuse textures — pd_machine_planet_shield.dds and
+  # pd_ma_machine_planet_shield.dds — are byte-identical (same sha256, 2,097,280
+  # bytes each). Both files also attach it only from their own arcology entities.
+  # A correctness argument, not a cost estimate: there is no visible difference to
+  # decide. Resolving mesh names to their .gfx bodies to prove that automatically
+  # is the indirection decision 35 warns about, and would buy one finding.
+  - pd_machine_planet_shield_effect_entity
+
+# Texture basenames carried by two folders with different content, reviewed and
+# accepted. Read by tools/validate.py's check_duplicate_textures. Keyed by
+# DIRECTORY, not basename: acking one side silences every pair it appears in.
+#
+# The Walshicus shared-texture library is acked on .docs/architecture/conflict-register.md's review, which
+# priced these 143 records a run and called last-wins correct — the 22 Walshicus
+# shipsets are one author's family sharing a `stnc_shipset_shared/` vocabulary,
+# and where it meets STNH's `shared_assets/` the two files are variants of one
+# texture under one name, not unrelated art colliding.
+#
+# What the check adds on top of that review, and why it is not redundant with
+# it: the 2026-08-07 measurement says ALL 142 pairs differ in content, so
+# "last-wins is correct" rests on the two variants looking alike, which no
+# static check can confirm and only eyes on a live run can. It is a taste call
+# that has been made, not a correctness argument that has been proved. Left
+# acked rather than reopened; if Federation hulls ever look wrong across two
+# shipsets, this is the first place to look.
+#
+# The federation/ vs starfleet_tng/ pairs are acked BY MEASUREMENT, 2026-08-08,
+# which is a stronger footing than the library above stands on: decoded and
+# compared pixel by pixel, all five colliding files are the SAME ARTWORK on both
+# sides, differing only in compression. Mean absolute difference at 64×64, against
+# a control of 23–27% for two textures that genuinely differ:
+#
+#   starfleet_olympic_diffuse.dds          0.001%   1024² raw  vs 1024² DXT1
+#   starfleet_olympic_specular.dds         0.000%   1024² raw  vs 1024² DXT5
+#   starfleet_galaxy_hull_01_specular.dds  0.000%   1024² raw  vs 1024² DXT5
+#   ESD-Lights1_normal.dds                 0.044%    256×16    both
+#   starfleet_olympic_normal.dds           1.164%   1024² raw  vs 2048² DXT5
+#
+# Both authors cut these from the same source art, and the filenames say so —
+# each names the ship class it belongs to on both sides. So whichever copy the
+# engine keeps, both shipsets draw the same picture; the only real consequence is
+# that if STNH's 1024² Olympic normal map wins, the Walshicus cruiser's is half
+# resolution. A sharpness difference, not a ship wearing the wrong skin.
+#
+# Acked on the STNH side only, so a NEW collision against the live Walshicus
+# Federation shipset still reports.
+# See .docs/decisions/54-federation-texture-collisions.md.
+duplicate_texture_ack:
+  - gfx/models/ships/stnc_shipset_shared/textures
+  - gfx/models/ships/federation/olympic
+  - gfx/models/ships/federation/galaxy
+  - gfx/models/ships/federation/starbase
+
+# Hull entities missing attach points their ship size's section_slots name,
+# reviewed and accepted. Read by tools/validate.py's check_section_attach_points.
+#
+# Empty, and the baseline is 0: all 66 findings — 22 Walshicus shipsets x 3
+# station entities — are repaired by the patches below rather than acked.
+# See .docs/decisions/35-station-section-attach-points.md.
+section_attach_point_ack: []
+
+# Weapon mounts with no position anywhere, and `clone` blocks that resolve
+# against an entity the engine has not loaded yet. Read by tools/validate.py's
+# check_asset_load_order. Keyed by entity name.
+# Empty: the baseline is 0 (decisions 28 and 30) and any movement is a finding.
+asset_load_order_ack: []
+
+# `@variables` an art file references that nothing declares, which load as
+# `Malformed token` and drop the value they stood for. Read by
+# tools/validate.py's check_asset_variables. Keyed by the `@name`.
+# Empty: decision 31 closed all of them.
+asset_variable_ack: []
+
+# src/ overrides that drop declarations the SOURCE they shadow makes, reviewed
+# and accepted. Read by tools/validate.py's check_src_source_regression.
+# Keyed by the path, e.g. `- gfx/FX/pdxmesh.shader`.
+#
+# Ack sparingly. This exists because one such drop cost Real Space's gas giant
+# rings their shader for five days with nothing reporting it (decision 34). A
+# drop is a real loss unless you can say why the declaration cannot work.
+src_regression_ack:
+  # 37 of Real Space's 41 appended effects. NOT a judgement call about whether
+  # we want them — 36 are the OmniMesh* family, whose four pixel shaders
+  # (PixelOmniMeshShip, PixelOmniMeshED, PixelOmniMeshEDSphere,
+  # PixelOmniMeshWhiteHole) are declared nowhere in vanilla, in Real Space, or
+  # in the merged tree, so they cannot compile wherever they are written. The
+  # 37th, PdxMeshNavigationButtonGate, is the last block of Real Space's file
+  # and is UNTERMINATED upstream — its closing brace is missing — and nothing
+  # references it. The four that resolve are restored in the override.
+  - gfx/FX/pdxmesh.shader
+
+# Files whose `attach = { "slot" = "entity" }` targets do not resolve, reviewed
+# and accepted. Read by tools/validate.py's check_attach_targets. Keyed by the
+# referencing file's path, or by an individual entity name.
+#
+# All four are STNH art whose CONSUMERS live in STNH's common/, which we do not
+# vendor: between them they declare 115 entities and NOT ONE is referenced from
+# anywhere else in the merged tree. Nine of the 23 targets could be recovered
+# from .source/688086068/gfx/models/ships/{romulan,klingon} — and doing so would
+# re-open exactly the collision decision 18 pruned those directories to close,
+# in order to feed art nothing can reach. The other 14 exist in no source at all.
+#
+# KEPT rather than excluded, per decision 12: the Federation attack wings, the
+# Galileo and Delta Flyer shuttles and the Maquis ships are real Trek content
+# with no home YET, and Phase 4 may want them. Re-including the pruned
+# directories is a one-line change if it ever does.
+# See .docs/decisions/37-attach-edges-into-pruned-art.md.
+attach_target_ack:
+  - gfx/models/ships/other/fed_ent_naval_museum.asset
+  - gfx/models/ships/other/rom_naval_museum.asset
+  - gfx/models/ships/federation/federation_fighters.asset
+  - gfx/models/ships/maquis_01/maquis_01_standard_ships.asset
+
+# Prescripted empires whose trait / ethic / portrait findings have been reviewed
+# and are deliberate. Read by tools/validate.py's check_prescripted_empires.
+# Keyed by the empire's top-level name, e.g. `- stg_borg_collective`.
+#
+# Empty on purpose, and it should stay that way: every rule this check applies
+# is one vanilla itself enforces, so a finding here means either the empire
+# breaks or a species silently loses a trait. Ack only after establishing which
+# — the check was calibrated against 21 real findings and produced no false
+# positives.
+prescripted_empire_ack: []
+
+# Name lists whose colony pool offers a name some empire already holds as a
+# capital. Read by tools/validate.py's check_colony_name_collisions.
+# Empty: decision 25 removed the collisions by giving 39 empires real home
+# systems, and a new one means two places in the galaxy share a name.
+colony_name_ack: []
+
+# Prescripted empires whose `initializer` names a solar system initializer that
+# does not exist. Read by tools/validate.py's check_prescripted_initializers.
+# Empty, and it should stay that way: an unresolvable initializer is an empire
+# that spawns nowhere.
+prescripted_initializer_ack: []
+
+# Planet/star class names in solar_system_initializers that resolve to nothing
+# and have been reviewed. Read by tools/validate.py's check_initializer_classes.
+#
+# Ack sparingly: an unresolvable class is what hard-crashed the game on
+# 2026-08-03 (decision 26), and the crash leaves nothing in error.log.
+#
+# These five are Real Space's own, in realspace_special_system_initializers.txt,
+# and are dangling in Real Space's source too — its randomizer lists are all
+# `rl_`-prefixed (rl_blue_stars, rl_red_giant_stars, rl_super_blue_stars), so
+# these five look like the prefix being dropped by hand. Not ours to fix and
+# demonstrably not fatal: they predate the crash and the mod loaded with them
+# for two days. The cost is that those specific Real Space special systems fall
+# back to a default star class rather than the intended one. Left as a source
+# defect rather than patched, because nothing in STG depends on them.
+#
+# The list holds two kinds of entry: a class/belt NAME silences that name
+# everywhere, and an INITIALIZER KEY silences the star-count warning for that
+# one system. The last three below are the second kind — Real Space places two
+# `class = "star"` planets against a one-star class, which vanilla never does
+# in 40 files, but which demonstrably loads. Same verdict as the five above.
+initializer_class_ack:
+  - blue_stars
+  - blue_supergiant
+  - red_giant
+  - yellow_stars
+  - yellow_supergiant
+  - rs_special_init_17
+  - rs_special_init_19
+  - rs_special_init_21
+
+# Initializers allowed to mark a capital without running
+# `generate_empire_home_planet = yes`. Read by tools/validate.py's
+# check_home_planet_generation.
+#
+# Only Sol. Vanilla's sol_system_initializer is the single exception among its
+# nine custom_empire initializers, and five vanilla empires use it and start
+# correctly, so the engine or vanilla's scripting evidently handles Sol by name.
+# The two solsector variants are Real Space's rescaled copies of the same
+# system. The Federation and the mirror Terran Empire are the STG empires that
+# point at it, so they ride on vanilla's own arrangement rather than ours.
+#
+# Nothing else belongs here: shipping a generated home system without the
+# effect is the 2026-08-03 "I do not own my home system" defect, and it logs
+# nothing at all. See .docs/decisions/26-home-system-classes.md.
+home_planet_generation_ack:
+  - sol_system_initializer
+  - sol_system_solsector_large
+  - sol_system_solsector_small
+
+# Mod families whose members override each other on purpose. Read by
+# tools/validate.py's check_key_conflicts: a key contested only WITHIN one
+# family is the family working as designed -- .docs/architecture/conflict-register.md already settles these
+# as "extension wins, record don't merge" -- and is not reported. A key
+# contested ACROSS families still is.
+#
+# Declared rather than inferred. "Planetary Diversity" and "PD - Gaia Worlds"
+# share no usable prefix, and guessing family membership from source names is
+# how you quietly stop reporting a real conflict. Without this, PD's submods
+# alone account for 75 of 88 findings and bury the one that matters.
+#
+# `members:` is required. Without it the family entries are a block sequence
+# nested directly under a mapping key, which is not valid YAML -- and because
+# tools/validate.py reads this block with a regex rather than a parser, nothing
+# noticed for as long as nobody ran `make vendor`. It is checked now:
+# check_manifest_parses() loads vendor.yml the way vendor.py does.
+key_conflict_families:
+  - name: Planetary Diversity
+    members:
+      - Planetary Diversity
+      - PD - Vanilla Replacements
+      - PD - Gaia Worlds
+      - PD - Unique Worlds
+      - PD - Ascension Worlds
+      - PD - More Arcologies
+      - PD - City Sets
+      - PD - Planet View
+  - name: Real Space
+    members:
+      - Real Space 4.0
+      - Real Space - System Scale
+      - Real Space - Ships in Scaling
+  - name: UI Overhaul Dynamic
+    members:
+      - UI Overhaul Dynamic
+      - UIOD - Extended Topbar for DLCs
+      - UIOD - Dark UI
+
+# `reserved:` used to live here — the list of paths vendor.py refused to write,
+# because the mod tree was the repo root and a source shipping `tools/` (a real
+# vanilla game directory as well as ours) would have overwritten the build
+# scripts with game data. Decision 13 moved the tree to stg-build/, so that
+# collision is structurally impossible and the guard was removed rather than
+# kept as a check that can no longer fire. It also un-breaks the case it was
+# guarding: `stg-build/tools/` is now simply the game folder of that name, which
+# a source is entitled to ship. No source in the harvest currently does.
+
+# ── Patches ──────────────────────────────────────────────────────────────────
+#
+# Literal find-and-replace against a generated file, applied by tools/vendor.py
+# after every source AND after src/. THE MECHANISM .docs/architecture/vendored-merge.md rule 1 HAS
+# ALWAYS NAMED and nobody had built until 2026-08-02.
+#
+# WHEN TO USE A PATCH INSTEAD OF AN src/ OVERRIDE. A patch changes named bytes
+# in someone else's file. An src/ override replaces the whole file. Use a patch
+# when the fix is a handful of lines in a large file you have no wish to own --
+# a typo in a 500-line particle asset. Use src/ when you genuinely mean to own
+# the file, as with gfx/FX/pdxmesh.shader.
+#
+# The reason to prefer a patch is how it FAILS. If `from` stops matching, the
+# build STOPS and names the file: the source mod has changed and this fix may no
+# longer be needed or may no longer be right. An src/ copy in that same
+# situation says nothing and quietly keeps shipping our stale version of a file
+# the author has since fixed themselves. `why` is mandatory for the same reason:
+# a patch to someone else's file with no recorded reason is indistinguishable
+# from a bug.
+#
+# `count` asserts how many occurrences to expect; a mismatch fails the build.
+#
+# ── ASB Ironman's 3.x-era .asset files ───────────────────────────────────────
+#
+# All 42 patched errors below are ASB Ironman's, measured from the 2026-08-01
+# run: every `.asset`/parse error in the log except 4 belonging to Starbase
+# Extended. ASB is KEPT -- it is a combat VFX mod and its value survives Phase 3
+# (decision 11) -- but it was last updated against a 3.x Stellaris and 4.4's
+# parser rejects several things it does. A rejected curve or emitter is not just
+# log noise: the affected muzzle, shield-hit and explosion effects fall back or
+# do not play at all, which is the mod's entire purpose.
+#
+# Most of these are not version drift at all -- they are plain typos in ASB's
+# source that 3.x happened to tolerate.
+
+patches:
+
+  # --- ASB typo: "nimation" for "animation", in five files -------------------
+  # Not version drift; the leading 'a' is simply missing. Each file has exactly
+  # one, and the other animation blocks in the same files are spelled correctly.
+  - path: gfx/particles/combat/cannon_shield_hit_effect.asset
+    source: ASB Ironman
+    why: >-
+      ASB typo -- the animation block is spelled "nimation", so 4.4 rejects the
+      token and drops the rest of the effect. One occurrence per file.
+    replace:
+      - from: "\tnimation={"
+        to: "\tanimation={"
+        count: 1
+
+  - path: gfx/particles/combat/kinetic_artillery_shield_hit_effect.asset
+    source: ASB Ironman
+    why: >-
+      ASB typo -- the animation block is spelled "nimation", so 4.4 rejects the
+      token and drops the rest of the effect. One occurrence per file.
+    replace:
+      - from: "\tnimation={"
+        to: "\tanimation={"
+        count: 1
+
+  - path: gfx/particles/combat/adv_kinetic_artillery_shield_hit_effect.asset
+    source: ASB Ironman
+    why: >-
+      ASB typo -- the animation block is spelled "nimation", so 4.4 rejects the
+      token and drops the rest of the effect. One occurrence per file.
+    replace:
+      - from: "\tnimation={"
+        to: "\tanimation={"
+        count: 1
+
+  - path: gfx/particles/combat/neutron_torpedoes_shield_hit_effect.asset
+    source: ASB Ironman
+    why: >-
+      ASB typo -- the animation block is spelled "nimation", so 4.4 rejects the
+      token and drops the rest of the effect. One occurrence per file.
+    replace:
+      - from: "\tnimation={"
+        to: "\tanimation={"
+        count: 1
+
+  - path: gfx/particles/combat/proton_torpedoes_shield_hit_effect.asset
+    source: ASB Ironman
+    why: >-
+      ASB typo -- the animation block is spelled "nimation", so 4.4 rejects the
+      token and drops the rest of the effect. One occurrence per file.
+    replace:
+      - from: "\tnimation={"
+        to: "\tanimation={"
+        count: 1
+
+  # --- 3.x field removed in 4.x: `volume` inside an entity sound block -------
+  # Vanilla 4.4 uses `sound = { soundeffect = "x" }` and never carries a volume
+  # there -- grep confirms zero uses across /stellaris/gfx/models/combat_items/.
+  # Dropping the field leaves the soundeffect intact at its default volume.
+  - path: gfx/models/combat_items/_ballistics_entities_disr.asset
+    source: ASB Ironman
+    why: >-
+      `volume` is not a valid key in a 4.4 entity sound block; vanilla never
+      uses it. 12 disruptor muzzle and distance-fire events, all identical.
+    replace:
+      - from: " volume = 0.2 }"
+        to: " }"
+        count: 12
+
+  # --- 3.x particle emitter fields removed in 4.x ---------------------------
+  # box_emitter_x/y/z still exist in vanilla 4.4 (272 files use them);
+  # box_emitter_yaw, _pitch and _velocity do not exist at all (zero uses).
+  # Removing the lines leaves the box emitter working on its surviving axes.
+  - path: gfx/particles/combat/neutron_torpedoes_hit_effect.asset
+    source: ASB Ironman
+    why: >-
+      box_emitter_yaw and box_emitter_pitch do not exist in 4.4.
+    replace:
+      - from: "\t\tbox_emitter_yaw={ 180.000 90.000 }\r\n"
+        to: ""
+        count: 1
+      - from: "\t\tbox_emitter_pitch={ 0.000 45.000 }\r\n"
+        to: ""
+        count: 1
+
+  - path: gfx/particles/combat/neutron_torpedoes_shield_hit_effect.asset
+    source: ASB Ironman
+    why: >-
+      box_emitter_yaw and box_emitter_pitch do not exist in 4.4.
+    replace:
+      - from: "\t\tbox_emitter_yaw={ 180.000 90.000 }\r\n"
+        to: ""
+        count: 1
+      - from: "\t\tbox_emitter_pitch={ 0.000 45.000 }\r\n"
+        to: ""
+        count: 1
+
+  - path: gfx/particles/combat/proton_torpedoes_hit_effect.asset
+    source: ASB Ironman
+    why: >-
+      box_emitter_yaw and box_emitter_pitch do not exist in 4.4.
+    replace:
+      - from: "\t\tbox_emitter_yaw={ 180.000 90.000 }\r\n"
+        to: ""
+        count: 1
+      - from: "\t\tbox_emitter_pitch={ 0.000 45.000 }\r\n"
+        to: ""
+        count: 1
+
+  - path: gfx/particles/combat/proton_torpedoes_shield_hit_effect.asset
+    source: ASB Ironman
+    why: >-
+      box_emitter_yaw and box_emitter_pitch do not exist in 4.4.
+    replace:
+      - from: "\t\tbox_emitter_yaw={ 180.000 90.000 }\r\n"
+        to: ""
+        count: 1
+      - from: "\t\tbox_emitter_pitch={ 0.000 45.000 }\r\n"
+        to: ""
+        count: 1
+
+  - path: gfx/particles/combat/custom_disruptor_1_hit_effect.asset
+    source: ASB Ironman
+    why: >-
+      box_emitter_velocity does not exist in 4.4.
+    replace:
+      - from: "\t\tbox_emitter_velocity=1000\r\n"
+        to: ""
+        count: 1
+
+  - path: gfx/particles/combat/custom_disruptor_2_hit_effect.asset
+    source: ASB Ironman
+    why: >-
+      box_emitter_velocity does not exist in 4.4.
+    replace:
+      - from: "\t\tbox_emitter_velocity=1000\r\n"
+        to: ""
+        count: 1
+
+  - path: gfx/particles/combat/custom_disruptor_3_hit_effect.asset
+    source: ASB Ironman
+    why: >-
+      box_emitter_velocity does not exist in 4.4.
+    replace:
+      - from: "\t\tbox_emitter_velocity=1000\r\n"
+        to: ""
+        count: 1
+
+  # --- Curve keyframes out of chronological order ---------------------------
+  # A curve={} is a flat list of (time, value) pairs and the engine requires
+  # times to increase: "Timestamps need to be larger than the previous
+  # timestamp". A rejected curve means the property it drives -- alpha, size --
+  # is not animated at all.
+  #
+  # ONE transposed pair, shared verbatim by three files at five sites. Every
+  # other timestamp in the list is already ascending; 0.918 and 0.903 are simply
+  # the wrong way round. Swapping them is the whole fix and invents nothing.
+  - path: gfx/particles/technosphere_explosion.asset
+    source: ASB Ironman
+    why: >-
+      Curve keyframes 0.918 and 0.903 are transposed, so 4.4 rejects the curve.
+      Swapped into ascending order; no values changed.
+    replace:
+      - from: "0.918 0.934 0.903 0.920"
+        to: "0.903 0.920 0.918 0.934"
+        count: 1
+
+  - path: gfx/particles/ships/player_ship_explosion_effect.asset
+    source: ASB Ironman
+    why: >-
+      Same transposed keyframe pair as technosphere_explosion.asset.
+    replace:
+      - from: "0.918 0.934 0.903 0.920"
+        to: "0.903 0.920 0.918 0.934"
+        count: 1
+
+  - path: gfx/particles/ships/habitat_explosion_effect.asset
+    source: ASB Ironman
+    why: >-
+      Same transposed keyframe pair, three times in this file (lines 386, 399,
+      451) -- three separate curves carrying the identical mistake.
+    replace:
+      - from: "0.918 0.934 0.903 0.920"
+        to: "0.903 0.920 0.918 0.934"
+        count: 3
+
+  # --- Malformed curves: odd value count, so the pairs do not close ----------
+  # Unlike the transposition above, these cannot be repaired without a
+  # judgement, and the judgement is recorded rather than hidden.
+  - path: gfx/particles/combat/arc_trail_effect.asset
+    source: ASB Ironman
+    why: >-
+      JUDGEMENT, NOT RECONSTRUCTION. The curve has SEVEN values, so it does not
+      divide into (time, value) pairs at all, and its times read 0.000 0.000
+      1.000. The animation is a 10 ms "grow2" spike, so the intended shape is
+      unambiguous -- rise to 1 and fall back to 0 -- but the midpoint time was
+      typed as 0.000 and a stray eighth value is missing. Rewritten as a
+      symmetric spike, 0.000 0.000 / 0.500 1.000 / 1.000 0.000. Any midpoint in
+      (0,1) works; 0.500 is a choice. Today the curve is rejected outright and
+      the property is not animated at all, so this is strictly better than the
+      status quo -- but change it freely if the effect looks wrong in game.
+    replace:
+      - from: "0.000 0.000 0.000 1.000 1.000 0.000 0.000"
+        to: "0.000 0.000 0.500 1.000 1.000 0.000"
+        count: 1
+
+  - path: gfx/particles/combat/focused_arc_trail_effect.asset
+    source: ASB Ironman
+    why: >-
+      Identical malformed seven-value curve to arc_trail_effect.asset, and the
+      same judgement applies -- see that entry.
+    replace:
+      - from: "0.000 0.000 0.000 1.000 1.000 0.000 0.000"
+        to: "0.000 0.000 0.500 1.000 1.000 0.000"
+        count: 1
+
+  - path: gfx/particles/combat/auto_cannons_small_muzzle_bullets_effect.asset
+    source: ASB Ironman
+    why: >-
+      SUBSTITUTION, NOT RECONSTRUCTION -- the weakest patch here, flagged as
+      such. The curve has FIVE values (1.000 0.706 0.564 0.150 0.000): an odd
+      count that cannot pair, with times descending whichever way you read it.
+      Reversing it does not close the pairs either, so the author's intent is
+      not recoverable. Replaced with a plain 1 -> 0 decay, which is what a muzzle
+      flash alpha does and what the surviving numbers trend towards. The
+      alternative is leaving a curve the engine rejects outright, which animates
+      nothing. If ASB ever fixes this the patch will fail the build and you can
+      simply delete it.
+    replace:
+      - from: "1.000 0.706 0.564 0.150 0.000"
+        to: "0.000 1.000 1.000 0.000"
+        count: 1
+
+  # --- Undefined @ variables -------------------------------------------------
+  # The plasma_thrower muzzle entities scale by @plasmasmallplasmuzzle and
+  # siblings, which ASB never defines anywhere -- so the token is malformed and
+  # the entity gets no scale. The parallel plasma_accelerator entities in the
+  # SAME FILE use @smallplasmuzzle / @mediumplasmuzzle / @largeplasmuzzle, which
+  # ARE defined (1.3 / 3.4 / 4.5). The names are transposed, not missing.
+  - path: gfx/models/combat_items/_ballistics_entities_ap.asset
+    source: ASB Ironman
+    why: >-
+      @plasmasmallplasmuzzle / @plasmamedium... / @plasmalarge... are never
+      defined; the intended variables are @smallplasmuzzle / @mediumplasmuzzle /
+      @largeplasmuzzle, defined at the top of this same file and already used by
+      the parallel plasma_accelerator entities. No values invented.
+    replace:
+      - from: "scale = @plasmasmallplasmuzzle"
+        to: "scale = @smallplasmuzzle"
+        count: 1
+      - from: "scale = @plasmamediumplasmuzzle"
+        to: "scale = @mediumplasmuzzle"
+        count: 1
+      - from: "scale = @plasmalargeplasmuzzle"
+        to: "scale = @largeplasmuzzle"
+        count: 1
+
+  # --- ASB typo: a comment banner missing its leading '#' --------------------
+  - path: gfx/particles/_ap_lasers_particles_alt.gfx
+    source: ASB Ironman
+    why: >-
+      Line 8 reads FIGHTERS######... -- a section banner whose leading '#' was
+      dropped, so "FIGHTERS" parses as a token and takes the rest of the file
+      with it. Restoring the '#' makes the whole line a comment again.
+    replace:
+      - from: "\nFIGHTERS####"
+        to: "\n#FIGHTERS####"
+        count: 1
+
+  # --- 3.x scalar where 4.4 wants a range ------------------------------------
+  - path: sound/ASB_soundeffects.asset
+    source: ASB Ironman
+    why: >-
+      4.4 wants delay_random_offset and playbackrate_random_offset as a { min
+      max } range; ASB gives a bare 0.0. The same file already writes
+      volume_random_offset = { 0.0 0.15 } correctly, so this is an internal
+      inconsistency rather than a deliberate 3.x form. { 0.0 0.0 } preserves
+      the intended meaning exactly -- no random offset.
+    replace:
+      - from: "delay_random_offset = 0.0"
+        to: "delay_random_offset = { 0.0 0.0 }"
+        count: 2
+      - from: "playbackrate_random_offset = 0.0"
+        to: "playbackrate_random_offset = { 0.0 0.0 }"
+        count: 2
+
+  # --- Key valid only on a different projectile type -------------------------
+  - path: gfx/projectiles/ap_missiles.txt
+    source: ASB Ironman
+    why: >-
+      max_duration is valid on projectile_gfx_ballistic in vanilla 4.4 -- 79
+      uses across 10 files -- and on no other projectile type. ASB puts it on a
+      projectile_gfx_missile block, where 4.4 rejects it. Removed; @maxduration
+      is left defined and simply unused, since ASB may reference it again.
+    replace:
+      - from: "\tmax_duration = @maxduration\r\n"
+        to: ""
+        count: 1
+
+  # --- The five-value "grow" curve: 18 sites, 17 files, one mistake ----------
+  # Every one of them reads
+  #
+  #     curve={ 0.100 0.100 0.209 0.400 1.000 }
+  #
+  # inside an animation named "grow" or "grow2". A curve is a flat list of
+  # (time, value) pairs, so this is (0.100, 0.100), (0.209, 0.400), and then a
+  # timestamp of 1.000 whose VALUE WAS NEVER TYPED. 4.4 rejects the whole curve
+  # -- `invalid curve. Expected pairs of timestamps and values`, 18 records in
+  # the 2026-08-02 log -- and the muzzle flash it drives does not scale at all.
+  #
+  # Unlike the odd-length curves further up, this one needs no judgement. ASB's
+  # own well-formed `grow` curves are unanimous about where a grow ends: 57 read
+  # `0.000 0.242 1.000 1.000`, 33 read `0.000 0.000 1.000 1.000`, and the
+  # three-pair form is `0.000 0.000 0.412 0.891 1.000 1.000`. Restoring the
+  # missing trailing 1.000 ADDS the absent number instead of dropping a present
+  # one, and produces exactly that shape.
+
+  - path: gfx/particles/combat/adv_kinetic_artillery_muzzle.asset
+    source: ASB Ironman
+    why: >-
+      Five-value "grow" curve -- see the banner above. The missing final value
+      is restored as 1.000; no existing number is changed or dropped.
+    replace:
+      - from: "0.100 0.100 0.209 0.400 1.000 "
+        to: "0.100 0.100 0.209 0.400 1.000 1.000 "
+        count: 1
+
+  - path: gfx/particles/combat/arc_emitter_muzzle.asset
+    source: ASB Ironman
+    why: >-
+      Five-value "grow" curve -- see the banner above. The missing final value
+      is restored as 1.000; no existing number is changed or dropped.
+    replace:
+      - from: "0.100 0.100 0.209 0.400 1.000 "
+        to: "0.100 0.100 0.209 0.400 1.000 1.000 "
+        count: 1
+
+  - path: gfx/particles/combat/arc_emitter_muzzle_windup_effect.asset
+    source: ASB Ironman
+    why: >-
+      Five-value "grow" curve -- see the banner above. The missing final value
+      is restored as 1.000; no existing number is changed or dropped.
+    replace:
+      - from: "0.100 0.100 0.209 0.400 1.000 "
+        to: "0.100 0.100 0.209 0.400 1.000 1.000 "
+        count: 1
+
+  - path: gfx/particles/combat/cannon_muzzle_effect.asset
+    source: ASB Ironman
+    why: >-
+      Five-value "grow" curve -- see the banner above. The missing final value
+      is restored as 1.000; no existing number is changed or dropped.
+    replace:
+      - from: "0.100 0.100 0.209 0.400 1.000 "
+        to: "0.100 0.100 0.209 0.400 1.000 1.000 "
+        count: 1
+
+  - path: gfx/particles/combat/custom_asbcannon_windup_effect.asset
+    source: ASB Ironman
+    why: >-
+      Five-value "grow" curve -- see the banner above. The missing final value
+      is restored as 1.000; no existing number is changed or dropped.
+    replace:
+      - from: "0.100 0.100 0.209 0.400 1.000 "
+        to: "0.100 0.100 0.209 0.400 1.000 1.000 "
+        count: 1
+
+  - path: gfx/particles/combat/custom_disruptor_1_muzzle.asset
+    source: ASB Ironman
+    why: >-
+      Five-value "grow" curve -- see the banner above. The missing final value
+      is restored as 1.000; no existing number is changed or dropped.
+    replace:
+      - from: "0.100 0.100 0.209 0.400 1.000 "
+        to: "0.100 0.100 0.209 0.400 1.000 1.000 "
+        count: 1
+
+  - path: gfx/particles/combat/custom_disruptor_2_muzzle.asset
+    source: ASB Ironman
+    why: >-
+      Five-value "grow" curve -- see the banner above. The missing final value
+      is restored as 1.000; no existing number is changed or dropped.
+    replace:
+      - from: "0.100 0.100 0.209 0.400 1.000 "
+        to: "0.100 0.100 0.209 0.400 1.000 1.000 "
+        count: 1
+
+  - path: gfx/particles/combat/custom_disruptor_3_muzzle.asset
+    source: ASB Ironman
+    why: >-
+      Five-value "grow" curve -- see the banner above. The missing final value
+      is restored as 1.000; no existing number is changed or dropped.
+    replace:
+      - from: "0.100 0.100 0.209 0.400 1.000 "
+        to: "0.100 0.100 0.209 0.400 1.000 1.000 "
+        count: 1
+
+  - path: gfx/particles/combat/foc_arc_emitter_muzzle_windup.asset
+    source: ASB Ironman
+    why: >-
+      Five-value "grow" curve -- see the banner above. The missing final value
+      is restored as 1.000; no existing number is changed or dropped.
+    replace:
+      - from: "0.100 0.100 0.209 0.400 1.000 "
+        to: "0.100 0.100 0.209 0.400 1.000 1.000 "
+        count: 1
+
+  - path: gfx/particles/combat/focused_arc_emitter_muzzle.asset
+    source: ASB Ironman
+    why: >-
+      Five-value "grow" curve -- see the banner above. The missing final value
+      is restored as 1.000; no existing number is changed or dropped.
+    replace:
+      - from: "0.100 0.100 0.209 0.400 1.000 "
+        to: "0.100 0.100 0.209 0.400 1.000 1.000 "
+        count: 1
+
+  - path: gfx/particles/combat/kinetic_artillery_muzzle.asset
+    source: ASB Ironman
+    why: >-
+      Five-value "grow" curve -- see the banner above. The missing final value
+      is restored as 1.000; no existing number is changed or dropped.
+    replace:
+      - from: "0.100 0.100 0.209 0.400 1.000 "
+        to: "0.100 0.100 0.209 0.400 1.000 1.000 "
+        count: 1
+
+  - path: gfx/particles/combat/missile.asset
+    source: ASB Ironman
+    why: >-
+      Five-value "grow" curve -- see the banner above. The missing final value
+      is restored as 1.000; no existing number is changed or dropped.
+    replace:
+      - from: "0.100 0.100 0.209 0.400 1.000 "
+        to: "0.100 0.100 0.209 0.400 1.000 1.000 "
+        count: 1
+
+  - path: gfx/particles/combat/missile_small_idle.asset
+    source: ASB Ironman
+    why: >-
+      Five-value "grow" curve -- see the banner above. The missing final value
+      is restored as 1.000; no existing number is changed or dropped.
+    replace:
+      - from: "0.100 0.100 0.209 0.400 1.000 "
+        to: "0.100 0.100 0.209 0.400 1.000 1.000 "
+        count: 1
+
+  - path: gfx/particles/combat/neutron_torpedoes.asset
+    source: ASB Ironman
+    why: >-
+      Five-value "grow" curve -- see the banner above. The missing final value
+      is restored as 1.000; no existing number is changed or dropped.
+    replace:
+      - from: "0.100 0.100 0.209 0.400 1.000 "
+        to: "0.100 0.100 0.209 0.400 1.000 1.000 "
+        count: 1
+
+  - path: gfx/particles/combat/perdition_beam_muzzle.asset
+    source: ASB Ironman
+    why: >-
+      Five-value "grow" curve -- see the banner above. The missing final value
+      is restored as 1.000; no existing number is changed or dropped.
+    replace:
+      - from: "0.100 0.100 0.209 0.400 1.000 "
+        to: "0.100 0.100 0.209 0.400 1.000 1.000 "
+        count: 2
+
+  - path: gfx/particles/combat/perdition_beam_muzzle_windup_effect.asset
+    source: ASB Ironman
+    why: >-
+      Five-value "grow" curve -- see the banner above. The missing final value
+      is restored as 1.000; no existing number is changed or dropped.
+    replace:
+      - from: "0.100 0.100 0.209 0.400 1.000 "
+        to: "0.100 0.100 0.209 0.400 1.000 1.000 "
+        count: 1
+
+  - path: gfx/particles/combat/proton_torpedoes.asset
+    source: ASB Ironman
+    why: >-
+      Five-value "grow" curve -- see the banner above. The missing final value
+      is restored as 1.000; no existing number is changed or dropped.
+    replace:
+      - from: "0.100 0.100 0.209 0.400 1.000 "
+        to: "0.100 0.100 0.209 0.400 1.000 1.000 "
+        count: 1
+
+  # --- Starbase Extended: an unguarded scope switch to solar_system ----------
+  # `advanced_military_program.potential` switches straight to `solar_system`
+  # with no guard, and the 2026-08-07 run logged
+  # `Invalid context switch [solar_system]` from a starbase scope for it -- the
+  # only error of that run outside the startup window that was ours.
+  #
+  # The guard is not invented. Vanilla's one `potential` block in
+  # common/starbase_buildings that reaches for `solar_system` opens with
+  # `is_normal_starbase = yes` + `exists = owner`, and SBX's own other eight all
+  # gate on `has_starbase_size >=` first. Line 772 is the single block in either
+  # file that switches unguarded, and it is the one that failed. `potential` is
+  # a plain AND, so prepending the vanilla pair narrows nothing a real starbase
+  # in a system would have passed.
+
+  - path: common/starbase_buildings/sbx_3_0_starbase_buildings.txt
+    source: Starbase Extended 3.0
+    why: >-
+      `advanced_military_program.potential` switches to `solar_system` from a
+      starbase scope with no guard -- `Invalid context switch [solar_system]`
+      in the 2026-08-07 run, during play rather than at load. Prepends
+      vanilla's own `is_normal_starbase = yes` + `exists = owner`, the pair its
+      single comparable block uses and which SBX already uses eight times in
+      this file. Unique in the file.
+    replace:
+      - from: "\tpotential = { solar_system = { any_system_planet = { is_owned_by = from } } }"
+        to: "\tpotential = { is_normal_starbase = yes exists = owner solar_system = { any_system_planet = { is_owned_by = from } } }"
+        count: 1
+
+  # --- Starbase Extended: modules with TWO `potential` blocks ----------------
+  # Six starbase/orbital-ring modules declare `potential = { }` twice. It is
+  # one key, so 4.4 keeps one and logs `Duplicate trigger` -- six records in the
+  # 2026-08-02 run -- and whichever it discards, a real condition is lost: the
+  # first block is the technology and starbase-type gate, the second is the
+  # build-count cap that stops the AI stacking twenty of the same module.
+  #
+  # Merged rather than deleted. Both blocks are conditions the module plainly
+  # wants, they contradict nothing, and `potential` is a plain AND, so folding
+  # the second block's lines into the first preserves exactly the behaviour SBX
+  # wrote and nothing else. Nothing is invented: every line below is moved, not
+  # authored.
+
+  - path: common/starbase_modules/sbx_3_0_starbase_modules.txt
+    source: Starbase Extended 3.0
+    why: >-
+      `missile_battery` declares `potential` twice; 4.4 keeps one and drops the other.
+      The second block's conditions are folded into the first and the
+      duplicate removed, so both the gate and the build-count cap apply.
+      Lines moved, not rewritten.
+    replace:
+      - from: "\tpotential = {\r\n\t\texists = owner\r\n\t\towner = { has_technology = tech_torpedoes_1 }\r\n\t\tis_normal_starbase = yes\r\n\t}\r\n"
+        to: "\tpotential = {\r\n\t\texists = owner\r\n\t\towner = { has_technology = tech_torpedoes_1 }\r\n\t\tis_normal_starbase = yes\r\n\t\t\thas_starbase_size >= starbase_starport\r\n\t\tcount_starbase_modules = { type = missile_battery count < 5 }\r\n\t}\r\n"
+        count: 1
+      - from: "\tpotential = { \r\n\t\thas_starbase_size >= starbase_starport\r\n\t\tcount_starbase_modules = { type = missile_battery count < 5 }\r\n\t}\r\n"
+        to: ""
+        count: 1
+
+  - path: common/starbase_modules/sbx_3_0_starbase_modules.txt
+    source: Starbase Extended 3.0
+    why: >-
+      `hangar_bay` declares `potential` twice; 4.4 keeps one and drops the other.
+      The second block's conditions are folded into the first and the
+      duplicate removed, so both the gate and the build-count cap apply.
+      Lines moved, not rewritten.
+    replace:
+      - from: "\tpotential = {\r\n\t\texists = owner\r\n\t\towner = { has_technology = tech_strike_craft_1 }\r\n\t\tis_normal_starbase = yes\r\n\t}\r\n"
+        to: "\tpotential = {\r\n\t\texists = owner\r\n\t\towner = { has_technology = tech_strike_craft_1 }\r\n\t\tis_normal_starbase = yes\r\n\t\t\thas_starbase_size >= starbase_starport\r\n\t\tcount_starbase_modules = { type = hangar_bay count < 5 }\r\n\t}\r\n"
+        count: 1
+      - from: "\tpotential = { \r\n\t\thas_starbase_size >= starbase_starport\r\n\t\tcount_starbase_modules = { type = hangar_bay count < 5 }\r\n\t}\r\n"
+        to: ""
+        count: 1
+
+  - path: common/starbase_modules/sbx_3_0_starbase_modules.txt
+    source: Starbase Extended 3.0
+    why: >-
+      `gun_battery` declares `potential` twice; 4.4 keeps one and drops the other.
+      The second block's conditions are folded into the first and the
+      duplicate removed, so both the gate and the build-count cap apply.
+      Lines moved, not rewritten.
+    replace:
+      - from: "\tpotential = {\r\n\t\tis_normal_starbase = yes\r\n\t}\r\n"
+        to: "\tpotential = {\r\n\t\tis_normal_starbase = yes\r\n\t\t\thas_starbase_size >= starbase_starport\r\n\t\tcount_starbase_modules = { type = gun_battery count < 10 }\r\n\t}\r\n"
+        count: 1
+      - from: "\tpotential = { \r\n\t\thas_starbase_size >= starbase_starport\r\n\t\tcount_starbase_modules = { type = gun_battery count < 10 }\r\n\t}\r\n"
+        to: ""
+        count: 1
+
+  - path: common/starbase_modules/sbx_3_0_orbital_ring_modules.txt
+    source: Starbase Extended 3.0
+    why: >-
+      `orbital_ring_pd_battery` declares `potential` twice; 4.4 keeps one and drops the other.
+      The second block's conditions are folded into the first and the
+      duplicate removed, so both the gate and the build-count cap apply.
+      Lines moved, not rewritten.
+    replace:
+      - from: "\tpotential = { \r\n\t\texists = owner\t\t\r\n\t\towner = { \r\n\t\t\tOR = {\r\n\t\t\t\thas_technology = tech_pd_tracking_1 \r\n\t\t\t\thas_technology = tech_pd_tracking_2\r\n\t\t\t\thas_technology = tech_pd_tracking_3 \r\n\t\t\t\thas_technology = tech_flak_batteries_1 \r\n\t\t\t\thas_technology = tech_flak_batteries_2\r\n\t\t\t\thas_technology = tech_flak_batteries_3\r\n\t\t\t}\r\n\t\t}\r\n\t\thas_starbase_size >= orbital_ring_tier_1\r\n\t}\r\n"
+        to: "\tpotential = { \r\n\t\texists = owner\t\t\r\n\t\towner = { \r\n\t\t\tOR = {\r\n\t\t\t\thas_technology = tech_pd_tracking_1 \r\n\t\t\t\thas_technology = tech_pd_tracking_2\r\n\t\t\t\thas_technology = tech_pd_tracking_3 \r\n\t\t\t\thas_technology = tech_flak_batteries_1 \r\n\t\t\t\thas_technology = tech_flak_batteries_2\r\n\t\t\t\thas_technology = tech_flak_batteries_3\r\n\t\t\t}\r\n\t\t}\r\n\t\thas_starbase_size >= orbital_ring_tier_1\r\n\t\t\tcount_starbase_modules = { type = orbital_ring_pd_battery count < 5 }\r\n\t}\r\n"
+        count: 1
+      - from: "\tpotential = { \r\n\t\tcount_starbase_modules = { type = orbital_ring_pd_battery count < 5 } \r\n\t\thas_starbase_size >= orbital_ring_tier_1\r\n\t}\r\n"
+        to: ""
+        count: 1
+
+  - path: common/starbase_modules/sbx_3_0_orbital_ring_modules.txt
+    source: Starbase Extended 3.0
+    why: >-
+      `orbital_ring_gun_battery` declares `potential` twice; 4.4 keeps one and drops the other.
+      The second block's conditions are folded into the first and the
+      duplicate removed, so both the gate and the build-count cap apply.
+      Lines moved, not rewritten.
+    replace:
+      - from: "\tpotential = {\r\n\t\tis_normal_starbase = yes\r\n\t}\r\n"
+        to: "\tpotential = {\r\n\t\tis_normal_starbase = yes\r\n\t\t\thas_starbase_size >= orbital_ring_tier_1\r\n\t\tcount_starbase_modules = { type = orbital_ring_gun_battery count < 10 }\r\n\t}\r\n"
+        count: 1
+      - from: "\tpotential = { \r\n\t\thas_starbase_size >= orbital_ring_tier_1\r\n\t\tcount_starbase_modules = { type = orbital_ring_gun_battery count < 10 }\r\n\t}\r\n"
+        to: ""
+        count: 1
+
+  - path: common/starbase_modules/sbx_3_0_orbital_ring_modules.txt
+    source: Starbase Extended 3.0
+    why: >-
+      `orbital_ring_missile_battery` declares `potential` twice; 4.4 keeps one and drops the other.
+      The second block's conditions are folded into the first and the
+      duplicate removed, so both the gate and the build-count cap apply.
+      Lines moved, not rewritten.
+    replace:
+      - from: "\tpotential = {\r\n\t\texists = owner\r\n\t\towner = { has_technology = tech_torpedoes_1 }\r\n\t\tis_orbital_ring = yes\r\n\t\thas_starbase_size >= orbital_ring_tier_1\r\n\t}\r\n"
+        to: "\tpotential = {\r\n\t\texists = owner\r\n\t\towner = { has_technology = tech_torpedoes_1 }\r\n\t\tis_orbital_ring = yes\r\n\t\thas_starbase_size >= orbital_ring_tier_1\r\n\t\t\tcount_starbase_modules = { type = orbital_ring_missile_battery count < 5 }\r\n\t}\r\n"
+        count: 1
+      - from: "\tpotential = { \r\n\t\thas_starbase_size >= orbital_ring_tier_1\r\n\t\tcount_starbase_modules = { type = orbital_ring_missile_battery count < 5 }\r\n\t}\r\n"
+        to: ""
+        count: 1
+
+  - path: common/section_templates/!!!_sbx_3_0_starbase_sections.txt
+    source: Starbase Extended 3.0
+    why: >-
+      SBX's CITADEL_STARBASE_SECTION replaces vanilla's (its `!!!_` prefix wins
+      FIOS) and renumbers vanilla's oddly-named MEDIUM_GUN_010..013 to the
+      conventional two-digit 10..12, one slot short. Vanilla's OWN biogenesis
+      hatchery design still asks for 010..013, so four of its thirteen medium
+      mounts did not exist -- `invalid component slot` x4 in the 2026-08-07 run.
+      This renames SBX's 10/11/12 back to vanilla's 010/011/012 and adds the
+      013 SBX never had, restoring vanilla's exact thirteen slot names.
+      Nothing else in either tree references a citadel MEDIUM_GUN by name, and
+      SBX's STRONGHOLD/HEADQUARTERS _XL sections (which already run to 16 and 20
+      and are SBX's own) are deliberately untouched. Every slot in this section
+      shares locatorname "medium_gun_01", so the added slot needs no new
+      locator and cannot fire from the hull centre (decision 28).
+      See .docs/decisions/39-sbx-citadel-slot-renumbering.md.
+    replace:
+      - from: "\t\tname = \"MEDIUM_GUN_10\"\r\n\t\ttemplate = \"invisible_medium_turret\"\r\n\t\tlocatorname = \"medium_gun_01\"\r\n\t}\r\n\r\n\tcomponent_slot = {\r\n\t\tname = \"MEDIUM_GUN_11\"\r\n\t\ttemplate = \"invisible_medium_turret\"\r\n\t\tlocatorname = \"medium_gun_01\"\r\n\t}\r\n\r\n\tcomponent_slot = {\r\n\t\tname = \"MEDIUM_GUN_12\"\r\n\t\ttemplate = \"invisible_medium_turret\"\r\n\t\tlocatorname = \"medium_gun_01\"\r\n\t}\r\n\r\n\tcomponent_slot = {\r\n\t\tname = \"SMALL_GUN_01\""
+        to: "\t\tname = \"MEDIUM_GUN_010\"\r\n\t\ttemplate = \"invisible_medium_turret\"\r\n\t\tlocatorname = \"medium_gun_01\"\r\n\t}\r\n\r\n\tcomponent_slot = {\r\n\t\tname = \"MEDIUM_GUN_011\"\r\n\t\ttemplate = \"invisible_medium_turret\"\r\n\t\tlocatorname = \"medium_gun_01\"\r\n\t}\r\n\r\n\tcomponent_slot = {\r\n\t\tname = \"MEDIUM_GUN_012\"\r\n\t\ttemplate = \"invisible_medium_turret\"\r\n\t\tlocatorname = \"medium_gun_01\"\r\n\t}\r\n\r\n\tcomponent_slot = {\r\n\t\tname = \"MEDIUM_GUN_013\"\r\n\t\ttemplate = \"invisible_medium_turret\"\r\n\t\tlocatorname = \"medium_gun_01\"\r\n\t}\r\n\r\n\tcomponent_slot = {\r\n\t\tname = \"SMALL_GUN_01\""
+        count: 1
+
+  - path: common/ship_sizes/nsc_starbases.txt
+    source: Starbase Extended 3.0
+    why: >-
+      This file uses @build_block_radius_starbase and
+      @starbase_formation_priority at four sites but defines neither -- the
+      definitions sit in its sibling sbx_3_0_starbases.txt, and `@` variables
+      in Stellaris script are file-scoped. 4.4 reports `Malformed token` four
+      times (E22 of the 2026-08-02 analysis, filed there under ASB Ironman; it
+      is SBX's), and the two tiers this file exists to declare --
+      starbase_stronghold and starbase_headquarters, SBX's only NEW ship sizes
+      -- get no build-block radius and no formation priority. Both lines are
+      copied verbatim from sbx_3_0_starbases.txt, which agrees with vanilla's
+      00_starbases.txt on the values (20 and 1). Nothing invented.
+    replace:
+      - from: "##### STARBASE EXTENDED 3.0 STARBASES NSC #####\r\n"
+        to: "##### STARBASE EXTENDED 3.0 STARBASES NSC #####\r\n\r\n@build_block_radius_starbase = 20\r\n@starbase_formation_priority = 1\r\n"
+        count: 1
+  - path: gfx/particles/_ships_particles.gfx
+    source: ASB Ironman
+    why: >-
+      DECISION 08's FAILURE MODE, IN A MOD THAT IS NOT STNH. ASB's copy of this
+      vanilla file is the 3.x one, so it declares 151 of vanilla 4.4's 155 ship
+      particles and silently drops four: astral_rift_particle,
+      astral_scar_particle, crystal_rift_particle (Astral Planes) and
+      ship_burn_particle_timed. All four are still referenced by vanilla files
+      that load normally, so an astral rift renders with no particle at all --
+      `Couldn't find particle 3D object`, four of the 127 in the 2026-08-02 log.
+      The four blocks below are vanilla 4.4's, copied verbatim.
+    replace:
+      - from: "objectTypes = {\r\n"
+        to: "objectTypes = {\r\n\r\n\tpdxparticle = {\r\n\t\tname = \"astral_rift_particle\"\r\n\t\ttype = \"astral_rift_particle\"\r\n\t\tscale = 1.0\r\n\t}\r\n\r\n\tpdxparticle = {\r\n\t\tname = \"astral_scar_particle\"\r\n\t\ttype = \"astral_scar_particle\"\r\n\t\tscale = 1.0\r\n\t}\r\n\r\n\tpdxparticle = {\r\n\t\tname = \"crystal_rift_particle\"\r\n\t\ttype = \"crystal_rift_particle\"\r\n\t\tscale = 1.0\r\n\t}\r\n\r\n\tpdxparticle = {\r\n\t\tname = \"ship_burn_particle_timed\"\r\n\t\ttype = \"ship_burn_effect_3\"\r\n\t\tscale = 1.0\r\n\t}\r\n"
+        count: 1
+
+  # --- STNH advisor voices: Breen and Romulan gate on flags nothing sets ------
+  # The same defect is_borg_empire had before src/common/scripted_triggers/
+  # stg_borg_triggers.txt gave it a body, and it is worth reading that file's
+  # header before touching this: an advisor voice is chosen in the EMPIRE
+  # CREATOR, before any event has run, so a country flag cannot be the gate. No
+  # event in vanilla, in STNH or in src/ ever sets breen_confederacy or
+  # romulan_star_empire -- they are prescripted-country KEYS in
+  # src/prescripted_countries/, which is a different namespace and not a country
+  # property. So both weights stay at base = 0 and vanilla's l_machine (8) or an
+  # ethic voice wins. Measured: the 2026-08-08 run selected the stock advisor
+  # for the Breen and Romulan empires with no error to show for it, because a
+  # weight of zero is not an error.
+  #
+  # owner_species/is_species_class is what stg_borg_triggers.txt settled on for
+  # exactly this shape of question, and it survives the empire creator.
+  # BRE and ROM are both declared `randomized = no` in
+  # src/common/species_classes/stg_species_classes.txt, so no random AI empire
+  # can wear either class and the check cannot fire on someone else's empire.
+  #
+  # A PATCH AND NOT AN src/ OVERRIDE, unlike sound/sth_soundgroups.asset next
+  # door. That file we rebuilt and mean to own; this one is 50 lines of which we
+  # are changing two, and the rest -- including the l_vo_borg block -- is
+  # correct as STNH wrote it. If STNH ever sets these flags properly the patch
+  # stops matching and the build says so, which is the outcome we want.
+  - path: sound/advisor_voice_types/STH_advisor_voice_types.txt
+    source: "Star Trek: New Horizons"
+    why: >-
+      l_vo_breen's weight gates on has_country_flag = breen_confederacy, which
+      nothing in the build ever sets, so the Breen advisor voice can never be
+      chosen. Replaced with the species-class check stg_borg_triggers.txt
+      established for the Borg. Note the trailing space, which is STNH's.
+    replace:
+      - from: "\t\t\thas_country_flag = breen_confederacy "
+        to: "\t\t\towner_species = { is_species_class = BRE }"
+        count: 1
+  - path: sound/advisor_voice_types/STH_advisor_voice_types.txt
+    source: "Star Trek: New Horizons"
+    why: >-
+      l_vo_rom's weight gates on has_country_flag = romulan_star_empire, which
+      nothing in the build ever sets, so the Romulan advisor voice can never be
+      chosen. Replaced with the species-class check stg_borg_triggers.txt
+      established for the Borg.
+    replace:
+      - from: "\t\t\thas_country_flag = romulan_star_empire"
+        to: "\t\t\towner_species = { is_species_class = ROM }"
+        count: 1
+
+  # --- Real Space's start-of-game configuration menu ------------------------
+  # STG always runs Real Space on its defaults, so the menu is a popup with
+  # nothing to decide in it. realspace.204 fires on_game_start and sends every
+  # human country realspace.206, the menu; every path out of it ends at
+  # realspace.1000, which sets realspace_starting_settings_applied and fires
+  # on_applying_rs_settings -- the on_action that actually builds the nebulae,
+  # the globulae and the Sol-cluster civilisations. Pointing 204 straight at
+  # 1000 skips the window and applies exactly the state a player would get by
+  # opening it and clicking Close, because no option is preselected and none of
+  # the setting flags is set until an option is chosen.
+  #
+  # The anchor is the `limit = { is_ai = no }` line, which occurs exactly once
+  # in the file; `country_event = { id = realspace.206 }` occurs 45 times.
+  # CRLF is Real Space's, not ours.
+  - path: events/realspace_game_start.txt
+    source: Real Space 4.0
+    why: >-
+      Real Space's start menu (realspace.204 -> realspace.206) is a popup on
+      every new game offering settings STG never changes. Fire the apply event
+      realspace.1000 directly instead, which is what closing the menu does.
+    replace:
+      - from: "\t\t\tlimit = { is_ai = no }\r\n\t\t\tcountry_event = { id = realspace.206 }\r\n"
+        to: "\t\t\tlimit = { is_ai = no }\r\n\t\t\tcountry_event = { id = realspace.1000 }\r\n"
+        count: 1
+
+  # --- The empire designer dressed five Trek species as human civilians ------
+  # A clothes selector's `game_setup` scope is what the empire designer draws,
+  # and STNH's two master selectors give it one bare human-civilian default.
+  # That is right for a per-species selector -- Cardassian, Bolian, Caitian and
+  # the rest each have their own, whose single default IS that species' look --
+  # and wrong for a selector 44 species share. FED, VUL, ADR, BAJ and TRI are
+  # the five STG empires whose portraits point at the master pair, so all five
+  # wore `civ_human_male_clothes_01.dds` in the picker while every other Trek
+  # empire looked like itself. Reported from the 08-15 live run; the scope has
+  # no species gating at all, which is why check_portrait_clothes_selectors
+  # could not see it.
+  #
+  # TER IS THE SIXTH, added 2026-08-08 after a live run reported several
+  # designer rulers sharing one outfit. The mirror Terran Empire arrived with
+  # Phase 2's eight frontier powers, AFTER decision 22 swept the master pair,
+  # and its ruler portrait (human_female_01) points at the same master
+  # selector -- so it fell through to civ_human_female_clothes_13.dds, the
+  # human civilian default. Swept across all 22 playable empires rather than
+  # repaired on the one reported: TER is the only one still on a bare default,
+  # the other sixteen having per-species selectors whose default IS that
+  # species' look. STG's Terran Empire is the NX-era one, so it takes the
+  # ENT-era mirror ruler coat.
+  #
+  # `owner_species = { is_species_class = X }` is the country-scope form:
+  # game_setup is a country scope (vanilla and STNH both gate it on
+  # has_country_flag), and vanilla uses exactly this trigger in
+  # common/start_screen_messages/00_start_screen_messages.txt, which runs in the
+  # same place. The Federation gets STNH's dedicated president art rather than
+  # the generic `human_president_*` the in-game ruler scope falls back to, and
+  # Andor gets the admiral coat its species scope already names.
+  # See .docs/decisions/22-empire-designer-clothes.md. CRLF is STNH's.
+  - path: gfx/portraits/asset_selectors/humanoid_master_male_clothes_01.txt
+    source: "Star Trek: New Horizons"
+    why: >-
+      The master selector's game_setup scope is a bare human-civilian default,
+      so all five STG species sharing it wore human clothes in the empire
+      designer. Gate it by species class, as every per-species selector is.
+    replace:
+      - from: "\t\tdefault = \"gfx/models/portraits/human_civilian/civ_human_male_clothes_01.dds\"\r\n"
+        to: "\t\tdefault = \"gfx/models/portraits/human_civilian/civ_human_male_clothes_01.dds\"\r\n\
+          \t\t\"gfx/models/portraits/human_civilian/federation_president_male_1.dds\" = { owner_species = { is_species_class = FED } }\r\n\
+          \t\t\"gfx/models/portraits/vulcan/civ_vulcan_male_clothes_02.dds\" = { owner_species = { is_species_class = VUL } }\r\n\
+          \t\t\"gfx/models/portraits/andorian/andorian_male_clothes_admiral.dds\" = { owner_species = { is_species_class = ADR } }\r\n\
+          \t\t\"gfx/models/portraits/bajoran/bajoran_male_clothes_01.dds\" = { owner_species = { is_species_class = BAJ } }\r\n\
+          \t\t\"gfx/models/portraits/trill/trill_male_clothes_01.dds\" = { owner_species = { is_species_class = TRI } }\r\n\
+          \t\t\"gfx/models/portraits/starfleet_enterprise_mirror/ent_mirror_human_male_ruler.dds\" = { owner_species = { is_species_class = TER } }\r\n"
+        count: 1
+
+  - path: gfx/portraits/asset_selectors/humanoid_master_female_clothes_01.txt
+    source: "Star Trek: New Horizons"
+    why: >-
+      The master selector's game_setup scope is a bare human-civilian default,
+      so all five STG species sharing it wore human clothes in the empire
+      designer. Gate it by species class, as every per-species selector is.
+    replace:
+      - from: "\t\tdefault = \"gfx/models/portraits/human_civilian/civ_human_female_clothes_13.dds\"\r\n"
+        to: "\t\tdefault = \"gfx/models/portraits/human_civilian/civ_human_female_clothes_13.dds\"\r\n\
+          \t\t\"gfx/models/portraits/human_civilian/federation_president_female_1.dds\" = { owner_species = { is_species_class = FED } }\r\n\
+          \t\t\"gfx/models/portraits/vulcan/civ_vulcan_female_clothes_02.dds\" = { owner_species = { is_species_class = VUL } }\r\n\
+          \t\t\"gfx/models/portraits/andorian/andorian_female_clothes_admiral.dds\" = { owner_species = { is_species_class = ADR } }\r\n\
+          \t\t\"gfx/models/portraits/bajoran/bajoran_female_clothes_01.dds\" = { owner_species = { is_species_class = BAJ } }\r\n\
+          \t\t\"gfx/models/portraits/trill/trill_female_clothes_01.dds\" = { owner_species = { is_species_class = TRI } }\r\n\
+          \t\t\"gfx/models/portraits/starfleet_enterprise_mirror/ent_mirror_human_female_ruler.dds\" = { owner_species = { is_species_class = TER } }\r\n"
+        count: 1
+
+  # --- Four female leader rows lost their species gate -----------------------
+  - path: gfx/portraits/asset_selectors/humanoid_master_female_clothes_01.txt
+    source: "Star Trek: New Horizons"
+    why: >-
+      These four rows gate on `uses_native_clothes` -- true for EVERY
+      non-Federation species -- where the male file gates the same four on
+      `uses_vulcan_uniform` / `uses_kelpien_uniform` / `uses_talosian_uniform` /
+      `uses_barzan_uniform`. So any female operations commander of a species
+      with no gated row of its own above line 1290 wears Vulcan clothes, and
+      the first of the four wins for all of them. VUL itself is unaffected: it
+      has properly gated rows 200 lines earlier. The fix is the MALE file's own
+      gating, copied across rather than invented; all four triggers are on
+      decision 16's INERT list, so the rows go dead and each species falls to
+      its own entry. Found while wiring the Terran Empire's mirror uniforms,
+      which these rows pre-empt -- they sit at 1290 and the mirror rows at 1798.
+    replace:
+      - from: "\t\t\"gfx/models/portraits/vulcan/vulcan_female_clothes_01.dds\" = { uses_native_clothes = yes uses_operations_uniform = yes }"
+        to: "\t\t\"gfx/models/portraits/vulcan/vulcan_female_clothes_01.dds\" = { uses_vulcan_uniform = yes uses_operations_uniform = yes }"
+        count: 1
+      - from: "\t\t\"gfx/models/portraits/kelpian/kelpian_female_clothes_02.dds\" = { uses_native_clothes = yes uses_operations_uniform = yes }"
+        to: "\t\t\"gfx/models/portraits/kelpian/kelpian_female_clothes_02.dds\" = { uses_kelpien_uniform = yes uses_operations_uniform = yes }"
+        count: 1
+      - from: "\t\t\"gfx/models/portraits/talosian/talosian_female_clothes_03.dds\" = { uses_native_clothes = yes uses_operations_uniform = yes }"
+        to: "\t\t\"gfx/models/portraits/talosian/talosian_female_clothes_03.dds\" = { uses_talosian_uniform = yes uses_operations_uniform = yes }"
+        count: 1
+      - from: "\t\t\"gfx/models/portraits/barzan/barzan_female_clothes_03.dds\" = { uses_native_clothes = yes uses_operations_uniform = yes }"
+        to: "\t\t\"gfx/models/portraits/barzan/barzan_female_clothes_03.dds\" = { uses_barzan_uniform = yes uses_operations_uniform = yes }"
+        count: 1
+
+  # --- Saturn in Sol was declared twice, by two mods, with different art ------
+  - path: gfx/models/planets/_pd_unihabitable_entities.asset
+    source: Planetary Diversity
+    why: >-
+      `gas_giant_saturn_entity` was declared by this file AND by Real Space's
+      rs_planetary_entities.asset, with bodies that differ: PD paints it with
+      gas_giant_saturn_diffuse.dds at scale 1.2, Real Space with
+      gas_giant_31_diffuse.dds at @gas_giant_scale (= 1). The engine keeps one
+      and logs the other, and which one it keeps is recorded nowhere -- so this
+      silently decided what Saturn looks like on every Sol start. 2026-08-07.
+
+      REAL SPACE WINS, because it owns the name: all six solar_system_initializers
+      that place this entity are Real Space's (sol, sol_solsector_small/large,
+      federations, pre_ftl, unplugged), at size = 35 / has_ring = yes, and
+      @gas_giant_scale is the variable keeping its other gas giants consistent.
+      PD's 1.2 would have made Saturn 20% larger than the system built around it.
+
+      RENAMED, NOT DELETED. PD's art stays in the tree under a name nothing
+      places, so switching to it later is a one-line change rather than a
+      re-harvest. Nothing dangles: PD's own events/pd_engine.txt still says
+      `set_planet_entity = { entity = "gas_giant_saturn_entity" }`, which Real
+      Space declares -- and that event gates on planet_size = 30 where Real
+      Space's Sol builds Saturn at 35, so it is unlikely to fire here at all.
+
+      See .docs/decisions/33-duplicate-entity-declarations.md.
+    replace:
+      - from: "\tname = \"gas_giant_saturn_entity\""
+        to: "\tname = \"pd_gas_giant_saturn_entity\""
+        count: 1
+
+  # --- STNH's 3.12 copies of five entities System Scale exists to rescale -----
+  # Same shape as the Saturn rename above, and the same disposition, for the
+  # reason .docs/architecture/conflict-register.md already settled for 00_realspace_scripted_variables.txt:
+  # Real Space - System Scale RESCALES what Real Space and vanilla declare, so a
+  # second declaration carrying the unscaled value undoes the submod for that
+  # entity. @entity_scale_1 = 1.5 is vanilla's own value and @entity_scale_3 =
+  # 4.5 is three times it. STNH's copies are the unscaled originals, they are
+  # not byte-identical to vanilla's (so nothing suppresses them), and which of
+  # the two the engine keeps is recorded nowhere.
+  #
+  # RENAMED, NOT DELETED, per the Saturn precedent -- the art stays in the tree
+  # under a name nothing places. Nothing dangles: System Scale still declares
+  # every one of these names, so the `attach` edges inside STNH's own file bind
+  # to the rescaled entity, which is what an ordinary Real Space install does.
+  # See .docs/decisions/53-duplicate-entity-triage.md.
+  - path: gfx/models/ships/other/realspace_other_entities.asset
+    source: "Star Trek: New Horizons"
+    why: >-
+      STNH's fork of a Real Space file redeclares Real Space's four nebula
+      globule entities at Real Space's UNSCALED sizes (1 and 5) against Real
+      Space - System Scale's rescaled ones (@entity_scale_5 = 7.5,
+      @entity_scale_10 = 15, @entity_scale_15 = 22.5). System Scale wins for the
+      reason it wins everywhere else in this harvest: it exists to rescale these
+      values and a copy at the old ones undoes it. STNH's fork also attaches a
+      space-dust mesh Real Space's particle-only design does not use.
+    replace:
+      - from: "\tname = \"collapsar_globule_entity_small\""
+        to: "\tname = \"stnh_collapsar_globule_entity_small\""
+        count: 1
+      - from: "\tname = \"collapsar_globule_entity_medium\""
+        to: "\tname = \"stnh_collapsar_globule_entity_medium\""
+        count: 1
+      - from: "\tname = \"purple_globule_entity_small\""
+        to: "\tname = \"stnh_purple_globule_entity_small\""
+        count: 1
+      - from: "\tname = \"purple_globule_entity_medium\""
+        to: "\tname = \"stnh_purple_globule_entity_medium\""
+        count: 1
+
+  - path: gfx/models/ships/other/_other_entities.asset
+    source: "Star Trek: New Horizons"
+    why: >-
+      STNH's 3.12 copy of vanilla's file declares debris_large_01_entity at
+      scale 1.5 against System Scale's @entity_scale_3 (= 4.5), and differs from
+      vanilla 4.4's own body as well (4.4 added the amb_wrecked_shipyard_idle
+      soundeffect), so the vanilla-body suppression in check_duplicate_entities
+      does not cover it as it does the two debris_medium entities beside it.
+      The two `attach` edges further down this file keep the bare name and so
+      bind to System Scale's rescaled entity.
+    replace:
+      - from: "\tname = \"debris_large_01_entity\""
+        to: "\tname = \"stnh_debris_large_01_entity\""
+        count: 1
+
+  # --- STNH's dummy habitat entity would decide what EVERY habitat looks like -
+  - path: gfx/models/ships/suliban_01/suliban_01_helix.asset
+    source: "Star Trek: New Horizons"
+    why: >-
+      This file declares `orbital_habitat_01_entity` as a clone of
+      suliban_01_orbital_habitat_entity, commented in STNH's own source as a
+      "Dummy entity to remove error logs from planet class". In STNH's tree
+      nothing else declares that name, so a dummy is all it needed. In ours
+      vanilla's real habitat art declares it too, and the name is not Suliban
+      art -- it is what `entity = "orbital_habitat"` in common/planet_classes/
+      resolves to, so the undetermined winner decides whether EVERY empire's
+      habitats render as vanilla's orbital ring or as the Suliban helix. Vanilla
+      wins: habitat art is shared by all 101 empires and the helix is one
+      species' ship. The Suliban empire flies the Walshicus suliban set anyway
+      (decision 18). Renamed rather than deleted, per the Saturn precedent;
+      suliban_01_orbital_habitat_entity is untouched and still resolves.
+      See .docs/decisions/53-duplicate-entity-triage.md.
+    replace:
+      - from: "\tname = \"orbital_habitat_01_entity\""
+        to: "\tname = \"stnh_suliban_orbital_habitat_01_entity\""
+        count: 1
+
+  # --- Walshicus shipsets: station section attach points (decision 35) ---
+  # vanilla's military_station_* and ion_cannon ship sizes name section_slots
+  # locators part1..partN. Vanilla's own station meshes bake them in; these 22
+  # do not, and the .asset declares only `root`, so every section fails to
+  # attach. See .docs/decisions/35-station-section-attach-points.md.
+  - path: gfx/models/ships/betazoid/military_stations/betazoid_military_stations.asset
+    source: Betazoid Shipset
+    why: >-
+      betazoid's three station entities declare only a `root` locator and the
+      meshes bake in no attach points, so vanilla's section_slots (part1..partN)
+      resolve against nothing. Positions are origin on purpose -- decision 28.
+    replace:
+      - from: " \tname = \"betazoid_military_station_small_entity\"\r\n"
+        to: " \tname = \"betazoid_military_station_small_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part2\" position = { 0 0 0 } }\r\n"
+        count: 1
+      - from: " \tname = \"betazoid_military_station_large_entity\"\r\n"
+        to: " \tname = \"betazoid_military_station_large_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part2\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part3\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part4\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part5\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part6\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part7\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part8\" position = { 0 0 0 } }\r\n"
+        count: 1
+      - from: " \tname = \"betazoid_ion_cannon_entity\"\r\n"
+        to: " \tname = \"betazoid_ion_cannon_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n"
+        count: 1
+  - path: gfx/models/ships/borg/military_stations/borg_military_stations.asset
+    source: Borg Shipset
+    why: >-
+      borg's three station entities declare only a `root` locator and the
+      meshes bake in no attach points, so vanilla's section_slots (part1..partN)
+      resolve against nothing. Positions are origin on purpose -- decision 28.
+    replace:
+      - from: " \tname = \"borg_military_station_small_entity\"\r\n"
+        to: " \tname = \"borg_military_station_small_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part2\" position = { 0 0 0 } }\r\n"
+        count: 1
+      - from: " \tname = \"borg_military_station_large_entity\"\r\n"
+        to: " \tname = \"borg_military_station_large_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part2\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part3\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part4\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part5\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part6\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part7\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part8\" position = { 0 0 0 } }\r\n"
+        count: 1
+      - from: " \tname = \"borg_ion_cannon_entity\"\r\n"
+        to: " \tname = \"borg_ion_cannon_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n"
+        count: 1
+  - path: gfx/models/ships/caitian/military_stations/caitian_military_stations.asset
+    source: Caitian Shipset
+    why: >-
+      caitian's three station entities declare only a `root` locator and the
+      meshes bake in no attach points, so vanilla's section_slots (part1..partN)
+      resolve against nothing. Positions are origin on purpose -- decision 28.
+    replace:
+      - from: " \tname = \"caitian_military_station_small_entity\"\r\n"
+        to: " \tname = \"caitian_military_station_small_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part2\" position = { 0 0 0 } }\r\n"
+        count: 1
+      - from: " \tname = \"caitian_military_station_large_entity\"\r\n"
+        to: " \tname = \"caitian_military_station_large_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part2\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part3\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part4\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part5\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part6\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part7\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part8\" position = { 0 0 0 } }\r\n"
+        count: 1
+      - from: " \tname = \"caitian_ion_cannon_entity\"\r\n"
+        to: " \tname = \"caitian_ion_cannon_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n"
+        count: 1
+  - path: gfx/models/ships/cardassian/military_stations/cardassian_military_stations.asset
+    source: Cardassian Shipset
+    why: >-
+      cardassian's three station entities declare only a `root` locator and the
+      meshes bake in no attach points, so vanilla's section_slots (part1..partN)
+      resolve against nothing. Positions are origin on purpose -- decision 28.
+    replace:
+      - from: " \tname = \"cardassian_military_station_small_entity\"\r\n"
+        to: " \tname = \"cardassian_military_station_small_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part2\" position = { 0 0 0 } }\r\n"
+        count: 1
+      - from: " \tname = \"cardassian_military_station_large_entity\"\r\n"
+        to: " \tname = \"cardassian_military_station_large_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part2\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part3\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part4\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part5\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part6\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part7\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part8\" position = { 0 0 0 } }\r\n"
+        count: 1
+      - from: " \tname = \"cardassian_ion_cannon_entity\"\r\n"
+        to: " \tname = \"cardassian_ion_cannon_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n"
+        count: 1
+  - path: gfx/models/ships/dominion/military_stations/dominion_military_stations.asset
+    source: Dominion Shipset
+    why: >-
+      dominion's three station entities declare only a `root` locator and the
+      meshes bake in no attach points, so vanilla's section_slots (part1..partN)
+      resolve against nothing. Positions are origin on purpose -- decision 28.
+    replace:
+      - from: " \tname = \"dominion_military_station_small_entity\"\r\n"
+        to: " \tname = \"dominion_military_station_small_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part2\" position = { 0 0 0 } }\r\n"
+        count: 1
+      - from: " \tname = \"dominion_military_station_large_entity\"\r\n"
+        to: " \tname = \"dominion_military_station_large_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part2\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part3\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part4\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part5\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part6\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part7\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part8\" position = { 0 0 0 } }\r\n"
+        count: 1
+      - from: " \tname = \"dominion_ion_cannon_entity\"\r\n"
+        to: " \tname = \"dominion_ion_cannon_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n"
+        count: 1
+  - path: gfx/models/ships/elachi/military_stations/elachi_military_stations.asset
+    source: Elachi Shipset
+    why: >-
+      elachi's three station entities declare only a `root` locator and the
+      meshes bake in no attach points, so vanilla's section_slots (part1..partN)
+      resolve against nothing. Positions are origin on purpose -- decision 28.
+    replace:
+      - from: " \tname = \"elachi_military_station_small_entity\"\r\n"
+        to: " \tname = \"elachi_military_station_small_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part2\" position = { 0 0 0 } }\r\n"
+        count: 1
+      - from: " \tname = \"elachi_military_station_large_entity\"\r\n"
+        to: " \tname = \"elachi_military_station_large_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part2\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part3\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part4\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part5\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part6\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part7\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part8\" position = { 0 0 0 } }\r\n"
+        count: 1
+      - from: " \tname = \"elachi_ion_cannon_entity\"\r\n"
+        to: " \tname = \"elachi_ion_cannon_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n"
+        count: 1
+  - path: gfx/models/ships/ferengi/military_stations/ferengi_military_stations.asset
+    source: Ferengi Shipset
+    why: >-
+      ferengi's three station entities declare only a `root` locator and the
+      meshes bake in no attach points, so vanilla's section_slots (part1..partN)
+      resolve against nothing. Positions are origin on purpose -- decision 28.
+    replace:
+      - from: " \tname = \"ferengi_military_station_small_entity\"\r\n"
+        to: " \tname = \"ferengi_military_station_small_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part2\" position = { 0 0 0 } }\r\n"
+        count: 1
+      - from: " \tname = \"ferengi_military_station_large_entity\"\r\n"
+        to: " \tname = \"ferengi_military_station_large_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part2\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part3\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part4\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part5\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part6\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part7\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part8\" position = { 0 0 0 } }\r\n"
+        count: 1
+      - from: " \tname = \"ferengi_ion_cannon_entity\"\r\n"
+        to: " \tname = \"ferengi_ion_cannon_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n"
+        count: 1
+  - path: gfx/models/ships/klingon/military_stations/klingon_military_stations.asset
+    source: Klingon Shipset
+    why: >-
+      klingon's three station entities declare only a `root` locator and the
+      meshes bake in no attach points, so vanilla's section_slots (part1..partN)
+      resolve against nothing. Positions are origin on purpose -- decision 28.
+    replace:
+      - from: " \tname = \"klingon_military_station_small_entity\"\r\n"
+        to: " \tname = \"klingon_military_station_small_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part2\" position = { 0 0 0 } }\r\n"
+        count: 1
+      - from: " \tname = \"klingon_military_station_large_entity\"\r\n"
+        to: " \tname = \"klingon_military_station_large_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part2\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part3\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part4\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part5\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part6\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part7\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part8\" position = { 0 0 0 } }\r\n"
+        count: 1
+      - from: " \tname = \"klingon_ion_cannon_entity\"\r\n"
+        to: " \tname = \"klingon_ion_cannon_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n"
+        count: 1
+  - path: gfx/models/ships/krenim/military_stations/krenim_military_stations.asset
+    source: Krenim Shipset
+    why: >-
+      krenim's three station entities declare only a `root` locator and the
+      meshes bake in no attach points, so vanilla's section_slots (part1..partN)
+      resolve against nothing. Positions are origin on purpose -- decision 28.
+    replace:
+      - from: " \tname = \"krenim_military_station_small_entity\"\r\n"
+        to: " \tname = \"krenim_military_station_small_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part2\" position = { 0 0 0 } }\r\n"
+        count: 1
+      - from: " \tname = \"krenim_military_station_large_entity\"\r\n"
+        to: " \tname = \"krenim_military_station_large_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part2\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part3\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part4\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part5\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part6\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part7\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part8\" position = { 0 0 0 } }\r\n"
+        count: 1
+      - from: " \tname = \"krenim_ion_cannon_entity\"\r\n"
+        to: " \tname = \"krenim_ion_cannon_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n"
+        count: 1
+  - path: gfx/models/ships/lukari/military_stations/lukari_military_stations.asset
+    source: Lukari Shipset
+    why: >-
+      lukari's three station entities declare only a `root` locator and the
+      meshes bake in no attach points, so vanilla's section_slots (part1..partN)
+      resolve against nothing. Positions are origin on purpose -- decision 28.
+    replace:
+      - from: " \tname = \"lukari_military_station_small_entity\"\r\n"
+        to: " \tname = \"lukari_military_station_small_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part2\" position = { 0 0 0 } }\r\n"
+        count: 1
+      - from: " \tname = \"lukari_military_station_large_entity\"\r\n"
+        to: " \tname = \"lukari_military_station_large_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part2\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part3\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part4\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part5\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part6\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part7\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part8\" position = { 0 0 0 } }\r\n"
+        count: 1
+      - from: " \tname = \"lukari_ion_cannon_entity\"\r\n"
+        to: " \tname = \"lukari_ion_cannon_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n"
+        count: 1
+  - path: gfx/models/ships/malon/military_stations/malon_military_stations.asset
+    source: Malon Shipset
+    why: >-
+      malon's three station entities declare only a `root` locator and the
+      meshes bake in no attach points, so vanilla's section_slots (part1..partN)
+      resolve against nothing. Positions are origin on purpose -- decision 28.
+    replace:
+      - from: " \tname = \"malon_military_station_small_entity\"\r\n"
+        to: " \tname = \"malon_military_station_small_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part2\" position = { 0 0 0 } }\r\n"
+        count: 1
+      - from: " \tname = \"malon_military_station_large_entity\"\r\n"
+        to: " \tname = \"malon_military_station_large_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part2\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part3\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part4\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part5\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part6\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part7\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part8\" position = { 0 0 0 } }\r\n"
+        count: 1
+      - from: " \tname = \"malon_ion_cannon_entity\"\r\n"
+        to: " \tname = \"malon_ion_cannon_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n"
+        count: 1
+  - path: gfx/models/ships/romulan/military_stations/romulan_military_stations.asset
+    source: Romulan Shipset
+    why: >-
+      romulan's three station entities declare only a `root` locator and the
+      meshes bake in no attach points, so vanilla's section_slots (part1..partN)
+      resolve against nothing. Positions are origin on purpose -- decision 28.
+    replace:
+      - from: " \tname = \"romulan_military_station_small_entity\"\r\n"
+        to: " \tname = \"romulan_military_station_small_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part2\" position = { 0 0 0 } }\r\n"
+        count: 1
+      - from: " \tname = \"romulan_military_station_large_entity\"\r\n"
+        to: " \tname = \"romulan_military_station_large_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part2\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part3\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part4\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part5\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part6\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part7\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part8\" position = { 0 0 0 } }\r\n"
+        count: 1
+      - from: " \tname = \"romulan_ion_cannon_entity\"\r\n"
+        to: " \tname = \"romulan_ion_cannon_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n"
+        count: 1
+  - path: gfx/models/ships/starfleet_tng/military_stations/starfleet_tng_military_stations.asset
+    source: Starfleet TNG Era Shipset
+    why: >-
+      starfleet_tng's three station entities declare only a `root` locator and the
+      meshes bake in no attach points, so vanilla's section_slots (part1..partN)
+      resolve against nothing. Positions are origin on purpose -- decision 28.
+    replace:
+      - from: " \tname = \"starfleet_tng_military_station_small_entity\"\r\n"
+        to: " \tname = \"starfleet_tng_military_station_small_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part2\" position = { 0 0 0 } }\r\n"
+        count: 1
+      - from: " \tname = \"starfleet_tng_military_station_large_entity\"\r\n"
+        to: " \tname = \"starfleet_tng_military_station_large_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part2\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part3\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part4\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part5\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part6\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part7\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part8\" position = { 0 0 0 } }\r\n"
+        count: 1
+      - from: " \tname = \"starfleet_tng_ion_cannon_entity\"\r\n"
+        to: " \tname = \"starfleet_tng_ion_cannon_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n"
+        count: 1
+  - path: gfx/models/ships/suliban/military_stations/suliban_military_stations.asset
+    source: Suliban Shipset
+    why: >-
+      suliban's three station entities declare only a `root` locator and the
+      meshes bake in no attach points, so vanilla's section_slots (part1..partN)
+      resolve against nothing. Positions are origin on purpose -- decision 28.
+    replace:
+      - from: " \tname = \"suliban_military_station_small_entity\"\r\n"
+        to: " \tname = \"suliban_military_station_small_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part2\" position = { 0 0 0 } }\r\n"
+        count: 1
+      - from: " \tname = \"suliban_military_station_large_entity\"\r\n"
+        to: " \tname = \"suliban_military_station_large_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part2\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part3\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part4\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part5\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part6\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part7\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part8\" position = { 0 0 0 } }\r\n"
+        count: 1
+      - from: " \tname = \"suliban_ion_cannon_entity\"\r\n"
+        to: " \tname = \"suliban_ion_cannon_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n"
+        count: 1
+  - path: gfx/models/ships/talarian/military_stations/talarian_military_stations.asset
+    source: Talarian Shipset
+    why: >-
+      talarian's three station entities declare only a `root` locator and the
+      meshes bake in no attach points, so vanilla's section_slots (part1..partN)
+      resolve against nothing. Positions are origin on purpose -- decision 28.
+    replace:
+      - from: " \tname = \"talarian_military_station_small_entity\"\r\n"
+        to: " \tname = \"talarian_military_station_small_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part2\" position = { 0 0 0 } }\r\n"
+        count: 1
+      - from: " \tname = \"talarian_military_station_large_entity\"\r\n"
+        to: " \tname = \"talarian_military_station_large_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part2\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part3\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part4\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part5\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part6\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part7\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part8\" position = { 0 0 0 } }\r\n"
+        count: 1
+      - from: " \tname = \"talarian_ion_cannon_entity\"\r\n"
+        to: " \tname = \"talarian_ion_cannon_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n"
+        count: 1
+  - path: gfx/models/ships/terran_nx/military_stations/terran_nx_military_stations.asset
+    source: Terran NX Era Shipset
+    why: >-
+      terran_nx's three station entities declare only a `root` locator and the
+      meshes bake in no attach points, so vanilla's section_slots (part1..partN)
+      resolve against nothing. Positions are origin on purpose -- decision 28.
+    replace:
+      - from: " \tname = \"terran_nx_military_station_small_entity\"\r\n"
+        to: " \tname = \"terran_nx_military_station_small_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part2\" position = { 0 0 0 } }\r\n"
+        count: 1
+      - from: " \tname = \"terran_nx_military_station_large_entity\"\r\n"
+        to: " \tname = \"terran_nx_military_station_large_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part2\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part3\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part4\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part5\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part6\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part7\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part8\" position = { 0 0 0 } }\r\n"
+        count: 1
+      - from: " \tname = \"terran_nx_ion_cannon_entity\"\r\n"
+        to: " \tname = \"terran_nx_ion_cannon_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n"
+        count: 1
+  - path: gfx/models/ships/tholian/military_stations/tholian_military_stations.asset
+    source: Tholian Shipset
+    why: >-
+      tholian's three station entities declare only a `root` locator and the
+      meshes bake in no attach points, so vanilla's section_slots (part1..partN)
+      resolve against nothing. Positions are origin on purpose -- decision 28.
+    replace:
+      - from: " \tname = \"tholian_military_station_small_entity\"\r\n"
+        to: " \tname = \"tholian_military_station_small_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part2\" position = { 0 0 0 } }\r\n"
+        count: 1
+      - from: " \tname = \"tholian_military_station_large_entity\"\r\n"
+        to: " \tname = \"tholian_military_station_large_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part2\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part3\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part4\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part5\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part6\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part7\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part8\" position = { 0 0 0 } }\r\n"
+        count: 1
+      - from: " \tname = \"tholian_ion_cannon_entity\"\r\n"
+        to: " \tname = \"tholian_ion_cannon_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n"
+        count: 1
+  - path: gfx/models/ships/tuterian/military_stations/tuterian_military_stations.asset
+    source: Tuterian Shipset
+    why: >-
+      tuterian's three station entities declare only a `root` locator and the
+      meshes bake in no attach points, so vanilla's section_slots (part1..partN)
+      resolve against nothing. Positions are origin on purpose -- decision 28.
+    replace:
+      - from: " \tname = \"tuterian_military_station_small_entity\"\r\n"
+        to: " \tname = \"tuterian_military_station_small_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part2\" position = { 0 0 0 } }\r\n"
+        count: 1
+      - from: " \tname = \"tuterian_military_station_large_entity\"\r\n"
+        to: " \tname = \"tuterian_military_station_large_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part2\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part3\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part4\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part5\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part6\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part7\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part8\" position = { 0 0 0 } }\r\n"
+        count: 1
+      - from: " \tname = \"tuterian_ion_cannon_entity\"\r\n"
+        to: " \tname = \"tuterian_ion_cannon_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n"
+        count: 1
+  - path: gfx/models/ships/vidiian/military_stations/vidiian_military_stations.asset
+    source: Vidiian Shipset
+    why: >-
+      vidiian's three station entities declare only a `root` locator and the
+      meshes bake in no attach points, so vanilla's section_slots (part1..partN)
+      resolve against nothing. Positions are origin on purpose -- decision 28.
+    replace:
+      - from: " \tname = \"vidiian_military_station_small_entity\"\r\n"
+        to: " \tname = \"vidiian_military_station_small_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part2\" position = { 0 0 0 } }\r\n"
+        count: 1
+      - from: " \tname = \"vidiian_military_station_large_entity\"\r\n"
+        to: " \tname = \"vidiian_military_station_large_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part2\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part3\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part4\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part5\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part6\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part7\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part8\" position = { 0 0 0 } }\r\n"
+        count: 1
+      - from: " \tname = \"vidiian_ion_cannon_entity\"\r\n"
+        to: " \tname = \"vidiian_ion_cannon_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n"
+        count: 1
+  - path: gfx/models/ships/vulcan/military_stations/vulcan_military_stations.asset
+    source: Vulcan Shipset
+    why: >-
+      vulcan's three station entities declare only a `root` locator and the
+      meshes bake in no attach points, so vanilla's section_slots (part1..partN)
+      resolve against nothing. Positions are origin on purpose -- decision 28.
+    replace:
+      - from: " \tname = \"vulcan_military_station_small_entity\"\r\n"
+        to: " \tname = \"vulcan_military_station_small_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part2\" position = { 0 0 0 } }\r\n"
+        count: 1
+      - from: " \tname = \"vulcan_military_station_large_entity\"\r\n"
+        to: " \tname = \"vulcan_military_station_large_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part2\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part3\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part4\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part5\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part6\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part7\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part8\" position = { 0 0 0 } }\r\n"
+        count: 1
+      - from: " \tname = \"vulcan_ion_cannon_entity\"\r\n"
+        to: " \tname = \"vulcan_ion_cannon_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n"
+        count: 1
+  - path: gfx/models/ships/xindi/military_stations/xindi_military_stations.asset
+    source: Xindi Shipset
+    why: >-
+      xindi's three station entities declare only a `root` locator and the
+      meshes bake in no attach points, so vanilla's section_slots (part1..partN)
+      resolve against nothing. Positions are origin on purpose -- decision 28.
+    replace:
+      - from: " \tname = \"xindi_military_station_small_entity\"\r\n"
+        to: " \tname = \"xindi_military_station_small_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part2\" position = { 0 0 0 } }\r\n"
+        count: 1
+      - from: " \tname = \"xindi_military_station_large_entity\"\r\n"
+        to: " \tname = \"xindi_military_station_large_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part2\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part3\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part4\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part5\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part6\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part7\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part8\" position = { 0 0 0 } }\r\n"
+        count: 1
+      - from: " \tname = \"xindi_ion_cannon_entity\"\r\n"
+        to: " \tname = \"xindi_ion_cannon_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n"
+        count: 1
+  - path: gfx/models/ships/yridian/military_stations/yridian_military_stations.asset
+    source: Yridian Shipset
+    why: >-
+      yridian's three station entities declare only a `root` locator and the
+      meshes bake in no attach points, so vanilla's section_slots (part1..partN)
+      resolve against nothing. Positions are origin on purpose -- decision 28.
+    replace:
+      - from: " \tname = \"yridian_military_station_small_entity\"\r\n"
+        to: " \tname = \"yridian_military_station_small_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part2\" position = { 0 0 0 } }\r\n"
+        count: 1
+      - from: " \tname = \"yridian_military_station_large_entity\"\r\n"
+        to: " \tname = \"yridian_military_station_large_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part2\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part3\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part4\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part5\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part6\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part7\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part8\" position = { 0 0 0 } }\r\n"
+        count: 1
+      - from: " \tname = \"yridian_ion_cannon_entity\"\r\n"
+        to: " \tname = \"yridian_ion_cannon_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n"
+        count: 1
+
+# ── Renames ──────────────────────────────────────────────────────────────────
+#
+# Change a vendored file's NAME, leaving its contents alone. Applied by
+# tools/vendor.py after every source, after src/, and after patches.
+#
+# WHY THIS EXISTS AND WHY HARVEST ORDER IS NOT ENOUGH. The rules at the top of
+# this file say later sources overwrite earlier ones. True — of identical PATHS.
+# Two sources shipping the same key under DIFFERENT filenames both ship, and
+# once 48 mods are one mod there is no load order left to separate them: the
+# engine decides by filename sort within the directory. Harvest order has no say
+# in it at all. So a rename is the only lever that changes who wins a contested
+# key, and before this the nearest thing was an src/ copy of the whole losing
+# file altered in no way but its name.
+#
+# WHICH END OF THE SORT WINS DEPENDS ON THE DIRECTORY. FIOS directories keep the
+# FIRST filename, everything else keeps the LAST. Irony Mod Manager's convention
+# is `!!!_` to win a FIOS sort and `zzz_` to win a LIOS one. The list of FIOS
+# directories, and why it is the one table in this repo not measured against
+# vanilla, is .docs/decisions/29-merge-semantics-per-directory.md.
+#
+# Fields:
+#   path    Generated path to rename. Must exist in the tree.
+#   to      The new FILENAME — not a path. Moving a file to another directory
+#           moves it to another database, which is not what this is for.
+#   why     Mandatory. Same reason `patches:` demands one: a renamed file with
+#           no recorded reason cannot be told from a mistake.
+#   source  Optional. Asserts which source shipped it; a mismatch fails the
+#           build, so a harvest-order change cannot silently re-point a rename.
+#   win     Optional, `first` or `last`. Asserts the new name really does sort
+#           that way in its directory — against vanilla's files as well as ours,
+#           because vanilla's `00_` prefix is usually what a FIOS rename has to
+#           beat. Without it a rename that fails to win looks correct forever.
+#           This is Irony's "keep prepending characters until it sorts right"
+#           loop, expressed as a check rather than a fixup.
+  # ── 2026-08-07 live-run repairs ─────────────────────────────────────────────
+  # Six files, all found by reading error.log after the 15:41 run. Each removes or
+  # restores named lines in someone else's file; none changes a game balance value.
+  # See .docs/decisions/40-live-run-2026-08-07-repairs.md.
+
+  - path: common/governments/civics/pd_origins_unique.txt
+    source: PD - Unique Worlds
+    why: >-
+      PD gates two origins on `NOT = { value = CRYO }`, but the CRYO species
+      class is declared by NOTHING -- not by PD, not by any other source in this
+      manifest, not by vanilla. It belongs to a PD companion mod we do not harvest. The
+      engine reports `Invalid government species_class reference [CRYO]` and the
+      clause is dead either way: with no species ever of class CRYO the NOT is
+      always true, so deleting the line is behaviour-identical. Declaring a stub
+      class instead (decision 32) would be wrong here -- nothing references CRYO
+      for art, so a stub would be a phantom species class that exists only to
+      satisfy a test that can never fail.
+    replace:
+      - from: "\t\tspecies_class = { NOT = { value = CRYO } }\r\n"
+        to: ""
+        count: 2
+
+  - path: gfx/portraits/asset_selectors/klingon/klingon_male_clothes_combined.txt
+    source: "Star Trek: New Horizons"
+    why: >-
+      `leader_class = legend` names a leader class 4.4 does not have -- vanilla
+      declares exactly four in common/leader_classes/00_base_classes.txt
+      (commander, envoy, official, scientist). The engine reports `Failed to
+      deferred read key reference legend` twice. Removing the term leaves `NOR =
+      { leader_class = commander }` and `OR = { leader_class = commander }`,
+      which is what the trigger already evaluated to, since an unresolvable
+      class matches nothing.
+    replace:
+      - from: " leader_class = legend"
+        to: ""
+        count: 2
+
+  - path: common/starbase_buildings/sbx_3_0_starbase_buildings.txt
+    source: Starbase Extended 3.0
+    why: >-
+      `category` is a field of a `resources` block, not a trigger.
+      financial_space_center has one copy-pasted into its `potential` block,
+      where 4.4 tries to resolve it as a scripted trigger and reports `Error in
+      scripted trigger, cannot find: category`. This file uses the line
+      correctly 45 other times inside `resources` and those are left alone --
+      the anchor includes the `potential = {` opener, which is unique.
+    replace:
+      - from: "\tpotential = {\r\n\t\tcategory = starbase_buildings\r\n"
+        to: "\tpotential = {\r\n"
+        count: 1
+
+  - path: gfx/projectiles/alt_strike_craft_weapons.txt
+    source: ASB Ironman
+    why: >-
+      `shield_impact` accepts size small, medium or big; this one says `none`,
+      so 4.4 rejects it and the strike-craft shield hit plays no effect at all.
+      Vanilla's own strike_craft_weapons.txt uses `small` for every strike
+      craft, which is the value taken here.
+    replace:
+      - from: "\t\tsize = none\r\n"
+        to: "\t\tsize = small\r\n"
+        count: 1
+
+  - path: common/starbase_modules/sbx_3_0_starbase_modules.txt
+    source: Starbase Extended 3.0
+    why: >-
+      SBX carries New Ship Classes compatibility hooks: conditional output gated
+      on `has_starbase_building = mining_manager` /
+      `assembly_line_manufacturing`, both NSC buildings. NSC is not in the
+      harvest, so the key resolves against nothing and 4.4 reports `Failed to
+      deferred read key reference` five times. The blocks are dead weight -- a
+      trigger on a building that cannot exist never fires -- so removing them is
+      behaviour-identical and costs no output any starbase could actually have
+      earned.
+    replace:
+      - from: "\t\tproduces = { trigger = { has_starbase_building = mining_manager } minerals = 2 }\r\n"
+        to: ""
+        count: 1
+      - from: "\t\tproduces = {\r\n\t\t\ttrigger = { has_starbase_building = assembly_line_manufacturing }\r\n\t\t\talloys = 1\r\n\t\t}\r\n\t\tupkeep = {\r\n\t\t\ttrigger = { has_starbase_building = assembly_line_manufacturing }\r\n\t\t\tminerals = 2\r\n\t\t\tenergy = 1\r\n\t\t}\r\n"
+        to: ""
+        count: 1
+      - from: "\t\tproduces = {\r\n\t\t\ttrigger = { has_starbase_building = assembly_line_manufacturing }\r\n\t\t\tconsumer_goods = 2\r\n\t\t}\r\n\t\tupkeep = {\r\n\t\t\ttrigger = { has_starbase_building = assembly_line_manufacturing }\r\n\t\t\tminerals = 2\r\n\t\t\tenergy = 1\r\n\t\t}\r\n"
+        to: ""
+        count: 1
+
+  - path: interface/zzz_sbx_3_0_starbase_view.gui
+    source: Starbase Extended 3.0
+    why: >-
+      SBX's starbase view replaces vanilla's `design_info` window but omits the
+      `design_name` instantTextBoxType the game writes the selected design's
+      name into. 4.4 reports `Could not find instantTextboxType design_name in
+      window design_info` EVERY TIME THE STARBASE VIEW IS OPENED -- one of only
+      two errors in the 2026-08-07 run that recur during play rather than at
+      load. The block is vanilla's own, copied from interface/starbase_view.gui
+      with vanilla's position and sizing and retabbed to match this file.
+      Anchored on the window's name+position+size together, because the size
+      line alone occurs twice.
+    replace:
+      - from: "\t\t\t\tname = \"design_info\"\r\n\t\t\t\tposition = { x = 30 y = 94 }\r\n\t\t\t\tsize = { width = 295 height = 287 }\r\n"
+        to: "\t\t\t\tname = \"design_info\"\r\n\t\t\t\tposition = { x = 30 y = 94 }\r\n\t\t\t\tsize = { width = 295 height = 287 }\r\n\t\t\t\tinstantTextBoxType = {\r\n\t\t\t\t\tname = \"design_name\"\r\n\t\t\t\t\tfont = \"cg_16b\"\r\n\t\t\t\t\ttext = \"\"\r\n\t\t\t\t\tposition = { x = 149 y = 17 }\r\n\t\t\t\t\tmaxWidth = 110\r\n\t\t\t\t\tmaxHeight = 20\r\n\t\t\t\t\tfixedSize = yes\r\n\t\t\t\t\tmultiline = no\r\n\t\t\t\t\talwaysTransparent = yes\r\n\t\t\t\t\tformat = center\r\n\t\t\t\t}\r\n"
+        count: 1
+
+  - path: gfx/models/ships/starbases/_starbase_entities_SBX_3_0_fallen_empire_02.asset
+    source: Starbase Extended 3.0
+    why: >-
+      SBX built its fallen-empire 02/03/04 starbase assets by copying the 01
+      file and renumbering every name, including the animation's `file =`. But
+      vanilla ships only ONE such animation --
+      fallen_empire_01_citadel_idle.anim -- so 02, 03 and 04 point at .anim
+      files that exist in no tree, and 4.4 reports `Could not find animation
+      file` for each. The animation NAME is left alone because the entities
+      reference it; only the file it resolves to is repointed at the one that
+      exists. Same FE citadel model family, so the skeleton matches.
+    replace:
+      - from: "\tfile = \"fallen_empire_02_citadel_idle.anim\""
+        to: "\tfile = \"fallen_empire_01_citadel_idle.anim\""
+        count: 1
+
+  - path: gfx/models/ships/starbases/_starbase_entities_SBX_3_0_fallen_empire_03.asset
+    source: Starbase Extended 3.0
+    why: >-
+      SBX built its fallen-empire 02/03/04 starbase assets by copying the 01
+      file and renumbering every name, including the animation's `file =`. But
+      vanilla ships only ONE such animation --
+      fallen_empire_01_citadel_idle.anim -- so 02, 03 and 04 point at .anim
+      files that exist in no tree, and 4.4 reports `Could not find animation
+      file` for each. The animation NAME is left alone because the entities
+      reference it; only the file it resolves to is repointed at the one that
+      exists. Same FE citadel model family, so the skeleton matches.
+    replace:
+      - from: "\tfile = \"fallen_empire_03_citadel_idle.anim\""
+        to: "\tfile = \"fallen_empire_01_citadel_idle.anim\""
+        count: 1
+
+  - path: gfx/models/ships/starbases/_starbase_entities_SBX_3_0_fallen_empire_04.asset
+    source: Starbase Extended 3.0
+    why: >-
+      SBX built its fallen-empire 02/03/04 starbase assets by copying the 01
+      file and renumbering every name, including the animation's `file =`. But
+      vanilla ships only ONE such animation --
+      fallen_empire_01_citadel_idle.anim -- so 02, 03 and 04 point at .anim
+      files that exist in no tree, and 4.4 reports `Could not find animation
+      file` for each. The animation NAME is left alone because the entities
+      reference it; only the file it resolves to is repointed at the one that
+      exists. Same FE citadel model family, so the skeleton matches.
+    replace:
+      - from: "\tfile = \"fallen_empire_04_citadel_idle.anim\""
+        to: "\tfile = \"fallen_empire_01_citadel_idle.anim\""
+        count: 1
+
+renames: []
+
+
+sources:
+  # ── Real Space tier ────────────────────────────────────────────────────────
+  # System Scale must beat Real Space: it rescales every value Real Space's
+  # scripted_variables and matter decompressor define. (.docs/architecture/conflict-register.md)
+  - id: "937289339"
+    name: Real Space 4.0
+    exclude:
+      # Real Space's Patreon credit list, under `l_default`. Its two keys —
+      # pl_starlords, pl_voidborns — are read by nothing in the built tree or
+      # vanilla; the interface that displayed them is not part of what we
+      # vendor. Names real people, which is the other reason not to ship it.
+      - "localisation/replace/patrons_list.yml"
+      # Real Space's mod menu, as an edict in Policies & Edicts. Its one entry
+      # fires realspace.206 — a settings/advertising window for Real Space's
+      # optional add-ons, none of which is in the harvest, in a mod that is
+      # never published. The `patches:` entry above already skips the same
+      # window at game start; this is the other door into it. Excluding the
+      # file removes the edict; realspace.206 and its icon stay in the tree,
+      # inert, so restoring it is a one-line revert. Reported 2026-08-08.
+      - "common/edicts/realspace_edicts.txt"
+
+  - id: "1887282318"
+    name: Real Space - System Scale
+
+  - id: "1915620447"
+    name: Real Space - Ships in Scaling
+
+  # ── Planetary Diversity family ─────────────────────────────────────────────
+  # Base first, then extensions; extensions win their shared inline_scripts and
+  # the placeholder civics file designed to be overwritten by a submod.
+  - id: "819148835"
+    name: Planetary Diversity
+    exclude:
+      # The same stub-for-a-present-submod as PD - Unique Worlds' above, and its
+      # own first line reads "Irony this is a placeholder file please ignore it".
+      # origin_pd_aw_tree_of_life is defined for real by Ascension Worlds in
+      # zz_pd_aw_origins.txt, which out-sorts it; the stub's body is
+      # `potential = { always = no }`, so if the sort ever went the other way
+      # the origin would disappear from the empire designer with no error.
+      - "common/governments/civics/pd_placeholder_origins_for_submods.txt"
+
+  - id: "3173239930"
+    name: PD - Vanilla Replacements
+
+  - id: "2284514368"
+    name: PD - Gaia Worlds
+
+  - id: "1740165239"
+    name: PD - Unique Worlds
+    exclude:
+      # A stub for a submod that IS in the harvest, which is what makes it
+      # worth removing rather than harmless. It declares
+      # civic_hive_pd_planetary_infesters with `potential = { always = no }` so
+      # that references resolve when Ascension Worlds is absent — and Ascension
+      # Worlds is present, defining the same key for real in pd_civics.txt.
+      # common/governments/civics is LIOS, so the real file wins on filename
+      # sort today; the stub's leading `!` sorts FIRST and would win outright in
+      # any FIOS directory, and nothing on disk records which of the two this is
+      # (decision 29). One key, checked: the file is three lines long.
+      - "common/governments/civics/!_pd_placehold_civics_for_submods.txt"
+
+  - id: "3241119393"
+    name: PD - Ascension Worlds
+
+  - id: "1732447147"
+    name: PD - More Arcologies
+
+  - id: "3142294658"
+    name: PD - City Sets
+
+  - id: "1866576239"
+    name: PD - Planet View
+
+  # ── Gameplay / galaxy generation ───────────────────────────────────────────
+  - id: "1327874725"
+    name: Yet Another Galaxy Enhancement Mod
+
+  - id: "1326381312"
+    name: Assorted Precursor Adjustments
+
+  - id: "2002751329"
+    name: Sensor Expansion
+
+  - id: "3250900527"
+    name: Starbase Extended 3.0
+
+  # ── Graphics ───────────────────────────────────────────────────────────────
+  - id: "1318671320"
+    name: "!! K !! - Realistic Asteroids"
+    zip: hd_asteroids.zip
+
+  - id: "1506079770"
+    name: Whiter Stars
+    # Real Space owns star classes and ships art for all of them. Whiter Stars
+    # is a 16-file mod declaring supported_version 3.*; letting it override
+    # Real Space's star art here is an accident of tier placement, not a
+    # decision. Its other 14 files are uncontested and kept. (.docs/architecture/conflict-register.md)
+    exclude:
+      - "gfx/map/star_classes/b_star.dds"
+      - "gfx/map/star_classes/t_star.dds"
+
+  - id: "1407858645"
+    name: "!The Galaxy Is Flat"
+    zip: "!flat_galaxy.zip"
+
+  - id: "1880071041"
+    name: ASB Ironman
+
+  - id: "3397828987"
+    name: Diverse Rooms (Updated)
+    exclude:
+      # A SECOND file claiming `room_selector`, which STNH's copy of vanilla's
+      # room_textures.txt also claims. Which of two files wins one selector name
+      # is decided by nothing on disk, and under the reading where this file
+      # wins, its 277 `= { exists = owner }` ruler entries are unconditional
+      # overrides that put every empire in the galaxy in a cave. Its 297
+      # game_setup entries are merged into src/'s single selector by
+      # tools/gen_room_selector.py, so the rooms stay offered and the ambiguity
+      # is gone. See .docs/decisions/48-room-selector-merge.md.
+      - gfx/portraits/asset_selectors/dr_room_textures.txt
+
+  # RESTORED 2026-08-07, having been dropped 2026-08-02 on a misdiagnosis.
+  #
+  # It was dropped for causing `PLANET_SCALE_SYSTEM does not match in size with
+  # ZOOM_STEPS_SYSTEM` (error D13 of the 2026-08-01 run). It did not: that error
+  # was still in error.log five days later with this mod gone, and
+  # ZOOM_STEPS_SYSTEM turns out to be settable by no file anywhere and fixed at
+  # vanilla's 7 -- so Real Space - System Scale's own 8-entry PLANET_SCALE_SYSTEM
+  # was always the cause. Restoring this mod neither causes nor fixes it.
+  # See .docs/decisions/43-planet-scale-system-length.md.
+  #
+  # WHAT RESTORING IT ACTUALLY DOES, which the D13 story obscured: this file is
+  # NOTHING BUT camera defines, `zzzzz_` sorts last, so it wins all 20 keys it
+  # sets -- 17 of them from systemscale_defines.txt. There is no version of this
+  # mod that coexists with System Scale's camera; patching out the contested keys
+  # would leave three vanilla-owned scalars and nothing else. So this is a
+  # straight choice between two camera tunings, and it is a taste call, not a
+  # correctness one:
+  #
+  #     key                        vanilla   System Scale   Cinematic Camera
+  #     SYSTEM_MIN_PITCH              20.0              1              -79.0
+  #     SYSTEM_MAX_PITCH              80.0             89              179.0
+  #     FOV                             35             35                 30
+  #     SYSTEM_SLIDE_RADIUS_FACTOR     4.0           0.25                1.0
+  #     ZOOM_STEPS_SYSTEM_PERCENTAGES    7              8                 13
+  #
+  # System Scale's camera is tuned to the systems it rescaled; Cinematic Camera's
+  # is tuned to vanilla-scale ones. Reverting is deleting these two lines.
+  #
+  # ENTER_SYSTEM_ZOOM_STEP = 12 assumes this mod's own 13 zoom steps, and was
+  # the one value flagged to watch in game. CONFIRMED GOOD on the 2026-08-07
+  # live run: entering a system lands the camera sensibly, so the camera does
+  # offer the steps ZOOM_STEPS_SYSTEM_PERCENTAGES declares and the engine's
+  # ZOOM_STEPS_SYSTEM is measuring something else.
+  # See .docs/decisions/43-planet-scale-system-length.md.
+  - id: "703156866"
+    name: Cinematic Camera
+
+  # ── UI tier ────────────────────────────────────────────────────────────────
+  # Submods override their base: Extended Topbar takes 11 UIOD files, Dark UI
+  # takes 188. Both are settled by order alone. (.docs/architecture/conflict-register.md)
+  - id: "1623423360"
+    name: UI Overhaul Dynamic
+
+  - id: "3090328185"
+    name: UIOD - Extended Topbar for DLCs
+
+  - id: "1993018111"
+    name: UIOD - Dark UI
+    exclude:
+      # Re-skins for two mods that are not in the harvest. Dark UI ships
+      # replacement textures at the Speed Dial and Tiny Outliner mods' own
+      # paths; with neither mod present nothing declares a sprite over either
+      # directory, and `make clutter` finds 30 and 8 files with zero reachable
+      # siblings — the only two directories in the tree that are 100%
+      # unreferenced. Same class as the five URP topbar-compat files decision 12
+      # excluded, and the one nobody swept for afterwards.
+      - "gfx/speeddial/**"
+      - "gfx/tiny_outliner/**"
+
+  # ── Sound / music ──────────────────────────────────────────────────────────
+  # Additive; no contested paths.
+  #
+  # DROPPED 2026-08-02 -- Kammarheit (1409667987) and Apocryphos (1430192994).
+  #
+  # 919 MB and 78 files of dark-ambient soundtrack in a Star Trek total
+  # conversion. Neither produced a single error and neither conflicts with
+  # anything: this was purely a question of what the mod should sound like, and
+  # .docs/planning/open-questions.md flagged it as a call to make deliberately rather than by
+  # inertia. Made: STNH's own Trek score and Extended Soundtrack's vanilla
+  # tracks carry it, and dark ambient is not what Star Trek sounds like.
+  #
+  # Restoring them is two lines here plus `make vendor`. Both remain snapshotted
+  # in .source/, so this survives unsubscribing from them on Steam.
+  - id: "1224507727"
+    name: Extended Soundtrack
+    zip: exst.zip
+
+  # ── Universal Resource Patch — LAST of the script sources ──────────────────
+  # Its README requires it: "Load order: Absolute bottom, below all mods,
+  # including UI mods." Its topbar_other_resource_groups.txt is 1,271 lines
+  # against vanilla's 41 and is a strict superset of every other contender —
+  # it already carries Planetary Diversity's resources AND an annotated STNH
+  # block. Loaded early, PD - Unique Worlds' 42-line version would overwrite it
+  # and STG would silently lose Trek resource display in the topbar. Loaded
+  # last, it wins outright and the conflict needs no merge. (.docs/architecture/harvest-order.md)
+  - id: "1595876588"
+    name: "!!!Universal Resource Patch"
+    # Five of URP's six interface/resource_groups/ files are compatibility shims
+    # for topbar mods that are NOT in the harvest -- their own first lines say so
+    # ("#Compatibility for Improved Topbar", "# ... Compact UI Topbar",
+    # "#Compatibility for Star Trek: New Civilisations"). Each declares a topbar
+    # group (tb_extras_group, tp_compact_ui_others_group_1..3, tb_nanites_group)
+    # that NOTHING in STG or in vanilla references -- checked by grep across
+    # interface/, gfx/, common/, src/ and /stellaris/interface/. They are inert.
+    #
+    # They are also not silent: each independently lists ~939 strategic resources
+    # and re-reports every one that does not resolve, which was 4,645 of the
+    # 7,635 records in the 2026-08-02 live run -- 61% of the whole log for five
+    # files that cannot draw anything.
+    #
+    # This is decision 12 rule 2, not a drop: URP itself stays, and the file it
+    # is vendored for (topbar_other_resource_groups.txt, the 1,271-line superset
+    # carrying PD's resources and an annotated STNH block) is untouched.
+    #
+    # NOTE the space before ".txt" in group_2 -- it is in URP's own filename.
+    exclude:
+      - "interface/resource_groups/tb_extras_group.txt"
+      - "interface/resource_groups/tp_compact_ui_others_group_1.txt"
+      - "interface/resource_groups/tp_compact_ui_others_group_2 .txt"
+      - "interface/resource_groups/tp_compact_ui_others_group_3.txt"
+      - "interface/resource_groups/topbar_tb_nanites_group.txt"
+
+  # ── Star Trek: New Horizons — art only, additive only ──────────────────────
+  # Never STNH's common/, events/, interface/ or map/: that is the
+  # total-conversion script we are deliberately not shipping. `additive_only`
+  # makes STNH lose all 137 contested paths — planet-view backdrops, vanilla
+  # named planet pictures and a vanilla shipset — to the mods that own them.
+  # The rule is free: none of STG's Trek identity is in the contested set.
+  #
+  # gfx/models/portraits carries the Trek species portrait TEXTURES (794 MB);
+  # gfx/portraits/portraits is the 1.2 MB of .txt declarations pointing at
+  # them. Both halves are required or every portrait resolves to nothing.
+  # (.docs/architecture/harvest-order.md, including the 2026-08-01 correction)
+  #
+  # `additive_only` only protects paths an earlier SOURCE claims. It does not
+  # protect vanilla. STNH is a 3.12-era total conversion, so several of its art
+  # files shadow a vanilla 4.4 path and silently drop content vanilla still
+  # references. The three below are excluded outright; see decision 08.
+  - id: "688086068"
+    name: "Star Trek: New Horizons"
+    additive_only: true
+    # STNH's event pictures are 620×264; vanilla's are 450×150 at the same 569
+    # paths. The sprites that declare them stay vanilla's and the window that
+    # draws them is UIOD's, whose scale = 1.5 is cut for 450×150 — so the art
+    # rendered 930×396 inside a 693×239 frame. Nothing dangled and make validate
+    # was clean throughout. Re-cut to whatever vanilla ships at each path.
+    # See .docs/decisions/42-event-picture-geometry.md.
+    # And the planet view's city layers, 2026-08-08 — the same defect one
+    # directory over, found because a live run reported the city art sitting
+    # too low on every planet while the backdrop behind it looked right.
+    # Vanilla ships all 266 of its `*_city_l0N.dds` at exactly 800×400 and all
+    # 91 of its `*_room.dds` at exactly 952×340; STNH honours the room canvas
+    # (316 of 324) and not the city one, because its own interface/ — which we
+    # never vendor — was cut for 560×280, exactly 70% of vanilla's. 153 files
+    # shadow a vanilla path at the wrong size, all 153 STNH's. The backdrop
+    # was right the whole time because `additive_only` makes STNH lose all 121
+    # gfx/portraits/environments/ paths to the mods that own them (.docs/architecture/stnh-art.md),
+    # so only the half nobody else claims was ever wrong.
+    # See .docs/decisions/58-city-set-geometry.md.
+    resample_to_vanilla:
+      - "gfx/event_pictures/*.dds"
+      # ONE DIRECTORY, TWO FAMILIES, TWO FIT MODES — and they must be two rules
+      # rather than one `*.dds`, because the target and the canvas are now both
+      # read off the family (see resample_plan) and vanilla's two families
+      # disagree: 266/271 city layers at 800×400, 91/91 rooms at 952×340.
+      #
+      # `fit: canvas`, not the default crop-to-fill: a city layer is one of six
+      # composited by exact pixel position, and 41 of these are STNH's 560×280
+      # canvas top-trimmed, so a centre crop would cut 20% off the width of each.
+      - glob: "gfx/portraits/city_sets/*_city_l*.dds"
+        fit: canvas
+        # `target: family` because six of these prefixes — klingon, vulcan_01,
+        # cardassian_01, borg_01, tholian_01, undine_01, named by six of our
+        # empires — shadow NO vanilla path, so reading the target off one
+        # vanilla file has no answer and decision 58 had to leave them at 70%.
+        # Vanilla is 266/271 at 800×400 here, so the family has one.
+        target: family
+      # A room is the opposite kind of art: ONE full-bleed backdrop drawn behind
+      # the leader, so its aspect ratio is load-bearing and its pixel offsets
+      # are not. Crop-to-fill preserves the aspect; canvas-padding would squash
+      # vulcan_room's 1026×403 by 16% vertically to reach 952×340.
+      - glob: "gfx/portraits/city_sets/*_room.dds"
+        fit: crop
+        # Same reason, and vanilla is 91/91 at 952×340 here — the 11 Trek rooms
+        # STNH ships under its own names are the ones with no vanilla path.
+        target: family
+    exclude:
+      # Drops 47 of vanilla 4.4's 72 flag colours (dark_red, white, off_white …)
+      # while adding 2,075 STNH ones. Vanilla prescripted empires reference the
+      # dropped names. STNH's additions are customcolorN hsv ramps we don't use.
+      - "flags/colors.txt"
+      # A 128×128 DDS with no extension, so no loader in the engine can open it
+      # by any name. Sits beside STNH's own gfx/models/test_diffuse.dds, which
+      # is the file this was cut from.
+      - "gfx/models/ships/borg_01/test_diff"
+      # Adds nothing — every delta is either STNH's own 3.12 planet-view layout
+      # (which UIOD supersedes) or a deletion: the arkship planet layers, the
+      # origin_fallen_empire_hive environment override, and the psionic
+      # ascension portrait_evolution entry. It also repoints the main menu at
+      # STNH's frontend_background_entity.
+      - "gfx/portraits/portraits/00_portraits_main.txt"
+      # Every entry is gated on STNH scripted triggers from its common/, which
+      # we don't vendor, so none of its Starfleet leader backgrounds can ever
+      # fire — while it drops the four vanilla legendary paragon backgrounds
+      # (azaryn, beholder, keides, skrand). Rebuild properly in Phase 3.
+      - "gfx/portraits/asset_selectors/paragon_backgrounds.txt"
+      # ── gfx/particles: the 11 paths that shadow VANILLA ────────────────────
+      # `additive_only` protects paths an earlier SOURCE claimed; it does not
+      # protect vanilla, and these 11 are STNH 3.12-era copies of vanilla 4.4
+      # files. Excluded for exactly the reason in decision 08. The other 310
+      # files under gfx/particles are uniquely STNH's and arrive untouched.
+      - "gfx/particles/muzzle_flash.dds"
+      - "gfx/particles/_projectiles_particles.gfx"
+      - "gfx/particles/repair_ship.dds"
+      - "gfx/particles/flare_wide.dds"
+      - "gfx/particles/combat/missile_large_idle.asset"
+      - "gfx/particles/combat/missile_medium_idle.asset"
+      - "gfx/particles/misc/minefield_mine_effect.asset"
+      - "gfx/particles/misc/ship_aura_repairing_effect.asset"
+      - "gfx/particles/misc/ship_repairing_effect.asset"
+      - "gfx/particles/misc/ship_aura_minefield_effect.asset"
+      - "gfx/particles/ships/energy_core_effect.asset"
+      # ── STNH Klingon and Romulan hulls flying under Federation culture ──────
+      # 169 of the 250 dangling mesh references on the first build of the
+      # Walshicus tier came from these two files alone: they are warship
+      # variants declared in gfx/models/ships/federation/ whose meshes live in
+      # klingon/, klingon_01/02/04, romulan/ and romulan_01 — the directories
+      # that either collide with a Walshicus set or are no longer harvested.
+      # Nothing we keep references them; gen_shipsets.py borrows stations and
+      # civilian craft from `federation`, never warships.
+      - "gfx/models/ships/federation/federation_klingon_integrated_ships.asset"
+      - "gfx/models/ships/federation/federation_romulan_integrated_ships.asset"
+      # ── The two cross-culture aggregators in starbases/ and other/ ─────────
+      # Both name art from EVERY STNH culture, so harvesting either one drags
+      # the whole 104-directory tree back in behind it. sth_starbase_entities
+      # declares one starbase set per culture (~19 entities × 30 cultures);
+      # empire_select_dummy is the empire-selection preview and names every
+      # culture's corvette. The five cultures we still take STNH art for get
+      # their stations from their own directories and from the donors
+      # gen_shipsets.py borrows from, not from these.
+      - "gfx/models/ships/starbases/sth_starbase_entities.asset"
+      - "gfx/models/ships/other/empire_select/empire_select_dummy.asset"
+      # Four more files whose whole content is art for cultures the harvest no
+      # longer takes: derelict/recycling station decor built from Klingon,
+      # Romulan, Dominion and Cardassian hulls, the Borg transwarp catapult, and
+      # two hero ships (ENT-era Romulan and the Vulcan Seleya) whose meshes live
+      # in romulan_01/ and vulcan_01/. Nothing else references them.
+      - "gfx/models/ships/starbases/recycle/recycle_stations.asset"
+      - "gfx/models/ships/other/transwarp_conduit.asset"
+      # Declares `yridian_destroyer_entity` a SECOND time, and points it at
+      # `federation_01_corvette_frame_mesh`. Yridian ship art comes from the
+      # Walshicus Yridian Shipset now (decision 18), whose own
+      # yridian/destroyer/yridian_destroyer.asset declares the same name against
+      # yridian_destroyer_mesh. `other/` sorts before `yridian/`, so STNH's is
+      # read first — and which of two duplicate declarations the engine keeps is
+      # not recorded anywhere, so rather than bet on it, remove the conflict.
+      # The only name unique to this file, yridian_destroyer_section_1_entity, is
+      # referenced by nothing in the built tree.
+      # One of the 18 mod-vs-mod duplicates in the 2026-08-07 run; the other 17
+      # are third-party files duplicating within themselves or within their own
+      # mod family. See .docs/decisions/33-duplicate-entity-declarations.md.
+      - "gfx/models/ships/other/yridian_destroyer.asset"
+      - "gfx/models/ships/hero_ships_01/hero_ships_01_ENT_romulan_coreA.asset"
+      - "gfx/models/ships/hero_ships_01/hero_ships_01_ENT_seleya_coreA.asset"
+    include:
+      - gfx/portraits
+      # ── gfx/models/ships: THIRTEEN directories of 104, not the tree ─────────
+      # Walshicus' shipsets took over ship art for nine of the fourteen Trek
+      # cultures (decision 18), so all STNH is still asked for is the five that
+      # have no such set — BAJ, TRI, ADR, BOL, BRE — plus the directories
+      # tools/gen_shipsets.py borrows their stations and civilian craft from.
+      # The list is READ OUT of that script's own output, not guessed, and the
+      # dangling-mesh half of `make validate` closes the loop on what those
+      # directories then reference.
+      #
+      # Taking the tree instead is not merely wasteful, it is wrong: STNH has
+      # directories named `klingon` and `romulan`, and so does Walshicus. Same
+      # path, so the newer art wins the .gfx that DECLARES a mesh while STNH's
+      # .asset that USES it survives — 7 dangling references to
+      # romulan_research_station_mesh, caught by make validate on the first
+      # build of this tier.
+      - gfx/models/ships/bajoran_01
+      - gfx/models/ships/federation_32
+      - gfx/models/ships/andorian_01
+      - gfx/models/ships/bolian_01
+      - gfx/models/ships/breen_01
+      # Donors: stations and civilian craft the five have none of.
+      - gfx/models/ships/federation
+      - gfx/models/ships/hero_ships_01
+      - gfx/models/ships/suliban_01
+      - gfx/models/ships/andromedan_01
+      - gfx/models/ships/cytherian_01
+      - gfx/models/ships/generic_01
+      - gfx/models/ships/generic_05
+      - gfx/models/ships/generic_06
+      - gfx/models/ships/generic_07
+      # Shared art the thirteen above reference across directory boundaries.
+      # Added because `make validate` named them, one rebuild at a time — not
+      # because the layout suggested them.
+      - gfx/models/ships/starbases
+      - gfx/models/ships/other
+      - gfx/models/ships/generic_02
+      - gfx/models/ships/maquis_01
+      # ── Added 2026-08-03: the .mesh FILES the art above declares ────────────
+      # federation/federation_all_ships.gfx and other/borg_unicomplex.gfx are
+      # kept, and they DECLARE 15 meshes whose `file =` paths point in here.
+      # The name check was satisfied — the declaration was present — so the
+      # include list converged without them and the files were simply absent.
+      # The engine substituted test_object.mesh, which has no animation:
+      # 1,453 pdx_entity.cpp:266 records across 311 entities in one live
+      # run. `check_gfx_file_refs` is the check that can now see this.
+      - gfx/models/ships/federation_01
+      - gfx/models/ships/federation_02
+      - gfx/models/ships/federation_03
+      - gfx/models/ships/federation_04
+      - gfx/models/ships/borg_01
+      - gfx/models/portraits
+      - gfx/event_pictures
+      - gfx/loadingscreens
+      - flags
+      - music
+      - sound
+      # ── Added 2026-08-02: art the art we already take REFERENCES ───────────
+      # `gfx/models/ships` brought in files naming siblings that lived outside
+      # every include prefix, so 184 records in the 2026-08-02 live run were
+      # STNH art asking for STNH art we had declined to vendor. Measured from
+      # the log, not guessed: 106 of the 127 `Couldn't find particle 3D object`
+      # names are declared by four files under gfx/particles, and the
+      # `Couldn't find mesh "space_dust_0N_mesh"` pair plus nine
+      # `Failed to find texture` records name loose files at the top of
+      # gfx/models.
+      #
+      # gfx/particles is taken as a DIRECTORY (321 files) rather than by naming
+      # the four .gfx registration files, because a pdxparticle entry is only
+      # half a particle -- `type = "cannon_blue_01_muzzle"` resolves to a
+      # sibling .asset, and naming registrations without definitions would swap
+      # one dangling reference class for another. The 11 members that shadow a
+      # vanilla path are excluded above.
+      - gfx/particles
+      # gfx/models is NOT taken wholesale -- that is STNH's whole 3.12-era model
+      # tree over vanilla's. Only the loose files realspace_other_entities.asset
+      # actually names.
+      - gfx/models/space_dust_01.mesh
+      - gfx/models/space_dust_02.mesh
+      - gfx/models/space_dust_01_diffuse.dds
+      - gfx/models/space_dust_02_diffuse.dds
+      - gfx/models/space_dust_03_diffuse.dds
+      - gfx/models/space_dust_04_diffuse.dds
+      - gfx/models/space_dust_05_diffuse.dds
+      - gfx/models/space_dust_06_diffuse.dds
+      - gfx/models/space_dust_07_diffuse.dds
+      - gfx/models/dust_nebula_collapsar_01_diffuse.dds
+      - gfx/models/dust_nebula_collapsar_02_diffuse.dds
+      # ── Added 2026-08-03: the TEXTURES the art above declares ──────────────
+      # Group C in the 08-13 analysis: 139 `Failed to find texture` records in
+      # the live run, and NOT ONE of the named files was in the built tree. A
+      # `.gfx` meshsettings block names its textures as bare filenames
+      # (`texture_diffuse = "transparent_diffuse.dds"`), so the include list —
+      # which is scoped by directory — converged on the .gfx and the .mesh while
+      # leaving the .dds behind. Same reference-edge blindness as the 08-02 and
+      # 08-03 rounds above, one file type further down.
+      #
+      # shared_assets/ is the bulk: 98 of the 132 recoverable names, and it is
+      # STNH's cross-culture texture library — 251 .dds and one .ini, with no
+      # .gfx, .asset or .mesh in it, so it declares nothing and cannot drag any
+      # further directory back in. That is why it is taken whole.
+      - gfx/models/ships/shared_assets
+      # The other 34 sit beside art in cultures the harvest no longer takes, so
+      # they are named file by file rather than by directory — a directory here
+      # would pull the culture's meshes back in behind it, which is the prune
+      # decision 18 forced. Derived from the log, then resolved against
+      # .source/: every one had exactly one home, so there is no ambiguity.
+      - gfx/models/ships/borg_blue_01/blue.dds
+      - gfx/models/ships/cardassian_01/pylongrid.dds
+      - gfx/models/ships/cardassian_01/starbase/cbase1_diffuse.dds
+      - gfx/models/ships/cardassian_01/starbase/cbase1_normal.dds
+      - gfx/models/ships/confederation/tos_coe_flag_wide.dds
+      - gfx/models/ships/dominion_01/dominion_hull_turquoise_diffuse.dds
+      - gfx/models/ships/ferengi_01/rays.dds
+      - gfx/models/ships/klingon_02/klingon_02_all_diffuse.dds
+      - gfx/models/ships/klingon_02/klingon_02_all_normal.dds
+      - gfx/models/ships/klingon_02/klingon_02_all_specular.dds
+      - gfx/models/ships/klingon_houses/Starbase/station_hull_1_diffuse.dds
+      - gfx/models/ships/klingon_houses/Starbase/station_hull_1_normal.dds
+      - gfx/models/ships/klingon_houses/Starbase/station_hull_2_diffuse.dds
+      - gfx/models/ships/klingon_houses/Starbase/station_hull_2_normal.dds
+      - gfx/models/ships/klingon_houses/Starbase/station_hull_3_diffuse.dds
+      - gfx/models/ships/klingon_houses/Starbase/station_hull_3_normal.dds
+      - gfx/models/ships/romulan/starbase/starbase_01_diffuse.dds
+      - gfx/models/ships/romulan/starbase/starbase_01_normal.dds
+      - gfx/models/ships/romulan/starbase/starbase_02_diffuse.dds
+      - gfx/models/ships/romulan/starbase/starbase_02_normal.dds
+      - gfx/models/ships/romulan_04/romulan_hull_dark_green_diffuse.dds
+      - gfx/models/ships/romulan_04/romulan_hull_grey_diffuse.dds
+      - gfx/models/ships/romulan_04/romulan_hull_light_green_diffuse.dds
+      - gfx/models/ships/terran/Decal_TELogo_TOS.dds
+      - gfx/models/ships/terran/centaur/centaur_5_diffuse.dds
+      - gfx/models/ships/terran/shangri_la/shangri_la_diffuse_02_mu.dds
+      - gfx/models/ships/terran/transparent_diffuse.dds
+      - gfx/models/ships/undine_01/undine_01_corvette_coreA_diffuse.dds
+      - gfx/models/ships/undine_01/undine_01_corvette_coreA_normal.dds
+      - gfx/models/ships/undine_01/undine_01_corvette_coreA_specular.dds
+      - gfx/models/ships/vulcan_01/hull_vulcan.dds
+      - gfx/models/ships/vulcan_01/vulcan_ring_hull_diffuse.dds
+      # Five more the LOG could not name, because they light the Borg unicomplex
+      # ambience and nobody in that run flew to one. Found by sweeping the rule
+      # instead — check_texture_basenames asks every .gfx in the tree, not the
+      # ones a session happened to render. other/unimatrix_ambience.gfx is kept
+      # and names all five; each lives in its own borg_<colour>_01/ directory.
+      - gfx/models/ships/borg_blue_01/borg_blue_adaptor_01_lights.dds
+      - gfx/models/ships/borg_orange_01/borg_orange_adaptor_01_lights.dds
+      - gfx/models/ships/borg_purple_01/borg_purple_adaptor_01_lights.dds
+      - gfx/models/ships/borg_red_01/borg_red_adaptor_01_lights.dds
+      - gfx/models/ships/borg_yellow_01/borg_yellow_adaptor_01_lights.dds
+      # ── Added 2026-08-03: five .mesh files kept art still declares ─────────
+      # The other half of group C — 26 `Couldn't find mesh` / `Failed to find
+      # entity` records naming five meshes. Each is USED by an .asset in a
+      # directory we keep (federation/, andorian_01/, other/) and DECLARED by a
+      # .gfx in one we prune. The .gfx files are not taken: klingon_shipyard
+      # declares 11 meshes, talaxian_stations 20 and voth_01_all_ships 77, so
+      # taking them whole would trade 5 dangling references for ~100. The five
+      # declarations are re-issued instead, in
+      # src/gfx/models/ships/stg_stnh_restored_station_meshes.gfx — declare,
+      # don't shadow (.docs/architecture/conflict-register.md). These are the files those declarations name.
+      - gfx/models/ships/cardassian_01/cardassian_01_orbital_station.mesh
+      - gfx/models/ships/cardassian_01/cardassian_01_orbital_station_diffuse.dds
+      - gfx/models/ships/cardassian_01/cardassian_01_orbital_station_normal.dds
+      - gfx/models/ships/cardassian_01/cardassian_01_orbital_station_specular.dds
+      - gfx/models/ships/dominion_01/asteroid_prison/asteroid_base.mesh
+      - gfx/models/ships/dominion_01/asteroid_prison/rock_texture.dds
+      - gfx/models/ships/dominion_01/asteroid_prison/station_texture.dds
+      - gfx/models/ships/klingon/kdf_yard/klingon_shipyard.mesh
+      - gfx/models/ships/talaxian_01/stations/talaxian_deep_space_station.mesh
+      - gfx/models/ships/talaxian_01/talaxia_diffuse.dds
+      - gfx/models/ships/talaxian_01/talaxia_normal.dds
+      - gfx/models/ships/voth_01/voth_01_sovereign_coreA.mesh
+      - gfx/models/ships/voth_01/voth_diffuse.dds
+      - gfx/models/ships/voth_01/voth_normal.dds
+
+  # ── Star Trek: New Civilisations shipsets (Walshicus) ──────────────────────
+  # 22 standalone shipsets, each one culture. They replace STNH as the ship art
+  # for every species that has one, because they are built on VANILLA's chassis
+  # rather than STNH's: each declares all 44 of vanilla's section entities under
+  # vanilla's own names (`<culture>_battleship_bow_XL1_entity` and the rest),
+  # with the locators vanilla's section templates mount on. Measured against the
+  # engine's own requirement: 22 × 44 sections, 0 missing locators — the only
+  # hits are 5 on `<culture>_titan_entity`, which vanilla's own
+  # mammalian_01_titan_entity fails identically because titan guns live on the
+  # bow/mid/stern parts, not the frame.
+  #
+  # That is what retires tools/gen_shipsets.py for these nine cultures: no
+  # generated sections, no `clone` chain, no load-order hazard.
+  # See .docs/decisions/18-walshicus-shipsets-replace-stnh-hulls.md.
+  #
+  # AFTER STNH on purpose. Paths are disjoint in practice (each set owns its own
+  # gfx/models/ships/<culture>/), but where they are not, the newer art wins.
+  #
+  # Only two prefixes are taken from each, and the omissions are deliberate:
+  #   * `interface/` — every set ships a 3,391-line interface/credits.txt that
+  #     SHADOWS vanilla's 10,945-line one. Decision 08's failure mode exactly.
+  #   * `common/species_classes/` — each declares its own (STARFLEET_TNG,
+  #     KLINGON …). STG owns that namespace; the binding is one
+  #     `graphical_culture =` line in src/, per decision 10.
+  #   * `flags/` is taken, but ADDITIVELY (2026-08-08). All 22 write
+  #     flags/trek/, where 42 of their 81 .dds collide with STNH's 425 at a
+  #     different size — 256x256 against STNH's 128x128 — and STNH stays the
+  #     agreed flag source (decision 18). `additive_only: [flags]` gives STNH
+  #     every contested path and takes only the 13 basenames it has not got:
+  #     Borg, dominion, elachi, federation_01..07, krenim_old, lukari, malon,
+  #     39 files with their map/ and small/ variants. Scoped to `flags` and not
+  #     the source, because gfx/ must still beat STNH — decision 18 again.
+  #     The Bolian Union and 22 of the 79 minor powers are still on a fallback
+  #     icon: no shipset ships those either. See decision 49.
+  #   * `localisation/` — carries only the species-class name we don't take and
+  #     FLAG_CATEGORY_trek, which STNH already provides.
+  - id: "2990277402"
+    name: Betazoid Shipset
+    # Anchor: every set in this tier has the identical layout, so the include
+    # list is written once here and referenced by the other 21.
+    include: &stnc_shipset_include
+      - gfx
+      - common/graphical_culture
+      - flags/trek
+    additive_only: &stnc_shipset_additive
+      - flags
+
+  - id: "2953073033"
+    name: Borg Shipset
+    include: *stnc_shipset_include
+    additive_only: *stnc_shipset_additive
+
+  - id: "2687653241"
+    name: Caitian Shipset
+    include: *stnc_shipset_include
+    additive_only: *stnc_shipset_additive
+
+  - id: "2728498280"
+    name: Cardassian Shipset
+    include: *stnc_shipset_include
+    additive_only: *stnc_shipset_additive
+
+  - id: "3323680661"
+    name: Dominion Shipset
+    include: *stnc_shipset_include
+    additive_only: *stnc_shipset_additive
+
+  - id: "3401984530"
+    name: Elachi Shipset
+    include: *stnc_shipset_include
+    additive_only: *stnc_shipset_additive
+
+  - id: "3059310220"
+    name: Ferengi Shipset
+    include: *stnc_shipset_include
+    additive_only: *stnc_shipset_additive
+
+  - id: "2672884318"
+    name: Klingon Shipset
+    include: *stnc_shipset_include
+    additive_only: *stnc_shipset_additive
+
+  - id: "3243439669"
+    name: Krenim Shipset
+    include: *stnc_shipset_include
+    additive_only: *stnc_shipset_additive
+
+  - id: "3443849210"
+    name: Lukari Shipset
+    include: *stnc_shipset_include
+    additive_only: *stnc_shipset_additive
+
+  - id: "2945365572"
+    name: Malon Shipset
+    include: *stnc_shipset_include
+    additive_only: *stnc_shipset_additive
+
+  - id: "2702005349"
+    name: Romulan Shipset
+    include: *stnc_shipset_include
+    additive_only: *stnc_shipset_additive
+
+  - id: "3118844461"
+    name: Starfleet TNG Era Shipset
+    include: *stnc_shipset_include
+    additive_only: *stnc_shipset_additive
+
+  - id: "3200287636"
+    name: Suliban Shipset
+    include: *stnc_shipset_include
+    additive_only: *stnc_shipset_additive
+
+  - id: "2891668465"
+    name: Talarian Shipset
+    include: *stnc_shipset_include
+    additive_only: *stnc_shipset_additive
+
+  - id: "2679512490"
+    name: Terran NX Era Shipset
+    include: *stnc_shipset_include
+    additive_only: *stnc_shipset_additive
+
+  - id: "2683475897"
+    name: Tholian Shipset
+    include: *stnc_shipset_include
+    additive_only: *stnc_shipset_additive
+
+  - id: "2833499231"
+    name: Tuterian Shipset
+    include: *stnc_shipset_include
+    additive_only: *stnc_shipset_additive
+
+  - id: "3629202562"
+    name: Vidiian Shipset
+    include: *stnc_shipset_include
+    additive_only: *stnc_shipset_additive
+
+  - id: "2804194007"
+    name: Vulcan Shipset
+    include: *stnc_shipset_include
+    additive_only: *stnc_shipset_additive
+
+  - id: "2851692297"
+    name: Xindi Shipset
+    include: *stnc_shipset_include
+    additive_only: *stnc_shipset_additive
+
+  - id: "2745386732"
+    name: Yridian Shipset
+    include: *stnc_shipset_include
+    additive_only: *stnc_shipset_additive

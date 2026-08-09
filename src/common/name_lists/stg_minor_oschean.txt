@@ -1,0 +1,161 @@
+﻿# Oschean name list, for the AI-only minor powers that use it.
+#
+# CONVERTED from .source/688086068/common/name_lists/Oschean.txt: the tokens are
+# STNH's, resolved through STNH's own localisation and re-keyed as STG_N_. The
+# ship-size buckets are rebuilt for VANILLA's ladder -- STNH's file buckets by
+# its own (saber, sovereign, steamrunner) and those keys mean nothing here.
+#
+# See .docs/decisions/19-stnh-minor-powers-as-ai-empires.md.
+
+STG_OSCHEAN = {
+	category = "Humanoid"
+	randomized = no
+
+	ship_names = {
+		generic = {
+			STG_N_Hunter STG_N_Predator STG_N_Carnivore STG_N_BeastOfPrey STG_N_HunterKiller STG_N_Raptor
+			STG_N_Marauder STG_N_Killer STG_N_Vulture STG_N_Brute STG_N_Assailant STG_N_Tracker
+			STG_N_Aggressor STG_N_Stalker STG_N_Survivor STG_N_Venator STG_N_ValiantChase STG_N_Pursuer
+			STG_N_Trapper STG_N_Ambusher STG_N_Huntress STG_N_Apex STG_N_ApexPredator STG_N_Seeker
+			STG_N_Huntmaster STG_N_HunterEscort STG_N_Baiter STG_N_BeastofPrey
+		}
+
+		corvette = {
+			STG_N_Tracker STG_N_Aggressor STG_N_Stalker STG_N_Survivor STG_N_Venator
+		}
+
+		destroyer = {
+			STG_N_ValiantChase STG_N_Pursuer STG_N_Trapper STG_N_Ambusher STG_N_Huntress
+		}
+
+		cruiser = {
+			STG_N_Apex STG_N_ApexPredator STG_N_Seeker STG_N_Huntmaster STG_N_HunterEscort
+		}
+
+		battleship = {
+			STG_N_Baiter
+		}
+
+		titan = {
+			STG_N_Hunter STG_N_Predator STG_N_Carnivore
+		}
+
+		science = {
+			STG_N_Hunter STG_N_Predator STG_N_Carnivore STG_N_BeastOfPrey STG_N_HunterKiller STG_N_Raptor
+		}
+
+		colonizer = {
+			STG_N_Hunter STG_N_Predator STG_N_Carnivore STG_N_BeastOfPrey STG_N_HunterKiller
+		}
+
+		constructor = {
+			STG_N_Marauder STG_N_Killer STG_N_Vulture STG_N_Brute STG_N_Assailant
+		}
+	}
+
+	ship_class_names = {
+		generic = {
+			STG_N_Hunter STG_N_Predator STG_N_Carnivore STG_N_BeastOfPrey STG_N_HunterKiller STG_N_Raptor
+			STG_N_Marauder STG_N_Killer STG_N_Vulture
+		}
+	}
+
+	fleet_names = {
+		sequential_name = STG_OSCHEAN_GROUP
+	}
+
+	army_names = {
+		machine_assault_1 = {
+			sequential_name = STG_OSCHEAN_ASSAULTAUXILIARY
+		}
+
+		machine_defense = {
+			sequential_name = STG_OSCHEAN_DEFENSEAUXILIARY
+		}
+
+		defense_army = {
+			sequential_name = STG_OSCHEAN_PLANETARYDEFENSEAUXILIARY
+		}
+
+		assault_army = {
+			sequential_name = STG_OSCHEAN_EXPEDITIONARYAUXILIARY
+		}
+
+		slave_army = {
+			sequential_name = STG_OSCHEAN_LABORAUXILIARY
+		}
+
+		clone_army = {
+			sequential_name = STG_OSCHEAN_REPLICATEAUXILIARY
+		}
+
+		robotic_army = {
+			sequential_name = STG_OSCHEAN_AUTOMATEDAUXILIARY
+		}
+
+		psionic_army = {
+			sequential_name = STG_OSCHEAN_ADEPTAUXILIARY
+		}
+
+		xenomorph_army = {
+			sequential_name = STG_OSCHEAN_XENOMORPHAUXILIARY
+		}
+
+		gene_warrior_army = {
+			sequential_name = STG_OSCHEAN_AUGMENTEDAUXILIARY
+		}
+
+		occupation_army = {
+			sequential_name = STG_OSCHEAN_OCCUPATIONAUXILIARY
+		}
+
+		robotic_defense_army = {
+			sequential_name = STG_OSCHEAN_AUTOMATEDDEFENSEAUXILIARY
+		}
+
+		industrial_army = {
+			sequential_name = STG_OSCHEAN_INDUSTRIALAUXILIARY
+		}
+
+		primitive_army = {
+			sequential_name = STG_OSCHEAN_MILITIA
+		}
+	}
+
+	planet_names = {
+		generic = {
+			names = {
+				STG_N_Hunter STG_N_Predator STG_N_Carnivore STG_N_BeastOfPrey STG_N_HunterKiller STG_N_Raptor
+				STG_N_Marauder STG_N_Killer STG_N_Vulture STG_N_Brute STG_N_Assailant STG_N_Tracker
+				STG_N_Aggressor STG_N_Stalker STG_N_Survivor STG_N_Venator STG_N_ValiantChase STG_N_Pursuer
+				STG_N_Trapper STG_N_Ambusher STG_N_Huntress STG_N_Apex STG_N_ApexPredator STG_N_Seeker
+				STG_N_Huntmaster STG_N_HunterEscort STG_N_Baiter
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			weight = 100
+
+			first_names_male = {
+				STG_N_Dhirauta STG_N_Dto STG_N_Gkeimoun STG_N_Guan STG_N_Hchak STG_N_Hdlak
+				STG_N_Hduise STG_N_Halkrath STG_N_Judha STG_N_Kainde STG_N_Kehrite STG_N_Kicte
+				STG_N_Kjuhte STG_N_Kwei STG_N_Larja STG_N_Mi
+			}
+
+			first_names_female = {
+				STG_N_Nithya STG_N_Kdiak STG_N_Nanku STG_N_Nok STG_N_Ooman STG_N_OPauk
+				STG_N_Pyode STG_N_Rka STG_N_Syuitde STG_N_Setgin STG_N_Tedqi STG_N_Thwei
+				STG_N_Uistbi STG_N_Vayuhta STG_N_Yeyin STG_N_Yintekai
+			}
+
+			second_names = {
+				STG_N_Dhirauta STG_N_Dto STG_N_Gkeimoun STG_N_Guan STG_N_Hchak STG_N_Hdlak
+				STG_N_Hduise STG_N_Halkrath STG_N_Judha STG_N_Kainde STG_N_Kehrite STG_N_Kicte
+				STG_N_Kjuhte STG_N_Kwei STG_N_Larja STG_N_Mi STG_N_Nithya STG_N_Kdiak
+				STG_N_Nanku STG_N_Nok STG_N_Ooman STG_N_OPauk STG_N_Pyode STG_N_Rka
+			}
+		}
+	}
+}

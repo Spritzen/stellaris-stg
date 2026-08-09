@@ -1,0 +1,182 @@
+﻿# Tamarian name list, for the AI-only minor powers that use it.
+#
+# CONVERTED from .source/688086068/common/name_lists/Tamarian.txt: the tokens are
+# STNH's, resolved through STNH's own localisation and re-keyed as STG_N_. The
+# ship-size buckets are rebuilt for VANILLA's ladder -- STNH's file buckets by
+# its own (saber, sovereign, steamrunner) and those keys mean nothing here.
+#
+# See .docs/decisions/19-stnh-minor-powers-as-ai-empires.md.
+
+STG_TAMARIAN = {
+	category = "Humanoid"
+	randomized = no
+
+	ship_names = {
+		generic = {
+			STG_N_DarmokOnTheOcean STG_N_HarelHisBraveryKnown STG_N_JaladOnTheOcean STG_N_JaladAtTanagra STG_N_SidalimeEyesStarward STG_N_TiraveHisProwUnbroken
+			STG_N_BrelotSeekingVernak STG_N_GorellInStormyWaters STG_N_TheBeastAtTanagra STG_N_BeastBeneathAnzo STG_N_KadirBeneathMoMoteh STG_N_ZimaAtAnzo
+			STG_N_TheBeastAtAnzo STG_N_ZimaAndBakor STG_N_KeylethAndVaxildan STG_N_KeylethAtTheSuntree STG_N_WhenTheWallsFell STG_N_VexahliaAtSaundor
+			STG_N_PikeOnTheSea STG_N_GrogInTheMountain STG_N_ZahraAtTheLair STG_N_KiteoHisEyesClosed STG_N_KimaAtTheCrypt STG_N_KiteoHisEyesOpen
+			STG_N_TembaHisArmsWide STG_N_TembaAtRest STG_N_MirabSailsUnfurled STG_N_ShakaWhenTheWallsFell STG_N_SokathHisEyesUncovered STG_N_SokathHisEyesOpened
+			STG_N_KailashWhenItRises STG_N_RiverTemarcInWinter STG_N_ZindaHisFaceBlack STG_N_ZindaHisEyesRed STG_N_RaiAndJiriAtLungha STG_N_RaiOfLowani
+			STG_N_LowaniUnderTwoMoons STG_N_JiriOfUbaya STG_N_UbayaOfCrossroads STG_N_LunghaHerSkyGray STG_N_Darmokontheocean STG_N_Jaladontheocean
+			STG_N_JaladatTanagra STG_N_BrelotseekingVernak STG_N_Gorellinstormywaters STG_N_ThebeastatTanagra STG_N_BeastbeneathAnzo STG_N_KadirbeneathMoMoteh
+			STG_N_ZimaatAnzo STG_N_ThebeastatAnzo STG_N_ZimaandBakor STG_N_KeylethandVaxildan STG_N_Whenthewallsfell STG_N_VexahliaatSaundor
+			STG_N_RiverTemarcinwinter STG_N_RaiandJiriatLungha STG_N_RaiofLowani STG_N_Lowaniundertwomoons STG_N_JiriofUbaya STG_N_Ubayaofcrossroads
+			STG_N_Perciundertwomoons STG_N_Chenzaatcourt STG_N_Chenzaofsilence STG_N_KiraatBashi STG_N_CallimasatBahar STG_N_HissongatMarquet
+			STG_N_HissongatSyngorn STG_N_ScanlanandKaylee STG_N_Mercerononeknee STG_N_Harelhisbraveryknown STG_N_Sidalimeeyesstarward STG_N_Tiravehisprowunbroken
+			STG_N_KeylethattheSuntree STG_N_Pikeonthesea STG_N_Groginthemountain STG_N_Zahraatthelair STG_N_Kiteohiseyesclosed STG_N_Kimaatthecrypt
+			STG_N_Kiteohiseyesopen STG_N_Tembahisarmswide STG_N_Tembaatrest STG_N_Mirabsailsunfurled STG_N_Shakawhenthewallsfell STG_N_Sokathhiseyesuncovered
+			STG_N_Sokathhiseyesopened STG_N_Kailashwhenitrises STG_N_Zindahisfaceblack STG_N_Zindahiseyesred STG_N_Lunghaherskygray STG_N_Uzaniwithfistsopen
+			STG_N_Uzaniwithfistsclosed STG_N_Percihisauradark STG_N_Harelhisscreenglows STG_N_Matixhisskillstrong STG_N_Janackhisvoiceclear STG_N_Sirickhisvoiceclear
+			STG_N_Grinselhiscraft STG_N_Raishanthebetrayer STG_N_Belrondindarkness
+		}
+
+		corvette = {
+			STG_N_ZimaAtAnzo STG_N_TheBeastAtAnzo STG_N_ZimaAndBakor STG_N_KeylethAndVaxildan STG_N_KeylethAtTheSuntree
+		}
+
+		destroyer = {
+			STG_N_WhenTheWallsFell STG_N_VexahliaAtSaundor STG_N_PikeOnTheSea STG_N_GrogInTheMountain STG_N_ZahraAtTheLair
+		}
+
+		cruiser = {
+			STG_N_KiteoHisEyesClosed STG_N_KimaAtTheCrypt STG_N_KiteoHisEyesOpen STG_N_TembaHisArmsWide STG_N_TembaAtRest
+		}
+
+		battleship = {
+			STG_N_MirabSailsUnfurled STG_N_ShakaWhenTheWallsFell STG_N_SokathHisEyesUncovered STG_N_SokathHisEyesOpened STG_N_KailashWhenItRises
+		}
+
+		titan = {
+			STG_N_RiverTemarcInWinter STG_N_ZindaHisFaceBlack STG_N_ZindaHisEyesRed STG_N_RaiAndJiriAtLungha
+		}
+
+		science = {
+			STG_N_DarmokOnTheOcean STG_N_HarelHisBraveryKnown STG_N_JaladOnTheOcean STG_N_JaladAtTanagra STG_N_SidalimeEyesStarward STG_N_TiraveHisProwUnbroken
+			STG_N_Starseeker STG_N_SeekerofStars
+		}
+
+		colonizer = {
+			STG_N_DarmokOnTheOcean STG_N_HarelHisBraveryKnown STG_N_JaladOnTheOcean STG_N_JaladAtTanagra STG_N_SidalimeEyesStarward STG_N_Starbringer
+			STG_N_BringertoStars
+		}
+
+		constructor = {
+			STG_N_BrelotSeekingVernak STG_N_GorellInStormyWaters STG_N_TheBeastAtTanagra STG_N_BeastBeneathAnzo STG_N_KadirBeneathMoMoteh STG_N_Starbuilder
+			STG_N_BuilderofStars
+		}
+
+		transport = {
+			STG_N_Starbridge STG_N_BridgebetweenStars
+		}
+	}
+
+	ship_class_names = {
+		generic = {
+			STG_N_DarmokOnTheOcean STG_N_HarelHisBraveryKnown STG_N_JaladOnTheOcean STG_N_JaladAtTanagra STG_N_SidalimeEyesStarward STG_N_TiraveHisProwUnbroken
+			STG_N_BrelotSeekingVernak STG_N_GorellInStormyWaters STG_N_TheBeastAtTanagra
+		}
+	}
+
+	fleet_names = {
+		sequential_name = STG_TAMARIAN_GROUP
+	}
+
+	army_names = {
+		machine_assault_1 = {
+			sequential_name = STG_TAMARIAN_ASSAULTAUXILIARY
+		}
+
+		machine_defense = {
+			sequential_name = STG_TAMARIAN_DEFENSEAUXILIARY
+		}
+
+		defense_army = {
+			sequential_name = STG_TAMARIAN_PLANETARYDEFENSEAUXILIARY
+		}
+
+		assault_army = {
+			sequential_name = STG_TAMARIAN_EXPEDITIONARYAUXILIARY
+		}
+
+		slave_army = {
+			sequential_name = STG_TAMARIAN_LABORAUXILIARY
+		}
+
+		clone_army = {
+			sequential_name = STG_TAMARIAN_REPLICATEAUXILIARY
+		}
+
+		robotic_army = {
+			sequential_name = STG_TAMARIAN_AUTOMATEDAUXILIARY
+		}
+
+		psionic_army = {
+			sequential_name = STG_TAMARIAN_ADEPTAUXILIARY
+		}
+
+		xenomorph_army = {
+			sequential_name = STG_TAMARIAN_XENOMORPHAUXILIARY
+		}
+
+		gene_warrior_army = {
+			sequential_name = STG_TAMARIAN_AUGMENTEDAUXILIARY
+		}
+
+		occupation_army = {
+			sequential_name = STG_TAMARIAN_OCCUPATIONAUXILIARY
+		}
+
+		robotic_defense_army = {
+			sequential_name = STG_TAMARIAN_AUTOMATEDDEFENSEAUXILIARY
+		}
+
+		industrial_army = {
+			sequential_name = STG_TAMARIAN_INDUSTRIALAUXILIARY
+		}
+
+		primitive_army = {
+			sequential_name = STG_TAMARIAN_MILITIA
+		}
+	}
+
+	planet_names = {
+		generic = {
+			names = {
+				STG_N_DarmokOnTheOcean STG_N_HarelHisBraveryKnown STG_N_JaladOnTheOcean STG_N_JaladAtTanagra STG_N_SidalimeEyesStarward STG_N_TiraveHisProwUnbroken
+				STG_N_BrelotSeekingVernak STG_N_GorellInStormyWaters STG_N_TheBeastAtTanagra STG_N_BeastBeneathAnzo STG_N_KadirBeneathMoMoteh STG_N_ZimaAtAnzo
+				STG_N_TheBeastAtAnzo STG_N_ZimaAndBakor STG_N_KeylethAndVaxildan STG_N_KeylethAtTheSuntree STG_N_WhenTheWallsFell STG_N_VexahliaAtSaundor
+				STG_N_PikeOnTheSea STG_N_GrogInTheMountain STG_N_ZahraAtTheLair STG_N_KiteoHisEyesClosed STG_N_KimaAtTheCrypt STG_N_KiteoHisEyesOpen
+				STG_N_TembaHisArmsWide STG_N_TembaAtRest STG_N_MirabSailsUnfurled STG_N_ShakaWhenTheWallsFell STG_N_SokathHisEyesUncovered STG_N_SokathHisEyesOpened
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			weight = 100
+
+			first_names_male = {
+				STG_N_Darmok STG_N_Tirave STG_N_Brelot STG_N_Gorell STG_N_Dathon STG_N_Dethon
+				STG_N_Honethon STG_N_Dermok STG_N_Chenza STG_N_Shaka STG_N_Zinda STG_N_Sokath
+				STG_N_Mirab STG_N_Temba STG_N_Termok STG_N_Tethon STG_N_Makor STG_N_Kiazi
+				STG_N_Vaxildok STG_N_Kodiok STG_N_Harok STG_N_Shaggok STG_N_Janock STG_N_Hadon
+			}
+
+			first_names_female = {
+				STG_N_Zimpok STG_N_Kailash STG_N_Sidalime STG_N_Lash STG_N_Jalad STG_N_Jalash
+				STG_N_Keyleth STG_N_Vexahlia STG_N_Kiteo STG_N_Kadir STG_N_Zima STG_N_Kima
+				STG_N_Rai STG_N_Jiri STG_N_Lowani STG_N_Lungha STG_N_Ribha STG_N_Femha
+				STG_N_Sternha STG_N_Carpha STG_N_Clavicha STG_N_Humerha STG_N_Allurash STG_N_Larnok
+			}
+
+			second_names = {
+				STG_N_Darmok STG_N_Tirave STG_N_Brelot STG_N_Gorell STG_N_Dathon STG_N_Dethon
+				STG_N_Honethon STG_N_Dermok STG_N_Chenza STG_N_Shaka STG_N_Zinda STG_N_Sokath
+				STG_N_Mirab STG_N_Temba STG_N_Termok STG_N_Tethon STG_N_Makor STG_N_Kiazi
+				STG_N_Vaxildok STG_N_Kodiok STG_N_Harok STG_N_Shaggok STG_N_Janock STG_N_Hadon
+			}
+		}
+	}
+}

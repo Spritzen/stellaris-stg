@@ -1,0 +1,174 @@
+﻿# Trogoran name list, for the AI-only minor powers that use it.
+#
+# CONVERTED from .source/688086068/common/name_lists/Trogoran.txt: the tokens are
+# STNH's, resolved through STNH's own localisation and re-keyed as STG_N_. The
+# ship-size buckets are rebuilt for VANILLA's ladder -- STNH's file buckets by
+# its own (saber, sovereign, steamrunner) and those keys mean nothing here.
+#
+# See .docs/decisions/19-stnh-minor-powers-as-ai-empires.md.
+
+STG_TROGORAN = {
+	category = "Humanoid"
+	randomized = no
+
+	ship_names = {
+		generic = {
+			STG_N_Abarta STG_N_Abcan STG_N_Abean STG_N_Abgatiacus STG_N_Aed STG_N_Aengus
+			STG_N_Ailill STG_N_Alastir STG_N_Ai STG_N_Balor STG_N_BodbDearg STG_N_Brea
+			STG_N_Bres STG_N_Iuchar STG_N_Buarainech STG_N_Cian STG_N_Cichol STG_N_Conand
+			STG_N_Corb STG_N_Credne STG_N_CromCruach STG_N_CromDubh STG_N_Dagda STG_N_Daire
+			STG_N_Delbaeth STG_N_DianCecht STG_N_Donn STG_N_Ecne STG_N_Egobail STG_N_Elatha
+			STG_N_Elcmar STG_N_Goibniu STG_N_Len STG_N_Lir STG_N_Luchtain STG_N_Lug
+			STG_N_Mac STG_N_Cuill STG_N_Manannan STG_N_Miach STG_N_Midir STG_N_MugRuith
+			STG_N_Nechtan STG_N_Neit STG_N_Nuadha STG_N_Oghma STG_N_Seonaidh STG_N_Tethra
+			STG_N_Tuireann STG_N_Aoibheall STG_N_Aimend STG_N_Aife STG_N_aine STG_N_AnandAnu
+			STG_N_Beag STG_N_Befhionn STG_N_BeChuille STG_N_Beira STG_N_Birog STG_N_Boinn
+			STG_N_Brighid STG_N_Caer STG_N_Caillech STG_N_Canola STG_N_Cessair STG_N_Cethlenn
+			STG_N_Clidna STG_N_CrobDerg STG_N_Danand STG_N_DanuEriu STG_N_Ernmas STG_N_Etain
+			STG_N_Ethniu STG_N_Fand STG_N_Fionnuala STG_N_Flidais STG_N_Fodla STG_N_Liban
+			STG_N_Macha STG_N_Medb STG_N_MedbLethderg STG_N_Mongfhionn STG_N_Morrighan STG_N_MorMumhan
+			STG_N_Nemhain STG_N_Niamh STG_N_NicNaomhin STG_N_PlornamBan STG_N_SheelanaGig STG_N_Scathach
+			STG_N_Tailtiu
+		}
+
+		corvette = {
+			STG_N_Brea STG_N_Bres STG_N_Iuchar STG_N_Buarainech STG_N_Cian
+		}
+
+		destroyer = {
+			STG_N_Cichol STG_N_Conand STG_N_Corb STG_N_Credne STG_N_CromCruach
+		}
+
+		cruiser = {
+			STG_N_CromDubh STG_N_Dagda STG_N_Daire STG_N_Delbaeth STG_N_DianCecht
+		}
+
+		battleship = {
+			STG_N_Donn STG_N_Ecne STG_N_Egobail STG_N_Elatha STG_N_Elcmar
+		}
+
+		titan = {
+			STG_N_Goibniu STG_N_Len STG_N_Lir STG_N_Luchtain
+		}
+
+		science = {
+			STG_N_Abarta STG_N_Abcan STG_N_Abean STG_N_Abgatiacus STG_N_Aed STG_N_Aengus
+		}
+
+		colonizer = {
+			STG_N_Abarta STG_N_Abcan STG_N_Abean STG_N_Abgatiacus STG_N_Aed
+		}
+
+		constructor = {
+			STG_N_Ailill STG_N_Alastir STG_N_Ai STG_N_Balor STG_N_BodbDearg
+		}
+	}
+
+	ship_class_names = {
+		generic = {
+			STG_N_Abarta STG_N_Abcan STG_N_Abean STG_N_Abgatiacus STG_N_Aed STG_N_Aengus
+			STG_N_Ailill STG_N_Alastir STG_N_Ai
+		}
+	}
+
+	fleet_names = {
+		sequential_name = STG_TROGORAN_GROUP
+	}
+
+	army_names = {
+		machine_assault_1 = {
+			sequential_name = STG_TROGORAN_ASSAULTAUXILIARY
+		}
+
+		machine_defense = {
+			sequential_name = STG_TROGORAN_DEFENSEAUXILIARY
+		}
+
+		defense_army = {
+			sequential_name = STG_TROGORAN_PLANETARYDEFENSEAUXILIARY
+		}
+
+		assault_army = {
+			sequential_name = STG_TROGORAN_EXPEDITIONARYAUXILIARY
+		}
+
+		slave_army = {
+			sequential_name = STG_TROGORAN_LABORAUXILIARY
+		}
+
+		clone_army = {
+			sequential_name = STG_TROGORAN_REPLICATEAUXILIARY
+		}
+
+		robotic_army = {
+			sequential_name = STG_TROGORAN_AUTOMATEDAUXILIARY
+		}
+
+		psionic_army = {
+			sequential_name = STG_TROGORAN_ADEPTAUXILIARY
+		}
+
+		xenomorph_army = {
+			sequential_name = STG_TROGORAN_XENOMORPHAUXILIARY
+		}
+
+		gene_warrior_army = {
+			sequential_name = STG_TROGORAN_AUGMENTEDAUXILIARY
+		}
+
+		occupation_army = {
+			sequential_name = STG_TROGORAN_OCCUPATIONAUXILIARY
+		}
+
+		robotic_defense_army = {
+			sequential_name = STG_TROGORAN_AUTOMATEDDEFENSEAUXILIARY
+		}
+
+		industrial_army = {
+			sequential_name = STG_TROGORAN_INDUSTRIALAUXILIARY
+		}
+
+		primitive_army = {
+			sequential_name = STG_TROGORAN_MILITIA
+		}
+	}
+
+	planet_names = {
+		generic = {
+			names = {
+				STG_N_Abarta STG_N_Abcan STG_N_Abean STG_N_Abgatiacus STG_N_Aed STG_N_Aengus
+				STG_N_Ailill STG_N_Alastir STG_N_Ai STG_N_Balor STG_N_BodbDearg STG_N_Brea
+				STG_N_Bres STG_N_Iuchar STG_N_Buarainech STG_N_Cian STG_N_Cichol STG_N_Conand
+				STG_N_Corb STG_N_Credne STG_N_CromCruach STG_N_CromDubh STG_N_Dagda STG_N_Daire
+				STG_N_Delbaeth STG_N_DianCecht STG_N_Donn STG_N_Ecne STG_N_Egobail STG_N_Elatha
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			weight = 100
+
+			first_names_male = {
+				STG_N_Ailde STG_N_Ailean STG_N_Ailpein STG_N_Airril STG_N_Amhalghaidh STG_N_Angaidh
+				STG_N_Aodh STG_N_Aodhagan STG_N_Aodhan STG_N_Aoidhean STG_N_Aonghas STG_N_Aonghasan
+				STG_N_Armadal STG_N_Art STG_N_Artagan STG_N_Artair STG_N_Athairne STG_N_Baodan
+				STG_N_Baoithein STG_N_Barra STG_N_Bearach STG_N_Bearchan STG_N_Beatan STG_N_Beathan
+			}
+
+			first_names_female = {
+				STG_N_Garbhan STG_N_Gilleanndrais STG_N_Gilleasbachan STG_N_Gilleasbaig STG_N_Gilleasp STG_N_Gilleathain
+				STG_N_Gillebhrighde STG_N_Gillechriosd STG_N_Gilliosa STG_N_Gordan STG_N_Gormal STG_N_Guaire
+				STG_N_Guinnein STG_N_Guirmean STG_N_Huisdean STG_N_Iurnan STG_N_Lachaidh STG_N_Lachann
+				STG_N_Lachlainn STG_N_Lachlann STG_N_Laise STG_N_Latharn STG_N_Luag STG_N_Lulach
+			}
+
+			second_names = {
+				STG_N_Ailde STG_N_Ailean STG_N_Ailpein STG_N_Airril STG_N_Amhalghaidh STG_N_Angaidh
+				STG_N_Aodh STG_N_Aodhagan STG_N_Aodhan STG_N_Aoidhean STG_N_Aonghas STG_N_Aonghasan
+				STG_N_Armadal STG_N_Art STG_N_Artagan STG_N_Artair STG_N_Athairne STG_N_Baodan
+				STG_N_Baoithein STG_N_Barra STG_N_Bearach STG_N_Bearchan STG_N_Beatan STG_N_Beathan
+			}
+		}
+	}
+}

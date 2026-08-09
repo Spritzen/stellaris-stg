@@ -1,0 +1,161 @@
+﻿# MAM3 name list, for the AI-only minor powers that use it.
+#
+# CONVERTED from .source/688086068/common/name_lists/MAM3.txt: the tokens are
+# STNH's, resolved through STNH's own localisation and re-keyed as STG_N_. The
+# ship-size buckets are rebuilt for VANILLA's ladder -- STNH's file buckets by
+# its own (saber, sovereign, steamrunner) and those keys mean nothing here.
+#
+# See .docs/decisions/19-stnh-minor-powers-as-ai-empires.md.
+
+STG_MAM3 = {
+	category = "Humanoid"
+	randomized = no
+
+	ship_names = {
+		generic = {
+			STG_N_SeperElegion STG_N_SeperSetnassel STG_N_SeperHundramel STG_N_SeperGrenalion STG_N_SeperFundroleth STG_N_SeperSagredioth
+			STG_N_SeperCurenrod STG_N_SeperTulethendral STG_N_SeperHuvendrog STG_N_SeperVyliged STG_N_SeperTarudog STG_N_SeperCalendol
+			STG_N_SeperEssunad STG_N_SeperHugaderol STG_N_SeperAldinor STG_N_SeperCerunthon STG_N_SeperMassagreth STG_N_SeperTuandok
+			STG_N_SeperNossundem STG_N_SeperDuacedron
+		}
+
+		corvette = {
+			STG_N_SeperCalendol STG_N_SeperEssunad STG_N_SeperHugaderol STG_N_SeperAldinor STG_N_SeperCerunthon
+		}
+
+		destroyer = {
+			STG_N_SeperMassagreth STG_N_SeperTuandok STG_N_SeperNossundem STG_N_SeperDuacedron
+		}
+
+		cruiser = {
+			STG_N_SeperElegion STG_N_SeperSetnassel STG_N_SeperHundramel
+		}
+
+		battleship = {
+			STG_N_SeperElegion STG_N_SeperSetnassel STG_N_SeperHundramel
+		}
+
+		titan = {
+			STG_N_SeperElegion STG_N_SeperSetnassel STG_N_SeperHundramel
+		}
+
+		science = {
+			STG_N_SeperElegion STG_N_SeperSetnassel STG_N_SeperHundramel STG_N_SeperGrenalion STG_N_SeperFundroleth STG_N_SeperSagredioth
+		}
+
+		colonizer = {
+			STG_N_Safalon STG_N_Lancord STG_N_Drogena STG_N_Yoergen STG_N_Pendalor
+		}
+
+		constructor = {
+			STG_N_SeperCurenrod STG_N_SeperTulethendral STG_N_SeperHuvendrog STG_N_SeperVyliged STG_N_SeperTarudog
+		}
+	}
+
+	ship_class_names = {
+		generic = {
+			STG_N_SeperElegion STG_N_SeperSetnassel STG_N_SeperHundramel STG_N_SeperGrenalion STG_N_SeperFundroleth STG_N_SeperSagredioth
+			STG_N_SeperCurenrod STG_N_SeperTulethendral STG_N_SeperHuvendrog
+		}
+	}
+
+	fleet_names = {
+		sequential_name = STG_MAM3_GROUP
+	}
+
+	army_names = {
+		machine_assault_1 = {
+			sequential_name = STG_MAM3_ASSAULTAUXILIARY
+		}
+
+		machine_defense = {
+			sequential_name = STG_MAM3_DEFENSEAUXILIARY
+		}
+
+		defense_army = {
+			sequential_name = STG_MAM3_PLANETARYDEFENSEAUXILIARY
+		}
+
+		assault_army = {
+			sequential_name = STG_MAM3_EXPEDITIONARYAUXILIARY
+		}
+
+		slave_army = {
+			sequential_name = STG_MAM3_LABORAUXILIARY
+		}
+
+		clone_army = {
+			sequential_name = STG_MAM3_REPLICATEAUXILIARY
+		}
+
+		robotic_army = {
+			sequential_name = STG_MAM3_AUTOMATEDAUXILIARY
+		}
+
+		psionic_army = {
+			sequential_name = STG_MAM3_ADEPTAUXILIARY
+		}
+
+		xenomorph_army = {
+			sequential_name = STG_MAM3_XENOMORPHAUXILIARY
+		}
+
+		gene_warrior_army = {
+			sequential_name = STG_MAM3_AUGMENTEDAUXILIARY
+		}
+
+		occupation_army = {
+			sequential_name = STG_MAM3_OCCUPATIONAUXILIARY
+		}
+
+		robotic_defense_army = {
+			sequential_name = STG_MAM3_AUTOMATEDDEFENSEAUXILIARY
+		}
+
+		industrial_army = {
+			sequential_name = STG_MAM3_INDUSTRIALAUXILIARY
+		}
+
+		primitive_army = {
+			sequential_name = STG_MAM3_MILITIA
+		}
+	}
+
+	planet_names = {
+		generic = {
+			names = {
+				STG_N_Safalon STG_N_Lancord STG_N_Drogena STG_N_Yoergen STG_N_Pendalor STG_N_Tyntregal
+				STG_N_Camburen STG_N_Cemlanth STG_N_Suboramon STG_N_Cumelod STG_N_Condeus STG_N_Genith
+				STG_N_Belores STG_N_Agstur STG_N_Fridgalen STG_N_Annuend STG_N_Sadolic STG_N_Talienoc
+				STG_N_Angleruth STG_N_Cranodeth
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			weight = 100
+
+			first_names_male = {
+				STG_N_Lifres STG_N_Gestith STG_N_Regolid STG_N_Sacoterum STG_N_Murgaud STG_N_Seifeth
+				STG_N_Gorlife STG_N_Codrales STG_N_Suclien STG_N_Ganarth STG_N_Thoraul STG_N_Merould
+				STG_N_Galedur STG_N_Sassodem STG_N_Cluthar STG_N_Guldorn STG_N_Yodegud STG_N_Sassomun
+				STG_N_Colaut STG_N_Derom
+			}
+
+			first_names_female = {
+				STG_N_CurPadarn STG_N_CurVandom STG_N_CurHussel STG_N_CurYuhal STG_N_CurFargeth STG_N_CurYalim
+				STG_N_DolFulm STG_N_DolLuch STG_N_DolGath STG_N_DolHarne STG_N_DolGilue STG_N_DolThrad
+				STG_N_HadTond STG_N_HadSald STG_N_HadMarn STG_N_HadUgrit STG_N_HadFuleth STG_N_HadRolunt
+				STG_N_OvDren STG_N_OvGut
+			}
+
+			second_names = {
+				STG_N_Lifres STG_N_Gestith STG_N_Regolid STG_N_Sacoterum STG_N_Murgaud STG_N_Seifeth
+				STG_N_Gorlife STG_N_Codrales STG_N_Suclien STG_N_Ganarth STG_N_Thoraul STG_N_Merould
+				STG_N_Galedur STG_N_Sassodem STG_N_Cluthar STG_N_Guldorn STG_N_Yodegud STG_N_Sassomun
+				STG_N_Colaut STG_N_Derom STG_N_CurPadarn STG_N_CurVandom STG_N_CurHussel STG_N_CurYuhal
+			}
+		}
+	}
+}

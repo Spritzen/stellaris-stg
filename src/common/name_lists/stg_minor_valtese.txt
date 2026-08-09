@@ -1,0 +1,158 @@
+﻿# Valtese name list, for the AI-only minor powers that use it.
+#
+# CONVERTED from .source/688086068/common/name_lists/Valtese.txt: the tokens are
+# STNH's, resolved through STNH's own localisation and re-keyed as STG_N_. The
+# ship-size buckets are rebuilt for VANILLA's ladder -- STNH's file buckets by
+# its own (saber, sovereign, steamrunner) and those keys mean nothing here.
+#
+# See .docs/decisions/19-stnh-minor-powers-as-ai-empires.md.
+
+STG_VALTESE = {
+	category = "Humanoid"
+	randomized = no
+
+	ship_names = {
+		generic = {
+			STG_N_AncientGlory STG_N_AncientHonour STG_N_ForgottenRealm STG_N_BrokenPromises STG_N_ValtsBetrayal STG_N_ValtsPride
+			STG_N_PrideOfValt STG_N_HonourOfValt STG_N_BrokenFamily STG_N_HoldFast STG_N_PastGlory STG_N_PrideofValt
+			STG_N_HonourofValt
+		}
+
+		corvette = {
+			STG_N_AncientGlory STG_N_AncientHonour STG_N_ForgottenRealm
+		}
+
+		destroyer = {
+			STG_N_AncientGlory STG_N_AncientHonour STG_N_ForgottenRealm
+		}
+
+		cruiser = {
+			STG_N_AncientGlory STG_N_AncientHonour STG_N_ForgottenRealm
+		}
+
+		battleship = {
+			STG_N_AncientGlory STG_N_AncientHonour STG_N_ForgottenRealm
+		}
+
+		titan = {
+			STG_N_AncientGlory STG_N_AncientHonour STG_N_ForgottenRealm
+		}
+
+		science = {
+			STG_N_AncientGlory STG_N_AncientHonour STG_N_ForgottenRealm STG_N_BrokenPromises STG_N_ValtsBetrayal STG_N_ValtsPride
+		}
+
+		colonizer = {
+			STG_N_AncientGlory STG_N_AncientHonour STG_N_ForgottenRealm STG_N_BrokenPromises STG_N_ValtsBetrayal
+		}
+
+		constructor = {
+			STG_N_PrideOfValt STG_N_HonourOfValt STG_N_BrokenFamily STG_N_HoldFast STG_N_PastGlory
+		}
+	}
+
+	ship_class_names = {
+		generic = {
+			STG_N_AncientGlory STG_N_AncientHonour STG_N_ForgottenRealm STG_N_BrokenPromises STG_N_ValtsBetrayal STG_N_ValtsPride
+			STG_N_PrideOfValt STG_N_HonourOfValt STG_N_BrokenFamily
+		}
+	}
+
+	fleet_names = {
+		sequential_name = STG_VALTESE_GROUP
+	}
+
+	army_names = {
+		machine_assault_1 = {
+			sequential_name = STG_VALTESE_ASSAULTAUXILIARY
+		}
+
+		machine_defense = {
+			sequential_name = STG_VALTESE_DEFENSEAUXILIARY
+		}
+
+		defense_army = {
+			sequential_name = STG_VALTESE_PLANETARYDEFENSEAUXILIARY
+		}
+
+		assault_army = {
+			sequential_name = STG_VALTESE_EXPEDITIONARYAUXILIARY
+		}
+
+		slave_army = {
+			sequential_name = STG_VALTESE_LABORAUXILIARY
+		}
+
+		clone_army = {
+			sequential_name = STG_VALTESE_REPLICATEAUXILIARY
+		}
+
+		robotic_army = {
+			sequential_name = STG_VALTESE_AUTOMATEDAUXILIARY
+		}
+
+		psionic_army = {
+			sequential_name = STG_VALTESE_ADEPTAUXILIARY
+		}
+
+		xenomorph_army = {
+			sequential_name = STG_VALTESE_XENOMORPHAUXILIARY
+		}
+
+		gene_warrior_army = {
+			sequential_name = STG_VALTESE_AUGMENTEDAUXILIARY
+		}
+
+		occupation_army = {
+			sequential_name = STG_VALTESE_OCCUPATIONAUXILIARY
+		}
+
+		robotic_defense_army = {
+			sequential_name = STG_VALTESE_AUTOMATEDDEFENSEAUXILIARY
+		}
+
+		industrial_army = {
+			sequential_name = STG_VALTESE_INDUSTRIALAUXILIARY
+		}
+
+		primitive_army = {
+			sequential_name = STG_VALTESE_MILITIA
+		}
+	}
+
+	planet_names = {
+		generic = {
+			names = {
+				STG_N_AncientGlory STG_N_AncientHonour STG_N_ForgottenRealm STG_N_BrokenPromises STG_N_ValtsBetrayal STG_N_ValtsPride
+				STG_N_PrideOfValt STG_N_HonourOfValt STG_N_BrokenFamily STG_N_HoldFast STG_N_PastGlory
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			weight = 100
+
+			first_names_male = {
+				STG_N_Valt STG_N_Alrik STG_N_Briak STG_N_Euak STG_N_Juak STG_N_Logak
+				STG_N_Ethak STG_N_Julak STG_N_Ryak STG_N_Nathak STG_N_Dylak STG_N_Istiak
+				STG_N_Driak STG_N_Nolak STG_N_Jodak STG_N_Evak STG_N_Irak STG_N_Inathak
+				STG_N_Romak STG_N_Ristak STG_N_Reclak STG_N_Diak STG_N_Rowak STG_N_Ivak
+			}
+
+			first_names_female = {
+				STG_N_Karamia STG_N_Karam STG_N_Karame STG_N_Karcey STG_N_Kareema STG_N_Kareem
+				STG_N_Karel STG_N_Karem STG_N_Karema STG_N_Karesa STG_N_Karessa STG_N_Kari
+				STG_N_Kariame STG_N_Karidee STG_N_Karie STG_N_Karigam STG_N_Karilym STG_N_Karime
+				STG_N_Karim STG_N_Karlee STG_N_Karleigh STG_N_Karleme STG_N_Karley STG_N_Karli
+			}
+
+			second_names = {
+				STG_N_Valt STG_N_Alrik STG_N_Briak STG_N_Euak STG_N_Juak STG_N_Logak
+				STG_N_Ethak STG_N_Julak STG_N_Ryak STG_N_Nathak STG_N_Dylak STG_N_Istiak
+				STG_N_Driak STG_N_Nolak STG_N_Jodak STG_N_Evak STG_N_Irak STG_N_Inathak
+				STG_N_Romak STG_N_Ristak STG_N_Reclak STG_N_Diak STG_N_Rowak STG_N_Ivak
+			}
+		}
+	}
+}

@@ -1,0 +1,187 @@
+﻿# Saurian name list, for the AI-only minor powers that use it.
+#
+# CONVERTED from .source/688086068/common/name_lists/Saurian.txt: the tokens are
+# STNH's, resolved through STNH's own localisation and re-keyed as STG_N_. The
+# ship-size buckets are rebuilt for VANILLA's ladder -- STNH's file buckets by
+# its own (saber, sovereign, steamrunner) and those keys mean nothing here.
+#
+# See .docs/decisions/19-stnh-minor-powers-as-ai-empires.md.
+
+STG_SAURIAN = {
+	category = "Humanoid"
+	randomized = no
+
+	ship_names = {
+		generic = {
+			STG_N_Monitor STG_N_RedMonitor STG_N_BlueMonitor STG_N_GreenMonitor STG_N_YellowMonitor STG_N_SpinyMonitor
+			STG_N_FinnedMonitor STG_N_HornedMonitor STG_N_Iguana STG_N_RedIguana STG_N_BlueIguana STG_N_GreenIguana
+			STG_N_YellowIguana STG_N_SpinyIguana STG_N_FinnedIguana STG_N_HornedIguana STG_N_Chameleon STG_N_RedChameleon
+			STG_N_BlueChameleon STG_N_GreenChameleon STG_N_YellowChameleon STG_N_SpinyChameleon STG_N_FinnedChameleon STG_N_HornedChameleon
+			STG_N_Gecko STG_N_RedGecko STG_N_BlueGecko STG_N_GreenGecko STG_N_YellowGecko STG_N_SpinyGecko
+			STG_N_FinnedGecko STG_N_HornedGecko STG_N_Alligator STG_N_RedAlligator STG_N_BlueAlligator STG_N_GreenAlligator
+			STG_N_YellowAlligator STG_N_SpinyAlligator STG_N_FinnedAlligator STG_N_HornedAlligator STG_N_Long-TailedMonitor STG_N_Long-TailedIguana
+			STG_N_Long-TailedChameleon STG_N_Long-TailedGecko STG_N_Long-TailedAlligator STG_N_Anole STG_N_RedAnole STG_N_BlueAnole
+			STG_N_GreenAnole STG_N_YellowAnole STG_N_SpinyAnole STG_N_FinnedAnole STG_N_HornedAnole STG_N_Long-TailedAnole
+			STG_N_Dragon STG_N_RedDragon STG_N_BlueDragon STG_N_GreenDragon STG_N_YellowDragon STG_N_SpinyDragon
+			STG_N_FinnedDragon STG_N_HornedDragon STG_N_Long-TailedDragon STG_N_Tegu STG_N_RedTegu STG_N_BlueTegu
+			STG_N_GreenTegu STG_N_YellowTegu STG_N_SpinyTegu STG_N_FinnedTegu STG_N_HornedTegu STG_N_Long-TailedTegu
+			STG_N_Agama STG_N_RedAgama STG_N_BlueAgama STG_N_GreenAgama STG_N_YellowAgama STG_N_SpinyAgama
+			STG_N_FinnedAgama STG_N_HornedAgama STG_N_Long-TailedAgama STG_N_Ameiva STG_N_RedAmeiva STG_N_BlueAmeiva
+			STG_N_GreenAmeiva STG_N_YellowAmeiva STG_N_SpinyAmeiva STG_N_FinnedAmeiva STG_N_HornedAmeiva STG_N_Long-TailedAmeiva
+			STG_N_Basilisk STG_N_RedBasilisk STG_N_BlueBasilisk STG_N_GreenBasilisk STG_N_YellowBasilisk STG_N_SpinyBasilisk
+			STG_N_FinnedBasilisk STG_N_HornedBasilisk STG_N_Long-TailedBasilisk STG_N_Calotes STG_N_RedCalotes STG_N_BlueCalotes
+			STG_N_GreenCalotes STG_N_YellowCalotes STG_N_SpinyCalotes STG_N_FinnedCalotes STG_N_HornedCalotes STG_N_Long-TailedCalotes
+			STG_N_Skink STG_N_RedSkink STG_N_BlueSkink STG_N_GreenSkink STG_N_YellowSkink STG_N_SpinySkink
+			STG_N_FinnedSkink STG_N_HornedSkink STG_N_Long-TailedSkink STG_N_Ctenotus STG_N_RedCtenotus STG_N_BlueCtenotus
+			STG_N_GreenCtenotus STG_N_YellowCtenotus STG_N_SpinyCtenotus STG_N_FinnedCtenotus STG_N_HornedCtenotus STG_N_Long-TailedCtenotus
+			STG_N_Delma STG_N_RedDelma STG_N_BlueDelma STG_N_GreenDelma STG_N_YellowDelma STG_N_SpinyDelma
+			STG_N_FinnedDelma STG_N_HornedDelma STG_N_Long-TailedDelma STG_N_Dtella STG_N_RedDtella STG_N_BlueDtella
+			STG_N_GreenDtella STG_N_YellowDtella STG_N_SpinyDtella STG_N_FinnedDtella STG_N_HornedDtella STG_N_Long-TailedDtella
+			STG_N_Della STG_N_RedDella STG_N_BlueDella STG_N_GreenDella STG_N_YellowDella STG_N_SpinyDella
+			STG_N_FinnedDella STG_N_HornedDella STG_N_Long-TailedDella STG_N_Chuckwalla STG_N_RedChuckwalla STG_N_BlueChuckwalla
+			STG_N_GreenChuckwalla STG_N_YellowChuckwalla STG_N_SpinyChuckwalla STG_N_FinnedChuckwalla STG_N_HornedChuckwalla STG_N_Long-TailedChuckwalla
+			STG_N_Perentie STG_N_RedPerentie STG_N_BluePerentie STG_N_GreenPerentie STG_N_YellowPerentie STG_N_SpinyPerentie
+			STG_N_FinnedPerentie STG_N_HornedPerentie STG_N_Long-TailedPerentie
+		}
+
+		corvette = {
+			STG_N_GreenIguana STG_N_YellowIguana STG_N_SpinyIguana STG_N_FinnedIguana STG_N_HornedIguana
+		}
+
+		destroyer = {
+			STG_N_Chameleon STG_N_RedChameleon STG_N_BlueChameleon STG_N_GreenChameleon STG_N_YellowChameleon
+		}
+
+		cruiser = {
+			STG_N_SpinyChameleon STG_N_FinnedChameleon STG_N_HornedChameleon STG_N_Gecko STG_N_RedGecko
+		}
+
+		battleship = {
+			STG_N_BlueGecko STG_N_GreenGecko STG_N_YellowGecko STG_N_SpinyGecko STG_N_FinnedGecko
+		}
+
+		titan = {
+			STG_N_HornedGecko STG_N_Alligator STG_N_RedAlligator STG_N_BlueAlligator
+		}
+
+		science = {
+			STG_N_Monitor STG_N_RedMonitor STG_N_BlueMonitor STG_N_GreenMonitor STG_N_YellowMonitor STG_N_SpinyMonitor
+		}
+
+		colonizer = {
+			STG_N_Monitor STG_N_RedMonitor STG_N_BlueMonitor STG_N_GreenMonitor STG_N_YellowMonitor
+		}
+
+		constructor = {
+			STG_N_FinnedMonitor STG_N_HornedMonitor STG_N_Iguana STG_N_RedIguana STG_N_BlueIguana
+		}
+	}
+
+	ship_class_names = {
+		generic = {
+			STG_N_Monitor STG_N_RedMonitor STG_N_BlueMonitor STG_N_GreenMonitor STG_N_YellowMonitor STG_N_SpinyMonitor
+			STG_N_FinnedMonitor STG_N_HornedMonitor STG_N_Iguana
+		}
+	}
+
+	fleet_names = {
+		sequential_name = STG_SAURIAN_GROUP
+	}
+
+	army_names = {
+		machine_assault_1 = {
+			sequential_name = STG_SAURIAN_ASSAULTAUXILIARY
+		}
+
+		machine_defense = {
+			sequential_name = STG_SAURIAN_DEFENSEAUXILIARY
+		}
+
+		defense_army = {
+			sequential_name = STG_SAURIAN_PLANETARYDEFENSEAUXILIARY
+		}
+
+		assault_army = {
+			sequential_name = STG_SAURIAN_EXPEDITIONARYAUXILIARY
+		}
+
+		slave_army = {
+			sequential_name = STG_SAURIAN_LABORAUXILIARY
+		}
+
+		clone_army = {
+			sequential_name = STG_SAURIAN_REPLICATEAUXILIARY
+		}
+
+		robotic_army = {
+			sequential_name = STG_SAURIAN_AUTOMATEDAUXILIARY
+		}
+
+		psionic_army = {
+			sequential_name = STG_SAURIAN_ADEPTAUXILIARY
+		}
+
+		xenomorph_army = {
+			sequential_name = STG_SAURIAN_XENOMORPHAUXILIARY
+		}
+
+		gene_warrior_army = {
+			sequential_name = STG_SAURIAN_AUGMENTEDAUXILIARY
+		}
+
+		occupation_army = {
+			sequential_name = STG_SAURIAN_OCCUPATIONAUXILIARY
+		}
+
+		robotic_defense_army = {
+			sequential_name = STG_SAURIAN_AUTOMATEDDEFENSEAUXILIARY
+		}
+
+		industrial_army = {
+			sequential_name = STG_SAURIAN_INDUSTRIALAUXILIARY
+		}
+
+		primitive_army = {
+			sequential_name = STG_SAURIAN_MILITIA
+		}
+	}
+
+	planet_names = {
+		generic = {
+			names = {
+				STG_N_Monitor STG_N_RedMonitor STG_N_BlueMonitor STG_N_GreenMonitor STG_N_YellowMonitor STG_N_SpinyMonitor
+				STG_N_FinnedMonitor STG_N_HornedMonitor STG_N_Iguana STG_N_RedIguana STG_N_BlueIguana STG_N_GreenIguana
+				STG_N_YellowIguana STG_N_SpinyIguana STG_N_FinnedIguana STG_N_HornedIguana STG_N_Chameleon STG_N_RedChameleon
+				STG_N_BlueChameleon STG_N_GreenChameleon STG_N_YellowChameleon STG_N_SpinyChameleon STG_N_FinnedChameleon STG_N_HornedChameleon
+				STG_N_Gecko STG_N_RedGecko STG_N_BlueGecko STG_N_GreenGecko STG_N_YellowGecko STG_N_SpinyGecko
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			weight = 100
+
+			first_names_male = {
+				STG_N_Dunotgi STG_N_Getki STG_N_Gikmato STG_N_Gokechv STG_N_Kegutt STG_N_Kejaki
+				STG_N_Teegen STG_N_Plegit STG_N_Okegeti STG_N_Nataget STG_N_Kreggti STG_N_Kordek
+				STG_N_Koass STG_N_Kigago STG_N_Ketago STG_N_Anek STG_N_Aennik STG_N_Okret
+				STG_N_Razki STG_N_Stemo STG_N_Yeniz STG_N_Kalapo STG_N_Kolez STG_N_Makza
+			}
+
+			first_names_female = {
+				STG_N_Riassa STG_N_Raeme STG_N_Nuco STG_N_Noziech STG_N_Losheg STG_N_Linnuola
+				STG_N_Losni STG_N_Linnla STG_N_Linni STG_N_Jegni STG_N_Nuiassa STG_N_Gogtai
+				STG_N_Rassa STG_N_Cooquoa STG_N_Okeg STG_N_Rotinom STG_N_Nogard STG_N_Anaugi
+				STG_N_Noelemac STG_N_Rotagila STG_N_Setolac STG_N_Allet STG_N_Alled STG_N_Etnerep
+			}
+
+			second_names = {
+				STG_N_Dunotgi STG_N_Getki STG_N_Gikmato STG_N_Gokechv STG_N_Kegutt STG_N_Kejaki
+				STG_N_Teegen STG_N_Plegit STG_N_Okegeti STG_N_Nataget STG_N_Kreggti STG_N_Kordek
+				STG_N_Koass STG_N_Kigago STG_N_Ketago STG_N_Anek STG_N_Aennik STG_N_Okret
+				STG_N_Razki STG_N_Stemo STG_N_Yeniz STG_N_Kalapo STG_N_Kolez STG_N_Makza
+			}
+		}
+	}
+}

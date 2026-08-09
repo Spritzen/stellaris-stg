@@ -1,0 +1,195 @@
+﻿# Vidiian Sodality name list.
+#
+# Dereth, Motura, Sulan, Danara Pel, the Phage and the Sodality's organ
+# harvesting are canon (VOY). The Honatta are its medical corps. The rest is
+# constructed.
+#
+# Structure mirrors /stellaris/common/name_lists/HUMAN1.txt, and the fourteen
+# beside it. Every name token is an STG_N_ key in
+# src/localisation/english/stg_names_l_english.yml.
+
+STG_VIDIIAN = {
+	category = "Humanoid"
+	randomized = no
+
+	ship_names = {
+		generic = {
+			STG_N_Dereth STG_N_Motura STG_N_Sulan STG_N_Danara STG_N_Honatta STG_N_Phage
+			STG_N_Sustainer STG_N_Harvest STG_N_Transplant STG_N_Remedy STG_N_Graft STG_N_Suture
+			STG_N_Vessel STG_N_Donor STG_N_Prolong STG_N_Reprieve STG_N_Palliative STG_N_Convalescence
+			STG_N_Requital STG_N_Endurance STG_N_Niadin STG_N_SDidin STG_N_Sidina STG_N_Nitain
+			STG_N_Sidasif STG_N_Nudinn STG_N_Nudiaw STG_N_Nudiad STG_N_Thudin STG_N_Nediteg
+			STG_N_Nesixa STG_N_Gradst STG_N_Xaggin STG_N_Lasmin STG_N_Hcaidat STG_N_Cediteg
+			STG_N_Dassin STG_N_Krogidil STG_N_Boggin STG_N_Readsn STG_N_Nudsma STG_N_Ninnaw
+			STG_N_Dadata STG_N_Nasinn STG_N_Beddat STG_N_Regididin STG_N_Thudag STG_N_Cedinna
+			STG_N_Grasit STG_N_Nerixea STG_N_Cmilat STG_N_Bradat STG_N_Zadsas STG_N_Boredit
+			STG_N_Adasit STG_N_Nosmia STG_N_Kinnat STG_N_Tracin STG_N_Daddst STG_N_Sidstek
+			STG_N_Nianaw STG_N_Thitat STG_N_Dainat STG_N_Regixa STG_N_Zidarat STG_N_Dasiat
+			STG_N_Haddat STG_N_Hrawat STG_N_Essmat STG_N_Xacara STG_N_Boreaia STG_N_Orahar
+			STG_N_RewHin STG_N_Sommaw STG_N_Ceggino STG_N_Orahat STG_N_Bogoma STG_N_Hratal
+			STG_N_Traras STG_N_Dadagos STG_N_Chogiat STG_N_Benoua STG_N_Tregon STG_N_GesVat
+			STG_N_Chuagg STG_N_Begawa STG_N_Krahek STG_N_Dasma STG_N_Xaf STG_N_ChZasin
+			STG_N_Darads STG_N_Zarata STG_N_Xomatt STG_N_Trarat STG_N_ChelChudit STG_N_Zoggat
+			STG_N_Chawat STG_N_Tracal STG_N_Citewat STG_N_Neramin STG_N_Xattas STG_N_SixeThif
+			STG_N_Somaidst STG_N_Groxaw STG_N_Chewat STG_N_Sosnat STG_N_Krohes STG_N_Orainas
+			STG_N_Redixaff STG_N_Nuphul STG_N_Hewyst STG_N_Zinorat STG_N_Zoraina STG_N_Vatatt
+			STG_N_Damasal STG_N_Xolatan STG_N_Silasmam STG_N_Vainalff STG_N_Zogoman STG_N_Dagoxel
+			STG_N_Nohelat STG_N_Xomitatt STG_N_Bogosas STG_N_Neffkys STG_N_Esronat STG_N_Soratat
+			STG_N_Saxesmat STG_N_Orommaw STG_N_Zeggadin STG_N_Borastt STG_N_Negomas STG_N_Hrast
+			STG_N_Qaidtatta STG_N_Troraff STG_N_Kradarat STG_N_Rmasinog STG_N_Cerasat STG_N_Noloron
+			STG_N_Orerosm STG_N_ReffBol STG_N_Norams STG_N_RelHeff STG_N_Krawatt STG_N_Trarenn
+			STG_N_Ephudidat STG_N_Vadannat STG_N_Saraten STG_N_Ziawcamw STG_N_Sonamaw STG_N_Foraran
+			STG_N_Relaiatt STG_N_Thelara STG_N_SeitAdatas STG_N_CefTraidil STG_N_Kinnaddan STG_N_Vatttat
+			STG_N_Chuphud STG_N_Xanonasa STG_N_Qannaten STG_N_Zoxadawat STG_N_Foggana STG_N_Akamanas
+			STG_N_Hasammin STG_N_Zogomiatt STG_N_Resxerain STG_N_Xarosmat STG_N_Zasrorat STG_N_Cenoraiail
+			STG_N_Granacat STG_N_Esmiattal STG_N_Toracaff STG_N_Comasmat STG_N_Regohads STG_N_Regginasin
+			STG_N_Sal STG_N_Krahataw STG_N_Fonnatam STG_N_HenafSill STG_N_Zorostaw STG_N_Xattedidat
+			STG_N_Bedixerala STG_N_Fohullan STG_N_Mrahenat STG_N_Sinagogog STG_N_Nasrasma STG_N_Hrawaman
+			STG_N_XomadinXar STG_N_Krogoman STG_N_Bogiallat STG_N_Hratten STG_N_RenMrol STG_N_Sominahinat
+			STG_N_Cohinagahit STG_N_HerassXat STG_N_Couahenos STG_N_Benahuphit STG_N_Xanoradst STG_N_Chuphuatt
+			STG_N_Beasratt STG_N_Oratenor STG_N_Brargoreg STG_N_Regadainat STG_N_Nuaragaro STG_N_Chuasmago
+			STG_N_TekDarasin STG_N_Chanaitagg STG_N_Nuphuphat STG_N_Kraradsnaw STG_N_Cohadinnasn STG_N_Norogorasm
+			STG_N_Ditagoxalat STG_N_Brohekelad STG_N_ZSogommixef STG_N_BogReKratt STG_N_Ollagattat STG_N_Gratanastt
+			STG_N_Chefffatan STG_N_Besaronads STG_N_Noxeginomag STG_N_Hrahuphaids STG_N_Brassassta STG_N_Mmallagosin
+			STG_N_Sohenaccaw STG_N_ZohallDa STG_N_Zasrellatt STG_N_Zogasraran STG_N_Xategomatt STG_N_Xolanateds
+			STG_N_Tragamatana
+		}
+
+		corvette = {
+			STG_N_Vessel STG_N_Donor STG_N_Prolong STG_N_Reprieve STG_N_Palliative
+		}
+
+		destroyer = {
+			STG_N_Honatta STG_N_Phage STG_N_Sustainer STG_N_Harvest STG_N_Transplant
+		}
+
+		cruiser = {
+			STG_N_Remedy STG_N_Graft STG_N_Suture STG_N_Vessel STG_N_Donor
+		}
+
+		battleship = {
+			STG_N_Prolong STG_N_Reprieve STG_N_Palliative STG_N_Convalescence STG_N_Requital
+		}
+
+		titan = {
+			STG_N_Dereth STG_N_Motura STG_N_Sulan STG_N_Danara
+		}
+
+		science = {
+			STG_N_Dereth STG_N_Motura STG_N_Sulan STG_N_Danara STG_N_Honatta STG_N_Phage
+			STG_N_Sustainer
+		}
+
+		colonizer = {
+			STG_N_Vidiia STG_N_VidiiaPrime STG_N_VidiiaII STG_N_Dereth STG_N_Motura
+		}
+
+		constructor = {
+			STG_N_Harvest STG_N_Transplant STG_N_Remedy STG_N_Graft STG_N_Suture
+		}
+	}
+
+	ship_class_names = {
+		generic = {
+			STG_N_Dereth STG_N_Motura STG_N_Sulan STG_N_Danara STG_N_Honatta STG_N_Phage STG_N_Sustainer
+			STG_N_Harvest STG_N_Transplant
+		}
+	}
+
+	fleet_names = {
+		sequential_name = STG_VIDIIAN_GROUP
+	}
+
+	army_names = {
+		machine_assault_1 = {
+			sequential_name = STG_VIDIIAN_ASSAULTAUXILIARY
+		}
+
+		machine_defense = {
+			sequential_name = STG_VIDIIAN_DEFENSEAUXILIARY
+		}
+
+		defense_army = {
+			sequential_name = STG_VIDIIAN_PLANETARYDEFENSEAUXILIARY
+		}
+
+		assault_army = {
+			sequential_name = STG_VIDIIAN_EXPEDITIONARYAUXILIARY
+		}
+
+		slave_army = {
+			sequential_name = STG_VIDIIAN_LABORAUXILIARY
+		}
+
+		clone_army = {
+			sequential_name = STG_VIDIIAN_REPLICATEAUXILIARY
+		}
+
+		robotic_army = {
+			sequential_name = STG_VIDIIAN_AUTOMATEDAUXILIARY
+		}
+
+		psionic_army = {
+			sequential_name = STG_VIDIIAN_ADEPTAUXILIARY
+		}
+
+		xenomorph_army = {
+			sequential_name = STG_VIDIIAN_XENOMORPHAUXILIARY
+		}
+
+		gene_warrior_army = {
+			sequential_name = STG_VIDIIAN_AUGMENTEDAUXILIARY
+		}
+
+		occupation_army = {
+			sequential_name = STG_VIDIIAN_OCCUPATIONAUXILIARY
+		}
+
+		robotic_defense_army = {
+			sequential_name = STG_VIDIIAN_AUTOMATEDDEFENSEAUXILIARY
+		}
+
+		industrial_army = {
+			sequential_name = STG_VIDIIAN_INDUSTRIALAUXILIARY
+		}
+
+		primitive_army = {
+			sequential_name = STG_VIDIIAN_MILITIA
+		}
+	}
+
+	planet_names = {
+		generic = {
+			names = {
+				STG_N_VidiiaPrime STG_N_VidiiaII STG_N_Dereth STG_N_Motura STG_N_Sulan STG_N_Honatta
+				STG_N_Sustainer STG_N_Remedy STG_N_Reprieve STG_N_Prolong STG_N_Endurance STG_N_Convalescence
+				STG_N_Palliative STG_N_Requital STG_N_Graft STG_N_Suture STG_N_Transplant STG_N_Harvestworld
+				STG_N_NewVidiia
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			weight = 100
+
+			first_names_male = {
+				STG_N_Dereth STG_N_Motura STG_N_Sulan STG_N_Ghelen STG_N_Vaskan STG_N_Trelan STG_N_Orak
+				STG_N_Nesek STG_N_Bareth STG_N_Kelan STG_N_Sovak STG_N_Renath STG_N_Dalen STG_N_Marek
+				STG_N_Tolen STG_N_Vesar
+			}
+
+			first_names_female = {
+				STG_N_Danara STG_N_Pel STG_N_Honata STG_N_Vidara STG_N_Neska STG_N_Barela STG_N_Kelana
+				STG_N_Sovaka STG_N_Renatha STG_N_Dalena STG_N_Mareka STG_N_Tolena STG_N_Vesara STG_N_Ghelena
+				STG_N_Traela STG_N_Oraka
+			}
+
+			second_names = {
+				STG_N_Vidiia STG_N_Dereth STG_N_Motura STG_N_Sulan STG_N_Pel STG_N_Honatta STG_N_Sustainer
+				STG_N_Remedy STG_N_Reprieve STG_N_Prolong STG_N_Endurance STG_N_Graft STG_N_Suture STG_N_Transplant
+				STG_N_Requital STG_N_Harvest
+			}
+		}
+	}
+}

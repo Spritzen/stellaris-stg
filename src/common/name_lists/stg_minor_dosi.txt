@@ -1,0 +1,164 @@
+﻿# Dosi name list, for the AI-only minor powers that use it.
+#
+# CONVERTED from .source/688086068/common/name_lists/Dosi.txt: the tokens are
+# STNH's, resolved through STNH's own localisation and re-keyed as STG_N_. The
+# ship-size buckets are rebuilt for VANILLA's ladder -- STNH's file buckets by
+# its own (saber, sovereign, steamrunner) and those keys mean nothing here.
+#
+# See .docs/decisions/19-stnh-minor-powers-as-ai-empires.md.
+
+STG_DOSI = {
+	category = "Humanoid"
+	randomized = no
+
+	ship_names = {
+		generic = {
+			STG_N_FreeMarket STG_N_OpportuneEnterprise STG_N_Bazaar STG_N_Medina STG_N_Attainer STG_N_Kingmaker
+			STG_N_Venture STG_N_ErrantVenture STG_N_Freebooter STG_N_Cutpurse STG_N_Endowment STG_N_LeveragedBuyout
+			STG_N_Margin STG_N_Merchant STG_N_Merger STG_N_Constite STG_N_Invigorator STG_N_Innervater
+			STG_N_Acquisition STG_N_Animater STG_N_Tradesman STG_N_Accrue STG_N_Accumulate STG_N_AggressiveAdjustment
+			STG_N_BarterBear STG_N_BearMarket STG_N_BullMarket STG_N_RedChip STG_N_BrokersBank STG_N_EscrowMerchant
+			STG_N_StockDelivery STG_N_FiscalFloater STG_N_CapitalGain STG_N_BankruptBank
+		}
+
+		corvette = {
+			STG_N_LeveragedBuyout STG_N_Margin STG_N_Merchant STG_N_Merger STG_N_Constite
+		}
+
+		destroyer = {
+			STG_N_Invigorator STG_N_Innervater STG_N_Acquisition STG_N_Animater STG_N_Tradesman
+		}
+
+		cruiser = {
+			STG_N_Accrue STG_N_Accumulate STG_N_AggressiveAdjustment STG_N_BarterBear STG_N_BearMarket
+		}
+
+		battleship = {
+			STG_N_BullMarket STG_N_RedChip STG_N_BrokersBank STG_N_EscrowMerchant STG_N_StockDelivery
+		}
+
+		titan = {
+			STG_N_FiscalFloater STG_N_CapitalGain STG_N_BankruptBank
+		}
+
+		science = {
+			STG_N_FreeMarket STG_N_OpportuneEnterprise STG_N_Bazaar STG_N_Medina STG_N_Attainer STG_N_Kingmaker
+		}
+
+		colonizer = {
+			STG_N_FreeMarket STG_N_OpportuneEnterprise STG_N_Bazaar STG_N_Medina STG_N_Attainer
+		}
+
+		constructor = {
+			STG_N_Venture STG_N_ErrantVenture STG_N_Freebooter STG_N_Cutpurse STG_N_Endowment
+		}
+	}
+
+	ship_class_names = {
+		generic = {
+			STG_N_FreeMarket STG_N_OpportuneEnterprise STG_N_Bazaar STG_N_Medina STG_N_Attainer STG_N_Kingmaker
+			STG_N_Venture STG_N_ErrantVenture STG_N_Freebooter
+		}
+	}
+
+	fleet_names = {
+		sequential_name = STG_DOSI_GROUP
+	}
+
+	army_names = {
+		machine_assault_1 = {
+			sequential_name = STG_DOSI_ASSAULTAUXILIARY
+		}
+
+		machine_defense = {
+			sequential_name = STG_DOSI_DEFENSEAUXILIARY
+		}
+
+		defense_army = {
+			sequential_name = STG_DOSI_PLANETARYDEFENSEAUXILIARY
+		}
+
+		assault_army = {
+			sequential_name = STG_DOSI_EXPEDITIONARYAUXILIARY
+		}
+
+		slave_army = {
+			sequential_name = STG_DOSI_LABORAUXILIARY
+		}
+
+		clone_army = {
+			sequential_name = STG_DOSI_REPLICATEAUXILIARY
+		}
+
+		robotic_army = {
+			sequential_name = STG_DOSI_AUTOMATEDAUXILIARY
+		}
+
+		psionic_army = {
+			sequential_name = STG_DOSI_ADEPTAUXILIARY
+		}
+
+		xenomorph_army = {
+			sequential_name = STG_DOSI_XENOMORPHAUXILIARY
+		}
+
+		gene_warrior_army = {
+			sequential_name = STG_DOSI_AUGMENTEDAUXILIARY
+		}
+
+		occupation_army = {
+			sequential_name = STG_DOSI_OCCUPATIONAUXILIARY
+		}
+
+		robotic_defense_army = {
+			sequential_name = STG_DOSI_AUTOMATEDDEFENSEAUXILIARY
+		}
+
+		industrial_army = {
+			sequential_name = STG_DOSI_INDUSTRIALAUXILIARY
+		}
+
+		primitive_army = {
+			sequential_name = STG_DOSI_MILITIA
+		}
+	}
+
+	planet_names = {
+		generic = {
+			names = {
+				STG_N_FreeMarket STG_N_OpportuneEnterprise STG_N_Bazaar STG_N_Medina STG_N_Attainer STG_N_Kingmaker
+				STG_N_Venture STG_N_ErrantVenture STG_N_Freebooter STG_N_Cutpurse STG_N_Endowment STG_N_LeveragedBuyout
+				STG_N_Margin STG_N_Merchant STG_N_Merger STG_N_Constite STG_N_Invigorator STG_N_Innervater
+				STG_N_Acquisition STG_N_Animater STG_N_Tradesman STG_N_Accrue STG_N_Accumulate STG_N_AggressiveAdjustment
+				STG_N_BarterBear STG_N_BearMarket STG_N_BullMarket STG_N_RedChip STG_N_BrokersBank STG_N_EscrowMerchant
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			weight = 100
+
+			first_names_male = {
+				STG_N_Inglatu STG_N_Alemantu STG_N_Antartu STG_N_Austu STG_N_Belgutu STG_N_Bratu
+				STG_N_Bulgatu STG_N_Canatu STG_N_Chiptu STG_N_Dinamartu STG_N_Escoctu STG_N_Eslovaktu
+				STG_N_Esloventu STG_N_Anatu STG_N_Francit STG_N_Galestu STG_N_Greciatu STG_N_Hungitu
+				STG_N_Inglatertu STG_N_Irlantu STG_N_Islanditu STG_N_Luxburtu STG_N_Marruecotu STG_N_Nuetu
+			}
+
+			first_names_female = {
+				STG_N_Zynderele STG_N_Zynderell STG_N_Zynderee STG_N_Zyndereeh STG_N_Zyndi STG_N_Zyndia
+				STG_N_Zyndie STG_N_Zyndl STG_N_Zyndra STG_N_Zyndy STG_N_Zyndyl STG_N_Zynia
+				STG_N_Zynna STG_N_Zynnabar STG_N_Zynnamon STG_N_Zynnamond STG_N_Zynnia STG_N_Zynnie
+				STG_N_Zynny STG_N_Zynta STG_N_Zyntah STG_N_Zyntha STG_N_Zynthea STG_N_Zynthia
+			}
+
+			second_names = {
+				STG_N_Inglatu STG_N_Alemantu STG_N_Antartu STG_N_Austu STG_N_Belgutu STG_N_Bratu
+				STG_N_Bulgatu STG_N_Canatu STG_N_Chiptu STG_N_Dinamartu STG_N_Escoctu STG_N_Eslovaktu
+				STG_N_Esloventu STG_N_Anatu STG_N_Francit STG_N_Galestu STG_N_Greciatu STG_N_Hungitu
+				STG_N_Inglatertu STG_N_Irlantu STG_N_Islanditu STG_N_Luxburtu STG_N_Marruecotu STG_N_Nuetu
+			}
+		}
+	}
+}

@@ -1,0 +1,18 @@
+# STG's own music declarations — name → file, for tracks nothing else declares.
+#
+# A NEW file, not a shadow. STNH ships
+# music/Anthem_of_the_United_Federation_of_Planets.ogg and declares it NOWHERE:
+# no `music = { }` maps the name to the file and no `song = { }` plays it, so it
+# has sat in the tree unheard since the first harvest. It is the only .ogg in the
+# built music/ directory nothing declares — the other 16 all resolve.
+#
+# volume 0.80 is vanilla's own default: 18 of its 21 music declarations that set
+# one set 0.80, and the Extended Soundtrack's five do too.
+#
+# See .docs/decisions/55-federation-anthem.md.
+
+music = {
+	name = "stg_ufp_anthem"
+	file = "Anthem_of_the_United_Federation_of_Planets.ogg"
+	volume = 0.80
+}

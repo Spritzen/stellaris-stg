@@ -1,0 +1,167 @@
+﻿# Xindi Council name list.
+#
+# Xindus, Azati Prime, Degra, Dolim, Jannar, Kiaphet Amman'sor and the six
+# Xindi species are canon (ENT s3). The rest is constructed.
+#
+# Structure mirrors /stellaris/common/name_lists/HUMAN1.txt, and the fourteen
+# beside it. Every name token is an STG_N_ key in
+# src/localisation/english/stg_names_l_english.yml.
+
+STG_XINDI = {
+	category = "Humanoid"
+	randomized = no
+
+	ship_names = {
+		generic = {
+			STG_N_Xindus STG_N_AzatiPrime STG_N_Degra STG_N_Dolim STG_N_Jannar STG_N_Thalen
+			STG_N_Kessick STG_N_Naara STG_N_Gralik STG_N_Damron STG_N_Rajiin STG_N_Lokesh
+			STG_N_Kiaphet STG_N_Calindra STG_N_Sekal STG_N_Threnna STG_N_Vosk STG_N_Ashani
+			STG_N_Corvath STG_N_Tarnak STG_N_Snake STG_N_Asp STG_N_Adder STG_N_Cascabel
+			STG_N_Krait STG_N_Kadru STG_N_Yarara STG_N_Garuda STG_N_Taipan STG_N_Shiva
+			STG_N_Sidewinder STG_N_Naga STG_N_Cobra STG_N_Viper STG_N_Mamba STG_N_Astika
+			STG_N_Manasa STG_N_Boa STG_N_Keelback STG_N_Anaconda STG_N_Python STG_N_Vasuki
+			STG_N_Nagaraja STG_N_Reclaimer STG_N_Erlan STG_N_Moray STG_N_Remora STG_N_Manta
+			STG_N_Skate STG_N_DevilRay STG_N_Lamprey STG_N_Ray STG_N_Stingray STG_N_Conger
+			STG_N_Condonta STG_N_Myxini STG_N_Sistruus STG_N_Ateleth STG_N_Olaen STG_N_Briostrys
+			STG_N_Narcine STG_N_Contortrix STG_N_Biostrys STG_N_Castroi STG_N_Mobulai STG_N_Nusuti
+			STG_N_Pralim
+		}
+
+		corvette = {
+			STG_N_Kiaphet STG_N_Calindra STG_N_Sekal STG_N_Threnna STG_N_Vosk
+		}
+
+		destroyer = {
+			STG_N_Jannar STG_N_Thalen STG_N_Kessick STG_N_Naara STG_N_Gralik
+		}
+
+		cruiser = {
+			STG_N_Damron STG_N_Rajiin STG_N_Lokesh STG_N_Kiaphet STG_N_Calindra
+		}
+
+		battleship = {
+			STG_N_Sekal STG_N_Threnna STG_N_Vosk STG_N_Ashani STG_N_Corvath
+		}
+
+		titan = {
+			STG_N_Xindus STG_N_AzatiPrime STG_N_Degra STG_N_Dolim
+		}
+
+		science = {
+			STG_N_Xindus STG_N_AzatiPrime STG_N_Degra STG_N_Dolim STG_N_Jannar STG_N_Thalen
+			STG_N_Kessick
+		}
+
+		colonizer = {
+			STG_N_AzatiPrime STG_N_Xindus STG_N_XindusII STG_N_Calindra STG_N_CalindraIII
+		}
+
+		constructor = {
+			STG_N_Naara STG_N_Gralik STG_N_Damron STG_N_Rajiin STG_N_Lokesh
+		}
+	}
+
+	ship_class_names = {
+		generic = {
+			STG_N_Xindus STG_N_AzatiPrime STG_N_Degra STG_N_Dolim STG_N_Jannar STG_N_Thalen STG_N_Kessick
+			STG_N_Naara STG_N_Gralik
+		}
+	}
+
+	fleet_names = {
+		sequential_name = STG_XINDI_GROUP
+	}
+
+	army_names = {
+		machine_assault_1 = {
+			sequential_name = STG_XINDI_ASSAULTAUXILIARY
+		}
+
+		machine_defense = {
+			sequential_name = STG_XINDI_DEFENSEAUXILIARY
+		}
+
+		defense_army = {
+			sequential_name = STG_XINDI_PLANETARYDEFENSEAUXILIARY
+		}
+
+		assault_army = {
+			sequential_name = STG_XINDI_EXPEDITIONARYAUXILIARY
+		}
+
+		slave_army = {
+			sequential_name = STG_XINDI_LABORAUXILIARY
+		}
+
+		clone_army = {
+			sequential_name = STG_XINDI_REPLICATEAUXILIARY
+		}
+
+		robotic_army = {
+			sequential_name = STG_XINDI_AUTOMATEDAUXILIARY
+		}
+
+		psionic_army = {
+			sequential_name = STG_XINDI_ADEPTAUXILIARY
+		}
+
+		xenomorph_army = {
+			sequential_name = STG_XINDI_XENOMORPHAUXILIARY
+		}
+
+		gene_warrior_army = {
+			sequential_name = STG_XINDI_AUGMENTEDAUXILIARY
+		}
+
+		occupation_army = {
+			sequential_name = STG_XINDI_OCCUPATIONAUXILIARY
+		}
+
+		robotic_defense_army = {
+			sequential_name = STG_XINDI_AUTOMATEDDEFENSEAUXILIARY
+		}
+
+		industrial_army = {
+			sequential_name = STG_XINDI_INDUSTRIALAUXILIARY
+		}
+
+		primitive_army = {
+			sequential_name = STG_XINDI_MILITIA
+		}
+	}
+
+	planet_names = {
+		generic = {
+			names = {
+				STG_N_AzatiPrime STG_N_XindusII STG_N_Calindra STG_N_CalindraIII STG_N_Loque STG_N_LoqueII
+				STG_N_Naara STG_N_NaaraPrime STG_N_Gralik STG_N_Damron STG_N_Threnna STG_N_Sekal
+				STG_N_Ashani STG_N_Corvath STG_N_Tarnak STG_N_Vosk STG_N_Kessick STG_N_Rajiin
+				STG_N_NewXindus
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			weight = 100
+
+			first_names_male = {
+				STG_N_Degra STG_N_Dolim STG_N_Jannar STG_N_Thalen STG_N_Kessick STG_N_Gralik STG_N_Damron
+				STG_N_Loque STG_N_Sekal STG_N_Corvath STG_N_Tarnak STG_N_Vosk STG_N_Naaren STG_N_Rajen
+				STG_N_Threnn STG_N_Ashan
+			}
+
+			first_names_female = {
+				STG_N_Naara STG_N_Rajiin STG_N_Calindra STG_N_Threnna STG_N_Ashani STG_N_Sekala STG_N_Loquen
+				STG_N_Damra STG_N_Gralen STG_N_Jannara STG_N_Thalena STG_N_Kessa STG_N_Corvatha STG_N_Tarna
+				STG_N_Voska STG_N_Xindra
+			}
+
+			second_names = {
+				STG_N_Xindus STG_N_Azati STG_N_Calindra STG_N_Loque STG_N_Naara STG_N_Gralik STG_N_Damron
+				STG_N_Threnna STG_N_Sekal STG_N_Ashani STG_N_Corvath STG_N_Tarnak STG_N_Vosk STG_N_Kessick
+				STG_N_Rajiin STG_N_Jannar
+			}
+		}
+	}
+}

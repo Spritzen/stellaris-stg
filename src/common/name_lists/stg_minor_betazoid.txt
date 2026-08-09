@@ -1,0 +1,163 @@
+﻿# Betazoid name list, for the AI-only minor powers that use it.
+#
+# CONVERTED from .source/688086068/common/name_lists/Betazoid.txt: the tokens are
+# STNH's, resolved through STNH's own localisation and re-keyed as STG_N_. The
+# ship-size buckets are rebuilt for VANILLA's ladder -- STNH's file buckets by
+# its own (saber, sovereign, steamrunner) and those keys mean nothing here.
+#
+# See .docs/decisions/19-stnh-minor-powers-as-ai-empires.md.
+
+STG_BETAZOID = {
+	category = "Humanoid"
+	randomized = no
+
+	ship_names = {
+		generic = {
+			STG_N_Harmony STG_N_Exposure STG_N_Compassion STG_N_Affection STG_N_Fervor STG_N_Sympathy
+			STG_N_Sentiment STG_N_Commotion STG_N_Passion STG_N_Empathy STG_N_Love STG_N_Heat
+			STG_N_Fascination STG_N_Dedication STG_N_Infatuation STG_N_Ardor STG_N_Motivation STG_N_Commitment
+			STG_N_Obsession STG_N_Rapport STG_N_Solidarity STG_N_Sincerity STG_N_Pathos STG_N_Remorse
+			STG_N_Admiration
+		}
+
+		corvette = {
+			STG_N_Heat STG_N_Fascination STG_N_Dedication STG_N_Infatuation STG_N_Ardor
+		}
+
+		destroyer = {
+			STG_N_Motivation STG_N_Commitment STG_N_Obsession STG_N_Rapport STG_N_Solidarity
+		}
+
+		cruiser = {
+			STG_N_Sincerity STG_N_Pathos STG_N_Remorse STG_N_Admiration
+		}
+
+		battleship = {
+			STG_N_Harmony STG_N_Exposure STG_N_Compassion
+		}
+
+		titan = {
+			STG_N_Harmony STG_N_Exposure STG_N_Compassion
+		}
+
+		science = {
+			STG_N_Harmony STG_N_Exposure STG_N_Compassion STG_N_Affection STG_N_Fervor STG_N_Sympathy
+		}
+
+		colonizer = {
+			STG_N_Harmony STG_N_Exposure STG_N_Compassion STG_N_Affection STG_N_Fervor
+		}
+
+		constructor = {
+			STG_N_Sentiment STG_N_Commotion STG_N_Passion STG_N_Empathy STG_N_Love
+		}
+	}
+
+	ship_class_names = {
+		generic = {
+			STG_N_Harmony STG_N_Exposure STG_N_Compassion STG_N_Affection STG_N_Fervor STG_N_Sympathy
+			STG_N_Sentiment STG_N_Commotion STG_N_Passion
+		}
+	}
+
+	fleet_names = {
+		sequential_name = STG_BETAZOID_GROUP
+	}
+
+	army_names = {
+		machine_assault_1 = {
+			sequential_name = STG_BETAZOID_ASSAULTAUXILIARY
+		}
+
+		machine_defense = {
+			sequential_name = STG_BETAZOID_DEFENSEAUXILIARY
+		}
+
+		defense_army = {
+			sequential_name = STG_BETAZOID_PLANETARYDEFENSEAUXILIARY
+		}
+
+		assault_army = {
+			sequential_name = STG_BETAZOID_EXPEDITIONARYAUXILIARY
+		}
+
+		slave_army = {
+			sequential_name = STG_BETAZOID_LABORAUXILIARY
+		}
+
+		clone_army = {
+			sequential_name = STG_BETAZOID_REPLICATEAUXILIARY
+		}
+
+		robotic_army = {
+			sequential_name = STG_BETAZOID_AUTOMATEDAUXILIARY
+		}
+
+		psionic_army = {
+			sequential_name = STG_BETAZOID_ADEPTAUXILIARY
+		}
+
+		xenomorph_army = {
+			sequential_name = STG_BETAZOID_XENOMORPHAUXILIARY
+		}
+
+		gene_warrior_army = {
+			sequential_name = STG_BETAZOID_AUGMENTEDAUXILIARY
+		}
+
+		occupation_army = {
+			sequential_name = STG_BETAZOID_OCCUPATIONAUXILIARY
+		}
+
+		robotic_defense_army = {
+			sequential_name = STG_BETAZOID_AUTOMATEDDEFENSEAUXILIARY
+		}
+
+		industrial_army = {
+			sequential_name = STG_BETAZOID_INDUSTRIALAUXILIARY
+		}
+
+		primitive_army = {
+			sequential_name = STG_BETAZOID_MILITIA
+		}
+	}
+
+	planet_names = {
+		generic = {
+			names = {
+				STG_N_Harmony STG_N_Exposure STG_N_Compassion STG_N_Affection STG_N_Fervor STG_N_Sympathy
+				STG_N_Sentiment STG_N_Commotion STG_N_Passion STG_N_Empathy STG_N_Love STG_N_Heat
+				STG_N_Fascination STG_N_Dedication STG_N_Infatuation STG_N_Ardor STG_N_Motivation STG_N_Commitment
+				STG_N_Obsession STG_N_Rapport STG_N_Solidarity STG_N_Sincerity STG_N_Pathos STG_N_Remorse
+				STG_N_Admiration
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			weight = 100
+
+			first_names_male = {
+				STG_N_Sabin STG_N_Andrus STG_N_Jurot STG_N_Reittan STG_N_Devinoni STG_N_Lon
+				STG_N_Amanin STG_N_Tam STG_N_Rennan STG_N_Kenth STG_N_Bael STG_N_Cort
+				STG_N_Sark STG_N_Kojo STG_N_Sonek STG_N_Dal STG_N_Eusho STG_N_Meron
+				STG_N_Gart STG_N_Hent STG_N_Barin STG_N_Basild STG_N_Konal STG_N_Reban
+			}
+
+			first_names_female = {
+				STG_N_Sorana STG_N_Jessimi STG_N_Ania STG_N_Lwaxanna STG_N_Dalera STG_N_Gloranna
+				STG_N_Abeana STG_N_Pekera STG_N_Nissila STG_N_Lomestra STG_N_Ioza STG_N_Pegira
+				STG_N_Nemenna STG_N_Nerira STG_N_Lojeea STG_N_Bjayzl STG_N_Obertag STG_N_Fort
+				STG_N_Genestra STG_N_Grax STG_N_Genstra STG_N_Pran STG_N_Povron STG_N_Troi
+			}
+
+			second_names = {
+				STG_N_Sabin STG_N_Andrus STG_N_Jurot STG_N_Reittan STG_N_Devinoni STG_N_Lon
+				STG_N_Amanin STG_N_Tam STG_N_Rennan STG_N_Kenth STG_N_Bael STG_N_Cort
+				STG_N_Sark STG_N_Kojo STG_N_Sonek STG_N_Dal STG_N_Eusho STG_N_Meron
+				STG_N_Gart STG_N_Hent STG_N_Barin STG_N_Basild STG_N_Konal STG_N_Reban
+			}
+		}
+	}
+}

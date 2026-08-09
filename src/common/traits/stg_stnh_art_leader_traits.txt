@@ -1,0 +1,34 @@
+# Stubs for the STNH LEADER traits that STNH's ART depends on. Companion to
+# src/common/traits/stg_stnh_art_species_traits.txt — same problem, but vanilla
+# keeps leader traits in their own database, so they need their own file.
+#
+# Defined inert (`initial = no`, `randomized = no`, never assigned from src/),
+# so `has_trait` resolves and the selector falls through instead of erroring.
+# Why not vendor STNH's real definitions, in
+# .docs/decisions/08-stnh-art-shadows-vanilla.md.
+#
+# New prefixed FILE; KEYS unprefixed because the art references them verbatim
+# (decision 10). Icons are vanilla substitutes — STNH's own are not vendored,
+# and this trait is never displayed.
+#
+# PHASE 3: leader_trait_starfleet_32 is the hook the vendored 32nd-century
+# selectors already use. If Starfleet rank uniforms get wired for real, give it
+# a body rather than inventing a new key.
+
+# Referenced by 360 selector entries across the vendored Starfleet clothing
+# files. Mirrors STNH's own script-applied marker, minus its icon and minus
+# `legend` — a Paragons 3.x leader class that vanilla 4.4 no longer declares,
+# which produced `Invalid leader class 'legend'` in the 2026-08-02 13:35 run.
+leader_trait_starfleet_32 = {
+	inline_script = {
+		script = trait/icon
+		CLASS = leader
+		ICON = GFX_leader_trait_retired_fleet_officer
+		RARITY = common
+		COUNCIL = no
+		TIER = none
+	}
+	leader_class = { scientist commander official }
+	initial = no
+	randomized = no
+}

@@ -1,0 +1,74 @@
+# Vanilla 4.4 entity declarations that a vendored file at the same path drops.
+#
+# A NEW file, not a shadow. STNH's 3.12-era _other_entities.asset wins that path
+# — it carries the Trek ship entities we vendor STNH for — and never declares
+# three entities vanilla 4.4 still references. Restoring them here avoids taking
+# ownership of a 10,585-line file.
+#
+# pre_ftl_chemical_ship_mesh_entity is named by two section templates in
+# vanilla's first_contact_dlc.txt: 110 `could not find any entity by the name`
+# records in the 2026-08-02 live run, and pre-FTL chemical ships drawing with no
+# mesh. The two slaver_01 turrets are the same story and logged nothing only
+# because no marauder spawned.
+#
+# Blocks are vanilla 4.4's verbatim; both meshes they name are declared by
+# gfx/models/ships/other/_other_meshes.gfx in the built tree.
+
+entity = {
+    name = "pre_ftl_chemical_ship_mesh_entity"
+    pdxmesh = "space_age_01_pre_ftl_ship_01_mesh"
+        default_state = "idle"
+        state = { name = "idle"   animation = "idle" animation_blend_time = 4
+   		event = { time = 0.0 node = "engine_medium_01" particle = "generic_05_exhaust_circle_idle" keep_particle = yes trigger_once = yes  }
+
+        event = { time = 0 node = "light_locator_01" particle = "pre_ftl_01_ship_light_effect" trigger_once = yes keep_particle = yes }
+        event = { time = 1 node = "light_locator_02" particle = "pre_ftl_01_ship_light_effect" trigger_once = yes keep_particle = yes }
+        event = { time = 2 node = "light_locator_03" particle = "pre_ftl_01_ship_light_effect" trigger_once = yes keep_particle = yes }
+        event = { time = 3 node = "light_locator_04" particle = "pre_ftl_01_ship_light_effect" trigger_once = yes keep_particle = yes }
+        event = { time = 4 node = "light_locator_05" particle = "pre_ftl_01_ship_light_effect" trigger_once = yes keep_particle = yes }
+        event = { time = 5 node = "light_locator_06" particle = "pre_ftl_01_ship_light_effect" trigger_once = yes keep_particle = yes }
+        event = { time = 6 node = "light_locator_07" particle = "pre_ftl_01_ship_light_effect" trigger_once = yes keep_particle = yes }
+        event = { time = 7 node = "light_locator_08" particle = "pre_ftl_01_ship_light_effect" trigger_once = yes keep_particle = yes }
+        event = { time = 8 node = "light_locator_09" particle = "pre_ftl_01_ship_light_effect" trigger_once = yes keep_particle = yes }
+        event = { time = 9 node = "light_locator_10" particle = "pre_ftl_01_ship_light_effect" trigger_once = yes keep_particle = yes }
+		start_event = { trigger_once = yes sound = { soundeffect = "fc_ship_preflt_combustion_idle" } }
+    }
+    state = { name = "moving"       animation = "idle" animation_blend_time = 2
+ 		event = { time = 0.0 node = "engine_medium_01" particle = "pre_ftl_01_engine_effect" keep_particle = yes trigger_once = yes  }
+		event = { time = 0.0 node = "engine_manouever_01" particle = "pre_ftl_01_manouever_engine_effect" keep_particle = yes trigger_once = yes  }
+		event = { time = 0.0 node = "engine_manouever_02" particle = "pre_ftl_01_manouever_engine_effect" keep_particle = yes trigger_once = yes  }
+		event = { time = 0.0 node = "engine_manouever_03" particle = "pre_ftl_01_manouever_engine_effect" keep_particle = yes trigger_once = yes  }
+		event = { time = 0.0 node = "engine_manouever_04" particle = "pre_ftl_01_manouever_engine_effect" keep_particle = yes trigger_once = yes  }
+
+	event = { time = 0 node = "light_locator_01" particle = "pre_ftl_01_ship_light_effect" trigger_once = yes keep_particle = yes }
+    event = { time = 1 node = "light_locator_02" particle = "pre_ftl_01_ship_light_effect" trigger_once = yes keep_particle = yes }
+    event = { time = 2 node = "light_locator_03" particle = "pre_ftl_01_ship_light_effect" trigger_once = yes keep_particle = yes }
+    event = { time = 3 node = "light_locator_04" particle = "pre_ftl_01_ship_light_effect" trigger_once = yes keep_particle = yes }
+    event = { time = 4 node = "light_locator_05" particle = "pre_ftl_01_ship_light_effect" trigger_once = yes keep_particle = yes }
+    event = { time = 5 node = "light_locator_06" particle = "pre_ftl_01_ship_light_effect" trigger_once = yes keep_particle = yes }
+    event = { time = 6 node = "light_locator_07" particle = "pre_ftl_01_ship_light_effect" trigger_once = yes keep_particle = yes }
+    event = { time = 7 node = "light_locator_08" particle = "pre_ftl_01_ship_light_effect" trigger_once = yes keep_particle = yes }
+    event = { time = 8 node = "light_locator_09" particle = "pre_ftl_01_ship_light_effect" trigger_once = yes keep_particle = yes }
+    event = { time = 9 node = "light_locator_10" particle = "pre_ftl_01_ship_light_effect" trigger_once = yes keep_particle = yes }
+		start_event = { trigger_once = yes sound = {soundeffect = "fc_ship_preftl_combustion_move"}}
+    }
+        state = { name = "death"   animation = "death"  chance = 1      looping = no
+
+  	event = { time = 0.0 node = "explosion_locator_01" particle = "pre_ftl_075_explosion_effect" keep_particle = yes trigger_once = yes sound = {soundeffect = ship_destroyed}  }
+  	event = { time = 3.5 node = "explosion_locator_02" particle = "pre_ftl_1_explosion_effect" keep_particle = yes trigger_once = yes sound = {soundeffect = ship_destroyed}  }
+  	event = { time = 6.0 node = "explosion_locator_03" particle = "pre_ftl_1_explosion_effect" keep_particle = yes trigger_once = yes sound = {soundeffect = ship_destroyed}  }
+  	event = { time = 8.0 node = "explosion_locator_04" particle = "pre_ftl_075_explosion_effect" keep_particle = yes trigger_once = yes sound = {soundeffect = ship_destroyed}  }
+  	event = { time = 4.5 node = "explosion_locator_05" particle = "pre_ftl_1_explosion_effect" keep_particle = yes trigger_once = yes sound = {soundeffect = ship_destroyed} }
+ }
+    scale = 1.0
+}
+
+entity = {
+	name = "slaver_01_large_kinetic_gun_entity"
+	pdxmesh = "fc_01_evil_slaver_ship_turret_mesh"
+}
+
+entity = {
+	name = "slaver_01_large_turret_entity"
+	pdxmesh = "fc_01_evil_slaver_ship_turret_mesh"
+}

@@ -1,0 +1,163 @@
+﻿# Devore name list, for the AI-only minor powers that use it.
+#
+# CONVERTED from .source/688086068/common/name_lists/Devore.txt: the tokens are
+# STNH's, resolved through STNH's own localisation and re-keyed as STG_N_. The
+# ship-size buckets are rebuilt for VANILLA's ladder -- STNH's file buckets by
+# its own (saber, sovereign, steamrunner) and those keys mean nothing here.
+#
+# See .docs/decisions/19-stnh-minor-powers-as-ai-empires.md.
+
+STG_DEVORE = {
+	category = "Humanoid"
+	randomized = no
+
+	ship_names = {
+		generic = {
+			STG_N_Manticle STG_N_Shorale STG_N_Manthem STG_N_Fetter STG_N_Shackal STG_N_Fastnor
+			STG_N_Restrictor STG_N_Carcerator STG_N_Restrainer STG_N_Confinor STG_N_Constrainor STG_N_Hoblor
+			STG_N_Holdor STG_N_Chainment STG_N_Hindrance STG_N_Trammel STG_N_Trapor STG_N_Brackle
+			STG_N_Ligator STG_N_Litigat STG_N_Judical STG_N_Bralar STG_N_Karlak STG_N_Tretar
+			STG_N_Kramarer
+		}
+
+		corvette = {
+			STG_N_Hoblor STG_N_Holdor STG_N_Chainment STG_N_Hindrance STG_N_Trammel
+		}
+
+		destroyer = {
+			STG_N_Trapor STG_N_Brackle STG_N_Ligator STG_N_Litigat STG_N_Judical
+		}
+
+		cruiser = {
+			STG_N_Bralar STG_N_Karlak STG_N_Tretar STG_N_Kramarer
+		}
+
+		battleship = {
+			STG_N_Manticle STG_N_Shorale STG_N_Manthem
+		}
+
+		titan = {
+			STG_N_Manticle STG_N_Shorale STG_N_Manthem
+		}
+
+		science = {
+			STG_N_Manticle STG_N_Shorale STG_N_Manthem STG_N_Fetter STG_N_Shackal STG_N_Fastnor
+		}
+
+		colonizer = {
+			STG_N_Manticle STG_N_Shorale STG_N_Manthem STG_N_Fetter STG_N_Shackal
+		}
+
+		constructor = {
+			STG_N_Restrictor STG_N_Carcerator STG_N_Restrainer STG_N_Confinor STG_N_Constrainor
+		}
+	}
+
+	ship_class_names = {
+		generic = {
+			STG_N_Manticle STG_N_Shorale STG_N_Manthem STG_N_Fetter STG_N_Shackal STG_N_Fastnor
+			STG_N_Restrictor STG_N_Carcerator STG_N_Restrainer
+		}
+	}
+
+	fleet_names = {
+		sequential_name = STG_DEVORE_GROUP
+	}
+
+	army_names = {
+		machine_assault_1 = {
+			sequential_name = STG_DEVORE_ASSAULTAUXILIARY
+		}
+
+		machine_defense = {
+			sequential_name = STG_DEVORE_DEFENSEAUXILIARY
+		}
+
+		defense_army = {
+			sequential_name = STG_DEVORE_PLANETARYDEFENSEAUXILIARY
+		}
+
+		assault_army = {
+			sequential_name = STG_DEVORE_EXPEDITIONARYAUXILIARY
+		}
+
+		slave_army = {
+			sequential_name = STG_DEVORE_LABORAUXILIARY
+		}
+
+		clone_army = {
+			sequential_name = STG_DEVORE_REPLICATEAUXILIARY
+		}
+
+		robotic_army = {
+			sequential_name = STG_DEVORE_AUTOMATEDAUXILIARY
+		}
+
+		psionic_army = {
+			sequential_name = STG_DEVORE_ADEPTAUXILIARY
+		}
+
+		xenomorph_army = {
+			sequential_name = STG_DEVORE_XENOMORPHAUXILIARY
+		}
+
+		gene_warrior_army = {
+			sequential_name = STG_DEVORE_AUGMENTEDAUXILIARY
+		}
+
+		occupation_army = {
+			sequential_name = STG_DEVORE_OCCUPATIONAUXILIARY
+		}
+
+		robotic_defense_army = {
+			sequential_name = STG_DEVORE_AUTOMATEDDEFENSEAUXILIARY
+		}
+
+		industrial_army = {
+			sequential_name = STG_DEVORE_INDUSTRIALAUXILIARY
+		}
+
+		primitive_army = {
+			sequential_name = STG_DEVORE_MILITIA
+		}
+	}
+
+	planet_names = {
+		generic = {
+			names = {
+				STG_N_Manticle STG_N_Shorale STG_N_Manthem STG_N_Fetter STG_N_Shackal STG_N_Fastnor
+				STG_N_Restrictor STG_N_Carcerator STG_N_Restrainer STG_N_Confinor STG_N_Constrainor STG_N_Hoblor
+				STG_N_Holdor STG_N_Chainment STG_N_Hindrance STG_N_Trammel STG_N_Trapor STG_N_Brackle
+				STG_N_Ligator STG_N_Litigat STG_N_Judical STG_N_Bralar STG_N_Karlak STG_N_Tretar
+				STG_N_Kramarer
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			weight = 100
+
+			first_names_male = {
+				STG_N_Kashyk STG_N_Prax STG_N_Nabo STG_N_Mustafa STG_N_Hoath STG_N_Dagoba
+				STG_N_Endo STG_N_Tatoon STG_N_Kamin STG_N_Jakko STG_N_Dantoon STG_N_Eadu
+				STG_N_Geonos STG_N_Beespin STG_N_Malastar STG_N_Hutt STG_N_Ondero STG_N_Korrib
+				STG_N_Mandalor STG_N_Rodia STG_N_Rylot STG_N_Scarif STG_N_Trandosh STG_N_Umbar
+			}
+
+			first_names_female = {
+				STG_N_Yavi STG_N_Corusca STG_N_Anoa STG_N_Cantoni STG_N_Akiv STG_N_Aldera
+				STG_N_Chandria STG_N_Corell STG_N_Dathom STG_N_Feliucia STG_N_Florru STG_N_Kesse
+				STG_N_Lotha STG_N_Korriba STG_N_Moraba STG_N_Umba STG_N_Trando STG_N_Scari
+				STG_N_Rylo STG_N_Rodi STG_N_Manda STG_N_Mandalo STG_N_Horri STG_N_Korri
+			}
+
+			second_names = {
+				STG_N_Kashyk STG_N_Prax STG_N_Nabo STG_N_Mustafa STG_N_Hoath STG_N_Dagoba
+				STG_N_Endo STG_N_Tatoon STG_N_Kamin STG_N_Jakko STG_N_Dantoon STG_N_Eadu
+				STG_N_Geonos STG_N_Beespin STG_N_Malastar STG_N_Hutt STG_N_Ondero STG_N_Korrib
+				STG_N_Mandalor STG_N_Rodia STG_N_Rylot STG_N_Scarif STG_N_Trandosh STG_N_Umbar
+			}
+		}
+	}
+}
