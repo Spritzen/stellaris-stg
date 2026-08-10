@@ -782,6 +782,8 @@ entity = {
 	game_data = {
 		size = @adv_cruiser_scale
 	}
+	locator = { name = "part2" position = { -0.219 -0.133 -1.433 } }
+	locator = { name = "part3" position = { -0.219 -0.133 -1.433 } }
 }	
 
 ###################################################################################
@@ -1077,6 +1079,8 @@ entity = {
 	game_data = {
 		size = @assault_cruiser_scale
 	}
+	locator = { name = "part2" position = { -0.219 -0.133 -1.433 } }
+	locator = { name = "part3" position = { -0.219 -0.133 -1.433 } }
 }
 
 entity = {
@@ -1231,6 +1235,8 @@ entity = {
 	game_data = {
 		size = @assault_cruiser_scale
 	}
+	locator = { name = "part2" position = { -0.219 -0.133 -1.433 } }
+	locator = { name = "part3" position = { -0.219 -0.133 -1.433 } }
 }
 
 ###################################################################################
@@ -1360,6 +1366,8 @@ entity = {
 	game_data = {
 		size = @exploration_cruiser_scale
 	}
+	locator = { name = "part2" position = { -0.219 -0.133 -1.433 } }
+	locator = { name = "part3" position = { -0.219 -0.133 -1.433 } }
 }
 
 ###################################################################################

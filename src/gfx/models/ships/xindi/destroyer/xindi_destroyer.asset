@@ -94,4 +94,5 @@ entity = {
 	game_data = {
 		size = @xindi_destroyer_scale
 	}
+	locator = { name = "part2" position = { -0.219 -0.133 -1.433 } }
 }

@@ -23,6 +23,17 @@ THE FIX, per entity and per mount:
 Nothing is invented: the wanted mounts come out of common/section_templates/,
 and the geometry out of the .mesh binary's `min`/`max` properties.
 
+THE SECOND DEFECT, and a different question: a mount is no use on a section
+that never attaches. Every Trek hull above corvette borrows
+`molluscoid_01_corvette_frame_mesh`, a corvette's frame, which has no `part3`
+and no `frame_ship` -- so on a cruiser those sections are hung on a point that
+does not exist, and on a destroyer `part2` is a corvette's, ~3 units of z from
+`part1` on a hull scaled at 6. The 2026-08-10 Federation run reported the
+destroyer's stern mounts as plainly wrong and the log named all eight points.
+hull_entities() declares the slots past the first onto `part1`, where the
+`empty_mesh` sections' whole-hull gun coordinates already assume they are. See
+.docs/planning/ufp-run-remediation.md, item 1.
+
 THE MIDDLE RULE IS THE 2026-08-08 ONE, and it exists because the bounding-box
 spread was still a guess wherever the artist had already answered the question.
 The Starfleet TNG corvette bakes small_gun_01 and small_gun_02 on the centreline
@@ -123,6 +134,37 @@ def read(p: Path) -> str:
 
 def strip_comments(t: str) -> str:
     return re.sub(r"#[^\n]*", "", t)
+
+
+def mask_comments(t: str) -> str:
+    """The same text with comments blanked to spaces -- OFFSETS PRESERVED.
+
+    strip_comments() cannot be used to find an insertion point, because every
+    offset past the first `#` is wrong by the length of what it removed. This
+    is for scanning: match on the mask, slice from the original.
+
+    It exists because braces inside comments are not braces. STNH's art
+    comments out whole `state = { ... }` blocks and leaves the opener behind --
+    bajoran_01_standard_ships.asset is +2 on a raw count and balanced on a real
+    one -- so a brace-matching parser that does not mask lands its edits in the
+    wrong entity.
+    """
+    out, in_str, i = [], False, 0
+    while i < len(t):
+        c = t[i]
+        if c == '"':
+            in_str = not in_str
+            out.append(c)
+        elif c == "#" and not in_str:
+            j = t.find("\n", i)
+            j = len(t) if j < 0 else j
+            out.append(" " * (j - i))
+            i = j
+            continue
+        else:
+            out.append(c)
+        i += 1
+    return "".join(out)
 
 
 # ── geometry ────────────────────────────────────────────────────────────────
@@ -287,6 +329,83 @@ def required_locators() -> dict:
     return out
 
 
+def section_slots() -> dict:
+    """ship_size -> the attach points its sections are hung on.
+
+    The BUILD's copy wins where it has one, because a vendored mod that
+    redefines a size redefines its slots with it.
+    """
+    out = {}
+    for root in (GAME, BUILD):
+        d = root / "common/ship_sizes"
+        if not d.is_dir():
+            continue
+        for f in sorted(d.glob("*.txt")):
+            t = strip_comments(read(f))
+            for m in re.finditer(r"^([A-Za-z0-9_]+)\s*=\s*\{", t, re.M):
+                i, depth = m.end(), 1
+                while i < len(t) and depth:
+                    depth += (t[i] == "{") - (t[i] == "}")
+                    i += 1
+                body = t[m.end():i]
+                s = re.search(r"section_slots\s*=\s*\{", body)
+                if not s:
+                    continue
+                j, depth = s.end(), 1
+                while j < len(body) and depth:
+                    depth += (body[j] == "{") - (body[j] == "}")
+                    j += 1
+                locs = re.findall(r'locator\s*=\s*"([^"]+)"', body[s.end():j])
+                if locs:
+                    out[m.group(1)] = set(locs)
+    return out
+
+
+def hull_entities(slots: dict, ents: dict) -> dict:
+    """`<culture>_<size>_entity` -> the attach points its sections need.
+
+    THE DEFECT, found by the 2026-08-10 Federation run and the eight
+    `pdx_entity.cpp:1217` records it left. Every Trek hull above corvette
+    carries `pdxmesh = "molluscoid_01_corvette_frame_mesh"` -- a corvette's
+    frame, borrowed for hulls a corvette's rig was never built for. A corvette
+    needs `part1` and nothing else, so the borrowed frame has no `part3` and no
+    `frame_ship`, the sections hung on those never attach, and their guns are
+    placed against nothing. That is what "the stern mounts don't match the
+    model" looks like from the outside.
+
+    SCOPED TO HULLS FLYING A BORROWED FRAME. An entity whose mesh is its own
+    culture's art has a rig built for it and is left alone -- which is why the
+    corvette, the one hull three runs have graded as correct, is not touched.
+
+    AND SCOPED TO THE SLOTS PAST THE FIRST. `part1` is never the one that
+    fails: every borrowed frame here is a corvette frame, and a corvette's
+    whole job is to have a `part1`. Declaring one anyway would move the bow
+    section of 293 entities that render correctly today, to fix nothing. The
+    log names `part2`, `part3` and `frame_ship`, and those are what this
+    writes. See .docs/planning/ufp-run-remediation.md, item 1.
+    """
+    out = {}
+    for name, (mesh, _clone) in ents.items():
+        if not mesh or not name.endswith("_entity"):
+            continue
+        stem = name[:-len("_entity")]
+        # LONGEST size wins. `andorian_01_adv_cruiser_entity` is an
+        # `adv_cruiser`, not a `cruiser` that happens to end in one, and the
+        # two do not have the same slots.
+        size = max((s for s in slots if stem.endswith("_" + s)),
+                   key=len, default=None)
+        if size is None or _STATION_RE.search("_" + size):
+            continue
+        culture = stem[:-(len(size) + 1)]
+        # The frame is this culture's own art -- not ours to second-guess.
+        if mesh.startswith(culture + "_"):
+            continue
+        want = slots[size] - {"part1", "root"}
+        if want:
+            out[name] = want
+    return out
+
+
 # Starbases, orbital rings and defence platforms are deliberately OUT OF SCOPE.
 # Their sections are `empty_mesh` too, but they bolt onto a modular station with
 # no hull to spread guns along -- a citadel wants medium_gun_01..013 and there is
@@ -391,13 +510,19 @@ HEADER = """\
 
 
 def entity_blocks(text):
-    """(name, start, end) for each top-level entity block."""
-    for m in ENTITY_RE.finditer(text):
+    """(name, start, end) for each top-level entity block.
+
+    Braces are matched on a comment-masked copy -- see mask_comments() -- so a
+    commented-out `state = {` cannot swallow the rest of the file. Offsets are
+    the original text's throughout.
+    """
+    mask = mask_comments(text)
+    for m in ENTITY_RE.finditer(mask):
         i, depth, j = m.end(), 1, m.end()
-        while j < len(text) and depth:
-            if text[j] == "{":
+        while j < len(mask) and depth:
+            if mask[j] == "{":
                 depth += 1
-            elif text[j] == "}":
+            elif mask[j] == "}":
                 depth -= 1
             j += 1
         body = text[i:j - 1]
@@ -479,7 +604,7 @@ def is_hardpoint(name: str, bare: set, stems: dict) -> bool:
     return base != name and is_hardpoint(base, bare, stems)
 
 
-def fix_file(path: Path, meshes, ents, sections, vocab, stats):
+def fix_file(path: Path, meshes, ents, sections, vocab, stats, hulls=None):
     """`sections` maps a section ENTITY NAME to the mounts its templates need.
 
     ONLY those entities and ONLY those mounts are touched. Scoping this by "any
@@ -491,6 +616,37 @@ def fix_file(path: Path, meshes, ents, sections, vocab, stats):
     text = strip_generated_header(read(path))
     edits = []
     for name, i, j in entity_blocks(text):
+        # THE HULL PASS, and it is a different question from the mount pass
+        # below: not "where does this gun go" but "does the point this ship's
+        # sections hang on exist, in the place the section was drawn for".
+        #
+        # ONTO `part1`, not the origin. These hulls carry the whole ship in
+        # their bow section and an `empty_mesh` for every other one, so the
+        # stern's guns are already in whole-hull coordinates and belong at the
+        # same point the bow hangs on. The borrowed corvette frame instead
+        # spaces its parts a corvette apart -- ~3 units of z between `part1`
+        # and `part2` -- which on a hull scaled at 6 puts the stern guns off
+        # the model entirely. Coinciding them fixes the case where the point
+        # is missing AND the case where it is merely a corvette's.
+        #
+        # `part1`'s own position is left exactly as the rig has it, so nothing
+        # that renders correctly today moves. See hull_entities().
+        hull_want = (hulls or {}).get(name)
+        if hull_want:
+            declared = {ln.group(1)
+                        for m in LOC_RE.finditer(text[i:j])
+                        if (ln := LOC_NAME_RE.search(m.group(2)))}
+            missing = sorted(hull_want - declared)
+            if missing:
+                anchor = mesh_baked_positions(
+                    resolve_mesh(name, ents, meshes)).get("part1_locator",
+                                                          (0.0, 0.0, 0.0))
+                x, y, z = anchor
+                edits.append((j, j, "".join(
+                    f'\tlocator = {{ name = "{n}" '
+                    f'position = {{ {x:.3f} {y:.3f} {z:.3f} }} }}\n'
+                    for n in missing)))
+                stats["anchored"] += len(missing)
         want = sections.get(name)
         if not want:
             continue
@@ -592,6 +748,37 @@ def fix_file(path: Path, meshes, ents, sections, vocab, stats):
     return "".join(out)
 
 
+def patched_paths() -> set:
+    """Build-relative paths `vendor.yml` already owns through a `patches:` entry.
+
+    A file cannot be owned twice. An src/ override REPLACES the vendored copy,
+    so writing one over a patch target silently discards the patch -- and the
+    build refuses it outright, because a patch declares the source it expects
+    to be editing and src/ is not that source. Reported, never taken over.
+    """
+    text = (REPO / "vendor.yml").read_text("utf-8", errors="replace")
+    return set(re.findall(r"^\s*-\s*path:\s*(\S+)\s*$", text, re.M))
+
+
+_HEADER_SOURCE_RE = re.compile(r"^# \[([^]]+)\] -- weapon mount", re.M)
+
+
+def header_source(dest: Path, fallback: str) -> str:
+    """The source mod this override's CONTENT came from, kept across re-runs.
+
+    provenance() answers "who supplied the file in stg-build", and on a second
+    run that is us: `make vendor` copies src/ into the build, so the tool reads
+    its own output and the attribution decays to `[src/]`. The content's origin
+    has not changed, so the existing header's answer is the right one and this
+    prefers it. Only a file with no header falls back to the lookup.
+    """
+    if dest.is_file():
+        m = _HEADER_SOURCE_RE.search(read(dest))
+        if m and m.group(1) != "src/":
+            return m.group(1)
+    return fallback
+
+
 def provenance() -> dict:
     """gfx/models/ships/<dir> -> the source mod that supplied it.
 
@@ -640,18 +827,25 @@ def main():
     sections = section_entities(required)
     vocab = hardpoint_stems(mount_vocabulary(required))
     ents = entity_index()
+    hulls = hull_entities(section_slots(), ents)
+    patched = patched_paths()
+    skipped = []
     grand = {"placed": 0, "added": 0, "dropped": 0, "unplaced": 0,
-             "shared": 0, "borrowed": 0, "spread": 0}
+             "shared": 0, "borrowed": 0, "spread": 0, "anchored": 0}
     files = 0
     for name in names:
         root = base / name
         if not root.is_dir():
             sys.exit(f"no such shipset: {root}")
         stats = {"placed": 0, "added": 0, "dropped": 0, "unplaced": 0,
-                 "shared": 0, "borrowed": 0, "spread": 0}
+                 "shared": 0, "borrowed": 0, "spread": 0, "anchored": 0}
         written = []
         for f in sorted(root.rglob("*.asset")):
-            new = fix_file(f, meshes, ents, sections, vocab, stats)
+            rel_in = str(f.relative_to(BUILD))
+            if rel_in in patched:
+                skipped.append(rel_in)
+                continue
+            new = fix_file(f, meshes, ents, sections, vocab, stats, hulls)
             if new is None:
                 continue
             rel = f.relative_to(BUILD)
@@ -660,8 +854,10 @@ def main():
                 dest = REPO / "src" / rel
                 dest.parent.mkdir(parents=True, exist_ok=True)
                 dest.write_text(
-                    HEADER.format(rel=rel, source=prov.get(name, name)) + new,
-                    encoding="utf-8")
+                    HEADER.format(rel=rel,
+                                  source=header_source(dest,
+                                                       prov.get(name, name)))
+                    + new, encoding="utf-8")
         if not written and not any(stats.values()):
             continue
         files += len(written)
@@ -671,11 +867,13 @@ def main():
               f"{stats['added']:4d} added  {stats['dropped']:3d} dropped  "
               f"{stats['shared']:4d} shared  {stats['borrowed']:4d} borrowed  "
               f"{stats['spread']:4d} spread  "
+              f"{stats['anchored']:3d} hull point(s)  "
               f"{stats['unplaced']:3d} unplaceable")
     verb = "would write" if a.dry_run else "wrote"
     print(f"\n  {verb} {files} src/ override(s): {grand['placed']} mount(s) placed, "
           f"{grand['added']} added, {grand['dropped']} bare declaration(s) "
-          f"dropped, {grand['unplaced']} unplaceable")
+          f"dropped, {grand['anchored']} hull attach point(s) declared, "
+          f"{grand['unplaced']} unplaceable")
     total = grand["shared"] + grand["borrowed"] + grand["spread"]
     if total:
         real = grand["shared"] + grand["borrowed"]
@@ -685,6 +883,11 @@ def main():
               f"hardpoint on the same mesh. {grand['spread']} are a "
               f"bounding-box spread, reached only where the mesh bakes no "
               f"mount at all")
+    if skipped:
+        print(f"\n  {len(skipped)} file(s) left to their vendor.yml patch, "
+              f"not overridden:")
+        for s in sorted(skipped):
+            print(f"    {s}")
     unrecognised(names)
 
 

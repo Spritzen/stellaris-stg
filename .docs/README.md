@@ -28,6 +28,7 @@ of this page.
 | write a new check | [validation/check-design.md](validation/check-design.md) |
 | plan what a playthrough should cover | [runs/README.md](runs/README.md) |
 | read `error.log` after the user played | [guides/live-runs.md](guides/live-runs.md) |
+| **act on what the last live run found** | [planning/ufp-run-remediation.md](planning/ufp-run-remediation.md) |
 | find out whether a question is already settled | [decisions/README.md](decisions/README.md) |
 | look up a term | [reference/glossary.md](reference/glossary.md) |
 | write documentation | [style-guide.md](style-guide.md) |

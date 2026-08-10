@@ -148,4 +148,6 @@ entity = {
 	game_data = {
 		size = @terran_nx_battleship_scale
 	}
+	locator = { name = "part2" position = { -0.219 -0.133 -1.433 } }
+	locator = { name = "part3" position = { -0.219 -0.133 -1.433 } }
 }

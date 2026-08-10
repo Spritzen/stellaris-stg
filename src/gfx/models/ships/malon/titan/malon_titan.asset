@@ -76,4 +76,6 @@ entity = {
 	locator = { name = "medium_gun_03" position = { 2.957 -1.345 -0.007 } }
 	locator = { name = "medium_gun_04" position = { -2.957 -1.345 2.344 } }
 	locator = { name = "titan_gun_01" position = { 2.957 1.439 4.694 } }
+	locator = { name = "part2" position = { -0.219 -0.133 -1.433 } }
+	locator = { name = "part3" position = { -0.219 -0.133 -1.433 } }
 }

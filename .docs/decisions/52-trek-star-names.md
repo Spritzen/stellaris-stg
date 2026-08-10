@@ -2,6 +2,10 @@
 
 **Resolved 2026-08-08.** Closes Phase 2's last unwritten item (plan.md §6) and
 corrects a measurement in [decision 44](44-random-names-pools-append.md).
+**Falsified in part by [decision 81](81-random-names-are-loc-keys.md),
+2026-08-10:** the source and the written form below stand, but a **quoted**
+entry is a localisation key, not a literal — all 110 of vanilla's own are
+defined — and the 330 this shipped had no keys.
 
 ## The item
 

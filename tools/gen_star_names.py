@@ -23,6 +23,8 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent
 OUT = REPO / "src" / "common" / "random_names" / "base" / "stg_star_names.txt"
+LOC_OUT = (REPO / "src" / "localisation" / "english"
+           / "stg_random_names_l_english.yml")
 
 # Nebulae are a different pool. Vanilla's nebula_names is written in exactly
 # these forms ("Yinarim_Nebula", "Temestra_Badlands", "Tyjanock_Expanse"), so
@@ -79,13 +81,67 @@ def token(name: str) -> str:
     Vanilla's star_names holds 1,763 entries: 0 contain a space, and the 55
     multiword ones are QUOTED WITH UNDERSCORES ("Epsilon_Eridani", "Tau_Ceti").
     Apostrophes are ordinary and unquoted (Spoo'a, Gor'kaner, T'u) -- the
-    opposite of the common/name_lists/ rule, because these are literals and not
-    loc keys (nothing in vanilla's localisation defines Amgathorra).
+    opposite of the common/name_lists/ rule.
+
+    A QUOTED ENTRY IS A LOCALISATION KEY, and this docstring used to say the
+    opposite. The measurement behind "these are literals" was taken over the
+    UNQUOTED names -- nothing defines Amgathorra, which is true -- and then
+    applied to the quoted ones, which is where it fails: all 55 quoted
+    star_names and all 55 quoted nebula_names are defined in vanilla's
+    localisation/english/random_names/, without a single exception. STG shipped
+    330 quoted entries and no keys, so the 2026-08-10 Federation run read
+    `Arachnid_Nebula` and `Kullat_Nunu` off the galaxy map. Hence loc_lines().
+    See .docs/decisions/52-trek-star-names.md and its falsification.
     """
     n = " ".join(name.split())
     if " " in n:
-        return '"' + n.replace(" ", "_") + '"'
+        return '"' + key_of(n) + '"'
     return n
+
+
+# A localisation key is [A-Za-z0-9_.] and nothing else. Vanilla proves it from
+# both ends: 0 of its English keys contain an apostrophe, and 0 of the 238
+# quoted random names do either -- it never has to make this choice because it
+# has no multiword name with one. STG has 19 (Barnard's_Star, Tyken's_Rift,
+# Sagittarius A*).
+_KEY_STRIP = re.compile(r"[^A-Za-z0-9_.]")
+
+
+def key_of(name: str) -> str:
+    """The loc key for a multiword name: spaces to underscores, rest stripped.
+
+    STG's name lists already answer this -- `STG_N_Mak_ala:0 "Mak'ala"` -- and
+    the rule is the same one: the KEY is sanitised, the VALUE keeps the
+    apostrophe. The value is what the galaxy map draws, so nothing is lost.
+    """
+    return _KEY_STRIP.sub("", " ".join(name.split()).replace(" ", "_"))
+
+
+def loc_lines(names: list[str]) -> list[str]:
+    """`Key:0 "Display Name"` for every entry token() will quote.
+
+    Only the quoted ones need a key: an unquoted single-word entry is drawn as
+    itself and vanilla defines none of those. The display value is the name as
+    STNH placed it on the map, which is the spaced form the underscored key was
+    built from -- so this is a reversal, not a guess.
+    """
+    out, seen = [], {}
+    for n in names:
+        n = " ".join(n.split())
+        if " " not in n:
+            continue
+        k = key_of(n)
+        # Sanitising can collide two distinct names onto one key
+        # (`Kapteyn'_Star` and `Kapteyn's_Star` both give `Kapteyn_Star`).
+        # First wins, and the loser is reported rather than written twice --
+        # a duplicate key is the engine's own last-one-wins, silently.
+        if k in seen:
+            print(f"  note: {n!r} shares key {k} with {seen[k]!r}; "
+                  f"one display name will win")
+            continue
+        seen[k] = n
+        out.append(f'  {k}:0 "{n}"')
+    return out
 
 
 def main() -> int:
@@ -102,9 +158,15 @@ def main() -> int:
                 trek.add(v)
 
     # Everything already in the merged pool, so we append rather than repeat.
+    # OUR OWN OUTPUT IS NOT "already pooled". `make vendor` copies src/ into
+    # the build, so a second run reads this file back and subtracts every name
+    # it contributed last time -- 909 entries became 329 exactly once, which is
+    # how this was found. Skip by name, so the tool is idempotent.
     built = set()
     base = REPO / "stg-build" / "common" / "random_names" / "base"
     for f in sorted(base.glob("*.txt")):
+        if f.name == OUT.name:
+            continue
         t = read(f)
         built |= set(pool(t, "star_names")) | set(pool(t, "nebula_names"))
 
@@ -121,6 +183,19 @@ def main() -> int:
             owned |= set(pool(t, key))
 
     fresh = sorted(trek - built - owned)
+    # Two names can sanitise onto one token ("Sagittarius A" and
+    # "Sagittarius A*"), and writing both would enter the same pool entry
+    # twice -- harmless to the game, but it doubles that name's draw weight
+    # and gives the key two display values. First wins.
+    tokens: set[str] = set()
+    deduped = []
+    for n in fresh:
+        t = token(n)
+        if t in tokens:
+            continue
+        tokens.add(t)
+        deduped.append(n)
+    fresh = deduped
     stars = [n for n in fresh if not n.rsplit(" ", 1)[-1] in NEBULA_TAIL]
     nebulae = [n for n in fresh if n.rsplit(" ", 1)[-1] in NEBULA_TAIL]
 
@@ -132,10 +207,13 @@ def main() -> int:
         "# (decision 44), so this file adds to the 5,702 names Real Space and",
         "# YAGEM already contribute and replaces none of them.",
         "#",
-        "# Entries are LITERALS, not localisation keys — vanilla defines loc",
-        "# for none of its own 1,763. Multiword names take vanilla's quoted",
-        "# underscore form; apostrophes are ordinary here, unlike name lists.",
-        "# See .docs/decisions/52-trek-star-names.md.",
+        "# A QUOTED entry is a localisation KEY — all 110 of vanilla's own are",
+        "# defined in localisation/english/random_names/. Multiword names take",
+        "# vanilla's quoted underscore form and get a key in",
+        "# src/localisation/english/stg_random_names_l_english.yml, written by",
+        "# the same tool. Unquoted single-word entries are literals and need",
+        "# none; apostrophes are ordinary here, unlike name lists.",
+        "# See .docs/decisions/52-trek-star-names.md and its falsification.",
         "",
         "star_names = {",
     ]
@@ -148,6 +226,24 @@ def main() -> int:
 
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text("\n".join(body), encoding="utf-8")
+
+    keys = loc_lines(stars) + loc_lines(nebulae)
+    LOC_OUT.parent.mkdir(parents=True, exist_ok=True)
+    # utf-8-sig: vanilla BOMs every localisation file and `make validate`
+    # enforces it.
+    LOC_OUT.write_text("\n".join([
+        "l_english:",
+        " # Display names for the quoted entries in",
+        " # common/random_names/base/stg_star_names.txt, which are KEYS and not",
+        " # literals — see that file's header. Without these the galaxy map",
+        " # draws the key, underscores and all.",
+        " #",
+        " # GENERATED by tools/gen_star_names.py -- rerun it, do not hand-edit.",
+        *keys,
+        "",
+    ]), encoding="utf-8-sig")
+
+    print(f"{LOC_OUT.relative_to(REPO)}: {len(keys)} key(s)")
     print(f"{OUT.relative_to(REPO)}: {len(stars)} star name(s), "
           f"{len(nebulae)} nebula name(s) "
           f"(from {len(trek)} placed, minus {len(trek & built)} already "

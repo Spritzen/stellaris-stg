@@ -56,4 +56,5 @@ entity = {
 	game_data = {
 		size = @klingon_colossus_scale
 	}
+	locator = { name = "frame_ship" position = { -0.219 -0.133 -1.433 } }
 }

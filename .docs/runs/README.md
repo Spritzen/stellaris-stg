@@ -20,7 +20,7 @@ empire.
 
 | File | |
 |---|---|
-| [ufp-long-campaign.md](ufp-long-campaign.md) | **A long Federation playthrough**, written 2026-08-09 for the first run since decisions 74–77 landed. Survey-led, because the anomalies, dig sites and story events have never been in front of the game |
+| [ufp-long-campaign.md](ufp-long-campaign.md) | **A long Federation playthrough**, written 2026-08-09 for the first run since decisions 74–77 landed. Survey-led, because the anomalies, dig sites and story events have never been in front of the game. **Run 2026-08-10**; observations are inline, and what to do about them is [the remediation plan](../planning/ufp-run-remediation.md) |
 
 **A run plan is spent when its run is over.** Leave the file in place, dated, and
 write a new one for the next empire rather than editing this one into something

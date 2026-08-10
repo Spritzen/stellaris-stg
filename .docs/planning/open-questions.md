@@ -33,6 +33,13 @@ evidence for anything in this section — the standing lesson of decisions
 > [runs/ufp-long-campaign.md](../runs/ufp-long-campaign.md) puts this page's
 > eyes-only surface in the order a playthrough actually reaches it, and names
 > what a Federation run cannot reach at all.
+>
+> **That run happened, 2026-08-10**, and answered most of this section. What it
+> found, root-caused and costed, is in
+> [ufp-run-remediation.md](ufp-run-remediation.md); read that before working any
+> item below, because three of them now have a confirmed cause on disk and are no
+> longer eyes-only at all. Dig sites stayed unreached — only part of the map was
+> surveyed — so that one is still open, and still cheap.
 
 ### The shipsets' weapons
 
@@ -53,6 +60,16 @@ as badly as the corvette's third gun did.
 > class the original defect was found on, so these are the strongest single checks
 > available rather than a sample of the rest. **25 shipsets still ungraded.**
 
+> **The corvette was the only hull that could have graded well.** The
+> 2026-08-10 run reported the Federation destroyer's stern mounts as plainly
+> wrong, and the log gave the reason: **132 hulls across all 22 Trek shipsets are
+> missing the section attach points their `ship_size` names**, so those sections
+> never attach and their guns are placed against nothing. A corvette needs only
+> `part1` and so was never affected — which is why three corvette gradings in a
+> row looked like evidence about the shipsets. **Grade the mounts above corvette
+> only after that fix lands**; until then the question is unanswerable rather
+> than open. [ufp-run-remediation.md](ufp-run-remediation.md), item 1.
+
 ### The ruler clothes
 
 The plainest form this question has ever taken: **the president in a Starfleet
@@ -64,6 +81,18 @@ If any one of them is still wrong, the one-texture selector is not being reached
 all and the portrait clone is the thing to doubt, not a number.
 [Decision 69](../decisions/69-ruler-clothes-dedicated-selectors.md), which
 falsified [68](../decisions/68-ruler-clothes-index-restored.md).
+
+> **The 2026-08-10 run says the president is still wrong — but do not conclude
+> from it yet.** That run's log names nine textures the master selector cannot
+> load at all, by malformed path, and a fallback anywhere in the chain explains a
+> wrong garment without touching decision 69's model. **Fix the paths, then look
+> again.** [ufp-run-remediation.md](ufp-run-remediation.md), item 2.
+>
+> **The paths were fixed the same day**, so this is a clean question for the next
+> run — with one caveat that keeps it from being fully clean: the same sweep
+> found **196 selector rows pointing at textures that exist in no source mod at
+> all**, each of them a silent fallback. If a ruler is still wrong, check whether
+> its garment is one of the 196 before doubting the selector again.
 
 ### The 2026-08-08 warning triage
 
@@ -81,6 +110,14 @@ have titles ([61](../decisions/61-music-player-track-names.md)) — what to list
 for is whether the four chosen main-theme titles sit right beside the eighteen
 derived ones. And whether the rotation reads as 27 distinct recordings
 ([65](../decisions/65-music-rotation-dedupe.md)).
+
+> **Closed 2026-08-10, by measurement rather than by a change.** The anthem is in
+> rotation and the names are all distinct. The count was never wrong: the player
+> lists **55 declarations**, the rotation is **27 playlist entries** — decision
+> 65's figure, reproduced exactly — and the run's "approx. 70" was an eyeball of
+> the 55. **The stale number is the "22" in this section**, which is decision
+> 61's count from before 65 remeasured it. Nothing to fix in the tree.
+> [ufp-run-remediation.md](ufp-run-remediation.md), item 6.
 
 ### Ship registries and their class names
 

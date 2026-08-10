@@ -54,4 +54,5 @@ entity = {
 	game_data = {
 		size = @suliban_colossus_scale
 	}
+	locator = { name = "frame_ship" position = { -0.219 -0.133 -1.433 } }
 }

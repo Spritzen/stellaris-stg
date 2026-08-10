@@ -5,10 +5,13 @@
 # (decision 44), so this file adds to the 5,702 names Real Space and
 # YAGEM already contribute and replaces none of them.
 #
-# Entries are LITERALS, not localisation keys — vanilla defines loc
-# for none of its own 1,763. Multiword names take vanilla's quoted
-# underscore form; apostrophes are ordinary here, unlike name lists.
-# See .docs/decisions/52-trek-star-names.md.
+# A QUOTED entry is a localisation KEY — all 110 of vanilla's own are
+# defined in localisation/english/random_names/. Multiword names take
+# vanilla's quoted underscore form and get a key in
+# src/localisation/english/stg_random_names_l_english.yml, written by
+# the same tool. Unquoted single-word entries are literals and need
+# none; apostrophes are ordinary here, unlike name lists.
+# See .docs/decisions/52-trek-star-names.md and its falsification.
 
 star_names = {
 	"10_Scorpii"
@@ -48,9 +51,7 @@ star_names = {
 	"Al_Kurud"
 	"Al_Nair"
 	"Al_Nath"
-	"Al_Thalimain"
 	Alcor
-	Aldebaran
 	Aldius
 	Algenubi
 	"Algiedi_Secunda"
@@ -66,17 +67,14 @@ star_names = {
 	Alphard
 	"Alphecca_Meridiana"
 	Altarf
-	Aludra
 	Alydia
 	Amal
 	Amargosa
 	"Amber_Maelstrom"
 	Annari
-	Antares
 	Antaria
 	Arakis
 	Arbazan
-	Arcadia
 	Arcturus
 	Ardana
 	Areol
@@ -106,7 +104,7 @@ star_names = {
 	Balosnee
 	"Baras_Bannoq"
 	Bardeezi
-	"Barnard's_Star"
+	"Barnards_Star"
 	Barradas
 	Barzan
 	Becrux
@@ -128,7 +126,6 @@ star_names = {
 	"Beta_Rigel"
 	"Beta_Stromgren"
 	"Beta_Thoridor"
-	Betelgeuse
 	Betria
 	"Bioplasmic_Lifeform"
 	Bogardus
@@ -145,16 +142,14 @@ star_names = {
 	Caldik
 	Caldonia
 	Camus
-	Canopus
-	Capella
 	Caph
 	Castor
 	Castra
-	"Cayrel's_Star"
+	"Cayrels_Star"
 	Cebelrai
 	Celes
 	Celtris
-	"Centaurus_X-3"
+	"Centaurus_X3"
 	Cepheidus
 	Cestus
 	"Ceti_Alpha"
@@ -174,11 +169,11 @@ star_names = {
 	"Crab_Pulsar"
 	Cursa
 	Cygnet
-	"Cygnus_X-1"
-	"Cygnus_X-3"
+	"Cygnus_X1"
+	"Cygnus_X3"
 	Cytheria
 	D'Asray
-	"D'Ryb_J"
+	"DRyb_J"
 	"DX_Cancri"
 	Dakala
 	Dalmine
@@ -190,7 +185,6 @@ star_names = {
 	"Delta_Neezott"
 	"Delta_Piscis_Austrini"
 	"Delta_Triciatu"
-	Deneb
 	"Deneb_Al_Okrab"
 	"Deneb_Kaitos"
 	"Deneb_el_Okab"
@@ -274,7 +268,7 @@ star_names = {
 	Fomalhaut
 	Foramen
 	Forcas
-	"Founder's_System"
+	"Founders_System"
 	"Fum_al_Samakah"
 	Furud
 	Gaia
@@ -284,7 +278,6 @@ star_names = {
 	Galador
 	Galar
 	Galdonterre
-	Galen
 	"Galorndon_Core"
 	"Gamma_400"
 	"Gamma_Comae_Berenices"
@@ -311,7 +304,6 @@ star_names = {
 	"Gliese_1061"
 	Glintara
 	"Glowing_Maelstrom"
-	Gomeisa
 	Goralis
 	Gorath
 	"Gorgonea_Tertia"
@@ -332,7 +324,7 @@ star_names = {
 	Hemikek
 	Henon
 	Heva
-	"Hind's_Star"
+	"Hinds_Star"
 	Hodos
 	Hoek
 	Homam
@@ -342,7 +334,6 @@ star_names = {
 	Hyadum
 	Hydor
 	Hydralan
-	Hypatia
 	Hyra
 	Iadara
 	Iconia
@@ -360,9 +351,9 @@ star_names = {
 	"Ionization_Cloud"
 	"Iota_Trianguli_Australis"
 	Iraatan
-	"J'Ral_Supernova"
+	"JRal_Supernova"
 	J0437-4715
-	"Jaal's_Star"
+	"Jaals_Star"
 	"Janus_Vortex"
 	Japori
 	Jarleth
@@ -374,15 +365,14 @@ star_names = {
 	Kadi
 	Kajam
 	Kalandan
-	"Kapteyn'_Star"
-	"Kapteyn's_Star"
+	"Kapteyn_Star"
+	"Kapteyns_Star"
 	Kar-Tellos
 	Kar-Telos
-	"Karr's_Star"
+	"Karrs_Star"
 	Kartella
 	Kasat
 	Kassat
-	Kazar
 	Kazpm
 	Kelai
 	Keloda
@@ -408,7 +398,6 @@ star_names = {
 	Koralis
 	Korma
 	Kornephoros
-	Korvat
 	Kotaki
 	Kradin-Vori
 	Kraz
@@ -432,7 +421,6 @@ star_names = {
 	"Lalande_25372"
 	"Lambda_Serpentis"
 	Lamemda
-	Lamora
 	Lappa
 	Ledos
 	Lesath
@@ -514,7 +502,6 @@ star_names = {
 	Nihydron
 	Nimbus
 	Nmi
-	No'Mat
 	Noconia
 	Nodus
 	Norkan
@@ -545,7 +532,7 @@ star_names = {
 	Oschea
 	Oshionian
 	P'Jem
-	"PSR_J0108-1431"
+	"PSR_J01081431"
 	Paclu
 	Pahvo
 	"Pakled_Sun"
@@ -565,9 +552,8 @@ star_names = {
 	"Pistol_Star"
 	Pjem
 	"Planet_Hell"
-	"Plaskett's_Star"
+	"Plasketts_Star"
 	"Plasma_Storm"
-	Polaris
 	Pollux
 	Pontifex
 	Porakas
@@ -576,7 +562,7 @@ star_names = {
 	Prema
 	Prexnak
 	Prijipati
-	"Przybylski's_Star"
+	"Przybylskis_Star"
 	"Psi_Ursae_Majoris"
 	Pullock
 	Pyrellia
@@ -617,7 +603,6 @@ star_names = {
 	"Ross_248"
 	"Ross_614"
 	Rotanev
-	Rubicon
 	Rubicun
 	"Rukbalgethi_Shemali"
 	Rukbat
@@ -633,7 +618,6 @@ star_names = {
 	Sadalbari
 	Sadaltager
 	"Sagittarius_A"
-	"Sagittarius_A*"
 	Saiph
 	Sakari
 	Salinia
@@ -647,7 +631,7 @@ star_names = {
 	Sceptrum
 	Scheat
 	Scheddi
-	"Scorpius_X-1"
+	"Scorpius_X1"
 	"Selcundi_Drema"
 	Selinia
 	Selnia
@@ -657,7 +641,6 @@ star_names = {
 	Sham
 	Shangdi
 	Sheratan
-	Sherman
 	Sheva
 	Shivolia
 	"Sigma_Draconis"
@@ -667,12 +650,11 @@ star_names = {
 	Sikaris
 	Simperia
 	Sinistra
-	Sirius
 	Skat
 	Skreea
 	Skrrea
 	"Sky_Spirits_System"
-	"Smith's_Sun"
+	"Smiths_Sun"
 	Sobras
 	Solanae
 	Solarion
@@ -695,7 +677,6 @@ star_names = {
 	Tantalus
 	Tarahong
 	Tarakis
-	Tarazed
 	Taresia
 	Tarkalea
 	Tarkana
@@ -712,7 +693,7 @@ star_names = {
 	"Taurus_Dark_Cloud"
 	Tautine
 	Tchou
-	"Teegarden's_Star"
+	"Teegardens_Star"
 	Tehara
 	"Tejat_Prior"
 	Tekara
@@ -755,8 +736,8 @@ star_names = {
 	Turkana
 	Tyberius
 	Tyl
-	"Type-4_Quantum_Singularity"
-	"Type-4_Singularity"
+	"Type4_Quantum_Singularity"
+	"Type4_Singularity"
 	"UFC_3676543"
 	"UV_Ceti"
 	Ubea
@@ -779,7 +760,6 @@ star_names = {
 	"Unimatrix_One"
 	"Upsilon_Ursae_Majoris"
 	Ushakaron
-	Utopia
 	Uxal
 	"V404_Cygni"
 	"V616_Monocerotis"
@@ -787,9 +767,9 @@ star_names = {
 	Vacca
 	Valakis
 	"Valeo_Beta"
-	"Van_Biesbroeck's_Star"
-	"Van_Maanen's_Star"
-	"Van_Maanen's_star"
+	"Van_Biesbroecks_Star"
+	"Van_Maanens_Star"
+	"Van_Maanens_star"
 	Varala
 	Variq
 	Vaskan-Kyrian
@@ -844,7 +824,7 @@ star_names = {
 
 nebula_names = {
 	"Agosoria_Nebula"
-	"Agrat-Mot_Nebula"
+	"AgratMot_Nebula"
 	"Alteran_Expanse"
 	"Alwanir_Nebula"
 	"Amleth_Nebula"
@@ -886,7 +866,7 @@ nebula_names = {
 	"Lembatta_Cluster"
 	"Maroscura_Nebula"
 	"Marrat_Nebula"
-	"McAllister_C-5_Nebula"
+	"McAllister_C5_Nebula"
 	"Mira_Expanse"
 	"Mutara_Class_Nebula"
 	"Mutara_Nebula"
@@ -915,7 +895,7 @@ nebula_names = {
 	"Tibor_Nebula"
 	"Tong_Beak_Nebula"
 	"Toxana_Nebula"
-	"Tyken's_Rift"
+	"Tykens_Rift"
 	"Typhon_Expanse"
 	"Vaultera_Nebula"
 	"Vodrey_Nebula"

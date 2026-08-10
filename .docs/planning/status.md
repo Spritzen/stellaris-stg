@@ -27,9 +27,9 @@ ones.
 
 | | Build of 2026-08-09 |
 |---|---|
-| Files / size | **22,405 / 14.3 GB** ([the per-tier split](../architecture/vendored-merge.md#size)) |
+| Files / size | **22,406 / 14.3 GB** (build of 2026-08-10; [the per-tier split](../architecture/vendored-merge.md#size)) |
 | Re-cut at harvest / pruned | 1,661 / **888** |
-| `make vendor` | 80 s |
+| `make vendor` | 70 s |
 | `make validate` | **0 warnings, 0 errors** |
 | `make docs` | **0 warnings, 0 errors** |
 
@@ -74,6 +74,34 @@ eyes-only, which is now the standard shape.
 > the right size in the popup; whether `stg_on_five_year_story_pulse` fires at
 > all; and whether any dig site is ever placed.
 > [The 2026-08-15 audit](../analysis/2026-08-15.md), finding 1.
+
+**Superseded by the run of 2026-08-10**, an ~11-hour Federation campaign against
+a build carrying all of decisions 74–79: **2,251 records / 228 KB, of which 174
+fall after the 49.4 s startup window.** Two of that run's three questions are
+answered — the story pulse fires and the event pictures are correctly framed —
+and the dig sites stayed unreached, because only part of the map was surveyed.
+
+**The post-init 174 is the first log in this project to carry real defects rather
+than eyes-only findings**, and its Tier 1 is fixed the same day: 230 hull section
+attach points across all 22 Trek shipsets
+([82](../decisions/82-hull-section-attach-points.md)), 29 malformed texture paths
+in STNH's master clothes selectors, and 328 star and nebula names that had no
+localisation key at all ([81](../decisions/81-random-names-are-loc-keys.md)).
+Every finding, its root cause and what remains is in
+[ufp-run-remediation.md](ufp-run-remediation.md).
+
+**Tier 2 followed the same day**: the 98-record Planetary Diversity cluster — the
+largest single group in that log — was six events declared `planet_event` on a
+hook whose every vanilla occupant is a `carrier_event`, fixed by patch. **Five of
+the eight findings are closed, and three of those closed by measurement rather
+than by a change**: the music count, the shipset dropdown and the city-art scale
+were all the *expectation* being wrong, not the tree.
+
+**None of it is confirmed in game.** Every fix here is an eyes-only property once
+its references resolve, so the next run grades them — and the ship mounts cannot
+be graded above corvette until it does. What stays open is why no Trek empire
+appeared in 22 (three causes eliminated, a force-spawn settles it), 196 selector
+rows pointing at art no source mod ships, and UI Overhaul's designer rect.
 
 The game has been the **native Linux build** since 2026-08-02
 ([decision 15](../decisions/15-native-linux-runtime.md)) — content unaffected,

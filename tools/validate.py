@@ -227,14 +227,24 @@ def check_script() -> int:
 
         depth, line_no = 0, 1
         opened: list[int] = []
-        in_str = False
+        in_str = in_comment = False
         for ch in text:
             if ch == "\n":
                 line_no += 1
+                in_comment = False
+            elif in_comment:
+                continue
             elif ch == '"':
                 in_str = not in_str
             elif in_str:
                 continue
+            # A BRACE INSIDE A COMMENT IS NOT A BRACE, and the scanner used to
+            # count it. STNH's ship art comments out whole `state = { ... }`
+            # blocks and leaves the opener behind: those files are +2 on a raw
+            # count and balanced on a real one. The game reads them fine, and
+            # this check only ever saw them once one became an src/ override.
+            elif ch == "#":
+                in_comment = True
             elif ch == "{":
                 depth += 1
                 opened.append(line_no)
