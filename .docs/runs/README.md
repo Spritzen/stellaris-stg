@@ -21,6 +21,7 @@ empire.
 | File | |
 |---|---|
 | [ufp-long-campaign.md](ufp-long-campaign.md) | **A long Federation playthrough**, written 2026-08-09 for the first run since decisions 74–77 landed. Survey-led, because the anomalies, dig sites and story events have never been in front of the game. **Run 2026-08-10**; observations are inline, and what to do about them is [the remediation plan](../planning/ufp-run-remediation.md) |
+| [vulcan-long-campaign.md](vulcan-long-campaign.md) | **A long Confederacy of Vulcan playthrough**, written 2026-08-11 for the first run against the build carrying decisions 81 and 82. Survey-led again — the dig sites went unreached last time — and it grades the hull attach points on a second shipset, the ruler clothes on a second empire, and the story-event gate from outside the Federation. **Not yet run** |
 
 **A run plan is spent when its run is over.** Leave the file in place, dated, and
 write a new one for the next empire rather than editing this one into something
