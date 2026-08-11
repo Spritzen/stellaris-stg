@@ -6,7 +6,7 @@
 > build.
 > **Then** — [Open questions](open-questions.md) · [Phases](phases.md) · [Live runs](../guides/live-runs.md)
 
-*Last updated against the build of 2026-08-09 and the runs of 2026-08-08. Every
+*Last updated against the build of 2026-08-10 and the run of 2026-08-10. Every
 number here has a date because every number here goes stale —
 [style guide §6](../style-guide.md).*
 
@@ -25,9 +25,9 @@ number here has a date because every number here goes stale —
 `.vendor-manifest.json` and the `make validate` summary line carry the live
 ones.
 
-| | Build of 2026-08-09 |
+| | Build of 2026-08-10 |
 |---|---|
-| Files / size | **22,406 / 14.3 GB** (build of 2026-08-10; [the per-tier split](../architecture/vendored-merge.md#size)) |
+| Files / size | **22,406 / 14.3 GB** ([the per-tier split](../architecture/vendored-merge.md#size)) |
 | Re-cut at harvest / pruned | 1,661 / **888** |
 | `make vendor` | 70 s |
 | `make validate` | **0 warnings, 0 errors** |
@@ -53,42 +53,33 @@ constants in `tools/validate.py` with the ratio written beside them
 
 ## The `error.log` baseline
 
-**From the 2026-08-08 Terran Empire run:** `error.log` is **1,261 records /
-187 KB**, against the ~1 MB a clean vanilla run produces. **Exactly 1 record falls
-after the 49.3 s startup window.** No record names anything `stg_`, and none names
-clothes, city sets or ship locators — all four of that run's findings were
-eyes-only, which is now the standard shape.
+**From the 2026-08-10 Federation run**, an ~11-hour campaign against a build
+carrying all of decisions 74–79:
 
-> **The baseline predates the whole of decisions 74–77.** `error.log` was last
-> written 2026-08-08 20:45; the anomalies landed at `cba8a81` (2026-08-09 09:15)
-> and the dig sites and story events at `272f3c7` (2026-08-09 13:31). So the
-> 1,261 records describe a build containing **none** of the largest single
-> addition the project has made — 21 anomaly categories, 6 dig sites, 23 story
-> events, 144 sprites, 72 re-cut pictures, 324 loc keys and ~11,200 words.
-> `make validate` covers the references and nothing covers the rest.
->
-> **The next live run should open the situation log and let a survey fleet
-> work**, and reconcile group by group against these 1,261
-> ([live-runs.md](../guides/live-runs.md)). Three things are unmeasured and
-> nothing container-side can reach them: whether the 72 event pictures render at
-> the right size in the popup; whether `stg_on_five_year_story_pulse` fires at
-> all; and whether any dig site is ever placed.
-> [The 2026-08-15 audit](../analysis/2026-08-15.md), finding 1.
+| | 2026-08-10 | previous, 2026-08-08 |
+|---|---|---|
+| Records / size | **2,251 / 228 KB** | 1,261 / 187 KB |
+| Startup window | 49.4 s | 49.3 s |
+| Records **after** startup | **174** | 1 |
 
-**Superseded by the run of 2026-08-10**, an ~11-hour Federation campaign against
-a build carrying all of decisions 74–79: **2,251 records / 228 KB, of which 174
-fall after the 49.4 s startup window.** Two of that run's three questions are
-answered — the story pulse fires and the event pictures are correctly framed —
-and the dig sites stayed unreached, because only part of the map was surveyed.
+Against the ~1 MB a clean vanilla run produces the volume is fine; the 174
+post-init records are the whole of the log's value. **The jump from 1 to 174 is a
+change of run, not of build** — the 2026-08-08 session was short and opened few
+screens.
 
-**The post-init 174 is the first log in this project to carry real defects rather
-than eyes-only findings**, and its Tier 1 is fixed the same day: 230 hull section
+**That 174 is the first log in this project to carry real defects rather than
+eyes-only findings**, and its Tier 1 is fixed the same day: 230 hull section
 attach points across all 22 Trek shipsets
 ([82](../decisions/82-hull-section-attach-points.md)), 29 malformed texture paths
-in STNH's master clothes selectors, and 328 star and nebula names that had no
-localisation key at all ([81](../decisions/81-random-names-are-loc-keys.md)).
+in STNH's master clothes selectors, and localisation keys for the 328 quoted star
+and nebula names that had none ([81](../decisions/81-random-names-are-loc-keys.md)).
 Every finding, its root cause and what remains is in
 [ufp-run-remediation.md](ufp-run-remediation.md).
+
+The run also closed two of the three questions that had no evidence at all before
+it: the story pulse fires and the event pictures are correctly framed. **The dig
+sites stayed unreached** — only part of the map was surveyed — so that one is
+unmeasured rather than negative.
 
 **Tier 2 followed the same day**: the 98-record Planetary Diversity cluster — the
 largest single group in that log — was six events declared `planet_event` on a
@@ -142,5 +133,5 @@ real defects** — five nebula and debris entities rendering at a third of Syste
 Scale's size, and every empire's habitats at risk of drawing as a Suliban helix.
 Decisions [53](../decisions/53-duplicate-entity-triage.md),
 [54](../decisions/54-federation-texture-collisions.md),
-[56](../decisions/56-starbase-modules-order.md). **Nothing in that has been seen
-by a live run yet.**
+[56](../decisions/56-starbase-modules-order.md). **The 2026-08-10 run graded the
+nebula half and it is correct; the habitats have still not been seen.**

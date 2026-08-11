@@ -20,7 +20,8 @@
 # Trait budgets are the vanilla default of 2 points.
 #
 # `initializer =` names a REAL home system, added 2026-08-03. It used to be
-# absent on §1's "no hand-placed homeworlds" grounds, and that was wrong in a
+# absent on the "no hand-placed homeworlds" line then in .docs/planning/scope.md,
+# and that was wrong in a
 # way only play showed: `planet_name`/`system_name` are labels, not contents,
 # so "Sol" was a label on a randomly generated system whose other planets were
 # named from the Federation's `planet_names` pool — a list of MEMBER worlds.

@@ -27,7 +27,7 @@
 # See .docs/decisions/18-walshicus-shipsets-replace-stnh-hulls.md.
 #
 # `randomized = no` throughout: these appear only as the prescripted empires in
-# src/prescripted_countries/, and 30 of the 131 are selector stubs that no
+# src/prescripted_countries/, and 31 of the 131 are selector stubs that no
 # empire names at all -- .docs/decisions/32-declare-stub-species-classes.md.
 
 # United Federation of Planets — humans and the founding members.

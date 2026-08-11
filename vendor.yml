@@ -2,8 +2,10 @@
 #
 # The source of truth for everything vendored. `make vendor` replays this file
 # to produce the mod tree; nothing under the generated tree is ever hand-edited.
-# See .docs/architecture/vendored-merge.md (architecture), §3 (harvest order) and §4
-# (conflict register) for the reasoning behind every choice below.
+# See .docs/architecture/vendored-merge.md for the design,
+# .docs/architecture/harvest-order.md for the order sources apply in, and
+# .docs/architecture/conflict-register.md for how each contested path was
+# settled — the reasoning behind every choice below.
 #
 # Rules this file encodes:
 #   * Sources apply in listed order. Later sources overwrite earlier ones on

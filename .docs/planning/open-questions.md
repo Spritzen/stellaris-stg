@@ -21,25 +21,16 @@ evidence for anything in this section — the standing lesson of decisions
 [08](../decisions/08-stnh-art-shadows-vanilla.md) and
 [42](../decisions/42-event-picture-geometry.md).
 
-> **What the next run should do, before anything else on this page.** The
-> `error.log` baseline in [status.md](status.md) was written 2026-08-08 20:45
-> and **decisions 74–77 all landed the next day**, so none of the anomalies, dig
-> sites or story events has ever been in front of the game. **Open the situation
-> log and let a survey fleet work** — that one act reaches the three sections
-> below that nothing else can. [The 2026-08-15 audit](../analysis/2026-08-15.md),
-> finding 1.
+> **Read [ufp-run-remediation.md](ufp-run-remediation.md) before working any item
+> below.** The long Federation run of 2026-08-10
+> ([its plan](../runs/ufp-long-campaign.md)) answered most of this section, and
+> three items now have a confirmed cause on disk rather than an eyes-only
+> question — so the thing to do next is *grade a fix*, not re-diagnose.
 >
-> **That run is planned**, as a long Federation campaign:
-> [runs/ufp-long-campaign.md](../runs/ufp-long-campaign.md) puts this page's
-> eyes-only surface in the order a playthrough actually reaches it, and names
-> what a Federation run cannot reach at all.
->
-> **That run happened, 2026-08-10**, and answered most of this section. What it
-> found, root-caused and costed, is in
-> [ufp-run-remediation.md](ufp-run-remediation.md); read that before working any
-> item below, because three of them now have a confirmed cause on disk and are no
-> longer eyes-only at all. Dig sites stayed unreached — only part of the map was
-> surveyed — so that one is still open, and still cheap.
+> **What that run could not reach: the dig sites**, because only part of the map
+> was surveyed. Still open, still cheap, and still the one thing that needs a
+> survey fleet let loose for a while. [The 2026-08-15
+> audit](../analysis/2026-08-15.md), finding 1.
 
 ### The shipsets' weapons
 
@@ -62,13 +53,17 @@ as badly as the corvette's third gun did.
 
 > **The corvette was the only hull that could have graded well.** The
 > 2026-08-10 run reported the Federation destroyer's stern mounts as plainly
-> wrong, and the log gave the reason: **132 hulls across all 22 Trek shipsets are
+> wrong, and the log gave the reason: **132 hulls across all 22 Trek shipsets were
 > missing the section attach points their `ship_size` names**, so those sections
-> never attach and their guns are placed against nothing. A corvette needs only
+> never attached and their guns were placed against nothing. A corvette needs only
 > `part1` and so was never affected — which is why three corvette gradings in a
-> row looked like evidence about the shipsets. **Grade the mounts above corvette
-> only after that fix lands**; until then the question is unanswerable rather
-> than open. [ufp-run-remediation.md](ufp-run-remediation.md), item 1.
+> row looked like evidence about the shipsets.
+>
+> **Fixed the same day** — 230 attach points over 100 files
+> ([82](../decisions/82-hull-section-attach-points.md)) — and **nothing about it
+> is confirmed in game.** Grading the mounts above corvette is now a live
+> question rather than an unanswerable one, and it is the first thing the next
+> run should look at. [ufp-run-remediation.md](ufp-run-remediation.md), item 1.
 
 ### The ruler clothes
 
@@ -97,27 +92,26 @@ falsified [68](../decisions/68-ruler-clothes-index-restored.md).
 ### The 2026-08-08 warning triage
 
 Six `vendor.yml` renames changed which declaration the engine is left with, and a
-rename that works produces no log record. Worth a look: whether habitats draw as
-vanilla's orbital ring rather than a Suliban helix, and whether Real Space's nebula
-globules and debris fields look the size the systems around them are built at.
+rename that works produces no log record. The 2026-08-10 run graded one half —
+**nebula sizing on the galaxy map is correct**. What is still unseen: whether
+habitats draw as vanilla's orbital ring rather than a Suliban helix.
 [Decision 53](../decisions/53-duplicate-entity-triage.md).
 
 ### Music
 
-The Federation anthem is in the ambient rotation and takes one hearing to confirm
-([55](../decisions/55-federation-anthem.md)). Then the 22 track names now that they
-have titles ([61](../decisions/61-music-player-track-names.md)) — what to listen
-for is whether the four chosen main-theme titles sit right beside the eighteen
-derived ones. And whether the rotation reads as 27 distinct recordings
-([65](../decisions/65-music-rotation-dedupe.md)).
+**Closed 2026-08-10, by measurement rather than by a change.** The anthem is in
+rotation ([55](../decisions/55-federation-anthem.md)) and the track names are all
+distinct ([61](../decisions/61-music-player-track-names.md)). Nothing in the tree
+needed fixing; the *expectation* did.
 
-> **Closed 2026-08-10, by measurement rather than by a change.** The anthem is in
-> rotation and the names are all distinct. The count was never wrong: the player
-> lists **55 declarations**, the rotation is **27 playlist entries** — decision
-> 65's figure, reproduced exactly — and the run's "approx. 70" was an eyeball of
-> the 55. **The stale number is the "22" in this section**, which is decision
-> 61's count from before 65 remeasured it. Nothing to fix in the tree.
+> **The two figures count different things, and a run plan must carry both.** The
+> player lists **55 declarations**; the rotation is **27 playlist entries**,
+> reproducing [decision 65](../decisions/65-music-rotation-dedupe.md) exactly. A
+> run reporting "approx. 70 tracks" is eyeballing the 55.
 > [ufp-run-remediation.md](ufp-run-remediation.md), item 6.
+
+What is still ungraded by ear: whether the four chosen main-theme titles sit
+right beside the eighteen derived ones.
 
 ### Ship registries and their class names
 
@@ -263,7 +257,8 @@ finding itself is in the decision.
   ([48](../decisions/48-room-selector-merge.md),
   [62](../decisions/62-city-set-cultures-undeclared.md)).
 - Star names **append** rather than replace, confirmed by the three-way mix on
-  the galaxy map; the effective pool is 6,531
+  the galaxy map — the property, not the total, is what carries: STG's 806 names
+  add to Real Space's and YAGEM's 5,702 rather than displacing them
   ([52](../decisions/52-trek-star-names.md), correcting
   [44](../decisions/44-random-names-pools-append.md)).
 - The Vulcan city framing needed no change
@@ -308,7 +303,7 @@ finding itself is in the decision.
   `ZOOM_STEPS_SYSTEM`, an array no script can set, and the visual test found
   13-against-8 rendering correctly.
   [Decision 43](../decisions/43-planet-scale-system-length.md).
-- **704 report-tier orphans** from the clutter closure (build of 2026-08-09;
+- **703 report-tier orphans** from the clutter closure (build of 2026-08-10;
   [decision 45](../decisions/45-clutter-pass.md) recorded 706, and `make
   validate` prints the live figure). At vanilla's own 4.9%
   leftover rate in `gfx/models`, a finding there is indistinguishable from

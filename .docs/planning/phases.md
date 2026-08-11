@@ -132,7 +132,10 @@ Written 2026-08-08: 829 star names and 80 nebula names in
 `src/common/random_names/base/stg_star_names.txt`, taking the pool from 5,702 to
 **6,531** and nebulae from 71 to 151. Pools append
 ([44](../decisions/44-random-names-pools-append.md)), so none of Real Space's or
-YAGEM's names are displaced.
+YAGEM's names are displaced. *(806 star names as of 2026-08-10 — re-running the
+generator for [decision 81](../decisions/81-random-names-are-loc-keys.md) dropped
+a backlog the tool's own rules exclude. Count the entries in the file, not this
+line.)*
 
 > **The source is STNH's `map/setup_scenarios/`, not its `star_names` pool, and
 > the difference is the whole finding.** STNH's 5,992-entry pool looks like the
@@ -168,7 +171,7 @@ STNH's 140 harvested art triggers were all defined in one pass and the era,
 identity, role and stratum ones given real bodies
 ([16](../decisions/16-phase-3-clothing-triggers.md)), so the Starfleet, Klingon,
 Romulan and Cardassian uniforms already in the tree became reachable. The file
-now declares 141, 25 of them with a body —
+now declares 141, 24 of them with a body —
 [stnh-art.md](../architecture/stnh-art.md#stnhs-art-is-wired-to-stnhs-namespace--in-four-ways).
 
 > **The empire designer was still dressing five species as humans, and it is a

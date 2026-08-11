@@ -57,10 +57,10 @@ finding is read against its own. `make clutter-vanilla` re-measures it.
 
 **4. Prune scope is a calibration result, not a convenience filter.** Only
 `gfx/event_pictures` (0.3% floor, 56.7% found), `gfx/portraits` (0.0%, 1.8%) and
-`sound` (1.6%, 12.1%) are pruned. `gfx/models` at 5.3% against vanilla's own 4.9%
+`sound` (1.6%, 12.1%) are pruned. `gfx/models` at 5.2% against vanilla's own 4.9%
 is **reported**, because at that rate the check cannot tell our leftovers from
-Paradox's and gating on it would be gating on noise. **704 orphans remain (build
-of 2026-08-09**, against the 706 [decision 45](../decisions/45-clutter-pass.md)
+Paradox's and gating on it would be gating on noise. **703 orphans remain (build
+of 2026-08-10**, against the 706 [decision 45](../decisions/45-clutter-pass.md)
 measured — the difference is art a later `.gfx` reached, not a change to the
 closure**)**, and `make validate` prints the count every run. Read the current
 figure off that line rather than this sentence.

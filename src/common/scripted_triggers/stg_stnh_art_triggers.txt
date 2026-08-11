@@ -9,9 +9,10 @@
 # trusting that figure.
 #
 # PHASE 3, applied 2026-08-03: the era, identity, role and stratum triggers
-# above the INERT divider have real bodies -- 25 of the 141. Everything under
-# INERT keeps `always = no`, which is a definition and not a body: it resolves,
-# so nothing dangles, and the entry it gates is simply never chosen.
+# above the INERT divider -- 25 of the 141, of which 24 have real bodies and
+# is_tng_era stays `always = no` for the reason written beside it. Everything
+# under INERT keeps `always = no`, which is a definition and not a body: it
+# resolves, so nothing dangles, and the entry it gates is simply never chosen.
 # Reasoning, the era choice and the 4.4 mapping table:
 # .docs/decisions/16-phase-3-clothing-triggers.md
 #

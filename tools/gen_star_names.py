@@ -12,7 +12,10 @@ lists) that would read as a bug in a Trek galaxy. The hand-built maps are where
 the Trek content is: 1,444 distinct system names placed by name.
 See .docs/decisions/52-trek-star-names.md.
 
-Reads .source/, never the built tree -- the same rule as the other one-shots.
+CONTENT comes from .source/, never from the built tree. stg-build/ IS read, for
+one question only -- which names the merged pool already holds, so this file
+appends rather than repeats -- and that read has to skip this tool's own output
+or it subtracts itself. See the comment on `built` in main().
 """
 from __future__ import annotations
 

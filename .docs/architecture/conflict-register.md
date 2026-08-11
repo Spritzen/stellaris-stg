@@ -6,9 +6,9 @@
 > are adding a source that ships a path something else already does.
 > **Then** — [Harvest order](harvest-order.md) · [decision 29](../decisions/29-merge-semantics-per-directory.md) · [Key-conflict checks](../validation/checks.md#c-two-sources-one-key)
 
-**`make vendor` reports 932 overwrite events — plus 220 paths skipped by the
+**`make vendor` reports 947 overwrite events — plus 220 paths skipped by the
 additive-only rule and 888 files removed by the prune closure** (build of
-2026-08-09). Read them out of `.vendor-manifest.json` rather than recounting by
+2026-08-10). Read them out of `.vendor-manifest.json` rather than recounting by
 hand; they move whenever a source is dropped or an `include:` widens, and this
 section has been stale five times for exactly that reason:
 
@@ -92,10 +92,12 @@ UIOD's rewrite subsumes both deltas and transplanting them would have introduced
 bugs. [Decision 06](../decisions/06-gui-merges-unnecessary.md).)*
 
 The `gfx/` overwrites are all last-wins within a family and need no individual
-decisions — the large groups are UIOD → Dark UI (189), the 157 shipset → `src/`
-locator overrides of [decision 28](../decisions/28-weapon-locator-positions.md),
-Starfleet TNG → Terran NX (49), PD → Vanilla Replacements (45), PD → Ascension
-Worlds (41).
+decisions — the large groups are UIOD → Dark UI (189), the 172 ship-asset
+overrides written into `src/` by `tools/fix_ship_locators.py` (151 from the
+Walshicus sets, 21 from STNH — decisions
+[28](../decisions/28-weapon-locator-positions.md) and
+[82](../decisions/82-hull-section-attach-points.md)), Starfleet TNG → Terran NX
+(49), PD → Vanilla Replacements (45), PD → Ascension Worlds (41).
 
 > **One family is worth knowing about**: the 22 Walshicus shipsets overwrite each
 > other on shared texture and effect filenames, because they are one author's
@@ -121,7 +123,7 @@ Worlds (41).
 | Diverse Rooms | `gfx/portraits/asset_selectors/dr_room_textures.txt` | A SECOND file claiming `room_selector`, which STNH's copy of vanilla's file also claims — decided by nothing on disk, and under the reading where DR wins, its 277 unconditional `ruler` rows put every empire in a cave. Its 297 designer rows are merged into `src/`'s single selector instead. [Decision 48](../decisions/48-room-selector-merge.md). |
 
 Beyond these, **`make vendor` removes unreferenced files itself** — 888 of them
-on the build of 2026-08-09,
+on the build of 2026-08-10,
 re-derived on every build by the reachability closure rather than listed here,
 because an 813-line exclude list is correct the day it is written and silently
 wrong after the next `make sources-sync`. See [the clutter closure](../validation/clutter.md).

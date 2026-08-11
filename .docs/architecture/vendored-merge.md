@@ -68,8 +68,9 @@ version of a file the author has since fixed.
 > outright. `src/gfx/FX/pdxmesh.shader` was written as "vanilla 4.4 plus STNH's
 > five effects" and dropped all 41 that Real Space appends to the same path; Real
 > Space's gas giant rings drew with no material and `make validate` was clean
-> throughout. `check_src_source_regression` now asks that question over all 162
-> such paths. [Decision 34](../decisions/34-src-shadows-drop-source-declarations.md).
+> throughout. `check_src_source_regression` now asks that question over every
+> such path — 182 on the build of 2026-08-10, read off the manifest's
+> `overwrites`. [Decision 34](../decisions/34-src-shadows-drop-source-declarations.md).
 
 Two further levers exist for what neither can do:
 
@@ -104,17 +105,16 @@ harvest change and this section has been stale more than once.
 [`.docs/provenance.md`](../provenance.md) is the generated report;
 `.vendor-manifest.json` has the per-source split.
 
-*(Read off the build of 2026-08-09. GiB, as `make vendor` prints.)*
+*(Read off the build of 2026-08-10. GiB, as `make vendor` prints.)*
 
 | | |
 |---|---|
 | Gameplay/UI tier — 26 mods | 4.7 GB, 8,026 files |
-| STNH — art paths only, ship tree pruned per [decision 18](../decisions/18-walshicus-shipsets-replace-stnh-hulls.md) | 7.0 GB, 10,943 files |
-| Walshicus' 22 Trek shipsets | 2.5 GB, 3,093 files |
-| `src/` — hand-written | 3.4 MB, 343 files |
-| **Built mod, total** | **14.3 GB**, 22,405 files, 49 sources + `src/` |
+| STNH — art paths only, ship tree pruned per [decision 18](../decisions/18-walshicus-shipsets-replace-stnh-hulls.md) | 7.0 GB, 10,929 files |
+| Walshicus' 22 Trek shipsets | 2.5 GB, 3,092 files |
+| `src/` — hand-written | 5.0 MB, 359 files |
+| **Built mod, total** | **14.3 GB**, 22,406 files, 49 sources + `src/` |
 | `.source/` — 51 mods: the 49 harvested plus Kammarheit and Apocryphos | 22 GB apparent, **~0 real** (reflinked; [decision 09](../decisions/09-source-snapshot.md)) |
-| Disk available in-container | 177 GB |
 
 *(Ariphaos is subscribed but was never snapshotted — [decision 02](../decisions/02-drop-ariphaos.md)
 predates `.source/`. It is the one mod in `/workshop` with no copy here.)*

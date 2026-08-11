@@ -62,10 +62,11 @@ and nebula in a generated galaxy drew its own key.
 ## What changed
 
 `tools/gen_star_names.py` now writes a second file,
-`src/localisation/english/stg_random_names_l_english.yml` — 329 keys,
-underscore reversed to the spaced form STNH placed on the map, so the value is a
-reversal rather than a guess. Unquoted single-word entries are untouched: they
-are literals, and that half of decision 52 was right.
+`src/localisation/english/stg_random_names_l_english.yml` — **328 keys**, one for
+every quoted entry the regenerated pool holds, underscore reversed to the spaced
+form STNH placed on the map, so the value is a reversal rather than a guess.
+Unquoted single-word entries are untouched: they are literals, and that half of
+decision 52 was right.
 
 **The tool was also not idempotent, and this found it.** It subtracts names
 already in the merged pool by reading `stg-build/`, which `make vendor` has
@@ -84,5 +85,5 @@ growing since the last run, not a new call.
 
 Whether the **display values** are right, one by one. `Class_9_Nebula` becomes
 "Class 9 Nebula" and `82_G._Eridani` becomes "82 G. Eridani", which are correct;
-329 of them have not been read individually, and no check can ask whether a
+328 of them have not been read individually, and no check can ask whether a
 name reads well. That is the next run's eyes.

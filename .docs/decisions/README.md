@@ -1,6 +1,6 @@
 # Decisions — index
 
-> **What** — all 80 resolved decisions, grouped by subject, one line each.
+> **What** — all 82 resolved decisions, grouped by subject, one line each.
 > **Open when** — before reopening a settled question, or when a citation names a
 > decision by number and you need to know what it says.
 > **Then** — [Style guide §7](../style-guide.md#7-decision-files-have-a-fixed-head) for the file format · [Documentation map](../README.md)
@@ -106,10 +106,10 @@ which is also where the rule lives: category is in this index, not in the path.
 | [47](47-minor-power-names-truncated.md) | 78 of 79 minor-power names shipped truncated, 16 loc keys shipped as text |
 | [51](51-prescripted-loc-scope.md) | The other three prescripted-power files are clean; the check keeps two scopes |
 | [52](52-trek-star-names.md) | Trek star names come from STNH's **maps**, not its `star_names` pool |
-| [81](81-random-names-are-loc-keys.md) | A quoted random name is a localisation key, and STG shipped 330 with no key — *falsifies [52](52-trek-star-names.md) in part* |
 | [59](59-ship-name-pools.md) | STNH's ship registries, folded onto vanilla's ship sizes |
 | [72](72-ship-class-names.md) | STNH declares its own class names, so 59's fuzzy join was never needed |
 | [73](73-class-name-thematic-fill.md) | A class-name pool is one semantic field, and vanilla is the model for filling one |
+| [81](81-random-names-are-loc-keys.md) | A quoted random name is a localisation key, and STG shipped 330 with no key — *falsifies [52](52-trek-star-names.md) in part* |
 
 ## Ship art and weapon mounts
 
@@ -122,8 +122,8 @@ which is also where the rule lives: category is in this index, not in the path.
 | [31](31-asset-local-variables.md) | `@variables` in art files are file-local, and copying an entity leaves them behind |
 | [35](35-station-section-attach-points.md) | Walshicus' station hulls carry no section attach points |
 | [60](60-mounts-share-existing-points.md) | A missing mount shares a point the artist drew |
-| [82](82-hull-section-attach-points.md) | Every Trek hull above corvette borrows a corvette's frame, and its sections hang on points a corvette does not have — *[35](35-station-section-attach-points.md) one entity family over* |
 | [67](67-source-art-hardpoint-names.md) | The artist's vocabulary is not the game's |
+| [82](82-hull-section-attach-points.md) | Every Trek hull above corvette borrows a corvette's frame, and its sections hang on points a corvette does not have — *[35](35-station-section-attach-points.md) one entity family over* |
 
 ## Portraits, clothes, rooms, city sets and flags
 

@@ -2,8 +2,10 @@
 """One-shot generator: a real home system for every STG prescripted empire.
 
 Writes src/common/solar_system_initializers/stg_home_systems.txt and reports
-which empires it could not place. Reads `.source/`, never the built tree --
-same rule as tools/gen_shipsets.py.
+which empires it could not place. Its CONTENT comes from `.source/`, never from
+the built tree -- same rule as tools/gen_shipsets.py. stg-build/ is read for one
+question only: which planet and star classes the merge declares, so a `class`
+value can be told from an engine keyword. See `declared()`.
 
 WHY THIS EXISTS. Not one STG empire declared `initializer =`, on the strength of
 .docs/planning/scope.md's "Trek-named systems in a normally generated galaxy, no hand-placed

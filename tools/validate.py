@@ -680,8 +680,9 @@ def check_src_source_regression() -> int:
     check_vanilla_regression asks this about vanilla, and that is only half the
     question: `src/` is applied last and beats vendored content too, so an
     override at a path a source also ships silently replaces the source's copy.
-    The manifest records exactly which, so this needs no guessing -- 162 paths
-    where src/ overwrote a source, and `from` names which one.
+    The manifest records exactly which, so this needs no guessing -- the paths
+    where src/ overwrote a source (182 on the build of 2026-08-10), and `from`
+    names which one.
 
     That gap shipped a real defect. src/gfx/FX/pdxmesh.shader was written as
     "vanilla 4.4 plus STNH's five effects" and Real Space ships that same path

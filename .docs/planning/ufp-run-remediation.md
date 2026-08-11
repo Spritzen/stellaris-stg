@@ -22,7 +22,7 @@ measuring first.
 |---|---|---|
 | 1 | Hull section attach points | **Fixed** — 230 points, 22 shipsets ([82](../decisions/82-hull-section-attach-points.md)) |
 | 2 | Malformed portrait paths | **Fixed** — 29 patched; **196 dangling textures found beside them, left** |
-| 3 | Star and nebula names unlocalised | **Fixed** — 328 keys ([81](../decisions/81-random-names-are-loc-keys.md)) |
+| 3 | Star and nebula names unlocalised | **Fixed** — 328 keys, one per quoted entry ([81](../decisions/81-random-names-are-loc-keys.md)) |
 | 4 | No Trek empires met | **Narrowed, open** — three causes eliminated; needs a force-spawn on the next run |
 | 5 | Planetary Diversity event scope | **Fixed** — 6 patches; ~98 of the log's 174 post-init records |
 | 6 | ~70 music tracks | **Not a defect** — 55 declarations, 27 rotation; the run plan's "22" was stale |
@@ -259,8 +259,8 @@ localisation/english/random_names/…_l_english.yml  Epsilon_Eridani:0 "Epsilon 
 ```
 
 [src/common/random_names/base/stg_star_names.txt](../../src/common/random_names/base/stg_star_names.txt)
-holds **330 quoted entries and STG ships zero keys for any of them**, so every
-one draws its own key. Unquoted entries (`Badlands`) are literals and are fine.
+held **330 quoted entries and STG shipped zero keys for any of them**, so every
+one drew its own key. Unquoted entries (`Badlands`) are literals and are fine.
 
 **The fix:** generate `src/localisation/english/random_names/`, underscore →
 space, reviewed by hand where that is not the right answer.
@@ -272,9 +272,10 @@ below — which argues for one check over the pattern rather than three checks o
 three files.
 
 > **What landed** — `tools/gen_star_names.py` now writes
-> `src/localisation/english/stg_random_names_l_english.yml`, **329 keys**.
-> `Arachnid_Nebula`, `Class_9_Nebula` and `Kullat_Nunu` — the three the run
-> named by hand — are all keyed.
+> `src/localisation/english/stg_random_names_l_english.yml`, **328 keys** against
+> the regenerated pool's 328 quoted entries — closed in both directions, no
+> orphans. `Arachnid_Nebula`, `Class_9_Nebula` and `Kullat_Nunu` — the three the
+> run named by hand — are all keyed.
 >
 > **The generator was not idempotent, and this found it.** It subtracts names
 > already pooled by reading `stg-build/`, which `make vendor` fills with its own
@@ -284,7 +285,7 @@ three files.
 > that STG's name lists already own — a backlog from the tree growing since the
 > generator last ran, not a new call.
 >
-> The **display values** are unread, 329 of them. No check can ask whether a
+> The **display values** are unread, 328 of them. No check can ask whether a
 > name reads well. [Decision 81](../decisions/81-random-names-are-loc-keys.md).
 
 ---
