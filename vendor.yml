@@ -1520,7 +1520,11 @@ patches:
     source: "Star Trek: New Horizons"
     why: >-
       Seven president rows name their .dds with no extension at all and the two
-      Terran ruler textures name theirs twice. Both forms miss.
+      Terran ruler textures name theirs twice. Both forms miss. The eighth row
+      was added 2026-08-22 and is the only one whose art is genuinely absent --
+      sth_humanoid_08_male_clothes_01 is in no source mod, so appending .dds
+      moves it from malformed to dangling, which is the honest population for
+      it. See .docs/decisions/83-widen-attach-points-and-two-new-checks.md.
     replace:
       - from: "\"gfx/models/portraits/human_civilian/human_president_male_1\""
         to: "\"gfx/models/portraits/human_civilian/human_president_male_1.dds\""
@@ -1549,11 +1553,20 @@ patches:
       - from: "human_terran_ruler_male_2.dds.dds"
         to: "human_terran_ruler_male_2.dds"
         count: 6
+      - from: "\"gfx/models/portraits/sth humanoid 08/sth_humanoid_08_male_clothes_01\""
+        to: "\"gfx/models/portraits/sth humanoid 08/sth_humanoid_08_male_clothes_01.dds\""
+        count: 1
 
   - path: gfx/portraits/asset_selectors/humanoid_master_female_clothes_01.txt
     source: "Star Trek: New Horizons"
     why: >-
-      The female file's half of the same doubled-extension defect.
+      The female file's half of the same doubled-extension defect -- and, added
+      2026-08-22, the female mirror of the male file's president rows, which the
+      29 replacements of 2026-08-10 missed entirely. Ten rows named their .dds
+      with no extension at all and one named a real texture under brunali/ that
+      exists only under norcadian/; the Vulcan run logged three of them at 14:11
+      and every target is on disk. Now held by check_selector_texture_paths.
+      See .docs/analysis/2026-08-16.md finding 1.
     replace:
       - from: "human_terran_ruler_female_1.dds.dds"
         to: "human_terran_ruler_female_1.dds"
@@ -1561,7 +1574,38 @@ patches:
       - from: "human_terran_ruler_female_2.dds.dds"
         to: "human_terran_ruler_female_2.dds"
         count: 6
-
+      - from: "\"gfx/models/portraits/sth humanoid 08/sth_humanoid_08_female_clothes_01\""
+        to: "\"gfx/models/portraits/sth humanoid 08/sth_humanoid_08_female_clothes_01.dds\""
+        count: 2
+      - from: "\"gfx/models/portraits/sth humanoid 08/sth_humanoid_08_female_clothes_02\""
+        to: "\"gfx/models/portraits/sth humanoid 08/sth_humanoid_08_female_clothes_02.dds\""
+        count: 1
+      - from: "\"gfx/models/portraits/human_civilian/federation_president_female_1\""
+        to: "\"gfx/models/portraits/human_civilian/federation_president_female_1.dds\""
+        count: 1
+      - from: "\"gfx/models/portraits/human_civilian/human_president_female_1\""
+        to: "\"gfx/models/portraits/human_civilian/human_president_female_1.dds\""
+        count: 1
+      - from: "\"gfx/models/portraits/human_civilian/human_president_female_2\""
+        to: "\"gfx/models/portraits/human_civilian/human_president_female_2.dds\""
+        count: 1
+      - from: "\"gfx/models/portraits/human_civilian/human_president_female_3\""
+        to: "\"gfx/models/portraits/human_civilian/human_president_female_3.dds\""
+        count: 1
+      - from: "\"gfx/models/portraits/human_civilian/human_president_female_4\""
+        to: "\"gfx/models/portraits/human_civilian/human_president_female_4.dds\""
+        count: 1
+      - from: "\"gfx/models/portraits/human_civilian/human_president_female_5\""
+        to: "\"gfx/models/portraits/human_civilian/human_president_female_5.dds\""
+        count: 1
+      - from: "\"gfx/models/portraits/human_civilian/civ_human_female_clothes_16\""
+        to: "\"gfx/models/portraits/human_civilian/civ_human_female_clothes_16.dds\""
+        count: 1
+      # norcadian_female_clothes_04.dds exists only under norcadian/, and line
+      # 534 of this same file already names it correctly.
+      - from: "\"gfx/models/portraits/brunali/norcadian_female_clothes_04.dds\""
+        to: "\"gfx/models/portraits/norcadian/norcadian_female_clothes_04.dds\""
+        count: 1
   - path: gfx/portraits/asset_selectors/humanoid_master_female_clothes_01.txt
     source: "Star Trek: New Horizons"
     why: >-

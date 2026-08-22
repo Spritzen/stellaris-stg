@@ -44,6 +44,16 @@ anomalies' 24 did. Declaring art un-prunes it; nothing has to be excluded.
 `check_story_events` over Phase 4 and `make docs` gained a second family of
 question — whether the documented inventory still matches the repo, not only
 whether its citations resolve ([71](../decisions/71-doc-inventory-checks.md)).
+
+**2026-08-22 added three more, all from reading the docs rather than a live
+run** ([83](../decisions/83-widen-attach-points-and-two-new-checks.md)):
+`check_section_attach_points` gained a **second scope** covering every hull
+flying a borrowed frame, which is what finally guards
+[decision 82](../decisions/82-hull-section-attach-points.md)'s 230 attach points;
+`check_selector_texture_paths` is new and found ten malformed portrait paths that
+two live runs had sampled three of; and **`make gen-check`** is a new target
+asking whether each of the eleven generators still reproduces `src/` exactly.
+All eleven do.
 What each asks, and the vanilla floor each is calibrated against, is in
 [the check catalogue](../validation/checks.md); the floors themselves are
 constants in `tools/validate.py` with the ratio written beside them

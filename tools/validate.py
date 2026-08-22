@@ -1760,29 +1760,51 @@ def check_section_attach_points() -> int:
     a first cut that globbed for `<name>.mesh` found nothing anywhere and
     reported 1,279 findings, most of them vanilla's.
 
-    CALIBRATION, and it is what sets the scope. Over the STATION family --
-    military_station_* and ion_cannon -- vanilla contributes exactly 1 finding
-    in ~350 entities (synth_queen_01, missing part2) against 66 from the
-    vendored shipsets. That ratio is why this reports on vendored art rather
-    than only on `ours` the way check_asset_load_order has to.
+    TWO SCOPES ON PURPOSE, and the second one is gated differently from the
+    first. Over the STATION family -- military_station_* and ion_cannon --
+    vanilla contributes exactly 1 finding in ~350 entities (synth_queen_01,
+    missing part2) against 66 from the vendored shipsets, so that half reports
+    on any vendored art. The 66 are all 22 Walshicus shipsets x 3 station
+    entities, and the 2026-08-07 log named 2 of them -- one culture's small
+    station, the only one a three-minute run drew.
 
-    Over all 317 ship sizes with section_slots the ratio collapses to 41
-    vanilla against 147 mod findings, which is not a signal anyone can act on
-    and not a scope this has been calibrated at. Hence STATION_SIZES. Widening
-    it is a real piece of work -- establish first whether those 41 are vanilla
-    quirks or a mesh lookup this resolves wrongly -- not a constant to edit.
+    THE HULL SCOPE WAS OPENED 2026-08-22, and the ratio that closed it is
+    stale. This docstring used to record 41 vanilla against 147 mod findings
+    over all 317 sizes, "not a signal anyone can act on". Re-measured against
+    the build of 2026-08-11, that whole population is 12: 7 vanilla-only and 5
+    in vendored files. Decision 82's 230 attach points collapsed the mod side.
 
-    The 66 are all 22 Walshicus shipsets x 3 station entities, and the
-    2026-08-07 log named 2 of them -- one culture's small station, the only one
-    a three-minute run drew. A screen nobody opened is a check that never ran.
-    Baseline is now 0; reverting the vendor.yml patches restores all 66.
-    See .docs/decisions/35-station-section-attach-points.md.
+    BUT WIDENING ON THAT NUMBER ALONE WOULD HAVE SHIPPED FALSE POSITIVES, and
+    what they are is the reason for the gate:
+
+      - `ancient_destroyer_entity [part2]` is vanilla's own body, declaring
+        root and part1 and nothing else, carried through unchanged by a shadow.
+        `vanilla_only` cannot see it -- that set holds entities vanilla alone
+        declares, not entities we shadow without editing.
+      - the other four fly THEIR OWN culture's art, and 28 of vanilla's 33
+        `*_constructor_entity` declare no part1 in the .asset either. The point
+        comes from the animated rig, which is not readable from the container
+        (decision 82 records the same caveat for vanilla's titan and colossus
+        frames, which name no part locators and work).
+
+    So the hull half is gated on the frame being BORROWED -- `pdxmesh` not
+    prefixed by the entity's own culture -- which is exactly how
+    tools/fix_ship_locators.py `hull_entities()` scopes the repair. The check
+    now guards the population that tool writes, and nothing else. `part1` is
+    dropped from the wanted set for the same reason it is there: every borrowed
+    frame in this tree is a corvette's, and a corvette always has one.
+
+    Baseline is 0 on both halves. Reverting the vendor.yml patches restores all
+    66 stations; stripping fix_ship_locators' output restores 132 hulls.
+    See .docs/decisions/35-station-section-attach-points.md and
+    .docs/decisions/82-hull-section-attach-points.md.
     """
     if not (BUILD / "gfx/models/ships").is_dir():
         return 0
 
     # ship size -> the attach points its section slots name.
     required: dict[str, set[str]] = {}
+    hull_required: dict[str, set[str]] = {}
     seen_sz: set[str] = set()
     for root in (BUILD, GAME_DIR):
         d = root / "common/ship_sizes"
@@ -1800,9 +1822,16 @@ def check_section_attach_points() -> int:
                     continue
                 slots = _balanced(body, sm.end() - 1)
                 names = set(re.findall(r'locator\s*=\s*"?(\w+)"?', slots))
-                if (names - {"root"}) and _STATION_SIZE.match(m.group(1)):
-                    required[m.group(1)] = names - {"root"}
-    if not required:
+                size = m.group(1)
+                if _STATION_SIZE.match(size):
+                    if names - {"root"}:
+                        required[size] = names - {"root"}
+                # The hull scope. `part1` is dropped, not overlooked: every
+                # borrowed frame here is a corvette's, and a corvette's whole
+                # job is to have a part1. See the docstring.
+                elif names - {"root", "part1"}:
+                    hull_required[size] = names - {"root", "part1"}
+    if not (required or hull_required):
         return 0
 
     ents: dict[str, dict] = {}
@@ -1883,6 +1912,22 @@ def check_section_attach_points() -> int:
             name = f"{prefix}{size}_entity"
             if name not in ents or name in ack or name in vanilla_only:
                 continue
+            miss = sorted(want - effective(name, want))
+            if miss:
+                bad.setdefault(str(ents[name]["file"]), []).append(
+                    f"{name} [{' '.join(miss)}]")
+
+    # The hull scope, gated on the frame being BORROWED -- the discriminator
+    # decision 82's own fix tool is scoped by, reused here so the check guards
+    # exactly the population that tool repairs.
+    for size, want in hull_required.items():
+        for prefix in cultures:
+            name = f"{prefix}{size}_entity"
+            if name not in ents or name in ack or name in vanilla_only:
+                continue
+            mesh = ents[name]["mesh"]
+            if not mesh or mesh.startswith(prefix):
+                continue            # its own culture's art: it has its own rig
             miss = sorted(want - effective(name, want))
             if miss:
                 bad.setdefault(str(ents[name]["file"]), []).append(
@@ -3461,6 +3506,66 @@ def check_prescripted_appearance() -> int:
                     f"'{sel}', which declares {have} texture(s) — valid "
                     f"indices are 0..{have - 1}. The engine falls back "
                     f"silently rather than refusing.")
+    return n
+
+
+_SELECTOR_TEXTURE_RE = re.compile(r'"(gfx/models/portraits/[^"]*)"')
+
+
+def check_selector_texture_paths() -> int:
+    """A quoted texture path in an asset selector that is not a `.dds` path.
+
+    THE SYNTAX HALF OF A TWO-HALF QUESTION, landed on its own because it has no
+    content call behind it. The other half -- does the path RESOLVE -- has 196
+    findings whose fix is either deleting a row (changing which garment a
+    species wears) or supplying art, so it is a decision per row and waits.
+    This half is mechanical: the path is malformed, the engine cannot load it,
+    and appending `.dds` cannot be the wrong answer.
+
+    A TEXTURE THAT FAILS TO LOAD FALLS BACK RATHER THAN FAILING. That is what
+    "the image isn't showing the same as the settings" looks like from the
+    empire designer, and it is why this class survived two live runs: the game
+    logs `Could not find texture` once per row it actually draws, so the log is
+    a sample of the rows somebody scrolled past, never the population.
+
+    VANILLA IS THE CALIBRATION AND IT IS EXACT: 7,845 quoted portrait paths
+    across 1,044 distinct files in its own asset_selectors, and every single one
+    ends `.dds` -- no other extension appears in that position at all. So the
+    floor is 0 and no scope is needed (rule 4, and rule 12: the question is
+    asked of the whole directory rather than of the files a log named).
+
+    ROWS THAT NAME ART NO SOURCE SHIPS STILL BELONG HERE. Appending `.dds` to
+    `sth_humanoid_08_male_clothes_01` does not conjure the file -- it moves the
+    row from "malformed" to "dangling", which is the other half's population and
+    the honest place for it. See .docs/analysis/2026-08-16.md finding 1 and
+    .docs/planning/ufp-run-remediation.md item 2.
+    """
+    d = BUILD / "gfx/portraits/asset_selectors"
+    if not d.is_dir():
+        return 0
+
+    n = 0
+    bad: dict[str, set[str]] = {}
+    for f in sorted(d.rglob("*.txt")):
+        n += 1
+        rp = str(f.relative_to(BUILD))
+        for path in _SELECTOR_TEXTURE_RE.findall(_strip_comments(_read(f))):
+            if not path.lower().endswith(".dds"):
+                bad.setdefault(rp, set()).add(path)
+    if bad:
+        total = sum(len(v) for v in bad.values())
+        head = "; ".join(
+            f"{k} → {', '.join(sorted(v)[:3])}{' …' if len(v) > 3 else ''}"
+            for k, v in sorted(bad.items())[:3])
+        warnings.append(
+            f"gfx/portraits/asset_selectors: {total} quoted texture path(s) in "
+            f"{len(bad)} file(s) do not end in `.dds` — {head}"
+            f"{' …' if len(bad) > 3 else ''}. The engine cannot load the "
+            f"texture and falls back silently, so the portrait draws in the "
+            f"wrong clothes with nothing in error.log unless that exact row is "
+            f"drawn. Vanilla writes 7,845 of these and every one ends `.dds`. "
+            f"Fix with a `patches:` entry in vendor.yml. "
+            f"See .docs/planning/ufp-run-remediation.md, item 2.")
     return n
 
 
@@ -5494,6 +5599,7 @@ def main() -> int:
     hpg_n = check_home_planet_generation()
     por_n = check_prescripted_portraits()
     clo_n = check_portrait_clothes_selectors()
+    selp_n = check_selector_texture_paths()
     scl_n = check_species_class_loc()
     app_n = check_prescripted_appearance()
     room_n = check_room_references()
@@ -5534,6 +5640,7 @@ def main() -> int:
           f"{hpg_n} for home-planet generation, "
           f"{por_n} for portrait references, "
           f"{clo_n} for clothes-selector species gating, "
+          f"{selp_n} asset selector(s) for malformed texture paths, "
           f"{scl_n} species class(es) for localisation, "
           f"{app_n} for ruler appearance indices, "
           f"{room_n} for the room and city set they ask for, "

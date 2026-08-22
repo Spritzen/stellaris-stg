@@ -1,7 +1,7 @@
 .DEFAULT_GOAL := help
 .PHONY: help sources-sync sources-status sources-diff sources-list \
         vendor provenance clean-vendor validate clutter clutter-vanilla docs \
-        link mod-file unlink fix-bom dist game-version
+        gen-check link mod-file unlink fix-bom dist game-version
 
 # `make sources-diff ID=937289339`, `make sources-sync ID=...` to narrow to one
 # source; `DEEP=1` makes status hash every file instead of trusting size+mtime.
@@ -64,6 +64,13 @@ clutter: ## Census the built tree — reachable, shadowing, kept, or orphan
 # you have read it against this: vanilla runs 2.67% unreferenced against itself.
 clutter-vanilla: ## Run the same closure over /stellaris — the calibration floor
 	@python3 tools/clutter.py --vanilla $(ARGS)
+
+# Runs each generator over the tree it produced and diffs src/ against itself.
+# A correct generator is a fixpoint, so the floor is 0 by construction. DEEP=1
+# adds a `make vendor` between two runs -- the only level that catches a
+# generator feeding on its own output, at ~70s each. ARGS=<name> for one tool.
+gen-check: ## Check every generator still reproduces src/ exactly (DEEP=1 to round-trip)
+	@python3 tools/gen_check.py $(if $(DEEP),--deep,) $(ARGS)
 
 # The docs get the same treatment the mod gets. Checks that references resolve;
 # it cannot check that prose is true. See .docs/style-guide.md.

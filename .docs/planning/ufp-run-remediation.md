@@ -21,7 +21,7 @@ measuring first.
 | | Item | |
 |---|---|---|
 | 1 | Hull section attach points | **Fixed** — 230 points, 22 shipsets ([82](../decisions/82-hull-section-attach-points.md)) |
-| 2 | Malformed portrait paths | **Fixed** — 29 patched; **196 dangling textures found beside them, left** |
+| 2 | Malformed portrait paths | **Fixed** — 29 patched, then 11 more in the female master on 2026-08-22 ([83](../decisions/83-widen-attach-points-and-two-new-checks.md)); **196 dangling textures found beside them, left** |
 | 3 | Star and nebula names unlocalised | **Fixed** — 328 keys, one per quoted entry ([81](../decisions/81-random-names-are-loc-keys.md)) |
 | 4 | No Trek empires met | **Narrowed, open** — three causes eliminated; needs a force-spawn on the next run |
 | 5 | Planetary Diversity event scope | **Fixed** — 6 patches; ~98 of the log's 174 post-init records |
@@ -164,12 +164,15 @@ across all 22 shipsets' stations, and stopped at the station boundary — where
 the calibration stopped. The hulls were never covered, and no run had flown one
 above corvette until this one.
 
-**Widening the check is the durable fix and its own piece of work**, named as
-such in the check's own docstring: establish first whether vanilla's 41 are real
-quirks or a mesh lookup this resolves wrongly. With the tool change above in
-place, the mod side of that ratio is what should now be 0 — which is the
-measurement that makes widening viable, and the reason to take it next rather
-than later.
+**Widened 2026-08-22, and the measurement was not what this paragraph
+predicted.** The ratio it gates on had expired: over all 317 sizes the whole
+population is now **12**, not 188. But the five in vendored files were all false
+positives — one is vanilla's own body carried through a shadow, and four fly
+their own culture's art, where the attach point comes from a rig the container
+cannot read. So the widened half is gated on the frame being **borrowed**, the
+same discriminator `fix_ship_locators.py` scopes its repair by, and it now guards
+exactly the population that tool writes.
+[Decision 83](../decisions/83-widen-attach-points-and-two-new-checks.md).
 
 **Still needs eyes afterwards.** Section placement is a visual property; a clean
 log only says the locators exist now.
@@ -222,9 +225,30 @@ ends in `.dds` and resolves against the merged tree. That sweep also picks up th
 `starfleet_next_generation_02_mirror` and `starfleet_next generation 02` (a space
 in the directory name) misses in the same log.
 
+> **Half of it landed 2026-08-22 as `check_selector_texture_paths`.** The
+> `.dds` half only — it is pure syntax with a vanilla floor of exactly 0 (7,845
+> paths, every one `.dds`), so it cost nothing to land alone. **The resolves
+> half is still unwritten**, because each of its 196 findings needs a content
+> call. [Decision 83](../decisions/83-widen-attach-points-and-two-new-checks.md).
+
 > **What landed** — 29 replacements over the two master selectors: seven
 > president rows given the `.dds` they were missing, and 22 Terran ruler rows
-> losing a doubled one. Both files now hold **zero** malformed paths.
+> losing a doubled one. The doubled `.dds.dds` is **gone tree-wide**.
+>
+> **Corrected 2026-08-22: "both files now hold zero malformed paths" was wrong.**
+> All 29 replacements landed in `humanoid_master_male_clothes_01.txt`; the
+> **female** master was never touched and still held **ten** extension-less
+> rows — including the exact female mirror of the seven president rows that were
+> patched — plus one row naming `brunali/norcadian_female_clothes_04.dds`, a
+> file that exists only under `norcadian/`. The Vulcan run logged three of them
+> at 14:11 and every target file is on disk.
+>
+> **Fixed the same day.** Eleven more `patches:` entries — ten `.dds` appends
+> and the `brunali/` → `norcadian/` redirect — and **zero extension-less rows
+> remain tree-wide**, now held there by `check_selector_texture_paths` rather
+> than by anyone remembering. The claim above is what a check exists to stop:
+> it was written in good faith, it was checkable, and nothing was checking it.
+> [analysis/2026-08-16](../analysis/2026-08-16.md), finding 1.
 >
 > **The sweep found a much larger population, and it is a different defect.**
 > **196 texture paths in `gfx/portraits/asset_selectors/` resolve to no file in

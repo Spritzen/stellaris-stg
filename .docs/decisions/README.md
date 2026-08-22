@@ -174,6 +174,7 @@ which is also where the rule lives: category is in this index, not in the path.
 | [43](43-planet-scale-system-length.md) | `PLANET_SCALE_SYSTEM` is measured against an array no script can set |
 | [71](71-doc-inventory-checks.md) | A doc citation can resolve perfectly and still describe a repo that moved |
 | [79](79-reachability-checks.md) | A site with no `weight` and a category with no `spawn_chance` are complete, clean and unreachable — and the second half of the question is what makes the check worth having |
+| [83](83-widen-attach-points-and-two-new-checks.md) | A stale ratio was guarding the hull family, the female selector was never swept, and no generator was ever a checked fixpoint — *widens [35](35-station-section-attach-points.md), guards [82](82-hull-section-attach-points.md)* |
 
 ---
 

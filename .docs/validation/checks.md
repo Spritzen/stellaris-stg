@@ -29,9 +29,21 @@ knowing which family you are in tells you how to calibrate.
 | `check_descriptor` | `descriptor.mod` has not drifted from what the build declares |
 | `check_manifest_parses` | `vendor.yml` is valid YAML and declares the sources `.source/` holds |
 | `check_sources` | every declared source is snapshotted |
+| `check_selector_texture_paths` | every quoted texture path in `gfx/portraits/asset_selectors/` ends in `.dds` — the **syntax half** of the malformed-path question |
 
 The BOM rule asks vanilla **per folder** rather than asserting one answer:
 `common/name_lists/` is BOMed 76 times out of 76 and every other database zero.
+
+`check_selector_texture_paths` is here rather than in family B because it asks
+nothing about resolution. A path with no extension is malformed whatever is on
+disk, and appending `.dds` cannot be the wrong answer — so it lands on its own,
+ahead of the harder *and resolves* half whose 196 findings each need a content
+call. Vanilla writes **7,845** such paths and every one ends `.dds`; no other
+extension appears in that position at all, so the floor is 0 and there is no
+scope. The engine falls back silently on a miss, which is why 10 rows survived
+two live runs: the log records only the rows somebody actually drew.
+[Analysis 2026-08-16](../analysis/2026-08-16.md) finding 1,
+[ufp-run-remediation](../planning/ufp-run-remediation.md) item 2.
 
 ---
 
@@ -145,7 +157,7 @@ The subtlest family. Nothing dangles; the defect is in the *value*, the
 | `check_prescripted_appearance` | ruler `texture` / `clothes` indices that are off the end of the list | `texture = 1` was off the end on **74** of 101 — [23](../decisions/23-prescripted-ruler-appearance.md), [57](../decisions/57-prescripted-rulers-unpin-clothes.md), [69](../decisions/69-ruler-clothes-dedicated-selectors.md) |
 | `check_portrait_clothes_selectors` | selector rows with no species gate, and the scopes the game actually reads | four female master-selector rows with no gate put every ungated non-Federation female commander in Vulcan clothes — [64](../decisions/64-terran-empire-mirror-uniforms.md), [22](../decisions/22-empire-designer-clothes.md) |
 | `check_asset_load_order` | a `locator` declared beside a `clone`, and `clone` resolution order | `clone` resolves against entities **already loaded**, walking `gfx/models/ships/` as one alphabetical sequence — "declared somewhere" said yes 982 times while the Vulcan and Tholian shipsets did not render at all — [30](../decisions/30-clone-discards-sibling-locators.md) |
-| `check_section_attach_points` | a hull entity missing the `part1`..`partN` attach points its ship size's `section_slots` names — **scoped to the station family**, and the ratio for widening it is in the docstring | all 22 Walshicus shipsets declared only `root`, so station sections had nowhere to attach — [35](../decisions/35-station-section-attach-points.md). The same defect on the *warship* hulls is [82](../decisions/82-hull-section-attach-points.md), found by a live run and fixed in `tools/fix_ship_locators.py`; it is still **outside this check's scope**, so nothing guards it |
+| `check_section_attach_points` | a hull entity missing the `part1`..`partN` attach points its ship size's `section_slots` names — **two scopes**: the station family, and (since 2026-08-22) every other size, gated on the frame being *borrowed* | all 22 Walshicus shipsets declared only `root`, so station sections had nowhere to attach — [35](../decisions/35-station-section-attach-points.md). The same defect on the *warship* hulls is [82](../decisions/82-hull-section-attach-points.md), fixed in `tools/fix_ship_locators.py` and **now guarded** by the second scope — [83](../decisions/83-widen-attach-points-and-two-new-checks.md) |
 | weapon-mount positions (in `check_asset_load_order`) | a weapon mount with no position anywhere | it fires from the middle of the ship — [28](../decisions/28-weapon-locator-positions.md), [60](../decisions/60-mounts-share-existing-points.md), [67](../decisions/67-source-art-hardpoint-names.md) |
 | `check_colony_name_collisions` | a name list whose colony and capital pools collide | |
 | `check_home_planet_generation` | a home planet that will not generate as the empire declares it | |

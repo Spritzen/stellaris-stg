@@ -25,6 +25,7 @@ make validate        # BOM, brace balance, loc syntax, descriptor drift, cross-r
 make clutter         # census: is every file reachable, shadowing, or kept?
 make clutter-vanilla # the same closure over /stellaris — the calibration floor
 make docs            # every doc link and code citation resolves
+make gen-check       # every generator still reproduces src/ (DEEP=1 to round-trip)
 make fix-bom         # add the missing UTF-8 BOM to src/localisation/*.yml
 
 # deploy and ship
@@ -53,6 +54,20 @@ failures CWTools doesn't flag. CWTools itself lints live in the editor against
 Run `make clutter` after any change to **what is harvested**.
 
 Run `make docs` after any change to `.docs/` or to a code comment that cites it.
+
+Run `make gen-check` after touching a `tools/gen_*.py` or `tools/fix_*.py`, and
+before committing anything they produced. It runs each generator over the tree it
+already made and diffs `src/` against itself: **a correct generator is a
+fixpoint**, so the floor is 0 by construction rather than by calibration. It
+backs `src/` and `.vendor-cache/` up first and restores them in a `finally`, so
+it is safe to run against a dirty tree.
+
+`DEEP=1` inserts a `make vendor` between two runs of each generator that reads
+the built tree. That is the only level that can catch a generator **feeding on
+its own output** — the defect that made `gen_star_names.py` write a pool a third
+the size on its second run
+([ufp-run-remediation](../planning/ufp-run-remediation.md) item 3) — and it costs
+a full build per generator.
 
 ## `make vendor` also deletes
 

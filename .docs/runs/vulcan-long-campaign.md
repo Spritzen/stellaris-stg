@@ -19,51 +19,32 @@ the expectation it should be read against.
 
 ---
 
-## Why Vulcan, and not another empire
+## Before launch
 
-Four reasons, and they are why this checklist is worth the hours rather than a
-generic one:
-
-- **It grades the attach-point fix on a second shipset.** The Federation set is
-  the one the last run flew and the one the log named. Every Vulcan hull above
-  corvette got the same treatment, so this is the independent look
-  ([82](../decisions/82-hull-section-attach-points.md)).
-- **It is a survey empire by construction** — fanatic materialist, technocracy,
-  meritocracy, a science directorate. **The dig sites went unreached last time**
-  because only part of the map got surveyed, and that is the single biggest hole
-  in the record ([76](../decisions/76-trek-archaeology.md)).
-- **Its ruler is the second of the three clothes tests.** T'Pau takes a dedicated
-  one-texture selector, exactly as the president does, so a wrong garment here
-  and a right one there means something different than either alone
-  ([69](../decisions/69-ruler-clothes-dedicated-selectors.md)).
-- **Its city set is `vulcan_01`**, the tallest in the tree and the one already
-  reviewed once ([70](../decisions/70-vulcan-city-framing.md)). The designer's
-  undersized-city question now has a named suspect, and this is the set to test
-  it on.
-
----
-
-## Before you launch
-
-- [ ] **Run the loop and confirm it is clean.** `make vendor && make validate &&
+- [done] **Run the loop and confirm it is clean.** `make vendor && make validate &&
       make docs`. The mod folder is a symlink, so the rebuild is live the moment
       it finishes.
-- [ ] **Copy the old `error.log` aside first.** The game truncates every file in
+- [done] **Copy the old `error.log` aside first.** The game truncates every file in
       `/paradox/stellaris/logs/` at startup, so launching destroys the 2026-08-10
       baseline this run has to be compared against:
       `cp /paradox/stellaris/logs/error.log /paradox/stellaris/logs/error.log.2026-08-10`
-- [ ] **Restart the launcher**, enable *Star Trek Galaxies* in the playset,
+- [done] **Restart the launcher**, enable *Star Trek Galaxies* in the playset,
       launch.
-- [ ] **Note the wall-clock start and end.** The last analysis leaned on the
+- [] **Note the wall-clock start and end.** The last analysis leaned on the
       session window to separate init errors from in-play ones, and that
       separation changes the conclusion completely
       ([live-runs.md](../guides/live-runs.md)).
+```markdown
+#RUNTIMES
+- 2026-08-22 14:05 - Launched Stellaris from Paradox launcher.
+- 2026-08-22 14:35 - Started a new game.
+```
 - [ ] **Do not relaunch after you stop.** The log is per-session; a second launch
       wipes the run you just played.
 
 ## Galaxy settings, because they decide what this run can measure
 
-- [ ] **Force-spawn two or three Trek empires from the designer's own toggle.**
+- [X] **Force-spawn two or three Trek empires from the designer's own toggle.**
       This is the highest-value single setting on the page. The last run met 22
       empires and **none of them was Trek**; three hypotheses were eliminated by
       measurement and what is left cannot be answered from the container. If the
@@ -71,14 +52,26 @@ generic one:
       story. **If a force-spawned one fails to appear, that is a real defect and
       a much sharper one to chase.**
       [ufp-run-remediation.md](../planning/ufp-run-remediation.md), item 4.
-- [ ] **Pick neighbours you want graded.** Klingon, Romulan and Cardassian are
+```markdown
+#OBSERVATIONS
+- Forced spawn is only an option for player made empires
+```
+- [X] **Pick neighbours you want graded.** Klingon, Romulan and Cardassian are
       the sets with the most art behind them; a forced Klingon neighbour gets you
       a third shipset in the same run for free.
-- [ ] **Large galaxy, 600–1000 stars, 20+ AI empires.** This is a survey-led run
+```markdown
+#OBSERVATIONS
+- This was never something you can set
+```
+- **Large galaxy, 600–1000 stars, 20+ AI empires.** This is a survey-led run
       again, and every question below is downstream of how many bodies get
       surveyed.
-- [ ] **Ironman off.** You will want to reload, re-open a screen and look twice.
-- [ ] **Three or more science ships from the start**, kept fed and kept moving.
+```markdown
+#OBSERVATIONS
+- Galaxy Size 600, AI Empires 18, No Adv. AI Starts, 1 Fallen Empire
+```
+- **Ironman off.** You will want to reload, re-open a screen and look twice.
+- **Three or more science ships from the start**, kept fed and kept moving.
       Half of this checklist is unreachable otherwise.
 
 ---
@@ -87,7 +80,7 @@ generic one:
 
 Ten minutes here settles more eyes-only questions than the next two hours will.
 
-- [ ] **T'Pau's clothes.** Her row names `portrait = stg_vul_ruler`,
+- **T'Pau's clothes.** Her row names `portrait = stg_vul_ruler`,
       `texture = 0`, `clothes = 0` on a dedicated one-texture selector pointing
       at `civ_vulcan_female_clothes_02.dds`, which is present on disk. She should
       be in a **Vulcan civilian robe** — not a Starfleet uniform, not a random
@@ -96,17 +89,33 @@ Ten minutes here settles more eyes-only questions than the next two hours will.
       [decision 69](../decisions/69-ruler-clothes-dedicated-selectors.md)**: if
       she is still wrong, the dedicated selector is not being reached at all and
       the portrait clone is the thing to doubt, not an index.
-- [ ] **Then walk the clothes slider a long way** — 1, 20, 100, 300, 480, 499 —
+```markdown
+#OBSERVATIONS
+- Confirmed she is in a civilian robe
+```
+- **Then walk the clothes slider a long way** — 1, 20, 100, 300, 480, 499 —
       and say whether high indices redraw as index 1. **196 selector rows point
       at textures that exist in no source mod at all**, every one a silent
       fallback, and nobody has yet seen what that looks like from the player's
       side. [ufp-run-remediation.md](../planning/ufp-run-remediation.md), item 2.
-- [ ] **The room behind her** is `vulcan_room` — a Trek room, not a vanilla
+```markdown
+#OBSERVATIONS
+- I'm not scrolling through all these. I got to 286 with no duplicates before getting RSI.
+```
+- **The room behind her** is `vulcan_room` — a Trek room, not a vanilla
       personality room ([48](../decisions/48-room-selector-merge.md)).
-- [ ] **The flag draws**: `Vulcan.dds` from the `trek` category on the `circle`
+```markdown
+#OBSERVATIONS
+- Confirmed background is vulcan
+```
+- **The flag draws**: `Vulcan.dds` from the `trek` category on the `circle`
       background, burgundy on desert yellow
       ([49](../decisions/49-flags-city-sets.md)).
-- [ ] **The city preview, and this is the one to be precise about.** The art is
+```markdown
+#OBSERVATIONS
+- Confirmed flag is correct
+```
+- **The city preview, and this is the one to be precise about.** The art is
       **not** the suspect — every city layer in the tree sits at vanilla's
       800×400 canvas and every room at 952×340 (build of 2026-08-10). The suspect
       is **UI Overhaul Dynamic's rect**: it replaces `customize_species.gui`
@@ -115,7 +124,11 @@ Ten minutes here settles more eyes-only questions than the next two hours will.
       look small *here* and correct on the planet screen later"** — because one
       file cannot satisfy two rects, and which of the two is wrong decides the
       fix. [ufp-run-remediation.md](../planning/ufp-run-remediation.md), item 8.
-- [ ] **The ship-appearance list showing species names is not a defect** —
+```markdown
+#OBSERVATIONS
+- All pictures look correct except the following list where the city picture is scaled to small: Bajoran, Trill, Andoran, Bolian, Breen, Hologram, Xepolite, Zakdorn, Monean, Medusan.
+```
+- **The ship-appearance list showing species names is not a defect** —
       vanilla has no shipset name key either, so do not report it again. **What
       to look at is the description panel beside it.** Fourteen
       `_shipset_desc` strings were written; the Vulcan empire flies the
@@ -123,7 +136,10 @@ Ten minutes here settles more eyes-only questions than the next two hours will.
       **city-only** culture. Expect the panel to be **empty** for Vulcan, and say
       so either way — that is a one-glance answer to whether the key name is
       wrong.
-
+```markdown
+#OBSERVATIONS
+- Vulcan Description box shows vulcan_shipset_desc instead of the actual description.
+```
 ---
 
 ## The first hours — survey, because that is the point of this run
@@ -134,18 +150,26 @@ evidence.
 
 ### 40 Eridani, before you leave it
 
-- [ ] **Walk the home system once and read every body's name.** It should be
+- **Walk the home system once and read every body's name.** It should be
       **40 Eridani**, capital **Vulcan** (a desert world), with T'Khut,
       T'Rukhemai, Delta Vega, Keid, Ket-Cheleb, Kerkhov and 40 Eridani B and C
       around it — thirteen bodies in a trinary
       ([25](../decisions/25-real-home-systems.md)). **A name showing as a raw key
       or with underscores in it is the finding**, and it is the same family as
       the star-name defect below, one database over.
-- [ ] **The ship prefix reads `VSS`.**
-
+```markdown
+#OBSERVATIONS
+- Confirmed it is **40 Eridani**, capital **Vulcan** (a desert world), with T'Khut, T'Rukhemai, Delta Vega, Keid, Ket-Cheleb, Kerkhov and 40 Eridani B and C around it.
+- System is a binary star systems
+```
+- **The ship prefix reads `VSS`.**
+```markdown
+#OBSERVATIONS
+- Confirmed VSS prefixes
+```
 ### The star and nebula names
 
-- [ ] **One pass over the galaxy map, reading names.** 328 localisation keys
+- **One pass over the galaxy map, reading names.** 328 localisation keys
       landed on 2026-08-10 for names that had none, so `Arachnid_Nebula`,
       `Class_9_Nebula` and `Kullat_Nunu` should now read as **Arachnid Nebula**,
       **Class 9 Nebula** and **Kullat Nunu**. **Any remaining underscore is a
@@ -153,7 +177,10 @@ evidence.
       finding and also worth writing down — **328 display values are unread and
       no check can grade one**
       ([81](../decisions/81-random-names-are-loc-keys.md)).
-
+```markdown
+#OBSERVATIONS
+- Confirmed observable names in the galaxy view appear with no underscores.
+```
 ### The Trek anomalies — the largest ungraded surface in the project
 
 **21 categories, 27 outcome events, 24 pictures and ~3,500 words, and nothing in
@@ -260,9 +287,13 @@ non-corvette hull's stern sections attached to nothing and their guns were place
 against nothing — which is why the Federation destroyer's mounts read as plainly
 wrong.
 
-- [ ] **The corvette first, as a control.** Three separate runs have graded a
+- **The corvette first, as a control.** Three separate runs have graded a
       corvette as correct, because a corvette only ever needed `part1` and so was
       never affected. If the Vulcan corvette looks wrong, something new broke.
+```markdown
+#OBSERVATIONS
+- Confirmed corvette and gun mounts look correct
+```
 - [ ] **Then destroyer, cruiser, battleship, titan as you unlock them** — and
       **look at the stern specifically**, since that is where the missing
       sections were. What you are asking is whether the guns now sit **on the
@@ -317,6 +348,10 @@ part of what looks wrong here is a deliberate call.
       amphitheatre being cut is STNH's own art and is not a defect** — do not
       report it again. What is worth reporting is a **new** difference between
       this screen and the designer preview.
+```markdown
+#OBSERVATIONS
+- The city picture looks scaled completely wrong.
+```
 - [ ] **Build a habitat and look at it.** Six `vendor.yml` renames changed which
       entity declaration the engine keeps, and **a rename that works produces no
       log record**. The nebula half of that question was graded correct last run;

@@ -9,6 +9,7 @@
 | File | |
 |---|---|
 | [2026-08-15](2026-08-15.md) | **Phase 4, audited against disk.** Every claim decisions 55–77 make, re-measured: the content resolves and the ship-name and music figures verify exactly; three file headers cite the wrong count, the story pool's "21%" is the Federation's rate alone, and `weight` — decision 76's own headline finding — has no check behind it. **All four findings actioned the same day** ([78](../decisions/78-phase-4-count-corrections.md), [79](../decisions/79-reachability-checks.md)); its finding 1 stays open and is what the next live run is for |
+| [2026-08-16](2026-08-16.md) | **The short Vulcan run, 2026-08-22.** The cleanest log yet — 4 post-init records against 174 — and the 98-record Planetary Diversity cluster and the 19 missing-localisation records are both gone, so two 2026-08-10 fixes are confirmed in game by silence. The play window was 26 minutes, so dig sites, anomalies, story events and every hull above corvette went unreached again. Six findings: the **female** master clothes selector was never patched, six declared cultures have no city art while six city sets are named by nobody, and **7 of 14 shipset descriptions are dead keys with 23 flown cultures carrying none** |
 
 **The back catalogue is gone.** The slots `2026-08-01` through `2026-08-14` were
 cleared on 2026-08-03, before the initial commit, so git does not hold them
