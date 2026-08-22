@@ -364,6 +364,10 @@ VANILLA_FLOOR = {
 # calibration result, not a convenience filter (.docs/validation/check-design.md rule 11), so the ratio that
 # earned each entry is written beside it and the tiers left out say why.
 #
+# The stg-build column is the measurement that EARNED each verdict, taken on
+# 2026-08-07 before the prune first ran. `make clutter` prints today's figures;
+# the three PRUNE tiers now sit at zero by construction, which is the point.
+#
 #   tier                floor    stg-build    verdict
 #   gfx/event_pictures   0.3%   813 / 1,434   prune -- 190x the floor, and the
 #                                             edge is a single hop: a texture
@@ -375,8 +379,10 @@ VANILLA_FLOOR = {
 #                                             none of them in any .asset, in
 #                                             its own tree or anywhere in
 #                                             /workshop
-#   gfx/models           4.9%   634 / 11,943  REPORT -- 5.3% is vanilla's own
-#                                             leftover rate; indistinguishable
+#   gfx/models           4.9%   634 / 11,943  REPORT -- that is 5.3% against
+#                                             vanilla's own 4.9%; at that rate
+#                                             the check cannot tell our
+#                                             leftovers from Paradox's
 #   gfx/interface        1.7%    24 /  2,254  REPORT -- 1.1%, below the floor
 #   gfx/particles        1.3%    22 /    591  REPORT -- 3.7%, same order
 #   gfx/ui_overhaul_qhd    --    28 /    412  REPORT -- mod-only path, so there

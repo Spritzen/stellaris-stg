@@ -21,7 +21,7 @@ changes between launcher releases without announcement.
 | Source | Good for |
 |---|---|
 | [Mods](https://stellaris.paradoxwikis.com/Mods) | Manual mod installation, the `mod/` folder layout, `.mod` vs `descriptor.mod`. Documents the **relative** `path="mod/<foldername>/"` form for manual installs. |
-| [Modding tutorial](https://stellaris.paradoxwikis.com/Modding_tutorial) | The launcher's *Mod Tools → Create a Mod* flow and exactly what it generates: an outer `<name>.mod` carrying the path, plus an inner `descriptor.mod` with metadata only. Says the outer one holds "the full file path specification" — i.e. **absolute**, contradicting the Mods page above. This install answers **absolute, Windows-side**; decision 07. |
+| [Modding tutorial](https://stellaris.paradoxwikis.com/Modding_tutorial) | The launcher's *Mod Tools → Create a Mod* flow and exactly what it generates: an outer `<name>.mod` carrying the path, plus an inner `descriptor.mod` with metadata only. Says the outer one holds "the full file path specification" — i.e. **absolute**, contradicting the Mods page above. This install answers **absolute** — Windows-side under Proton (decision 07), and **plain native-Linux since 2026-08-02** (decision 15), which is what `tools/deploy.py` emits today. Both forms are confirmed by live runs; see "This install, verified from disk" below. |
 | [Modding](https://stellaris.fandom.com/wiki/Modding) (Fandom) | Mirror of much of the same material. Occasionally more current, occasionally more wrong. Cross-check. **Returns HTTP 402 to `WebFetch`** — use the paradoxwikis copy or search snippets. |
 
 ### The per-directory overwrite table — [Modding § common](https://stellaris.paradoxwikis.com/Modding)

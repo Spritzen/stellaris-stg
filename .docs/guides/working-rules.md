@@ -82,7 +82,8 @@ source, duplicates something we prefer — and the case is made in those terms,
    `make validate` clean the whole time. [Live runs](live-runs.md).
 5. **Never write to `/stellaris` or `/workshop`.** Read-only by design.
 6. **Run `make validate` after any script edit**, `make clutter` after any change
-   to what is harvested, and `make docs` after any change to documentation.
+   to what is harvested, `make gen-check` after touching a generator in `tools/`,
+   and `make docs` after any change to documentation.
 7. **Localisation: UTF-8 BOM, every key gets `:0`.** `make fix-bom` repairs it.
 8. **When you resolve an open question, write `.docs/decisions/NN-slug.md`** and
    update [planning/status.md](../planning/status.md) and

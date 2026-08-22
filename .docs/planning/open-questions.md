@@ -21,16 +21,30 @@ evidence for anything in this section — the standing lesson of decisions
 [08](../decisions/08-stnh-art-shadows-vanilla.md) and
 [42](../decisions/42-event-picture-geometry.md).
 
-> **Read [ufp-run-remediation.md](ufp-run-remediation.md) before working any item
-> below.** The long Federation run of 2026-08-10
-> ([its plan](../runs/ufp-long-campaign.md)) answered most of this section, and
-> three items now have a confirmed cause on disk rather than an eyes-only
+> **Read [ufp-run-remediation.md](ufp-run-remediation.md) and
+> [analysis 2026-08-16](../analysis/2026-08-16.md) before working any item
+> below.** Between them, the Federation run of 2026-08-10
+> ([its plan](../runs/ufp-long-campaign.md)) and the Vulcan run of 2026-08-22
+> ([its plan](../runs/vulcan-long-campaign.md)) answered most of this section, and
+> several items now have a confirmed cause on disk rather than an eyes-only
 > question — so the thing to do next is *grade a fix*, not re-diagnose.
 >
-> **What that run could not reach: the dig sites**, because only part of the map
-> was surveyed. Still open, still cheap, and still the one thing that needs a
-> survey fleet let loose for a while. [The 2026-08-15
-> audit](../analysis/2026-08-15.md), finding 1.
+> **Both runs ended before the long half of their plan.** The dig sites, the
+> anomalies, the story events and every hull above corvette are **unreached
+> twice** — unmeasured, not negative, and the reason a third run's first job is
+> length rather than breadth. [The 2026-08-15
+> audit](../analysis/2026-08-15.md), finding 1;
+> [analysis 2026-08-16](../analysis/2026-08-16.md), "What this run could not
+> reach".
+>
+> **The three questions the Vulcan run opened are all closed** as of 2026-08-22
+> ([decision 84](../decisions/84-shipset-descs-and-home-system-names.md)) and
+> none of them needed a live run or a content call. Two were mechanical and both
+> were **larger than the analysis recorded** — 30 shipset description keys wrong
+> rather than 7, and seven duplicate body names from three separate generator
+> bugs rather than one paste. The third, the six cultures with no city art, was
+> **not a defect at all**: `fallback` is the mechanism and vanilla's own header
+> says so. See "Confirmed on disk" below.
 
 ### The shipsets' weapons
 
@@ -45,11 +59,12 @@ thing to look for is a mount that no longer breaks the pattern of the ones besid
 it, and, on the 66% still placed from the bounding box, whether any of them reads
 as badly as the corvette's third gun did.
 
-> **Two shipsets graded, both on the corvette: Klingon and Cardassian, 2026-08-08.**
-> The user reports the mounts on the Bortas-class and then on the Hideki-class —
-> all three of the latter — well placed. Two of 27, and the corvette is the hull
-> class the original defect was found on, so these are the strongest single checks
-> available rather than a sample of the rest. **25 shipsets still ungraded.**
+> **Three shipsets graded, all on the corvette: Klingon and Cardassian
+> 2026-08-08, Vulcan 2026-08-22.** The user reports the mounts on the
+> Bortas-class, the Hideki-class — all three of the latter — and the Vulcan
+> corvette as well placed. Three of 27, and the corvette is the hull class the
+> original defect was found on, so these are the strongest single checks
+> available rather than a sample of the rest. **24 shipsets still ungraded.**
 
 > **The corvette was the only hull that could have graded well.** The
 > 2026-08-10 run reported the Federation destroyer's stern mounts as plainly
@@ -61,9 +76,14 @@ as badly as the corvette's third gun did.
 >
 > **Fixed the same day** — 230 attach points over 100 files
 > ([82](../decisions/82-hull-section-attach-points.md)) — and **nothing about it
-> is confirmed in game.** Grading the mounts above corvette is now a live
-> question rather than an unanswerable one, and it is the first thing the next
-> run should look at. [ufp-run-remediation.md](ufp-run-remediation.md), item 1.
+> is confirmed in game after two runs.** The 2026-08-22 run flew corvettes and
+> science ships only, so the eight `has no attach point` records that fired on
+> 2026-08-10 are **unmeasured, not confirmed gone**. Grading the mounts above
+> corvette is now a live question rather than an unanswerable one, and it is the
+> single most valuable unmeasured thing in the project.
+> [ufp-run-remediation.md](ufp-run-remediation.md), item 1. The check that now
+> guards the repair is [83](../decisions/83-widen-attach-points-and-two-new-checks.md);
+> a clean check only says the locators exist.
 
 ### The ruler clothes
 
@@ -77,17 +97,31 @@ all and the portrait clone is the thing to doubt, not a number.
 [Decision 69](../decisions/69-ruler-clothes-dedicated-selectors.md), which
 falsified [68](../decisions/68-ruler-clothes-index-restored.md).
 
-> **The 2026-08-10 run says the president is still wrong — but do not conclude
-> from it yet.** That run's log names nine textures the master selector cannot
-> load at all, by malformed path, and a fallback anywhere in the chain explains a
-> wrong garment without touching decision 69's model. **Fix the paths, then look
-> again.** [ufp-run-remediation.md](ufp-run-remediation.md), item 2.
+> **Answered for Vulcan, 2026-08-22: T'Pau draws in a Vulcan civilian robe.**
+> The dedicated one-texture selector is reached, which is the clean test
+> [decision 69](../decisions/69-ruler-clothes-dedicated-selectors.md) was waiting
+> for. **The president and the Terran empress are still ungraded** — different
+> empires, different selectors, and a Vulcan run says nothing about either.
 >
-> **The paths were fixed the same day**, so this is a clean question for the next
-> run — with one caveat that keeps it from being fully clean: the same sweep
-> found **196 selector rows pointing at textures that exist in no source mod at
-> all**, each of them a silent fallback. If a ruler is still wrong, check whether
-> its garment is one of the 196 before doubting the selector again.
+> **The malformed paths behind the 2026-08-10 "president is still wrong" report
+> are now all gone.** 29 rows were patched that day in the *male* master
+> selector; the **female** master was never touched and still held eleven, which
+> the Vulcan run logged three of. All eleven landed 2026-08-22 and
+> `check_selector_texture_paths` holds the tree at zero
+> ([83](../decisions/83-widen-attach-points-and-two-new-checks.md)).
+>
+> **One caveat keeps this from being fully clean**: the same sweep found **196
+> selector rows pointing at textures that exist in no source mod at all**, each
+> of them a silent fallback and each needing a content call. If a ruler is still
+> wrong, check whether its garment is one of the 196 before doubting the selector
+> again. [ufp-run-remediation.md](ufp-run-remediation.md), item 2.
+>
+> **And the clothes-slider wrap is arithmetic, not a defect.** The designer's
+> slider runs to 499; the male pool is 495 wide and the female 472, so
+> 496–499 address nothing — exactly the range the 2026-08-10 run named.
+> **Prediction the next run can falsify in a minute: on a female portrait the
+> wrap begins at ~472, on a male at ~496.**
+> [Analysis 2026-08-16](../analysis/2026-08-16.md).
 
 ### The 2026-08-08 warning triage
 
@@ -133,7 +167,10 @@ descending order of how obviously they would be wrong:
   water), so what to look for is `Stormwall` next to `Bolarus` and `Escrow` next
   to `Jaglom Shrek` — and whether the Xindi species names read as classes or
   just as species labels. **21 of 22 playable empires now carry all five core
-  tiers**, against 13.
+  tiers**, against 13 — **the gap is Caitian, which has no `titan` block**
+  (`src/common/name_lists/stg_minor_caitian.txt`, measured 2026-08-22), so a
+  Caitian titan draws from `generic` and that is the one empire where a
+  tonnage-mismatched class name is expected rather than a defect.
 - **Whether the Defiant showing at two tonnages** — destroyer and cruiser, which
   is STNH's own modelling — reads as wrong or as fine.
 - **Whether any list draws a class name plainly belonging to another tonnage**,
@@ -266,9 +303,63 @@ finding itself is in the decision.
 
 ---
 
+## Confirmed on disk — all three worked, and one was not a defect
+
+*[Decision 84](../decisions/84-shipset-descs-and-home-system-names.md), 2026-08-22.
+This section held three items each described as needing somebody to decide what
+the right answer was. **None of them did.** Two were mechanical once measured
+properly and both turned out larger than recorded; the third dissolved on
+reading vanilla's own file header. The section is kept, rather than deleted,
+because the pattern is the lesson: **each had been measured once, and each
+measurement stopped one question short of the mechanism.***
+
+- **The shipset descriptions — fixed, and it was 30 of 30 rather than 7.**
+  Seven keys named a *city-set* culture instead of a *shipset* one and 23 flown
+  cultures had no key at all, so every Walshicus set — the Federation's own
+  `starfleet_tng` and the Vulcans' `vulcan` included — drew a raw key. Seven
+  renames plus sixteen new descriptions, the new prose grounded in the hull
+  textures rather than in lore. `check_shipset_descriptions` now asks both
+  directions; vanilla's floor is **0 and 0**, while vanilla keys only 20 of its
+  52 declared cultures — **flown is the population, declared is the bound.**
+- **The 40 Eridani duplicate — fixed, and it was three bugs in six systems.**
+  Recorded as *"small, certain, one edit"*; swept across all 37 generated home
+  systems it was **seven duplicate names from three unrelated causes** — a
+  `sub_blocks` that matched at every nesting depth, a star/capital de-collision
+  rule blind to the bare `star` keyword, and STNH naming both moons of S'latas
+  alike. All three fixed in `tools/gen_home_systems.py`, because the file is
+  generated. `check_home_system_body_names` guards it: vanilla fails the
+  question **62 times in 357** initializers overall and **0 times in 9** home
+  systems, which is where the scope comes from.
+- **The six cultures with no city art — NOT A DEFECT, and no call was needed.**
+  Vanilla's own `00_graphical_culture.txt` says in its header that `fallback`
+  lets the game use another culture's asset when one is missing, and all six
+  declare `fallback = mammalian_01`. **24 of vanilla's own 52 declared cultures
+  ship no city art either** — 46%, so the premise could never have been the
+  rule. `check_graphical_culture_art` asks the invariant that does have a floor
+  — an offerable culture reaches art, its own or its fallback's — and vanilla is
+  0 of 22 with STG 0 of 41. The orphan `generic_01`–`generic_06` art is
+  `check_unreferenced`'s question and [decision 45](../decisions/45-clutter-pass.md)'s
+  standing policy, not a defect.
+
+> **What generalises, and it has now happened twice.** [Decision
+> 83](../decisions/83-widen-attach-points-and-two-new-checks.md) struck
+> [analysis 2026-08-16](../analysis/2026-08-16.md) finding 5 for the same
+> reason this strikes finding 2: **both were measurements taken without reading
+> the thing that had already measured them** — a helper in `tools/validate.py`
+> in one case, three lines of vanilla's own file header in the other. Before
+> writing a check for a finding, read vanilla's header and the check next door.
+
+**What genuinely still needs eyes** out of all this: whether the sixteen new
+shipset descriptions read as Trek, and whether the four stars whose colliding
+names were dropped now draw with their system's name the way vanilla's twelve
+unnamed ones do.
+
 ## Log-level leftovers
 
-*With their share of the 2026-08-07 run's 1,308 records.*
+*Init-window groups that are third-party or reviewed, listed with their share of
+the 2026-08-07 run's 1,308 records — the run that triaged them.
+[Analysis 2026-08-16](../analysis/2026-08-16.md) has the current per-group
+breakdown of the init window, which has not changed shape since.*
 
 - **ASB's projectile reimplementations — 213 records, the largest class left.**
   `alt_*` and `ap_*` in `gfx/projectiles/` redeclare vanilla names and the engine
@@ -312,6 +403,15 @@ finding itself is in the decision.
 - **`descriptor.mod` declares `"Total Conversion"`, `"Species"`, `"Events"`,
   `"Graphics"`.** Accurate for a vendored merge, and cosmetic since STG is never
   published. Leave it.
+- **Nine `Failed to find entity … for attachment` records every run** — five
+  Romulan bird-of-prey sections, three Klingon cores, one named `_test_`. Triaged
+  in [decision 37](../decisions/37-attach-edges-into-pruned-art.md): STNH art
+  whose consumers live in a `common/` STG does not vendor, with a twelve-line
+  rationale under `attach_target_ack` in `vendor.yml`. Stable across three runs
+  and costing nothing at runtime. **The shape worth keeping: the ack silences
+  `check_attach_targets`, not the engine** — nine records a run is its standing
+  price — **and it is scoped by *file***, so a genuinely new unresolved attach in
+  those four files would also go unreported.
 - **The prescripted-power sweep is done and clean.** `stg_minor_powers` shipped
   with 78 of its 79 empire names truncated and 16 loc values that were the loc key
   itself; all 100 are repaired

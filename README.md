@@ -104,7 +104,7 @@ wrong mount.
 ```bash
 make                 # the workflow, printed from the Makefile itself
 make sources-sync    # pin the source mods from /workshop into .source/      (~1 min)
-make vendor          # build stg-build/ from .source/ + src/                 (~2-3 min)
+make vendor          # build stg-build/ from .source/ + src/                    (~70 s)
 make validate        # does every name resolve against the merged tree?
 make link            # ONE-TIME: symlink stg-build/ into the Paradox mod folder
 ```
@@ -134,6 +134,7 @@ The game still needs a restart to reload script.
 | anything in `src/` | `make validate` |
 | `vendor.yml` — what is harvested | `make vendor && make validate && make clutter` |
 | a localisation file | `make validate` (and `make fix-bom` if it flags a BOM) |
+| a `tools/gen_*.py` or `tools/fix_*.py` | `make gen-check` — a correct generator reproduces `src/` exactly |
 | documentation, or a code comment citing it | `make docs` |
 | nothing — you just want the state | `make sources-status` |
 

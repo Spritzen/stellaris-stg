@@ -1,23 +1,60 @@
 ﻿l_english:
- # Star Trek Galaxies — shipset descriptions for the Trek graphical cultures
- # declared in src/common/graphical_culture/stg_graphical_culture.txt.
+ # Star Trek Galaxies — shipset descriptions, keyed by graphical culture.
  #
  # `<culture>_shipset_desc` is the only per-culture key vanilla defines
  # (localisation/english/biogenesis_bioships_l_english.yml). Vanilla defines no
- # display-NAME key for a shipset, so none is invented here — what the browser
- # shows as the name is an in-game observation still to be collected.
+ # display-NAME key for a shipset, so none is invented here: the browser listing
+ # species names is vanilla's own presentation, not a missing key
+ # (.docs/planning/ufp-run-remediation.md, item 7).
+ #
+ # THE POPULATION IS "FLOWN", NOT "DECLARED", and that is a calibration result
+ # rather than a convenience. Vanilla declares 52 graphical cultures and keys
+ # only 20 -- but every one of its 19 cultures named by a prescripted empire's
+ # `graphical_culture` has a key, and every one of its 20 keys names a declared
+ # culture. Both floors are exactly 0, which is what `check_shipset_descriptions`
+ # asserts here (.docs/validation/check-design.md rule 11).
+ #
+ # Until 2026-08-22 these were keyed against the CITY-SET culture names instead
+ # of the shipset ones, so seven named a culture no empire flies and could never
+ # render while 23 flown cultures had no key at all -- `starfleet_tng` and
+ # `vulcan` among them, which is how the 2026-08-22 Vulcan run came to see the
+ # raw string `vulcan_shipset_desc` on screen. Stellaris draws an unresolved key
+ # as the key text, so that IS the signature of a missing key, not of a second
+ # defect. Repaired by decision 84; the check is what keeps it repaired.
+ #
+ # Prose is grounded in the art each culture actually draws, not in lore alone:
+ # the hull textures were read off `stg-build/gfx/models/ships/<culture>/` before
+ # these were written. A `generic_NN` set is flown by many unrelated minors and
+ # so names no species; a set named for a civilisation names it, exactly as the
+ # existing Klingon and Romulan lines already did.
 
- federation_shipset_desc:0 "Starfleet's exploratory cruisers carry a crew as readily as a weapon. Saucer sections, warp nacelles and a hull built for a five-year mission rather than a five-minute engagement."
- vulcan_01_shipset_desc:0 "Ringed ring-drive hulls of Vulcan design, unhurried and unadorned. Logic dictates that a ship built well need not be built twice."
  klingon_shipset_desc:0 "Bird-of-prey wings and forward-swept disruptor booms. A Klingon vessel is a weapon with a crew compartment attached, and every line of it says so."
  romulan_shipset_desc:0 "Predatory green hulls with raptor wings, built around the singularity cores and cloaking devices the Star Empire guards jealously."
- cardassian_01_shipset_desc:0 "Angular ochre warships of the Cardassian Union, all forward spine and armoured flanks — designed to intimidate at the border as much as to fight past it."
- ferengi_01_shipset_desc:0 "Marauders and D'Kora traders, hulls shaped by profit margins. Cargo capacity first, armament second, and both negotiable."
  bajoran_01_shipset_desc:0 "Impulse-era Bajoran hulls and repurposed raiders — the militia's ships, built during the Occupation from whatever the Cardassians left behind."
  federation_32_shipset_desc:0 "Trill vessels built to Federation standards, with the long service lives a joined species expects of anything it entrusts with a symbiont."
  andorian_01_shipset_desc:0 "Imperial Guard cruisers of Andorian make, cold-running and heavily armed, their hulls ridged for the atmospheres of an ice world."
  bolian_01_shipset_desc:0 "Bolian Union transports and escorts, unglamorous and immaculately maintained — a merchant fleet with guns bolted on where the manifest allows."
  breen_01_shipset_desc:0 "Breen warships, refrigerated hull to hull, mounting the energy-dampening weapons the Confederacy has never explained to anyone."
- tholian_01_shipset_desc:0 "Crystalline Tholian hulls that run at temperatures no other species can board. Fast, fragile, and never encountered alone."
- dominion_01_shipset_desc:0 "Attack ships and battlecruisers of the Dominion, grown to a Founder's specification and crewed by Jem'Hadar who require nothing else."
- borg_01_shipset_desc:0 "Cubes, spheres and pyramids. Borg vessels are not designed so much as accreted, and repair themselves faster than they can be disassembled."
+ starfleet_tng_shipset_desc:0 "Starfleet's exploratory cruisers carry a crew as readily as a weapon. Saucer sections, warp nacelles and a hull built for a five-year mission rather than a five-minute engagement."
+ vulcan_shipset_desc:0 "Ringed ring-drive hulls of Vulcan design, unhurried and unadorned. Logic dictates that a ship built well need not be built twice."
+ cardassian_shipset_desc:0 "Angular ochre warships of the Cardassian Union, all forward spine and armoured flanks — designed to intimidate at the border as much as to fight past it."
+ ferengi_shipset_desc:0 "Marauders and D'Kora traders, hulls shaped by profit margins. Cargo capacity first, armament second, and both negotiable."
+ tholian_shipset_desc:0 "Crystalline Tholian hulls that run at temperatures no other species can board. Fast, fragile, and never encountered alone."
+ dominion_shipset_desc:0 "Attack ships and battlecruisers of the Dominion, grown to a Founder's specification and crewed by Jem'Hadar who require nothing else."
+ borg_shipset_desc:0 "Cubes, spheres and pyramids. Borg vessels are not designed so much as accreted, and repair themselves faster than they can be disassembled."
+ caitian_shipset_desc:0 "Deep-blue Caitian hulls, narrow through the waist and built around a hunting doctrine considerably older than the warp drive. Their crews describe the approach speeds as unhurried."
+ elachi_shipset_desc:0 "Lightless hulls that show nothing but a seam of acid-green where the drive runs. They are read off a sensor board long before they are seen at all."
+ krenim_shipset_desc:0 "Rust-orange plating over machinery that takes up more of the ship than the crew does. Temporal science is expensive, and a Krenim hull is built to carry the cost."
+ lukari_shipset_desc:0 "Pale hulls trimmed in iridescence, with cyan bioluminescence banked along the spine. The work of young shipwrights building beautifully, nobody yet having told them that war requires otherwise."
+ malon_shipset_desc:0 "Ochre export freighters under yellow hazard striping, hulls stained by what they carry. Every one of them is a cargo problem the quadrant has agreed not to look at too closely."
+ suliban_shipset_desc:0 "Copper-brown cell ships that dock into one another and separate again as the work requires. A Suliban formation is a single hull only for as long as it needs to be."
+ terran_nx_shipset_desc:0 "Pale NX-era plating with the Terran Empire's red flashes at the shoulder. An early hull kept in service by a power whose idea of a refit is another weapon mount."
+ tuterian_shipset_desc:0 "Slender dark hulls that give back almost no light, marked out only by thin running lines. Built narrow, and meant to be read as harmless for as long as that is useful."
+ vidiian_shipset_desc:0 "Patchwork hulls plated in whatever the last salvage yielded, seams riveted and riveted again. The fleet is maintained precisely the way its crews maintain themselves."
+ xindi_shipset_desc:0 "Olive and mustard hulls of Xindi make, built to one standard by five species who agree on very little else. The compromise is visible at every seam."
+ yridian_shipset_desc:0 "Cream and grey hulls with purple trim, bought secondhand and refitted twice since. A Yridian ship carries information as its real cargo and is built to look as though it carries nothing at all."
+ generic_01_shipset_desc:0 "Plain grey working hulls carrying nothing that is not doing a job. The commonest silhouette in the quadrant, and the least remarked upon."
+ generic_02_shipset_desc:0 "Warm hulls in ochre and plum, painted rather than plated. Colour is cheaper than armour and, on the trade lanes these fly, rather more often useful."
+ generic_05_shipset_desc:0 "Beige hulls with oxide-red panelling and a heavy, squared-off profile. Unhurried designs from powers that expect to be left alone and usually are."
+ generic_06_shipset_desc:0 "Pale hulls veined with cyan, their plating grown in cell-like plates rather than rolled in sheets. Ships from worlds where the ocean came first and the sky came second."
+ generic_07_shipset_desc:0 "Angular slate hulls threaded with live blue circuitry, wedge set upon wedge. Built for crews that are not reliably corporeal and have little use for a window."

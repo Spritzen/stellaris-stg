@@ -69,7 +69,7 @@ version of a file the author has since fixed.
 > five effects" and dropped all 41 that Real Space appends to the same path; Real
 > Space's gas giant rings drew with no material and `make validate` was clean
 > throughout. `check_src_source_regression` now asks that question over every
-> such path — 182 on the build of 2026-08-10, read off the manifest's
+> such path — 182 on the build of 2026-08-22, read off the manifest's
 > `overwrites`. [Decision 34](../decisions/34-src-shadows-drop-source-declarations.md).
 
 Two further levers exist for what neither can do:
@@ -105,16 +105,22 @@ harvest change and this section has been stale more than once.
 [`.docs/provenance.md`](../provenance.md) is the generated report;
 `.vendor-manifest.json` has the per-source split.
 
-*(Read off the build of 2026-08-10. GiB, as `make vendor` prints.)*
+*(Read off the build of 2026-08-22. GiB, as `make vendor` prints.)*
 
 | | |
 |---|---|
-| Gameplay/UI tier — 26 mods | 4.7 GB, 8,026 files |
-| STNH — art paths only, ship tree pruned per [decision 18](../decisions/18-walshicus-shipsets-replace-stnh-hulls.md) | 7.0 GB, 10,929 files |
-| Walshicus' 22 Trek shipsets | 2.5 GB, 3,092 files |
+| Gameplay/UI tier — [26 harvest positions](harvest-order.md), 25 with surviving files | 4.7 GiB, 8,026 files |
+| STNH — art paths only, ship tree pruned per [decision 18](../decisions/18-walshicus-shipsets-replace-stnh-hulls.md) | 7.0 GiB, 10,929 files |
+| Walshicus' 22 Trek shipsets | 2.5 GiB, 3,092 files |
 | `src/` — hand-written | 5.0 MB, 359 files |
-| **Built mod, total** | **14.3 GB**, 22,406 files, 49 sources + `src/` |
+| **Built mod, total** | **14.3 GiB**, 22,406 files, 49 sources + `src/` |
 | `.source/` — 51 mods: the 49 harvested plus Kammarheit and Apocryphos | 22 GB apparent, **~0 real** (reflinked; [decision 09](../decisions/09-source-snapshot.md)) |
+
+*(The gameplay/UI tier holds 26 harvest positions but only 25 leave a file
+behind: URP harvests one file and `src/` shadows it —
+[harvest order](harvest-order.md#why-the-universal-resource-patch-is-last-not-first).
+Re-derive the whole table by counting `generated[*].id` in
+`.vendor-manifest.json`, which is where these figures came from.)*
 
 *(Ariphaos is subscribed but was never snapshotted — [decision 02](../decisions/02-drop-ariphaos.md)
 predates `.source/`. It is the one mod in `/workshop` with no copy here.)*
@@ -126,9 +132,12 @@ explicitly. Two things that *do* follow from the size:
 - **Git tracks the inputs, never the output.** The generated tree and `.source/`
   are ignored; `sources.lock.yml` records which revision of each source they were
   built from. Full list: [repo layout](../reference/repo-layout.md#what-is-generated-and-what-is-not).
-- **Game load time is ~53 s**, of which almost all is `init application`, against
-  a 40 s native-vanilla floor. Not painful enough to act on, and the obvious lever
-  — the ship-model prune — has already been pulled.
+- **Game load time is 49–55 s**, of which almost all is `init application`,
+  against a 40 s native-vanilla floor — 49.4 s on 2026-08-10 and 55.4 s on
+  2026-08-22, on the same content and the same runtime, so treat the spread as
+  noise until a third sample says otherwise. Not painful enough to act on, and
+  the obvious lever — the ship-model prune — has already been pulled. Every run's
+  figure is `init application` in `/paradox/stellaris/logs/time.log`.
 
 ## Line endings
 

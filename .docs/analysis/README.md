@@ -8,16 +8,17 @@
 
 | File | |
 |---|---|
-| [2026-08-15](2026-08-15.md) | **Phase 4, audited against disk.** Every claim decisions 55–77 make, re-measured: the content resolves and the ship-name and music figures verify exactly; three file headers cite the wrong count, the story pool's "21%" is the Federation's rate alone, and `weight` — decision 76's own headline finding — has no check behind it. **All four findings actioned the same day** ([78](../decisions/78-phase-4-count-corrections.md), [79](../decisions/79-reachability-checks.md)); its finding 1 stays open and is what the next live run is for |
-| [2026-08-16](2026-08-16.md) | **The short Vulcan run, 2026-08-22.** The cleanest log yet — 4 post-init records against 174 — and the 98-record Planetary Diversity cluster and the 19 missing-localisation records are both gone, so two 2026-08-10 fixes are confirmed in game by silence. The play window was 26 minutes, so dig sites, anomalies, story events and every hull above corvette went unreached again. Six findings: the **female** master clothes selector was never patched, six declared cultures have no city art while six city sets are named by nobody, and **7 of 14 shipset descriptions are dead keys with 23 flown cultures carrying none** |
+| [2026-08-15](2026-08-15.md) | **Phase 4, audited against disk.** Every claim decisions 55–77 make, re-measured: the content resolves and the ship-name and music figures verify exactly; three file headers cite the wrong count, the story pool's "21%" is the Federation's rate alone, and `weight` — decision 76's own headline finding — has no check behind it. **All four findings actioned the same day** ([78](../decisions/78-phase-4-count-corrections.md), [79](../decisions/79-reachability-checks.md)); **its finding 1 is still open** — the two runs since have both ended before reaching any of decisions 74–77 |
+| [2026-08-16](2026-08-16.md) | **The short Vulcan run, 2026-08-22.** The cleanest log yet — 4 post-init records against 174 — and the 98-record Planetary Diversity cluster and the 19 missing-localisation records are both gone, so two 2026-08-10 fixes are confirmed in game by silence. The play window was 26 minutes, so dig sites, anomalies, story events and every hull above corvette went unreached again. Six findings and **all six are now closed**, none by a live run. Finding 1 — the **female** master clothes selector, never patched — landed with the check that holds it ([83](../decisions/83-widen-attach-points-and-two-new-checks.md)). Findings 3 and 4 were **both larger than recorded**: the shipset descriptions were 30 keys wrong rather than 7, and the 40 Eridani duplicate was seven names in six systems from three generator bugs rather than one paste. Finding 2 — six declared cultures with no city art — was **not a defect**, because `fallback` is the mechanism and vanilla's own header says so ([84](../decisions/84-shipset-descs-and-home-system-names.md)). Findings 5 and 6 were **struck on measurement** and the file records why. **Three of the six dissolved or grew on re-measurement, which is the thing to expect of a finding taken once** |
 
 **The back catalogue is gone.** The slots `2026-08-01` through `2026-08-14` were
 cleared on 2026-08-03, before the initial commit, so git does not hold them
 either. Analyses are now written only when asked for, one file per live run.
 
-**The file above is the exception that proves the convention**: it is a
-container-side audit, not a reading of `error.log`, and it says so in its own
-first paragraph. Everything else here should be a live run.
+**[2026-08-15](2026-08-15.md) is the exception that proves the convention**: it
+is a container-side audit, not a reading of `error.log`, and it says so in its
+own first paragraph. Everything else here should be a live run, as
+[2026-08-16](2026-08-16.md) is.
 
 What survived the clearing is in [`../planning/status.md`](../planning/status.md)
 and [`../guides/live-runs.md`](../guides/live-runs.md): the current baseline, the

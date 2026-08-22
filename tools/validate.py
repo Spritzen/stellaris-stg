@@ -2340,7 +2340,10 @@ def check_key_conflicts() -> int:
                 # WHICH file wins is a property of the directory, not a constant.
                 # This said "last alphabetically" everywhere until decision 29,
                 # which is right for LIOS and exactly backwards for the fourteen
-                # FIOS directories -- four of which we vendor into.
+                # FIOS directories. TEN of the fourteen have files in the built
+                # tree and SEVEN are fed by more than one source (measured
+                # 2026-08-22; decision 29 recorded four, before Phase 2 and
+                # Phase 4 added to events/ and solar_system_initializers/).
                 #
                 # Vanilla's own file is in the sort too. It is excluded from
                 # `mods` because it is not a source, but it still competes, and
@@ -4444,8 +4447,11 @@ def check_music_declarations() -> int:
     # the Galaxy"` beside it. A name with no key is drawn verbatim and logs
     # NOTHING, because a name that resolves to itself still resolves: the same
     # silence decision 47 found in the prescripted loc, in a different database.
-    # 16 of the built tree's 22 entries listed as `newhorizonssong1`,
-    # `maintheme7` and `stg_ufp_anthem` through every live run.
+    # Decision 61 measured it: 16 of the playlist's 22 entries THEN listed as
+    # `newhorizonssong1`, `maintheme7` and `stg_ufp_anthem` through every live
+    # run. Both halves of that figure have since moved -- decision 65 deduped
+    # the rotation to 27 entries (17 ours + 10 vanilla's) and every one is
+    # keyed. Read the live count off this check's own summary line, not here.
     #
     # A NAME CONTAINING A SPACE IS EXEMPT, and that is not a loophole. Extended
     # Soundtrack writes `name = "Battle For Supremacy"` -- the title itself as
@@ -5415,6 +5421,258 @@ def _pdx_blocks(text: str):
         yield m.group(1), m.end(), i - 1
 
 
+# ── The graphical-culture family ─────────────────────────────────────────────
+#
+# Three questions share one database and are kept together for that reason:
+# which cultures an empire can fly, whether each has art to draw, and whether
+# each has prose to show. `check_room_references` asks the CITY half of the same
+# database (its questions 5 and 6); these ask the ship half.
+
+def _culture_blocks(root: Path) -> dict[str, str]:
+    """Every `common/graphical_culture/` declaration under `root`, keyed by name."""
+    out: dict[str, str] = {}
+    d = root / "common/graphical_culture"
+    if not d.is_dir():
+        return out
+    for f in sorted(d.glob("*.txt")):
+        for k, b in _top_level_blocks(_strip_comments(_read(f))):
+            out[k] = b
+    return out
+
+
+def _city_set_keys(*roots: Path) -> set[str]:
+    """Culture names with a first city layer on disk, across `roots`."""
+    out = set()
+    for r in roots:
+        d = r / "gfx/portraits/city_sets"
+        if d.is_dir():
+            out |= {p.name[:-len("_city_l01.dds")] for p in d.glob("*_city_l01.dds")}
+    return out
+
+
+def _flown_cultures() -> dict[str, list[str]]:
+    """Ship `graphical_culture` -> the prescripted empires flying it.
+
+    `city_graphical_culture` is a DIFFERENT field that ends in the same word, so
+    it must be excluded by lookbehind rather than by a substring test -- reading
+    them as one turns 30 cultures into 39 and puts `humanoid_01` at the top of
+    the list, which is the city answer to a ship question.
+    """
+    out: dict[str, list[str]] = {}
+    d = REPO / "src/prescripted_countries"
+    if not d.is_dir():
+        return out
+    for f in sorted(d.rglob("*.txt")):
+        text = _strip_comments(_read(f))
+        for key, body in _top_level_blocks(text):
+            m = re.search(r'(?<!city_)graphical_culture\s*=\s*"?([A-Za-z_0-9]+)', body)
+            if m:
+                out.setdefault(m.group(1), []).append(key)
+    return out
+
+
+def check_graphical_culture_art() -> int:
+    """An offerable graphical culture whose city art does not resolve, fallback included.
+
+    THE PREMISE THIS CHECK WAS WRITTEN TO TEST WAS FALSE, and recording that is
+    most of its value. Analysis 2026-08-16 finding 2 read six STG cultures with
+    no `<key>_city_l01.dds` -- bajoran_01, federation_32, andorian_01, bolian_01,
+    breen_01, generic_07 -- as six styles the designer offers with nothing to
+    draw, and asked for a content call: point them at an orphan city set, or
+    accept a blank. Neither is needed.
+
+    VANILLA SETTLES IT IN ITS OWN FILE HEADER: "Setting fallback will allow the
+    game to try and use another culture if the asset is missing." Every one of
+    those six declares `fallback = mammalian_01`, and mammalian_01 ships city
+    art. So the art resolves; it is simply not their own.
+
+    THE NUMBERS THAT MAKE THAT MORE THAN AN ASSERTION. 24 of vanilla's 52
+    declared cultures have no city art of their own -- 46%, so "declared implies
+    art" cannot be the rule or vanilla would be broken in 24 places. Narrowing
+    to the cultures actually offered (those NOT carrying
+    `randomized = { always = no }`, which is how vanilla parks a pirate or a
+    guardian culture) leaves 22, of which 2 still have no art: mindwarden_01 and
+    nemesis_01, and both declare a fallback. Follow the fallback chain and
+    vanilla's count is 0 of 22. STG's is 0 of 41. THAT is the invariant with a
+    floor, and it is the one asked here (rule 11).
+
+    STG DECLARES NO `randomized = { always = no }` AT ALL, so all 41 of its
+    cultures are in scope -- a stricter population than vanilla's 22, and it
+    still passes.
+
+    The chain is walked with a `seen` set because a fallback cycle would
+    otherwise hang the check rather than report anything.
+    """
+    cultures = _culture_blocks(BUILD)
+    if not cultures:
+        return 0
+    art = _city_set_keys(BUILD, GAME_DIR)
+
+    broken = {}
+    n = 0
+    for name, body in cultures.items():
+        if re.search(r"randomized\s*=\s*\{[^}]*always\s*=\s*no", body):
+            continue          # parked, never offered -- vanilla's pirates and guardians
+        n += 1
+        seen, cur, chain = set(), name, []
+        while cur and cur not in seen:
+            if cur in art:
+                break
+            seen.add(cur)
+            chain.append(cur)
+            m = re.search(r"\bfallback\s*=\s*(\w+)", cultures.get(cur, ""))
+            cur = m.group(1) if m else None
+        else:
+            cur = None
+        if not cur:
+            broken[name] = " → ".join(chain)
+
+    if broken:
+        head = "; ".join(f"{k} ({v})" for k, v in sorted(broken.items())[:4])
+        warnings.append(
+            f"common/graphical_culture: {len(broken)} of {n} offerable culture(s) "
+            f"have no city art and no fallback chain that reaches any — {head}"
+            f"{' …' if len(broken) > 4 else ''}. The empire designer offers the "
+            f"style and the planet surface has nothing to draw. Vanilla's floor "
+            f"is 0 of 22. Either ship `<key>_city_l01.dds` or declare a "
+            f"`fallback` that resolves. "
+            f"See .docs/decisions/84-shipset-descs-and-home-system-names.md.")
+    return n
+
+
+def check_shipset_descriptions() -> int:
+    """A flown graphical culture with no `_shipset_desc`, and a key naming no culture.
+
+    TWO DIRECTIONS, AND VANILLA'S FLOOR IS EXACTLY 0 IN BOTH. Vanilla declares
+    52 graphical cultures and writes only 20 `<culture>_shipset_desc` keys, so
+    "every declared culture is described" is emphatically not the rule -- but
+    every one of the 19 cultures a vanilla prescripted empire actually FLIES has
+    a key, and every one of its 20 keys names a culture that is declared. The
+    flown set is the population; the declared set is the sanity bound.
+
+    WHY IT MATTERS MORE THAN A MISSING TOOLTIP. Stellaris renders an unresolved
+    localisation key as THE RAW KEY TEXT, not as blank space, so a missing key
+    puts the literal string `vulcan_shipset_desc` in the shipset browser. That
+    is what the 2026-08-22 Vulcan run reported, and the run plan had predicted
+    an empty panel -- worth remembering, because "the box shows the key" reads
+    like a different defect and is the normal signature of this one.
+
+    WHAT IT CAUGHT. 7 of STG's 14 keys named a CITY-set culture rather than a
+    shipset one (`vulcan_01` where the Vulcans fly `vulcan`, `federation` where
+    the Federation flies `starfleet_tng`) and could never render, while 23 flown
+    cultures had no key at all -- 30 of 30 wrong in one direction or the other,
+    from prose that was written and good. A rename plus sixteen new descriptions
+    closed it; this check is what keeps a 31st culture from shipping mute.
+    See .docs/decisions/84-shipset-descs-and-home-system-names.md.
+    """
+    flown = _flown_cultures()
+    declared = set(_culture_blocks(BUILD))
+    if not flown or not declared:
+        return 0
+
+    keys = set()
+    d = BUILD / "localisation/english"
+    if d.is_dir():
+        for f in sorted(d.glob("*.yml")):
+            keys |= {m.group(1) for m in
+                     re.finditer(r"^\s*([a-z_0-9]+)_shipset_desc\s*:", _read(f), re.M)}
+
+    missing = sorted(set(flown) - keys)
+    if missing:
+        head = ", ".join(f"{c} ({len(flown[c])} empire(s))" for c in missing[:4])
+        warnings.append(
+            f"localisation: {len(missing)} of {len(flown)} flown graphical "
+            f"culture(s) have no `<culture>_shipset_desc` — {head}"
+            f"{' …' if len(missing) > 4 else ''}. Stellaris draws an unresolved "
+            f"key as the key text, so the shipset browser shows the raw string. "
+            f"Vanilla keys all 19 of its own flown cultures. "
+            f"See .docs/decisions/84-shipset-descs-and-home-system-names.md.")
+
+    orphan = sorted(keys - declared)
+    if orphan:
+        warnings.append(
+            f"localisation: {len(orphan)} `_shipset_desc` key(s) name a culture "
+            f"no `common/graphical_culture/` entry declares — "
+            f"{', '.join(orphan[:6])}{' …' if len(orphan) > 6 else ''}. The prose "
+            f"can never render. Vanilla writes 20 such keys and every one names "
+            f"a declared culture. "
+            f"See .docs/decisions/84-shipset-descs-and-home-system-names.md.")
+    return len(flown)
+
+
+def check_home_system_body_names() -> int:
+    """Two bodies in one home system carrying the same name.
+
+    SCOPE IS `usage = custom_empire`, AND THAT IS A CALIBRATION RESULT. Asked of
+    every vanilla initializer the question fails 62 times in 357 -- 17%, because
+    vanilla repeats a name deliberately for identical decorative objects: four
+    `NAME_Ring_Section`s in a shattered ring, three `NAME_Mining_Corps`. Asked of
+    the nine initializers a prescripted empire actually starts in, vanilla's
+    count is 0. A home system is hand-authored and every body in it is meant to
+    be a place, so a repeat there is a paste, not a pattern (rule 11).
+
+    ONLY THE BLOCK'S OWN NAME COUNTS. An early version of this counted the
+    initializer's top-level `name` too and reported Sol against itself: vanilla
+    names the system NAME_Sol and its primary star NAME_Sol, which is the
+    convention rather than a collision. Compare bodies with bodies.
+
+    WHAT IT CAUGHT -- three separate causes behind one symptom, which is why the
+    check is worth more than the three fixes:
+
+      * `gen_home_systems.sub_blocks` matched at every nesting depth while its
+        docstring promised immediate children, so the moon of a nested planet
+        was emitted under that planet AND under its grandparent star. Two
+        systems ended up with two "Kerkhov's Moon".
+      * the star/capital de-collision rule only recognised a `pc_<x>_star`
+        class, and the generator's commonest star is the bare `star` keyword, so
+        Qo'noS, Cait, Romulus and Haakon each drew their capital's name twice.
+      * STNH's own file names both moons of S'latas "S'latas a".
+
+    Analysis 2026-08-16 finding 4 saw one of the six and read it as a one-line
+    content fix. It was three bugs.
+    See .docs/decisions/84-shipset-descs-and-home-system-names.md.
+    """
+    d = REPO / "src/common/solar_system_initializers"
+    if not d.is_dir():
+        return 0
+
+    n = 0
+    bad: dict[str, dict[str, int]] = {}
+    for f in sorted(d.glob("*.txt")):
+        for key, body in _top_level_blocks(_strip_comments(_read(f))):
+            if not re.search(r"\busage\s*=\s*custom_empire\b", body):
+                continue
+            n += 1
+            names: list[str] = []
+            for m in re.finditer(r"\b(?:planet|moon)\s*=\s*\{", body):
+                i, depth = m.end(), 1
+                while i < len(body) and depth:
+                    depth += (body[i] == "{") - (body[i] == "}")
+                    i += 1
+                inner = body[m.end():i - 1]
+                # The block's OWN name: everything before its first child block.
+                head = re.split(r"\b(?:planet|moon)\s*=\s*\{", inner, maxsplit=1)[0]
+                nm = re.search(r'\bname\s*=\s*"([^"]+)"', head)
+                if nm:
+                    names.append(nm.group(1))
+            dup = {k: v for k, v in collections.Counter(names).items() if v > 1}
+            if dup:
+                bad[key] = dup
+
+    if bad:
+        head = "; ".join(f"{k}: {', '.join(sorted(v))}"
+                         for k, v in sorted(bad.items())[:3])
+        warnings.append(
+            f"src/common/solar_system_initializers: {len(bad)} of {n} home "
+            f"system(s) name two bodies the same — {head}"
+            f"{' …' if len(bad) > 3 else ''}. Both draw on one system map with "
+            f"one label. Vanilla's own nine `usage = custom_empire` "
+            f"initializers do this 0 times. These files are GENERATED, so the "
+            f"fix belongs in tools/gen_home_systems.py, not here. "
+            f"See .docs/decisions/84-shipset-descs-and-home-system-names.md.")
+    return n
+
+
 def check_unreferenced() -> tuple[int, int]:
     """The dual of every other check here: is this FILE referenced by anything?
 
@@ -5603,6 +5861,9 @@ def main() -> int:
     scl_n = check_species_class_loc()
     app_n = check_prescripted_appearance()
     room_n = check_room_references()
+    gca_n = check_graphical_culture_art()
+    sdesc_n = check_shipset_descriptions()
+    hsbn_n = check_home_system_body_names()
     mus_n = check_music_declarations()
     ano_n = check_anomalies()
     arc_n = check_archaeology()
@@ -5644,6 +5905,9 @@ def main() -> int:
           f"{scl_n} species class(es) for localisation, "
           f"{app_n} for ruler appearance indices, "
           f"{room_n} for the room and city set they ask for, "
+          f"{gca_n} offerable graphical culture(s) for city art or a fallback that reaches it, "
+          f"{sdesc_n} flown culture(s) for a shipset description, "
+          f"{hsbn_n} home system(s) for two bodies sharing a name, "
           f"{mus_n} music track(s) for a declaration that plays them, "
           f"{ano_n} anomaly categor(ies) for their event, picture and loc, "
           f"{arc_n} archaeological site(s) for their stages, pictures, "

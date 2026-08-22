@@ -16,7 +16,7 @@ confirmed against disk and a mechanical fix; Tier 2 was a real defect still
 owing one investigation; Tier 3 might not have been a defect at all and needed
 measuring first.
 
-## Where every item stands, 2026-08-10
+## Where every item stands, as of 2026-08-22
 
 | | Item | |
 |---|---|---|
@@ -24,16 +24,24 @@ measuring first.
 | 2 | Malformed portrait paths | **Fixed** — 29 patched, then 11 more in the female master on 2026-08-22 ([83](../decisions/83-widen-attach-points-and-two-new-checks.md)); **196 dangling textures found beside them, left** |
 | 3 | Star and nebula names unlocalised | **Fixed** — 328 keys, one per quoted entry ([81](../decisions/81-random-names-are-loc-keys.md)) |
 | 4 | No Trek empires met | **Narrowed, open** — three causes eliminated; needs a force-spawn on the next run |
-| 5 | Planetary Diversity event scope | **Fixed** — 6 patches; ~98 of the log's 174 post-init records |
+| 5 | Planetary Diversity event scope | **Fixed and confirmed in game** — 6 patches; 98 records on 2026-08-10, **0** on 2026-08-22 |
 | 6 | ~70 music tracks | **Not a defect** — 55 declarations, 27 rotation; the run plan's "22" was stale |
-| 7 | Shipset dropdown lists species | **Not a defect** — vanilla has no shipset name key either; the *descriptions* are missing |
-| 8 | City art 25% small in the designer | **Not the art** — every file is at canvas; UI Overhaul's rect is the suspect |
+| 7 | Shipset dropdown lists species | **Not a defect** — vanilla has no shipset name key either. The *descriptions* half was a real defect and is **fixed**: 30 keys, [84](../decisions/84-shipset-descs-and-home-system-names.md) |
+| 8 | City art 25% small in the designer | **Not the art, and not the declarations either** — every file is at canvas, and every declared culture reaches art through its `fallback` ([84](../decisions/84-shipset-descs-and-home-system-names.md)). **The rect is all that is left, and it needs one screenshot comparison** |
 
 **Five of the eight are closed, three of those by measurement rather than by a
 change.** What is genuinely still open is item 4, item 2's 196, and item 8's
 rect — plus everything in Tier 4, which only a live run can reach.
 
-`make vendor`, `make validate` and `make docs` are clean throughout.
+> **The 2026-08-22 Vulcan run moved three of these and this file is annotated in
+> place rather than rewritten.** Item 5 is now **confirmed in game by silence**;
+> item 2 turned out to have been only half done and the other half landed; item 7's
+> measurement was wrong when it was written. Item 8 is narrowed further by that
+> run's finding 2. Each note below says so where it belongs.
+> [Analysis 2026-08-16](../analysis/2026-08-16.md).
+
+`make vendor`, `make validate`, `make docs` and `make gen-check` are clean
+throughout.
 
 ---
 
@@ -364,6 +372,16 @@ and excluded.)*
 > is the whole story; if a force-spawned one *fails to appear*, that is a real
 > defect and a much sharper one to chase. This belongs in the next run plan as
 > an instruction, not in the repo as a change.
+>
+> **2026-08-22: the force-spawn experiment could not be run — and it is not
+> needed.** The Vulcan run reports the toggle is offered only for player-made
+> empires, which the container cannot verify. But **`spawn_enabled = always` sits
+> on exactly one of the 101 empires — the United Federation of Planets** — so it
+> is already declared to spawn in every galaxy, and the whole question reduces to
+> one glance at a contacts or empire list: **is the Federation in the galaxy?**
+> If it is, `always` works and this is pool weighting among the other 100. If it
+> is not, the defect is much deeper and worth a decision of its own.
+> [Analysis 2026-08-16](../analysis/2026-08-16.md).
 
 ### 5. Planetary Diversity's infester events fire into the wrong scope
 
@@ -444,14 +462,36 @@ defaulted to does look correctly TNG era ships."*
 > `_shipset_desc`** entries and no names at all. Vanilla's list reads
 > "Mammalian", "Avian", "Reptilian" because its shipsets are named after the
 > species classes they belong to — so a list of species names *is* the vanilla
-> presentation, and STG's 50 graphical cultures inherit it. My Tier 3 framing of
+> presentation, and STG's graphical cultures inherit it. My Tier 3 framing of
 > this as decision 61's family was wrong: there is no missing key, because there
 > is no key.
 >
-> **What is genuinely absent is the description.** 0 of STG's 50 cultures have a
-> `_shipset_desc` against vanilla's 20 for its own, which is why the panel beside
-> the list is empty. That is content to write, not a bug to fix, and it is the
-> only actionable thing here.
+> **Corrected 2026-08-22 — the second half of this note was wrong twice over,
+> and both halves were checkable when it was written.** It said *"0 of STG's 50
+> cultures have a `_shipset_desc`"*. The merged tree declares **41** graphical
+> cultures, not 50, and **14** `_shipset_desc` keys have shipped since the
+> initial commit, in
+> [`src/localisation/english/stg_shipsets_l_english.yml`](../../src/localisation/english/stg_shipsets_l_english.yml).
+> Re-measure both:
+>
+> ```bash
+> grep -hE '^[a-zA-Z_0-9]+\s*=\s*\{' stg-build/common/graphical_culture/*.txt | sed 's/\s*=.*//' | sort -u | wc -l
+> grep -rho '[a-z_0-9]*_shipset_desc' stg-build/localisation/english/ | sort -u | wc -l
+> ```
+>
+> **The real defect is worse than "the panel is empty", and the Vulcan run found
+> it in one glance.** Stellaris renders an unresolved key as **the raw key
+> text**, so the panel shows `vulcan_shipset_desc` rather than nothing. The prose
+> was written against the *city-set* culture names instead of the *shipset* ones:
+> **7 of the 14 keys name a culture no empire flies** and can never render, and
+> **23 cultures that a prescripted empire actually flies have no key at all** —
+> `starfleet_tng` and `vulcan` among them. Every Walshicus set shows a raw key.
+> **Closed 2026-08-22, and it was 30 of 30 rather than 7** — seven renames onto
+> the culture each description was actually written about, plus sixteen new
+> descriptions grounded in the hull textures. `check_shipset_descriptions` holds
+> both directions at vanilla's floor of 0 and 0.
+> [Analysis 2026-08-16](../analysis/2026-08-16.md), finding 3;
+> [decision 84](../decisions/84-shipset-descs-and-home-system-names.md).
 
 ### 8. City art is undersized in the designer
 
@@ -481,6 +521,27 @@ to small, but surely this can be measured correctly"*, and on the planet screen,
 > satisfy two rects**, so the fix is UI Overhaul's rect or the designer's scaling
 > — not the art. Establish the rect from that `.gui` before touching a single
 > `.dds`.
+>
+> **Narrowed again 2026-08-22, and the rect may not be the whole story.** Asked
+> to be precise, the Vulcan run named exactly ten species whose preview was
+> "scaled to small" — and those ten are **exactly the ten graphical cultures
+> `src/common/graphical_culture/stg_graphical_culture.txt` declares**, each
+> labelled by the last species class that names it. Six of the ten have **zero**
+> `<key>_city_l*.dds` in the tree; the other four have art no empire names. So
+> at least part of what that run was looking at is a declared style with nothing
+> behind it.
+>
+> **That half is now struck, and it puts the rect back as the only suspect.**
+> A culture with no city art of its own draws its `fallback`, which vanilla
+> states in the header of that same file; all six declare one that reaches art,
+> and **24 of vanilla's own 52 declared cultures ship no city art either**.
+> So none of the ten is a style with nothing behind it, and there is no content
+> call here after all ([decision 84](../decisions/84-shipset-descs-and-home-system-names.md);
+> `check_graphical_culture_art` now asks it). **The rect question is still
+> unanswered**, because the comparison item 8 asked for — the designer preview
+> and the planet screen for the *same* empire, side by side — has now gone
+> unmade twice. **It is the whole of item 8.**
+> [Analysis 2026-08-16](../analysis/2026-08-16.md), finding 2.
 
 **On the picture-bank question the run asked** — *"have we correctly identified
 which pictures are for the city screen and which go in the empire designer

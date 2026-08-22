@@ -221,9 +221,13 @@ def check_nav_cards() -> int:
     return n
 
 
-# A dated status marker, in every form the 70 existing decisions use. The two
-# older ones are accepted rather than rewritten: a decision records what was
-# true when it was made, so retrofitting its head is editing a record.
+# A dated status marker, in every form the existing decisions use. FIVE of them
+# -- 24, 25, 26, 27 and 29 -- write it as an italic `*Decided ...*` paragraph
+# rather than a bold `**Status:**` line, and are accepted rather than rewritten:
+# a decision records what was true when it was made, so retrofitting its head is
+# editing a record. See .docs/style-guide.md section 7. Re-measure the split
+# rather than trusting this comment -- the count moves whenever a decision lands:
+#   grep -LE '^\*\*(Status|Decided|Resolved)' .docs/decisions/[0-9]*.md
 DECISION_STATUS = re.compile(
     r"^\s*(?:\*\*(?:Status|Decided|Resolved)\b|\*(?:Decided|Originally|Resolved)\b)",
     re.M)

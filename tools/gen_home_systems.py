@@ -91,6 +91,20 @@ ALIASES = {
     "stg_dominion": "founders_homeworld",
 }
 
+# A NAME STNH ITSELF DUPLICATES. Not a conversion bug -- their own file gives
+# both moons of the gas giant S'latas the name "S'latas a", where the rest of
+# their Romulan system uses the letter suffix properly. Decision 12 says fix a
+# source's errors rather than drop the source, and their own convention says
+# what the fix is, so the second moon becomes "S'latas b".
+#
+# Keyed by STG empire -> name -> the names its occurrences take IN ORDER. Keep
+# this table small: it is for a defect in the source, not for a disagreement of
+# taste, and `check_home_system_body_names` will report anything new that
+# belongs here.
+SOURCE_NAME_FIXES = {
+    "stg_romulan_star_empire": {"S'latas a": ["S'latas a", "S'latas b"]},
+}
+
 # STNH star classes that are STNH's own. 40 Eridani is a K dwarf, a white dwarf
 # and a red dwarf, so vanilla's sc_trinary_k_m_d is not an approximation -- it
 # is the same three stars.
@@ -328,10 +342,24 @@ def top_blocks(text: str) -> dict[str, str]:
 
 
 def sub_blocks(body: str, keyword: str) -> list[str]:
-    """Immediate `keyword = { … }` children of `body`, brace-matched."""
+    """Immediate `keyword = { … }` children of `body`, brace-matched.
+
+    IMMEDIATE is the whole point and it used not to be true: the `finditer`
+    below scans the entire body, so before the `depth` guard this returned
+    matches at EVERY nesting level while claiming in this docstring to return
+    one. STNH nests a `planet` inside a `planet` -- Kerkhov is a gas giant
+    orbiting the star 40 Eridani C, not the system primary -- and the moon of
+    that nested planet was therefore returned as a moon of the STAR as well as
+    of its own parent. Both got emitted, so two different bodies in 40 Eridani
+    came out named "Kerkhov's Moon". See `planets_flattened` for the other half
+    of the repair, and .docs/decisions/84-shipset-descs-and-home-system-names.md.
+    """
     out = []
     for m in re.finditer(rf"\b{keyword}\s*=\s*\{{", body):
         i = m.end() - 1
+        # How deep is this match? Only depth 0 is an immediate child.
+        if body.count("{", 0, i) - body.count("}", 0, i) != 0:
+            continue
         depth = 0
         j = i
         while j < len(body):
@@ -343,6 +371,24 @@ def sub_blocks(body: str, keyword: str) -> list[str]:
                     break
             j += 1
         out.append(body[i + 1:j])
+    return out
+
+
+def planets_flattened(body: str) -> list[str]:
+    """Every `planet` block under `body`, promoted to system level.
+
+    STNH sometimes writes a planet as a child of another planet. Stellaris'
+    own initializers never do -- a satellite is a `moon` -- and `orbit_distance`
+    is relative to whatever the body orbits, so promoting a nested planet to a
+    sibling keeps the geometry and drops a nesting the engine has no use for.
+    That promotion is what this generator has always done; it just used to fall
+    out of `sub_blocks` scanning at every depth, which cost a duplicated moon.
+    Doing it explicitly keeps the promotion and loses the duplicate.
+    """
+    out = []
+    for pl in sub_blocks(body, "planet"):
+        out.append(pl)
+        out.extend(planets_flattened(pl))
     return out
 
 
@@ -643,7 +689,7 @@ def convert(stg_key: str, stnh_key: str, body: str, emp: dict,
             emit(mn, "moon", indent + "\t")
         out.append(f"{indent}}}")
 
-    for pl in sub_blocks(body, "planet"):
+    for pl in planets_flattened(body):
         emit(pl, "planet", "\t")
 
     out.append("}")
@@ -655,10 +701,44 @@ def convert(stg_key: str, stnh_key: str, body: str, emp: dict,
     # `planet_name` renames the capital and nothing renames the star. Vanilla's
     # convention settles it: Sol's star is called Sol, so a star that collides
     # with the capital takes the system's name instead.
+    #
+    # TWO THINGS WERE WRONG WITH DOING THAT BY SUBSTITUTION.
+    #
+    # A star is not always spelled `pc_<x>_star`. The lookahead named that form
+    # only, and the commonest star this generator emits is the bare `star`
+    # keyword -- CLASS_BUILTINS, filled by the engine from the system's class.
+    # So the rule fired for Andoria, whose star carries an explicit pc_ class,
+    # and silently missed Qo'noS, Cait, Romulus and Haakon.
+    #
+    # And substituting the system key only moves the collision when the system
+    # and the capital are NAMED DIFFERENTLY. 23 STG empires render the same
+    # string for both -- Bajor the system and Bajor the planet, which is Trek's
+    # own convention and not a defect -- so pointing the star at the system key
+    # renders the identical word and a player still reads "Qo'noS" twice.
+    #
+    # Vanilla settles it by omission rather than by choosing a name: 12 of the
+    # 16 star bodies in its `usage = custom_empire` initializers carry NO name
+    # at all, and the engine names the star from its system. The four it does
+    # name are Sol, Deneb and the two stars of the Titawin binary. So drop the
+    # colliding name and take vanilla's default; inventing a name for the
+    # Klingon sun would be content, and this generator does not author content.
     capital = loc.get(emp["planet_key"] or "", None)
     if capital:
-        text = re.sub(rf'(\bname\s*=\s*)"{re.escape(capital)}"(?=[^{{}}]*?pc_[a-z]*_star)',
-                      rf'\1"{emp["system_key"]}"', text, count=1)
+        text = re.sub(
+            rf'[ \t]*\bname\s*=\s*"{re.escape(capital)}"\n'
+            rf'(?=[^{{}}]*?class\s*=\s*(?:star\b|"?pc_[a-z]*_star))',
+            "", text, count=1)
+
+    for dup, replacements in SOURCE_NAME_FIXES.get(stg_key, {}).items():
+        seen = 0
+
+        def renumber(m: re.Match, _r=replacements) -> str:
+            nonlocal seen
+            new = _r[seen] if seen < len(_r) else m.group(2)
+            seen += 1
+            return f'{m.group(1)}"{new}"'
+
+        text = re.sub(rf'(\bname\s*=\s*)"({re.escape(dup)})"', renumber, text)
     return text, started
 
 

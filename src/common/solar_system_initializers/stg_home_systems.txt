@@ -24,7 +24,6 @@ stg_andorian_empire_home = {
 	init_effect = { generate_home_system_resources = yes }
 
 	planet = {
-		name = "STG_system_name_andorian"
 		class = "pc_f_star"
 		orbit_distance = 0
 		orbit_angle = 1
@@ -424,7 +423,6 @@ stg_caitian_empire_home = {
 	init_effect = { generate_home_system_resources = yes }
 
 	planet = {
-		name = "Cait"
 		class = star
 		orbit_distance = 0
 		orbit_angle = 1
@@ -713,14 +711,6 @@ stg_confederacy_of_vulcan_home = {
 		orbit_angle = 150
 		size = 15
 		has_ring = no
-		moon = {
-			name = "Kerkhov's Moon"
-			class = "pc_barren"
-			orbit_distance = 10
-			orbit_angle = 10
-			size = 3
-			has_ring = no
-		}
 	}
 	planet = {
 		name = "Kerkhov"
@@ -812,7 +802,6 @@ stg_klingon_empire_home = {
 	init_effect = { generate_home_system_resources = yes }
 
 	planet = {
-		name = "Qo'noS"
 		class = star
 		orbit_distance = 0
 		orbit_angle = 1
@@ -1670,7 +1659,6 @@ stg_minor_haakonian_order_home = {
 	init_effect = { generate_home_system_resources = yes }
 
 	planet = {
-		name = "Haakon"
 		class = star
 		orbit_distance = 0
 		orbit_angle = 1
@@ -2345,14 +2333,6 @@ stg_minor_tng_coalition_hope_home = {
 		orbit_angle = 150
 		size = 15
 		has_ring = no
-		moon = {
-			name = "Kerkhov's Moon"
-			class = "pc_barren"
-			orbit_distance = 10
-			orbit_angle = 10
-			size = 3
-			has_ring = no
-		}
 	}
 	planet = {
 		name = "Kerkhov"
@@ -2382,7 +2362,6 @@ stg_minor_tng_klingon_cardassian_alliance_home = {
 	init_effect = { generate_home_system_resources = yes }
 
 	planet = {
-		name = "Qo'noS"
 		class = star
 		orbit_distance = 0
 		orbit_angle = 1
@@ -2502,7 +2481,6 @@ stg_romulan_star_empire_home = {
 	init_effect = { generate_home_system_resources = yes }
 
 	planet = {
-		name = "Romulus"
 		class = star
 		orbit_distance = 0
 		orbit_angle = 1
@@ -2569,7 +2547,7 @@ stg_romulan_star_empire_home = {
 			has_ring = no
 		}
 		moon = {
-			name = "S'latas a"
+			name = "S'latas b"
 			class = "pc_barren_cold"
 			orbit_distance = 2.5
 			orbit_angle = -175
