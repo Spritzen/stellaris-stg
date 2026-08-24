@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env python3
+#!/usr/bin/env python3
 """Fast structural checks that catch the Stellaris failure modes CWTools can't.
 
 CWTools validates script semantics inside the editor. This covers the file-level

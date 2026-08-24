@@ -8,7 +8,7 @@
 
 **`make vendor` reports 947 overwrite events — plus 220 paths skipped by the
 additive-only rule and 888 files removed by the prune closure** (build of
-2026-08-22). Read them out of `.vendor-manifest.json` rather than recounting by
+2026-08-24). Read them out of `.vendor-manifest.json` rather than recounting by
 hand; they move whenever a source is dropped or an `include:` widens, and this
 section has been stale five times for exactly that reason:
 
@@ -95,7 +95,7 @@ The `gfx/` overwrites are all last-wins within a family and need no individual
 decisions — the large groups are UIOD → Dark UI (189), the 172 ship-asset
 overrides written into `src/` by `tools/fix_ship_locators.py` (**150** from the
 Walshicus sets, **20** from STNH, one from ASB Ironman and one from `src/`'s own
-`zz_stg_shipsets.asset`, measured 2026-08-22 — decisions
+`zz_stg_shipsets.asset`, measured 2026-08-24 — decisions
 [28](../decisions/28-weapon-locator-positions.md) and
 [82](../decisions/82-hull-section-attach-points.md)), Starfleet TNG → Terran NX
 (49), PD → Vanilla Replacements (45), PD → Ascension Worlds (41).
@@ -124,7 +124,7 @@ Walshicus sets, **20** from STNH, one from ASB Ironman and one from `src/`'s own
 | Diverse Rooms | `gfx/portraits/asset_selectors/dr_room_textures.txt` | A SECOND file claiming `room_selector`, which STNH's copy of vanilla's file also claims — decided by nothing on disk, and under the reading where DR wins, its 277 unconditional `ruler` rows put every empire in a cave. Its 297 designer rows are merged into `src/`'s single selector instead. [Decision 48](../decisions/48-room-selector-merge.md). |
 
 Beyond these, **`make vendor` removes unreferenced files itself** — 888 of them
-on the build of 2026-08-22,
+on the build of 2026-08-24,
 re-derived on every build by the reachability closure rather than listed here,
 because an 813-line exclude list is correct the day it is written and silently
 wrong after the next `make sources-sync`. See [the clutter closure](../validation/clutter.md).

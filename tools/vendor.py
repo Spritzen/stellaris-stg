@@ -666,7 +666,7 @@ def apply_renames(data: dict, generated: dict[str, dict], *, dry_run: bool) -> i
     (.docs/decisions/29-merge-semantics-per-directory.md).
 
     Harvest order does not decide it. Harvest order settles two sources claiming
-    the same PATH; once we merge 48 mods into one, two sources shipping the same
+    the same PATH; once every source is one mod, two sources shipping the same
     key under different filenames both ship, and the engine picks by name. Before
     this existed the only lever was an `src/` copy of the whole losing file, to
     change nothing but which name it has.

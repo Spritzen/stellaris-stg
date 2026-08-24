@@ -201,13 +201,17 @@ dangling_identifier_ack: []
 # See .docs/decisions/20-minor-power-species-class-keys.md and
 # check_portrait_clothes_selectors in tools/validate.py.
 #
-# All four wear human art. The master selector's `default` IS human civilian
+# BOTH wear human art. The master selector's `default` IS human civilian
 # clothing, so falling through to it produces exactly the right result and
 # declaring a class for them would change nothing on screen.
 #
-# NOT acked, deliberately, and still reported every run: KRI, MONE, PARA, TNG
-# and VALT. Those five have their own art and no clothing to go with it — a
-# Phase 2 content gap, not a settled exception. Do not silence them here.
+# The list is two entries and the check is quiet: the five peoples this note
+# used to name as "still reported every run" (KRI, MONE, PARA, TNG, VALT) are
+# not findings any more. MONE and PARA stopped existing when decision 32
+# renamed them MON and PAR; MON is named by both master selectors, and KRI,
+# VALT and TNGK have DEDICATED selectors (e.g.
+# gfx/portraits/asset_selectors/kriosian/), which this check skips by design.
+# A new finding here is therefore a new defect, not backlog.
 portrait_clothes_ack:
   - stg_terran_empire            # human art (mirror universe)
   - stg_minor_confederation_earth  # human art
@@ -480,20 +484,12 @@ duplicate_entity_ack:
 # The federation/ vs starfleet_tng/ pairs are acked BY MEASUREMENT, 2026-08-08,
 # which is a stronger footing than the library above stands on: decoded and
 # compared pixel by pixel, all five colliding files are the SAME ARTWORK on both
-# sides, differing only in compression. Mean absolute difference at 64×64, against
-# a control of 23–27% for two textures that genuinely differ:
-#
-#   starfleet_olympic_diffuse.dds          0.001%   1024² raw  vs 1024² DXT1
-#   starfleet_olympic_specular.dds         0.000%   1024² raw  vs 1024² DXT5
-#   starfleet_galaxy_hull_01_specular.dds  0.000%   1024² raw  vs 1024² DXT5
-#   ESD-Lights1_normal.dds                 0.044%    256×16    both
-#   starfleet_olympic_normal.dds           1.164%   1024² raw  vs 2048² DXT5
-#
-# Both authors cut these from the same source art, and the filenames say so —
-# each names the ship class it belongs to on both sides. So whichever copy the
-# engine keeps, both shipsets draw the same picture; the only real consequence is
-# that if STNH's 1024² Olympic normal map wins, the Walshicus cruiser's is half
-# resolution. A sharpness difference, not a ship wearing the wrong skin.
+# sides, differing only in compression — 0.000–1.164% mean absolute difference
+# against a control of 23–27% for art that genuinely differs. The five rows and
+# their per-file figures are in the decision. So whichever copy the engine keeps,
+# both shipsets draw the same picture; the only consequence is that if STNH's
+# 1024² Olympic normal map wins, the Walshicus cruiser's is half resolution. A
+# sharpness difference, not a ship wearing the wrong skin.
 #
 # Acked on the STNH side only, so a NEW collision against the live Walshicus
 # Federation shipset still reports.
@@ -2978,43 +2974,11 @@ patches:
         to: " \tname = \"yridian_ion_cannon_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n"
         count: 1
 
-# ── Renames ──────────────────────────────────────────────────────────────────
-#
-# Change a vendored file's NAME, leaving its contents alone. Applied by
-# tools/vendor.py after every source, after src/, and after patches.
-#
-# WHY THIS EXISTS AND WHY HARVEST ORDER IS NOT ENOUGH. The rules at the top of
-# this file say later sources overwrite earlier ones. True — of identical PATHS.
-# Two sources shipping the same key under DIFFERENT filenames both ship, and
-# once 48 mods are one mod there is no load order left to separate them: the
-# engine decides by filename sort within the directory. Harvest order has no say
-# in it at all. So a rename is the only lever that changes who wins a contested
-# key, and before this the nearest thing was an src/ copy of the whole losing
-# file altered in no way but its name.
-#
-# WHICH END OF THE SORT WINS DEPENDS ON THE DIRECTORY. FIOS directories keep the
-# FIRST filename, everything else keeps the LAST. Irony Mod Manager's convention
-# is `!!!_` to win a FIOS sort and `zzz_` to win a LIOS one. The list of FIOS
-# directories, and why it is the one table in this repo not measured against
-# vanilla, is .docs/decisions/29-merge-semantics-per-directory.md.
-#
-# Fields:
-#   path    Generated path to rename. Must exist in the tree.
-#   to      The new FILENAME — not a path. Moving a file to another directory
-#           moves it to another database, which is not what this is for.
-#   why     Mandatory. Same reason `patches:` demands one: a renamed file with
-#           no recorded reason cannot be told from a mistake.
-#   source  Optional. Asserts which source shipped it; a mismatch fails the
-#           build, so a harvest-order change cannot silently re-point a rename.
-#   win     Optional, `first` or `last`. Asserts the new name really does sort
-#           that way in its directory — against vanilla's files as well as ours,
-#           because vanilla's `00_` prefix is usually what a FIOS rename has to
-#           beat. Without it a rename that fails to win looks correct forever.
-#           This is Irony's "keep prepending characters until it sorts right"
-#           loop, expressed as a check rather than a fixup.
   # ── 2026-08-07 live-run repairs ─────────────────────────────────────────────
-  # Six files, all found by reading error.log after the 15:41 run. Each removes or
-  # restores named lines in someone else's file; none changes a game balance value.
+  # Nine files, all found by reading error.log after the 15:41 run: decision 40's
+  # items 1, 2, 3, 5, 8 and 9 (that last one is three files), plus the starbase
+  # view's missing `design_name` box, which its table does not list. Each removes
+  # or restores named lines in someone else's file; none changes a balance value.
   # See .docs/decisions/40-live-run-2026-08-07-repairs.md.
 
   - path: common/governments/civics/pd_origins_unique.txt
@@ -3162,6 +3126,40 @@ patches:
         to: "\tfile = \"fallen_empire_01_citadel_idle.anim\""
         count: 1
 
+# ── Renames ──────────────────────────────────────────────────────────────────
+#
+# Change a vendored file's NAME, leaving its contents alone. Applied by
+# tools/vendor.py after every source, after src/, and after patches.
+#
+# WHY THIS EXISTS AND WHY HARVEST ORDER IS NOT ENOUGH. The rules at the top of
+# this file say later sources overwrite earlier ones. True — of identical PATHS.
+# Two sources shipping the same key under DIFFERENT filenames both ship, and
+# once every source is one mod there is no load order left to separate them: the
+# engine decides by filename sort within the directory. Harvest order has no say
+# in it at all. So a rename is the only lever that changes who wins a contested
+# key, and before this the nearest thing was an src/ copy of the whole losing
+# file altered in no way but its name.
+#
+# WHICH END OF THE SORT WINS DEPENDS ON THE DIRECTORY. FIOS directories keep the
+# FIRST filename, everything else keeps the LAST. Irony Mod Manager's convention
+# is `!!!_` to win a FIOS sort and `zzz_` to win a LIOS one. The list of FIOS
+# directories, and why it is the one table in this repo not measured against
+# vanilla, is .docs/decisions/29-merge-semantics-per-directory.md.
+#
+# Fields:
+#   path    Generated path to rename. Must exist in the tree.
+#   to      The new FILENAME — not a path. Moving a file to another directory
+#           moves it to another database, which is not what this is for.
+#   why     Mandatory. Same reason `patches:` demands one: a renamed file with
+#           no recorded reason cannot be told from a mistake.
+#   source  Optional. Asserts which source shipped it; a mismatch fails the
+#           build, so a harvest-order change cannot silently re-point a rename.
+#   win     Optional, `first` or `last`. Asserts the new name really does sort
+#           that way in its directory — against vanilla's files as well as ours,
+#           because vanilla's `00_` prefix is usually what a FIOS rename has to
+#           beat. Without it a rename that fails to win looks correct forever.
+#           This is Irony's "keep prepending characters until it sorts right"
+#           loop, expressed as a check rather than a fixup.
 renames: []
 
 

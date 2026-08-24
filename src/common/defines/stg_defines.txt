@@ -1,30 +1,19 @@
 # STG define overrides.
 #
 # ── CUSTOM_EMPIRE_SPAWN_CHANCE ─────────────────────────────────────────────
-# Vanilla ships 50, and the scale is `10 = 1%` (00_defines.txt:972), so the
-# stock value is a 5% chance that any given AI slot is filled from the
-# prescripted pool instead of being randomly generated.
+# Vanilla ships 50 on a `10 = 1%` scale (00_defines.txt:972) -- a 5% chance
+# that any given AI slot is filled from the prescripted pool rather than being
+# randomly generated. That is why a Trek galaxy arrived with no Trek in it: at
+# 18 AI empires it draws zero about 40% of the time, which is what the runs of
+# 2026-08-10 (22 empires met) and 2026-08-24 (18) both did. No STG empire was
+# ever rejected.
 #
-# That is the whole reason a Trek galaxy arrives with no Trek in it. At 5% a
-# galaxy of 18 AI empires expects 0.9 prescripted empires and draws zero about
-# 40% of the time -- which is what the 2026-08-22 and 2026-08-24 runs both did,
-# 22 and 18 empires met with not one of ours among them. It was never a defect
-# in the empires; they were simply almost never rolled.
-#
-# 1000 is 100%: every AI slot draws from the prescripted pool. For a normal mod
-# that would be wrong, because it would suppress vanilla's randomly generated
-# empires in favour of a handful of presets. For STG it is exactly right, and
-# only because two earlier decisions already did the work:
-#
-#   - decision 14 removed all 52 vanilla prescripted empires, so the pool holds
-#     nothing but Trek. There is no Blorg Commonality left to draw.
-#   - decision 19 put STNH's 79 minor powers in as AI-only empires
-#     (`playable = stg_never`), which is a pool deep enough to fill a large
-#     galaxy without repeating.
-#
-# So the pool is 101 Trek empires and the galaxy is asked to use it. This is
-# the lever the empire designer's force-spawn checkbox is NOT -- that checkbox
-# exists only for player-made empires, and prescripted ones cannot reach it.
+# 1000 is 100%. That is the right value only because decision 14 left the
+# prescripted pool all-Trek and decision 19 made it 101 empires deep, and it is
+# the ONLY lever for this: the designer's force-spawn checkbox exists for
+# player-made empires and a prescripted one cannot reach it.
+# FALLEN_CUSTOM_EMPIRE_SPAWN_CHANCE stays at vanilla's 50 -- STG ships no
+# prescripted fallen empire for it to find.
 # See .docs/decisions/86-prescripted-empires-never-drawn.md.
 NGameplay = {
 	CUSTOM_EMPIRE_SPAWN_CHANCE = 1000

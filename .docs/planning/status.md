@@ -6,7 +6,8 @@
 > build.
 > **Then** — [Open questions](open-questions.md) · [Phases](phases.md) · [Live runs](../guides/live-runs.md)
 
-*Last updated against the build of 2026-08-24 and the run of 2026-08-22
+*Last updated against the build of 2026-08-24 and the run of the same day; the
+last run with a written analysis is 2026-08-22
 ([analysis 2026-08-16](../analysis/2026-08-16.md)). Every number here has a date
 because every number here goes stale — [style guide §6](../style-guide.md).*
 
@@ -27,7 +28,7 @@ ones.
 
 | | Build of 2026-08-24 |
 |---|---|
-| Files / size | **22,406 / 14.3 GiB** ([the per-tier split](../architecture/vendored-merge.md#size)) |
+| Files / size | **22,407 / 14.3 GiB** ([the per-tier split](../architecture/vendored-merge.md#size)) |
 | Re-cut at harvest / pruned | 1,661 / **888** |
 | Overwrites / additive skips | 947 / 220 |
 | `make vendor` | 69 s |
@@ -75,22 +76,31 @@ constants in `tools/validate.py` with the ratio written beside them
 
 ## The `error.log` baseline
 
-**The current baseline is the 2026-08-22 Vulcan run** — a 26-minute session, and
-the cleanest log this project has recorded. The 2026-08-10 Federation run beside
-it is the deep one: ~11 hours, and the only log so far that carried real defects
-rather than eyes-only findings.
+**The current baseline is the 2026-08-24 Vulcan run** — the longest session since
+2026-08-10 and the one [decision 86](../decisions/86-prescripted-empires-never-drawn.md)
+was written from. The 2026-08-10 Federation run beside it is the other deep one:
+~11 hours, and the only log so far that carried real defects rather than
+eyes-only findings.
 
-| | **2026-08-22** Vulcan | 2026-08-10 Federation | 2026-08-08 |
-|---|---|---|---|
-| Records / size | **1,264 / 187 KB** | 2,251 / 228 KB | 1,261 / 187 KB |
-| Startup window | 55.4 s | 49.4 s | 49.3 s |
-| Records **after** startup | **4** | 174 | 1 |
-| Play window | ~26 min | ~11 h | short |
+| | **2026-08-24** Vulcan | 2026-08-22 Vulcan | 2026-08-10 Federation | 2026-08-08 |
+|---|---|---|---|---|
+| Records / size | **1,315 / 208 KB** | 1,264 / 187 KB | 2,251 / 228 KB | 1,261 / 187 KB |
+| Startup window | 46.8 s | 55.4 s | 49.4 s | 49.3 s |
+| Records **after** startup | **55** | 4 | 174 | 1 |
+| Play window | **~7 h** | ~26 min | ~11 h | short |
 
-**Read the post-init column, never the total.** ~187 KB is the init-window floor
-of this build and it has not moved in three runs; against the ~1 MB a clean
-vanilla run produces the volume is fine either way. **The 1 → 174 → 4 swing is a
-change of run, not of build**: the short sessions opened few screens.
+**Read the post-init column, never the total.** 187–208 KB is the init-window
+floor of this build and it has not moved in four runs; against the ~1 MB a clean
+vanilla run produces the volume is fine either way. **The 1 → 174 → 4 → 55 swing
+is a change of run, not of build**: the short sessions opened few screens.
+
+**None of 2026-08-24's 55 post-init records names an STG file** — they are
+vanilla's own event and trigger scripts plus Planetary Diversity's domed-base
+decision, over seven hours of play. That is a volume reading only: **no analysis
+was written for this run** ([those are written on request](../analysis/README.md)),
+so the run's own observations live in
+[decision 86](../decisions/86-prescripted-empires-never-drawn.md) and nowhere
+else.
 
 **Two 2026-08-10 fixes are now confirmed in game by silence** — the 98-record
 Planetary Diversity cluster and the 19 missing-localisation records are both
@@ -101,8 +111,10 @@ inspection. The whole reading is
 findings and what each cost are in
 [ufp-run-remediation.md](ufp-run-remediation.md).
 
-**What still has no in-game evidence at all**, after two runs that both ended
-early:
+**What still has no in-game evidence at all.** Two of the three runs since
+2026-08-10 ended early, and the long 2026-08-24 one was played without a run plan
+and written up only in [decision 86](../decisions/86-prescripted-empires-never-drawn.md),
+so it reported on none of these:
 
 - **Every hull above corvette.** [Decision 82](../decisions/82-hull-section-attach-points.md)'s
   230 attach points are the single most valuable unmeasured thing in the project.

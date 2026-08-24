@@ -69,7 +69,7 @@ version of a file the author has since fixed.
 > five effects" and dropped all 41 that Real Space appends to the same path; Real
 > Space's gas giant rings drew with no material and `make validate` was clean
 > throughout. `check_src_source_regression` now asks that question over every
-> such path — 182 on the build of 2026-08-22, read off the manifest's
+> such path — 182 on the build of 2026-08-24, read off the manifest's
 > `overwrites`. [Decision 34](../decisions/34-src-shadows-drop-source-declarations.md).
 
 Two further levers exist for what neither can do:
@@ -105,15 +105,15 @@ harvest change and this section has been stale more than once.
 [`.docs/provenance.md`](../provenance.md) is the generated report;
 `.vendor-manifest.json` has the per-source split.
 
-*(Read off the build of 2026-08-22. GiB, as `make vendor` prints.)*
+*(Read off the build of 2026-08-24. GiB, as `make vendor` prints.)*
 
 | | |
 |---|---|
 | Gameplay/UI tier — [26 harvest positions](harvest-order.md), 25 with surviving files | 4.7 GiB, 8,026 files |
 | STNH — art paths only, ship tree pruned per [decision 18](../decisions/18-walshicus-shipsets-replace-stnh-hulls.md) | 7.0 GiB, 10,929 files |
 | Walshicus' 22 Trek shipsets | 2.5 GiB, 3,092 files |
-| `src/` — hand-written | 5.0 MB, 359 files |
-| **Built mod, total** | **14.3 GiB**, 22,406 files, 49 sources + `src/` |
+| `src/` — hand-written | 5.0 MB, 360 files |
+| **Built mod, total** | **14.3 GiB**, 22,407 files, 49 sources + `src/` |
 | `.source/` — 51 mods: the 49 harvested plus Kammarheit and Apocryphos | 22 GB apparent, **~0 real** (reflinked; [decision 09](../decisions/09-source-snapshot.md)) |
 
 *(The gameplay/UI tier holds 26 harvest positions but only 25 leave a file

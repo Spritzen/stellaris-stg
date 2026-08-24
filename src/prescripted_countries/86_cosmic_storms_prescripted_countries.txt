@@ -1,4 +1,4 @@
 # SHADOWS prescripted_countries/86_cosmic_storms_prescripted_countries.txt —
-# deliberately empty, so vanilla's 1 empire (yatunan_radicals) drop out of the
+# deliberately empty, so vanilla's 1 empire (yatunan_radicals) drops out of the
 # empire picker and AI spawning. Ours are in stg_major_powers.txt.
 # See .docs/decisions/14-remove-vanilla-prescripted-empires.md

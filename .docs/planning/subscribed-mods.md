@@ -33,8 +33,9 @@ of them are still snapshotted, so restoring one is a `vendor.yml` edit away:
 > reasoning and the one trap: **the compatch's name says Planetary Shields and
 > all 19 of its files are `mem_*`.**
 
-Cinematic Camera was on this list until 2026-08-07 and is not any more. Decision
-11 dropped it for breaking Real Space – System Scale;
+Cinematic Camera was a sixth row in that table until 2026-08-07 and is now
+harvested like any other source. Decision 11 dropped it for breaking Real Space –
+System Scale;
 [decision 43](../decisions/43-planet-scale-system-length.md) showed the error was
 System Scale's own, present with and without it, and restored it.
 

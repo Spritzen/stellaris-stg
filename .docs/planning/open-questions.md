@@ -29,11 +29,13 @@ evidence for anything in this section — the standing lesson of decisions
 > several items now have a confirmed cause on disk rather than an eyes-only
 > question — so the thing to do next is *grade a fix*, not re-diagnose.
 >
-> **Both runs ended before the long half of their plan.** The dig sites, the
-> anomalies, the story events and every hull above corvette are **unreached
-> twice** — unmeasured, not negative, and the reason a third run's first job is
-> length rather than breadth. [The 2026-08-15
-> audit](../analysis/2026-08-15.md), finding 1;
+> **Both planned runs ended before the long half of their plan.** The dig sites,
+> the anomalies, the story events and every hull above corvette are **unreached
+> twice** — unmeasured, not negative. The long 2026-08-24 run had **no run plan
+> and no analysis**, and reported only what
+> [decision 86](../decisions/86-prescripted-empires-never-drawn.md) records, so
+> it adds nothing here either: **the next run's first job is a plan, then
+> length**. [The 2026-08-15 audit](../analysis/2026-08-15.md), finding 1;
 > [analysis 2026-08-16](../analysis/2026-08-16.md), "What this run could not
 > reach".
 >
@@ -122,11 +124,14 @@ as badly as the corvette's third gun did.
 >
 > **Fixed the same day** — 230 attach points over 100 files
 > ([82](../decisions/82-hull-section-attach-points.md)) — and **nothing about it
-> is confirmed in game after two runs.** The 2026-08-22 run flew corvettes and
-> science ships only, so the eight `has no attach point` records that fired on
-> 2026-08-10 are **unmeasured, not confirmed gone**. Grading the mounts above
-> corvette is now a live question rather than an unanswerable one, and it is the
-> single most valuable unmeasured thing in the project.
+> is confirmed in game after three runs.** The 2026-08-22 run flew corvettes and
+> science ships only. The 2026-08-24 run played ~7 hours and its `error.log`
+> carries **zero** `has no attach point` records against 2026-08-10's eight —
+> **suggestive and not confirmation**, because nothing in that log or in its one
+> write-up says which hulls were flown, and a hull nobody built logs nothing
+> either way. Grading the mounts above corvette is now a live question rather
+> than an unanswerable one, and it is the single most valuable unmeasured thing
+> in the project.
 > [ufp-run-remediation.md](ufp-run-remediation.md), item 1. The check that now
 > guards the repair is [83](../decisions/83-widen-attach-points-and-two-new-checks.md);
 > a clean check only says the locators exist.

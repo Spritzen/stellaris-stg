@@ -16,23 +16,23 @@ confirmed against disk and a mechanical fix; Tier 2 was a real defect still
 owing one investigation; Tier 3 might not have been a defect at all and needed
 measuring first.
 
-## Where every item stands, as of 2026-08-22
+## Where every item stands, as of 2026-08-24
 
 | | Item | |
 |---|---|---|
 | 1 | Hull section attach points | **Fixed** — 230 points, 22 shipsets ([82](../decisions/82-hull-section-attach-points.md)) |
 | 2 | Malformed portrait paths | **Fixed** — 29 patched, then 11 more in the female master on 2026-08-22 ([83](../decisions/83-widen-attach-points-and-two-new-checks.md)). The dangling textures found beside them were **117 rows, not 196**, and all 117 were repointed on 2026-08-24 — 76 with no content call to make, 41 under one policy ([85](../decisions/85-selector-textures-that-resolve.md)). **`check_selector_texture_files` now holds the tree at zero** |
 | 3 | Star and nebula names unlocalised | **Fixed** — 328 keys, one per quoted entry ([81](../decisions/81-random-names-are-loc-keys.md)) |
-| 4 | No Trek empires met | **Narrowed, open** — three causes eliminated; needs a force-spawn on the next run |
+| 4 | No Trek empires met | **Closed 2026-08-24** — never the empires: `CUSTOM_EMPIRE_SPAWN_CHANCE` gave the prescripted pool a 5% chance per AI slot, now 1000 (100%) ([86](../decisions/86-prescripted-empires-never-drawn.md)). The Federation's unfired `spawn_enabled = always` is carried on as its own question |
 | 5 | Planetary Diversity event scope | **Fixed and confirmed in game** — 6 patches; 98 records on 2026-08-10, **0** on 2026-08-22 |
 | 6 | ~70 music tracks | **Not a defect** — 55 declarations, 27 rotation; the run plan's "22" was stale |
 | 7 | Shipset dropdown lists species | **Not a defect** — vanilla has no shipset name key either. The *descriptions* half was a real defect and is **fixed**: 30 keys, [84](../decisions/84-shipset-descs-and-home-system-names.md) |
 | 8 | City art 25% small in the designer | **Not the art, and not the declarations either** — every file is at canvas, and every declared culture reaches art through its `fallback` ([84](../decisions/84-shipset-descs-and-home-system-names.md)). **The rect is all that is left, and it needs one screenshot comparison** |
 
-**Six of the eight are closed, three of those by measurement rather than by a
-change.** What is genuinely still open is item 4 and item 8's rect — plus
-everything in Tier 4, which only a live run can reach. **Item 2 closed on
-2026-08-24**, its second half included.
+**Seven of the eight are closed, three of those by measurement rather than by a
+change.** What is genuinely still open is item 8's rect — plus everything in
+Tier 4, which only a live run can reach. **Items 2 and 4 both closed on
+2026-08-24**, item 2's second half included.
 
 > **The 2026-08-22 Vulcan run moved three of these and this file is annotated in
 > place rather than rewritten.** Item 5 is now **confirmed in game by silence**;
