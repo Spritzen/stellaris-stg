@@ -37,7 +37,9 @@ import argparse
 import hashlib
 import json
 import os
+import re
 import shutil
+import statistics
 import struct
 import subprocess
 import sys
@@ -767,6 +769,115 @@ def apply_renames(data: dict, generated: dict[str, dict], *, dry_run: bool) -> i
     return applied
 
 
+# ── city-set scale normalisation ──────────────────────────────────────────────
+
+def content_box(path: Path) -> tuple[int, int, int, int] | None:
+    """(w, h, x, y) of the non-transparent content, or None if unreadable."""
+    r = subprocess.run(["identify", "-format", "%@", str(path)],
+                       capture_output=True, text=True)
+    m = re.match(r"^(\d+)x(\d+)\+(\d+)\+(\d+)$", r.stdout.strip())
+    return tuple(int(g) for g in m.groups()) if m else None
+
+
+def normalize_city_scale(rule: dict, generated: dict[str, dict], *,
+                         dry_run: bool) -> list[tuple[str, int, int]]:
+    """Bring an out-of-family city set back into the family's content band.
+
+    THIS IS A RESAMPLE, NOT A CROP. Nothing is cut off: the layer is scaled
+    down on the vertical axis only and padded back onto its own 800x400 canvas
+    bottom-aligned, so every pixel of the source survives and the transparent
+    rows added at the top are sky the environment backdrop draws anyway.
+
+    Why it has to be content-aware, and cannot be a `fit:` mode.
+    `fit: canvas` pads a file onto the source mod's canvas and scales the
+    CANVAS to vanilla's. That preserves the source's content-to-canvas ratio,
+    which is exactly the thing that is wrong here. STNH drew vulcan_01 on a
+    560x367 frame with its content filling 227 rows -- 62% of the frame, where
+    the sets around it fill 72%. Padding to 560x367 leaves the buildings too
+    short; cropping to the 560x280 family canvas (which is what
+    decision 66 did) leaves them too tall. No choice of canvas reaches the
+    family band, because the ratio itself differs. Only rescaling the content
+    does, so the target is read off the content box rather than the canvas.
+
+    The family median is measured over the MERGED tree, not vanilla. Vanilla's
+    own humanoid_01 horizon is 328 rows tall, but the built tree's humanoid_01
+    is STNH's at 291 -- STNH shadows the vanilla path (decision 08) and every
+    Trek set sits beside STNH's, not beside Paradox's. The band a player
+    actually sees is therefore the one to measure against.
+
+    Returns (prefix, from_height, to_height) per set changed.
+    """
+    glob_ = rule.get("glob")
+    horizon = rule.get("horizon", "_city_l06")
+    tol = float(rule.get("tolerance", 0.10))
+    if not glob_:
+        die("normalize_city_scale needs a 'glob'")
+
+    # Group the merged tree's city layers by texture prefix.
+    sets: dict[str, list[str]] = {}
+    for rel in generated:
+        if not matches(rel, glob_):
+            continue
+        stem = Path(rel).name
+        m = re.match(r"^(.*?)_city_l\d+", stem)
+        if m:
+            sets.setdefault(m.group(1), []).append(rel)
+
+    # Measure each set's horizon layer. A layer whose content fills the whole
+    # canvas is opaque backdrop art rather than a skyline -- a different kind of
+    # layer, with no band to be inside -- and an empty one has no content at all.
+    heights: dict[str, int] = {}
+    for prefix, rels in sets.items():
+        want = f"{prefix}{horizon}.dds"
+        rel = next((r for r in rels if Path(r).name == want), None)
+        if rel is None:
+            continue
+        box = content_box(BUILD / rel)
+        dims = dds_dimensions(BUILD / rel)
+        if not box or not dims or box[1] == 0 or box[1] >= dims[1]:
+            continue
+        heights[prefix] = box[1]
+
+    if not heights:
+        return []
+    median = statistics.median(sorted(heights.values()))
+    ceiling = median * (1 + tol)
+
+    changed: list[tuple[str, int, int]] = []
+    for prefix, h in sorted(heights.items()):
+        if h <= ceiling:
+            continue
+        factor = median / h
+        for rel in sorted(sets[prefix]):
+            path = BUILD / rel
+            dims = dds_dimensions(path)
+            if not dims:
+                continue
+            w, ch = dims
+            scaled = round(ch * factor)
+            if dry_run or scaled >= ch:
+                continue
+            stat = path.stat()
+            r = subprocess.run(
+                ["convert", str(path),
+                 "-resize", f"{w}x{scaled}!",
+                 "-background", "transparent", "-gravity", "south",
+                 "-extent", f"{w}x{ch}",
+                 "-define", "dds:compression=none", str(path)],
+                capture_output=True, text=True)
+            if r.returncode != 0:
+                die(f"city scale normalise failed for {rel}: "
+                    f"{r.stderr.strip() or 'no output'}")
+            os.utime(path, (stat.st_atime, stat.st_mtime))
+            info = generated[rel]
+            info["sha256"] = hash_existing(path)
+            info["size"] = path.stat().st_size
+            info["mtime"] = path.stat().st_mtime
+            info["city_scaled"] = round(factor, 4)
+        changed.append((prefix, h, round(h * factor)))
+    return changed
+
+
 # ── prune ─────────────────────────────────────────────────────────────────────
 
 
@@ -973,6 +1084,18 @@ def vendor(args: argparse.Namespace) -> int:
     if renamed:
         print(f"  {CYA}{'renames':>10}{OFF}  {'vendor.yml renames':<44} "
               f"{renamed:>6} files  {'':>8}")
+
+    # After renames, and for the same reason prune runs late: the family band a
+    # city set is measured against is a property of the MERGED tree, so it can
+    # only be computed once every source and every src/ override has landed.
+    city_rule = data.get("normalize_city_scale")
+    if city_rule:
+        rescaled = normalize_city_scale(city_rule, generated,
+                                        dry_run=args.dry_run)
+        for prefix, was, now in rescaled:
+            print(f"  {CYA}{'cityscale':>10}{OFF}  "
+                  f"{prefix + ' horizon ' + str(was) + ' -> ' + str(now) + ' rows':<44} "
+                  f"{'':>6}         {'':>8}")
 
     # Last of all, because it is a question about the MERGED tree: whether a
     # file is referenced can only be asked once every source, src/, every patch

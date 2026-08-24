@@ -106,6 +106,45 @@ global_excludes:
 # an estimate nobody revisited (decision 32). If the fix is cheap, take the fix.
 clutter_keep: []
 
+# ── city-set scale normalisation ─────────────────────────────────────────────
+# A planet view's apparent scale is set by its horizon layer (`*_city_l06`):
+# how many of the canvas's 400 rows the skyline fills. Across the merged tree
+# that lands in a band, and a set well outside it reads as the wrong size next
+# to every other empire's -- which is what the 2026-08-24 Vulcan run reported.
+#
+# vulcan_01 filled 325 rows against a merged-tree median of 289. STNH drew it on
+# a 560x367 frame where the family canvas is 560x280, and decision 66 resolved
+# that overflow by cropping the top -- which inflated the content ratio from the
+# source's 62% to 81%. UIOD's planet window shows roughly source rows 108-356,
+# so the extra 33 rows at the top were not merely large, they were cut off.
+#
+# THIS RULE CROPS NOTHING. It scales the layer on the vertical axis only and
+# pads it back onto its own 800x400 canvas bottom-aligned, so the full width is
+# kept (no transparent side bands, which is the seam decision 70 refused) and
+# the rows added at the top are sky the environment backdrop already draws.
+#
+# `tolerance: 0.10` is calibrated, not guessed. The merged tree's median is 289
+# and a 10% ceiling is 318. Below it and untouched: molluscoid_01 at 314 and
+# undine_01 at 311, both named by STG empires and both reading fine in the run;
+# aquatic_01 at 316 is the closest thing to a false positive and it clears.
+# Above it, and all three re-scaled: vulcan_01 (325), nemesis_01 (328) and
+# pd_federation_builders_01 (331).
+#
+# The rule sweeps the directory rather than the ten sets an STG empire names
+# today, because a city set is offerable the moment a `city_graphical_culture`
+# points at it -- scoping the fix to current users would leave the same defect
+# waiting behind the next empire that adopts one. That is the standing rule for
+# a defect with a rule behind it (guides/live-runs.md).
+#
+# Layers whose content fills the whole canvas are skipped by kind, not by name:
+# they are opaque backdrop art rather than a skyline, and have no band to sit
+# inside. cardassian_01 is one of them.
+# See .docs/decisions/87-city-horizon-band.md.
+normalize_city_scale:
+  glob: "gfx/portraits/city_sets/*_city_l0*.dds"
+  horizon: "_city_l06"
+  tolerance: 0.10
+
 # Vendored files that shadow a vanilla file and drop a definition, where the
 # drop has been checked and is fine. tools/validate.py's vanilla-regression
 # check (decision 08) warns about every one of these otherwise. Anything NOT

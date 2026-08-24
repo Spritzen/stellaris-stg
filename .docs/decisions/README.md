@@ -1,6 +1,6 @@
 # Decisions — index
 
-> **What** — all 85 resolved decisions, grouped by subject, one line each.
+> **What** — all 87 resolved decisions, grouped by subject, one line each.
 > **Open when** — before reopening a settled question, or when a citation names a
 > decision by number and you need to know what it says.
 > **Then** — [Style guide §7](../style-guide.md#7-decision-files-have-a-fixed-head) for the file format · [Documentation map](../README.md)
@@ -177,6 +177,8 @@ which is also where the rule lives: category is in this index, not in the path.
 | [83](83-widen-attach-points-and-two-new-checks.md) | A stale ratio was guarding the hull family, the female selector was never swept, and no generator was ever a checked fixpoint — *widens [35](35-station-section-attach-points.md), guards [82](82-hull-section-attach-points.md)* |
 | [84](84-shipset-descs-and-home-system-names.md) | Thirty shipset descriptions were keyed to the wrong database, six home systems named a body twice, and one finding falsified itself — *continues [83](83-widen-attach-points-and-two-new-checks.md), corrects [25](25-real-home-systems.md)'s generator, closes [62](62-city-set-cultures-undeclared.md) in the reverse direction* |
 | [85](85-selector-textures-that-resolve.md) | The 196 was 117, two thirds of it was never a content call, and the thirteen that were took one policy rather than thirteen decisions — *completes [83](83-widen-attach-points-and-two-new-checks.md)'s second half* |
+| [86](86-prescripted-empires-never-drawn.md) | The Trek empires were never drawn: vanilla gives the prescripted pool a 5% chance per AI slot — *closes [ufp-run-remediation.md](../planning/ufp-run-remediation.md) item 4, rests on [14](14-remove-vanilla-prescripted-empires.md) and [19](19-stnh-minor-powers-as-ai-empires.md)* |
+| [87](87-city-horizon-band.md) | Vulcan's skyline filled 325 of 400 rows against a family median of 289, and the fix is a resample, not a crop — *falsifies [70](70-vulcan-city-framing.md), supersedes [66](66-city-set-canvas-overflow.md)'s crop* |
 
 ---
 

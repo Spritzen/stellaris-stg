@@ -414,6 +414,32 @@ and excluded.)*
 > If it is, `always` works and this is pool weighting among the other 100. If it
 > is not, the defect is much deeper and worth a decision of its own.
 > [Analysis 2026-08-16](../analysis/2026-08-16.md).
+>
+> ---
+>
+> **CLOSED 2026-08-24 — it was pool weighting, and the pool was never the
+> problem.** The 2026-08-24 Vulcan run made it three galaxies with zero Trek AI
+> empires, and the cause is a **define**, not the content:
+> `CUSTOM_EMPIRE_SPAWN_CHANCE = 50` on a `10 = 1%` scale is a **5% chance per AI
+> slot** that the galaxy draws a prescripted empire at all. At 18 AI empires,
+> drawing zero has probability 0.95¹⁸ = **40%** — three runs in a row is
+> unremarkable, and not one STG empire was ever rejected.
+>
+> The 2026-08-22 save settles it from the container: its `initializer={…}` block
+> lists exactly one STG home system, the played empire's.
+>
+> Fixed by `CUSTOM_EMPIRE_SPAWN_CHANCE = 1000` (100%) in
+> `src/common/defines/stg_defines.txt` — safe only because
+> [decision 14](../decisions/14-remove-vanilla-prescripted-empires.md) left the
+> pool all-Trek and
+> [decision 19](../decisions/19-stnh-minor-powers-as-ai-empires.md) made it deep
+> enough to fill a galaxy.
+> [Decision 86](../decisions/86-prescripted-empires-never-drawn.md).
+>
+> **The Federation's `always` still did not fire, and that is now its own
+> question** — it did not appear in the 2026-08-22 galaxy despite the player
+> being Vulcan. At 100% it no longer gates whether Trek empires appear.
+> [Open questions](open-questions.md) carries it.
 
 ### 5. Planetary Diversity's infester events fire into the wrong scope
 

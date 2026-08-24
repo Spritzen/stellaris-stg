@@ -122,9 +122,16 @@ descriptions written against the hull art); the 40 Eridani duplicate was seven
 duplicate names in six systems from three separate `gen_home_systems.py` bugs
 rather than one paste; and the six cultures with no city art all declare a
 `fallback` that reaches art, which is the mechanism vanilla's own file header
-names. Still open from 2026-08-10: why no Trek empire appeared in 22 — which
-now has a one-glance answer waiting, since the Federation alone carries
-`spawn_enabled = always`. **The selector rows pointing at art no source mod
+names. **Closed 2026-08-24: why no Trek empire appeared in 22, or in 18.** It was
+never the empires. `CUSTOM_EMPIRE_SPAWN_CHANCE` is 50 on a `10 = 1%` scale — a
+**5% chance per AI slot** that the galaxy draws a prescripted empire at all, so
+three galaxies with none is the ordinary outcome rather than a defect, and the
+2026-08-22 save proves it by listing exactly one STG home initializer. Now 1000
+(100%), which is safe only because the pool is all-Trek
+([14](../decisions/14-remove-vanilla-prescripted-empires.md)) and deep enough to
+fill a galaxy ([19](../decisions/19-stnh-minor-powers-as-ai-empires.md))
+([86](../decisions/86-prescripted-empires-never-drawn.md)). **The Federation's
+`spawn_enabled = always` still did not fire** and is now its own open question. **The selector rows pointing at art no source mod
 ships are closed**: 117 rather than the 196 recorded, two thirds of them a
 misspelled directory or a substitute the tree named itself, the rest repointed
 under one policy, and the tree held at zero by a new check
@@ -149,8 +156,9 @@ one is stated in full in its own decision — [22](../decisions/22-empire-design
 [48](../decisions/48-room-selector-merge.md), [52](../decisions/52-trek-star-names.md),
 [57](../decisions/57-prescripted-rulers-unpin-clothes.md)–[59](../decisions/59-ship-name-pools.md),
 [62](../decisions/62-city-set-cultures-undeclared.md)–[68](../decisions/68-ruler-clothes-index-restored.md),
-[70](../decisions/70-vulcan-city-framing.md). **Three things outlive the runs
-themselves:**
+[70](../decisions/70-vulcan-city-framing.md) — **the last of these falsified
+2026-08-24** by [87](../decisions/87-city-horizon-band.md). **Three things
+outlive the runs themselves:**
 
 **Eyes-only is now the standard shape.** `make validate` was clean throughout,
 and the 590-record room-selector `weight` defect visible in the Klingon count is

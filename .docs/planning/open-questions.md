@@ -46,6 +46,52 @@ evidence for anything in this section — the standing lesson of decisions
 > **not a defect at all**: `fallback` is the mechanism and vanilla's own header
 > says so. See "Confirmed on disk" below.
 
+### Whether the galaxy is Trek now — and the Federation's unfired `always`
+
+**The first thing to look at on the next run, and it is one glance at the
+contacts list.** `CUSTOM_EMPIRE_SPAWN_CHANCE` went from vanilla's 50 (a **5%**
+chance per AI slot) to 1000 (100%) on 2026-08-24, which should make **every** AI
+empire a Trek empire rather than roughly one in twenty
+([decision 86](../decisions/86-prescripted-empires-never-drawn.md)). Three
+galaxies in a row held none.
+
+Two things to say, in this order:
+
+1. **How many of the AI empires are Trek.** The expectation is all of them. If
+   it is most but not all, the pool is being drawn from and something rejects
+   individual empires — a much sharper question than the one just closed.
+2. **Whether the United Federation of Planets is among them.** It is the only
+   empire in the tree carrying `spawn_enabled = always`, and on 2026-08-22 it
+   did **not** appear in a galaxy where the player was Vulcan, so the token did
+   not do what it says. Two readings survive and the run distinguishes them: the
+   `sol_system_initializer` it shares with the mirror Terran Empire
+   (`max_instances = 1`, [decision 25](../decisions/25-real-home-systems.md)
+   knew this was untested), or the force-spawn bug the community reports
+   against the engine. **Against the first: neither of the pair spawned**, where
+   a collision should cost only the loser.
+
+At 100% this no longer gates whether Trek empires appear, which is why it is a
+question rather than a defect.
+
+### Devastated Trek city sets — six sets, no `_devastated` art
+
+**None of STNH's six Trek city sets ships the `_devastated` layers every vanilla
+set has.** `vulcan_01`, `klingon`, `cardassian_01`, `borg_01`, `tholian_01` and
+`undine_01` have none; `humanoid_01`, `avian_01`, `reptilian_01` and
+`molluscoid_01` have five each.
+
+**No check can ask for them and no log will name them.** The engine composites
+these purely by naming convention — there is no `.gfx` or `.gui` declaration for
+a city set anywhere in vanilla or in UIOD — so nothing in the tree references
+them and the reachability closure sees nothing missing.
+
+What to look for: **bombard a Trek homeworld, or let a crisis devastate one, and
+open the planet view.** The question is only whether the engine falls back to
+the intact layers or draws nothing. If it falls back cleanly this is not a
+defect at all; if it draws nothing it is a content gap and the fix is art, which
+is a call nobody has made.
+[Decision 87](../decisions/87-city-horizon-band.md), "What this does not fix".
+
 ### The shipsets' weapons
 
 Whether the Walshicus shipsets draw their weapons — 17 of the 22 playable
@@ -304,7 +350,11 @@ finding itself is in the decision.
   ([52](../decisions/52-trek-star-names.md), correcting
   [44](../decisions/44-random-names-pools-append.md)).
 - The Vulcan city framing needed no change
-  ([70](../decisions/70-vulcan-city-framing.md)).
+  ([70](../decisions/70-vulcan-city-framing.md)) — **falsified 2026-08-24.** It
+  needed a change on the axis 70 ruled out: the skyline filled 325 of 400 rows
+  against a family median of 289, and UIOD's window cut the top 33 off. 70
+  measured the canvas three ways and never measured the *content*
+  ([87](../decisions/87-city-horizon-band.md)).
 
 ---
 
