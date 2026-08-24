@@ -56,9 +56,10 @@ On the **host** (not the container):
 
 ### 1. Point the container at your host paths
 
-`.devcontainer/devcontainer.json` hardcodes four host paths under `/home/odin`.
-**Change them to yours before the first build** — a bind mount whose source does
-not exist is a build error, not an empty directory.
+`.devcontainer/devcontainer.json` hardcodes five bind-mount sources under
+`/home/odin`, plus `HOST_WORKSPACE` below. **Change them to yours before the
+first build** — a bind mount whose source does not exist is a build error, not an
+empty directory.
 
 | Mount source to edit | What it is |
 |---|---|

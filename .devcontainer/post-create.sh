@@ -52,7 +52,7 @@ fi
 if [ -w "${PARADOX_MOD_DIR}" ]; then
 	ok "paradox mod dir ${PARADOX_MOD_DIR}  (writable, $(find "${PARADOX_MOD_DIR}" -maxdepth 1 -name '*.mod' | wc -l) mods present)"
 else
-	bad "paradox mod dir ${PARADOX_MOD_DIR} not writable — 'make deploy' will fail"
+	bad "paradox mod dir ${PARADOX_MOD_DIR} not writable — 'make link' will fail"
 fi
 
 if [ -d "${CLAUDE_CONFIG_DIR}" ]; then

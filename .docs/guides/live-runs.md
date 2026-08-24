@@ -43,14 +43,16 @@ conclusion completely, so do it explicitly rather than assuming.
 
 ## A screen nobody opened is a check that never ran
 
-The log is a **sample of that class, not a census.** Eleven runs reconciled to
-the record while nine prescripted empires, the Borg included, could not be
-selected at all — those records only appear when someone opens the empire
+The log is a **sample of that class, not a census.** Eleven runs reconciled
+against the record while **nine** prescripted empires, the Borg included, could
+not be selected at all — those records only appear when someone opens the empire
 designer.
 
 Worse, sweeping the *rule* behind those findings turned up nine more empires with
 the same defect, all AI-only, which no log will ever show: the engine drops a
 trait silently rather than refusing it.
+[Prescripted empire rules](../reference/prescripted-empire-rules.md#why-this-is-a-swept-rule-and-not-a-list-of-fixes)
+holds the rules themselves and the count.
 
 > **When the log reveals a defect that has a rule behind it** — a vanilla
 > `opposites` list, an archetype budget, an `allowed_ethics` gate — **never

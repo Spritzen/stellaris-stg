@@ -97,14 +97,12 @@ which of the two they are trusting.
 
 ## 6. A screen nobody opened is a check that never ran
 
-**And the log is a sample of that class, not a census.** Eleven runs reconciled
-to the record while nine prescripted empires, the Borg included, could not be
-selected at all; those records only appear when someone opens the empire
-designer.
-
-Worse, sweeping the *rule* behind those findings turned up nine more empires with
-the same defect, all AI-only, which no log will ever show — the engine drops a
-trait silently rather than refusing it.
+**And the log is a sample of that class, not a census.** Vanilla's `opposites`
+lists, archetype budgets and ruler-trait ethic gates hid **nine** STG empires
+from the designer for eleven runs; those records only appear when someone opens
+it. Sweeping the *rule* behind them found **nine more**, all AI-only, which no
+log will ever show — the engine drops a trait silently rather than refusing it.
+[Prescripted empire rules](../reference/prescripted-empire-rules.md#why-this-is-a-swept-rule-and-not-a-list-of-fixes).
 
 **When the log reveals a defect that has a rule behind it** (a vanilla
 `opposites` list, an archetype budget, an `allowed_ethics` gate), **never repair
@@ -199,11 +197,24 @@ found nothing anywhere and reported **1,279 findings, most of them vanilla's**
 ## 11. Scope is a calibration result, not a convenience filter
 
 **And say so where someone will try to widen it.** `check_section_attach_points`
-finds 66 real defects against 1 vanilla false positive over the station family,
-and 147 against 41 over all 317 ship sizes. The narrow scope is a constant in the
-code **with the ratio written next to it**, so widening it reads as the piece of
-work it is rather than an oversight. The same reasoning kept
-`check_asset_load_order` scoped to entities STG owns.
+finds 66 real defects against 1 vanilla false positive over the station family.
+The narrow scope is a constant in the code **with the ratio written next to it**,
+so widening it reads as the piece of work it is rather than an oversight. The
+same reasoning kept `check_asset_load_order` scoped to entities STG owns.
+
+> **And then the ratio itself goes stale, which is the other half of this rule.**
+> That scope was held shut by a second figure — 147 mod findings against 41
+> vanilla ones over all 317 ship sizes, *"not a signal anyone can act on"*. It
+> was true when it was measured and false by the time anyone read it: once
+> [decision 82](../decisions/82-hull-section-attach-points.md) repaired the
+> hulls, the whole population was **12**, and the check that should have guarded
+> those 230 attach points was still declining to look at them.
+>
+> **A ratio beside a scope is a measurement with a date, not a standing fact.**
+> Re-measure it before citing it as the reason not to widen — and note that
+> widening on the new number alone would still have shipped false positives, so
+> the hull half is gated on the frame being *borrowed* rather than on the count.
+> [Decision 83](../decisions/83-widen-attach-points-and-two-new-checks.md).
 
 **A check can want two scopes at once.** `check_prescripted_loc`'s truncation
 half stays on the one *generated* file, because truncation is a generator failure
