@@ -3519,11 +3519,12 @@ def check_selector_texture_paths() -> int:
     """A quoted texture path in an asset selector that is not a `.dds` path.
 
     THE SYNTAX HALF OF A TWO-HALF QUESTION, landed on its own because it has no
-    content call behind it. The other half -- does the path RESOLVE -- has 196
-    findings whose fix is either deleting a row (changing which garment a
-    species wears) or supplying art, so it is a decision per row and waits.
-    This half is mechanical: the path is malformed, the engine cannot load it,
-    and appending `.dds` cannot be the wrong answer.
+    content call behind it. The other half -- does the path RESOLVE -- is
+    check_selector_texture_files below, landed 2026-08-24 once the population
+    was measured properly: 117 rows, not the 196 recorded, and 76 of those were
+    somebody's typo rather than a content call (decision 85). This half
+    is mechanical: the path is malformed, the engine cannot load it, and
+    appending `.dds` cannot be the wrong answer.
 
     A TEXTURE THAT FAILS TO LOAD FALLS BACK RATHER THAN FAILING. That is what
     "the image isn't showing the same as the settings" looks like from the
@@ -3569,6 +3570,95 @@ def check_selector_texture_paths() -> int:
             f"drawn. Vanilla writes 7,845 of these and every one ends `.dds`. "
             f"Fix with a `patches:` entry in vendor.yml. "
             f"See .docs/planning/ufp-run-remediation.md, item 2.")
+    return n
+
+
+def check_selector_texture_files() -> int:
+    """A quoted texture path in an asset selector that resolves to no file.
+
+    THE RESOLVES HALF of the question decision 83 split in two. The syntax half
+    above is pure form -- a path with no `.dds` is malformed whatever is on
+    disk. This half asks the harder thing, and it waited two weeks because its
+    findings were believed to need a content call each. Most of them did not: of
+    the 117 rows measured on 2026-08-24, 76 named art that IS in the tree -- under
+    another directory, under one corrected character, or under the name the
+    file's own male mirror already draws for that same trigger. The remaining 41
+    were the real call and took one policy rather than thirteen decisions:
+    repoint at the nearest surviving sibling in the same family, never delete.
+    THE FLOOR IS 0 AND THE TREE IS AT IT.
+
+    VANILLA COUNTS AS PRESENT, and getting that wrong is what produced the
+    "196" this project carried for two weeks. STG is a total conversion but it
+    does not replace vanilla's art: `gfx/models/portraits/` under /stellaris is
+    still loaded, and 1,052 selector rows name it. Resolve against the built
+    tree ALONE and the finding count is 1,169 rows -- nine in ten of them
+    vanilla art that draws correctly. The resolution set is BUILD + GAME_DIR,
+    the same pair check_texture_basenames uses for the same reason.
+
+    NO SCOPE AND NO FLOOR IS NEEDED, because the check reads only our own
+    directory. Vanilla's own selectors carry 7 unresolved rows / 5 textures --
+    two `.dds.dds`, two that differ from the file only in case
+    (`reptilian_slender_outfit_Admiral.dds`), and three genuinely absent
+    paragon textures -- but those are vanilla's files, which this never opens.
+
+    MATCHING IS EXACT, case included. A case-only difference is reported rather
+    than resolved away: it is the one form of this defect whose behaviour the
+    container cannot test, since the game runs on the host. Our tree currently
+    has none -- the population is identical under either rule -- so the choice
+    costs nothing today and fails loudly rather than silently if a copied
+    vanilla row ever brings one in.
+
+    A FINDING IS REPOINTED, NEVER DELETED. Deleting an entry from a
+    `list = { }` shifts every index after it and changes what other species
+    wear, which is why decision 83 accepted a duplicated entry rather than drop
+    one. `"path" = { trigger }` rows are index-free, but a deletion there still
+    changes what that trigger draws.
+
+    See .docs/decisions/85-selector-textures-that-resolve.md.
+    """
+    d = BUILD / "gfx/portraits/asset_selectors"
+    if not d.is_dir():
+        return 0
+
+    ack = _ack_list("selector_texture_ack")
+    seen: dict[str, bool] = {}
+
+    def resolves(path: str) -> bool:
+        hit = seen.get(path)
+        if hit is None:
+            hit = (BUILD / path).is_file() or (GAME_DIR / path).is_file()
+            seen[path] = hit
+        return hit
+
+    n = rows = 0
+    missing: dict[str, set[str]] = {}
+    for f in sorted(d.rglob("*.txt")):
+        n += 1
+        rp = str(f.relative_to(BUILD))
+        for path in _SELECTOR_TEXTURE_RE.findall(_strip_comments(_read(f))):
+            if path in ack or resolves(path):
+                continue
+            rows += 1
+            missing.setdefault(path, set()).add(rp)
+
+    if missing:
+        head = "; ".join(
+            f"{p} ({len(v)} file(s))"
+            for p, v in sorted(missing.items(), key=lambda kv: -len(kv[1]))[:3])
+        warnings.append(
+            f"gfx/portraits/asset_selectors: {rows} row(s) name "
+            f"{len(missing)} texture(s) that exist in neither the built tree "
+            f"nor vanilla, across "
+            f"{len(set().union(*missing.values()))} file(s) — {head}"
+            f"{' …' if len(missing) > 3 else ''}. The engine falls back "
+            f"silently, so the portrait draws in the wrong clothes with "
+            f"nothing in error.log unless that exact row is drawn. Read the "
+            f"row's trigger before pricing this as a content call: two thirds "
+            f"of the last population were a directory typo, or had their "
+            f"substitute named by the male mirror of the same trigger or by "
+            f"the rows beside them. Repoint, never delete — a deletion shifts "
+            f"every index after it. "
+            f"See .docs/decisions/85-selector-textures-that-resolve.md.")
     return n
 
 
@@ -5858,6 +5948,7 @@ def main() -> int:
     por_n = check_prescripted_portraits()
     clo_n = check_portrait_clothes_selectors()
     selp_n = check_selector_texture_paths()
+    selr_n = check_selector_texture_files()
     scl_n = check_species_class_loc()
     app_n = check_prescripted_appearance()
     room_n = check_room_references()
@@ -5902,6 +5993,7 @@ def main() -> int:
           f"{por_n} for portrait references, "
           f"{clo_n} for clothes-selector species gating, "
           f"{selp_n} asset selector(s) for malformed texture paths, "
+          f"{selr_n} for texture paths that must resolve, "
           f"{scl_n} species class(es) for localisation, "
           f"{app_n} for ruler appearance indices, "
           f"{room_n} for the room and city set they ask for, "

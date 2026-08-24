@@ -7,6 +7,9 @@ finally puts a check behind.
 constant this widens — and whose reason for the scope had expired.
 **Follows** [decision 71](71-doc-inventory-checks.md): all three items below came
 out of reading the docs against the tree, not out of a live run.
+**Its 196 is corrected by** [decision 85](85-selector-textures-that-resolve.md),
+which measured that population at 117 and landed the resolves half. The body
+below stays as written.
 
 ## Where these came from
 

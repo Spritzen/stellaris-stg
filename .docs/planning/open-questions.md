@@ -110,11 +110,16 @@ falsified [68](../decisions/68-ruler-clothes-index-restored.md).
 > `check_selector_texture_paths` holds the tree at zero
 > ([83](../decisions/83-widen-attach-points-and-two-new-checks.md)).
 >
-> **One caveat keeps this from being fully clean**: the same sweep found **196
-> selector rows pointing at textures that exist in no source mod at all**, each
-> of them a silent fallback and each needing a content call. If a ruler is still
-> wrong, check whether its garment is one of the 196 before doubting the selector
-> again. [ufp-run-remediation.md](ufp-run-remediation.md), item 2.
+> **The caveat that used to sit here is closed.** The same sweep found selector
+> rows pointing at textures that exist in no source mod at all, recorded as 196
+> and each believed to need a content call. **Measured 2026-08-24 the population
+> was 117 rows — vanilla had been left out of the resolution set — 76 of them
+> needed no call at all, and the remaining 41 took one policy rather than
+> thirteen decisions.** Every row now resolves, and
+> `check_selector_texture_files` holds it there, so a ruler that still looks
+> wrong is no longer explained by a missing garment.
+> [Decision 85](../decisions/85-selector-textures-that-resolve.md),
+> [ufp-run-remediation.md](ufp-run-remediation.md) item 2.
 >
 > **And the clothes-slider wrap is arithmetic, not a defect.** The designer's
 > slider runs to 499; the male pool is 495 wide and the female 472, so
@@ -394,7 +399,7 @@ breakdown of the init window, which has not changed shape since.*
   `ZOOM_STEPS_SYSTEM`, an array no script can set, and the visual test found
   13-against-8 rendering correctly.
   [Decision 43](../decisions/43-planet-scale-system-length.md).
-- **703 report-tier orphans** from the clutter closure (build of 2026-08-10;
+- **700 report-tier orphans** from the clutter closure (build of 2026-08-24;
   [decision 45](../decisions/45-clutter-pass.md) recorded 706, and `make
   validate` prints the live figure). At vanilla's own 4.9%
   leftover rate in `gfx/models`, a finding there is indistinguishable from

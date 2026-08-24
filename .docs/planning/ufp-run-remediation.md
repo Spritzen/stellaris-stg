@@ -21,7 +21,7 @@ measuring first.
 | | Item | |
 |---|---|---|
 | 1 | Hull section attach points | **Fixed** — 230 points, 22 shipsets ([82](../decisions/82-hull-section-attach-points.md)) |
-| 2 | Malformed portrait paths | **Fixed** — 29 patched, then 11 more in the female master on 2026-08-22 ([83](../decisions/83-widen-attach-points-and-two-new-checks.md)); **196 dangling textures found beside them, left** |
+| 2 | Malformed portrait paths | **Fixed** — 29 patched, then 11 more in the female master on 2026-08-22 ([83](../decisions/83-widen-attach-points-and-two-new-checks.md)). The dangling textures found beside them were **117 rows, not 196**, and all 117 were repointed on 2026-08-24 — 76 with no content call to make, 41 under one policy ([85](../decisions/85-selector-textures-that-resolve.md)). **`check_selector_texture_files` now holds the tree at zero** |
 | 3 | Star and nebula names unlocalised | **Fixed** — 328 keys, one per quoted entry ([81](../decisions/81-random-names-are-loc-keys.md)) |
 | 4 | No Trek empires met | **Narrowed, open** — three causes eliminated; needs a force-spawn on the next run |
 | 5 | Planetary Diversity event scope | **Fixed and confirmed in game** — 6 patches; 98 records on 2026-08-10, **0** on 2026-08-22 |
@@ -29,9 +29,10 @@ measuring first.
 | 7 | Shipset dropdown lists species | **Not a defect** — vanilla has no shipset name key either. The *descriptions* half was a real defect and is **fixed**: 30 keys, [84](../decisions/84-shipset-descs-and-home-system-names.md) |
 | 8 | City art 25% small in the designer | **Not the art, and not the declarations either** — every file is at canvas, and every declared culture reaches art through its `fallback` ([84](../decisions/84-shipset-descs-and-home-system-names.md)). **The rect is all that is left, and it needs one screenshot comparison** |
 
-**Five of the eight are closed, three of those by measurement rather than by a
-change.** What is genuinely still open is item 4, item 2's 196, and item 8's
-rect — plus everything in Tier 4, which only a live run can reach.
+**Six of the eight are closed, three of those by measurement rather than by a
+change.** What is genuinely still open is item 4 and item 8's rect — plus
+everything in Tier 4, which only a live run can reach. **Item 2 closed on
+2026-08-24**, its second half included.
 
 > **The 2026-08-22 Vulcan run moved three of these and this file is annotated in
 > place rather than rewritten.** Item 5 is now **confirmed in game by silence**;
@@ -238,6 +239,10 @@ in the directory name) misses in the same log.
 > paths, every one `.dds`), so it cost nothing to land alone. **The resolves
 > half is still unwritten**, because each of its 196 findings needs a content
 > call. [Decision 83](../decisions/83-widen-attach-points-and-two-new-checks.md).
+>
+> **Both halves are in as of 2026-08-24**, the second as
+> `check_selector_texture_files`, and the 196 that made it look unaffordable was
+> a measurement error. [Decision 85](../decisions/85-selector-textures-that-resolve.md).
 
 > **What landed** — 29 replacements over the two master selectors: seven
 > president rows given the `.dds` they were missing, and 22 Terran ruler rows
@@ -272,6 +277,33 @@ in the directory name) misses in the same log.
 > walk every quoted `gfx/models/portraits/…` in that directory and test it
 > against `stg-build/`. Worth its own scoped piece of work, and a check once the
 > shape of the answer is known.
+
+> **Measured 2026-08-24, and the population is 117 rows over 45 textures — not
+> 196.** The rule this paragraph specifies is the error: *test it against
+> `stg-build/`* leaves vanilla out of the resolution set, and STG does not
+> replace vanilla's portrait art. Against `stg-build/` alone the sweep finds
+> 1,169 rows, and **1,052 of them name vanilla files the game loads**.
+>
+> **76 of the 117 needed no content call at all.** 22 textures name a file that
+> is in the tree under a different directory — `starfleet_all_good_things_mirror_mirror/`
+> for `..._mirror/`, `starfleet_tmp/` for `starfleet_original_series/`,
+> `bajoran/` for `bajoran civilian/` — and 6 more are a typo with exactly one
+> possible target. Four more are art that really is absent, but the tree names
+> the substitute itself: the mirror-TOS governor rows take the coat the **male**
+> master already draws for that same trigger. All 32 were repointed by
+> `patches:` on 2026-08-24, never deleted: a third of the rows sit in a
+> `list = { }` where a deletion shifts every index after it.
+>
+> **The last 41 rows were the genuine content call, and they took one policy
+> rather than thirteen decisions**: repoint at the nearest surviving sibling in
+> the same family, never delete. Decision 85 §5 records what each of the
+> thirteen textures took. Three of those rows were single-entry trigger-gated
+> ones — the Capellan and the two Mizar civilian rulers — which missed *every*
+> time the trigger fired rather than one draw in N.
+>
+> **The population is 0 and `check_selector_texture_files` holds it there.**
+> `check_selector_texture_files` now reports the whole population every run.
+> [Decision 85](../decisions/85-selector-textures-that-resolve.md).
 
 ### 3. 330 star and nebula names ship without a single localisation key
 

@@ -6,7 +6,7 @@
 > build.
 > **Then** — [Open questions](open-questions.md) · [Phases](phases.md) · [Live runs](../guides/live-runs.md)
 
-*Last updated against the build of 2026-08-22 and the run of 2026-08-22
+*Last updated against the build of 2026-08-24 and the run of 2026-08-22
 ([analysis 2026-08-16](../analysis/2026-08-16.md)). Every number here has a date
 because every number here goes stale — [style guide §6](../style-guide.md).*
 
@@ -25,7 +25,7 @@ because every number here goes stale — [style guide §6](../style-guide.md).*
 `.vendor-manifest.json` and the `make validate` summary line carry the live
 ones.
 
-| | Build of 2026-08-22 |
+| | Build of 2026-08-24 |
 |---|---|
 | Files / size | **22,406 / 14.3 GiB** ([the per-tier split](../architecture/vendored-merge.md#size)) |
 | Re-cut at harvest / pruned | 1,661 / **888** |
@@ -124,8 +124,11 @@ rather than one paste; and the six cultures with no city art all declare a
 `fallback` that reaches art, which is the mechanism vanilla's own file header
 names. Still open from 2026-08-10: why no Trek empire appeared in 22 — which
 now has a one-glance answer waiting, since the Federation alone carries
-`spawn_enabled = always` — and the 196 selector rows pointing at art no source
-mod ships.
+`spawn_enabled = always`. **The selector rows pointing at art no source mod
+ships are closed**: 117 rather than the 196 recorded, two thirds of them a
+misspelled directory or a substitute the tree named itself, the rest repointed
+under one policy, and the tree held at zero by a new check
+([85](../decisions/85-selector-textures-that-resolve.md)).
 
 The game has been the **native Linux build** since 2026-08-02
 ([decision 15](../decisions/15-native-linux-runtime.md)) — content unaffected,

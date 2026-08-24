@@ -36,9 +36,13 @@ The BOM rule asks vanilla **per folder** rather than asserting one answer:
 
 `check_selector_texture_paths` is here rather than in family B because it asks
 nothing about resolution. A path with no extension is malformed whatever is on
-disk, and appending `.dds` cannot be the wrong answer — so it lands on its own,
-ahead of the harder *and resolves* half whose 196 findings each need a content
-call. Vanilla writes **7,845** such paths and every one ends `.dds`; no other
+disk, and appending `.dds` cannot be the wrong answer — so it landed on its own,
+ahead of the harder *and resolves* half, which is now
+`check_selector_texture_files` in family B. **That half's "196 findings, each
+needing a content call" was a measurement error**: the population was 117 rows,
+76 of them repaired with no call to make and the remaining 41 under one policy,
+and **the tree is now at zero**
+([85](../decisions/85-selector-textures-that-resolve.md)). Vanilla writes **7,845** such paths and every one ends `.dds`; no other
 extension appears in that position at all, so the floor is 0 and there is no
 scope. The engine falls back silently on a miss, which is why 10 rows survived
 two live runs: the log records only the rows somebody actually drew.
@@ -57,6 +61,7 @@ declare it?*
 | `check_dangling_identifiers` | scripted triggers, traits and species classes the vendored art names | 34 STNH species classes falling through to the clothes selector's `default` — [32](../decisions/32-declare-stub-species-classes.md) |
 | `check_dangling_shaders` | shader effects a mesh names | Real Space's gas giant rings drawing with no material — [34](../decisions/34-src-shadows-drop-source-declarations.md) |
 | `check_dangling_art_references` | meshes and particles a vendored `.asset` names | |
+| `check_selector_texture_files` | that a quoted asset-selector texture path resolves against the built tree **or vanilla** — the *resolves* half of the malformed-path question | 117 rows naming art that is in neither — carried as 196 until vanilla was put back in the resolution set — [85](../decisions/85-selector-textures-that-resolve.md) |
 | `check_gfx_file_refs` | bare texture filenames a vendored `.gfx` names, and whether the file is on disk | 190 textures named by kept `.gfx` files, none in the tree — [24](../decisions/24-group-c-texture-references.md) |
 | `check_texture_basenames` | a `meshsettings` texture — a **bare** filename — resolved by basename against everything loaded, vanilla included | the sibling above skips bare filenames, which left `texture_diffuse = "foo.dds"` unasked in any form: 139 `Failed to find texture` records, **not one** of them in the built tree, against a clean `make validate` |
 | `check_asset_variables` | `@variable` an art file references that neither it nor `common/scripted_variables/` declares | loads as `Malformed token` and drops the value — [31](../decisions/31-asset-local-variables.md) |

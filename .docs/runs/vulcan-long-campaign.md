@@ -94,10 +94,12 @@ Ten minutes here settles more eyes-only questions than the next two hours will.
 - Confirmed she is in a civilian robe
 ```
 - **Then walk the clothes slider a long way** — 1, 20, 100, 300, 480, 499 —
-      and say whether high indices redraw as index 1. **196 selector rows point
-      at textures that exist in no source mod at all**, every one a silent
-      fallback, and nobody has yet seen what that looks like from the player's
-      side. [ufp-run-remediation.md](../planning/ufp-run-remediation.md), item 2.
+      and say whether high indices redraw as index 1. **The selector rows
+      pointing at textures no source mod ships are gone** — 196 when this plan
+      was written, 117 when it was measured, 0 since 2026-08-24
+      ([85](../decisions/85-selector-textures-that-resolve.md)) — so a wrap seen
+      now is the slider arithmetic and nothing else.
+      [ufp-run-remediation.md](../planning/ufp-run-remediation.md), item 2.
 ```markdown
 #OBSERVATIONS
 - I'm not scrolling through all these. I got to 286 with no duplicates before getting RSI.

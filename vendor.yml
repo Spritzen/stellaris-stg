@@ -1652,6 +1652,829 @@ patches:
         to: "\t\t\"gfx/models/portraits/barzan/barzan_female_clothes_03.dds\" = { uses_barzan_uniform = yes uses_operations_uniform = yes }"
         count: 1
 
+  # --- 28 selector textures named by a path that resolves to nothing ---------
+  # THE OTHER HALF OF THE MALFORMED-PATH QUESTION -- the half decision 83
+  # landed the syntax half of and left for a content call. Re-measured against
+  # the build of 2026-08-24: 117 rows in 43 files name a texture that is in
+  # NEITHER stg-build/ NOR /stellaris. The 196 the docs carried does not
+  # reproduce under any rule; it was measured without vanilla in the resolution
+  # set, and 1,052 of the rows that drops name vanilla art the game loads under
+  # a total conversion. Those are not defects.
+  #
+  # THESE 28 NEED NO CONTENT CALL. 22 name a file that is in the tree under a
+  # different directory, and 6 are a typo with exactly one possible target, so
+  # each row is repointed at the art its author named -- the same disposition
+  # as the brunali/norcadian redirect above. The remaining 17 textures are art
+  # NO source mod ships and no rename can conjure; they stay dangling until
+  # they get their call, and decision 85 lists them.
+  #
+  # A ROW IS REPOINTED, NEVER DELETED. A third of the misses sit inside a
+  # `list = { }`, where deleting an entry shifts every index after it and
+  # changes what other species wear -- the reason decision 83 accepted a
+  # duplicated entry rather than delete one.
+  # See .docs/decisions/85-selector-textures-that-resolve.md.
+
+  - path: gfx/portraits/asset_selectors/acamarian/acamarian_female_clothes_01.txt
+    source: "Star Trek: New Horizons"
+    why: >-
+      The Discovery medical top is in `starfleet_discovery/`; `starfleet_tmp/`
+      holds only the `tmp_` set. The TOS-era tops are in
+      `starfleet_original_series/`; `starfleet_tmp/` holds only the `tmp_`
+      set. See .docs/decisions/85-selector-textures-that-resolve.md.
+    replace:
+      - from: "\"gfx/models/portraits/starfleet_tmp/dis_human_female_medical.dds\""
+        to: "\"gfx/models/portraits/starfleet_discovery/dis_human_female_medical.dds\""
+        count: 1
+      - from: "\"gfx/models/portraits/starfleet_tmp/tos_human_female_admiral.dds\""
+        to: "\"gfx/models/portraits/starfleet_original_series/tos_human_female_admiral.dds\""
+        count: 2
+      - from: "\"gfx/models/portraits/starfleet_tmp/tos_human_female_command.dds\""
+        to: "\"gfx/models/portraits/starfleet_original_series/tos_human_female_command.dds\""
+        count: 2
+      - from: "\"gfx/models/portraits/starfleet_tmp/tos_human_female_science.dds\""
+        to: "\"gfx/models/portraits/starfleet_original_series/tos_human_female_science.dds\""
+        count: 1
+      - from: "\"gfx/models/portraits/starfleet_tmp/tos_human_female_security.dds\""
+        to: "\"gfx/models/portraits/starfleet_original_series/tos_human_female_security.dds\""
+        count: 1
+
+  - path: gfx/portraits/asset_selectors/acamarian/acamarian_male_clothes_01.txt
+    source: "Star Trek: New Horizons"
+    why: >-
+      The TNG folders are spelled two ways and these rows mix them: the era-2
+      art is in `starfleet next generation 02/` (spaces) and the era-1 art in
+      `starfleet_next_generation_01/` (underscores). See
+      .docs/decisions/85-selector-textures-that-resolve.md.
+    replace:
+      - from: "\"gfx/models/portraits/starfleet_next generation_01/tng1_human_male_cmo.dds\""
+        to: "\"gfx/models/portraits/starfleet_next_generation_01/tng1_human_male_cmo.dds\""
+        count: 1
+
+  - path: gfx/portraits/asset_selectors/andorian/andorian_male_clothes_01.txt
+    source: "Star Trek: New Horizons"
+    why: >-
+      The TNG folders are spelled two ways and these rows mix them: the era-2
+      art is in `starfleet next generation 02/` (spaces) and the era-1 art in
+      `starfleet_next_generation_01/` (underscores). See
+      .docs/decisions/85-selector-textures-that-resolve.md.
+    replace:
+      - from: "\"gfx/models/portraits/starfleet_next generation_01/tng1_human_male_cmo.dds\""
+        to: "\"gfx/models/portraits/starfleet_next_generation_01/tng1_human_male_cmo.dds\""
+        count: 1
+
+  - path: gfx/portraits/asset_selectors/antaran/antaran_male_clothes_01.txt
+    source: "Star Trek: New Horizons"
+    why: >-
+      The TNG folders are spelled two ways and these rows mix them: the era-2
+      art is in `starfleet next generation 02/` (spaces) and the era-1 art in
+      `starfleet_next_generation_01/` (underscores). See
+      .docs/decisions/85-selector-textures-that-resolve.md.
+    replace:
+      - from: "\"gfx/models/portraits/starfleet_next generation_01/tng1_human_male_cmo.dds\""
+        to: "\"gfx/models/portraits/starfleet_next_generation_01/tng1_human_male_cmo.dds\""
+        count: 1
+
+  - path: gfx/portraits/asset_selectors/antican/antican_male_clothes_01.txt
+    source: "Star Trek: New Horizons"
+    why: >-
+      The TNG folders are spelled two ways and these rows mix them: the era-2
+      art is in `starfleet next generation 02/` (spaces) and the era-1 art in
+      `starfleet_next_generation_01/` (underscores). See
+      .docs/decisions/85-selector-textures-that-resolve.md.
+    replace:
+      - from: "\"gfx/models/portraits/starfleet_next generation_01/tng1_human_male_cmo.dds\""
+        to: "\"gfx/models/portraits/starfleet_next_generation_01/tng1_human_male_cmo.dds\""
+        count: 1
+
+  - path: gfx/portraits/asset_selectors/baku/baku_male_clothes_01.txt
+    source: "Star Trek: New Horizons"
+    why: >-
+      The TNG folders are spelled two ways and these rows mix them: the era-2
+      art is in `starfleet next generation 02/` (spaces) and the era-1 art in
+      `starfleet_next_generation_01/` (underscores). See
+      .docs/decisions/85-selector-textures-that-resolve.md.
+    replace:
+      - from: "\"gfx/models/portraits/starfleet_next generation_01/tng1_human_male_cmo.dds\""
+        to: "\"gfx/models/portraits/starfleet_next_generation_01/tng1_human_male_cmo.dds\""
+        count: 1
+
+  - path: gfx/portraits/asset_selectors/betazoid/betazoid_female_clothes_01.txt
+    source: "Star Trek: New Horizons"
+    why: >-
+      The TNG folders are spelled two ways and these rows mix them: the era-2
+      art is in `starfleet next generation 02/` (spaces) and the era-1 art in
+      `starfleet_next_generation_01/` (underscores). See
+      .docs/decisions/85-selector-textures-that-resolve.md.
+    replace:
+      - from: "\"gfx/models/portraits/starfleet_next generation_01/tng2_human_female_science.dds\""
+        to: "\"gfx/models/portraits/starfleet next generation 02/tng2_human_female_science.dds\""
+        count: 1
+
+  - path: gfx/portraits/asset_selectors/betazoid/betazoid_male_clothes_01.txt
+    source: "Star Trek: New Horizons"
+    why: >-
+      The TNG folders are spelled two ways and these rows mix them: the era-2
+      art is in `starfleet next generation 02/` (spaces) and the era-1 art in
+      `starfleet_next_generation_01/` (underscores). See
+      .docs/decisions/85-selector-textures-that-resolve.md.
+    replace:
+      - from: "\"gfx/models/portraits/starfleet_next generation_01/tng1_human_male_cmo.dds\""
+        to: "\"gfx/models/portraits/starfleet_next_generation_01/tng1_human_male_cmo.dds\""
+        count: 1
+      - from: "\"gfx/models/portraits/starfleet_next_generation_02/tng2_human_male_science.dds\""
+        to: "\"gfx/models/portraits/starfleet next generation 02/tng2_human_male_science.dds\""
+        count: 1
+
+  - path: gfx/portraits/asset_selectors/bolian/bolian_female_clothes_01.txt
+    source: "Star Trek: New Horizons"
+    why: >-
+      The TNG folders are spelled two ways and these rows mix them: the era-2
+      art is in `starfleet next generation 02/` (spaces) and the era-1 art in
+      `starfleet_next_generation_01/` (underscores). See
+      .docs/decisions/85-selector-textures-that-resolve.md.
+    replace:
+      - from: "\"gfx/models/portraits/starfleet_next generation_01/tng2_human_female_science.dds\""
+        to: "\"gfx/models/portraits/starfleet next generation 02/tng2_human_female_science.dds\""
+        count: 1
+
+  - path: gfx/portraits/asset_selectors/bolian/bolian_male_clothes_01.txt
+    source: "Star Trek: New Horizons"
+    why: >-
+      The TNG folders are spelled two ways and these rows mix them: the era-2
+      art is in `starfleet next generation 02/` (spaces) and the era-1 art in
+      `starfleet_next_generation_01/` (underscores). See
+      .docs/decisions/85-selector-textures-that-resolve.md.
+    replace:
+      - from: "\"gfx/models/portraits/starfleet_next generation_01/tng1_human_male_cmo.dds\""
+        to: "\"gfx/models/portraits/starfleet_next_generation_01/tng1_human_male_cmo.dds\""
+        count: 1
+      - from: "\"gfx/models/portraits/starfleet_next_generation_02/tng2_human_male_science.dds\""
+        to: "\"gfx/models/portraits/starfleet next generation 02/tng2_human_male_science.dds\""
+        count: 1
+
+  - path: gfx/portraits/asset_selectors/borg/borg_male_clothes.txt
+    source: "Star Trek: New Horizons"
+    why: >-
+      The TNG folders are spelled two ways and these rows mix them: the era-2
+      art is in `starfleet next generation 02/` (spaces) and the era-1 art in
+      `starfleet_next_generation_01/` (underscores). See
+      .docs/decisions/85-selector-textures-that-resolve.md.
+    replace:
+      - from: "\"gfx/models/portraits/starfleet_next generation_01/tng1_human_male_cmo.dds\""
+        to: "\"gfx/models/portraits/starfleet_next_generation_01/tng1_human_male_cmo.dds\""
+        count: 1
+
+  - path: gfx/portraits/asset_selectors/caitian/caitian_female_clothes_01.txt
+    source: "Star Trek: New Horizons"
+    why: >-
+      The TNG folders are spelled two ways and these rows mix them: the era-2
+      art is in `starfleet next generation 02/` (spaces) and the era-1 art in
+      `starfleet_next_generation_01/` (underscores). See
+      .docs/decisions/85-selector-textures-that-resolve.md.
+    replace:
+      - from: "\"gfx/models/portraits/starfleet_next generation_01/tng2_human_female_science.dds\""
+        to: "\"gfx/models/portraits/starfleet next generation 02/tng2_human_female_science.dds\""
+        count: 1
+
+  - path: gfx/portraits/asset_selectors/caitian/caitian_male_clothes_01.txt
+    source: "Star Trek: New Horizons"
+    why: >-
+      The TNG folders are spelled two ways and these rows mix them: the era-2
+      art is in `starfleet next generation 02/` (spaces) and the era-1 art in
+      `starfleet_next_generation_01/` (underscores). See
+      .docs/decisions/85-selector-textures-that-resolve.md.
+    replace:
+      - from: "\"gfx/models/portraits/starfleet_next_generation_02/tng2_human_male_science.dds\""
+        to: "\"gfx/models/portraits/starfleet next generation 02/tng2_human_male_science.dds\""
+        count: 1
+
+  - path: gfx/portraits/asset_selectors/cardassian/cardassian_male_clothes_01.txt
+    source: "Star Trek: New Horizons"
+    why: >-
+      The TNG folders are spelled two ways and these rows mix them: the era-2
+      art is in `starfleet next generation 02/` (spaces) and the era-1 art in
+      `starfleet_next_generation_01/` (underscores). See
+      .docs/decisions/85-selector-textures-that-resolve.md.
+    replace:
+      - from: "\"gfx/models/portraits/starfleet_next generation_01/tng1_human_male_cmo.dds\""
+        to: "\"gfx/models/portraits/starfleet_next_generation_01/tng1_human_male_cmo.dds\""
+        count: 1
+
+  - path: gfx/portraits/asset_selectors/deltan/deltan_male_clothes_01.txt
+    source: "Star Trek: New Horizons"
+    why: >-
+      The TNG folders are spelled two ways and these rows mix them: the era-2
+      art is in `starfleet next generation 02/` (spaces) and the era-1 art in
+      `starfleet_next_generation_01/` (underscores). See
+      .docs/decisions/85-selector-textures-that-resolve.md.
+    replace:
+      - from: "\"gfx/models/portraits/starfleet_next generation_01/tng1_human_male_cmo.dds\""
+        to: "\"gfx/models/portraits/starfleet_next_generation_01/tng1_human_male_cmo.dds\""
+        count: 1
+
+  - path: gfx/portraits/asset_selectors/ferengi/ferengi_female_clothes_01.txt
+    source: "Star Trek: New Horizons"
+    why: >-
+      The TNG folders are spelled two ways and these rows mix them: the era-2
+      art is in `starfleet next generation 02/` (spaces) and the era-1 art in
+      `starfleet_next_generation_01/` (underscores). See
+      .docs/decisions/85-selector-textures-that-resolve.md.
+    replace:
+      - from: "\"gfx/models/portraits/starfleet_next generation_01/tng2_human_female_science.dds\""
+        to: "\"gfx/models/portraits/starfleet next generation 02/tng2_human_female_science.dds\""
+        count: 1
+
+  - path: gfx/portraits/asset_selectors/ferengi/ferengi_male_clothes_01.txt
+    source: "Star Trek: New Horizons"
+    why: >-
+      The TNG folders are spelled two ways and these rows mix them: the era-2
+      art is in `starfleet next generation 02/` (spaces) and the era-1 art in
+      `starfleet_next_generation_01/` (underscores). See
+      .docs/decisions/85-selector-textures-that-resolve.md.
+    replace:
+      - from: "\"gfx/models/portraits/starfleet_next generation_01/tng1_human_male_cmo.dds\""
+        to: "\"gfx/models/portraits/starfleet_next_generation_01/tng1_human_male_cmo.dds\""
+        count: 1
+      - from: "\"gfx/models/portraits/starfleet_next_generation_02/tng2_human_male_science.dds\""
+        to: "\"gfx/models/portraits/starfleet next generation 02/tng2_human_male_science.dds\""
+        count: 1
+
+  - path: gfx/portraits/asset_selectors/human_female_02_hair.txt
+    source: "Star Trek: New Horizons"
+    why: >-
+      Vanilla moved this hair texture into `human/human_female_hair_update/`
+      and names it there in its own human_female_01_hair.txt; STNH's copy of
+      the row dropped the folder.
+      See .docs/decisions/85-selector-textures-that-resolve.md.
+    replace:
+      - from: "\"gfx/models/portraits/human/human_female_hair_blonde_style_05.dds\""
+        to: "\"gfx/models/portraits/human/human_female_hair_update/human_female_hair_blonde_style_05.dds\""
+        count: 1
+
+  - path: gfx/portraits/asset_selectors/humanoid_02_male_clothes_01.txt
+    source: "Star Trek: New Horizons"
+    why: >-
+      The TNG folders are spelled two ways and these rows mix them: the era-2
+      art is in `starfleet next generation 02/` (spaces) and the era-1 art in
+      `starfleet_next_generation_01/` (underscores). See
+      .docs/decisions/85-selector-textures-that-resolve.md.
+    replace:
+      - from: "\"gfx/models/portraits/starfleet_next generation_01/tng1_human_male_cmo.dds\""
+        to: "\"gfx/models/portraits/starfleet_next_generation_01/tng1_human_male_cmo.dds\""
+        count: 1
+
+  - path: gfx/portraits/asset_selectors/humanoid_master_female_clothes_01.txt
+    source: "Star Trek: New Horizons"
+    why: >-
+      STNH keeps its Bajoran civilian clothes in `bajoran civilian/`, not
+      `bajoran/`. The COE civilian ruler clothes are in `human_civilian/`,
+      beside the rest of the civilian set. The directory name is doubled --
+      `starfleet_all_good_things_mirror_mirror/` for
+      `starfleet_all_good_things_mirror/`, which holds all six of these files.
+      The mirror set is named `tng2_mirror_*` and this row drops the infix.
+      Its trigger is `uses_terran_uniform_pop`, so the mirror file in the same
+      folder is the one meant -- not the prime one of the same basename. See
+      .docs/decisions/85-selector-textures-that-resolve.md.
+    replace:
+      - from: "\"gfx/models/portraits/bajoran/civ_bajoran_female_clothes_04.dds\""
+        to: "\"gfx/models/portraits/bajoran civilian/civ_bajoran_female_clothes_04.dds\""
+        count: 1
+      - from: "\"gfx/models/portraits/starfleet_all_good_things_mirror_mirror/agt_mirror_human_female_command.dds\""
+        to: "\"gfx/models/portraits/starfleet_all_good_things_mirror/agt_mirror_human_female_command.dds\""
+        count: 4
+      - from: "\"gfx/models/portraits/starfleet_all_good_things_mirror_mirror/agt_mirror_human_female_science.dds\""
+        to: "\"gfx/models/portraits/starfleet_all_good_things_mirror/agt_mirror_human_female_science.dds\""
+        count: 3
+      - from: "\"gfx/models/portraits/starfleet_all_good_things_mirror_mirror/agt_mirror_human_female_security.dds\""
+        to: "\"gfx/models/portraits/starfleet_all_good_things_mirror/agt_mirror_human_female_security.dds\""
+        count: 2
+      - from: "\"gfx/models/portraits/starfleet_enterprise_mirror/coe_civ_human_female_ruler_clothes_01.dds\""
+        to: "\"gfx/models/portraits/human_civilian/coe_civ_human_female_ruler_clothes_01.dds\""
+        count: 1
+      - from: "\"gfx/models/portraits/starfleet_next_generation_02_mirror/tng2_human_female_admiral.dds\""
+        to: "\"gfx/models/portraits/starfleet_next_generation_02_mirror/tng2_mirror_human_female_admiral.dds\""
+        count: 1
+
+  - path: gfx/portraits/asset_selectors/humanoid_master_male_clothes_01.txt
+    source: "Star Trek: New Horizons"
+    why: >-
+      STNH keeps its Bajoran civilian clothes in `bajoran civilian/`, not
+      `bajoran/`. The COE civilian ruler clothes are in `human_civilian/`,
+      beside the rest of the civilian set. The directory name is doubled --
+      `starfleet_all_good_things_mirror_mirror/` for
+      `starfleet_all_good_things_mirror/`, which holds all six of these files.
+      The TNG folders are spelled two ways and these rows mix them: the era-2
+      art is in `starfleet next generation 02/` (spaces) and the era-1 art in
+      `starfleet_next_generation_01/` (underscores). The mirror set is named
+      `tng2_mirror_*` and this row drops the infix. Its trigger is
+      `uses_terran_uniform_pop`, so the mirror file in the same folder is the
+      one meant -- not the prime one of the same basename. See
+      .docs/decisions/85-selector-textures-that-resolve.md.
+    replace:
+      - from: "\"gfx/models/portraits/bajoran/civ_bajoran_male_clothes_04.dds\""
+        to: "\"gfx/models/portraits/bajoran civilian/civ_bajoran_male_clothes_04.dds\""
+        count: 1
+      - from: "\"gfx/models/portraits/starfleet_all_good_things_mirror_mirror/agt_mirror_human_male_command.dds\""
+        to: "\"gfx/models/portraits/starfleet_all_good_things_mirror/agt_mirror_human_male_command.dds\""
+        count: 4
+      - from: "\"gfx/models/portraits/starfleet_all_good_things_mirror_mirror/agt_mirror_human_male_science.dds\""
+        to: "\"gfx/models/portraits/starfleet_all_good_things_mirror/agt_mirror_human_male_science.dds\""
+        count: 3
+      - from: "\"gfx/models/portraits/starfleet_all_good_things_mirror_mirror/agt_mirror_human_male_security.dds\""
+        to: "\"gfx/models/portraits/starfleet_all_good_things_mirror/agt_mirror_human_male_security.dds\""
+        count: 2
+      - from: "\"gfx/models/portraits/starfleet_enterprise_mirror/coe_civ_human_male_ruler_clothes_01.dds\""
+        to: "\"gfx/models/portraits/human_civilian/coe_civ_human_male_ruler_clothes_01.dds\""
+        count: 1
+      - from: "\"gfx/models/portraits/starfleet_next generation 02/tng2_human_male_science.dds\""
+        to: "\"gfx/models/portraits/starfleet next generation 02/tng2_human_male_science.dds\""
+        count: 1
+      - from: "\"gfx/models/portraits/starfleet_next generation_01/tng1_human_male_cmo.dds\""
+        to: "\"gfx/models/portraits/starfleet_next_generation_01/tng1_human_male_cmo.dds\""
+        count: 1
+      - from: "\"gfx/models/portraits/starfleet_next_generation_02_mirror/tng2_human_male_admiral.dds\""
+        to: "\"gfx/models/portraits/starfleet_next_generation_02_mirror/tng2_mirror_human_male_admiral.dds\""
+        count: 1
+
+  - path: gfx/portraits/asset_selectors/kinshaya/kinshaya_clothes_01.txt
+    source: "Star Trek: New Horizons"
+    why: >-
+      The Kinshaya royal outfit is in `kinshaya/`; `ellora/` holds only Ellora
+      clothes. See .docs/decisions/85-selector-textures-that-resolve.md.
+    replace:
+      - from: "\"gfx/models/portraits/ellora/kinshaya_normal_outfit_royal.dds\""
+        to: "\"gfx/models/portraits/kinshaya/kinshaya_normal_outfit_royal.dds\""
+        count: 1
+
+  - path: gfx/portraits/asset_selectors/klingon/klingon_female_clothes_combined.txt
+    source: "Star Trek: New Horizons"
+    why: >-
+      The female KDF All Good Things science top is filed under
+      `starfleet_all_good_things/`; `klingon_starfleet/` holds only the male
+      one. `_df` for `_kdf` -- every other file in `klingon_starfleet/` ends
+      `_kdf`. See .docs/decisions/85-selector-textures-that-resolve.md.
+    replace:
+      - from: "\"gfx/models/portraits/klingon_starfleet/agt_human_female_science_kdf.dds\""
+        to: "\"gfx/models/portraits/starfleet_all_good_things/agt_human_female_science_kdf.dds\""
+        count: 2
+      - from: "\"gfx/models/portraits/klingon_starfleet/tng2_human_female_science_df.dds\""
+        to: "\"gfx/models/portraits/klingon_starfleet/tng2_human_female_science_kdf.dds\""
+        count: 1
+
+  - path: gfx/portraits/asset_selectors/klingon/klingon_male_clothes_combined.txt
+    source: "Star Trek: New Horizons"
+    why: >-
+      `_df` for `_kdf` -- every other file in `klingon_starfleet/` ends
+      `_kdf`. See .docs/decisions/85-selector-textures-that-resolve.md.
+    replace:
+      - from: "\"gfx/models/portraits/klingon_starfleet/tng2_human_male_science_df.dds\""
+        to: "\"gfx/models/portraits/klingon_starfleet/tng2_human_male_science_kdf.dds\""
+        count: 1
+
+  - path: gfx/portraits/asset_selectors/orion/orion_female_clothes_01.txt
+    source: "Star Trek: New Horizons"
+    why: >-
+      The TNG folders are spelled two ways and these rows mix them: the era-2
+      art is in `starfleet next generation 02/` (spaces) and the era-1 art in
+      `starfleet_next_generation_01/` (underscores). See
+      .docs/decisions/85-selector-textures-that-resolve.md.
+    replace:
+      - from: "\"gfx/models/portraits/starfleet_next generation_01/tng2_human_female_science.dds\""
+        to: "\"gfx/models/portraits/starfleet next generation 02/tng2_human_female_science.dds\""
+        count: 1
+
+  - path: gfx/portraits/asset_selectors/orion/orion_male_clothes_01.txt
+    source: "Star Trek: New Horizons"
+    why: >-
+      The TNG folders are spelled two ways and these rows mix them: the era-2
+      art is in `starfleet next generation 02/` (spaces) and the era-1 art in
+      `starfleet_next_generation_01/` (underscores). See
+      .docs/decisions/85-selector-textures-that-resolve.md.
+    replace:
+      - from: "\"gfx/models/portraits/starfleet_next_generation_02/tng2_human_male_science.dds\""
+        to: "\"gfx/models/portraits/starfleet next generation 02/tng2_human_male_science.dds\""
+        count: 1
+
+  - path: gfx/portraits/asset_selectors/saurian/saurian_clothes_01.txt
+    source: "Star Trek: New Horizons"
+    why: >-
+      The TNG folders are spelled two ways and these rows mix them: the era-2
+      art is in `starfleet next generation 02/` (spaces) and the era-1 art in
+      `starfleet_next_generation_01/` (underscores). See
+      .docs/decisions/85-selector-textures-that-resolve.md.
+    replace:
+      - from: "\"gfx/models/portraits/starfleet_next_generation_02/tng2_human_male_science.dds\""
+        to: "\"gfx/models/portraits/starfleet next generation 02/tng2_human_male_science.dds\""
+        count: 1
+
+  - path: gfx/portraits/asset_selectors/tellarite/tellarite_female_clothes_01.txt
+    source: "Star Trek: New Horizons"
+    why: >-
+      The TNG folders are spelled two ways and these rows mix them: the era-2
+      art is in `starfleet next generation 02/` (spaces) and the era-1 art in
+      `starfleet_next_generation_01/` (underscores). One of these occurrences
+      is a commented-out row; the literal replace carries it along, which
+      leaves the comment naming a path that exists. See
+      .docs/decisions/85-selector-textures-that-resolve.md.
+    replace:
+      - from: "\"gfx/models/portraits/starfleet_next generation_01/tng2_human_female_science.dds\""
+        to: "\"gfx/models/portraits/starfleet next generation 02/tng2_human_female_science.dds\""
+        count: 1
+
+  - path: gfx/portraits/asset_selectors/tellarite/tellarite_male_clothes_01.txt
+    source: "Star Trek: New Horizons"
+    why: >-
+      The TNG folders are spelled two ways and these rows mix them: the era-2
+      art is in `starfleet next generation 02/` (spaces) and the era-1 art in
+      `starfleet_next_generation_01/` (underscores). One of these occurrences
+      is a commented-out row; the literal replace carries it along, which
+      leaves the comment naming a path that exists. See
+      .docs/decisions/85-selector-textures-that-resolve.md.
+    replace:
+      - from: "\"gfx/models/portraits/starfleet_next_generation_02/tng2_human_male_science.dds\""
+        to: "\"gfx/models/portraits/starfleet next generation 02/tng2_human_male_science.dds\""
+        count: 1
+
+  - path: gfx/portraits/asset_selectors/vidiian/vidiian_cured_female_clothes_01.txt
+    source: "Star Trek: New Horizons"
+    why: >-
+      Nothing is named `picard_era_*`; this same selector's other `picard_era
+      = yes` rows name pic_human_female_command.dds. See
+      .docs/decisions/85-selector-textures-that-resolve.md.
+    replace:
+      - from: "\"gfx/models/portraits/starfleet_picard/picard_era_human_female_command.dds\""
+        to: "\"gfx/models/portraits/starfleet_picard/pic_human_female_command.dds\""
+        count: 1
+
+  - path: gfx/portraits/asset_selectors/vidiian/vidiian_female_clothes_01.txt
+    source: "Star Trek: New Horizons"
+    why: >-
+      A hyphen for the final 0 of 2380; every other file in that folder is
+      `2380_`. See .docs/decisions/85-selector-textures-that-resolve.md.
+    replace:
+      - from: "\"gfx/models/portraits/starfleet_2380/238-_human_female_command.dds\""
+        to: "\"gfx/models/portraits/starfleet_2380/2380_human_female_command.dds\""
+        count: 1
+
+  - path: gfx/portraits/asset_selectors/vulcan/vulcan_female_clothes_01.txt
+    source: "Star Trek: New Horizons"
+    why: >-
+      The TNG folders are spelled two ways and these rows mix them: the era-2
+      art is in `starfleet next generation 02/` (spaces) and the era-1 art in
+      `starfleet_next_generation_01/` (underscores). See
+      .docs/decisions/85-selector-textures-that-resolve.md.
+    replace:
+      - from: "\"gfx/models/portraits/starfleet_next generation_01/tng2_human_female_science.dds\""
+        to: "\"gfx/models/portraits/starfleet next generation 02/tng2_human_female_science.dds\""
+        count: 1
+  # --- Four more, where the tree answers the question itself -----------------
+  # These four are bucket C -- art no source ships -- but not one of them needed
+  # a content call, because the evidence for the substitute is inside the files.
+  # Each `why` below records which file answered it. The other thirteen are in
+  # decision 85 §5 and stay dangling until they get their call.
+  # See .docs/decisions/85-selector-textures-that-resolve.md.
+
+  - path: gfx/portraits/asset_selectors/acamarian/acamarian_female_clothes_01.txt
+    source: "Star Trek: New Horizons"
+    why: >-
+      The trigger is `uses_tmp_engineering = yes tmp_clothing_era = yes`, so
+      the era is TMP and the `tos_` prefix is the typo: the male row with the
+      identical trigger set names tmp_human_male_engineering.dds in this same
+      folder. No TOS-era engineering top exists in any folder, for either
+      gender. See .docs/decisions/85-selector-textures-that-resolve.md.
+    replace:
+      - from: "\"gfx/models/portraits/starfleet_tmp/tos_human_female_engineering.dds\""
+        to: "\"gfx/models/portraits/starfleet_tmp/tmp_human_female_engineering.dds\""
+        count: 1
+
+  - path: gfx/portraits/asset_selectors/areore/areore_clothes_01.txt
+    source: "Star Trek: New Horizons"
+    why: >-
+      Kelpian clothes are gendered and nothing is named kelpian_clothes_*. The
+      three rows around this one in the same leader scope all name
+      kelpian_male_*, which settles which of the two `_02` files was meant.
+      See .docs/decisions/85-selector-textures-that-resolve.md.
+    replace:
+      - from: "\"gfx/models/portraits/kelpian/kelpian_clothes_02.dds\""
+        to: "\"gfx/models/portraits/kelpian/kelpian_male_clothes_02.dds\""
+        count: 1
+
+  - path: gfx/portraits/asset_selectors/bolian/bolian_female_clothes_01.txt
+    source: "Star Trek: New Horizons"
+    why: >-
+      No mirror-TOS ruler top exists for either gender. The MALE master
+      answers this exact trigger itself -- `is_military_governor = yes
+      uses_mirror_starfleet_uniform = yes snw_clothing_era = yes` draws
+      tos_mirror_human_male_admiral.dds -- so the female rows take the female
+      admiral coat rather than a look invented here, the same way decision
+      22's female gating was copied from the male file. See
+      .docs/decisions/85-selector-textures-that-resolve.md.
+    replace:
+      - from: "\"gfx/models/portraits/starfleet_original_series_mirror/tos_mirror_human_female_ruler.dds\""
+        to: "\"gfx/models/portraits/starfleet_original_series_mirror/tos_mirror_human_female_admiral.dds\""
+        count: 1
+
+  - path: gfx/portraits/asset_selectors/caitian/caitian_female_clothes_01.txt
+    source: "Star Trek: New Horizons"
+    why: >-
+      No mirror-TOS ruler top exists for either gender. The MALE master
+      answers this exact trigger itself -- `is_military_governor = yes
+      uses_mirror_starfleet_uniform = yes snw_clothing_era = yes` draws
+      tos_mirror_human_male_admiral.dds -- so the female rows take the female
+      admiral coat rather than a look invented here, the same way decision
+      22's female gating was copied from the male file. See
+      .docs/decisions/85-selector-textures-that-resolve.md.
+    replace:
+      - from: "\"gfx/models/portraits/starfleet_original_series_mirror/tos_mirror_human_female_ruler.dds\""
+        to: "\"gfx/models/portraits/starfleet_original_series_mirror/tos_mirror_human_female_admiral.dds\""
+        count: 1
+
+  - path: gfx/portraits/asset_selectors/ferengi/ferengi_female_clothes_01.txt
+    source: "Star Trek: New Horizons"
+    why: >-
+      No mirror-TOS ruler top exists for either gender. The MALE master
+      answers this exact trigger itself -- `is_military_governor = yes
+      uses_mirror_starfleet_uniform = yes snw_clothing_era = yes` draws
+      tos_mirror_human_male_admiral.dds -- so the female rows take the female
+      admiral coat rather than a look invented here, the same way decision
+      22's female gating was copied from the male file. See
+      .docs/decisions/85-selector-textures-that-resolve.md.
+    replace:
+      - from: "\"gfx/models/portraits/starfleet_original_series_mirror/tos_mirror_human_female_ruler.dds\""
+        to: "\"gfx/models/portraits/starfleet_original_series_mirror/tos_mirror_human_female_admiral.dds\""
+        count: 1
+
+  - path: gfx/portraits/asset_selectors/klingon/klingon_female_clothes_combined.txt
+    source: "Star Trek: New Horizons"
+    why: >-
+      No mirror-TOS ruler top exists for either gender. The MALE master
+      answers this exact trigger itself -- `is_military_governor = yes
+      uses_mirror_starfleet_uniform = yes snw_clothing_era = yes` draws
+      tos_mirror_human_male_admiral.dds -- so the female rows take the female
+      admiral coat rather than a look invented here, the same way decision
+      22's female gating was copied from the male file. See
+      .docs/decisions/85-selector-textures-that-resolve.md.
+    replace:
+      - from: "\"gfx/models/portraits/starfleet_original_series_mirror/tos_mirror_human_female_ruler.dds\""
+        to: "\"gfx/models/portraits/starfleet_original_series_mirror/tos_mirror_human_female_admiral.dds\""
+        count: 1
+
+  - path: gfx/portraits/asset_selectors/orion/orion_female_clothes_01.txt
+    source: "Star Trek: New Horizons"
+    why: >-
+      No mirror-TOS ruler top exists for either gender. The MALE master
+      answers this exact trigger itself -- `is_military_governor = yes
+      uses_mirror_starfleet_uniform = yes snw_clothing_era = yes` draws
+      tos_mirror_human_male_admiral.dds -- so the female rows take the female
+      admiral coat rather than a look invented here, the same way decision
+      22's female gating was copied from the male file. See
+      .docs/decisions/85-selector-textures-that-resolve.md.
+    replace:
+      - from: "\"gfx/models/portraits/starfleet_original_series_mirror/tos_mirror_human_female_ruler.dds\""
+        to: "\"gfx/models/portraits/starfleet_original_series_mirror/tos_mirror_human_female_admiral.dds\""
+        count: 1
+
+  - path: gfx/portraits/asset_selectors/pakled/pakled_male_hair_01.txt
+    source: "Star Trek: New Horizons"
+    why: >-
+      Pakled ships no bald texture of its own -- miradorn and tarlac do, which
+      is why the name looks plausible. The tree's shared one is
+      gfx/models/portraits/all/bald.dds, named by 55 selector files, and this
+      row is one entry of three in a ruler-scope random list. See
+      .docs/decisions/85-selector-textures-that-resolve.md.
+    replace:
+      - from: "\"gfx/models/portraits/pakled/pakled_male_hair_bald.dds\""
+        to: "\"gfx/models/portraits/all/bald.dds\""
+        count: 1
+
+  - path: gfx/portraits/asset_selectors/romulan/romulan_female_clothes_combined.txt
+    source: "Star Trek: New Horizons"
+    why: >-
+      No mirror-TOS ruler top exists for either gender. The MALE master
+      answers this exact trigger itself -- `is_military_governor = yes
+      uses_mirror_starfleet_uniform = yes snw_clothing_era = yes` draws
+      tos_mirror_human_male_admiral.dds -- so the female rows take the female
+      admiral coat rather than a look invented here, the same way decision
+      22's female gating was copied from the male file. See
+      .docs/decisions/85-selector-textures-that-resolve.md.
+    replace:
+      - from: "\"gfx/models/portraits/starfleet_original_series_mirror/tos_mirror_human_female_ruler.dds\""
+        to: "\"gfx/models/portraits/starfleet_original_series_mirror/tos_mirror_human_female_admiral.dds\""
+        count: 1
+
+  - path: gfx/portraits/asset_selectors/sth_humanoid_02_female_clothes_01.txt
+    source: "Star Trek: New Horizons"
+    why: >-
+      No mirror-TOS ruler top exists for either gender. The MALE master
+      answers this exact trigger itself -- `is_military_governor = yes
+      uses_mirror_starfleet_uniform = yes snw_clothing_era = yes` draws
+      tos_mirror_human_male_admiral.dds -- so the female rows take the female
+      admiral coat rather than a look invented here, the same way decision
+      22's female gating was copied from the male file. See
+      .docs/decisions/85-selector-textures-that-resolve.md.
+    replace:
+      - from: "\"gfx/models/portraits/starfleet_original_series_mirror/tos_mirror_human_female_ruler.dds\""
+        to: "\"gfx/models/portraits/starfleet_original_series_mirror/tos_mirror_human_female_admiral.dds\""
+        count: 1
+
+  - path: gfx/portraits/asset_selectors/sth_humanoid_07_female_clothes_01.txt
+    source: "Star Trek: New Horizons"
+    why: >-
+      No mirror-TOS ruler top exists for either gender. The MALE master
+      answers this exact trigger itself -- `is_military_governor = yes
+      uses_mirror_starfleet_uniform = yes snw_clothing_era = yes` draws
+      tos_mirror_human_male_admiral.dds -- so the female rows take the female
+      admiral coat rather than a look invented here, the same way decision
+      22's female gating was copied from the male file. See
+      .docs/decisions/85-selector-textures-that-resolve.md.
+    replace:
+      - from: "\"gfx/models/portraits/starfleet_original_series_mirror/tos_mirror_human_female_ruler.dds\""
+        to: "\"gfx/models/portraits/starfleet_original_series_mirror/tos_mirror_human_female_admiral.dds\""
+        count: 1
+  # --- The last thirteen, and these ARE the content call ---------------------
+  # Art no source mod ships, and unlike the four above, nothing in the tree names
+  # the substitute -- so each of these is a decision about what a species wears,
+  # taken 2026-08-24 under one policy: REPOINT AT THE NEAREST SURVIVING SIBLING
+  # IN THE SAME FAMILY, NEVER DELETE. A deletion inside a `list = { }` shifts
+  # every index after it and changes what other species wear; a duplicate entry
+  # draws the right clothes and a fallback does not (decision 83).
+  #
+  # Each `why` records what the family had left to offer. Two of them duplicate
+  # an entry already in the same list -- malon and sth_avian -- and that is the
+  # cheaper half of the trade above, not an oversight. The `05a` hair rows
+  # include three occurrences that are commented out in human_male_03_hair.txt
+  # and three in human_male_04_hair.txt; the literal replace carries them along,
+  # which leaves those comments naming a texture that exists.
+  # See .docs/decisions/85-selector-textures-that-resolve.md.
+
+  - path: gfx/portraits/asset_selectors/doopler/doopler_male_clothes_01.txt
+    source: "Star Trek: New Horizons"
+    why: >-
+      The doopler male art is `_03` and `_04`; this selector's lists name
+      `_01` and `_02`, which exist only for the female. Mapping them onto
+      `_03` and `_04` leaves each list naming the two male textures that
+      exist, with no duplicate. See
+      .docs/decisions/85-selector-textures-that-resolve.md.
+    replace:
+      - from: "\"gfx/models/portraits/doopler/doopler_male_clothes_01.dds\""
+        to: "\"gfx/models/portraits/doopler/doopler_male_clothes_03.dds\""
+        count: 3
+      - from: "\"gfx/models/portraits/doopler/doopler_male_clothes_02.dds\""
+        to: "\"gfx/models/portraits/doopler/doopler_male_clothes_04.dds\""
+        count: 3
+
+  - path: gfx/portraits/asset_selectors/elaysian/elaysian_female_clothes_01.txt
+    source: "Star Trek: New Horizons"
+    why: >-
+      The elaysian folder ships no clothes at all -- only bodies and hair --
+      and this selector flies argrathian clothes throughout, including every
+      one of its `default` rows. Keeping the author's `_04` inside the family
+      the file already borrows leaves the ruler visually distinct from that
+      default, which is what a ruler row is for. See
+      .docs/decisions/85-selector-textures-that-resolve.md.
+    replace:
+      - from: "\"gfx/models/portraits/elaysian/elaysian_female_clothes_04.dds\""
+        to: "\"gfx/models/portraits/argrathian/argrathian_female_clothes_04.dds\""
+        count: 1
+
+  - path: gfx/portraits/asset_selectors/human_male_03_hair.txt
+    source: "Star Trek: New Horizons"
+    why: >-
+      There is no male `05a` -- `_05` and `_06a` exist, and the FEMALE set has
+      its `05a`, which is where the name came from. See
+      .docs/decisions/85-selector-textures-that-resolve.md.
+    replace:
+      - from: "\"gfx/models/portraits/human/sth_human_male_hair_black_style_05a.dds\""
+        to: "\"gfx/models/portraits/human/sth_human_male_hair_black_style_05.dds\""
+        count: 6
+
+  - path: gfx/portraits/asset_selectors/human_male_04_hair.txt
+    source: "Star Trek: New Horizons"
+    why: >-
+      There is no male `05a` -- `_05` and `_06a` exist, and the FEMALE set has
+      its `05a`, which is where the name came from. See
+      .docs/decisions/85-selector-textures-that-resolve.md.
+    replace:
+      - from: "\"gfx/models/portraits/human/sth_human_male_hair_black_style_05a.dds\""
+        to: "\"gfx/models/portraits/human/sth_human_male_hair_black_style_05.dds\""
+        count: 3
+
+  - path: gfx/portraits/asset_selectors/human_male_06_hair.txt
+    source: "Star Trek: New Horizons"
+    why: >-
+      There is no male `05a` -- `_05` and `_06a` exist, and the FEMALE set has
+      its `05a`, which is where the name came from. See
+      .docs/decisions/85-selector-textures-that-resolve.md.
+    replace:
+      - from: "\"gfx/models/portraits/human/sth_human_male_hair_black_style_05a.dds\""
+        to: "\"gfx/models/portraits/human/sth_human_male_hair_black_style_05.dds\""
+        count: 3
+
+  - path: gfx/portraits/asset_selectors/humanoid_master_female_clothes_01.txt
+    source: "Star Trek: New Horizons"
+    why: >-
+      The Terran ruler set has male `_1` and `_2` but only female `_1`. Both
+      female slots now draw it; the alternative is authoring a second coat.
+      Kriosian clothes stop at `_04` for both genders. Both of these are
+      single-entry Mizar civilian ruler rows in the master selectors, so each
+      missed on every draw. See
+      .docs/decisions/85-selector-textures-that-resolve.md.
+    replace:
+      - from: "\"gfx/models/portraits/human_civilian/human_terran_ruler_female_2.dds\""
+        to: "\"gfx/models/portraits/human_civilian/human_terran_ruler_female_1.dds\""
+        count: 6
+      - from: "\"gfx/models/portraits/kriosian/kriosian_female_clothes_05.dds\""
+        to: "\"gfx/models/portraits/kriosian/kriosian_female_clothes_04.dds\""
+        count: 1
+
+  - path: gfx/portraits/asset_selectors/humanoid_master_male_clothes_01.txt
+    source: "Star Trek: New Horizons"
+    why: >-
+      sth_humanoid_08 ships male `_02`-`_04` and no `_01`; the female `_01`
+      exists, which is what makes the name look plausible. One of these rows
+      is the single-entry Capellan civilian ruler, so it missed on every draw.
+      See .docs/decisions/85-selector-textures-that-resolve.md.
+    replace:
+      - from: "\"gfx/models/portraits/kriosian/kriosian_male_clothes_05.dds\""
+        to: "\"gfx/models/portraits/kriosian/kriosian_male_clothes_04.dds\""
+        count: 1
+      - from: "\"gfx/models/portraits/sth humanoid 08/sth_humanoid_08_male_clothes_01.dds\""
+        to: "\"gfx/models/portraits/sth humanoid 08/sth_humanoid_08_male_clothes_02.dds\""
+        count: 1
+
+  - path: gfx/portraits/asset_selectors/klingon/klingon_female_clothes_combined.txt
+    source: "Star Trek: New Horizons"
+    why: >-
+      The `pic_` era ships admiral, command and security for both genders and
+      no science; `pic2_` ships the full set. The later-era science top is the
+      only KDF science top there is. See
+      .docs/decisions/85-selector-textures-that-resolve.md.
+    replace:
+      - from: "\"gfx/models/portraits/klingon_starfleet/pic_human_female_science_kdf.dds\""
+        to: "\"gfx/models/portraits/klingon_starfleet/pic2_human_female_science_kdf.dds\""
+        count: 2
+
+  - path: gfx/portraits/asset_selectors/klingon/klingon_male_clothes_combined.txt
+    source: "Star Trek: New Horizons"
+    why: >-
+       See .docs/decisions/85-selector-textures-that-resolve.md.
+    replace:
+      - from: "\"gfx/models/portraits/klingon_starfleet/pic_human_male_science_kdf.dds\""
+        to: "\"gfx/models/portraits/klingon_starfleet/pic2_human_male_science_kdf.dds\""
+        count: 2
+
+  - path: gfx/portraits/asset_selectors/malon/malon_female_clothes_01.txt
+    source: "Star Trek: New Horizons"
+    why: >-
+      `_04` is absent for both genders; the list runs `_01`-`_06` around the
+      hole, so any substitute duplicates one entry of six. Deleting the entry
+      instead would shift every index after it -- decision 83's reasoning, and
+      the reason a duplicate is the cheaper of the two. See
+      .docs/decisions/85-selector-textures-that-resolve.md.
+    replace:
+      - from: "\"gfx/models/portraits/malon/malon_female_clothes_04.dds\""
+        to: "\"gfx/models/portraits/malon/malon_female_clothes_05.dds\""
+        count: 3
+
+  - path: gfx/portraits/asset_selectors/sth_avian/sth_avian_clothes_01.txt
+    source: "Star Trek: New Horizons"
+    why: >-
+      The sth_avian folder names its outfits by role -- admiral, general,
+      govenor, ruler, scientist -- and nothing is named `_clothes_*`. This row
+      is the `leader_class = scientist` one, so it takes the scientist outfit,
+      which the `official` row beside it also draws. See
+      .docs/decisions/85-selector-textures-that-resolve.md.
+    replace:
+      - from: "\"gfx/models/portraits/sth_avian/sth_avian_clothes_02.dds\""
+        to: "\"gfx/models/portraits/sth_avian/sth_avian_scientist.dds\""
+        count: 1
+
+  - path: gfx/portraits/asset_selectors/sth_humanoid_08_male_clothes_01.txt
+    source: "Star Trek: New Horizons"
+    why: >-
+      sth_humanoid_08 ships male `_02`-`_04` and no `_01`; the female `_01`
+      exists, which is what makes the name look plausible. One of these rows
+      is the single-entry Capellan civilian ruler, so it missed on every draw.
+      See .docs/decisions/85-selector-textures-that-resolve.md.
+    replace:
+      - from: "\"gfx/models/portraits/sth humanoid 08/sth_humanoid_08_male_clothes_01.dds\""
+        to: "\"gfx/models/portraits/sth humanoid 08/sth_humanoid_08_male_clothes_02.dds\""
+        count: 10
+
+  - path: gfx/portraits/asset_selectors/vulcan/vulcan_male_clothes_01.txt
+    source: "Star Trek: New Horizons"
+    why: >-
+      The COE Enterprise-era folder ships male command and science and female
+      command, science and security -- the male security top is the one member
+      missing. The faction's own command top is kept rather than prime
+      Starfleet's security top: this folder exists to make the Confederation
+      look unlike Starfleet, and the row is one of many gated on
+      `uses_confed_corps_uniform`. See
+      .docs/decisions/85-selector-textures-that-resolve.md.
+    replace:
+      - from: "\"gfx/models/portraits/confederation/confederation_enterprise/coe_ent_human_male_security.dds\""
+        to: "\"gfx/models/portraits/confederation/confederation_enterprise/coe_ent_human_male_command.dds\""
+        count: 1
   # --- Saturn in Sol was declared twice, by two mods, with different art ------
   - path: gfx/models/planets/_pd_unihabitable_entities.asset
     source: Planetary Diversity
