@@ -62,7 +62,9 @@ deliberately kept: it is the custom-empire template, not a playable empire.
 
 ## Phase 2 — The rest of the galaxy
 
-**COMPLETE.** 101 prescripted empires: 22 playable, 79 AI-only minors, over 100
+**COMPLETE.** 101 prescripted empires — 22 majors/quadrant/frontier powers and
+79 minors, all playable and all in the AI pool since
+[decision 88](../decisions/88-playable-gates-the-design-database.md) — over 100
 distinct species classes. 92 name lists, 37 real home systems.
 `src/common/species_classes/stg_species_classes.txt` declares **131** classes —
 the other 31 are the STNH selector stubs of
@@ -89,14 +91,20 @@ form. The Borg are `auth_machine_intelligence` + `civic_machine_assimilator` —
 **machine** intelligence, not a hive mind; the assimilator civic only exists on the
 machine side.
 
-### 79 AI-only minors
+### 79 minor powers
 
 Converted rather than authored: their identity is STNH's (names, species,
 homeworlds, rulers, heraldry, 70 name lists totalling 6,302 loc keys), their
 mechanics are vanilla's, because all 110 of STNH's use at least one STNH-only
 origin, trait, civic or room and not one validates against 4.4 as written.
-`playable = stg_never` keeps them out of the picker; `spawn_enabled = yes` keeps
-them in the AI pool. [Decision 19](../decisions/19-stnh-minor-powers-as-ai-empires.md).
+[Decision 19](../decisions/19-stnh-minor-powers-as-ai-empires.md).
+
+They were built as **AI-only**, on `playable = stg_never` + `spawn_enabled =
+yes`. There is no such state: `playable` gates the engine's design database, the
+galaxy generator draws from that database, and so the gate kept them out of both
+the picker and the galaxy for four live runs.
+[Decision 88](../decisions/88-playable-gates-the-design-database.md) removed it —
+all 101 empires are playable, and all 101 are in the AI pool.
 
 ### Species-class localisation
 
@@ -123,7 +131,7 @@ rather than getting a copy, so a galaxy never holds both.
 > the file were blind because they normalised the quotes away before comparing
 > ([27](../decisions/27-quoted-class-keyword.md)).
 
-**62 AI-only minors are still on generated systems**, because their STNH originals
+**62 minors are still on generated systems**, because their STNH originals
 are procedural and resolve against random lists in the `common/` we do not vendor.
 
 ### Trek names for systems and stars
@@ -190,7 +198,7 @@ now declares 141, 24 of them with a body —
 > constrains what one leader sees, not the whole mod. The sweep also found **four
 > rows in the female master selector missing the species gate the male file has**,
 > so every ungated non-Federation female operations commander wore Vulcan clothes.
-> Five more classes still fall through, four of them AI-only and unloggable.
+> Five more classes still fall through, four of them on minors and unloggable.
 > [Decision 64](../decisions/64-terran-empire-mirror-uniforms.md).
 >
 > **The starting ruler was wrong for a second, independent reason.** Every

@@ -561,7 +561,10 @@ stg_terran_empire = {
 	ethic = "ethic_authoritarian"
 	ethic = "ethic_fanatic_militarist"
 
-	initializer = "sol_system_initializer"
+	# Its own mirror Sol, NOT the Federation's. Two prescripted empires naming
+	# one initializer is a documented engine failure that logs nothing and
+	# costs both of them — decision 88.
+	initializer = "stg_terran_empire_home"
 	planet_name = "STG_planet_name_terran"
 	planet_class = "pc_continental"
 	system_name = "STG_system_name_terran"

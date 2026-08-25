@@ -91,7 +91,7 @@ CULTURES = [
 
     # ── Shared hulls for the minor powers ──────────────────────────────────
     # No species class of their own: 35 of the AI-only minors in
-    # src/prescripted_countries/stg_minor_powers.txt point at one of these five
+    # src/prescripted_countries/stg_z_minor_powers.txt point at one of these five
     # STNH directories, which were already harvested as donor art for the five
     # above. Declaring them as cultures is what makes those 35 fly Trek hulls
     # instead of falling back to mammalian_01, and costs no new files.

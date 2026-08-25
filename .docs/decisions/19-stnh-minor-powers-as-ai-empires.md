@@ -1,8 +1,15 @@
 # 19 — STNH's remaining prescripted empires, as AI-only minor powers
 
 **Date:** 2026-08-03
-**Status:** accepted
+**Status:** accepted; mechanism falsified 2026-08-25
 **Builds on:** [18 — Walshicus' shipsets replace STNH's hulls](18-walshicus-shipsets-replace-stnh-hulls.md)
+**Falsified in part by** [decision 88](88-playable-gates-the-design-database.md).
+The 79 empires stay and everything below about their content still holds. What
+does not is "AI-only": `playable` gates the engine's design DATABASE, not the
+empire picker, and the galaxy generator draws AI empires from that database — so
+`playable = stg_never` did not make these 79 AI-only, it made them unreachable.
+They spawned in no galaxy in four live runs. The engine has no AI-only
+prescripted empire; all 79 are playable now.
 
 ## What this adds
 

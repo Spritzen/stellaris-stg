@@ -1,4 +1,4 @@
-# Star Trek Galaxies — portrait sets for the major powers.
+# Star Trek Galaxies — a portrait set for every STG species class.
 #
 # New prefixed file, so it merges with vanilla's 00_portrait_sets.txt.
 #
@@ -215,5 +215,650 @@ stg_terran_portraits = {
 
 	portraits = {
 		"human"
+	}
+}
+
+# ── THE 79 MINOR POWERS ────────────────────────────────────────────────────
+#
+# A species class with no set here has NO PORTRAIT the empire designer can
+# offer, and the designer answers that by hiding the empire — 'Must select a
+# portrait'. That is not only a picker problem: decision 88 established that
+# the picker and the galaxy generator read the same design database, so an
+# empire hidden here cannot spawn as AI either.
+#
+# These 79 were invisible to this rule while they carried `playable =
+# stg_never`, because the check that enforces it skipped gated empires as
+# unreachable. Removing the gate surfaced all 79 at once.
+#
+# One class, one portrait group, taken from the empire's own `species` block in
+# src/prescripted_countries/stg_z_minor_powers.txt — the 79 classes are
+# distinct and each names exactly one group. GENERATED SHAPE, HAND-OWNED, the
+# same standing as the empires file itself.
+
+stg_minor_acamarian_sovereignty_portraits = {
+	species_class = ACA
+
+	portraits = {
+		"acamarian"
+	}
+}
+
+stg_minor_antedian_shoals_portraits = {
+	species_class = ANT
+
+	portraits = {
+		"antedian"
+	}
+}
+
+stg_minor_antican_packs_portraits = {
+	species_class = ANTI
+
+	portraits = {
+		"antican"
+	}
+}
+
+stg_minor_argrathian_commonwealth_portraits = {
+	species_class = ARG
+
+	portraits = {
+		"argrathian"
+	}
+}
+
+stg_minor_benzarian_commonwealth_portraits = {
+	species_class = BEN
+
+	portraits = {
+		"benzite"
+	}
+}
+
+stg_minor_betazoid_houses_portraits = {
+	species_class = BET
+
+	portraits = {
+		"betazoid"
+	}
+}
+
+stg_minor_brunali_empire_portraits = {
+	species_class = BRU
+
+	portraits = {
+		"brunali"
+	}
+}
+
+stg_minor_bynar_domains_portraits = {
+	species_class = BYN
+
+	portraits = {
+		"bynar"
+	}
+}
+
+stg_minor_chelarian_sovereignty_portraits = {
+	species_class = CHE
+
+	portraits = {
+		"chelarian"
+	}
+}
+
+stg_minor_cheronite_nation_portraits = {
+	species_class = CHER
+
+	portraits = {
+		"cheronite"
+	}
+}
+
+stg_minor_confederation_earth_portraits = {
+	species_class = CON
+
+	portraits = {
+		"human"
+	}
+}
+
+stg_minor_cravic_imperative_portraits = {
+	species_class = CRA
+
+	portraits = {
+		"cravic"
+	}
+}
+
+stg_minor_deltan_union_portraits = {
+	species_class = DEL
+
+	portraits = {
+		"deltan"
+	}
+}
+
+stg_minor_denobulan_unity_portraits = {
+	species_class = DEN
+
+	portraits = {
+		"denobulan"
+	}
+}
+
+stg_minor_devore_imperium_portraits = {
+	species_class = DEV
+
+	portraits = {
+		"devore"
+	}
+}
+
+stg_minor_dosi_confederacy_portraits = {
+	species_class = DOS
+
+	portraits = {
+		"dosi"
+	}
+}
+
+stg_minor_elaurian_auditorium_portraits = {
+	species_class = ELA
+
+	portraits = {
+		"elaurian"
+	}
+}
+
+stg_minor_fen_domar_states_portraits = {
+	species_class = FEN
+
+	portraits = {
+		"fen_domar"
+	}
+}
+
+stg_minor_flaxian_hegemony_portraits = {
+	species_class = FLA
+
+	portraits = {
+		"flaxian"
+	}
+}
+
+stg_minor_garidian_republic_portraits = {
+	species_class = GAR
+
+	portraits = {
+		"garidian"
+	}
+}
+
+stg_minor_gorn_empire_portraits = {
+	species_class = GOR
+
+	portraits = {
+		"gorn"
+	}
+}
+
+stg_minor_haakonian_order_portraits = {
+	species_class = HAA
+
+	portraits = {
+		"haakonian"
+	}
+}
+
+stg_minor_hazari_tuatara_portraits = {
+	species_class = HAZ
+
+	portraits = {
+		"hazari"
+	}
+}
+
+stg_minor_hirogen_hunters_portraits = {
+	species_class = HIR
+
+	portraits = {
+		"hirogen"
+	}
+}
+
+stg_minor_hur_q_stagnancy_portraits = {
+	species_class = HUR
+
+	portraits = {
+		"hur'q"
+	}
+}
+
+stg_minor_husnock_ascendency_portraits = {
+	species_class = HUS
+
+	portraits = {
+		"husnock"
+	}
+}
+
+stg_minor_hydran_kingdom_portraits = {
+	species_class = HYDR
+
+	portraits = {
+		"hydran"
+	}
+}
+
+stg_minor_karemman_foundation_portraits = {
+	species_class = KAR
+
+	portraits = {
+		"karemma"
+	}
+}
+
+stg_minor_kazon_sects_portraits = {
+	species_class = KAZ
+
+	portraits = {
+		"kazon"
+	}
+}
+
+stg_minor_kessok_heliolatry_portraits = {
+	species_class = KES
+
+	portraits = {
+		"kessok"
+	}
+}
+
+stg_minor_kinshaya_holy_order_portraits = {
+	species_class = KIN
+
+	portraits = {
+		"kinshaya"
+	}
+}
+
+stg_minor_kobali_republic_portraits = {
+	species_class = KOB
+
+	portraits = {
+		"kobali"
+	}
+}
+
+stg_minor_kraylor_republic_portraits = {
+	species_class = KRA
+
+	portraits = {
+		"kraylor"
+	}
+}
+
+stg_minor_krios_dynasty_portraits = {
+	species_class = KRI
+
+	portraits = {
+		"kriosian"
+	}
+}
+
+stg_minor_kzinti_empire_portraits = {
+	species_class = KZI
+
+	portraits = {
+		"kzinti"
+	}
+}
+
+stg_minor_lissepian_parliaments_portraits = {
+	species_class = LIS
+
+	portraits = {
+		"lissepian"
+	}
+}
+
+stg_minor_lurian_principality_portraits = {
+	species_class = LUR
+
+	portraits = {
+		"lurian"
+	}
+}
+
+stg_minor_lyran_star_empire_portraits = {
+	species_class = LYR
+
+	portraits = {
+		"lyran"
+	}
+}
+
+stg_minor_lyridian_diaspora_portraits = {
+	species_class = LYRI
+
+	portraits = {
+		"lyridian"
+	}
+}
+
+stg_minor_medusan_corporium_portraits = {
+	species_class = MED
+
+	portraits = {
+		"medusan"
+	}
+}
+
+stg_minor_monean_maritime_sovereignty_portraits = {
+	species_class = MON
+
+	portraits = {
+		"monean"
+	}
+}
+
+stg_minor_morali_states_portraits = {
+	species_class = MOR
+
+	portraits = {
+		"sth_humanoid_02"
+	}
+}
+
+stg_minor_nausicaan_tribes_portraits = {
+	species_class = NAU
+
+	portraits = {
+		"nausicaan"
+	}
+}
+
+stg_minor_norcadian_harmony_portraits = {
+	species_class = NOR
+
+	portraits = {
+		"norcadian"
+	}
+}
+
+stg_minor_nyberrite_alliance_portraits = {
+	species_class = NYB
+
+	portraits = {
+		"nyberrite"
+	}
+}
+
+stg_minor_nygean_sector_authority_portraits = {
+	species_class = NYG
+
+	portraits = {
+		"nygean"
+	}
+}
+
+stg_minor_orion_free_states_portraits = {
+	species_class = ORI
+
+	portraits = {
+		"orion"
+	}
+}
+
+stg_minor_oschean_hunters_portraits = {
+	species_class = OSC
+
+	portraits = {
+		"oschean"
+	}
+}
+
+stg_minor_pakled_groupings_portraits = {
+	species_class = PAK
+
+	portraits = {
+		"pakled"
+	}
+}
+
+stg_minor_paradan_commonwealth_portraits = {
+	species_class = PAR
+
+	portraits = {
+		"paradan"
+	}
+}
+
+stg_minor_pralor_auxiliary_portraits = {
+	species_class = PRA
+
+	portraits = {
+		"pralor"
+	}
+}
+
+stg_minor_rakharian_free_states_portraits = {
+	species_class = RAK
+
+	portraits = {
+		"rakhari"
+	}
+}
+
+stg_minor_rigellian_consortium_portraits = {
+	species_class = RIG
+
+	portraits = {
+		"rigellian"
+	}
+}
+
+stg_minor_saurian_league_portraits = {
+	species_class = SAU
+
+	portraits = {
+		"saurian"
+	}
+}
+
+stg_minor_selay_clutches_portraits = {
+	species_class = SEL
+
+	portraits = {
+		"selay"
+	}
+}
+
+stg_minor_sheliak_corporate_portraits = {
+	species_class = SHE
+
+	portraits = {
+		"sheliak"
+	}
+}
+
+stg_minor_skrreean_republic_portraits = {
+	species_class = SKR
+
+	portraits = {
+		"skrreean"
+	}
+}
+
+stg_minor_talarian_republic_portraits = {
+	species_class = TAL
+
+	portraits = {
+		"talarian"
+	}
+}
+
+stg_minor_talaxian_empire_portraits = {
+	species_class = TALA
+
+	portraits = {
+		"talaxian"
+	}
+}
+
+stg_minor_tamarian_unity_portraits = {
+	species_class = TAM
+
+	portraits = {
+		"tamarian"
+	}
+}
+
+stg_minor_tellarian_technocracy_portraits = {
+	species_class = TEL
+
+	portraits = {
+		"tellarite"
+	}
+}
+
+stg_minor_tng_klingon_cardassian_alliance_portraits = {
+	species_class = TNGK
+
+	portraits = {
+		"klingon"
+	}
+}
+
+stg_minor_trabe_alliance_portraits = {
+	species_class = TRA
+
+	portraits = {
+		"trabe"
+	}
+}
+
+stg_minor_t_rogoran_empire_portraits = {
+	species_class = TRO
+
+	portraits = {
+		"sth_humanoid_01"
+	}
+}
+
+stg_minor_turei_commonwealth_portraits = {
+	species_class = TUR
+
+	portraits = {
+		"turei"
+	}
+}
+
+stg_minor_tzenkethi_coalition_portraits = {
+	species_class = TZE
+
+	portraits = {
+		"tzenkethi"
+	}
+}
+
+stg_minor_undine_vanguard_portraits = {
+	species_class = UND
+
+	portraits = {
+		"undine"
+	}
+}
+
+stg_minor_united_congress_of_banea_portraits = {
+	species_class = UNI
+
+	portraits = {
+		"banea"
+	}
+}
+
+stg_minor_vaadwaur_supremacy_portraits = {
+	species_class = VAA
+
+	portraits = {
+		"vaadwaur"
+	}
+}
+
+stg_minor_valerian_freeholds_portraits = {
+	species_class = VAL
+
+	portraits = {
+		"valerian"
+	}
+}
+
+stg_minor_valtese_senate_portraits = {
+	species_class = VALT
+
+	portraits = {
+		"valtese"
+	}
+}
+
+stg_minor_vau_nakat_order_portraits = {
+	species_class = VAU
+
+	portraits = {
+		"vau_nakat"
+	}
+}
+
+stg_minor_voth_theocracy_portraits = {
+	species_class = VOT
+
+	portraits = {
+		"voth"
+	}
+}
+
+# stg_minor_tng_coalition_hope is NOT here. It is Vulcan — it takes class VUL
+# deliberately (decision 46) and stg_vulcan_portraits above already serves that
+# class. A second set for one class is 78 blocks below, not 79.
+
+stg_minor_wadi_emirates_portraits = {
+	species_class = WAD
+
+	portraits = {
+		"wadi"
+	}
+}
+
+stg_minor_xepolite_guilds_portraits = {
+	species_class = XEP
+
+	portraits = {
+		"xepolite"
+	}
+}
+
+stg_minor_yaderan_republic_portraits = {
+	species_class = YAD
+
+	portraits = {
+		"yaderan"
+	}
+}
+
+stg_minor_zahl_technocracy_portraits = {
+	species_class = ZAH
+
+	portraits = {
+		"zahl"
+	}
+}
+
+stg_minor_zakdorn_alliance_portraits = {
+	species_class = ZAK
+
+	portraits = {
+		"zakdorn"
 	}
 }

@@ -71,19 +71,14 @@ CLASS_BUILTINS = {"star", "black_hole"}
 SKIP = {
     # Real Sol, already in the tree twice over (vanilla + Real Space's rescale).
     "stg_united_federation_of_planets": "sol_system_initializer",
-    # The mirror Terran Empire is Sol too, and SHARES it deliberately. An
-    # earlier pass gave it a duplicate Sol under its own key so both could
-    # spawn; that solved the wrong problem, because a galaxy holding both the
-    # Federation and its mirror is the thing to avoid, not to accommodate.
-    # sol_system_initializer is max_instances = 1, so the system exists once.
-    #
-    # Every vanilla empire that shares an initializer is `spawn_enabled = no`,
-    # so vanilla never tests two AI-spawnable empires competing for one system
-    # and there is no precedent either way for what the engine does. The
-    # failure mode is benign: the empire that loses the race falls back to a
-    # generated home system, which is exactly where all 101 sat before
-    # decision 25. Confirm against a live run.
-    "stg_terran_empire": "sol_system_initializer",
+    # The mirror Terran Empire USED to share sol_system_initializer with the
+    # Federation. It no longer does: it has its own authored mirror Sol below.
+    # Sharing was recorded as a benign race the loser survives -- "confirm
+    # against a live run" -- and three live runs falsified it. NEITHER empire
+    # spawned in any of them, the Federation not even on `spawn_enabled =
+    # always`. Two prescripted empires naming one starting system is a
+    # documented engine failure that logs nothing and costs BOTH of them.
+    # See .docs/decisions/88-playable-gates-the-design-database.md.
 }
 
 # STG name -> STNH initializer key, where the two genuinely disagree.
@@ -177,7 +172,7 @@ SYSTEM_STAR_CLASS = {"stg_romulan_star_empire": "sc_binary_m_m"}
 PLANET_KEEP = ("name", "class", "orbit_distance", "orbit_angle", "size",
                "has_ring", "starting_planet")
 
-# Nine playable empires whose STNH home system is procedural (see load_stnh),
+# Ten playable empires whose STNH home system is procedural (see load_stnh),
 # so there is no geometry to convert and it is written here instead. Each is
 # vanilla-shaped: a star, an incremental orbit chain, the capital, and enough
 # neighbours to make a system worth surveying. The capital's `class` is left to
@@ -286,6 +281,24 @@ AUTHORED: dict[str, str] = {
 \tplanet = { name = "STG_N_Neled" class = "pc_toxic" orbit_distance = 26 orbit_angle = 195 size = 13 has_ring = no }
 \tplanet = { name = "STG_N_MalonIV" class = "pc_toxic" orbit_distance = 24 orbit_angle = 265 size = 11 has_ring = no }
 \tplanet = { name = "STG_N_MalonV" class = "pc_gas_giant" orbit_distance = 56 orbit_angle = 340 size = 26 has_ring = yes }
+''',
+    # The mirror Terran Empire's Sol, authored rather than shared. Vanilla's
+    # sol_system_initializer carries `sol`, `sol_system`, `planet_earth` and
+    # `planet_mars` flags that vanilla events address by name, so a second
+    # system cannot copy them -- the geometry comes across, the flags do not.
+    # Planet names are vanilla's own NAME_* keys, already localised.
+    "stg_terran_empire": '''\
+\tname = "STG_system_name_terran"
+\tclass = "sc_g"
+\tasteroid_belt = { type = rocky_asteroid_belt radius = 145 }
+
+\tplanet = { name = "STG_system_name_terran" class = "pc_g_star" orbit_distance = 0 orbit_angle = 1 size = 30 has_ring = no }
+\tplanet = { name = "NAME_Mercury" class = "pc_molten" orbit_distance = 40 orbit_angle = 70 size = 10 has_ring = no }
+\tplanet = { name = "NAME_Venus" class = "pc_toxic" orbit_distance = 25 orbit_angle = 190 size = 17 has_ring = no }
+\t@CAPITAL@
+\tplanet = { name = "NAME_Mars" class = "pc_barren" orbit_distance = 25 orbit_angle = 15 size = 13 has_ring = no }
+\tplanet = { name = "NAME_Jupiter" class = "pc_gas_giant" orbit_distance = 40 orbit_angle = 240 size = 35 has_ring = no }
+\tplanet = { name = "NAME_Saturn" class = "pc_gas_giant" orbit_distance = 35 orbit_angle = 310 size = 30 has_ring = yes }
 ''',
     "stg_vidiian_empire": '''\
 \tname = "STG_system_name_vidiian"
@@ -645,7 +658,6 @@ def convert(stg_key: str, stnh_key: str, body: str, emp: dict,
                else f'\tname = "{sys_name or stnh_key}"')
     out.append(f'\tclass = "{star}"')
     out.append("\tusage = custom_empire")
-    out.append("\tmax_instances = 1")
     out.append("\tflags = { empire_home_system stg_home_system }")
     out.append("\tinit_effect = { generate_home_system_resources = yes }")
     out.append("")
@@ -766,7 +778,6 @@ def main() -> int:
                 f"# {stg_key} — authored: STNH's own home system is procedural.\n"
                 f"{key} = {{\n{body}"
                 f"\tusage = custom_empire\n"
-                f"\tmax_instances = 1\n"
                 f"\tflags = {{ empire_home_system stg_home_system }}\n"
                 f"\tinit_effect = {{ generate_home_system_resources = yes }}\n"
                 f"}}")

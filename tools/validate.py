@@ -2574,9 +2574,11 @@ def check_prescripted_empires() -> int:
 
     # An empire the designer never offers cannot be hidden by it. Vanilla marks
     # those `playable = empire_design_never`, a scripted trigger whose body is
-    # `always = no`; STG's 79 minor powers use their own `stg_never` the same
-    # way. Resolve the trigger rather than matching either name, so the rule is
-    # vanilla's idiom and not a list of two spellings.
+    # `always = no`. STG no longer gates any empire this way -- decision 88
+    # established that `playable` keeps an empire out of the engine's design
+    # DATABASE, not just the picker, so a gated empire cannot spawn as AI
+    # either. Resolve the trigger rather than matching a name, so the rule
+    # stays vanilla's idiom and catches a gate reintroduced under any spelling.
     triggers = _defs_and_blocks(GAME_DIR / "common/scripted_triggers",
                                 BUILD / "common/scripted_triggers",
                                 REPO / "src/common/scripted_triggers")
@@ -3679,8 +3681,8 @@ def check_portrait_clothes_selectors() -> int:
     .docs/decisions/20-minor-power-species-class-keys.md.
 
     Two reasons no existing check could see it. `check_prescripted_empires`
-    asks about `common/portrait_sets/` and skips `playable = stg_never`, which
-    is every minor power. `check_dangling_identifiers` saw the other side of the
+    asks about `common/portrait_sets/` and skipped `playable = stg_never`,
+    which was then every minor power (decision 88 removed that gate). `check_dangling_identifiers` saw the other side of the
     same fact -- BEN referenced and undeclared -- and it was acked as Phase 2
     content STG did not ship, which had stopped being true.
 
@@ -3819,10 +3821,9 @@ def check_portrait_clothes_selectors() -> int:
 
                 # The empire designer reads ONLY the `game_setup` scope, so a
                 # class-gated selector whose game_setup is a bare default draws
-                # every species it serves as that default. Playable empires
-                # only — nothing else reaches the designer.
-                if re.search(r"playable\s*=\s*stg_never", body):
-                    continue
+                # every species it serves as that default. This used to skip
+                # the 79 `playable = stg_never` minors as unreachable; decision
+                # 88 made every empire playable, so every empire is checked.
                 blind = sorted(s for s in gating if cls not in sel_setup.get(s, set()))
                 if blind:
                     warnings.append(
@@ -4039,7 +4040,7 @@ def check_prescripted_loc() -> int:
     THE TWO HALVES HAVE DIFFERENT SCOPES, and that is a calibration result
     rather than an oversight — see .docs/decisions/51-prescripted-loc-scope.md.
 
-    * **Truncation stays on `stg_minor_powers.txt` alone.** It is the only one
+    * **Truncation stays on `stg_z_minor_powers.txt` alone.** It is the only one
       of the four GENERATED from the source, and truncation is a generator
       failure. Asking it of the three hand-authored files needs an STG-empire ->
       STNH-empire mapping that does not exist, because those 22 diverge from
@@ -4055,7 +4056,7 @@ def check_prescripted_loc() -> int:
       somebody's loc key, which is wrong no matter who wrote the file. It costs
       nothing and currently finds nothing outside the minors.
     """
-    pres = REPO / "src" / "prescripted_countries" / "stg_minor_powers.txt"
+    pres = REPO / "src" / "prescripted_countries" / "stg_z_minor_powers.txt"
     locf = (REPO / "src" / "localisation" / "english"
             / "stg_minor_powers_l_english.yml")
     if not pres.is_file() or not locf.is_file():
@@ -5492,7 +5493,7 @@ def check_room_references() -> int:
                     f"logs a room that does not exist.")
             elif room not in offered:
                 playable = re.search(r"playable = (\w+)", text[a:b])
-                if not playable or playable.group(1) not in ("no", "stg_never"):
+                if not playable or playable.group(1) != "no":
                     warnings.append(
                         f"prescripted_countries/{f.name}: {key} asks for "
                         f"`{room}`, which the selector's game_setup does not "

@@ -95,7 +95,7 @@ which is also where the rule lives: category is in this index, not in the path.
 |---|---|
 | [10](10-species-class-keys-unprefixed.md) | The five species classes take STNH's bare keys, not `STG_` |
 | [14](14-remove-vanilla-prescripted-empires.md) | Remove vanilla's prescripted empires; pin `supported_version` exactly |
-| [19](19-stnh-minor-powers-as-ai-empires.md) | STNH's remaining prescripted empires, as AI-only minor powers |
+| [19](19-stnh-minor-powers-as-ai-empires.md) | STNH's remaining prescripted empires, as AI-only minor powers — *mechanism falsified by [88](88-playable-gates-the-design-database.md); there is no AI-only prescripted empire* |
 | [20](20-minor-power-species-class-keys.md) | Eight minor powers take STNH's species-class key, not a near miss |
 | [21](21-species-class-localisation.md) | Species class loc keys hang off the class key, **unprefixed** |
 | [23](23-prescripted-ruler-appearance.md) | Prescripted rulers pin no appearance index |
@@ -110,6 +110,7 @@ which is also where the rule lives: category is in this index, not in the path.
 | [72](72-ship-class-names.md) | STNH declares its own class names, so 59's fuzzy join was never needed |
 | [73](73-class-name-thematic-fill.md) | A class-name pool is one semantic field, and vanilla is the model for filling one |
 | [81](81-random-names-are-loc-keys.md) | A quoted random name is a localisation key, and STG shipped 330 with no key — *falsifies [52](52-trek-star-names.md) in part* |
+| [88](88-playable-gates-the-design-database.md) | `playable` gates the engine's design database, not the picker, so 79 of the 101 empires could never spawn — *falsifies [19](19-stnh-minor-powers-as-ai-empires.md)'s mechanism, corrects [86](86-prescripted-empires-never-drawn.md)'s premise, unshares [25](25-real-home-systems.md)'s Sol* |
 
 ## Ship art and weapon mounts
 

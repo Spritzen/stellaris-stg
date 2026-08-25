@@ -42,8 +42,9 @@ three log lines. [Decision 41](../decisions/41-civic-granted-species-traits.md).
 
 Vanilla's `opposites` lists, archetype budgets and ruler-trait ethic gates hid
 **nine** STG empires from the designer for eleven runs. Sweeping the rule behind
-them found **nine more** that were AI-only and would never have produced a record
-at all.
+them found **nine more** on empires that were then gated out of the designer and
+would never have produced a record at all. (Those nine reach the designer now —
+[decision 88](../decisions/88-playable-gates-the-design-database.md).)
 
 `check_prescripted_empires` enforces all of it against vanilla's own databases,
 calibrated by reverting the repairs: 21 findings, no false positives.

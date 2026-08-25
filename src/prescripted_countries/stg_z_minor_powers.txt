@@ -1,4 +1,4 @@
-# Star Trek Galaxies — the minor powers, AI only.
+# Star Trek Galaxies — the 79 minor powers.
 #
 # 79 empires converted from STNH's own prescripted countries. Their IDENTITY is
 # STNH's — name, species, homeworld, ruler, heraldry and name list all come
@@ -8,10 +8,14 @@
 # whole from a vanilla prescripted empire and matched to the empire by its
 # ethics, exactly as stg_frontier_powers.txt does.
 #
-# `playable = stg_never` keeps all 79 out of the empire picker while leaving
-# them spawnable as AI. That trigger is in
-# src/common/scripted_triggers/stg_prescripted_triggers.txt; `playable` takes a
-# trigger NAME, not an inline block.
+# ALL 79 ARE PLAYABLE, and that is not a preference. `playable` does not gate
+# the empire PICKER, it gates the engine's empire-design DATABASE: an empire
+# whose trigger is false is never loaded, so the galaxy generator cannot draw it
+# either. Two saves prove it -- 2026-08-10 and 2026-08-22 both carry exactly 22
+# `design={}` blocks, the 22 empires that were not gated, and none of these 79.
+# There is no AI-only prescripted empire in Stellaris: an empire is in the
+# picker and in the pool, or in neither.
+# See .docs/decisions/88-playable-gates-the-design-database.md.
 #
 # SHIP ART, and the reason this file was affordable at all: 34 of the 79 keep
 # their own STNH culture, because it is one of generic_01/02/05/06/07 — already
@@ -36,7 +40,6 @@ stg_minor_acamarian_sovereignty = {
 	name = "STG_EMPIRE_minor_acamarian_sovereignty"
 	adjective = "STG_adjective_minor_acamarian_sovereignty"
 	spawn_enabled = yes
-	playable = stg_never
 
 	ship_prefix = "STG_ship_prefix_minor_acamarian_sovereignty"
 
@@ -105,7 +108,6 @@ stg_minor_antedian_shoals = {
 	name = "STG_EMPIRE_minor_antedian_shoals"
 	adjective = "STG_adjective_minor_antedian_shoals"
 	spawn_enabled = yes
-	playable = stg_never
 
 	ship_prefix = "STG_ship_prefix_minor_antedian_shoals"
 
@@ -171,7 +173,6 @@ stg_minor_antican_packs = {
 	name = "STG_EMPIRE_minor_antican_packs"
 	adjective = "STG_adjective_minor_antican_packs"
 	spawn_enabled = yes
-	playable = stg_never
 
 	ship_prefix = "STG_ship_prefix_minor_antican_packs"
 
@@ -237,7 +238,6 @@ stg_minor_argrathian_commonwealth = {
 	name = "STG_EMPIRE_minor_argrathian_commonwealth"
 	adjective = "STG_adjective_minor_argrathian_commonwealth"
 	spawn_enabled = yes
-	playable = stg_never
 
 	ship_prefix = "STG_ship_prefix_minor_argrathian_commonwealth"
 
@@ -302,7 +302,6 @@ stg_minor_benzarian_commonwealth = {
 	name = "STG_EMPIRE_minor_benzarian_commonwealth"
 	adjective = "STG_adjective_minor_benzarian_commonwealth"
 	spawn_enabled = yes
-	playable = stg_never
 
 	ship_prefix = "STG_ship_prefix_minor_benzarian_commonwealth"
 
@@ -366,7 +365,6 @@ stg_minor_betazoid_houses = {
 	name = "STG_EMPIRE_minor_betazoid_houses"
 	adjective = "STG_adjective_minor_betazoid_houses"
 	spawn_enabled = yes
-	playable = stg_never
 
 	ship_prefix = "STG_ship_prefix_minor_betazoid_houses"
 
@@ -434,7 +432,6 @@ stg_minor_brunali_empire = {
 	name = "STG_EMPIRE_minor_brunali_empire"
 	adjective = "STG_adjective_minor_brunali_empire"
 	spawn_enabled = yes
-	playable = stg_never
 
 	ship_prefix = "STG_ship_prefix_minor_brunali_empire"
 
@@ -500,7 +497,6 @@ stg_minor_bynar_domains = {
 	name = "STG_EMPIRE_minor_bynar_domains"
 	adjective = "STG_adjective_minor_bynar_domains"
 	spawn_enabled = yes
-	playable = stg_never
 
 	ship_prefix = "STG_ship_prefix_minor_bynar_domains"
 
@@ -565,7 +561,6 @@ stg_minor_chelarian_sovereignty = {
 	name = "STG_EMPIRE_minor_chelarian_sovereignty"
 	adjective = "STG_adjective_minor_chelarian_sovereignty"
 	spawn_enabled = yes
-	playable = stg_never
 
 	ship_prefix = "STG_ship_prefix_minor_chelarian_sovereignty"
 
@@ -630,7 +625,6 @@ stg_minor_cheronite_nation = {
 	name = "STG_EMPIRE_minor_cheronite_nation"
 	adjective = "STG_adjective_minor_cheronite_nation"
 	spawn_enabled = yes
-	playable = stg_never
 
 	ship_prefix = "STG_ship_prefix_minor_cheronite_nation"
 
@@ -698,7 +692,6 @@ stg_minor_confederation_earth = {
 	name = "STG_EMPIRE_minor_confederation_earth"
 	adjective = "STG_adjective_minor_confederation_earth"
 	spawn_enabled = yes
-	playable = stg_never
 
 	ship_prefix = "STG_ship_prefix_minor_confederation_earth"
 
@@ -765,7 +758,6 @@ stg_minor_cravic_imperative = {
 	name = "STG_EMPIRE_minor_cravic_imperative"
 	adjective = "STG_adjective_minor_cravic_imperative"
 	spawn_enabled = yes
-	playable = stg_never
 
 	ship_prefix = "STG_ship_prefix_minor_cravic_imperative"
 
@@ -830,7 +822,6 @@ stg_minor_deltan_union = {
 	name = "STG_EMPIRE_minor_deltan_union"
 	adjective = "STG_adjective_minor_deltan_union"
 	spawn_enabled = yes
-	playable = stg_never
 
 	ship_prefix = "STG_ship_prefix_minor_deltan_union"
 
@@ -896,7 +887,6 @@ stg_minor_denobulan_unity = {
 	name = "STG_EMPIRE_minor_denobulan_unity"
 	adjective = "STG_adjective_minor_denobulan_unity"
 	spawn_enabled = yes
-	playable = stg_never
 
 	ship_prefix = "STG_ship_prefix_minor_denobulan_unity"
 
@@ -964,7 +954,6 @@ stg_minor_devore_imperium = {
 	name = "STG_EMPIRE_minor_devore_imperium"
 	adjective = "STG_adjective_minor_devore_imperium"
 	spawn_enabled = yes
-	playable = stg_never
 
 	ship_prefix = "STG_ship_prefix_minor_devore_imperium"
 
@@ -1035,7 +1024,6 @@ stg_minor_dosi_confederacy = {
 	name = "STG_EMPIRE_minor_dosi_confederacy"
 	adjective = "STG_adjective_minor_dosi_confederacy"
 	spawn_enabled = yes
-	playable = stg_never
 
 	ship_prefix = "STG_ship_prefix_minor_dosi_confederacy"
 
@@ -1101,7 +1089,6 @@ stg_minor_elaurian_auditorium = {
 	name = "STG_EMPIRE_minor_elaurian_auditorium"
 	adjective = "STG_adjective_minor_elaurian_auditorium"
 	spawn_enabled = yes
-	playable = stg_never
 
 	ship_prefix = "STG_ship_prefix_minor_elaurian_auditorium"
 
@@ -1168,7 +1155,6 @@ stg_minor_fen_domar_states = {
 	name = "STG_EMPIRE_minor_fen_domar_states"
 	adjective = "STG_adjective_minor_fen_domar_states"
 	spawn_enabled = yes
-	playable = stg_never
 
 	ship_prefix = "STG_ship_prefix_minor_fen_domar_states"
 
@@ -1235,7 +1221,6 @@ stg_minor_flaxian_hegemony = {
 	name = "STG_EMPIRE_minor_flaxian_hegemony"
 	adjective = "STG_adjective_minor_flaxian_hegemony"
 	spawn_enabled = yes
-	playable = stg_never
 
 	ship_prefix = "STG_ship_prefix_minor_flaxian_hegemony"
 
@@ -1306,7 +1291,6 @@ stg_minor_garidian_republic = {
 	name = "STG_EMPIRE_minor_garidian_republic"
 	adjective = "STG_adjective_minor_garidian_republic"
 	spawn_enabled = yes
-	playable = stg_never
 
 	ship_prefix = "STG_ship_prefix_minor_garidian_republic"
 
@@ -1373,7 +1357,6 @@ stg_minor_gorn_empire = {
 	name = "STG_EMPIRE_minor_gorn_empire"
 	adjective = "STG_adjective_minor_gorn_empire"
 	spawn_enabled = yes
-	playable = stg_never
 
 	ship_prefix = "STG_ship_prefix_minor_gorn_empire"
 
@@ -1438,7 +1421,6 @@ stg_minor_haakonian_order = {
 	name = "STG_EMPIRE_minor_haakonian_order"
 	adjective = "STG_adjective_minor_haakonian_order"
 	spawn_enabled = yes
-	playable = stg_never
 
 	ship_prefix = "STG_ship_prefix_minor_haakonian_order"
 
@@ -1505,7 +1487,6 @@ stg_minor_hazari_tuatara = {
 	name = "STG_EMPIRE_minor_hazari_tuatara"
 	adjective = "STG_adjective_minor_hazari_tuatara"
 	spawn_enabled = yes
-	playable = stg_never
 
 	ship_prefix = "STG_ship_prefix_minor_hazari_tuatara"
 
@@ -1576,7 +1557,6 @@ stg_minor_hirogen_hunters = {
 	name = "STG_EMPIRE_minor_hirogen_hunters"
 	adjective = "STG_adjective_minor_hirogen_hunters"
 	spawn_enabled = yes
-	playable = stg_never
 
 	ship_prefix = "STG_ship_prefix_minor_hirogen_hunters"
 
@@ -1642,7 +1622,6 @@ stg_minor_hur_q_stagnancy = {
 	name = "STG_EMPIRE_minor_hur_q_stagnancy"
 	adjective = "STG_adjective_minor_hur_q_stagnancy"
 	spawn_enabled = yes
-	playable = stg_never
 
 	ship_prefix = "STG_ship_prefix_minor_hur_q_stagnancy"
 
@@ -1708,7 +1687,6 @@ stg_minor_husnock_ascendency = {
 	name = "STG_EMPIRE_minor_husnock_ascendency"
 	adjective = "STG_adjective_minor_husnock_ascendency"
 	spawn_enabled = yes
-	playable = stg_never
 
 	ship_prefix = "STG_ship_prefix_minor_husnock_ascendency"
 
@@ -1775,7 +1753,6 @@ stg_minor_hydran_kingdom = {
 	name = "STG_EMPIRE_minor_hydran_kingdom"
 	adjective = "STG_adjective_minor_hydran_kingdom"
 	spawn_enabled = yes
-	playable = stg_never
 
 	ship_prefix = "STG_ship_prefix_minor_hydran_kingdom"
 
@@ -1841,7 +1818,6 @@ stg_minor_karemman_foundation = {
 	name = "STG_EMPIRE_minor_karemman_foundation"
 	adjective = "STG_adjective_minor_karemman_foundation"
 	spawn_enabled = yes
-	playable = stg_never
 
 	ship_prefix = "STG_ship_prefix_minor_karemman_foundation"
 
@@ -1908,7 +1884,6 @@ stg_minor_kazon_sects = {
 	name = "STG_EMPIRE_minor_kazon_sects"
 	adjective = "STG_adjective_minor_kazon_sects"
 	spawn_enabled = yes
-	playable = stg_never
 
 	ship_prefix = "STG_ship_prefix_minor_kazon_sects"
 
@@ -1974,7 +1949,6 @@ stg_minor_kessok_heliolatry = {
 	name = "STG_EMPIRE_minor_kessok_heliolatry"
 	adjective = "STG_adjective_minor_kessok_heliolatry"
 	spawn_enabled = yes
-	playable = stg_never
 
 	ship_prefix = "STG_ship_prefix_minor_kessok_heliolatry"
 
@@ -2041,7 +2015,6 @@ stg_minor_kinshaya_holy_order = {
 	name = "STG_EMPIRE_minor_kinshaya_holy_order"
 	adjective = "STG_adjective_minor_kinshaya_holy_order"
 	spawn_enabled = yes
-	playable = stg_never
 
 	ship_prefix = "STG_ship_prefix_minor_kinshaya_holy_order"
 
@@ -2108,7 +2081,6 @@ stg_minor_kobali_republic = {
 	name = "STG_EMPIRE_minor_kobali_republic"
 	adjective = "STG_adjective_minor_kobali_republic"
 	spawn_enabled = yes
-	playable = stg_never
 
 	ship_prefix = "STG_ship_prefix_minor_kobali_republic"
 
@@ -2176,7 +2148,6 @@ stg_minor_kraylor_republic = {
 	name = "STG_EMPIRE_minor_kraylor_republic"
 	adjective = "STG_adjective_minor_kraylor_republic"
 	spawn_enabled = yes
-	playable = stg_never
 
 	ship_prefix = "STG_ship_prefix_minor_kraylor_republic"
 
@@ -2242,7 +2213,6 @@ stg_minor_krios_dynasty = {
 	name = "STG_EMPIRE_minor_krios_dynasty"
 	adjective = "STG_adjective_minor_krios_dynasty"
 	spawn_enabled = yes
-	playable = stg_never
 
 	ship_prefix = "STG_ship_prefix_minor_krios_dynasty"
 
@@ -2308,7 +2278,6 @@ stg_minor_kzinti_empire = {
 	name = "STG_EMPIRE_minor_kzinti_empire"
 	adjective = "STG_adjective_minor_kzinti_empire"
 	spawn_enabled = yes
-	playable = stg_never
 
 	ship_prefix = "STG_ship_prefix_minor_kzinti_empire"
 
@@ -2374,7 +2343,6 @@ stg_minor_lissepian_parliaments = {
 	name = "STG_EMPIRE_minor_lissepian_parliaments"
 	adjective = "STG_adjective_minor_lissepian_parliaments"
 	spawn_enabled = yes
-	playable = stg_never
 
 	ship_prefix = "STG_ship_prefix_minor_lissepian_parliaments"
 
@@ -2441,7 +2409,6 @@ stg_minor_lurian_principality = {
 	name = "STG_EMPIRE_minor_lurian_principality"
 	adjective = "STG_adjective_minor_lurian_principality"
 	spawn_enabled = yes
-	playable = stg_never
 
 	ship_prefix = "STG_ship_prefix_minor_lurian_principality"
 
@@ -2512,7 +2479,6 @@ stg_minor_lyran_star_empire = {
 	name = "STG_EMPIRE_minor_lyran_star_empire"
 	adjective = "STG_adjective_minor_lyran_star_empire"
 	spawn_enabled = yes
-	playable = stg_never
 
 	ship_prefix = "STG_ship_prefix_minor_lyran_star_empire"
 
@@ -2579,7 +2545,6 @@ stg_minor_lyridian_diaspora = {
 	name = "STG_EMPIRE_minor_lyridian_diaspora"
 	adjective = "STG_adjective_minor_lyridian_diaspora"
 	spawn_enabled = yes
-	playable = stg_never
 
 	ship_prefix = "STG_ship_prefix_minor_lyridian_diaspora"
 
@@ -2645,7 +2610,6 @@ stg_minor_medusan_corporium = {
 	name = "STG_EMPIRE_minor_medusan_corporium"
 	adjective = "STG_adjective_minor_medusan_corporium"
 	spawn_enabled = yes
-	playable = stg_never
 
 	ship_prefix = "STG_ship_prefix_minor_medusan_corporium"
 
@@ -2711,7 +2675,6 @@ stg_minor_monean_maritime_sovereignty = {
 	name = "STG_EMPIRE_minor_monean_maritime_sovereignty"
 	adjective = "STG_adjective_minor_monean_maritime_sovereignty"
 	spawn_enabled = yes
-	playable = stg_never
 
 	ship_prefix = "STG_ship_prefix_minor_monean_maritime_sovereignty"
 
@@ -2777,7 +2740,6 @@ stg_minor_morali_states = {
 	name = "STG_EMPIRE_minor_morali_states"
 	adjective = "STG_adjective_minor_morali_states"
 	spawn_enabled = yes
-	playable = stg_never
 
 	ship_prefix = "STG_ship_prefix_minor_morali_states"
 
@@ -2842,7 +2804,6 @@ stg_minor_nausicaan_tribes = {
 	name = "STG_EMPIRE_minor_nausicaan_tribes"
 	adjective = "STG_adjective_minor_nausicaan_tribes"
 	spawn_enabled = yes
-	playable = stg_never
 
 	ship_prefix = "STG_ship_prefix_minor_nausicaan_tribes"
 
@@ -2908,7 +2869,6 @@ stg_minor_norcadian_harmony = {
 	name = "STG_EMPIRE_minor_norcadian_harmony"
 	adjective = "STG_adjective_minor_norcadian_harmony"
 	spawn_enabled = yes
-	playable = stg_never
 
 	ship_prefix = "STG_ship_prefix_minor_norcadian_harmony"
 
@@ -2975,7 +2935,6 @@ stg_minor_nyberrite_alliance = {
 	name = "STG_EMPIRE_minor_nyberrite_alliance"
 	adjective = "STG_adjective_minor_nyberrite_alliance"
 	spawn_enabled = yes
-	playable = stg_never
 
 	ship_prefix = "STG_ship_prefix_minor_nyberrite_alliance"
 
@@ -3042,7 +3001,6 @@ stg_minor_nygean_sector_authority = {
 	name = "STG_EMPIRE_minor_nygean_sector_authority"
 	adjective = "STG_adjective_minor_nygean_sector_authority"
 	spawn_enabled = yes
-	playable = stg_never
 
 	ship_prefix = "STG_ship_prefix_minor_nygean_sector_authority"
 
@@ -3109,7 +3067,6 @@ stg_minor_orion_free_states = {
 	name = "STG_EMPIRE_minor_orion_free_states"
 	adjective = "STG_adjective_minor_orion_free_states"
 	spawn_enabled = yes
-	playable = stg_never
 
 	ship_prefix = "STG_ship_prefix_minor_orion_free_states"
 
@@ -3176,7 +3133,6 @@ stg_minor_oschean_hunters = {
 	name = "STG_EMPIRE_minor_oschean_hunters"
 	adjective = "STG_adjective_minor_oschean_hunters"
 	spawn_enabled = yes
-	playable = stg_never
 
 	ship_prefix = "STG_ship_prefix_minor_oschean_hunters"
 
@@ -3242,7 +3198,6 @@ stg_minor_pakled_groupings = {
 	name = "STG_EMPIRE_minor_pakled_groupings"
 	adjective = "STG_adjective_minor_pakled_groupings"
 	spawn_enabled = yes
-	playable = stg_never
 
 	ship_prefix = "STG_ship_prefix_minor_pakled_groupings"
 
@@ -3313,7 +3268,6 @@ stg_minor_paradan_commonwealth = {
 	name = "STG_EMPIRE_minor_paradan_commonwealth"
 	adjective = "STG_adjective_minor_paradan_commonwealth"
 	spawn_enabled = yes
-	playable = stg_never
 
 	ship_prefix = "STG_ship_prefix_minor_paradan_commonwealth"
 
@@ -3380,7 +3334,6 @@ stg_minor_pralor_auxiliary = {
 	name = "STG_EMPIRE_minor_pralor_auxiliary"
 	adjective = "STG_adjective_minor_pralor_auxiliary"
 	spawn_enabled = yes
-	playable = stg_never
 
 	ship_prefix = "STG_ship_prefix_minor_pralor_auxiliary"
 
@@ -3445,7 +3398,6 @@ stg_minor_rakharian_free_states = {
 	name = "STG_EMPIRE_minor_rakharian_free_states"
 	adjective = "STG_adjective_minor_rakharian_free_states"
 	spawn_enabled = yes
-	playable = stg_never
 
 	ship_prefix = "STG_ship_prefix_minor_rakharian_free_states"
 
@@ -3511,7 +3463,6 @@ stg_minor_rigellian_consortium = {
 	name = "STG_EMPIRE_minor_rigellian_consortium"
 	adjective = "STG_adjective_minor_rigellian_consortium"
 	spawn_enabled = yes
-	playable = stg_never
 
 	ship_prefix = "STG_ship_prefix_minor_rigellian_consortium"
 
@@ -3577,7 +3528,6 @@ stg_minor_saurian_league = {
 	name = "STG_EMPIRE_minor_saurian_league"
 	adjective = "STG_adjective_minor_saurian_league"
 	spawn_enabled = yes
-	playable = stg_never
 
 	ship_prefix = "STG_ship_prefix_minor_saurian_league"
 
@@ -3644,7 +3594,6 @@ stg_minor_selay_clutches = {
 	name = "STG_EMPIRE_minor_selay_clutches"
 	adjective = "STG_adjective_minor_selay_clutches"
 	spawn_enabled = yes
-	playable = stg_never
 
 	ship_prefix = "STG_ship_prefix_minor_selay_clutches"
 
@@ -3709,7 +3658,6 @@ stg_minor_sheliak_corporate = {
 	name = "STG_EMPIRE_minor_sheliak_corporate"
 	adjective = "STG_adjective_minor_sheliak_corporate"
 	spawn_enabled = yes
-	playable = stg_never
 
 	ship_prefix = "STG_ship_prefix_minor_sheliak_corporate"
 
@@ -3776,7 +3724,6 @@ stg_minor_skrreean_republic = {
 	name = "STG_EMPIRE_minor_skrreean_republic"
 	adjective = "STG_adjective_minor_skrreean_republic"
 	spawn_enabled = yes
-	playable = stg_never
 
 	ship_prefix = "STG_ship_prefix_minor_skrreean_republic"
 
@@ -3840,7 +3787,6 @@ stg_minor_t_rogoran_empire = {
 	name = "STG_EMPIRE_minor_t_rogoran_empire"
 	adjective = "STG_adjective_minor_t_rogoran_empire"
 	spawn_enabled = yes
-	playable = stg_never
 
 	ship_prefix = "STG_ship_prefix_minor_t_rogoran_empire"
 
@@ -3906,7 +3852,6 @@ stg_minor_talarian_republic = {
 	name = "STG_EMPIRE_minor_talarian_republic"
 	adjective = "STG_adjective_minor_talarian_republic"
 	spawn_enabled = yes
-	playable = stg_never
 
 	ship_prefix = "STG_ship_prefix_minor_talarian_republic"
 
@@ -3971,7 +3916,6 @@ stg_minor_talaxian_empire = {
 	name = "STG_EMPIRE_minor_talaxian_empire"
 	adjective = "STG_adjective_minor_talaxian_empire"
 	spawn_enabled = yes
-	playable = stg_never
 
 	ship_prefix = "STG_ship_prefix_minor_talaxian_empire"
 
@@ -4036,7 +3980,6 @@ stg_minor_tamarian_unity = {
 	name = "STG_EMPIRE_minor_tamarian_unity"
 	adjective = "STG_adjective_minor_tamarian_unity"
 	spawn_enabled = yes
-	playable = stg_never
 
 	ship_prefix = "STG_ship_prefix_minor_tamarian_unity"
 
@@ -4101,7 +4044,6 @@ stg_minor_tellarian_technocracy = {
 	name = "STG_EMPIRE_minor_tellarian_technocracy"
 	adjective = "STG_adjective_minor_tellarian_technocracy"
 	spawn_enabled = yes
-	playable = stg_never
 
 	ship_prefix = "STG_ship_prefix_minor_tellarian_technocracy"
 
@@ -4168,7 +4110,6 @@ stg_minor_trabe_alliance = {
 	name = "STG_EMPIRE_minor_trabe_alliance"
 	adjective = "STG_adjective_minor_trabe_alliance"
 	spawn_enabled = yes
-	playable = stg_never
 
 	ship_prefix = "STG_ship_prefix_minor_trabe_alliance"
 
@@ -4234,7 +4175,6 @@ stg_minor_turei_commonwealth = {
 	name = "STG_EMPIRE_minor_turei_commonwealth"
 	adjective = "STG_adjective_minor_turei_commonwealth"
 	spawn_enabled = yes
-	playable = stg_never
 
 	ship_prefix = "STG_ship_prefix_minor_turei_commonwealth"
 
@@ -4301,7 +4241,6 @@ stg_minor_tzenkethi_coalition = {
 	name = "STG_EMPIRE_minor_tzenkethi_coalition"
 	adjective = "STG_adjective_minor_tzenkethi_coalition"
 	spawn_enabled = yes
-	playable = stg_never
 
 	ship_prefix = "STG_ship_prefix_minor_tzenkethi_coalition"
 
@@ -4372,7 +4311,6 @@ stg_minor_undine_vanguard = {
 	name = "STG_EMPIRE_minor_undine_vanguard"
 	adjective = "STG_adjective_minor_undine_vanguard"
 	spawn_enabled = yes
-	playable = stg_never
 
 	ship_prefix = "STG_ship_prefix_minor_undine_vanguard"
 
@@ -4442,7 +4380,6 @@ stg_minor_united_congress_of_banea = {
 	name = "STG_EMPIRE_minor_united_congress_of_banea"
 	adjective = "STG_adjective_minor_united_congress_of_banea"
 	spawn_enabled = yes
-	playable = stg_never
 
 	ship_prefix = "STG_ship_prefix_minor_united_congress_of_banea"
 
@@ -4508,7 +4445,6 @@ stg_minor_vaadwaur_supremacy = {
 	name = "STG_EMPIRE_minor_vaadwaur_supremacy"
 	adjective = "STG_adjective_minor_vaadwaur_supremacy"
 	spawn_enabled = yes
-	playable = stg_never
 
 	ship_prefix = "STG_ship_prefix_minor_vaadwaur_supremacy"
 
@@ -4574,7 +4510,6 @@ stg_minor_valerian_freeholds = {
 	name = "STG_EMPIRE_minor_valerian_freeholds"
 	adjective = "STG_adjective_minor_valerian_freeholds"
 	spawn_enabled = yes
-	playable = stg_never
 
 	ship_prefix = "STG_ship_prefix_minor_valerian_freeholds"
 
@@ -4640,7 +4575,6 @@ stg_minor_valtese_senate = {
 	name = "STG_EMPIRE_minor_valtese_senate"
 	adjective = "STG_adjective_minor_valtese_senate"
 	spawn_enabled = yes
-	playable = stg_never
 
 	ship_prefix = "STG_ship_prefix_minor_valtese_senate"
 
@@ -4705,7 +4639,6 @@ stg_minor_vau_nakat_order = {
 	name = "STG_EMPIRE_minor_vau_nakat_order"
 	adjective = "STG_adjective_minor_vau_nakat_order"
 	spawn_enabled = yes
-	playable = stg_never
 
 	ship_prefix = "STG_ship_prefix_minor_vau_nakat_order"
 
@@ -4776,7 +4709,6 @@ stg_minor_voth_theocracy = {
 	name = "STG_EMPIRE_minor_voth_theocracy"
 	adjective = "STG_adjective_minor_voth_theocracy"
 	spawn_enabled = yes
-	playable = stg_never
 
 	ship_prefix = "STG_ship_prefix_minor_voth_theocracy"
 
@@ -4843,7 +4775,6 @@ stg_minor_wadi_emirates = {
 	name = "STG_EMPIRE_minor_wadi_emirates"
 	adjective = "STG_adjective_minor_wadi_emirates"
 	spawn_enabled = yes
-	playable = stg_never
 
 	ship_prefix = "STG_ship_prefix_minor_wadi_emirates"
 
@@ -4910,7 +4841,6 @@ stg_minor_xepolite_guilds = {
 	name = "STG_EMPIRE_minor_xepolite_guilds"
 	adjective = "STG_adjective_minor_xepolite_guilds"
 	spawn_enabled = yes
-	playable = stg_never
 
 	ship_prefix = "STG_ship_prefix_minor_xepolite_guilds"
 
@@ -4977,7 +4907,6 @@ stg_minor_yaderan_republic = {
 	name = "STG_EMPIRE_minor_yaderan_republic"
 	adjective = "STG_adjective_minor_yaderan_republic"
 	spawn_enabled = yes
-	playable = stg_never
 
 	ship_prefix = "STG_ship_prefix_minor_yaderan_republic"
 
@@ -5048,7 +4977,6 @@ stg_minor_zahl_technocracy = {
 	name = "STG_EMPIRE_minor_zahl_technocracy"
 	adjective = "STG_adjective_minor_zahl_technocracy"
 	spawn_enabled = yes
-	playable = stg_never
 
 	ship_prefix = "STG_ship_prefix_minor_zahl_technocracy"
 
@@ -5114,7 +5042,6 @@ stg_minor_zakdorn_alliance = {
 	name = "STG_EMPIRE_minor_zakdorn_alliance"
 	adjective = "STG_adjective_minor_zakdorn_alliance"
 	spawn_enabled = yes
-	playable = stg_never
 
 	ship_prefix = "STG_ship_prefix_minor_zakdorn_alliance"
 
@@ -5180,7 +5107,6 @@ stg_minor_tng_coalition_hope = {
 	name = "STG_EMPIRE_minor_tng_coalition_hope"
 	adjective = "STG_adjective_minor_tng_coalition_hope"
 	spawn_enabled = yes
-	playable = stg_never
 
 	ship_prefix = "STG_ship_prefix_minor_tng_coalition_hope"
 
@@ -5249,7 +5175,6 @@ stg_minor_tng_klingon_cardassian_alliance = {
 	name = "STG_EMPIRE_minor_tng_klingon_cardassian_alliance"
 	adjective = "STG_adjective_minor_tng_klingon_cardassian_alliance"
 	spawn_enabled = yes
-	playable = stg_never
 
 	ship_prefix = "STG_ship_prefix_minor_tng_klingon_cardassian_alliance"
 

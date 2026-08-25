@@ -15,7 +15,7 @@ because every number here goes stale — [style guide §6](../style-guide.md).*
 |---|---|
 | **Phase 0** — vendoring pipeline | **complete** |
 | **Phase 1** — playable Federation | **complete**, run in-game repeatedly |
-| **Phase 2** — the rest of the galaxy | **complete**. 101 prescripted empires (22 playable, 79 AI-only minors) over 100 distinct species classes, 92 name lists, 37 real home systems. `src/` declares **131** classes in all — the extra 31 are the STNH selector stubs of [decision 32](../decisions/32-declare-stub-species-classes.md) |
+| **Phase 2** — the rest of the galaxy | **complete**. 101 prescripted empires (22 majors/quadrant/frontier, 79 minors; all playable and all in the AI pool since [decision 88](../decisions/88-playable-gates-the-design-database.md)) over 100 distinct species classes, 92 name lists, 37 real home systems. `src/` declares **131** classes in all — the extra 31 are the STNH selector stubs of [decision 32](../decisions/32-declare-stub-species-classes.md) |
 | **Phase 3** — art and identity | **complete 2026-08-08**. Clothing triggers, shipsets, weapon mounts, flags, rooms, city sets, loading screens, `paragon_backgrounds.txt`, the shipsets' 39 extra flags |
 | **Phase 4** — polish | **started 2026-08-08**. Music, the ship registries and their class names, then the three slices [decision 75](../decisions/75-trek-anomalies.md) scoped: **21 Trek anomalies** ([75](../decisions/75-trek-anomalies.md)), **6 dig sites** ([76](../decisions/76-trek-archaeology.md)) and **21 story events** ([77](../decisions/77-trek-story-events.md)), all 2026-08-09. All three are shipped; what remains in the phase has no scope written for it |
 | **Phase 5** — the clutter pass | **complete 2026-08-07** (pipeline work, taken out of order) |
@@ -76,25 +76,31 @@ constants in `tools/validate.py` with the ratio written beside them
 
 ## The `error.log` baseline
 
-**The current baseline is the 2026-08-24 Vulcan run** — the longest session since
-2026-08-10 and the one [decision 86](../decisions/86-prescripted-empires-never-drawn.md)
-was written from. The 2026-08-10 Federation run beside it is the other deep one:
-~11 hours, and the only log so far that carried real defects rather than
-eyes-only findings.
+**The current baseline is the 2026-08-25 Vulcan run**, the one
+[decision 88](../decisions/88-playable-gates-the-design-database.md) was written
+from. The 2026-08-10 Federation run beside it is the deepest: ~11 hours, and the
+only log so far that carried real defects rather than eyes-only findings.
 
-| | **2026-08-24** Vulcan | 2026-08-22 Vulcan | 2026-08-10 Federation | 2026-08-08 |
-|---|---|---|---|---|
-| Records / size | **1,315 / 208 KB** | 1,264 / 187 KB | 2,251 / 228 KB | 1,261 / 187 KB |
-| Startup window | 46.8 s | 55.4 s | 49.4 s | 49.3 s |
-| Records **after** startup | **55** | 4 | 174 | 1 |
-| Play window | **~7 h** | ~26 min | ~11 h | short |
+| | **2026-08-25** Vulcan | 2026-08-24 Vulcan | 2026-08-22 Vulcan | 2026-08-10 Federation | 2026-08-08 |
+|---|---|---|---|---|---|
+| Records / size | **1,335 / 190 KB** | 1,315 / 208 KB | 1,264 / 187 KB | 2,251 / 228 KB | 1,261 / 187 KB |
+| Startup window | 48.5 s | 46.8 s | 55.4 s | 49.4 s | 49.3 s |
+| Records **after** startup | **19** | 55 | 4 | 174 | 1 |
+| Play window | **~2.5 h** | ~7 h | ~26 min | ~11 h | short |
 
 **Read the post-init column, never the total.** 187–208 KB is the init-window
-floor of this build and it has not moved in four runs; against the ~1 MB a clean
-vanilla run produces the volume is fine either way. **The 1 → 174 → 4 → 55 swing
-is a change of run, not of build**: the short sessions opened few screens.
+floor of this build and it has not moved in five runs; against the ~1 MB a clean
+vanilla run produces the volume is fine either way. **The 1 → 174 → 4 → 55 → 19
+swing is a change of run, not of build**: the short sessions opened few screens.
 
-**None of 2026-08-24's 55 post-init records names an STG file** — they are
+2026-08-25's 19 post-init lines are **five distinct records** over ~2.5 hours —
+one `PLANET_SCALE_SYSTEM` size mismatch, two `add_intel` script errors in
+vanilla's own `events/nemesis_operations_events_1.txt` (a file STG does not
+vendor), and two multi-line colony building-placement failures. **None of them
+names an STG file.** The run's finding was not in the log at all and could not
+have been: see decision 88.
+
+**None of 2026-08-24's 55 post-init records names an STG file either** — they are
 vanilla's own event and trigger scripts plus Planetary Diversity's domed-base
 decision, over seven hours of play. That is a volume reading only: **no analysis
 was written for this run** ([those are written on request](../analysis/README.md)),
@@ -111,10 +117,11 @@ inspection. The whole reading is
 findings and what each cost are in
 [ufp-run-remediation.md](ufp-run-remediation.md).
 
-**What still has no in-game evidence at all.** Two of the three runs since
-2026-08-10 ended early, and the long 2026-08-24 one was played without a run plan
-and written up only in [decision 86](../decisions/86-prescripted-empires-never-drawn.md),
-so it reported on none of these:
+**What still has no in-game evidence at all.** Of the four runs since
+2026-08-10, one ended early and the other three were played without a run plan
+and written up only in [decision 86](../decisions/86-prescripted-empires-never-drawn.md)
+and [decision 88](../decisions/88-playable-gates-the-design-database.md), so none
+of them reported on any of these:
 
 - **Every hull above corvette.** [Decision 82](../decisions/82-hull-section-attach-points.md)'s
   230 attach points are the single most valuable unmeasured thing in the project.

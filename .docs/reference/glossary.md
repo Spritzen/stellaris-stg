@@ -34,5 +34,5 @@
 | **slot label** | An analysis filename's `YYYY-MM-DD` — a **sequence position, not a date**. Several runs happen on one real day. [Conventions](../analysis/README.md). |
 | **STNH** | Star Trek: New Horizons — the 3.12-era total conversion STG takes art from and script from never. |
 | **Walshicus** | The author of the 22 Trek shipsets built on a vanilla chassis. 17 of the 22 playable cultures fly them; the other five are generated STNH hulls. |
-| **major / minor power** | 22 playable prescripted empires / 79 AI-only ones converted from STNH. `playable = stg_never` separates them. |
+| **major / minor power** | 22 prescripted empires authored for STG / 79 converted from STNH. A naming split only: all 101 are playable and all 101 are in the AI pool since [decision 88](../decisions/88-playable-gates-the-design-database.md). |
 | **graphical culture** | A **name prefix**, not a directory: the engine resolves ship art as `<culture>_<entity>`. Also what a city set needs declared before an empire can use it. |

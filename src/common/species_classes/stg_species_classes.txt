@@ -505,7 +505,7 @@ TER = {
 }
 
 # ── The minor powers ───────────────────────────────────────────────────────
-# One class per AI-only empire in stg_minor_powers.txt. Keys are derived from
+# One class per AI-only empire in stg_z_minor_powers.txt. Keys are derived from
 # the empire name and checked against BOTH the twenty-two above and the fifty
 # STNH clothing selectors reference, so none of them can collide with a
 # uniform rule. See .docs/decisions/19-stnh-minor-powers-as-ai-empires.md.

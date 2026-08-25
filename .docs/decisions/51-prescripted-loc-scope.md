@@ -4,7 +4,7 @@
 
 ## The question
 
-[Decision 47](47-minor-power-names-truncated.md) found `stg_minor_powers.txt`
+[Decision 47](47-minor-power-names-truncated.md) found `stg_z_minor_powers.txt`
 shipping **78 of its 79 empire names truncated** and 16 loc values that were
 still the loc key. `check_prescripted_loc` was written to catch that class and
 scoped to that one file. plan.md §8 then recorded the obvious worry:
@@ -50,7 +50,7 @@ defect class.
 Recorded in the docstring of `check_prescripted_loc`, because someone will read
 the narrow scope as an oversight.
 
-- **Truncation stays on `stg_minor_powers.txt` alone.** Widening it needs an
+- **Truncation stays on `stg_z_minor_powers.txt` alone.** Widening it needs an
   STG-empire → STNH-empire mapping, and there isn't one: these 22 diverge from
   STNH *on purpose*. `Bolian Union` against STNH's `Bolian League`, `Trill
   Symbiosis` against `Trill Administration`, `Confederacy of Vulcan` against

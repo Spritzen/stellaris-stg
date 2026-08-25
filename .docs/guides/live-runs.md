@@ -49,14 +49,38 @@ not be selected at all — those records only appear when someone opens the empi
 designer.
 
 Worse, sweeping the *rule* behind those findings turned up nine more empires with
-the same defect, all AI-only, which no log will ever show: the engine drops a
-trait silently rather than refusing it.
+the same defect, all of them gated out of the designer at the time and so beyond
+any log: the engine drops a trait silently rather than refusing it. (They reach
+the designer now — [decision 88](../decisions/88-playable-gates-the-design-database.md).)
 [Prescripted empire rules](../reference/prescripted-empire-rules.md#why-this-is-a-swept-rule-and-not-a-list-of-fixes)
 holds the rules themselves and the count.
 
 > **When the log reveals a defect that has a rule behind it** — a vanilla
 > `opposites` list, an archetype budget, an `allowed_ethics` gate — **never
 > repair only the instances it named. Derive the rule and sweep the tree.**
+
+## The save is better evidence than the log, when there is one
+
+`error.log` reports what the engine *complained* about. A save reports what the
+engine actually *did* — and the two questions that took four live runs each were
+both settled from a save in minutes, not from a log.
+
+Saves are at `/paradox/stellaris/save games/<empire>_<id>/`, zip archives holding
+`gamestate` and `meta`. `gamestate` is plain Clausewitz text, tens of MB, so
+extract it to the scratchpad and grep rather than reading it. Three sections
+carry most of the answers:
+
+| section | answers |
+|---|---|
+| `design={…}` blocks | which empire designs the engine **loaded** — the pool the galaxy generator draws AI empires from. Count the blocks; do not count key occurrences, which is how [decision 86](../decisions/86-prescripted-empires-never-drawn.md) read 101 where there were 22. |
+| `country={…}` entries | who is actually in the galaxy. A procedurally generated empire's name key is `%ADJECTIVE%` or `%ADJ%`; a prescripted one carries its own key. |
+| `initializer="…"` | every system the generator placed, and so which home systems were used and which were never reached. |
+
+**Two traps.** A save is a record of the build that *made* it, so a save from
+before a fix cannot grade the fix. And **an ironman run with
+`autosave_tocloud=yes` leaves nothing on disk** — `continue_game.json` will name
+a save folder that is not there. Check `settings.txt` for `ironman` before
+promising to look.
 
 ## Eyes-only findings
 

@@ -100,8 +100,9 @@ which of the two they are trusting.
 **And the log is a sample of that class, not a census.** Vanilla's `opposites`
 lists, archetype budgets and ruler-trait ethic gates hid **nine** STG empires
 from the designer for eleven runs; those records only appear when someone opens
-it. Sweeping the *rule* behind them found **nine more**, all AI-only, which no
-log will ever show — the engine drops a trait silently rather than refusing it.
+it. Sweeping the *rule* behind them found **nine more** on empires then gated
+out of the designer, which no log could ever show — the engine drops a trait
+silently rather than refusing it.
 [Prescripted empire rules](../reference/prescripted-empire-rules.md#why-this-is-a-swept-rule-and-not-a-list-of-fixes).
 
 **When the log reveals a defect that has a rule behind it** (a vanilla

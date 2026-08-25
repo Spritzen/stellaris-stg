@@ -57,7 +57,7 @@ its reasoning was wrong in an instructive way: it looked for the *requirement*
 in PD's origin overrides, where `trait_aquatic` appears only as an exclusion,
 and concluded the container could not settle it. The actual mechanism was a
 civic **granting** a trait the species did not carry, in STG's own
-`stg_minor_powers.txt` — six empires, reported as three log lines because the
+`stg_z_minor_powers.txt` — six empires, reported as three log lines because the
 engine deduplicates by trait name.
 
 ## Left unfixed, deliberately

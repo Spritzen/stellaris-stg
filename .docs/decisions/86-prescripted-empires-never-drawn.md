@@ -6,6 +6,16 @@ open since 2026-08-10 with three hypotheses eliminated and no cause.
 **Follows** [decision 14](14-remove-vanilla-prescripted-empires.md) and
 [decision 19](19-stnh-minor-powers-as-ai-empires.md), which between them are
 what makes the fix safe.
+**Corrected in part by** [decision 88](88-playable-gates-the-design-database.md),
+2026-08-25. The lever below is right and is kept. Two things said about it are
+not: the pool it draws from held **21** empires, not 101 — `playable = stg_never`
+keeps the other 79 out of the engine's design database entirely — and the claim
+under *What the save proves* that all 101 appear in the save's `design={…}`
+catalogue is wrong; both saves carry exactly 22 `design={` blocks. The
+Federation's unfired `spawn_enabled = always`, left open below, was the shared
+`sol_system_initializer` after all, and the reasoning that dismissed it
+("neither of the pair spawned, where a collision should have cost only the
+loser") assumed a failure mode the engine does not have.
 
 ## The report
 

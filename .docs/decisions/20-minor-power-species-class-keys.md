@@ -53,7 +53,7 @@ two lists. Three of the entries were even annotated `# Benzite`, `# Denobulan`,
 
 The eight keys are renamed to STNH's spelling, in
 `src/common/species_classes/stg_species_classes.txt` and
-`src/prescripted_countries/stg_minor_powers.txt`, and removed from
+`src/prescripted_countries/stg_z_minor_powers.txt`, and removed from
 `dangling_identifier_ack`. Nothing else in `src/` referenced them.
 
 Decision 10's reasoning applies unchanged: **the art names the key, so the art

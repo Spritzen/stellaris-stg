@@ -1493,8 +1493,12 @@ patches:
     source: "Star Trek: New Horizons"
     why: >-
       The master selector's game_setup scope is a bare human-civilian default,
-      so all five STG species sharing it wore human clothes in the empire
+      so every STG species sharing it wore human clothes in the empire
       designer. Gate it by species class, as every per-species selector is.
+      Six rows in 2026-08-03 (decision 22); twelve more on 2026-08-25, when
+      decision 88 made the 79 minor powers playable and they reached the
+      designer for the first time. Each new row is the art that species' own
+      `species` scope already names, so the picker matches the game.
     replace:
       - from: "\t\tdefault = \"gfx/models/portraits/human_civilian/civ_human_male_clothes_01.dds\"\r\n"
         to: "\t\tdefault = \"gfx/models/portraits/human_civilian/civ_human_male_clothes_01.dds\"\r\n\
@@ -1503,7 +1507,19 @@ patches:
           \t\t\"gfx/models/portraits/andorian/andorian_male_clothes_admiral.dds\" = { owner_species = { is_species_class = ADR } }\r\n\
           \t\t\"gfx/models/portraits/bajoran/bajoran_male_clothes_01.dds\" = { owner_species = { is_species_class = BAJ } }\r\n\
           \t\t\"gfx/models/portraits/trill/trill_male_clothes_01.dds\" = { owner_species = { is_species_class = TRI } }\r\n\
-          \t\t\"gfx/models/portraits/starfleet_enterprise_mirror/ent_mirror_human_male_ruler.dds\" = { owner_species = { is_species_class = TER } }\r\n"
+          \t\t\"gfx/models/portraits/starfleet_enterprise_mirror/ent_mirror_human_male_ruler.dds\" = { owner_species = { is_species_class = TER } }\r\n\
+          \t\t\"gfx/models/portraits/benzite/benzite_male_clothes_01.dds\" = { owner_species = { is_species_class = BEN } }\r\n\
+          \t\t\"gfx/models/portraits/deltan/deltan_male_clothes_01.dds\" = { owner_species = { is_species_class = DEL } }\r\n\
+          \t\t\"gfx/models/portraits/denobulan/denobulan_male_clothes_01.dds\" = { owner_species = { is_species_class = DEN } }\r\n\
+          \t\t\"gfx/models/portraits/elaurian/elaurian_male_clothes_01.dds\" = { owner_species = { is_species_class = ELA } }\r\n\
+          \t\t\"gfx/models/portraits/hydran/hydran_clothes_ruler.dds\" = { owner_species = { is_species_class = HYDR } }\r\n\
+          \t\t\"gfx/models/portraits/kessok/kessok_clothes_02.dds\" = { owner_species = { is_species_class = KES } }\r\n\
+          \t\t\"gfx/models/portraits/sth humanoid 10/sth_humanoid_10_male_clothes_01.dds\" = { owner_species = { is_species_class = MON } }\r\n\
+          \t\t\"gfx/models/portraits/nygean/nygean_male_ruler_clothes_01.dds\" = { owner_species = { is_species_class = NYG } }\r\n\
+          \t\t\"gfx/models/portraits/trabe/trabe_male_clothes_01.dds\" = { owner_species = { is_species_class = PAR } }\r\n\
+          \t\t\"gfx/models/portraits/tellarite civilian/civ_tellarite_male_ruler_01.dds\" = { owner_species = { is_species_class = TEL } }\r\n\
+          \t\t\"gfx/models/portraits/turei/turei_male_clothes_general.dds\" = { owner_species = { is_species_class = TUR } }\r\n\
+          \t\t\"gfx/models/portraits/vau_nakat/vau_nakat_male_clothes_ruler.dds\" = { owner_species = { is_species_class = VAU } }\r\n"
         count: 1
 
   # --- Nine textures named by a path the engine cannot load --------------------
@@ -1645,8 +1661,12 @@ patches:
     source: "Star Trek: New Horizons"
     why: >-
       The master selector's game_setup scope is a bare human-civilian default,
-      so all five STG species sharing it wore human clothes in the empire
+      so every STG species sharing it wore human clothes in the empire
       designer. Gate it by species class, as every per-species selector is.
+      Six rows in 2026-08-03 (decision 22); twelve more on 2026-08-25, when
+      decision 88 made the 79 minor powers playable and they reached the
+      designer for the first time. Each new row is the art that species' own
+      `species` scope already names, so the picker matches the game.
     replace:
       - from: "\t\tdefault = \"gfx/models/portraits/human_civilian/civ_human_female_clothes_13.dds\"\r\n"
         to: "\t\tdefault = \"gfx/models/portraits/human_civilian/civ_human_female_clothes_13.dds\"\r\n\
@@ -1655,7 +1675,17 @@ patches:
           \t\t\"gfx/models/portraits/andorian/andorian_female_clothes_admiral.dds\" = { owner_species = { is_species_class = ADR } }\r\n\
           \t\t\"gfx/models/portraits/bajoran/bajoran_female_clothes_01.dds\" = { owner_species = { is_species_class = BAJ } }\r\n\
           \t\t\"gfx/models/portraits/trill/trill_female_clothes_01.dds\" = { owner_species = { is_species_class = TRI } }\r\n\
-          \t\t\"gfx/models/portraits/starfleet_enterprise_mirror/ent_mirror_human_female_ruler.dds\" = { owner_species = { is_species_class = TER } }\r\n"
+          \t\t\"gfx/models/portraits/starfleet_enterprise_mirror/ent_mirror_human_female_ruler.dds\" = { owner_species = { is_species_class = TER } }\r\n\
+          \t\t\"gfx/models/portraits/benzite/benzite_female_clothes_01.dds\" = { owner_species = { is_species_class = BEN } }\r\n\
+          \t\t\"gfx/models/portraits/deltan/deltan_female_clothes_01.dds\" = { owner_species = { is_species_class = DEL } }\r\n\
+          \t\t\"gfx/models/portraits/denobulan/denobulan_female_clothes_01.dds\" = { owner_species = { is_species_class = DEN } }\r\n\
+          \t\t\"gfx/models/portraits/elaurian/elaurian_female_clothes_01.dds\" = { owner_species = { is_species_class = ELA } }\r\n\
+          \t\t\"gfx/models/portraits/sth humanoid 10/sth_humanoid_10_female_clothes_01.dds\" = { owner_species = { is_species_class = MON } }\r\n\
+          \t\t\"gfx/models/portraits/nygean/nygean_female_ruler_clothes_01.dds\" = { owner_species = { is_species_class = NYG } }\r\n\
+          \t\t\"gfx/models/portraits/neryj/neryj_female_clothes_04.dds\" = { owner_species = { is_species_class = PAR } }\r\n\
+          \t\t\"gfx/models/portraits/tellarite civilian/civ_tellarite_female_ruler_01.dds\" = { owner_species = { is_species_class = TEL } }\r\n\
+          \t\t\"gfx/models/portraits/turei/turei_female_clothes_general.dds\" = { owner_species = { is_species_class = TUR } }\r\n\
+          \t\t\"gfx/models/portraits/vau_nakat/vau_nakat_female_clothes_ruler.dds\" = { owner_species = { is_species_class = VAU } }\r\n"
         count: 1
 
   # --- Four female leader rows lost their species gate -----------------------

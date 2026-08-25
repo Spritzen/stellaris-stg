@@ -12,14 +12,13 @@
 # The Federation is not here: it uses vanilla's own sol_system_initializer,
 # which Real Space rescales, and which is already the real solar system.
 #
-# 37 systems generated, 62 empires left on generated systems.
+# 38 systems generated, 62 empires left on generated systems.
 
 # stg_andorian_empire — from STNH's andorian_homeworld. Geometry theirs, mechanics vanilla's.
 stg_andorian_empire_home = {
 	name = "STG_system_name_andorian"
 	class = "sc_f"
 	usage = custom_empire
-	max_instances = 1
 	flags = { empire_home_system stg_home_system }
 	init_effect = { generate_home_system_resources = yes }
 
@@ -122,7 +121,6 @@ stg_bajoran_republic_home = {
 	name = "STG_system_name_bajoran"
 	class = "sc_g"
 	usage = custom_empire
-	max_instances = 1
 	flags = { empire_home_system stg_home_system }
 	init_effect = { generate_home_system_resources = yes }
 
@@ -338,7 +336,6 @@ stg_bolian_union_home = {
 		init_effect = { generate_empire_home_planet = yes }
 	}
 	usage = custom_empire
-	max_instances = 1
 	flags = { empire_home_system stg_home_system }
 	init_effect = { generate_home_system_resources = yes }
 }
@@ -348,7 +345,6 @@ stg_borg_collective_home = {
 	name = "STG_system_name_borg"
 	class = "sc_m"
 	usage = custom_empire
-	max_instances = 1
 	flags = { empire_home_system stg_home_system }
 	init_effect = { generate_home_system_resources = yes }
 
@@ -408,7 +404,6 @@ stg_breen_confederacy_home = {
 	planet = { name = "STG_N_Dozaria" class = "pc_barren_cold" orbit_distance = 32 orbit_angle = 55 size = 11 has_ring = no }
 	planet = { name = "STG_N_BreenVI" class = "pc_gas_giant" orbit_distance = 58 orbit_angle = 285 size = 26 has_ring = yes }
 	usage = custom_empire
-	max_instances = 1
 	flags = { empire_home_system stg_home_system }
 	init_effect = { generate_home_system_resources = yes }
 }
@@ -418,7 +413,6 @@ stg_caitian_empire_home = {
 	name = "STG_system_name_caitian"
 	class = "sc_f"
 	usage = custom_empire
-	max_instances = 1
 	flags = { empire_home_system stg_home_system }
 	init_effect = { generate_home_system_resources = yes }
 
@@ -512,7 +506,6 @@ stg_cardassian_union_home = {
 	name = "STG_system_name_cardassian"
 	class = "sc_k"
 	usage = custom_empire
-	max_instances = 1
 	flags = { empire_home_system stg_home_system }
 	init_effect = { generate_home_system_resources = yes }
 
@@ -610,7 +603,6 @@ stg_confederacy_of_vulcan_home = {
 	name = "STG_system_name_vulcan"
 	class = "sc_trinary_k_m_d"
 	usage = custom_empire
-	max_instances = 1
 	flags = { empire_home_system stg_home_system }
 	init_effect = { generate_home_system_resources = yes }
 
@@ -735,7 +727,6 @@ stg_dominion_home = {
 	name = "STG_system_name_dominion"
 	class = "sc_p_green"
 	usage = custom_empire
-	max_instances = 1
 	flags = { empire_home_system stg_home_system }
 	init_effect = { generate_home_system_resources = yes }
 
@@ -787,7 +778,6 @@ stg_ferengi_alliance_home = {
 	planet = { name = "STG_N_Gorlack" class = "pc_barren_cold" orbit_distance = 30 orbit_angle = 15 size = 10 has_ring = no }
 	planet = { name = "STG_N_Clarus" class = "pc_gas_giant" orbit_distance = 55 orbit_angle = 240 size = 27 has_ring = yes }
 	usage = custom_empire
-	max_instances = 1
 	flags = { empire_home_system stg_home_system }
 	init_effect = { generate_home_system_resources = yes }
 }
@@ -797,7 +787,6 @@ stg_klingon_empire_home = {
 	name = "STG_system_name_klingon"
 	class = "sc_g"
 	usage = custom_empire
-	max_instances = 1
 	flags = { empire_home_system stg_home_system }
 	init_effect = { generate_home_system_resources = yes }
 
@@ -904,7 +893,6 @@ stg_krenim_empire_home = {
 	planet = { name = "STG_N_KyanaIV" class = "pc_frozen" orbit_distance = 33 orbit_angle = 305 size = 10 has_ring = no }
 	planet = { name = "STG_N_KyanaV" class = "pc_gas_giant" orbit_distance = 58 orbit_angle = 25 size = 27 has_ring = no }
 	usage = custom_empire
-	max_instances = 1
 	flags = { empire_home_system stg_home_system }
 	init_effect = { generate_home_system_resources = yes }
 }
@@ -934,7 +922,6 @@ stg_malon_empire_home = {
 	planet = { name = "STG_N_MalonIV" class = "pc_toxic" orbit_distance = 24 orbit_angle = 265 size = 11 has_ring = no }
 	planet = { name = "STG_N_MalonV" class = "pc_gas_giant" orbit_distance = 56 orbit_angle = 340 size = 26 has_ring = yes }
 	usage = custom_empire
-	max_instances = 1
 	flags = { empire_home_system stg_home_system }
 	init_effect = { generate_home_system_resources = yes }
 }
@@ -944,7 +931,6 @@ stg_minor_acamarian_sovereignty_home = {
 	name = "STG_system_name_minor_acamarian_sovereignty"
 	class = "sc_a"
 	usage = custom_empire
-	max_instances = 1
 	flags = { empire_home_system stg_home_system }
 	init_effect = { generate_home_system_resources = yes }
 
@@ -996,7 +982,6 @@ stg_minor_betazoid_houses_home = {
 	name = "STG_system_name_minor_betazoid_houses"
 	class = "sc_g"
 	usage = custom_empire
-	max_instances = 1
 	flags = { empire_home_system stg_home_system }
 	init_effect = { generate_home_system_resources = yes }
 
@@ -1105,7 +1090,6 @@ stg_minor_cheronite_nation_home = {
 	name = "STG_system_name_minor_cheronite_nation"
 	class = "sc_k"
 	usage = custom_empire
-	max_instances = 1
 	flags = { empire_home_system stg_home_system }
 	init_effect = { generate_home_system_resources = yes }
 
@@ -1171,7 +1155,6 @@ stg_minor_confederation_earth_home = {
 	name = "STG_system_name_minor_confederation_earth"
 	class = "sc_g"
 	usage = custom_empire
-	max_instances = 1
 	flags = { empire_home_system stg_home_system }
 	init_effect = { generate_home_system_resources = yes }
 
@@ -1447,7 +1430,6 @@ stg_minor_denobulan_unity_home = {
 	name = "STG_system_name_minor_denobulan_unity"
 	class = "sc_trinary_a_f_g"
 	usage = custom_empire
-	max_instances = 1
 	flags = { empire_home_system stg_home_system }
 	init_effect = { generate_home_system_resources = yes }
 
@@ -1495,7 +1477,6 @@ stg_minor_garidian_republic_home = {
 	name = "STG_system_name_minor_garidian_republic"
 	class = "sc_binary_g_k"
 	usage = custom_empire
-	max_instances = 1
 	flags = { empire_home_system stg_home_system }
 	init_effect = { generate_home_system_resources = yes }
 
@@ -1654,7 +1635,6 @@ stg_minor_haakonian_order_home = {
 	name = "STG_system_name_minor_haakonian_order"
 	class = "sc_f"
 	usage = custom_empire
-	max_instances = 1
 	flags = { empire_home_system stg_home_system }
 	init_effect = { generate_home_system_resources = yes }
 
@@ -1725,7 +1705,6 @@ stg_minor_hirogen_hunters_home = {
 	name = "STG_system_name_minor_hirogen_hunters"
 	class = "sc_g"
 	usage = custom_empire
-	max_instances = 1
 	flags = { empire_home_system stg_home_system }
 	init_effect = { generate_home_system_resources = yes }
 
@@ -1779,7 +1758,6 @@ stg_minor_hur_q_stagnancy_home = {
 	name = "STG_system_name_minor_hur_q_stagnancy"
 	class = "sc_m"
 	usage = custom_empire
-	max_instances = 1
 	flags = { empire_home_system stg_home_system }
 	init_effect = { generate_home_system_resources = yes }
 
@@ -1841,7 +1819,6 @@ stg_minor_kinshaya_holy_order_home = {
 	name = "STG_system_name_minor_kinshaya_holy_order"
 	class = "sc_k"
 	usage = custom_empire
-	max_instances = 1
 	flags = { empire_home_system stg_home_system }
 	init_effect = { generate_home_system_resources = yes }
 
@@ -1900,7 +1877,6 @@ stg_minor_kobali_republic_home = {
 	name = "STG_system_name_minor_kobali_republic"
 	class = "sc_f"
 	usage = custom_empire
-	max_instances = 1
 	flags = { empire_home_system stg_home_system }
 	init_effect = { generate_home_system_resources = yes }
 
@@ -1979,7 +1955,6 @@ stg_minor_kraylor_republic_home = {
 	name = "STG_system_name_minor_kraylor_republic"
 	class = "sc_f"
 	usage = custom_empire
-	max_instances = 1
 	flags = { empire_home_system stg_home_system }
 	init_effect = { generate_home_system_resources = yes }
 
@@ -2058,7 +2033,6 @@ stg_minor_lyran_star_empire_home = {
 	name = "STG_system_name_minor_lyran_star_empire"
 	class = "sc_f"
 	usage = custom_empire
-	max_instances = 1
 	flags = { empire_home_system stg_home_system }
 	init_effect = { generate_home_system_resources = yes }
 
@@ -2153,7 +2127,6 @@ stg_minor_rigellian_consortium_home = {
 	name = "STG_system_name_minor_rigellian_consortium"
 	class = "sc_f"
 	usage = custom_empire
-	max_instances = 1
 	flags = { empire_home_system stg_home_system }
 	init_effect = { generate_home_system_resources = yes }
 
@@ -2232,7 +2205,6 @@ stg_minor_tng_coalition_hope_home = {
 	name = "STG_system_name_minor_tng_coalition_hope"
 	class = "sc_trinary_k_m_d"
 	usage = custom_empire
-	max_instances = 1
 	flags = { empire_home_system stg_home_system }
 	init_effect = { generate_home_system_resources = yes }
 
@@ -2357,7 +2329,6 @@ stg_minor_tng_klingon_cardassian_alliance_home = {
 	name = "STG_system_name_minor_tng_klingon_cardassian_alliance"
 	class = "sc_g"
 	usage = custom_empire
-	max_instances = 1
 	flags = { empire_home_system stg_home_system }
 	init_effect = { generate_home_system_resources = yes }
 
@@ -2444,7 +2415,6 @@ stg_minor_voth_theocracy_home = {
 	name = "STG_system_name_minor_voth_theocracy"
 	class = "sc_g"
 	usage = custom_empire
-	max_instances = 1
 	flags = { empire_home_system stg_home_system }
 	init_effect = { generate_home_system_resources = yes }
 
@@ -2476,7 +2446,6 @@ stg_romulan_star_empire_home = {
 	name = "STG_system_name_romulan"
 	class = "sc_binary_m_m"
 	usage = custom_empire
-	max_instances = 1
 	flags = { empire_home_system stg_home_system }
 	init_effect = { generate_home_system_resources = yes }
 
@@ -2590,7 +2559,6 @@ stg_suliban_empire_home = {
 	name = "STG_system_name_suliban"
 	class = "sc_g"
 	usage = custom_empire
-	max_instances = 1
 	flags = { empire_home_system stg_home_system }
 	init_effect = { generate_home_system_resources = yes }
 
@@ -2626,6 +2594,36 @@ stg_suliban_empire_home = {
 	}
 }
 
+# stg_terran_empire — authored: STNH's own home system is procedural.
+stg_terran_empire_home = {
+	name = "STG_system_name_terran"
+	class = "sc_g"
+	asteroid_belt = { type = rocky_asteroid_belt radius = 145 }
+
+	planet = { name = "STG_system_name_terran" class = "pc_g_star" orbit_distance = 0 orbit_angle = 1 size = 30 has_ring = no }
+	planet = { name = "NAME_Mercury" class = "pc_molten" orbit_distance = 40 orbit_angle = 70 size = 10 has_ring = no }
+	planet = { name = "NAME_Venus" class = "pc_toxic" orbit_distance = 25 orbit_angle = 190 size = 17 has_ring = no }
+	planet = {
+		name = "STG_planet_name_terran"
+		class = "pc_continental"
+		orbit_distance = 22
+		orbit_angle = 145
+		size = 18
+		starting_planet = yes
+		has_ring = no
+		deposit_blockers = none
+		modifiers = none
+		init_effect = { prevent_anomaly = yes }
+		init_effect = { generate_empire_home_planet = yes }
+	}
+	planet = { name = "NAME_Mars" class = "pc_barren" orbit_distance = 25 orbit_angle = 15 size = 13 has_ring = no }
+	planet = { name = "NAME_Jupiter" class = "pc_gas_giant" orbit_distance = 40 orbit_angle = 240 size = 35 has_ring = no }
+	planet = { name = "NAME_Saturn" class = "pc_gas_giant" orbit_distance = 35 orbit_angle = 310 size = 30 has_ring = yes }
+	usage = custom_empire
+	flags = { empire_home_system stg_home_system }
+	init_effect = { generate_home_system_resources = yes }
+}
+
 # stg_tholian_assembly — authored: STNH's own home system is procedural.
 stg_tholian_assembly_home = {
 	name = "STG_system_name_tholian"
@@ -2651,7 +2649,6 @@ stg_tholian_assembly_home = {
 	planet = { name = "STG_N_TholiaIV" class = "pc_barren" orbit_distance = 30 orbit_angle = 250 size = 12 has_ring = no }
 	planet = { name = "STG_N_TholiaV" class = "pc_gas_giant" orbit_distance = 62 orbit_angle = 330 size = 28 has_ring = no }
 	usage = custom_empire
-	max_instances = 1
 	flags = { empire_home_system stg_home_system }
 	init_effect = { generate_home_system_resources = yes }
 }
@@ -2680,7 +2677,6 @@ stg_trill_symbiosis_home = {
 	planet = { name = "STG_N_Mak_ala" class = "pc_barren_cold" orbit_distance = 28 orbit_angle = 40 size = 9 has_ring = no }
 	planet = { name = "STG_N_TrilliusVI" class = "pc_gas_giant" orbit_distance = 60 orbit_angle = 320 size = 26 has_ring = no }
 	usage = custom_empire
-	max_instances = 1
 	flags = { empire_home_system stg_home_system }
 	init_effect = { generate_home_system_resources = yes }
 }
@@ -2708,7 +2704,6 @@ stg_vidiian_empire_home = {
 	planet = { name = "STG_N_Fina_Prime" class = "pc_barren_cold" orbit_distance = 29 orbit_angle = 180 size = 11 has_ring = no }
 	planet = { name = "STG_N_VidiiaIV" class = "pc_gas_giant" orbit_distance = 54 orbit_angle = 275 size = 26 has_ring = no }
 	usage = custom_empire
-	max_instances = 1
 	flags = { empire_home_system stg_home_system }
 	init_effect = { generate_home_system_resources = yes }
 }
@@ -2718,7 +2713,6 @@ stg_xindi_empire_home = {
 	name = "STG_system_name_xindi"
 	class = "sc_m"
 	usage = custom_empire
-	max_instances = 1
 	flags = { empire_home_system stg_home_system }
 	init_effect = { generate_home_system_resources = yes }
 
@@ -2781,7 +2775,6 @@ stg_yridian_empire_home = {
 	planet = { name = "STG_N_YridiaIII" class = "pc_barren" orbit_distance = 28 orbit_angle = 200 size = 11 has_ring = no }
 	planet = { name = "STG_N_YridiaIV" class = "pc_gas_giant" orbit_distance = 55 orbit_angle = 290 size = 25 has_ring = yes }
 	usage = custom_empire
-	max_instances = 1
 	flags = { empire_home_system stg_home_system }
 	init_effect = { generate_home_system_resources = yes }
 }

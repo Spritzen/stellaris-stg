@@ -48,32 +48,41 @@ evidence for anything in this section — the standing lesson of decisions
 > **not a defect at all**: `fallback` is the mechanism and vanilla's own header
 > says so. See "Confirmed on disk" below.
 
-### Whether the galaxy is Trek now — and the Federation's unfired `always`
+### Whether the galaxy is Trek now — the fix is in, the grading is not
 
-**The first thing to look at on the next run, and it is one glance at the
-contacts list.** `CUSTOM_EMPIRE_SPAWN_CHANCE` went from vanilla's 50 (a **5%**
-chance per AI slot) to 1000 (100%) on 2026-08-24, which should make **every** AI
-empire a Trek empire rather than roughly one in twenty
-([decision 86](../decisions/86-prescripted-empires-never-drawn.md)). Three
-galaxies in a row held none.
+**Still the first thing to look at on the next run, and still one glance at the
+contacts list.** What changed is that the question is now about a fix with a
+proven cause behind it rather than about a die roll.
 
-Two things to say, in this order:
+**The 2026-08-25 Vulcan run was the fourth galaxy with no Trek AI empire in it,
+and the first played at 100%.** That is what falsified the read: at 100% the
+draw rate is no longer the variable. Both saves on disk carry **22** `design={…}`
+blocks, not 101 — `playable = stg_never` was keeping the 79 minor powers out of
+the engine's design database, which is the same database the galaxy generator
+draws AI empires from. Four things were fixed together and none of them is
+confirmed in game:
+[decision 88](../decisions/88-playable-gates-the-design-database.md).
 
-1. **How many of the AI empires are Trek.** The expectation is all of them. If
-   it is most but not all, the pool is being drawn from and something rejects
-   individual empires — a much sharper question than the one just closed.
-2. **Whether the United Federation of Planets is among them.** It is the only
-   empire in the tree carrying `spawn_enabled = always`, and on 2026-08-22 it
-   did **not** appear in a galaxy where the player was Vulcan, so the token did
-   not do what it says. Two readings survive and the run distinguishes them: the
-   `sol_system_initializer` it shares with the mirror Terran Empire
-   (`max_instances = 1`, [decision 25](../decisions/25-real-home-systems.md)
-   knew this was untested), or the force-spawn bug the community reports
-   against the engine. **Against the first: neither of the pair spawned**, where
-   a collision should cost only the loser.
+Three things to say, in this order:
 
-At 100% this no longer gates whether Trek empires appear, which is why it is a
-question rather than a defect.
+1. **How many of the 18 AI empires are Trek.** The expectation is all of them,
+   from a pool of 100. If it is most but not all, something rejects individual
+   empires — a much sharper question than any asked so far.
+2. **Whether the United Federation of Planets is among them.** Its
+   `spawn_enabled = always` never fired in three galaxies, and decision 88 puts
+   that on the `sol_system_initializer` it shared with the mirror Terran Empire.
+   The Terran Empire has its own mirror Sol now, so the collision is gone. If
+   the Federation still does not appear, the remaining reading is the
+   force-spawn bug the community reports against the engine, and the token is
+   worth dropping rather than trusting.
+3. **How many distinct empires, and whether any repeats.** 100 designs against
+   18 slots should never repeat; a repeat would say the pool is smaller than the
+   catalogue.
+
+**And one thing to look at rather than count: the empire picker.** It went from
+22 entries to 101 with this fix, and 78 species classes reached it for the first
+time. Their portraits are newly declared and twelve of them are newly clothed —
+all of it eyes-only, none of it loggable.
 
 ### Devastated Trek city sets — six sets, no `_devastated` art
 
@@ -235,7 +244,7 @@ descending order of how obviously they would be wrong:
 > Two things left standing on purpose. **Malon's inherited pools name a type, not
 > a class** — STNH declares `Waste Extraction Cruiser`, which will read as *"Waste
 > Extraction Cruiser – Interceptor"*; it is a source's content, so it is flagged
-> rather than cut. And **the 46 AI-only minors stay generic-only**, where
+> rather than cut. And **the 46 minors on generic shipsets stay generic-only**, where
 > `generic` is drawn 100% of the time and thin is not broken.
 
 ### The Trek anomalies

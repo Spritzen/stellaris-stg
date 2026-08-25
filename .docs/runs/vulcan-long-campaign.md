@@ -387,7 +387,7 @@ Knowing this in advance is the cheapest thing on the page.
 
 - **The Terran mirror uniforms and the Federation president's robe.** Different
   empires, different selectors. A Vulcan run says nothing about either.
-- **The 79 AI-only minors' ship names.** They are `generic`-only on purpose,
+- **The 79 minor powers' ship names.** They are `generic`-only on purpose,
   where thin is not broken.
 - **The Malon pools naming a type rather than a class** — *Waste Extraction
   Cruiser – Interceptor* is a source's own content, already flagged, and not

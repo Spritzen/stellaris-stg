@@ -2,7 +2,7 @@
 
 # Star Trek Galaxies — the minor powers.
 # Empire, species and home-system strings for
-# src/prescripted_countries/stg_minor_powers.txt, converted from STNH's own
+# src/prescripted_countries/stg_z_minor_powers.txt, converted from STNH's own
 # localisation. Name tokens live in stg_names_l_english.yml.
 
  STG_EMPIRE_minor_acamarian_sovereignty:0 "Acamarian Sovereignty"
