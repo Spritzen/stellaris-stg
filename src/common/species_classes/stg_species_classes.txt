@@ -1,34 +1,31 @@
-# Star Trek Galaxies — species classes for the major powers.
+# Star Trek Galaxies — 129 species classes.
 #
-# New prefixed file, so it merges with vanilla's species class databases.
-# KEYS ARE DELIBERATELY UNPREFIXED: the vendored STNH clothing selectors gate
-# every Trek uniform on `is_species_class = FED / VUL / KDF / …` and cannot be
-# edited. See .docs/decisions/10-species-class-keys-unprefixed.md.
+# KEYS ARE DELIBERATELY UNPREFIXED, and the SPELLING is STNH's rather than a
+# plausible one of our own (BEN not BENZ, DEN not DENO, HYDR not HYD, KES not
+# KESS, NYG not NYGE, TEL not TELL, TUR not TURE, VAU not VAUN). The vendored
+# STNH clothing selectors gate every Trek uniform on `is_species_class = <KEY>`
+# and cannot be edited, so a prefix or a near miss dresses the species in human
+# civilian clothes with nothing in error.log.
+# .docs/decisions/10-species-class-keys-unprefixed.md
+# .docs/decisions/20-minor-power-species-class-keys.md
 #
-# The same rule binds the SPELLING, not just the absence of a prefix. Eight
-# minor powers here carry STNH's key rather than a plausible one of our own —
-# BEN not BENZ, DEN not DENO, HYDR not HYD, KES not KESS, NYG not NYGE,
-# TEL not TELL, TUR not TURE, VAU not VAUN — because the master clothes
-# selectors name those eight and a near miss dresses the species in human
-# civilian clothes. See .docs/decisions/20-minor-power-species-class-keys.md.
+# ARCHETYPES ARE VANILLA'S. STNH's own (HUMANOID, CRYSTALLINE, CHANGELING,
+# SYMBIONT) live in a common/species_archetypes/ we do not vendor -- naming one
+# here drops the class silently.
 #
-# Archetypes are vanilla's. STNH's own (HUMANOID, CRYSTALLINE, CHANGELING,
-# SYMBIONT) are defined in its common/species_archetypes/, which we do not
-# vendor — naming one here gets the class silently dropped.
-#
-# `graphical_culture` names a vendored ship set, and comes from one of two
-# places. Most name a Walshicus standalone shipset, which declares its own
-# culture and all 44 of vanilla's section entities — nothing of ours is
-# involved. Five (BAJ, TRI, ADR, BOL, BRE) have no such set and stay on STNH
-# art, whose culture and vanilla-shaped entities are generated into src/ by
-# tools/gen_shipsets.py, as do the generic_0N donor cultures the AI-only minors
-# share. Either way the key is the art's to choose, not ours, for the same
-# reason these keys are unprefixed.
-# See .docs/decisions/18-walshicus-shipsets-replace-stnh-hulls.md.
+# `graphical_culture` names a vendored ship set and the key is the art's to
+# choose, not ours, for the same reason the keys are unprefixed. Note it is set
+# on the prescripted EMPIRE too and the empire's copy wins --
+# .docs/reference/prescripted-empire-rules.md.
+# .docs/decisions/18-walshicus-shipsets-replace-stnh-hulls.md
 #
 # `randomized = no` throughout: these appear only as the prescripted empires in
-# src/prescripted_countries/, and 31 of the 131 are selector stubs that no
+# src/prescripted_countries/, and 30 of the 129 are selector stubs that no
 # empire names at all -- .docs/decisions/32-declare-stub-species-classes.md.
+#
+# EVERY CLASS NEEDS THE 27-KEY LOC FAMILY the engine derives from the class key
+# -- `FED_desc`, `FED_organ`. An `STG_` prefix there is a key nothing looks up.
+# .docs/decisions/21-species-class-localisation.md
 
 # United Federation of Planets — humans and the founding members.
 FED = {
@@ -364,7 +361,6 @@ CAI = {
 	move_pop_sound_effect = "moving_pop_confirmation"
 }
 
-
 # Xindi Council.
 XIN = {
 	archetype = BIOLOGICAL
@@ -383,7 +379,6 @@ XIN = {
 	graphical_culture = xindi
 	move_pop_sound_effect = "moving_pop_confirmation"
 }
-
 
 # Suliban Cabal.
 SUL = {
@@ -404,7 +399,6 @@ SUL = {
 	move_pop_sound_effect = "moving_pop_confirmation"
 }
 
-
 # Yridian League.
 YRI = {
 	archetype = BIOLOGICAL
@@ -423,7 +417,6 @@ YRI = {
 	graphical_culture = yridian
 	move_pop_sound_effect = "moving_pop_confirmation"
 }
-
 
 # Krenim Imperium.
 KRE = {
@@ -444,7 +437,6 @@ KRE = {
 	move_pop_sound_effect = "moving_pop_confirmation"
 }
 
-
 # Malon Sanctity.
 MAL = {
 	archetype = BIOLOGICAL
@@ -464,7 +456,6 @@ MAL = {
 	move_pop_sound_effect = "moving_pop_confirmation"
 }
 
-
 # Vidiian Sodality.
 VID = {
 	archetype = BIOLOGICAL
@@ -483,7 +474,6 @@ VID = {
 	graphical_culture = vidiian
 	move_pop_sound_effect = "moving_pop_confirmation"
 }
-
 
 # Terran Empire.
 TER = {
@@ -505,10 +495,10 @@ TER = {
 }
 
 # ── The minor powers ───────────────────────────────────────────────────────
-# One class per AI-only empire in stg_z_minor_powers.txt. Keys are derived from
-# the empire name and checked against BOTH the twenty-two above and the fifty
-# STNH clothing selectors reference, so none of them can collide with a
-# uniform rule. See .docs/decisions/19-stnh-minor-powers-as-ai-empires.md.
+# One class per empire in stg_z_minor_powers.txt. Keys are derived from the
+# empire name and checked against BOTH the twenty-two above and the keys the
+# STNH clothing selectors reference, so none can collide with a uniform rule.
+# See .docs/decisions/19-stnh-minor-powers-as-ai-empires.md.
 
 # Sovereignty.
 ACA = {
@@ -1970,46 +1960,6 @@ ZAK = {
 
 	trait = "trait_organic"
 	graphical_culture = generic_05
-	move_pop_sound_effect = "moving_pop_confirmation"
-}
-
-# of Hope (2300s). Currently claimed by no empire: the Coalition of Hope took
-# STNH's own VUL so the master clothes selectors would dress it.
-# See .docs/decisions/46-coalition-of-hope-takes-vul.md.
-TNG = {
-	archetype = BIOLOGICAL
-	randomized = no
-
-	possible = {
-		authority = {
-			NOT = {
-				value = auth_machine_intelligence
-				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
-			}
-		}
-	}
-
-	trait = "trait_organic"
-	graphical_culture = starfleet_tng
-	move_pop_sound_effect = "moving_pop_confirmation"
-}
-
-# Klingon-Cardassian Alliance (2300s).
-TNGK = {
-	archetype = BIOLOGICAL
-	randomized = no
-
-	possible = {
-		authority = {
-			NOT = {
-				value = auth_machine_intelligence
-				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
-			}
-		}
-	}
-
-	trait = "trait_organic"
-	graphical_culture = starfleet_tng
 	move_pop_sound_effect = "moving_pop_confirmation"
 }
 

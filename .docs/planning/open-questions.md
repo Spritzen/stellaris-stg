@@ -48,41 +48,123 @@ evidence for anything in this section — the standing lesson of decisions
 > **not a defect at all**: `fallback` is the mechanism and vanilla's own header
 > says so. See "Confirmed on disk" below.
 
-### Whether the galaxy is Trek now — the fix is in, the grading is not
+### Whether the galaxy is Trek now — five galaxies, five times zero
 
-**Still the first thing to look at on the next run, and still one glance at the
-contacts list.** What changed is that the question is now about a fix with a
-proven cause behind it rather than about a die roll.
+**This is the biggest open question in the project and the only one that has
+survived three fixes.** The 2026-08-25 **evening** Vulcan run was the fifth
+galaxy with no Trek AI empire in it, and the first played on the build decision
+88 produced. The player met every empire in it. **Not one of the 18 was Trek.**
 
-**The 2026-08-25 Vulcan run was the fourth galaxy with no Trek AI empire in it,
-and the first played at 100%.** That is what falsified the read: at 100% the
-draw rate is no longer the variable. Both saves on disk carry **22** `design={…}`
-blocks, not 101 — `playable = stg_never` was keeping the 79 minor powers out of
-the engine's design database, which is the same database the galaxy generator
-draws AI empires from. Four things were fixed together and none of them is
-confirmed in game:
-[decision 88](../decisions/88-playable-gates-the-design-database.md).
+That does not falsify decision 88 — the gate it removed was real and had to go —
+but it does say the gate was **not the whole cause**. Both levers are now in and
+neither moved the number:
 
-Three things to say, in this order:
+| lever | in since | what the run says |
+|---|---|---|
+| `CUSTOM_EMPIRE_SPAWN_CHANCE = 1000` — 100% of AI slots draw from the prescripted pool ([86](../decisions/86-prescripted-empires-never-drawn.md)) | 2026-08-24 | two galaxies at 100%, zero drawn. At 100% the die roll is not the variable |
+| `playable = stg_never` removed from the 79 minors, so they load into the design database ([88](../decisions/88-playable-gates-the-design-database.md)) | 2026-08-25 | pool went from 22 to 100 designs. Still zero |
 
-1. **How many of the 18 AI empires are Trek.** The expectation is all of them,
-   from a pool of 100. If it is most but not all, something rejects individual
-   empires — a much sharper question than any asked so far.
-2. **Whether the United Federation of Planets is among them.** Its
-   `spawn_enabled = always` never fired in three galaxies, and decision 88 puts
-   that on the `sol_system_initializer` it shared with the mirror Terran Empire.
-   The Terran Empire has its own mirror Sol now, so the collision is gone. If
-   the Federation still does not appear, the remaining reading is the
-   force-spawn bug the community reports against the engine, and the token is
-   worth dropping rather than trusting.
-3. **How many distinct empires, and whether any repeats.** 100 designs against
-   18 slots should never repeat; a repeat would say the pool is smaller than the
-   catalogue.
+**Verified on disk after the run**, so none of these is still a candidate: the
+build under test was stamped 16:56:28 and the run started at 18:02, so it
+carried both fixes; `stg_defines.txt` sets `CUSTOM_EMPIRE_SPAWN_CHANCE` in
+`NGameplay`, the namespace vanilla declares it in, and no defines file sorting
+after it in the merge contests the key; all 99 empires are `spawn_enabled = yes`
+bar the Federation's `always`; no two of them name the same `initializer`; every
+DLC is installed and none disabled; and `error.log` has nothing in it about any
+of this, before or after init.
 
-**And one thing to look at rather than count: the empire picker.** It went from
-22 entries to 101 with this fix, and 78 species classes reached it for the first
-time. Their portraits are newly declared and twelve of them are newly clothed —
-all of it eyes-only, none of it loggable.
+#### What vanilla does, and the one thing every STG empire does that vanilla never does
+
+Cross-tabulating the 51 vanilla prescripted empires that declare
+`spawn_enabled` — read `/stellaris/prescripted_countries/` and follow each
+`initializer` to its `usage`:
+
+| | no initializer, or a reusable one | a unique, identity-bearing home system |
+|---|---|---|
+| `spawn_enabled = yes` | 33 | **0** |
+| `spawn_enabled = no` | 9 | **9** |
+
+The nine are vanilla's marquee empires and nothing else: the **United Nations of
+Earth**, the **Commonwealth of Man** (each twice, base and variant), the
+**Gundersen Research Society**, the **Federated Theian Preservers**, the **Blooms
+of Gaea** and the **Earth Custodianship** — on `sol_system_initializer`,
+`deneb_system`, `vela_system` and `titawin_init` between them. **Every one is
+`spawn_enabled = no`, and it is exactly the set of empires players complain never
+turn up as AI.** The six empires that carry an `initializer` and are not in that
+set all name an *origin* initializer — `ocean_paradise_start`,
+`toxic_knights_start`, `red_giant_start`, `mindwarden_system_init`,
+`custom_starting_init_01`/`_02` — a reusable system *shape* rather than a named
+place, and five of the six are `spawn_enabled = yes`.
+
+**Vanilla never ships a prescripted empire that both owns a named home system
+and can spawn as AI.** 37 of STG's 99 do, including all 22 of the majors,
+quadrant and frontier powers, and that is
+[decision 25](../decisions/25-real-home-systems.md) working exactly as intended:
+40 Eridani with Keid and T'Khut, Qo'noS with Boreth, Romulus with Remus. The
+community advice on the same symptom says the same thing from the other end —
+*set every custom empire's starting system to Random* — and the engine's own
+`AI_EMPIRE_PREVIEW_TOOLTIP_INCOMPATIBLE_SYSTEM` string shows it has a concept of
+starting systems that lock each other out.
+
+**The hypothesis was written down in 2026-08-10 and ruled out on a miscount.**
+[ufp-run-remediation.md](ufp-run-remediation.md) item 4's elimination table
+carries the row *"Excluded because their home systems are hand-placed — 23 of
+vanilla's own 33 spawn-eligible empires also carry an `initializer`, and those
+spawn as AI routinely — **Ruled out**"*. That counted the `initializer` **line**.
+**18 of those 23 are `initializer = ""`.** The real figure is 5 of 33, all five
+origin initializers. So the one hypothesis that would explain five empty galaxies
+has been sitting dismissed for a fortnight on a number that was never true:
+
+```bash
+grep -c 'initializer = ""' /stellaris/prescripted_countries/*.txt
+```
+
+**There is a competing reading of that same table, and it is not weak.** All
+nine are Earth-and-human variants from `00_top_countries.txt`, and five of them
+start on Sol. Paradox may set `spawn_enabled = no` on them because a galaxy with
+three Earths in it is bad *flavour*, not because the engine cannot place them.
+The table cannot tell those two apart on its own — what it establishes for
+certain is only that **vanilla ships no example of the thing STG does 39 times**,
+so there is no positive evidence anywhere that the combination works.
+
+**And the reading has a hole, which is the reason nothing has been changed
+yet.** 62 of the 77 minor powers have no `initializer` line at all — 15 do, and
+the two removed on 2026-08-25 were both among the 15, so this figure has not
+moved. On the initializer theory those 62 were free to spawn on the evening run
+and none did.
+Either they were still not in the design database — which decision 88's fix was
+supposed to settle and which no save has yet confirmed — or the cause is
+something else again.
+
+#### The two cheap things that would settle it, in order
+
+**1. The AI empire preview, before generating anything.** The galaxy setup
+screen previews the AI empires that will spawn; vanilla ships tooltips for
+`AI_EMPIRE_PREVIEW_TOOLTIP_RANDOM` ("Random AI Empire"),
+`..._TOO_MANY_FORCED` and `..._INCOMPATIBLE_SYSTEM` ("The following empires have
+incompatible starting systems, so only one of them can appear"). If the preview
+shows 18 *Random AI Empire* slots, the pool is not being drawn from at all and
+the question is the database. If it shows Trek empires and the galaxy does not
+contain them, the question is placement. **One glance, before pressing start,
+and it separates the two candidate causes that a whole galaxy cannot.**
+
+**2. A save.** [Live runs](../guides/live-runs.md#the-save-is-better-evidence-than-the-log-when-there-is-one)
+says the save is better evidence than the log, and both questions that took four
+runs each were settled from one in minutes. **There is no save from any run since
+2026-08-22**: `settings.txt` has `ironman=yes` with `autosave_tocloud=yes`, so
+nothing reaches disk and `continue_game.json` names a folder that is not there.
+Counting `design={` blocks in `gamestate` answers "are the 100 loaded" outright.
+
+**Turn ironman off, or `autosave_tocloud` off, for one run.** That is the whole
+ask, and until it happens every further fix here is a guess graded by a galaxy.
+
+#### What not to do yet
+
+**Do not strip the `initializer` lines.** It is the change the vanilla table
+points at, and it would cost decision 25 in full — the real home systems are one
+of the most visible things in the mod, and the last run confirmed 40 Eridani
+reads correctly. If the answer turns out to be the database, they would have
+been given up for nothing.
 
 ### Devastated Trek city sets — six sets, no `_devastated` art
 
@@ -105,7 +187,8 @@ is a call nobody has made.
 
 ### The shipsets' weapons
 
-Whether the Walshicus shipsets draw their weapons — 17 of the 22 playable
+Whether the Walshicus shipsets draw their weapons — 17 of the 22 majors,
+quadrant and frontier powers
 empires fly one — and whether the pruned event pictures took anything visible
 with them.
 
@@ -231,7 +314,7 @@ descending order of how obviously they would be wrong:
   filled the empty tiers from vanilla's own second idiom (NEC4's vices, AQU1's
   water), so what to look for is `Stormwall` next to `Bolarus` and `Escrow` next
   to `Jaglom Shrek` — and whether the Xindi species names read as classes or
-  just as species labels. **21 of 22 playable empires now carry all five core
+  just as species labels. **21 of the 22 majors, quadrant and frontier powers now carry all five core
   tiers**, against 13 — **the gap is Caitian, which has no `titan` block**
   (`src/common/name_lists/stg_minor_caitian.txt`, measured 2026-08-22), so a
   Caitian titan draws from `generic` and that is the one empire where a
@@ -332,7 +415,7 @@ questions above apply here unchanged. Four that are specific to a story event:
   wrong, and they fail in opposite directions.
 
   > **And a third way, which is not a broken gate and would not read as one:
-  > eleven of the 22 playable empires are outside the gate entirely** — BOL, BRE,
+  > eleven of the 22 majors, quadrant and frontier powers are outside the gate entirely** — BOL, BRE,
   > THO, CAI, XIN, SUL, YRI, KRE, MAL, VID and the mirror **TER**, plus all 79
   > AI minors. They see only the eight open events. **A Malon player reporting "I
   > never see my own story" is reporting the content, not the gate**, so ask

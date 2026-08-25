@@ -21,8 +21,13 @@ empire.
 | File | |
 |---|---|
 | [ufp-long-campaign.md](ufp-long-campaign.md) | **A long Federation playthrough**, written 2026-08-09 for the first run since decisions 74–77 landed. Survey-led, because the anomalies, dig sites and story events have never been in front of the game. **Run 2026-08-10**; observations are inline, and what to do about them is [the remediation plan](../planning/ufp-run-remediation.md) |
-| [vulcan-long-campaign.md](vulcan-long-campaign.md) | **A long Confederacy of Vulcan playthrough**, written 2026-08-11 for the first run against the build carrying decisions 81 and 82. Survey-led again — the dig sites went unreached last time — and it grades the hull attach points on a second shipset, the ruler clothes on a second empire, and the story-event gate from outside the Federation. **Run 2026-08-22**, and cut short at ~26 minutes: observations are inline, and what they turned out to mean is [analysis 2026-08-16](../analysis/2026-08-16.md). The long half of the plan — dig sites, anomalies, story events, every hull above corvette — went **unreached for the second run running** |
+| [vulcan-long-campaign.md](vulcan-long-campaign.md) | **A long Confederacy of Vulcan playthrough**, written 2026-08-11 for the first run against the build carrying decisions 81 and 82. Survey-led again — the dig sites went unreached last time — and it grades the hull attach points on a second shipset, the ruler clothes on a second empire, and the story-event gate from outside the Federation. **Run four times** — 2026-08-22 (cut short at ~26 min), 2026-08-24, and twice on 2026-08-25. Only the first was written up ([analysis 2026-08-16](../analysis/2026-08-16.md)); the other three live in [status.md](../planning/status.md)'s baseline and in decisions [86](../decisions/86-prescripted-empires-never-drawn.md) and [88](../decisions/88-playable-gates-the-design-database.md). The long half of the plan — dig sites, anomalies, story events, every hull above corvette — is **still unreached after all four**, and the plan is being re-run rather than replaced because the question it keeps hitting is [whether the galaxy is Trek at all](../planning/open-questions.md) |
 
 **A run plan is spent when its run is over.** Leave the file in place, dated, and
 write a new one for the next empire rather than editing this one into something
 that no longer describes any run that happened.
+
+**The Vulcan plan is the standing exception and says why in its own row above.**
+Four runs have now used it because each was cut short on the same question, so
+nothing further down the checklist has ever been reached. It is annotated in
+place, not rewritten.

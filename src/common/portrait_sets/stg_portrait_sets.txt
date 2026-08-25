@@ -218,7 +218,7 @@ stg_terran_portraits = {
 	}
 }
 
-# ── THE 79 MINOR POWERS ────────────────────────────────────────────────────
+# ── THE 77 MINOR POWERS ────────────────────────────────────────────────────
 #
 # A species class with no set here has NO PORTRAIT the empire designer can
 # offer, and the designer answers that by hiding the empire — 'Must select a
@@ -226,12 +226,12 @@ stg_terran_portraits = {
 # the picker and the galaxy generator read the same design database, so an
 # empire hidden here cannot spawn as AI either.
 #
-# These 79 were invisible to this rule while they carried `playable =
+# These were invisible to this rule while they carried `playable =
 # stg_never`, because the check that enforces it skipped gated empires as
-# unreachable. Removing the gate surfaced all 79 at once.
+# unreachable. Removing the gate surfaced all of them at once.
 #
 # One class, one portrait group, taken from the empire's own `species` block in
-# src/prescripted_countries/stg_z_minor_powers.txt — the 79 classes are
+# src/prescripted_countries/stg_z_minor_powers.txt — the 77 classes are
 # distinct and each names exactly one group. GENERATED SHAPE, HAND-OWNED, the
 # same standing as the empires file itself.
 
@@ -723,14 +723,6 @@ stg_minor_tellarian_technocracy_portraits = {
 	}
 }
 
-stg_minor_tng_klingon_cardassian_alliance_portraits = {
-	species_class = TNGK
-
-	portraits = {
-		"klingon"
-	}
-}
-
 stg_minor_trabe_alliance_portraits = {
 	species_class = TRA
 
@@ -818,10 +810,6 @@ stg_minor_voth_theocracy_portraits = {
 		"voth"
 	}
 }
-
-# stg_minor_tng_coalition_hope is NOT here. It is Vulcan — it takes class VUL
-# deliberately (decision 46) and stg_vulcan_portraits above already serves that
-# class. A second set for one class is 78 blocks below, not 79.
 
 stg_minor_wadi_emirates_portraits = {
 	species_class = WAD

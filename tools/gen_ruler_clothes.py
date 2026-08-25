@@ -21,7 +21,7 @@ See .docs/decisions/69-ruler-clothes-dedicated-selectors.md.
 THE INTENT IS STILL DERIVED, NEVER COUNTED. The garment each empire should wear
 is read from the `game_setup` row the master selector gates on that empire's own
 species class -- the rows decision 22 added, which stay as the written record of
-the intent. Where a class has no such row (the AI-only empires, which never
+the intent. Where a class has no such row (the empires with no designer row, which never
 reach the designer) the `species` scope's row for the same class is used, so the
 rule is swept rather than the instances repaired.
 
@@ -157,7 +157,7 @@ def main() -> int:
     for sel in (f"{MASTER}male_clothes_01", f"{MASTER}female_clothes_01"):
         rows = scope_rows(sel, "species")
         # game_setup is the designer's own statement and wins where it exists;
-        # the species scope covers the AI-only classes that have no designer row.
+        # the species scope covers the classes that have no designer row.
         rows.update(scope_rows(sel, "game_setup"))
         intent[sel] = rows
 

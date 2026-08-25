@@ -16,23 +16,23 @@ confirmed against disk and a mechanical fix; Tier 2 was a real defect still
 owing one investigation; Tier 3 might not have been a defect at all and needed
 measuring first.
 
-## Where every item stands, as of 2026-08-24
+## Where every item stands, as of 2026-08-25
 
 | | Item | |
 |---|---|---|
 | 1 | Hull section attach points | **Fixed** — 230 points, 22 shipsets ([82](../decisions/82-hull-section-attach-points.md)) |
 | 2 | Malformed portrait paths | **Fixed** — 29 patched, then 11 more in the female master on 2026-08-22 ([83](../decisions/83-widen-attach-points-and-two-new-checks.md)). The dangling textures found beside them were **117 rows, not 196**, and all 117 were repointed on 2026-08-24 — 76 with no content call to make, 41 under one policy ([85](../decisions/85-selector-textures-that-resolve.md)). **`check_selector_texture_files` now holds the tree at zero** |
 | 3 | Star and nebula names unlocalised | **Fixed** — 328 keys, one per quoted entry ([81](../decisions/81-random-names-are-loc-keys.md)) |
-| 4 | No Trek empires met | **Closed 2026-08-24** — never the empires: `CUSTOM_EMPIRE_SPAWN_CHANCE` gave the prescripted pool a 5% chance per AI slot, now 1000 (100%) ([86](../decisions/86-prescripted-empires-never-drawn.md)). The Federation's unfired `spawn_enabled = always` is carried on as its own question |
+| 4 | No Trek empires met | **Reopened 2026-08-25, and the oldest open defect in the project.** Closed twice and wrong twice: the spawn-chance define ([86](../decisions/86-prescripted-empires-never-drawn.md)) and the `playable` gate ([88](../decisions/88-playable-gates-the-design-database.md)) were both real and neither was sufficient. Five galaxies, five times zero. Now lives in [open-questions.md](open-questions.md) |
 | 5 | Planetary Diversity event scope | **Fixed and confirmed in game** — 6 patches; 98 records on 2026-08-10, **0** on 2026-08-22 |
 | 6 | ~70 music tracks | **Not a defect** — 55 declarations, 27 rotation; the run plan's "22" was stale |
 | 7 | Shipset dropdown lists species | **Not a defect** — vanilla has no shipset name key either. The *descriptions* half was a real defect and is **fixed**: 30 keys, [84](../decisions/84-shipset-descs-and-home-system-names.md) |
 | 8 | City art 25% small in the designer | **Not the art, and not the declarations either** — every file is at canvas, and every declared culture reaches art through its `fallback` ([84](../decisions/84-shipset-descs-and-home-system-names.md)). **The rect is all that is left, and it needs one screenshot comparison** |
 
-**Seven of the eight are closed, three of those by measurement rather than by a
-change.** What is genuinely still open is item 8's rect — plus everything in
-Tier 4, which only a live run can reach. **Items 2 and 4 both closed on
-2026-08-24**, item 2's second half included.
+**Six of the eight are closed, three of those by measurement rather than by a
+change.** What is still open is item 8's rect, **item 4 — which has now been
+closed twice and reopened twice** — plus everything in Tier 4, which only a live
+run can reach.
 
 > **The 2026-08-22 Vulcan run moved three of these and this file is annotated in
 > place rather than rewritten.** Item 5 is now **confirmed in game by silence**;
@@ -440,6 +440,34 @@ and excluded.)*
 > question** — it did not appear in the 2026-08-22 galaxy despite the player
 > being Vulcan. At 100% it no longer gates whether Trek empires appear.
 > [Open questions](open-questions.md) carries it.
+
+> ---
+>
+> **REOPENED 2026-08-25. It was not the define, and it was not only the gate.**
+> Two more galaxies were played with `CUSTOM_EMPIRE_SPAWN_CHANCE = 1000` and the
+> second also carried decision 88's fix, so all 100 designs were loaded and every
+> AI slot drew from the pool. **Both galaxies contained zero Trek empires**, and
+> on the second the player met every empire in it. Five galaxies now, five times
+> zero. Neither closure was wrong about its own mechanism; both were wrong that
+> the mechanism was the whole cause.
+>
+> **And the row above that reads "Ruled out" on hand-placed home systems was
+> ruled out on a miscount.** "23 of vanilla's own 33 spawn-eligible empires also
+> carry an `initializer`" counted the *line*; **18 of those 23 are
+> `initializer = ""`**. Vanilla's real figure is **5 of 33**, every one of them
+> an *origin* initializer, and **not one vanilla empire that is
+> `spawn_enabled = yes` names a unique home system.** The nine that do are all
+> `spawn_enabled = no`. So the hypothesis this table dismissed is the one still
+> standing, and it was never actually tested. Re-measure:
+>
+> ```bash
+> grep -c 'initializer = ""' /stellaris/prescripted_countries/*.txt
+> ```
+>
+> **Do not treat this file as the live record of item 4 any longer.**
+> [open-questions.md](open-questions.md), "Whether the galaxy is Trek now", is,
+> and it carries the vanilla cross-tabulation and the two cheap tests that would
+> settle it.
 
 ### 5. Planetary Diversity's infester events fire into the wrong scope
 

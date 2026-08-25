@@ -90,7 +90,7 @@ CULTURES = [
     ("BRE", "breen_01",        "Breen Confederacy"),
 
     # ── Shared hulls for the minor powers ──────────────────────────────────
-    # No species class of their own: 35 of the AI-only minors in
+    # No species class of their own: 35 of the minor powers in
     # src/prescripted_countries/stg_z_minor_powers.txt point at one of these five
     # STNH directories, which were already harvested as donor art for the five
     # above. Declaring them as cultures is what makes those 35 fly Trek hulls
@@ -601,7 +601,7 @@ HEADER = f"""\
 # Star Trek Galaxies -- the STNH-art Trek shipsets, on vanilla's ship sizes.
 #
 # ONLY THE CULTURES WITH NO WALSHICUS SET. Five playable ones (BAJ, TRI, ADR,
-# BOL, BRE) plus the generic_0N donors the AI-only minors share; 17 of the 22
+# BOL, BRE) plus the generic_0N donors the minor powers share; 17 of the 22
 # playable empires fly a Walshicus standalone shipset instead, which is built on
 # vanilla's chassis and needs nothing generated --
 # .docs/decisions/18-walshicus-shipsets-replace-stnh-hulls.md.
@@ -652,7 +652,7 @@ CULTURE_HEADER = """\
 # Star Trek Galaxies -- the graphical cultures backed by STNH art.
 #
 # THE CULTURES WITH NO WALSHICUS SET, and nothing else: five playable ones
-# (BAJ, TRI, ADR, BOL, BRE) plus the generic_0N donors the AI-only minors share.
+# (BAJ, TRI, ADR, BOL, BRE) plus the generic_0N donors the minor powers share.
 # Every other species class names a culture declared by the Walshicus shipset
 # that provides it -- .docs/decisions/18-walshicus-shipsets-replace-stnh-hulls.md.
 #

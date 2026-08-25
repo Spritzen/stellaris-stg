@@ -8,7 +8,7 @@
 
 **`make vendor` reports 947 overwrite events — plus 220 paths skipped by the
 additive-only rule and 888 files removed by the prune closure** (build of
-2026-08-24). Read them out of `.vendor-manifest.json` rather than recounting by
+2026-08-25). Read them out of `.vendor-manifest.json` rather than recounting by
 hand; they move whenever a source is dropped or an `include:` widens, and this
 section has been stale five times for exactly that reason:
 

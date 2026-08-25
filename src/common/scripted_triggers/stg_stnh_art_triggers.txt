@@ -1,7 +1,7 @@
 # Bodies for the STNH scripted triggers that STNH's ART depends on.
 #
-# .docs/architecture/stnh-art.md takes STNH's art and never its common/, but the art wiring IS
-# script: the vendored asset_selectors pick clothing with triggers that live in
+# STG takes STNH's art and never its common/ (.docs/architecture/stnh-art.md),
+# but the art wiring IS script: the vendored asset_selectors pick clothing with triggers that live in
 # STNH's common/scripted_triggers/. Undefined, they are an error.log record
 # each; defined `always = no`, every uniform entry is unreachable and every
 # leader falls through to vanilla's generic uniform. All of them are declared

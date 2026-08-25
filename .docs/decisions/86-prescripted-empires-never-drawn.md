@@ -16,6 +16,11 @@ Federation's unfired `spawn_enabled = always`, left open below, was the shared
 `sol_system_initializer` after all, and the reasoning that dismissed it
 ("neither of the pair spawned, where a collision should have cost only the
 loser") assumed a failure mode the engine does not have.
+**Falsified as a closure by the 2026-08-25 evening run**, the second galaxy at
+100% and the first with decision 88's fix in it: still zero Trek empires in 18,
+with every empire met. The lever remains correct and remains in the tree; it was
+never the cause. Item 4 is reopened — [open-questions.md](../planning/open-questions.md),
+"Whether the galaxy is Trek now".
 
 ## The report
 

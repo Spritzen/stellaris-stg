@@ -208,9 +208,11 @@ dangling_identifier_ack: []
 # The list is two entries and the check is quiet: the five peoples this note
 # used to name as "still reported every run" (KRI, MONE, PARA, TNG, VALT) are
 # not findings any more. MONE and PARA stopped existing when decision 32
-# renamed them MON and PAR; MON is named by both master selectors, and KRI,
-# VALT and TNGK have DEDICATED selectors (e.g.
-# gfx/portraits/asset_selectors/kriosian/), which this check skips by design.
+# renamed them MON and PAR, and MON is named by both master selectors; KRI and
+# VALT have DEDICATED selectors (e.g. gfx/portraits/asset_selectors/kriosian/),
+# which this check skips by design; TNG stopped existing on 2026-08-25 with the
+# empire it was declared for
+# (.docs/decisions/89-remove-mirror-timeline-duplicates.md).
 # A new finding here is therefore a new defect, not backlog.
 portrait_clothes_ack:
   - stg_terran_empire            # human art (mirror universe)
@@ -1475,7 +1477,7 @@ patches:
   # Phase 2's eight frontier powers, AFTER decision 22 swept the master pair,
   # and its ruler portrait (human_female_01) points at the same master
   # selector -- so it fell through to civ_human_female_clothes_13.dds, the
-  # human civilian default. Swept across all 22 playable empires rather than
+  # human civilian default. Swept across all 22 majors, quadrant and frontier powers rather than
   # repaired on the one reported: TER is the only one still on a bare default,
   # the other sixteen having per-species selectors whose default IS that
   # species' look. STG's Terran Empire is the NX-era one, so it takes the

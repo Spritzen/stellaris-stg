@@ -1,7 +1,7 @@
 # Star Trek Galaxies -- the graphical cultures backed by STNH art.
 #
 # THE CULTURES WITH NO WALSHICUS SET, and nothing else: five playable ones
-# (BAJ, TRI, ADR, BOL, BRE) plus the generic_0N donors the AI-only minors share.
+# (BAJ, TRI, ADR, BOL, BRE) plus the generic_0N donors the minor powers share.
 # Every other species class names a culture declared by the Walshicus shipset
 # that provides it -- .docs/decisions/18-walshicus-shipsets-replace-stnh-hulls.md.
 #

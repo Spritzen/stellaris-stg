@@ -1,7 +1,7 @@
 # Star Trek Galaxies -- the STNH-art Trek shipsets, on vanilla's ship sizes.
 #
 # ONLY THE CULTURES WITH NO WALSHICUS SET. Five playable ones (BAJ, TRI, ADR,
-# BOL, BRE) plus the generic_0N donors the AI-only minors share; 17 of the 22
+# BOL, BRE) plus the generic_0N donors the minor powers share; 17 of the 22
 # playable empires fly a Walshicus standalone shipset instead, which is built on
 # vanilla's chassis and needs nothing generated --
 # .docs/decisions/18-walshicus-shipsets-replace-stnh-hulls.md.

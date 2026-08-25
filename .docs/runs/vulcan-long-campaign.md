@@ -41,6 +41,14 @@ the expectation it should be read against.
 ```
 - [ ] **Do not relaunch after you stop.** The log is per-session; a second launch
       wipes the run you just played.
+- [ ] **Turn ironman OFF, or `autosave_tocloud` off, for this run.** This is now
+      the single most valuable setting in the plan and it costs nothing else.
+      `settings.txt` currently has both on, so **no run since 2026-08-22 has left
+      a save on disk** — `continue_game.json` names a folder that is not there.
+      A save answers "are all 99 empire designs loaded" by counting `design={`
+      blocks, outright and in minutes, and that is the question five galaxies in
+      a row have failed to answer.
+      [Live runs](../guides/live-runs.md#the-save-is-better-evidence-than-the-log-when-there-is-one).
 
 ## Galaxy settings, because they decide what this run can measure
 
@@ -55,6 +63,23 @@ the expectation it should be read against.
 ```markdown
 #OBSERVATIONS
 - Forced spawn is only an option for player made empires
+```
+- [ ] **Read the AI empire preview before you press start.** The galaxy setup
+      screen previews the AI empires it will generate. Hover the slots: vanilla
+      ships `AI_EMPIRE_PREVIEW_TOOLTIP_RANDOM` ("Random AI Empire"),
+      `..._TOO_MANY_FORCED` and `..._INCOMPATIBLE_SYSTEM` ("The following empires
+      have incompatible starting systems, so only one of them can appear"), and
+      the vendored UIOD `setup.gui` still draws the element.
+      **This one glance separates the two candidate causes that a whole galaxy
+      cannot**: 18 *Random AI Empire* slots means the pool is not being drawn
+      from at all and the problem is the design database; Trek empires in the
+      preview that are then absent from the galaxy means the problem is
+      placement. Write down what the slots say, and any incompatible-system
+      warning verbatim.
+      [open-questions.md](../planning/open-questions.md), "Whether the galaxy is
+      Trek now".
+```markdown
+#OBSERVATIONS
 ```
 - [X] **Pick neighbours you want graded.** Klingon, Romulan and Cardassian are
       the sets with the most art behind them; a forced Klingon neighbour gets you
@@ -387,7 +412,7 @@ Knowing this in advance is the cheapest thing on the page.
 
 - **The Terran mirror uniforms and the Federation president's robe.** Different
   empires, different selectors. A Vulcan run says nothing about either.
-- **The 79 minor powers' ship names.** They are `generic`-only on purpose,
+- **The 77 minor powers' ship names.** They are `generic`-only on purpose,
   where thin is not broken.
 - **The Malon pools naming a type rather than a class** — *Waste Extraction
   Cruiser – Interceptor* is a source's own content, already flagged, and not

@@ -62,16 +62,16 @@ deliberately kept: it is the custom-empire template, not a playable empire.
 
 ## Phase 2 — The rest of the galaxy
 
-**COMPLETE.** 101 prescripted empires — 22 majors/quadrant/frontier powers and
-79 minors, all playable and all in the AI pool since
-[decision 88](../decisions/88-playable-gates-the-design-database.md) — over 100
-distinct species classes. 92 name lists, 37 real home systems.
-`src/common/species_classes/stg_species_classes.txt` declares **131** classes —
-the other 31 are the STNH selector stubs of
+**COMPLETE.** 99 prescripted empires — 22 majors/quadrant/frontier powers and
+77 minors, all playable and all in the pool the galaxy generator draws from
+since [decision 88](../decisions/88-playable-gates-the-design-database.md) — over 99
+distinct species classes. 92 name lists, 36 generated home systems plus vanilla's
+Sol. `src/common/species_classes/stg_species_classes.txt` declares **129** classes —
+the other 30 are the STNH selector stubs of
 [decision 32](../decisions/32-declare-stub-species-classes.md), which are not
 empires.
 
-### 22 playable
+### The 22 majors, quadrant and frontier powers
 
 The five majors, then nine more (Ferengi, Bajoran, Trill, Andorian, Bolian, Breen,
 Tholian, Dominion, Borg), then eight frontier powers the Walshicus art made
@@ -91,7 +91,7 @@ form. The Borg are `auth_machine_intelligence` + `civic_machine_assimilator` —
 **machine** intelligence, not a hive mind; the assimilator civic only exists on the
 machine side.
 
-### 79 minor powers
+### 77 minor powers
 
 Converted rather than authored: their identity is STNH's (names, species,
 homeworlds, rulers, heraldry, 70 name lists totalling 6,302 loc keys), their
@@ -104,20 +104,25 @@ yes`. There is no such state: `playable` gates the engine's design database, the
 galaxy generator draws from that database, and so the gate kept them out of both
 the picker and the galaxy for four live runs.
 [Decision 88](../decisions/88-playable-gates-the-design-database.md) removed it —
-all 101 empires are playable, and all 101 are in the AI pool.
+all 99 empires are playable, and all 99 are in the pool the galaxy generator draws from — **though five galaxies running have drawn none of them**, which is [the project's largest open question](open-questions.md).
 
 ### Species-class localisation
 
-All 131 declared classes carry vanilla's 27-key family, derived off the class key
+All 129 declared classes carry vanilla's 27-key family, derived off the class key
 rather than prefixed `STG_` — which the engine never looks up.
 [Decision 21](../decisions/21-species-class-localisation.md).
 
 ### Home systems
 
-37 initializers wired into **39** empires — all 22 playable and 17 minors. The
-Federation is on vanilla's own real Sol, and the mirror Terran Empire *shares* it
-rather than getting a copy, so a galaxy never holds both.
-[Decision 25](../decisions/25-real-home-systems.md).
+36 initializers plus vanilla's Sol, wired into **37** empires — all 22 majors,
+quadrant and frontier powers, and 15 minors. The
+Federation is on vanilla's own real Sol. The mirror Terran Empire used to
+*share* that key — recorded here as meaning "a galaxy never holds both", which
+was the wrong way round: two prescripted empires naming one starting system is a
+documented engine failure that logs nothing and **costs both of them**. It has
+its own authored mirror Sol since 2026-08-25.
+[Decision 25](../decisions/25-real-home-systems.md),
+[88](../decisions/88-playable-gates-the-design-database.md).
 
 > **This file crashed the game at startup three separate times, and the pattern is
 > the lesson.** First: eleven STNH identifiers the generator's remap tables passed
@@ -157,12 +162,24 @@ line.)*
 > decision 44's pool arithmetic — short by 3.6×, because it missed YAGEM's two
 > files feeding the same key.
 
-### Random Trek empires — deferred
+### Random Trek empires — deferred, and the premise has since failed
 
 Every STG species class is `randomized = no` on purpose — a random AI empire
-rolling up as Klingons with random ethics and vanilla names reads as a bug. The 79
-minors already populate the galaxy, so this is about *variety* now, not emptiness.
-Phase 4 at the earliest.
+rolling up as Klingons with random ethics and vanilla names reads as a bug.
+This was deferred on the grounds that *"the minors already populate the galaxy,
+so this is about variety now, not emptiness"*.
+
+**That premise is false and has been for every run.** Five galaxies have been
+generated with no Trek AI empire in any of them, so a random AI empire in STG
+today is a vanilla one with vanilla names — emptiness, not a variety problem.
+STNH's own answer to this is worth knowing: it sets `randomized = no` on all its
+named Trek classes exactly as we do, and adds two classes of its own,
+`RANDOMTREK` and `PRE_RANDOMTREK`, with `randomized = yes` so that randomly
+generated empires still come out Trek-shaped. **That is a second, independent
+route to a Trek galaxy and it does not depend on the prescripted pool being
+drawn at all.** Do not act on it until
+[the prescripted question](open-questions.md) is settled, because if that closes
+this stays a variety problem. Phase 4 at the earliest.
 
 ---
 
@@ -278,7 +295,8 @@ finding.** Starbases, orbital rings and defence platforms are deliberately exclu
 
 ### Flags, early
 
-The 22 playable empires fly vendored STNH heraldry from `flags/trek/`, done
+The 22 majors, quadrant and frontier powers fly vendored STNH heraldry from
+`flags/trek/`, done
 alongside Phase 2 because the files were already there.
 
 ### The STNH ship-model prune
@@ -454,7 +472,7 @@ tonnage table — an unmapped key stops the build — and re-emits the values as
 > It also reverses 59's exclusion of `bolian`, `breen`, `bajoran` and `andorian`
 > **for class names only** — right for registries, wrong here, and three of the
 > four declare their own. Searching Memory Alpha and then Memory Beta for the
-> five playable empires still without a size split returned **nothing worth
+> five of those empires still without a size split returned **nothing worth
 > taking**: canon names no classes for Tholian, Vidiian, Trill or Yridian ships,
 > and what STG hand-wrote in Phase 1 is already the better material.
 
@@ -466,7 +484,7 @@ species-language words (HUM1's `Il-Koth`, LITH3's `Kroshhk`) or **one semantic
 field in plain English** (NEC4's vices, HIVE2's robustness, AQU1's water) — and
 the second is what STG's Phase 1 pools already are, so extending a register is
 not inventing lore. **99 hand-authored names across 15 lists, 820 → 1,864
-tokens, and 21 of 22 playable empires now carry all five core tiers** against 13.
+tokens, and 21 of those 22 now carry all five core tiers** against 13.
 
 > **Vanilla never splits this block by tonnage at all** — all 13 lists are
 > `generic` only, 17–40 names, median 22. STG splits because a Trek class *is*

@@ -9,6 +9,13 @@ premise [decision 86](86-prescripted-empires-never-drawn.md) rested its value on
 working fix rather than the whole of a fix that could not work.
 **Closes** [open-questions.md](../planning/open-questions.md)'s standing question
 of why the Federation's `spawn_enabled = always` never fired.
+**That closure is falsified by the 2026-08-25 evening run.** The gate below was
+real and its removal is kept; the mirror Terran Empire has its own Sol and the
+collision is gone. The Federation still did not appear, and neither did any of
+the other 99 — the fifth galaxy in a row with no Trek AI empire, this one with
+all 100 designs loaded and every AI slot drawing from the pool. **Necessary, not
+sufficient**, exactly as decision 86 turned out to be.
+[open-questions.md](../planning/open-questions.md) carries what is left.
 
 ## The report
 

@@ -16,7 +16,7 @@ src/                    hand-written STG content — mirrors the game's tree, ap
   descriptor.mod        the mod's own descriptor; vendored into stg-build/
   thumbnail.png
                         — three kinds of file, and the kind decides the filename:
-  stg_*                   OUR content. Species classes, 92 name lists, the 101
+  stg_*                   OUR content. Species classes, 92 name lists, the 99
                           prescripted empires, loc, the STNH art triggers and traits,
                           the graphical cultures, the music declarations.
   stg_*.asset / .gfx      DECLARE-don't-shadow: a new filename adding what a vendored
@@ -42,7 +42,7 @@ tools/
   gen_shipsets.py       one-shot: graphical cultures + vanilla-shaped ship entities
                         (decision 17, narrowed by 18 to the five cultures with no
                         Walshicus set, plus the generic_* minor-power donors)
-  gen_home_systems.py   one-shot: the 37 home systems (decision 25)
+  gen_home_systems.py   one-shot: the 36 home systems (decision 25)
   gen_borg_vo.py        one-shot: src/sound/sth_soundgroups.asset
   gen_room_selector.py  the one room_selector: vanilla + STNH's 47 Trek rooms
                         + Diverse Rooms' designer list (decision 48)

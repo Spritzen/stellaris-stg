@@ -41,8 +41,10 @@ classes, leader traits, scripted triggers, shader effects — the key takes STNH
 name, because the art references it by name and we cannot edit the art.
 
 That is why `src/common/species_classes/stg_species_classes.txt` declares `FED`
-and not `STG_FED`: a prefixed key fails `is_species_class = FED` in 500+ vendored
-selectors and no Trek species can ever wear a Trek uniform. The *file* still
+and not `STG_FED`: a prefixed key fails the 730 `is_species_class` tests the
+vendored clothes selectors make, and no Trek species can ever wear a Trek
+uniform. Re-measure with
+`grep -rc is_species_class stg-build/gfx/`. The *file* still
 takes the `stg_` prefix; only the keys do not, and each such file says so in its
 header. [Decision 10](../decisions/10-species-class-keys-unprefixed.md) has the
 reasoning and the collision risk we accepted.

@@ -2517,8 +2517,8 @@ def check_prescripted_empires() -> int:
 
     **The log is a sample of this class, not a census.** Sweeping the rule found
     NINE more empires with the identical `trait_communal`/`trait_solitary` pair,
-    all AI-only minor powers that never reach the designer and so can never
-    produce a record, at any session length. That is the whole reason this check
+    all minor powers that were gated out of the designer at the time and so
+    could never produce a record, at any session length. That is the whole reason this check
     exists: `error.log` measures what the engine refused, and the engine refuses
     nothing here — it silently drops one of the two traits at galaxy generation.
 
@@ -2618,7 +2618,7 @@ def check_prescripted_empires() -> int:
                 continue
             # Two tiers. Trait `opposites` and undefined names corrupt the
             # species wherever it spawns — the engine drops a trait silently and
-            # never logs it, which is exactly how nine AI-only minor powers hid
+            # never logs it, which is exactly how nine gated minor powers hid
             # from eleven runs of error.log. The designer's own validation rules
             # below only bite on empires it actually offers.
             designable = _designable(body)
@@ -2653,7 +2653,7 @@ def check_prescripted_empires() -> int:
                             found.append(
                                 f"{rp}: {empire} {kind} carries '{a}' and '{b}', which "
                                 f"vanilla declares `opposites`. The designer hides the "
-                                f"empire; an AI-only empire silently loses one trait.")
+                                f"empire; an empire nobody designs silently loses one trait.")
                     allowed = _list_field(traits[a], "allowed_archetypes")
                     if allowed and archetype and archetype not in allowed:
                         found.append(f"{rp}: {empire} {kind} trait '{a}' is not allowed on "
@@ -2898,7 +2898,7 @@ def check_prescripted_initializers() -> int:
 
     The engine reports a bad one -- `prescripted_systems.cpp: Invalid
     initializer "X"` -- but only for empires it actually tries to place, so an
-    AI-only minor with a typo can sit undetected for as long as nobody rolls it.
+    minor power with a typo can sit undetected for as long as nobody rolls it.
     Sweeping the rule beats reading the log, as with the traits in
     check_prescripted_empires.
 
@@ -3238,8 +3238,8 @@ def check_prescripted_portraits() -> int:
     `portraitobject.cpp:722 Failed to find portrait selector X` only when a
     player opens the empire designer on that empire, and then draws it blank.
     The 08-14 run surfaced `suliban_male_01` that way; sweeping the rule found
-    `hur` (a truncated `hur'q`) on an AI-only minor power that no session length
-    would ever have reported.
+    `hur` (a truncated `hur'q`) on a minor power that was gated out of the
+    designer, which no session length would ever have reported.
 
     Resolution follows the engine: a file in the mod shadows a vanilla file of
     the same name, so index vanilla first and let the build overwrite it.
@@ -5478,7 +5478,7 @@ def check_room_references() -> int:
                     f"common/graphical_culture/ entry declares. The art can be "
                     f"complete and this still hides the empire from the "
                     f"designer with EMPIRE_DESIGN_INVALID_GFX_CULTURE, and an "
-                    f"AI-only empire never reaches the designer, so no log "
+                    f"empire nobody opens in the designer produces no log "
                     f"will ever name it. See "
                     f".docs/decisions/62-city-set-cultures-undeclared.md.")
             m = re.search(r'room = "([a-z0-9_]+)"', text[a:b])

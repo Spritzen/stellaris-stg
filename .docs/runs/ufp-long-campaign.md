@@ -29,7 +29,7 @@
 
 - [Y] **Large galaxy, 600–1000 stars.** This is a survey-led run; every question
       worth answering is downstream of how many bodies get surveyed.
-- [Y] **More AI empires rather than fewer.** All 101 prescripted empires are in
+- [Y] **More AI empires rather than fewer.** All 99 prescripted empires are in
       the AI pool, and the ones you meet are the ones that get graded.
 - [Y] **Ironman off.** You will want to reload, re-open a screen, and look twice.
 - [Y] **Run three or more science ships from the start** and keep them fed. Half

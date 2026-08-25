@@ -31,7 +31,8 @@ vanilla never scripts them in an initializer, and neither do we.
 MATCHING is by three passes, in order, because STG's own localisation already
 names each empire's system and usually agrees with STNH's:
   1. STG's `system_name` loc VALUE against STNH's initializer `name`
-     ("40 Eridani" -> vulcan_homeworld). 70 of 101.
+     ("40 Eridani" -> vulcan_homeworld). The pass yields are printed on every
+     run -- read them off the output rather than from a figure here.
   2. a species token from the empire key against `<token>_homeworld`
      (stg_minor_nausicaan_tribes -> nausicaan_homeworld).
   3. ALIASES below, for the ones whose STG and STNH names genuinely differ
@@ -41,7 +42,9 @@ The Federation is deliberately NOT generated: vanilla's own
 `sol_system_initializer` is the real solar system, Mercury through Varuna with
 Luna, the Galileans, Titan and Triton, and Real Space overrides that same key
 with a rescaled copy. Pointing at it beats reproducing it. The mirror Terran
-Empire shares that one system rather than getting a copy -- see SKIP.
+Empire does NOT share it -- it has its own authored Sol below. Sharing an
+initializer between two prescripted empires costs both of them and logs nothing;
+see SKIP, and .docs/decisions/88-playable-gates-the-design-database.md.
 
 Run:  python3 tools/gen_home_systems.py
 """

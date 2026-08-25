@@ -84,6 +84,14 @@ flavour is ever worth 19 patches. `TNGK` is unaffected: the Klingon-Cardassian
 Alliance uses portrait group `klingon`, which has dedicated
 `klingon_*_clothes_combined` selectors that gate on no class at all.
 
+> **This section's subject no longer exists.** Both the Coalition of Hope — by
+> then localised *Republic of Hope (2300s)* — and the Klingon-Cardassian
+> Alliance were removed on 2026-08-25, and `TNG` and `TNGK` went with them:
+> [decision 89](89-remove-mirror-timeline-duplicates.md). The reversal path this
+> paragraph kept `TNG` alive for is closed, which is the only part of the
+> reasoning above that the removal touches. The clothes-selector finding itself
+> stands and is why the check exists.
+
 ## 3. The check reported two empires that were fine
 
 The same run flagged `KRI` (kriosian) and `VALT` (valtese) identically. **Both

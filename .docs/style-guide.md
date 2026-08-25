@@ -134,6 +134,15 @@ Never a bare filename, never an absolute path.
 Code cites by **repo-relative path** in a comment: `See .docs/validation/check-design.md`.
 `tools/check_docs.py` reads both forms and fails on either dangling.
 
+**Never link into a generated tree** — `stg-build/`, `.source/`, `.vendor-cache/`
+or `dist/`. Such a link resolves only after a build and disappears while one is
+running, so it makes `make docs` pass or fail on the state of the working tree
+rather than on the documentation. Cite the tracked input instead: `src/` for our
+own content, [`provenance.md`](provenance.md) for what the merge did with it.
+`check_docs.py` rejects these by name rather than reporting them as missing, so
+the message names the rule. Added 2026-08-25, after the one such link in the tree
+failed the check transiently during a rebuild.
+
 ## 9. Renaming a document is a repo-wide edit
 
 `.docs/` paths appear in `tools/*.py` docstrings, `src/` file headers,

@@ -1,72 +1,42 @@
-# Star Trek Galaxies — the five major powers as prescripted empires.
+# Star Trek Galaxies — the five major powers.
 #
-# New prefixed file, merging with stg_quadrant_powers.txt beside it. Together
-# the two are the whole empire picker: vanilla's 52 are removed by the 19
-# comment-only shadow files here (decision 14), and default.txt is untouched so
-# custom empire creation still works.
+# One of four prescripted-empire files that merge into the whole empire picker;
+# vanilla's 52 are removed by the 19 comment-only shadow files here
+# (.docs/decisions/14-remove-vanilla-prescripted-empires.md) and default.txt is
+# untouched, so custom empire creation still works.
 #
-# Every authority / government / civic / ethic combination is checked against
-# the `possible` block of the thing it names, because the game does not report
-# an invalid prescripted empire — it just refuses to start. The authority-ethic
-# constraints are tabulated in stg_quadrant_powers.txt; the governments used
-# here want:
+# BEFORE EDITING ANY EMPIRE HERE, read
+# .docs/reference/prescripted-empire-rules.md. Five databases can veto a
+# prescripted empire, the game reports none of them, and it holds the
+# authority/government/trait tables plus the three fields that resolve by bare
+# name and fail silently.
 #
-#   gov_representative_democracy  is_democratic_authority
-#   gov_science_directorate       is_oligarchic_authority + civic_technocracy
-#   gov_martial_empire            is_imperial_authority   + civic_warrior_culture
-#   gov_star_empire               is_imperial_authority   + is_militarist
-#   gov_military_junta            is_oligarchic_authority + is_militarist
+# Per-field notes, none of which the rules doc covers:
 #
-# Trait budgets are the vanilla default of 2 points.
-#
-# `initializer =` names a REAL home system, added 2026-08-03. It used to be
-# absent on the "no hand-placed homeworlds" line then in .docs/planning/scope.md,
-# and that was wrong in a
-# way only play showed: `planet_name`/`system_name` are labels, not contents,
-# so "Sol" was a label on a randomly generated system whose other planets were
-# named from the Federation's `planet_names` pool — a list of MEMBER worlds.
-# Sol contained Bajor and Andoria. See
-# .docs/decisions/25-real-home-systems.md; the systems themselves are
-# GENERATED into src/common/solar_system_initializers/stg_home_systems.txt by
-# tools/gen_home_systems.py. `planet_name`/`planet_class` still override the
-# initializer's capital, exactly as vanilla's plantoid_humans does with Sol.
-#
-# `graphical_culture` names the ship set for the species and must match
-# stg_species_classes.txt — it is set HERE TOO and overrides the species class,
-# so remapping one without the other silently drops the empire to
-# `fallback = mammalian_01`. All five majors are on Walshicus shipsets
-# (.docs/decisions/18-walshicus-shipsets-replace-stnh-hulls.md).
-# `city_graphical_culture` is a bare texture PREFIX, not a declared key:
-# `= "klingon"` finds gfx/portraits/city_sets/klingon_city_l01.dds. STNH
-# re-skins vanilla's own humanoid_01/reptilian_01/… sets at vanilla's paths, so
-# an empire left on those is already drawing Trek cities; the four Trek-only
-# sets STNH ships under their own prefix are named here. Flags are vendored
-# STNH heraldry at flags/trek/. See .docs/decisions/49-flags-city-sets.md.
-
-# `ruler = { }` pins NO `clothes` index on 95 of the 101 empires. Decision 23
-# set them all to 0 believing that meant "let the selector decide"; 0 is a real
-# index, and a pinned ruler keeps it for life while every other leader
-# re-evaluates the selector — so the starting president wore the empire
-# designer's pick while his own officials wore the ruler scope's.
-# `texture = 0` stays: it is the one index with a declared length to check.
-# See .docs/decisions/57-prescripted-rulers-unpin-clothes.md
-#
-# THE SEVEN THAT PIN `clothes = 0` are the seven whose species portrait uses a
-# `humanoid_master_*` selector shared by 44 species classes, where index 0 is
-# that file's human-civilian `default`. They name a GENERATED `stg_*_ruler`
-# portrait instead — a clone of the species portrait carrying a one-texture
-# clothes selector, so index 0 IS the intended garment and no index into the
-# master selector is ever taken. Decision 68 tried to compute that index and a
-# live run falsified it at all six positions it set.
-# tools/gen_ruler_clothes.py writes both generated files; make validate checks
-# the selector is one-deep rather than re-deriving a number.
-# See .docs/decisions/69-ruler-clothes-dedicated-selectors.md
-
-# `room =` is STNH's own assignment for the same empire, restored 2026-08-08 by
-# tools/fix_prescripted_rooms.py — it had been replaced wholesale by vanilla
-# personality rooms, which cost the 20 empires STNH gives a Trek room. The three
-# rows where STG keeps its own answer are listed in that script.
-# See .docs/decisions/48-room-selector-merge.md
+#   initializer         a REAL home system, GENERATED into
+#                       src/common/solar_system_initializers/stg_home_systems.txt
+#                       by tools/gen_home_systems.py. planet_name/planet_class
+#                       still override the initializer's capital, as vanilla's
+#                       own plantoid_humans does with Sol.
+#                       .docs/decisions/25-real-home-systems.md
+#   graphical_culture   all five majors are on Walshicus shipsets --
+#                       .docs/decisions/18-walshicus-shipsets-replace-stnh-hulls.md
+#   empire_flag         vendored STNH heraldry at flags/trek/ --
+#                       .docs/decisions/49-flags-city-sets.md
+#   room                STNH's own assignment, rewritten by
+#                       tools/fix_prescripted_rooms.py --
+#                       .docs/decisions/48-room-selector-merge.md
+#   ruler.clothes       ABSENT on 92 of the 99 empires, deliberately: a pinned
+#                       ruler keeps that index for life while every other leader
+#                       re-evaluates the selector.
+#                       .docs/decisions/57-prescripted-rulers-unpin-clothes.md
+#                       THE SEVEN THAT PIN `clothes = 0` name a GENERATED
+#                       `stg_*_ruler` portrait carrying a one-texture selector,
+#                       so index 0 IS the intended garment. Written by
+#                       tools/gen_ruler_clothes.py.
+#                       .docs/decisions/69-ruler-clothes-dedicated-selectors.md
+#   ruler.texture       `= 0` stays -- the one index with a declared length to
+#                       check.
 
 # ── United Federation of Planets ───────────────────────────────────────────
 stg_united_federation_of_planets = {

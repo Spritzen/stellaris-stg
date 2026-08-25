@@ -55,7 +55,7 @@ on_first_contact = {
 #   empire                                gated  in pool  rate per pulse
 #   Federation (FED)                          2      320          21.1%
 #   the other 10 gated classes                1      260          17.8%
-#   11 playable empires + all 79 AI minors    0      200          14.3%
+#   11 majors/quadrant/frontier + all minors  0      200          14.3%
 #
 # The eleven with no institution of their own are BOL, BRE, THO, CAI, XIN, SUL,
 # YRI, KRE, MAL, VID and TER -- the mirror Terran Empire being the notable one.

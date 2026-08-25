@@ -28,7 +28,7 @@ of this page.
 | write a new check | [validation/check-design.md](validation/check-design.md) |
 | plan what a playthrough should cover | [runs/README.md](runs/README.md) |
 | read `error.log` after the user played | [guides/live-runs.md](guides/live-runs.md) |
-| **act on what the last live run found** | [analysis/2026-08-16.md](analysis/2026-08-16.md) (Vulcan, 2026-08-22) · [planning/ufp-run-remediation.md](planning/ufp-run-remediation.md) (Federation, 2026-08-10) |
+| **act on what the last live run found** | [planning/open-questions.md](planning/open-questions.md) — the 2026-08-25 evening Vulcan run has no analysis of its own; its baseline is in [planning/status.md](planning/status.md). Older: [analysis/2026-08-16.md](analysis/2026-08-16.md) (Vulcan, 2026-08-22) · [planning/ufp-run-remediation.md](planning/ufp-run-remediation.md) (Federation, 2026-08-10) |
 | find out whether a question is already settled | [decisions/README.md](decisions/README.md) |
 | look up a term | [reference/glossary.md](reference/glossary.md) |
 | write documentation | [style-guide.md](style-guide.md) |

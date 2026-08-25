@@ -1,4 +1,4 @@
-﻿# Lurian name list, for the AI-only minor powers that use it.
+﻿# Lurian name list, for the minor powers that use it.
 #
 # CONVERTED from .source/688086068/common/name_lists/Lurian.txt: the tokens are
 # STNH's, resolved through STNH's own localisation and re-keyed as STG_N_. The

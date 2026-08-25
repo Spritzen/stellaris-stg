@@ -1,39 +1,32 @@
-# Star Trek Galaxies — the 79 minor powers.
+# Star Trek Galaxies — the 77 minor powers.
 #
-# 79 empires converted from STNH's own prescripted countries. Their IDENTITY is
-# STNH's — name, species, homeworld, ruler, heraldry and name list all come
-# across — and their MECHANICS are not: all 110 of STNH's use at least one
-# STNH-only origin, trait, civic or room, and not one validates against vanilla
-# 4.4 as written. So every authority/government/civic tuple below is lifted
-# whole from a vanilla prescripted empire and matched to the empire by its
-# ethics, exactly as stg_frontier_powers.txt does.
+# Converted from STNH's own prescripted countries: their IDENTITY is STNH's --
+# name, species, homeworld, ruler, heraldry, name list -- and their MECHANICS are
+# not. All 110 of STNH's use at least one STNH-only origin, trait, civic or room
+# and not one validates against vanilla 4.4 as written, so every
+# authority/government/civic tuple below is lifted whole from a vanilla
+# prescripted empire and matched by ethics, exactly as stg_frontier_powers.txt
+# does. .docs/decisions/19-stnh-minor-powers-as-ai-empires.md
 #
-# ALL 79 ARE PLAYABLE, and that is not a preference. `playable` does not gate
-# the empire PICKER, it gates the engine's empire-design DATABASE: an empire
-# whose trigger is false is never loaded, so the galaxy generator cannot draw it
-# either. Two saves prove it -- 2026-08-10 and 2026-08-22 both carry exactly 22
-# `design={}` blocks, the 22 empires that were not gated, and none of these 79.
-# There is no AI-only prescripted empire in Stellaris: an empire is in the
-# picker and in the pool, or in neither.
-# See .docs/decisions/88-playable-gates-the-design-database.md.
+# See stg_major_powers.txt's header for the per-field notes and
+# .docs/reference/prescripted-empire-rules.md before editing any empire here.
 #
-# SHIP ART, and the reason this file was affordable at all: 34 of the 79 keep
-# their own STNH culture, because it is one of generic_01/02/05/06/07 — already
-# harvested as donor art and now declared as cultures by tools/gen_shipsets.py.
-# The other 45 point at a Walshicus set instead of their own STNH directory.
-# That is deliberately a compromise: a Gorn empire flying Xindi hulls is wrong,
-# but the alternative was 38 more STNH directories and ~5,800 log records for
-# empires you mostly meet as a portrait. See
-# .docs/decisions/19-stnh-minor-powers-as-ai-empires.md.
+# ALL 77 ARE PLAYABLE, and that is not a preference. `playable` gates the
+# engine's empire-design DATABASE, not the picker, and the galaxy generator draws
+# from that same database -- so a gated empire is in neither. There is no AI-only
+# prescripted empire in Stellaris.
+# .docs/decisions/88-playable-gates-the-design-database.md
+#
+# SHIP ART, and the reason this file was affordable at all: 34 of the 77 keep
+# their own STNH culture, because it is one of generic_01/02/05/06/07 -- already
+# harvested as donor art and declared as cultures by tools/gen_shipsets.py. The
+# other 43 point at a Walshicus set instead of their own STNH directory. A Gorn
+# empire flying Xindi hulls is wrong; the alternative was 38 more STNH
+# directories and ~5,800 log records for empires you mostly meet as a portrait.
+# .docs/decisions/19-stnh-minor-powers-as-ai-empires.md
 #
 # GENERATED SHAPE, HAND-OWNED FILE: written once by a throwaway script from
 # .source/, then owned here. Regenerating it is not part of `make vendor`.
-
-# `room =` is STNH's own assignment for the same empire, restored 2026-08-08 by
-# tools/fix_prescripted_rooms.py — it had been replaced wholesale by vanilla
-# personality rooms, which cost the 20 empires STNH gives a Trek room. The three
-# rows where STG keeps its own answer are listed in that script.
-# See .docs/decisions/48-room-selector-merge.md
 
 # ── Sovereignty (02 beta quadrant) ──
 stg_minor_acamarian_sovereignty = {
@@ -5096,139 +5089,6 @@ stg_minor_zakdorn_alliance = {
 		name = "STG_ruler_name_minor_zakdorn_alliance"
 		gender = male
 		portrait = "zakdorn_male_01"
-		texture = 0
-		trait = "trait_ruler_charismatic"
-		leader_class = official
-	}
-}
-
-# ── of Hope (2300s) (05 alt) ──
-stg_minor_tng_coalition_hope = {
-	name = "STG_EMPIRE_minor_tng_coalition_hope"
-	adjective = "STG_adjective_minor_tng_coalition_hope"
-	spawn_enabled = yes
-
-	ship_prefix = "STG_ship_prefix_minor_tng_coalition_hope"
-
-	species = {
-		class = "VUL"
-		portrait = "vulcan"
-		name = "STG_species_name_minor_tng_coalition_hope"
-		plural = "STG_species_plural_minor_tng_coalition_hope"
-		adjective = "STG_species_adjective_minor_tng_coalition_hope"
-		name_list = "STG_VULCAN"
-		trait = "trait_organic"
-		trait = "trait_storm_touched"
-		trait = "trait_charismatic"
-		trait = "trait_nomadic"
-		trait = "trait_solitary"
-	}
-
-	room = "vulcan_room"
-
-	authority = "auth_oligarchic"
-	civics = { "civic_astrometeorology" "civic_storm_callers" }
-	government = gov_storm_chasers
-	origin = "origin_default"
-
-	ethic = "ethic_xenophile"
-	ethic = "ethic_militarist"
-	ethic = "ethic_spiritualist"
-
-	initializer = "stg_minor_tng_coalition_hope_home"
-	planet_name = "STG_planet_name_minor_tng_coalition_hope"
-	planet_class = "pc_desert"
-	system_name = "STG_system_name_minor_tng_coalition_hope"
-
-	graphical_culture = "starfleet_tng"
-	city_graphical_culture = "humanoid_01"
-
-	empire_flag = {
-		icon = {
-			category = "trek"
-			file = "coalition_of_hope.dds"
-		}
-		background = {
-			category = "backgrounds"
-			file = "00_solid.dds"
-		}
-		colors = {
-			"dark_red"
-			"brown"
-			"null"
-			"null"
-		}
-	}
-
-	ruler = {
-		name = "STG_ruler_name_minor_tng_coalition_hope"
-		gender = male
-		portrait = "charMirrorSarek"
-		texture = 0
-		trait = "trait_ruler_charismatic"
-		leader_class = official
-	}
-}
-
-# ── Klingon-Cardassian Alliance (2300s) (05 alt) ──
-stg_minor_tng_klingon_cardassian_alliance = {
-	name = "STG_EMPIRE_minor_tng_klingon_cardassian_alliance"
-	adjective = "STG_adjective_minor_tng_klingon_cardassian_alliance"
-	spawn_enabled = yes
-
-	ship_prefix = "STG_ship_prefix_minor_tng_klingon_cardassian_alliance"
-
-	species = {
-		class = "TNGK"
-		portrait = "klingon"
-		name = "STG_species_name_minor_tng_klingon_cardassian_alliance"
-		plural = "STG_species_plural_minor_tng_klingon_cardassian_alliance"
-		adjective = "STG_species_adjective_minor_tng_klingon_cardassian_alliance"
-		name_list = "STG_KLINGON"
-		trait = "trait_organic"
-		trait = "trait_strong"
-		trait = "trait_resilient"
-	}
-
-	room = "klingon_room"
-
-	authority = "auth_imperial"
-	civics = { "civic_police_state" "civic_slaver_guilds" }
-	government = gov_star_empire
-	origin = "origin_default"
-
-	ethic = "ethic_authoritarian"
-	ethic = "ethic_fanatic_militarist"
-
-	initializer = "stg_minor_tng_klingon_cardassian_alliance_home"
-	planet_name = "STG_planet_name_minor_tng_klingon_cardassian_alliance"
-	planet_class = "pc_continental"
-	system_name = "STG_system_name_minor_tng_klingon_cardassian_alliance"
-
-	graphical_culture = "starfleet_tng"
-	city_graphical_culture = "humanoid_01"
-
-	empire_flag = {
-		icon = {
-			category = "trek"
-			file = "Mirror2.dds"
-		}
-		background = {
-			category = "backgrounds"
-			file = "00_solid.dds"
-		}
-		colors = {
-			"dark_blue"
-			"dark_teal"
-			"null"
-			"null"
-		}
-	}
-
-	ruler = {
-		name = "STG_ruler_name_minor_tng_klingon_cardassian_alliance"
-		gender = male
-		portrait = "charGorkon"
 		texture = 0
 		trait = "trait_ruler_charismatic"
 		leader_class = official

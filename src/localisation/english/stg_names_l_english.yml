@@ -1911,7 +1911,7 @@
 # ── The minor powers ───────────────────────────────────────────────────────
 # CONVERTED from STNH's own name lists and localisation — see
 # .docs/decisions/19-stnh-minor-powers-as-ai-empires.md. Shared by the 79
-# AI-only empires in src/prescripted_countries/stg_z_minor_powers.txt.
+# minor powers in src/prescripted_countries/stg_z_minor_powers.txt.
  STG_N_Gatherer:0 "Gatherer"
  STG_N_Savage:0 "Savage"
  STG_N_Barbarian:0 "Barbarian"

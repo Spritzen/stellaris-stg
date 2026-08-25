@@ -52,6 +52,32 @@ only — **the `gfx/` tables have no overwrite column at all**, so duplicate
 on exactly the rows you want: `random_names` is one, and it had to be settled
 from the source mods' own file layouts instead (decision 44).
 
+## Prescripted empires and whether the AI ever spawns one
+
+The live research thread behind
+[open-questions.md](../planning/open-questions.md)'s "Whether the galaxy is Trek
+now". **Read the caveat at the top of this page especially hard here** — the
+community material on this is old, contradictory, and was wrong in two specific
+ways when checked against 4.4.
+
+| Source | Good for |
+|---|---|
+| [Empire modding](https://stellaris.paradoxwikis.com/Empire_modding) | The only authoritative page on `prescripted_countries/`. Documents `spawn_enabled` as `no` / `yes` / `always` and says deleting the `initializer` line spawns the empire in a randomly generated system. **Says nothing about what makes a prescripted empire eligible for an AI slot**, which is the question, and nothing about `randomized`. |
+| [Empire modding (Fandom)](https://stellaris.fandom.com/wiki/Empire_modding) | Mirror. **Returns HTTP 402 to `WebFetch`** — same as the Modding mirror above. |
+| Steam workshop force-spawn mods and their comment threads | **Rate-limited: `WebFetch` returns "You've made too many requests recently."** Readable only via search snippets. Two claims recur and both are worth knowing: that two empires sharing a starting system lock each other out (**true**, and vanilla ships the string for it — `AI_EMPIRE_PREVIEW_TOOLTIP_INCOMPATIBLE_SYSTEM`), and that `randomized = no` on a species class or portrait set blocks a prescripted empire from force-spawning (**not supported by vanilla's own documentation**: `/stellaris/common/portrait_sets/00_portrait_sets.txt` defines `randomizable` and `non_randomized_portraits` as applying to *"empires whose design was randomly generated"*, which a prescripted empire is not). |
+
+**The best source on this question is not online — it is
+`/stellaris/prescripted_countries/` itself**, cross-tabulated on `spawn_enabled`
+against each empire's `initializer` and that initializer's `usage`. That
+measurement is in
+[open-questions.md](../planning/open-questions.md#what-vanilla-does-and-the-one-thing-every-stg-empire-does-that-vanilla-never-does)
+and it contradicted a figure this project had been relying on since 2026-08-10.
+
+**And the engine tells you directly, before you generate anything:** the galaxy
+setup screen's AI empire preview. `grep AI_EMPIRE_PREVIEW
+/stellaris/localisation/english/main_1_l_english.yml` for what its tooltips can
+say.
+
 ## Launcher and local-mod registration
 
 The launcher builds its mod list from a registry, **not** by scanning `mod/`.

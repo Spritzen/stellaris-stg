@@ -33,6 +33,60 @@ The Cardassian Union shipped as `auth_oligarchic` with
 every combination had been checked against "the `possible` block of the thing it
 names". It had been; just not the authority's.
 
+## The government wants an authority, and usually a civic or an ethic too
+
+The `possible` block of every government STG uses, flattened. Read it as *what
+the empire must already be* before the government is legal:
+
+```
+gov_representative_democracy  is_democratic_authority
+gov_moral_democracy           is_democratic_authority + is_pacifist
+gov_direct_democracy          is_democratic_authority + is_materialist
+gov_theocratic_republic       is_democratic_authority + is_spiritualist
+gov_science_directorate       is_oligarchic_authority + civic_technocracy
+gov_citizen_stratocracy       is_oligarchic_authority + civic_citizen_service
+gov_irenic_bureaucracy        is_oligarchic_authority + is_pacifist
+gov_military_junta            is_oligarchic_authority + is_militarist
+gov_military_dictatorship     is_dictatorial_authority + is_militarist
+gov_martial_empire            is_imperial_authority + civic_warrior_culture
+gov_star_empire               is_imperial_authority + is_militarist
+gov_divine_empire             is_imperial_authority + civic_imperial_cult
+gov_trade_league              is_megacorp + civic_free_traders | civic_trading_posts
+gov_machine_assimilator       is_machine_empire + civic_machine_assimilator
+```
+
+Re-derive rather than trusting this block — it is a convenience copy and the
+authority is `/stellaris/common/governments/`:
+
+```bash
+grep -A15 '^gov_star_empire' /stellaris/common/governments/*.txt
+```
+
+## Traits: two points, and the archetype gates the list
+
+The budget is vanilla's default of **2 points** and every list must sum to
+exactly 2. Beyond the arithmetic, **the species archetype decides which traits
+exist at all** — `trait_adaptive`, `trait_slow_breeders` and `trait_fleeting`
+are BIOLOGICAL-only, so the Tholians take lithoid-legal traits and the Borg
+robot ones.
+
+## `graphical_culture` is set on the EMPIRE too, and the empire's copy wins
+
+This is the one that produces no error and no log line. `graphical_culture`
+appears both in `common/species_classes/` and in the prescripted empire, and
+**the empire's value overrides the class's**. Remapping one without the other
+does not dangle and does not warn — the empire silently drops to
+`fallback = mammalian_01` and flies vanilla mammalian hulls.
+
+Two fields beside it resolve by bare name with nothing declaring them, so a typo
+is equally silent: `city_graphical_culture` is a texture **prefix**
+(`= "klingon"` finds `gfx/portraits/city_sets/klingon_city_l01.dds`) and `room`
+is a `*_room.dds`. `check_room_references` and `check_graphical_culture_art` ask
+both questions — [decision 48](../decisions/48-room-selector-merge.md),
+[49](../decisions/49-flags-city-sets.md),
+[62](../decisions/62-city-set-cultures-undeclared.md),
+[84](../decisions/84-shipset-descs-and-home-system-names.md).
+
 ## A civic can grant a species trait the species block must also carry
 
 The engine reports this **once per trait name**, so six broken empires read as

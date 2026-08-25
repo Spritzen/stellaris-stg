@@ -1,20 +1,26 @@
 # STG define overrides.
 #
 # ── CUSTOM_EMPIRE_SPAWN_CHANCE ─────────────────────────────────────────────
-# Vanilla ships 50 on a `10 = 1%` scale (00_defines.txt:972) -- a 5% chance
-# that any given AI slot is filled from the prescripted pool rather than being
-# randomly generated. That is why a Trek galaxy arrived with no Trek in it: at
-# 18 AI empires it draws zero about 40% of the time, which is what the runs of
-# 2026-08-10 (22 empires met) and 2026-08-24 (18) both did. No STG empire was
-# ever rejected.
+# Vanilla ships 50 on a `10 = 1%` scale (00_defines.txt:972): a 5% chance that
+# any given AI slot is filled from the prescripted pool rather than randomly
+# generated. 1000 is 100%, which is safe here only because decision 14 left the
+# prescripted pool all-Trek and decision 19 made it deep enough to fill a
+# galaxy.
 #
-# 1000 is 100%. That is the right value only because decision 14 left the
-# prescripted pool all-Trek and decision 19 made it 101 empires deep, and it is
-# the ONLY lever for this: the designer's force-spawn checkbox exists for
-# player-made empires and a prescripted one cannot reach it.
+# THIS IS NOT A CLOSED QUESTION, whatever decision 86 says. Two galaxies have
+# now been generated at 1000, the second with all 99 designs loaded, and both
+# contained zero Trek AI empires. The define was a real defect and is a real
+# fix; it was never the cause. Do not read this file as the answer to "why is
+# there no Trek in the galaxy", and do not raise or lower the value looking for
+# one -- at 100% the draw rate is no longer the variable.
+# .docs/planning/open-questions.md, "Whether the galaxy is Trek now"
+# .docs/decisions/86-prescripted-empires-never-drawn.md
+# .docs/decisions/88-playable-gates-the-design-database.md
+#
+# This is the only lever of its kind: the designer's force-spawn checkbox exists
+# for player-made empires and a prescripted one cannot reach it.
 # FALLEN_CUSTOM_EMPIRE_SPAWN_CHANCE stays at vanilla's 50 -- STG ships no
 # prescripted fallen empire for it to find.
-# See .docs/decisions/86-prescripted-empires-never-drawn.md.
 NGameplay = {
 	CUSTOM_EMPIRE_SPAWN_CHANCE = 1000
 }

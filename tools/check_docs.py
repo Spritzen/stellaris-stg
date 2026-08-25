@@ -48,6 +48,15 @@ import re
 import sys
 
 REPO = pathlib.Path(__file__).resolve().parent.parent
+
+# Trees `make vendor` / `make sources-sync` generate. A doc link into one of
+# these resolves only after a build and vanishes mid-rebuild, so it is a check
+# that passes or fails on the state of the working tree rather than on the
+# documentation. Cite the git-tracked input instead -- `src/` for our own
+# content, `.docs/provenance.md` for what the merge did with it.
+# Found 2026-08-25: one link into stg-build/ failed this check transiently
+# while a background `make vendor` was rewriting the tree.
+GENERATED_TREES = ("stg-build", ".source", ".vendor-cache", "dist")
 DOCS = REPO / ".docs"
 
 # Docs outside .docs/ that take part in the link graph.
@@ -157,6 +166,15 @@ def check_links() -> int:
             target = f.parent if path_part else f
             if path_part:
                 target = (f.parent / path_part).resolve()
+            try:
+                head = target.relative_to(REPO).parts[0]
+            except ValueError:
+                head = ""
+            if head in GENERATED_TREES:
+                errors.append(f"{f.relative_to(REPO)}: link into the generated "
+                              f"tree {head}/ ({path_part}) -- cite the tracked "
+                              f"input under src/, or .docs/provenance.md")
+                continue
             if not target.exists():
                 errors.append(f"{f.relative_to(REPO)}: link to missing "
                               f"{path_part or raw}")

@@ -1,41 +1,28 @@
 # Star Trek Galaxies — the eight frontier powers.
 #
-# New prefixed file, merging with stg_major_powers.txt and
-# stg_quadrant_powers.txt
-# beside it; between the three they are the whole empire picker.
+# Merges with stg_major_powers.txt and stg_quadrant_powers.txt beside it; see the
+# majors' header for the per-field notes, which apply here unchanged.
 #
 # THESE EIGHT EXIST BECAUSE THE ART DID. Each names a Walshicus shipset that
-# decision 18 brought into the harvest for a species STG had no empire for —
-# the ships, portraits and heraldry were all already in the tree and idle.
-# See .docs/decisions/18-walshicus-shipsets-replace-stnh-hulls.md.
+# decision 18 brought into the harvest for a species STG had no empire for --
+# ships, portraits and heraldry all already in the tree and idle.
+# .docs/decisions/18-walshicus-shipsets-replace-stnh-hulls.md
 #
-# EVERY authority / government / civic / ethic TUPLE BELOW IS COPIED WHOLE FROM
-# A VANILLA PRESCRIPTED EMPIRE. The game does not report an invalid combination
-# — it refuses to start — and the constraint table in stg_quadrant_powers.txt is
-# only the part that binds most often. Taking a tuple vanilla itself ships is
-# the one way to be certain, so where a civic reads oddly for the species
+# EVERY authority/government/civic/ethic TUPLE BELOW IS COPIED WHOLE FROM A
+# VANILLA PRESCRIPTED EMPIRE, and that is the rule to keep rather than the tuples
+# themselves: .docs/reference/prescripted-empire-rules.md lists five databases
+# that can veto and the game reports none of them, so a tuple vanilla itself
+# ships is the only certain one. Where a civic reads oddly for the species
 # (civic_environmentalist for the Krenim, civic_mining_guilds for the Malon) the
 # note above that empire says how to read it rather than substituting a better
-# word for a worse guarantee. The only substitutions made are civics vanilla
-# uses with the SAME authority elsewhere.
+# word for a worse guarantee. The only substitutions are civics vanilla uses with
+# the SAME authority elsewhere.
 #
-# Trait budgets are the vanilla default of 2 points and every list below sums to
-# exactly 2. All eight are BIOLOGICAL, so BIOLOGICAL-only traits are legal here.
+# All eight are BIOLOGICAL, so BIOLOGICAL-only traits are legal here.
 #
-# `initializer =` names a real home system, as in the other two files — see the
-# header of stg_major_powers.txt and .docs/decisions/25-real-home-systems.md.
-# `graphical_culture` is set
-# here AND on the species class, and this one wins — they must agree or the
-# empire silently drops to `fallback = mammalian_01`.
-#
-# None of these eight is referenced by an STNH clothing selector — STNH ships no
-# uniform art for them — so they wear the selector's default (decision 16).
-
-# `room =` is STNH's own assignment for the same empire, restored 2026-08-08 by
-# tools/fix_prescripted_rooms.py — it had been replaced wholesale by vanilla
-# personality rooms, which cost the 20 empires STNH gives a Trek room. The three
-# rows where STG keeps its own answer are listed in that script.
-# See .docs/decisions/48-room-selector-merge.md
+# None of the eight is referenced by an STNH clothing selector -- STNH ships no
+# uniform art for them -- so they wear the selector's default
+# (.docs/decisions/16-phase-3-clothing-triggers.md).
 
 # ── Caitian Union ──────────────────────────────────────────────
 # Cait, in the Ferasa system — a Federation member world.
