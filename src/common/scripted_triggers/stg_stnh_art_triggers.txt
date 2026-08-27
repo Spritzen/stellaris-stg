@@ -14,10 +14,10 @@
 # under INERT keeps `always = no`, which is a definition and not a body: it
 # resolves, so nothing dangles, and the entry it gates is simply never chosen.
 # Reasoning, the era choice and the 4.4 mapping table:
-# .docs/decisions/16-phase-3-clothing-triggers.md
+# .docs/decisions/15-phase-3-clothing-triggers.md
 #
 # Keys are STNH's names, referenced verbatim by the art, so only the FILE takes
-# the stg_ prefix. Same exception as decision 10.
+# the stg_ prefix. Same exception as decision 09.
 #
 # Two things that are NOT STNH's definitions, and must not be "corrected" back:
 #   * STNH's eras are `years_passed` windows — it is a timeline conversion that
@@ -72,7 +72,7 @@ is_ufp = { is_starfleet_uniform_country = yes }
 # rows want `uses_terran_uniform_ruler`, two different triggers, and both were
 # on the INERT list — so every Terran leader fell through the master selector
 # to `all/generic_female_uniform_01.dds` while the empire designer showed the
-# mirror coat correctly (decision 22's game_setup gate). Same shape as decision
+# mirror coat correctly (decision 20's game_setup gate). Same shape as decision
 # 22: the scope the designer reads and the scopes the game reads are separate,
 # and getting one right says nothing about the other.
 is_terran_empire = {

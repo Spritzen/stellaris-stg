@@ -9,7 +9,7 @@
 # Clothing is not wired here. The vendored selectors pick a uniform from the
 # species class and the STNH triggers in
 # src/common/scripted_triggers/stg_stnh_art_triggers.txt, which have real bodies
-# since .docs/decisions/16-phase-3-clothing-triggers.md. A species whose class no
+# since .docs/decisions/15-phase-3-clothing-triggers.md. A species whose class no
 # selector names falls through to human civilian clothes — `make validate`
 # reports that, and it is not fixed in this file.
 
@@ -222,8 +222,8 @@ stg_terran_portraits = {
 #
 # A species class with no set here has NO PORTRAIT the empire designer can
 # offer, and the designer answers that by hiding the empire — 'Must select a
-# portrait'. That is not only a picker problem: decision 88 established that
-# the picker and the galaxy generator read the same design database, so an
+# portrait'. That is not only a picker problem: the picker and the galaxy
+# generator read the same design database, so an
 # empire hidden here cannot spawn as AI either.
 #
 # These were invisible to this rule while they carried `playable =

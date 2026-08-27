@@ -10,7 +10,7 @@ its "FICTIONAL" block is 796 of VANILLA's own names plus 40, and the 5,156 it
 adds under "EXTRA" are filler (Enchilada, Arugala, Bruscetta, tree and surname
 lists) that would read as a bug in a Trek galaxy. The hand-built maps are where
 the Trek content is: 1,444 distinct system names placed by name.
-See .docs/decisions/52-trek-star-names.md.
+See .docs/decisions/84-static-galaxy-is-the-mechanism.md.
 
 CONTENT comes from .source/, never from the built tree. stg-build/ IS read, for
 one question only -- which names the merged pool already holds, so this file
@@ -94,7 +94,7 @@ def token(name: str) -> str:
     localisation/english/random_names/, without a single exception. STG shipped
     330 quoted entries and no keys, so the 2026-08-10 Federation run read
     `Arachnid_Nebula` and `Kullat_Nunu` off the galaxy map. Hence loc_lines().
-    See .docs/decisions/52-trek-star-names.md and its falsification.
+    See .docs/decisions/76-random-names-are-loc-keys.md.
     """
     n = " ".join(name.split())
     if " " in n:
@@ -175,7 +175,7 @@ def main() -> int:
 
     # Every name STG already owns: home systems, capitals, name-list pools.
     # A random system called Bajor while the Bajoran Republic is at Bajor is
-    # the class of bug decision 25 was written about.
+    # the class of bug decision 23 was written about.
     owned: set[str] = set()
     for f in sorted((REPO / "src" / "localisation" / "english").glob("*.yml")):
         owned |= {v for _, v in re.findall(r'^\s*(STG_\w+):0\s*"([^"]*)"',
@@ -207,7 +207,7 @@ def main() -> int:
         "#",
         "# Harvested from STNH's hand-built map/setup_scenarios by",
         "# tools/gen_star_names.py. These pools APPEND rather than replace",
-        "# (decision 44), so this file adds to the 5,702 names Real Space and",
+        "# (decision 42), so this file adds to the 5,702 names Real Space and",
         "# YAGEM already contribute and replaces none of them.",
         "#",
         "# A QUOTED entry is a localisation KEY — all 110 of vanilla's own are",
@@ -216,7 +216,7 @@ def main() -> int:
         "# src/localisation/english/stg_random_names_l_english.yml, written by",
         "# the same tool. Unquoted single-word entries are literals and need",
         "# none; apostrophes are ordinary here, unlike name lists.",
-        "# See .docs/decisions/52-trek-star-names.md and its falsification.",
+        "# See .docs/decisions/76-random-names-are-loc-keys.md.",
         "",
         "star_names = {",
     ]

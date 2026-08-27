@@ -17,7 +17,7 @@
 | **skip** | A path an additive-only source wanted and did not get. Not an error, and nothing reports it. |
 | **overwrite event** | One source writing over a path another already wrote. A path three sources claim scores two events. |
 | **contested key** | Two sources defining one database key under **different filenames**. Harvest order does not reach this — filename sort does. |
-| **FIOS / LIOS** | *First in, only served* / *last in, only served*: which end of the filename sort wins a contested key. Fourteen `common/` directories are FIOS; the rest are LIOS. A **borrowed** table — [decision 29](../decisions/29-merge-semantics-per-directory.md). |
+| **FIOS / LIOS** | *First in, only served* / *last in, only served*: which end of the filename sort wins a contested key. Fourteen `common/` directories are FIOS; the rest are LIOS. A **borrowed** table — [decision 27](../decisions/27-merge-semantics-per-directory.md). |
 | **rename** | A `vendor.yml` lever that changes a vendored file's *filename* to move it in that sort. The only way to change who wins a contested key. |
 | **patch** | A `vendor.yml` edit to named bytes inside a vendored file. Fails loudly when the source changes — preferred over an `src/` copy for small edits. |
 | **resample** | Re-cutting vendored art at harvest to dimensions read off vanilla (`resample_to_vanilla:`), in `crop` or `canvas` fit. |
@@ -34,5 +34,5 @@
 | **slot label** | An analysis filename's `YYYY-MM-DD` — a **sequence position, not a date**. Several runs happen on one real day. [Conventions](../analysis/README.md). |
 | **STNH** | Star Trek: New Horizons — the 3.12-era total conversion STG takes art from and script from never. |
 | **Walshicus** | The author of the 22 Trek shipsets built on a vanilla chassis. 17 of the 22 cultures the majors, quadrant and frontier powers fly are his; the other five are generated STNH hulls. |
-| **major / minor power** | 22 prescripted empires authored for STG / 77 converted from STNH. A naming split only: all 99 are playable and all 99 are in the pool the galaxy generator draws from ([decision 88](../decisions/88-playable-gates-the-design-database.md)) — **being in the pool is not the same as being drawn, and none has been**: [open questions](../planning/open-questions.md). |
+| **major / minor power** | 22 prescripted empires authored for STG / 77 converted from STNH. A naming split only: all 99 are playable and all 99 are in the pool the galaxy generator draws from ([decision 83](../decisions/83-design-database-is-not-the-cause.md)) — **being in the pool is not the same as being drawn, and none has been**: [open questions](../planning/open-questions.md). |
 | **graphical culture** | A **name prefix**, not a directory: the engine resolves ship art as `<culture>_<entity>`. Also what a city set needs declared before an empire can use it. |

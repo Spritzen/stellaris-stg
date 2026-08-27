@@ -6,7 +6,7 @@
 # and not one validates against vanilla 4.4 as written, so every
 # authority/government/civic tuple below is lifted whole from a vanilla
 # prescripted empire and matched by ethics, exactly as stg_frontier_powers.txt
-# does. .docs/decisions/19-stnh-minor-powers-as-ai-empires.md
+# does.
 #
 # See stg_major_powers.txt's header for the per-field notes and
 # .docs/reference/prescripted-empire-rules.md before editing any empire here.
@@ -15,7 +15,7 @@
 # engine's empire-design DATABASE, not the picker, and the galaxy generator draws
 # from that same database -- so a gated empire is in neither. There is no AI-only
 # prescripted empire in Stellaris.
-# .docs/decisions/88-playable-gates-the-design-database.md
+# .docs/decisions/83-design-database-is-not-the-cause.md
 #
 # SHIP ART, and the reason this file was affordable at all: 34 of the 77 keep
 # their own STNH culture, because it is one of generic_01/02/05/06/07 -- already
@@ -23,7 +23,7 @@
 # other 43 point at a Walshicus set instead of their own STNH directory. A Gorn
 # empire flying Xindi hulls is wrong; the alternative was 38 more STNH
 # directories and ~5,800 log records for empires you mostly meet as a portrait.
-# .docs/decisions/19-stnh-minor-powers-as-ai-empires.md
+# .docs/decisions/17-walshicus-shipsets-replace-stnh-hulls.md
 #
 # GENERATED SHAPE, HAND-OWNED FILE: written once by a throwaway script from
 # .source/, then owned here. Regenerating it is not part of `make vendor`.

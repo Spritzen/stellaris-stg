@@ -2,7 +2,7 @@
 #
 # One of four prescripted-empire files that merge into the whole empire picker;
 # vanilla's 52 are removed by the 19 comment-only shadow files here
-# (.docs/decisions/14-remove-vanilla-prescripted-empires.md) and default.txt is
+# (.docs/decisions/13-remove-vanilla-prescripted-empires.md) and default.txt is
 # untouched, so custom empire creation still works.
 #
 # BEFORE EDITING ANY EMPIRE HERE, read
@@ -21,29 +21,29 @@
 #                       this block's key. Entries are GENERATED into
 #                       src/common/prescripted_flags/stg_empire_flags.txt by
 #                       tools/gen_empire_flags.py; this line is not.
-#                       .docs/decisions/93-static-galaxy-scenario.md
+#                       .docs/decisions/86-static-galaxy-scenario.md
 #   initializer         a REAL home system, GENERATED into
 #                       src/common/solar_system_initializers/stg_home_systems.txt
 #                       by tools/gen_home_systems.py. planet_name/planet_class
 #                       still override the initializer's capital, as vanilla's
 #                       own plantoid_humans does with Sol.
-#                       .docs/decisions/25-real-home-systems.md
+#                       .docs/decisions/23-real-home-systems.md
 #   graphical_culture   all five majors are on Walshicus shipsets --
-#                       .docs/decisions/18-walshicus-shipsets-replace-stnh-hulls.md
+#                       .docs/decisions/17-walshicus-shipsets-replace-stnh-hulls.md
 #   empire_flag         vendored STNH heraldry at flags/trek/ --
-#                       .docs/decisions/49-flags-city-sets.md
+#                       .docs/decisions/47-flags-city-sets.md
 #   room                STNH's own assignment, rewritten by
 #                       tools/fix_prescripted_rooms.py --
-#                       .docs/decisions/48-room-selector-merge.md
+#                       .docs/decisions/46-room-selector-merge.md
 #   ruler.clothes       ABSENT on 92 of the 99 empires, deliberately: a pinned
 #                       ruler keeps that index for life while every other leader
 #                       re-evaluates the selector.
-#                       .docs/decisions/57-prescripted-rulers-unpin-clothes.md
+#                       .docs/decisions/54-prescripted-rulers-unpin-clothes.md
 #                       THE SEVEN THAT PIN `clothes = 0` name a GENERATED
 #                       `stg_*_ruler` portrait carrying a one-texture selector,
 #                       so index 0 IS the intended garment. Written by
 #                       tools/gen_ruler_clothes.py.
-#                       .docs/decisions/69-ruler-clothes-dedicated-selectors.md
+#                       .docs/decisions/65-ruler-clothes-dedicated-selectors.md
 #   ruler.texture       `= 0` stays -- the one index with a declared length to
 #                       check.
 

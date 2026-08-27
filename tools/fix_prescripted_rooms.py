@@ -2,9 +2,9 @@
 """One-shot: rewrite `room =` in src/prescripted_countries/stg_*.txt from the
 assignment STNH's own prescripted files make.
 
-STG's 101 empires were converted from STNH's (decision 19) but their `room =`
+STG's 101 empires were converted from STNH's, but their `room =`
 values were not: 99 of 101 carried a vanilla `personality_*` room, and the 20
-empires STNH gives a Trek room lost it. Same class of defect as decision 47 --
+empires STNH gives a Trek room lost it. Same class of defect as decision 45 --
 a converted field that no longer says what the source says, reported by nothing
 because a room that resolves to the wrong picture still resolves.
 

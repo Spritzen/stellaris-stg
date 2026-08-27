@@ -26,7 +26,7 @@
 globs; `make vendor` / `provenance` / `clean-vendor`; and the `validate.py` checks
 that checksum vendored files and flag an unannotated `src/` shadow. Two merges
 landed in `src/`; the other two proved unnecessary
-([decision 06](../decisions/06-gui-merges-unnecessary.md)).
+([decision 05](../decisions/05-gui-merges-unnecessary.md)).
 
 ---
 
@@ -57,7 +57,7 @@ portrait groups, name lists, prescripted empires, and localisation.
 **Vanilla's 52 prescripted empires are removed** — 19 comment-only shadow files,
 so the picker and AI spawning offer Trek and nothing else. `default.txt` is
 deliberately kept: it is the custom-empire template, not a playable empire.
-[Decision 14](../decisions/14-remove-vanilla-prescripted-empires.md).
+[Decision 13](../decisions/13-remove-vanilla-prescripted-empires.md).
 
 ---
 
@@ -65,11 +65,11 @@ deliberately kept: it is the custom-empire template, not a playable empire.
 
 **COMPLETE.** 99 prescripted empires — 22 majors/quadrant/frontier powers and
 77 minors, all playable and all in the pool the galaxy generator draws from
-since [decision 88](../decisions/88-playable-gates-the-design-database.md) — over 99
+since the `playable = stg_never` gate was removed — over 99
 distinct species classes. 92 name lists, 36 generated home systems plus vanilla's
 Sol. `src/common/species_classes/stg_species_classes.txt` declares **129** classes —
 the other 30 are the STNH selector stubs of
-[decision 32](../decisions/32-declare-stub-species-classes.md), which are not
+[decision 30](../decisions/30-declare-stub-species-classes.md), which are not
 empires.
 
 ### The 22 majors, quadrant and frontier powers
@@ -98,24 +98,22 @@ Converted rather than authored: their identity is STNH's (names, species,
 homeworlds, rulers, heraldry, 70 name lists totalling 6,302 loc keys), their
 mechanics are vanilla's, because all 110 of STNH's use at least one STNH-only
 origin, trait, civic or room and not one validates against 4.4 as written.
-[Decision 19](../decisions/19-stnh-minor-powers-as-ai-empires.md).
 
 They were built as **AI-only**, on `playable = stg_never` + `spawn_enabled =
 yes`. There is no such state: `playable` gates the engine's design database, the
 galaxy generator draws from that database, and so the gate kept them out of both
-the picker and the galaxy for four live runs.
-[Decision 88](../decisions/88-playable-gates-the-design-database.md) removed it —
+the picker and the galaxy for four live runs. The gate was removed 2026-08-25 —
 all 99 empires are playable, and all 99 are in the pool the galaxy generator draws from — **though six galaxies running have drawn none of them**, and the 2026-08-26 save proved the pool itself is correct
-([90](../decisions/90-design-database-is-not-the-cause.md)). The pool was never
+([83](../decisions/83-design-database-is-not-the-cause.md)). The pool was never
 the mechanism: AI empires are created by their home system's initializer, which a
-static galaxy scenario places — [92](../decisions/92-create-country-initializers.md),
+static galaxy scenario places — [85](../decisions/85-create-country-initializers.md),
 planned in [static-galaxy-plan.md](static-galaxy-plan.md).
 
 ### Species-class localisation
 
 All 129 declared classes carry vanilla's 27-key family, derived off the class key
 rather than prefixed `STG_` — which the engine never looks up.
-[Decision 21](../decisions/21-species-class-localisation.md).
+[Decision 19](../decisions/19-species-class-localisation.md).
 
 ### Home systems
 
@@ -126,20 +124,19 @@ Federation is on vanilla's own real Sol. The mirror Terran Empire used to
 was the wrong way round: two prescripted empires naming one starting system is a
 documented engine failure that logs nothing and **costs both of them**. It has
 its own authored mirror Sol since 2026-08-25.
-[Decision 25](../decisions/25-real-home-systems.md),
-[88](../decisions/88-playable-gates-the-design-database.md).
+[Decision 23](../decisions/23-real-home-systems.md).
 
 > **This file crashed the game at startup three separate times, and the pattern is
 > the lesson.** First: eleven STNH identifiers the generator's remap tables passed
 > through unchanged, into a tree that does not vendor STNH's `common/`
-> ([26](../decisions/26-home-system-classes.md)). Second: the same class again,
+> ([24](../decisions/24-home-system-classes.md)). Second: the same class again,
 > because the first fix repaired only the instances the evidence named. Third: the
 > generator quoted the `class = star` **keyword**, which stops it resolving —
 > **20 of the 37 systems spawned with no star**, and with no star there is no home
 > starbase and no `capital_star` for the starting fleets. One log line for the one
 > system that was played, 23 star bodies actually broken, and all three checks over
 > the file were blind because they normalised the quotes away before comparing
-> ([27](../decisions/27-quoted-class-keyword.md)).
+> ([25](../decisions/25-quoted-class-keyword.md)).
 
 **62 minors are still on generated systems**, because their STNH originals
 are procedural and resolve against random lists in the `common/` we do not vendor.
@@ -149,9 +146,9 @@ are procedural and resolve against random lists in the `common/` we do not vendo
 Written 2026-08-08: 829 star names and 80 nebula names in
 `src/common/random_names/base/stg_star_names.txt`, taking the pool from 5,702 to
 **6,531** and nebulae from 71 to 151. Pools append
-([44](../decisions/44-random-names-pools-append.md)), so none of Real Space's or
+([42](../decisions/42-random-names-pools-append.md)), so none of Real Space's or
 YAGEM's names are displaced. *(806 star names as of 2026-08-10 — re-running the
-generator for [decision 81](../decisions/81-random-names-are-loc-keys.md) dropped
+generator for [decision 76](../decisions/76-random-names-are-loc-keys.md) dropped
 a backlog the tool's own rules exclude. Count the entries in the file, not this
 line.)*
 
@@ -162,10 +159,10 @@ line.)*
 > trees, scientists, surnames, `Enchilada`. The Trek content is in the ten
 > hand-built maps, 1,444 systems placed by name. 183 were dropped because STG
 > already owns them as a home system or capital (`Khitomer`, `Betazed`, `Risa`,
-> `Rura Penthe`), which is decision 25's confusion arriving from the other
-> direction. [Decision 52](../decisions/52-trek-star-names.md), which also corrects
-> decision 44's pool arithmetic — short by 3.6×, because it missed YAGEM's two
-> files feeding the same key.
+> `Rura Penthe`), which is decision 23's confusion arriving from the other
+> direction. The star-name harvest also corrects decision 42's pool arithmetic
+> — short by 3.6×, because it missed YAGEM's two files feeding the same key.
+> [Decision 84](../decisions/84-static-galaxy-is-the-mechanism.md).
 
 ### Random Trek empires — deferred, and the premise has since failed
 
@@ -189,7 +186,7 @@ drawn at all.**
 spawn-eligible prescripted empires on a *randomizable* species class and STG is
 0 of 99, which makes `randomized` a candidate for the prescripted question
 itself rather than only a route around it —
-[decision 90](../decisions/90-design-database-is-not-the-cause.md) has the
+[decision 83](../decisions/83-design-database-is-not-the-cause.md) has the
 cross-tab and what argues against it. Either way the work is the same shape and
 the cost is the same: **vanilla ships a `common/species_names/` entry for every
 class it randomizes and STG ships none for its 99**, so this was never the one
@@ -208,35 +205,35 @@ vendoring; this phase is the *script* that points our content at them.
 
 STNH's 140 harvested art triggers were all defined in one pass and the era,
 identity, role and stratum ones given real bodies
-([16](../decisions/16-phase-3-clothing-triggers.md)), so the Starfleet, Klingon,
+([15](../decisions/15-phase-3-clothing-triggers.md)), so the Starfleet, Klingon,
 Romulan and Cardassian uniforms already in the tree became reachable. The file
 now declares 141, 24 of them with a body —
 [stnh-art.md](../architecture/stnh-art.md#stnhs-art-is-wired-to-stnhs-namespace--in-four-ways).
 
 > **The empire designer was still dressing five species as humans, and it is a
-> *scope* decision 16 never looked at.** `game_setup` is the only scope the picker
+> *scope* decision 15 never looked at.** `game_setup` is the only scope the picker
 > reads, and STNH's two master selectors leave it a bare human-civilian default —
 > right for the per-species selectors every other Trek people has, wrong for one
-> shared by 44 classes. [Decision 22](../decisions/22-empire-designer-clothes.md).
+> shared by 44 classes. [Decision 20](../decisions/20-empire-designer-clothes.md).
 >
-> **Read that in the opposite direction and it is decision 64.** Getting
+> **Read that in the opposite direction and it is decision 61.** Getting
 > `game_setup` right says nothing about the five scopes the *game* reads, and the
 > Terran Empire was gated in the designer and in **none** of them — its ten
 > ENT-era mirror uniforms want `uses_mirror_starfleet_uniform` /
-> `uses_terran_uniform_ruler` / `enterprise_era`, all three on decision 16's INERT
+> `uses_terran_uniform_ruler` / `enterprise_era`, all three on decision 15's INERT
 > list, so every Terran leader wore a generic uniform. Turning an era on **per
 > empire** rather than globally is the mechanism; *"exactly one era may be true"*
 > constrains what one leader sees, not the whole mod. The sweep also found **four
 > rows in the female master selector missing the species gate the male file has**,
 > so every ungated non-Federation female operations commander wore Vulcan clothes.
 > Five more classes still fall through, four of them on minors and unloggable.
-> [Decision 64](../decisions/64-terran-empire-mirror-uniforms.md).
+> [Decision 61](../decisions/61-terran-empire-mirror-uniforms.md).
 >
 > **The starting ruler was wrong for a second, independent reason.** Every
 > prescripted `ruler = { }` pinned `texture = 1 clothes = 1` — indices, not flags,
 > copied from the first empire file into all 101. `texture = 1` is off the end of
 > the list on **74** of them.
-> [Decision 23](../decisions/23-prescripted-ruler-appearance.md).
+> [Decision 21](../decisions/21-prescripted-ruler-appearance.md).
 
 ### Shipsets
 
@@ -250,8 +247,8 @@ mammalian_01 warships, silently, via `fallback`.
 Nine of the then-fourteen cultures moved to Walshicus' sets, which declare all 44
 section entities natively; five (BAJ, TRI, ADR, BOL, BRE) have no such set and
 stay on entities generated by `tools/gen_shipsets.py`.
-[Decision 18](../decisions/18-walshicus-shipsets-replace-stnh-hulls.md),
-superseding [17](../decisions/17-stnh-shipsets-on-a-vanilla-chassis.md) in part.
+[Decision 17](../decisions/17-walshicus-shipsets-replace-stnh-hulls.md),
+superseding [16](../decisions/16-stnh-shipsets-on-a-vanilla-chassis.md) in part.
 `common/ship_sets/` needed no override. **The eight frontier powers added later
 in Phase 2 all name a Walshicus set too, so the standing figure is 17 of 22**;
 the five above are still the only generated ones.
@@ -264,16 +261,16 @@ the model origin. An `.asset` declaration *does* satisfy the engine — but **on
 an entity that does not also say `clone`**, which discards everything declared
 beside it.
 
-[Decision 28](../decisions/28-weapon-locator-positions.md) gave the mounts real
+[Decision 26](../decisions/26-weapon-locator-positions.md) gave the mounts real
 positions read off each mesh's bounding box;
-[decision 30](../decisions/30-clone-discards-sibling-locators.md) moved the
+[decision 28](../decisions/28-clone-discards-sibling-locators.md) moved the
 generated ones out of `clone` blocks. **The baseline is now 0, so any movement is a
 finding.** Starbases, orbital rings and defence platforms are deliberately excluded
 — no hull to spread guns along, so placing them would be inventing.
 
 > **The bounding-box spread was itself a guess wherever the artist had already
 > answered**, which is the 2026-08-08 pass and
-> [decision 60](../decisions/60-mounts-share-existing-points.md). The Starfleet TNG
+> [decision 57](../decisions/57-mounts-share-existing-points.md). The Starfleet TNG
 > corvette bakes two mounts on the centreline at the bow and the spread put the
 > third starboard and amidships — plausible, inside the hull, and visibly not the
 > artist's; a live run caught it by eye with no log record anywhere. A missing
@@ -295,9 +292,9 @@ finding.** Starbases, orbital rings and defence platforms are deliberately exclu
 > `_l`/`_r`/`_X` side suffix and two more stems — **157 names recognised against
 > 94, 263 positions moved across 71 section entities, and no mount changed tier.**
 > The cost was spread, never correctness. It was missed because every number
-> decision 60 reported counts what the rule *did*, so a rule blind to a whole kind
+> decision 57 reported counts what the rule *did*, so a rule blind to a whole kind
 > of point moves none of them; the tool now prints the names it does **not**
-> recognise. [Decision 67](../decisions/67-source-art-hardpoint-names.md).
+> recognise. [Decision 64](../decisions/64-source-art-hardpoint-names.md).
 
 > **Section ATTACH POINTS are a fourth pass and a different database.** The above
 > reads `common/section_templates/` and asks whether a *section* carries the mounts
@@ -305,7 +302,7 @@ finding.** Starbases, orbital rings and defence platforms are deliberately exclu
 > naming `part1`..`partN` on the *hull* — and all 22 Walshicus shipsets bake none
 > of them into their station meshes and declare only `root`, so the sections have
 > nowhere to attach at all. Fixed by 66 `vendor.yml` patches.
-> [Decision 35](../decisions/35-station-section-attach-points.md).
+> [Decision 33](../decisions/33-station-section-attach-points.md).
 
 ### Flags, early
 
@@ -324,8 +321,8 @@ Read `vendor.yml`'s list rather than this sentence — it grew twice after the p
 > directories restored after a run measured 1,640 records from 15 `.mesh` files
 > that kept art still declared; 190 more were textures named as bare filenames by
 > `.gfx` files we kept, none of which were in the tree at all
-> ([24](../decisions/24-group-c-texture-references.md)); then `attach` edges
-> nothing was following ([37](../decisions/37-attach-edges-into-pruned-art.md)).
+> ([22](../decisions/22-group-c-texture-references.md)); then `attach` edges
+> nothing was following ([35](../decisions/35-attach-edges-into-pruned-art.md)).
 > **"Declared" is not "present":** an include list converges on whatever question
 > the checks ask, and it asked about mesh *names*, then mesh *files*, and never
 > about textures. One file type further down each time. All closed, each by a check
@@ -344,13 +341,13 @@ species class + Diverse Rooms' 297, whose own second `room_selector` is excluded
 because two files claiming one selector name is decided by nothing on disk. The 101
 empires' `room =` values, which had been replaced wholesale by vanilla personality
 rooms, are restored from STNH's own assignment: **95 of 101 changed.**
-[Decision 48](../decisions/48-room-selector-merge.md).
+[Decision 46](../decisions/46-room-selector-merge.md).
 
 > **Nothing could have reported it, and that is the transferable part.** A room is
 > the only art in the game addressed by a BARE NAME with no path and no declaration
 > — so nothing dangles, and twenty-odd cross-reference checks were structurally
 > blind to the whole database at once. `check_vanilla_regression` read the file and
-> passed it, because `room_selector` was still declared. Decision 33's rule one
+> passed it, because `room_selector` was still declared. Decision 31's rule one
 > level deeper: here the identity is the entries INSIDE the block.
 
 ### City sets
@@ -360,7 +357,7 @@ Mostly already true and nobody had checked: STNH re-cuts `humanoid_01`,
 empire left on a vanilla prefix has drawn Trek cities since the first harvest. The
 six STNH ships under its own name — `borg_01`, `cardassian_01`, `klingon`,
 `tholian_01`, `undine_01`, `vulcan_01` — are now named by the six empires they were
-cut for. [Decision 49](../decisions/49-flags-city-sets.md).
+cut for. [Decision 47](../decisions/47-flags-city-sets.md).
 
 ### Loading screens
 
@@ -373,7 +370,7 @@ Trek screens have been live since the first harvest.
 
 Harvested additively. `additive_only` now takes a list of path prefixes as well as
 `yes`, because the shipsets must beat STNH on `gfx/`
-([18](../decisions/18-walshicus-shipsets-replace-stnh-hulls.md)) and must **not**
+([17](../decisions/17-walshicus-shipsets-replace-stnh-hulls.md)) and must **not**
 beat it on `flags/` — where 12 of their 14 colliding files are a *different size*,
 256×256 against STNH's 128×128. The 39 arrive, STNH's 541 are untouched, and the
 Malon stop flying the Talaxian flag.
@@ -381,12 +378,12 @@ Malon stop flying the Talaxian flag.
 **The 22 minor powers on `neutral.dds` are a separate problem the 39 do not
 solve** — swept against all 155 Trek flags, exactly one (`hur'q.dds`, missed on the
 apostrophe) has art. The other 21 take a distinct vanilla icon each, which is what
-STNH itself does for four of them. [Decision 49](../decisions/49-flags-city-sets.md).
+STNH itself does for four of them. [Decision 47](../decisions/47-flags-city-sets.md).
 
 ### `paragon_backgrounds.txt`
 
 STNH's copy stays excluded — 31 of its 32 triggers are declared now, but four of
-those are on decision 16's INERT list, so it would reach nothing while dropping
+those are on decision 15's INERT list, so it would reach nothing while dropping
 vanilla's four legendary rows. STG declares its own instead: 28 rows on species
 class plus `src/interface/stg_paragon_backgrounds.gfx`, because a background name
 resolves to a *sprite* and STNH declares its sprites in `interface/`, which we
@@ -394,7 +391,7 @@ never take.
 
 23 of the 52 textures reached, and they came back out of `.source/` by themselves
 as predicted — the prune count fell from 990 to 967 with no edit to `vendor.yml`.
-[Decision 50](../decisions/50-paragon-backgrounds.md).
+[Decision 48](../decisions/48-paragon-backgrounds.md).
 
 ### Outstanding from this phase
 
@@ -414,20 +411,20 @@ if Trek-named random ones turn out not to be enough. This is where the mod stops
 being a reskin and starts having a voice — and it is also infinite, so it comes
 after everything with a definition of done.
 
-**All three things [decision 75](../decisions/75-trek-anomalies.md) scoped are
-now shipped** — anomalies ([75](../decisions/75-trek-anomalies.md)), archaeology
-([76](../decisions/76-trek-archaeology.md)) and story events
-([77](../decisions/77-trek-story-events.md)), 2026-08-09. What remains in the
+**All three things [decision 70](../decisions/70-trek-anomalies.md) scoped are
+now shipped** — anomalies ([70](../decisions/70-trek-anomalies.md)), archaeology
+([71](../decisions/71-trek-archaeology.md)) and story events
+([72](../decisions/72-trek-story-events.md)), 2026-08-09. What remains in the
 phase has no scope written for it yet.
 
 **One thing is already queued behind it: integrating More Events Mod**, which is
 subscribed for that purpose and deliberately untouched until the content above
 has been through a live run —
-[decision 80](../decisions/80-mem-integration-deferred.md).
+[decision 75](../decisions/75-mem-integration-deferred.md).
 
 ### Done: music
 
-[Decision 55](../decisions/55-federation-anthem.md).
+[Decision 52](../decisions/52-federation-anthem.md).
 `music/Anthem_of_the_United_Federation_of_Planets.ogg` now plays. `music/` has
 **two** halves, an `.asset` mapping a name to a file and a `.txt` putting that name
 in the playlist, and the anthem had neither — the only one of the tree's 17 tracks
@@ -437,7 +434,7 @@ vanilla floor of 30 tracks, 30 declarations, 0 dangling. The main menu needed
 nothing: STNH already repoints `maintheme` at its own theme.
 
 > **`music/` has a THIRD half, and it is what the player reads.**
-> [Decision 61](../decisions/61-music-player-track-names.md): the player shows the
+> [Decision 58](../decisions/58-music-player-track-names.md): the player shows the
 > declaration NAME looked up as a loc key, and a name with no key is drawn verbatim
 > while logging nothing — *a name that resolves to itself still resolves*. **16 of
 > 22 entries listed as `newhorizonssong1`, `maintheme7` and our own
@@ -448,11 +445,11 @@ nothing: STNH already repoints `maintheme` at its own theme.
 
 > **And a FOURTH question none of the three asks: which declared tracks are in the
 > rotation, and are any of them the same recording.**
-> [Decision 65](../decisions/65-music-rotation-dedupe.md). The rotation is **27
+> [Decision 62](../decisions/62-music-rotation-dedupe.md). The rotation is **27
 > entries / 27 distinct recordings**, down from 32/27: `maintheme` and STNH's
 > `maintheme1`–`maintheme10`/`12` are **twelve declaration names for one file**,
 > six of which carried a playlist entry, so the theme held 19% of the rotation.
-> Decision 61 had found six of the twelve and kept them at the user's direction;
+> Decision 58 had found six of the twelve and kept them at the user's direction;
 > that is now reversed and five comment-only `src/music/*.txt` remove the aliases
 > from the playlist while leaving the declarations, which are what keep the `.ogg`
 > reachable. **Nothing on disk produces the ~86 the user counted** — 55 is the
@@ -464,7 +461,7 @@ nothing: STNH already repoints `maintheme` at its own theme.
 
 ### Done: the ship registries
 
-[Decision 59](../decisions/59-ship-name-pools.md). STG's 92 name lists were
+[Decision 56](../decisions/56-ship-name-pools.md). STG's 92 name lists were
 hand-written in Phase 1 and never revisited — 6,093 tokens, a median of 62 per list
 against vanilla's 116, so the Federation had five cruiser names and then repeated.
 STNH has 38,707, keyed by its own hull ladder (`fed_heavy_cruiser_nebula`, 96
@@ -474,16 +471,16 @@ names) which a vanilla chassis cannot ask for.
 tonnage table — an unmapped key stops the build — and re-emits the values as
 `STG_N_` keys. **88 lists, 6,093 → 32,805 tokens, 9,951 new name keys.**
 > **The other half is done, and the answer was that the question was wrong.**
-> [Decision 72](../decisions/72-ship-class-names.md): STNH's name lists carry
+> [Decision 67](../decisions/67-ship-class-names.md): STNH's name lists carry
 > their own `ship_class_names` block, one loc token per hull, declaring **165 of
-> the 177 Trek hull keys** — so the fuzzy join decision 59 called for was never
+> the 177 Trek hull keys** — so the fuzzy join decision 56 called for was never
 > needed, and it was built, measured and deleted. It contributed nothing but
 > would have put **Saber, Steamrunner and Sovereign in the Klingon fleet**,
 > because STNH's cross-empire hulls are literally named that.
-> `tools/gen_ship_class_names.py` imports 59's tonnage table rather than
+> `tools/gen_ship_class_names.py` imports 56's tonnage table rather than
 > restating it. **92 lists, 820 → 1,766 tokens, 286 new class keys.**
 >
-> It also reverses 59's exclusion of `bolian`, `breen`, `bajoran` and `andorian`
+> It also reverses 56's exclusion of `bolian`, `breen`, `bajoran` and `andorian`
 > **for class names only** — right for registries, wrong here, and three of the
 > four declare their own. Searching Memory Alpha and then Memory Beta for the
 > five of those empires still without a size split returned **nothing worth
@@ -492,7 +489,7 @@ tonnage table — an unmapped key stops the build — and re-emits the values as
 
 ### Done: the class names STNH does not have
 
-[Decision 73](../decisions/73-class-name-thematic-fill.md), and the model is
+[Decision 68](../decisions/68-class-name-thematic-fill.md), and the model is
 vanilla. Its 13 class-name lists use exactly two idioms — invented
 species-language words (HUM1's `Il-Koth`, LITH3's `Kroshhk`) or **one semantic
 field in plain English** (NEC4's vices, HIVE2's robustness, AQU1's water) — and
@@ -513,7 +510,7 @@ tokens, and 21 of those 22 now carry all five core tiers** against 13.
 
 ### Done: the Trek anomalies, and the scope call behind them
 
-[Decision 75](../decisions/75-trek-anomalies.md), 2026-08-09. This section used
+[Decision 70](../decisions/70-trek-anomalies.md), 2026-08-09. This section used
 to say the phase's remaining work had no external definition of done and had to
 be **scoped deliberately before starting**; that is the call, made: **anomalies
 first, archaeology and story events after.** An anomaly is the smallest complete
@@ -523,7 +520,7 @@ where archaeology has none.
 
 **21 categories, 27 outcome events, 24 Trek pictures over 48 sprites, 123 loc
 keys, ~3,500 words.** Half of vanilla's base-game count, thin rather than padded
-— [decision 73](../decisions/73-class-name-thematic-fill.md)'s call about pool
+— [decision 68](../decisions/68-class-name-thematic-fill.md)'s call about pool
 sizes, applied to a different database. Every trigger, reward tier, deposit,
 modifier and guard is copied from a vanilla file that was opened, including the
 `clear_deposits` guard vanilla puts before every research deposit, without which
@@ -531,12 +528,12 @@ the research station is unbuildable and the reward unreachable. No `specimen`,
 no DLC-gated branch: STG is standalone.
 
 > **The art had to be unlocked first, and that is the larger finding.**
-> [Decision 74](../decisions/74-event-picture-families.md). STNH ships ~1,430
+> [Decision 69](../decisions/69-event-picture-families.md). STNH ships ~1,430
 > event pictures and the closure pruned **805** of them every build, exactly as
-> [decision 42](../decisions/42-event-picture-geometry.md) predicted it would
+> [decision 40](../decisions/40-event-picture-geometry.md) predicted it would
 > until somebody wanted Trek art on Trek events. Declaring one is two lines;
 > declaring one also puts 620×264 art in a window cut for 450×150, which is
-> decision 42's own defect in decision 42's own directory. `target: family` was
+> decision 40's own defect in decision 40's own directory. `target: family` was
 > the lever, and both the build and the check had refused it here in the same
 > words — *"580 of its 639 are 450×150 and the other 59 are a genuine second
 > size"*. **True of the directory, false of both families in it:** the 59 are
@@ -553,12 +550,12 @@ and to `error.log`.
 
 ### Done: the archaeology, and the field that decides whether it is ever seen
 
-[Decision 76](../decisions/76-trek-archaeology.md), 2026-08-09, and it did copy
+[Decision 71](../decisions/71-trek-archaeology.md), 2026-08-09, and it did copy
 what the anomalies established — the picture pipeline, the loc shape, the
 five-files-must-agree check. **6 dig sites, 27 stage events, 27 Trek pictures
 over 54 sprites, 9 finale modifiers, 117 loc keys, ~3,800 words.** Six against
 vanilla's base-game ten, thin rather than padded, on the same call
-[73](../decisions/73-class-name-thematic-fill.md) made about pool sizes.
+[68](../decisions/68-class-name-thematic-fill.md) made about pool sizes.
 
 > **`weight` is the whole question, and six of vanilla's ten decline it.** A
 > site type's `weight` block is read by exactly one thing —
@@ -567,7 +564,7 @@ vanilla's base-game ten, thin rather than padded, on the same call
 > Vanilla's other six base-game sites carry `weight = 0` and are placed by a
 > story chain that knows where it wants them. **STG writes no story chain**, so a
 > `weight = 0` site here is complete, correct, validating clean and unreachable
-> — [decision 62](../decisions/62-city-set-cultures-undeclared.md)'s defect
+> — [decision 59](../decisions/59-city-set-cultures-undeclared.md)'s defect
 > class, one database over. All six carry real weights keyed on planet class.
 
 > **Eleven pictures were rejected on what the crop showed**, not on the filename:
@@ -582,9 +579,9 @@ vanilla's base-game ten, thin rather than padded, on the same call
 types and 475 stage events — one of them, **`stages = N` against the `stage`
 blocks beside it**, has no counterpart in `check_anomalies` and is the one most
 worth having — plus one at a floor of 1 and an eleventh scoped the way
-[51](../decisions/51-prescripted-loc-scope.md) established.
+[49](../decisions/49-prescripted-loc-scope.md) established.
 
-**And a twelfth as of [decision 79](../decisions/79-reachability-checks.md):
+**And a twelfth as of [decision 74](../decisions/74-reachability-checks.md):
 `weight` itself**, which is the field this section calls the whole question and
 which no check asked until the [2026-08-15 audit](../analysis/2026-08-15.md)
 went looking. A site with no positive weight that nothing in script names can
@@ -593,8 +590,8 @@ whole tree. `check_anomalies` gained the same question over `spawn_chance`.
 
 ### Done: the story events, and the merge question the design refuses to ask
 
-[Decision 77](../decisions/77-trek-story-events.md), 2026-08-09, and it
-completes the scope [decision 75](../decisions/75-trek-anomalies.md) set.
+[Decision 72](../decisions/72-trek-story-events.md), 2026-08-09, and it
+completes the scope [decision 70](../decisions/70-trek-anomalies.md) set.
 **3 hooks, 21 story events + a 2-event pulse gatekeeper, 21 Trek pictures over
 42 sprites, 84 loc keys, ~4,000 words.** Twelve belong to one people and are
 gated on species class — the Academy and the Council, the road to Gol, a
@@ -621,7 +618,7 @@ twenty-first hangs on first contact.
 `check_story_events` asks four questions and **the first has no counterpart in
 either sibling: is the on_action KEY itself one the engine will ever fire?** A
 hook whose key is wrong parses, its events exist, its art loads, and nothing
-under it ever runs — decision 76's `weight = 0` in a seventh database. Vanilla
+under it ever runs — decision 71's `weight = 0` in a seventh database. Vanilla
 scores 0 across the built tree's 58 hooks once empty stubs are excluded, and
 **17 in its own `00_on_actions.txt`**.
 
@@ -641,7 +638,7 @@ scores 0 across the built tree's 58 hooks once empty stubs are excluded, and
 > Trek directory, with a Trek-sounding filename. 580 of STNH's 1,350 event
 > picture names also exist in `/stellaris/gfx/event_pictures`; only the other
 > 770 are art STNH added. Eight more were rejected on what the 450×150 crop
-> showed, on [75](../decisions/75-trek-anomalies.md)'s standard.
+> showed, on [70](../decisions/70-trek-anomalies.md)'s standard.
 
 ---
 
@@ -655,7 +652,7 @@ explicit excludes.
 
 The mechanism, its calibration and the four non-obvious things about it are in
 [the clutter closure](../validation/clutter.md); the decision is
-[45](../decisions/45-clutter-pass.md).
+[43](../decisions/43-clutter-pass.md).
 
 ---
 
@@ -666,16 +663,15 @@ The mechanism, its calibration and the four non-obvious things about it are in
 it exists.
 
 Six galaxies contained no Trek AI empire. Three fixes went into the prescripted
-pool — [86](../decisions/86-prescripted-empires-never-drawn.md)'s spawn chance,
-[88](../decisions/88-playable-gates-the-design-database.md)'s `playable` gate,
-[90](../decisions/90-design-database-is-not-the-cause.md)'s five hidden designs —
+pool — the spawn chance, the `playable` gate, and
+[83](../decisions/83-design-database-is-not-the-cause.md)'s five hidden designs —
 and the 2026-08-26 save proved the pool is *correct* and still never drawn.
 
 **The pool was never the mechanism.** `prescripted_countries/` is the player's
 roster. AI empires in a total conversion are **created by their home system's
 initializer**, which a **`static_galaxy_scenario`** places on the map. Vanilla
 does it for the United Nations of Earth in `com_sol_system`; STNH does it 40
-times — [decision 92](../decisions/92-create-country-initializers.md).
+times — [decision 85](../decisions/85-create-country-initializers.md).
 
 Four pieces: the scenarios, the `create_country` initializers (generated off
 `prescripted_countries/`, not hand-written), locking the picker to STG's own
@@ -683,7 +679,7 @@ scenarios by shipping vanilla's five as empty files, and a `make validate` check
 that the map is a connected graph naming things that exist.
 
 **The lanes looked cheaper than they were, and this paragraph is the reason
-why** — corrected by [94](../decisions/94-static-map-lanes-are-generated.md).
+why** — corrected by [87](../decisions/87-static-map-lanes-are-generated.md).
 All 22 STNH maps set `random_hyperlanes = no`, and only **one of the 22 defines
 any lanes** — the BotF map, 468 systems and 892 `add_hyperlane` lines. That much
 is measured and holds. What does not hold is the conclusion: the other 21 do not
@@ -694,10 +690,10 @@ hyperlane in 98 systems. STG now generates its lanes into the file, as BotF
 does, and `make validate` rejects a lane-less static map. The cost driver is
 still the systems; the lanes were never free.
 What STG already owns is the identity half — 36 real home systems
-([25](../decisions/25-real-home-systems.md)), 99 empires whose `create_country`
+([23](../decisions/23-real-home-systems.md)), 99 empires whose `create_country`
 blocks are a mechanical transcription of entries that already exist, and the
 1,444 Trek systems already harvested by name
-([52](../decisions/52-trek-star-names.md)).
+([84](../decisions/84-static-galaxy-is-the-mechanism.md)).
 
 **Ends in something playable**, like every phase here: one small scenario, the 22
 majors on their real home systems, proven in a live run before anything scales.

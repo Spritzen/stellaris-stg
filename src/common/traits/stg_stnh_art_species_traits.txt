@@ -7,10 +7,10 @@
 # Defined inert (`initial = no`, `randomized = no`, never assigned from src/),
 # so `has_trait` resolves and the selector falls through instead of erroring.
 # Why not vendor STNH's real definitions, in
-# .docs/decisions/08-stnh-art-shadows-vanilla.md.
+# .docs/decisions/07-stnh-art-shadows-vanilla.md.
 #
 # New prefixed FILE; KEYS unprefixed because the art references them verbatim
-# (decision 10). Icons are vanilla substitutes — STNH's own are not vendored,
+# (decision 09). Icons are vanilla substitutes — STNH's own are not vendored,
 # and neither trait is ever displayed.
 
 # Referenced once, inside a NOT, by

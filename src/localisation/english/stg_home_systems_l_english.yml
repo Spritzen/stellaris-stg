@@ -12,7 +12,7 @@
  #     as raw keys on the map. Values copied from STNH's own english loc.
  #  2. STG_N_* for the nine home systems tools/gen_home_systems.py authors
  #     itself, because STNH's versions of those are procedural — see
- #     .docs/decisions/25-real-home-systems.md.
+ #     .docs/decisions/23-real-home-systems.md.
 
  NAME_Vulcan:0 "Vulcan"
  NAME_Unicomplex_Section_Alpha:0 "Unicomplex 01 Hub"

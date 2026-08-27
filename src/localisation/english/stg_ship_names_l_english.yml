@@ -6,7 +6,7 @@
  # stg_names_l_english.yml, which holds the hand-written names; a
  # name already spelled there is not repeated here.
  #
- # See .docs/decisions/59-ship-name-pools.md
+ # See .docs/decisions/56-ship-name-pools.md
  STG_N_1000000:0 "1000000"
  STG_N_1000001:0 "1000001"
  STG_N_1000010:0 "1000010"

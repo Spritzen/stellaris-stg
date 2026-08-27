@@ -4,7 +4,7 @@
 > own databases, and the one that is routinely missed.
 > **Open when** — authoring or editing anything in `src/prescripted_countries/`,
 > or triaging an empire that will not appear in the designer.
-> **Then** — [decision 41](../decisions/41-civic-granted-species-traits.md) · [validation checks](../validation/checks.md) · `check_prescripted_empires` in `tools/validate.py`
+> **Then** — [decision 39](../decisions/39-civic-granted-species-traits.md) · [validation checks](../validation/checks.md) · `check_prescripted_empires` in `tools/validate.py`
 
 An empire names five databases and **every one can veto**: the authority, the
 government, each civic, the origin, and the species class. The traits veto each
@@ -82,10 +82,10 @@ Two fields beside it resolve by bare name with nothing declaring them, so a typo
 is equally silent: `city_graphical_culture` is a texture **prefix**
 (`= "klingon"` finds `gfx/portraits/city_sets/klingon_city_l01.dds`) and `room`
 is a `*_room.dds`. `check_room_references` and `check_graphical_culture_art` ask
-both questions — [decision 48](../decisions/48-room-selector-merge.md),
-[49](../decisions/49-flags-city-sets.md),
-[62](../decisions/62-city-set-cultures-undeclared.md),
-[84](../decisions/84-shipset-descs-and-home-system-names.md).
+both questions — [decision 46](../decisions/46-room-selector-merge.md),
+[47](../decisions/47-flags-city-sets.md),
+[59](../decisions/59-city-set-cultures-undeclared.md),
+[79](../decisions/79-shipset-descs-and-home-system-names.md).
 
 ## A vanilla tuple is not automatically legal here: three availability rules
 
@@ -94,7 +94,7 @@ the standing advice above, and it is **sound but insufficient** — the tuple al
 has to survive the DLC set and the species classes STG actually ships. Three
 rules, all added 2026-08-26 after five STG empires were hidden from the designer
 and **two of the five printed no reason at all**
-([decision 90](../decisions/90-design-database-is-not-the-cause.md)):
+([decision 83](../decisions/83-design-database-is-not-the-cause.md)):
 
 1. **A civic whose `playable` is satisfied only when a DLC is ABSENT.** Vanilla
    ships these as stand-ins for a DLC's own civic —
@@ -140,25 +140,25 @@ initializer sets. So a new empire needs two things and
 2. a re-run of `python3 tools/gen_empire_flags.py`, which writes
    `src/common/prescripted_flags/stg_empire_flags.txt` off the roster.
 
-[Decision 93](../decisions/93-static-galaxy-scenario.md).
+[Decision 86](../decisions/86-static-galaxy-scenario.md).
 
 ## A civic can grant a species trait the species block must also carry
 
 The engine reports this **once per trait name**, so six broken empires read as
-three log lines. [Decision 41](../decisions/41-civic-granted-species-traits.md).
+three log lines. [Decision 39](../decisions/39-civic-granted-species-traits.md).
 
 ## Why this is a swept rule and not a list of fixes
 
 Vanilla's `opposites` lists, archetype budgets and ruler-trait ethic gates hid
 **nine** STG empires from the designer for eleven runs. Sweeping the rule behind
 them found **nine more** on empires that were then gated out of the designer and
-would never have produced a record at all. (Those nine reach the designer now —
-[decision 88](../decisions/88-playable-gates-the-design-database.md).)
+would never have produced a record at all. (Those nine reach the designer now:
+the `playable = stg_never` gate is gone from all 79.)
 
 `check_prescripted_empires` enforces all of it against vanilla's own databases,
 calibrated by reverting the repairs: 21 findings, no false positives. The three
 availability rules above are calibrated the same way — reverting their five
 repairs yields **six** findings over those five empires and nothing else
-([90](../decisions/90-design-database-is-not-the-cause.md)).
+([83](../decisions/83-design-database-is-not-the-cause.md)).
 
 **Never repair only the instances a log names.**

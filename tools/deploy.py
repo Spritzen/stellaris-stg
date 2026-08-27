@@ -5,7 +5,7 @@ The mod folder gets a SYMLINK to stg-build/, not a copy of it. A copy was a
 16 GB write on every rebuild, and the failure it caused is the reason this is a
 link: on 2026-08-02 the deployed copy sat five hours behind the built tree, so
 the next live run would have measured the pre-repair build and nothing would
-have said so. A link cannot go stale. Decision 13.
+have said so. A link cannot go stale. Decision 12.
 
 The Stellaris launcher runs on the host, outside this container, so the `path`
 written into the .mod file has to make sense to IT -- /paradox/stellaris/mod is
@@ -15,7 +15,7 @@ Which host path it understands depends on which build of the game is installed,
 so this script asks rather than assumes: `launcher-settings.json:gameDataPath`
 names `%USER_DOCUMENTS%` for the Windows build and `$LINUX_DATA_HOME` for the
 native Linux one. Both forms are live code because Steam's compatibility toggle
-flips between them -- see .docs/decisions/15-native-linux-runtime.md.
+flips between them -- see .docs/decisions/14-native-linux-runtime.md.
 
     native Linux  path="/home/<user>/.local/share/Paradox Interactive/Stellaris/mod/<mod_id>"
     Windows/Proton path="C:/users/steamuser/Documents/Paradox Interactive/Stellaris/mod/<mod_id>"
@@ -29,7 +29,7 @@ The symlink target is a host path for the same reason, which means it reads as
 BROKEN from inside the container and is correct to the game. Do not "fix" it.
 
 The Proton form was confirmed against a live run -- see
-.docs/decisions/07-launcher-local-mod-registration.md, which settled the
+.docs/decisions/06-launcher-local-mod-registration.md, which settled the
 derivation and is still the reasoning behind it.
 """
 
@@ -54,7 +54,7 @@ def game_platform() -> str | None:
     binary, because gameDataPath is the exact thing we need to agree with: it is
     where the launcher puts its user data, and its token differs per platform.
     Steam's "force compatibility tool" checkbox swaps the whole depot, so this
-    can change under us -- on 2026-08-02 it did. Decision 15.
+    can change under us -- on 2026-08-02 it did. Decision 14.
     """
     settings = Path(os.environ.get("STELLARIS_GAME_DIR", "/stellaris")) \
         / "launcher-settings.json"
@@ -127,7 +127,7 @@ def launcher_path(host_dir: str | None, mod_id: str, platform: str | None) -> st
     """Render the deploy target as the installed launcher reads paths.
 
     Native Linux wants the plain host path -- that is the form the 33 Workshop
-    .mod files written during this machine's native era carry, and decision 07
+    .mod files written during this machine's native era carry, and decision 06
     warned only against reading them as evidence about *Proton*, which is no
     longer what is installed.
     """
@@ -143,7 +143,7 @@ def check_mount_matches_platform(host_dir: str | None, platform: str | None) -> 
     so flipping Steam's compatibility toggle leaves them disagreeing until the
     container is rebuilt. Deploying across that disagreement writes a perfectly
     correct mod folder into a directory nothing reads -- which is precisely the
-    failure decision 07 cost a session to diagnose. Fail loudly instead.
+    failure decision 06 cost a session to diagnose. Fail loudly instead.
     """
     if not host_dir or platform is None:
         return None
@@ -243,7 +243,7 @@ def main() -> int:
                   "       Point the /paradox/stellaris mount in "
                   ".devcontainer/devcontainer.json at the\n"
                   "       folder that build uses and rebuild the container "
-                  "(decision 15),\n"
+                  "(decision 14),\n"
                   "       or override with $PARADOX_MOD_DIR and $MOD_PATH.",
                   file=sys.stderr)
             return 1
@@ -266,7 +266,7 @@ def main() -> int:
 
     remove(dest)
     # One link to one directory: stg-build/ is the whole mod, so there is no
-    # exclude list to forget an entry from (decision 13). The target is a HOST
+    # exclude list to forget an entry from (decision 12). The target is a HOST
     # path -- broken from inside the container, correct to the game. Do not
     # "fix" it.
     dest.symlink_to(f"{host_ws}/stg-build")

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Rewrite the `ship_class_names` pools in src/common/name_lists/ from STNH's.
 
-Phase 4, and the other half of decision 59. That decision folded STNH's ship
+Phase 4, and the other half of decision 56. That decision folded STNH's ship
 REGISTRIES onto vanilla's ship sizes and left the CLASS name -- the "Nebula" in
 "Nebula -- Interceptor" -- open, because the obvious source did not work: STNH's
 `TECH_UNLOCK_*_TITLE` strings carry real class names under a key scheme that
@@ -31,7 +31,7 @@ place, or the two halves of a ship's name drift apart.
 
     python3 tools/gen_ship_class_names.py [--dry-run]
 
-See .docs/decisions/72-ship-class-names.md
+See .docs/decisions/67-ship-class-names.md
 """
 from __future__ import annotations
 
@@ -49,7 +49,7 @@ from gen_ship_names import (
 LOC_OUT = REPO / "src" / "localisation" / "english" / "stg_ship_class_names_l_english.yml"
 LOC_SHIPS = REPO / "src" / "localisation" / "english" / "stg_ship_names_l_english.yml"
 
-# ── the four lists decision 59 takes NO registries from ───────────────────────
+# ── the four lists decision 56 takes NO registries from ───────────────────────
 #
 # It leaves `bolian`, `breen`, `bajoran` and `andorian` on their hand-written
 # pools because those STNH lists key their registries by FEDERATION hulls --
@@ -87,7 +87,7 @@ def shape(s: str) -> str:
 
 
 def usable(value: str | None) -> bool:
-    """Decision 47's rule, as gen_ship_names applies it: a value that is still a
+    """Decision 45's rule, as gen_ship_names applies it: a value that is still a
     loc key, or that carries markup or a substitution, is not a name."""
     if not value or not value.strip():
         return False
@@ -152,7 +152,7 @@ def spellings(loc: dict[str, str]) -> dict[str, str]:
 
 def known_keys() -> dict[str, str]:
     """Every STG_N_ key already spelled, across BOTH the hand-written names and
-    decision 59's harvest. One flat namespace, so a class name that is also a
+    decision 56's harvest. One flat namespace, so a class name that is also a
     ship name is one key -- and the existing spelling is the deliberate one."""
     out: dict[str, str] = {}
     for p in (LOC_EXISTING, LOC_SHIPS):
@@ -228,7 +228,7 @@ def main() -> None:
             die(f"{f.name} has no ship_class_names block")
         current = text[span[0]:span[1]]
 
-        # STG's hand-written class names stay -- the same UNION rule decision 59
+        # STG's hand-written class names stay -- the same UNION rule decision 56
         # sets for the registries -- and stay first in their pool.
         pools: dict[str, list[str]] = {}
         for m in re.finditer(r"(?m)^[ \t]*(\w+)[ \t]*=[ \t]*\{", current):
@@ -295,7 +295,7 @@ def main() -> None:
             " # stg_ship_names_l_english.yml (the registries); a name already\n"
             " # spelled in either is not repeated here.\n"
             " #\n"
-            " # See .docs/decisions/72-ship-class-names.md\n")
+            " # See .docs/decisions/67-ship-class-names.md\n")
         LOC_OUT.write_text(
             head + "".join(f' {k}:0 "{new_loc[k]}"\n' for k in sorted(new_loc)),
             encoding="utf-8-sig")

@@ -4,10 +4,10 @@
 # gfx/portraits/city_sets/) that no `common/graphical_culture/` entry declared,
 # so the empire designer rejected every empire naming one and hid it from the
 # picker. The art resolving is not the same question as the culture being
-# declared. See .docs/decisions/62-city-set-cultures-undeclared.md.
+# declared. See .docs/decisions/59-city-set-cultures-undeclared.md.
 #
 # KEYS ARE DELIBERATELY UNPREFIXED, for the same reason the species classes are
-# (.docs/decisions/10-species-class-keys-unprefixed.md): the engine finds a city
+# (.docs/decisions/09-species-class-keys-unprefixed.md): the engine finds a city
 # set by the bare name `<key>_city_l01.dds`, so the key has to be the name of the
 # vendored STNH art. `STG_vulcan_01` would resolve to nothing.
 #
@@ -18,7 +18,7 @@
 #
 # `fallback = mammalian_01`: vanilla's only culture declared in full, the same
 # choice and the same reason as stg_graphical_culture.txt --
-# .docs/decisions/17-stnh-shipsets-on-a-vanilla-chassis.md.
+# .docs/decisions/16-stnh-shipsets-on-a-vanilla-chassis.md.
 
 vulcan_01 = {
 	fallback = mammalian_01

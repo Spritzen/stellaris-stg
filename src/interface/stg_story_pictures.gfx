@@ -14,14 +14,14 @@
 #   at harvest, freezing frame 0 of a strip. Without that this file is decision
 #   42's defect: UIOD's eventwindow.gui draws at scale = 1.5 inside a 693x239
 #   frame, so 620x264 art renders 930x396.
-#   See .docs/decisions/74-event-picture-families.md.
+#   See .docs/decisions/69-event-picture-families.md.
 #
 # ALL 21 WERE LOOKED AT AS THE BUILD WILL CUT THEM -- frame 0, centre-cropped to
 # 450x150 -- and eight candidates were rejected on what that crop showed: two
 # Lower-Decks-animated frames, three close-ups of a named character's face, one
 # near-featureless star field (bajoranWormhole1, whose wormhole has not opened
 # yet in frame 0) and two that read as a different subject than the filename
-# promised. Same standard as .docs/decisions/75-trek-anomalies.md set.
+# promised. Same standard as .docs/decisions/70-trek-anomalies.md set.
 #
 # THREE CANDIDATES WERE DROPPED FOR THE OPPOSITE REASON -- engineering_bay,
 # cargoship_caravan and galactic_market are STNH shipping VANILLA'S OWN picture
@@ -31,7 +31,7 @@
 #
 # NONE OF THE 21 IS DECLARED BY EITHER SIBLING. One picture, one subject.
 #
-# See .docs/decisions/77-trek-story-events.md
+# See .docs/decisions/72-trek-story-events.md
 
 spriteTypes = {
 

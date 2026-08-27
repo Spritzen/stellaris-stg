@@ -1,7 +1,7 @@
 # medium.txt — INTENTIONALLY DECLARES NOTHING.
 #
 # STG ships one galaxy, The Known Galaxy, and the picker offers only it
-# (.docs/decisions/95-lock-the-galaxy-picker.md). This file exists to REMOVE
+# (.docs/decisions/88-lock-the-galaxy-picker.md). This file exists to REMOVE
 # vanilla's `medium` galaxy size from the setup screen: a scenario is
 # offered because a file at this path declares it, so the way to withdraw one
 # is to occupy the path and declare nothing.

@@ -21,22 +21,22 @@ of them are still snapshotted, so restoring one is a `vendor.yml` edit away:
 | Mod | Why | In `.source/`? |
 |---|---|---|
 | Ariphaos Unofficial Patch | [Decision 02](../decisions/02-drop-ariphaos.md) | **no** — dropped before `.source/` existed |
-| Kammarheit | [Decision 11](../decisions/11-drop-cinematic-camera-and-ambient-soundtracks.md) — taste | yes |
-| Apocryphos | [Decision 11](../decisions/11-drop-cinematic-camera-and-ambient-soundtracks.md) — taste | yes |
-| More Events Mod (MEM) | [Decision 80](../decisions/80-mem-integration-deferred.md) — **deferred, not declined** | **no** — snapshot it when the pass starts |
+| Kammarheit | [Decision 10](../decisions/10-drop-cinematic-camera-and-ambient-soundtracks.md) — taste | yes |
+| Apocryphos | [Decision 10](../decisions/10-drop-cinematic-camera-and-ambient-soundtracks.md) — taste | yes |
+| More Events Mod (MEM) | [Decision 75](../decisions/75-mem-integration-deferred.md) — **deferred, not declined** | **no** — snapshot it when the pass starts |
 | MEM planetary-shields compatch | Ships with MEM; same deferral | **no** |
 
 > **The last two rows are not the same kind of row as the three above them.**
 > Ariphaos, Kammarheit and Apocryphos were *declined* on content grounds; MEM is
 > *queued*, and its `supported_version` is current. Do not read one column as one
-> verdict. [Decision 80](../decisions/80-mem-integration-deferred.md) has the
+> verdict. [Decision 75](../decisions/75-mem-integration-deferred.md) has the
 > reasoning and the one trap: **the compatch's name says Planetary Shields and
 > all 19 of its files are `mem_*`.**
 
 Cinematic Camera was a sixth row in that table until 2026-08-07 and is now
-harvested like any other source. Decision 11 dropped it for breaking Real Space –
+harvested like any other source. Decision 10 dropped it for breaking Real Space –
 System Scale;
-[decision 43](../decisions/43-planet-scale-system-length.md) showed the error was
+[decision 41](../decisions/41-planet-scale-system-length.md) showed the error was
 System Scale's own, present with and without it, and restored it.
 
 For what is actually in the tree, in harvest order and at which upstream
@@ -66,7 +66,7 @@ only, never its `common/`, `events/`, `interface/` or `map/`.
 22 standalone shipsets, one culture each, all built on vanilla's ship chassis
 natively. They are the reason nine playable cultures fly real Trek warships with
 working weapon mounts, and the raw material eight frontier powers were built
-from. [Decision 18](../decisions/18-walshicus-shipsets-replace-stnh-hulls.md).
+from. [Decision 17](../decisions/17-walshicus-shipsets-replace-stnh-hulls.md).
 
 All 22 declare `supported_version="v4.3.*"` and carry no `version`. STG takes
 only `gfx/` and `common/graphical_culture/` from them — never `interface/`

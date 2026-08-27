@@ -12,7 +12,7 @@ and telling which is which is a 247-file audit nobody is going to do.
 
 **Consequence:** removes 24 of the 30 cross-mod conflicts that were counted at
 the time. The remaining set was later measured properly and is larger than the
-six recorded here — see decision 05 and plan.md §4.
+six recorded here — see decision 04 and plan.md §4.
 
 **Revisit if:** you hit a specific 4.4 bug that Ariphaos is known to fix. Pull
 that one file, not the mod.

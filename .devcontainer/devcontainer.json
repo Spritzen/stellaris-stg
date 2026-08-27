@@ -30,7 +30,7 @@
 		// NOT .../compatdata/281990/pfx/drive_c/users/steamuser/Documents/... --
 		// that prefix is what the Windows build used, and is now the stale one.
 		// Both paths are real on this disk and only one is live; which, follows
-		// from the installed depot. See decision 15, and 07 for the first time
+		// from the installed depot. See decision 14, and 07 for the first time
 		// deploying into the wrong one cost a session.
 		//
 		// Mounting the parent rather than mod/ directly keeps this to a single
@@ -62,7 +62,7 @@
 		"CLAUDE_CONFIG_DIR": "/home/vscode/.claude",
 		"STELLARIS_GAME_DIR": "/stellaris",
 		// The live mod folder, inside the user-data folder mounted at
-		// /paradox/stellaris. NOT /paradox/mod -- see decision 07.
+		// /paradox/stellaris. NOT /paradox/mod -- see decision 06.
 		"PARADOX_MOD_DIR": "/paradox/stellaris/mod",
 		"WORKSHOP_DIR": "/workshop",
 		"MOD_ID": "star_trek_galaxies",

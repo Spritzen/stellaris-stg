@@ -5,12 +5,12 @@
 > scenarios the only ones the player can pick.
 > **Open when** — working on why the galaxy is not Trek, or before touching
 > `map/`, `prescripted_countries/` or `CUSTOM_EMPIRE_SPAWN_CHANCE` again.
-> **Then** — [Decision 93](../decisions/93-static-galaxy-scenario.md) · [Decision 92](../decisions/92-create-country-initializers.md) · [Decision 91](../decisions/91-static-galaxy-is-the-mechanism.md) · [Open questions](open-questions.md) · [Status](status.md)
+> **Then** — [Decision 86](../decisions/86-static-galaxy-scenario.md) · [Decision 85](../decisions/85-create-country-initializers.md) · [Decision 84](../decisions/84-static-galaxy-is-the-mechanism.md) · [Open questions](open-questions.md) · [Status](status.md)
 
 > ## Where this plan stands, 2026-08-27
 >
 > **Pieces 1, 2 and 4 are built and the binding question is settled** —
-> [decision 93](../decisions/93-static-galaxy-scenario.md). `make validate` is
+> [decision 86](../decisions/86-static-galaxy-scenario.md). `make validate` is
 > clean and `make gen-check` is 13 of 13 fixpoints, **and neither of those is
 > evidence about the galaxy**: both were clean throughout all six empty ones.
 > **The next live run is the whole test.**
@@ -22,19 +22,19 @@
 > | the AI copies | 36 `create_country` blocks, generated into `stg_home_systems.txt` |
 > | **the piece this plan did not have** | the **country flag join**. `common/prescripted_flags/` is what gives the *player's* copy of an empire the flag the map weights on and the initializer guards on. STG shipped none. §2 below said the flag "exists because the initializer set it" — that is true only of the AI copy |
 > | the check | `check_static_galaxy`, five questions, vanilla floor 0 |
-> | still open | **an AI Federation** (Sol is Real Space's file) and the **Terran Empire**, whose Sol collides with the Federation's. Piece 3, the picker lock, is done — [95](../decisions/95-lock-the-galaxy-picker.md) |
+> | still open | **an AI Federation** (Sol is Real Space's file) and the **Terran Empire**, whose Sol collides with the Federation's. Piece 3, the picker lock, is done — [88](../decisions/88-lock-the-galaxy-picker.md) |
 
 Six galaxies have contained no Trek AI empire. Three fixes went into the
 prescripted-empire pool and none moved the number, and the 2026-08-26 save
 proved the pool itself is correct: all 99 designs loaded, `spawn_enabled = yes`
 on every one, one prescripted country in the galaxy —
-[decision 90](../decisions/90-design-database-is-not-the-cause.md).
+[decision 83](../decisions/83-design-database-is-not-the-cause.md).
 
 **The pool was never the mechanism.** `prescripted_countries/` is what the
 *player* picks from. AI Trek empires are placed by a **static galaxy scenario**
 that puts a named system at a named position, whose **solar system initializer
 `create_country`s the empire on the spot** —
-[decision 92](../decisions/92-create-country-initializers.md). That is what STNH
+[decision 85](../decisions/85-create-country-initializers.md). That is what STNH
 does 43 times, and what vanilla itself does for the United Nations of Earth in
 `com_sol_system`. It touches none of `spawn_enabled`,
 `CUSTOM_EMPIRE_SPAWN_CHANCE`, `playable` or `randomized`.
@@ -51,7 +51,7 @@ for the AI copies.
 |---|---|---|---|
 | 1 | **Static galaxy scenarios** — systems, positions, hyperlanes | `src/map/setup_scenarios/stg_*.txt` | STNH's 22 maps; vanilla's `static_galaxy_example.txt` |
 | 2 | **`create_country` initializers** — the empire itself | `src/common/solar_system_initializers/` | vanilla `com_sol_system`; STNH's 43 |
-| 3 | ~~**Lock the picker**~~ — **done 2026-08-27**, [95](../decisions/95-lock-the-galaxy-picker.md) | override files in `src/` + a `vendor.yml` exclude | STNH ships vanilla's five as 0-byte files |
+| 3 | ~~**Lock the picker**~~ — **done 2026-08-27**, [88](../decisions/88-lock-the-galaxy-picker.md) | override files in `src/` + a `vendor.yml` exclude | STNH ships vanilla's five as 0-byte files |
 | 4 | **A `make validate` check** — the map is a closed graph and every initializer it names exists | `tools/validate.py` | [check design](../validation/check-design.md) |
 
 ---
@@ -75,7 +75,7 @@ add_hyperlane = { from = "372" to = "373" }
 graph is not the cost driver — the systems are.**
 
 > **RESOLVED 2026-08-27 by a live run, and the paragraph above is why it took
-> one — [decision 94](../decisions/94-static-map-lanes-are-generated.md).**
+> one — [decision 87](../decisions/87-static-map-lanes-are-generated.md).**
 > "The lane graph is not the cost driver" is true and was never the question.
 > The question was what those 21 maps pair the empty lane list *with*, and the
 > answer is not a parameter: **it is a script.** STNH's `events/STH_start.txt`
@@ -111,7 +111,7 @@ documents a second form, `spawn_design = <design>`, which names a prescripted
 design outright and *"will ignore spawn_weight"*.
 
 > **Settled 2026-08-27: `spawn_weight` + country flag**
-> ([93](../decisions/93-static-galaxy-scenario.md)). STNH uses `spawn_design`
+> ([86](../decisions/86-static-galaxy-scenario.md)). STNH uses `spawn_design`
 > **zero** times across all 22 maps, and it is the form that needs the design
 > database to hand out a prescripted design — the draw six galaxies have
 > already shown does not fill a galaxy. `spawn_weight` needs only a country
@@ -144,10 +144,10 @@ create_country = {
 > `flag = empire_human_2`, whose entry sets `human_2` at country creation, and
 > `com_sol_system` reads exactly that during galaxy generation. STG shipped no
 > such file and no `flag =` line on any of its 99 empires until
-> [decision 93](../decisions/93-static-galaxy-scenario.md).
+> [decision 86](../decisions/86-static-galaxy-scenario.md).
 
 **STG already owns most of the inputs.** Each of the 36 home-system initializers
-([25](../decisions/25-real-home-systems.md)) has a matching prescripted empire
+([23](../decisions/23-real-home-systems.md)) has a matching prescripted empire
 carrying the exact name, adjective, ethics, civics, authority, government, flag,
 ship prefix, graphical culture and species. **A `create_country` block is a
 mechanical transcription of a `prescripted_countries/` entry**, which means it
@@ -166,7 +166,7 @@ A same-named empty file overrides vanilla's and the scenario simply does not
 exist, so `tiny`/`small`/`medium`/`large`/`huge` vanish from the galaxy-shape
 picker. **That is the seamless experience, and it is proven in a shipping mod.**
 
-**Done 2026-08-27** — [decision 95](../decisions/95-lock-the-galaxy-picker.md),
+**Done 2026-08-27** — [decision 88](../decisions/88-lock-the-galaxy-picker.md),
 which confirms the reasoning below and adds the part it did not have: the two
 groups need *different* levers, because excluding a vanilla-named path does not
 remove it, it hands it back to vanilla. STG's picker offered **fourteen**
@@ -185,7 +185,7 @@ To leave only STG's scenarios, both groups have to go: the five through empty
 > side effect.** Removing all nine Ariphaos scenarios removes most of what that
 > source is *for*. That is a judgement about STG's galaxy, not an error count, so
 > [invariant 4](../guides/working-rules.md) is satisfied either way — but
-> [decision 12](../decisions/12-fix-source-errors-dont-drop.md) still says say so
+> [decision 11](../decisions/11-fix-source-errors-dont-drop.md) still says say so
 > out loud. **Open:** keep Ariphaos's sizes as extra *static* maps at larger star
 > counts, or drop them.
 
@@ -205,7 +205,7 @@ keep honest — [check design](../validation/check-design.md):
   produces no log record at all. **A static map that declares no lanes is an
   error**, not a valid shape: this bullet said the opposite, and that is how a
   95-system galaxy with one hyperlane in it passed `make validate` every time
-  ([94](../decisions/94-static-map-lanes-are-generated.md)). The 21 STNH maps
+  ([87](../decisions/87-static-map-lanes-are-generated.md)). The 21 STNH maps
   that declare none build their network in a start-of-game script STG does not
   vendor. A scenario leaving `random_hyperlanes` on is exempt;
 - no two systems share an `id` or a position;
@@ -221,7 +221,7 @@ STNH's 22 in `.source/`
 ## Order of work
 
 1. ~~**Settle `spawn_weight` + country flag versus `spawn_design`.**~~
-   **Done 2026-08-27** — `spawn_weight`, [93](../decisions/93-static-galaxy-scenario.md).
+   **Done 2026-08-27** — `spawn_weight`, [86](../decisions/86-static-galaxy-scenario.md).
 2. ~~**One scenario, small, end to end.**~~ **Done** — 95 systems, 21 empires,
    no defined lanes, coordinates harvested from STNH's default galaxy map.
 3. ~~**The generator** for the `create_country` initializers.~~ **Done** —
@@ -233,7 +233,7 @@ STNH's 22 in `.source/`
    against STNH's own maps.
 5. **A live run.** Everything above is structure, and structure has validated
    clean through six empty galaxies. What to look for, in the order it would
-   fail, is at the end of [decision 93](../decisions/93-static-galaxy-scenario.md).
+   fail, is at the end of [decision 86](../decisions/86-static-galaxy-scenario.md).
 6. **Then, in this order:** the AI Federation (Sol is Real Space's file — an
    `src/` override or a `vendor.yml` patch, and it is a content call);
    the Terran Empire and its Sol collision, which wants a mirror scenario;
@@ -241,8 +241,8 @@ STNH's 22 in `.source/`
    nebulae, which STNH hand-places by canon name. **Piece 3, the picker lock, is
    no longer last and is done** — its "not before, or there is nothing to
    select" condition was met the moment the map generated with lanes and 20 AI
-   empires ([94](../decisions/94-static-map-lanes-are-generated.md),
-   [95](../decisions/95-lock-the-galaxy-picker.md)).
+   empires ([87](../decisions/87-static-map-lanes-are-generated.md),
+   [88](../decisions/88-lock-the-galaxy-picker.md)).
 
 ## What this closes, and what it does not
 
@@ -257,4 +257,4 @@ for the galaxy.
 
 **Do not raise or lower `CUSTOM_EMPIRE_SPAWN_CHANCE` again.** STNH leaves it at
 vanilla's 50 and has a Trek galaxy
-([91](../decisions/91-static-galaxy-is-the-mechanism.md)).
+([84](../decisions/84-static-galaxy-is-the-mechanism.md)).

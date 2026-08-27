@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Dress the prescripted rulers that sit on a shared master clothes selector.
 
-THE DEFECT, corrected. Decision 68 believed `clothes = N` indexes the distinct
-texture strings of the portrait's clothes_selector in file order, and pinned
+THE DEFECT, corrected. An earlier model held that `clothes = N` indexes the
+distinct texture strings of the portrait's clothes_selector in file order, and
+pinned
 1..6 on the six rulers whose portrait uses `humanoid_master_{male,female}_-
 clothes_01`. The 2026-08-08 Vulcan run showed all six wearing garments that
 model does not predict, so the enumeration is not that -- and nothing readable
@@ -16,11 +17,11 @@ leader_screen_clothes.txt` is that file and it has been in our tree since the
 first harvest -- 15 of STNH's own empires use it, three of them with an index
 out of range of a one-texture selector, which is exactly how little the number
 matters once the selector has one entry.
-See .docs/decisions/69-ruler-clothes-dedicated-selectors.md.
+See .docs/decisions/65-ruler-clothes-dedicated-selectors.md.
 
 THE INTENT IS STILL DERIVED, NEVER COUNTED. The garment each empire should wear
 is read from the `game_setup` row the master selector gates on that empire's own
-species class -- the rows decision 22 added, which stay as the written record of
+species class -- the rows decision 20 added, which stay as the written record of
 the intent. Where a class has no such row (the empires with no designer row, which never
 reach the designer) the `species` scope's row for the same class is used, so the
 rule is swept rather than the instances repaired.
@@ -101,7 +102,7 @@ def scope_rows(selector: str, scope: str) -> dict:
     for line in m.group(1).splitlines():
         tex = re.search(r'"([^"]+\.dds)"\s*=\s*\{', line)
         # STNH writes `is_species_class = "HOLO"` quoted in places; the form is
-        # cosmetic in this field, so accept both. Decision 32.
+        # cosmetic in this field, so accept both. Decision 30.
         cls = re.search(r'is_species_class\s*=\s*"?(\w+)"?', line)
         if tex and cls:
             out.setdefault(cls.group(1), tex.group(1))
@@ -135,11 +136,11 @@ HEADER = (
     "# A prescripted ruler whose species portrait uses a humanoid_master_*\n"
     "# clothes selector cannot be dressed by an index: that selector is shared\n"
     "# by 44 species classes, and what `clothes = N` enumerates in it is not\n"
-    "# something this container can establish -- decision 68 inferred a model\n"
-    "# from one data point and a live run falsified it at all six positions.\n"
+    "# something this container can establish -- a model inferred from one\n"
+    "# data point was falsified by a live run at all six positions.\n"
     "# STNH's own answer is a one-texture selector plus `clothes = 0`, which is\n"
     "# the one index a live run HAS confirmed. See\n"
-    "# .docs/decisions/69-ruler-clothes-dedicated-selectors.md.\n\n"
+    "# .docs/decisions/65-ruler-clothes-dedicated-selectors.md.\n\n"
 )
 
 

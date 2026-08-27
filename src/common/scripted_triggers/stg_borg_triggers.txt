@@ -1,10 +1,10 @@
 # is_borg_empire — a real body for the one STNH trigger that gates STG content.
 # Key unprefixed because vendored STNH art references it verbatim; see
-# .docs/decisions/10-species-class-keys-unprefixed.md.
+# .docs/decisions/09-species-class-keys-unprefixed.md.
 #
 # stg_stnh_art_triggers.txt stubs STNH's triggers to `always = no`; this one
 # earns a body because it is the only `add = 100` in the l_vo_borg advisor
-# voice weight, and STG ships a Borg empire the user plays. Decision 12.
+# voice weight, and STG ships a Borg empire the user plays. Decision 11.
 #
 # Tests the species class rather than a country flag: the voice is picked in
 # the empire creator, before any event could set one. BRG is `randomized = no`

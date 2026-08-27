@@ -3,12 +3,12 @@
 # ── CUSTOM_EMPIRE_SPAWN_CHANCE ─────────────────────────────────────────────
 # Vanilla ships 50 on a `10 = 1%` scale (00_defines.txt:972): a 5% chance that
 # any given AI slot is filled from the prescripted pool rather than randomly
-# generated. 1000 is 100%, which is safe here only because decision 14 left the
-# prescripted pool all-Trek and decision 19 made it deep enough to fill a
-# galaxy.
+# generated. 1000 is 100%, which is safe here only because decision 13 left the
+# prescripted pool all-Trek and the 79 minor powers made it deep enough to
+# fill a galaxy.
 #
-# THIS IS NOT A CLOSED QUESTION, whatever decision 86 says. THREE galaxies have
-# now been generated at 1000 and all three contained zero Trek AI empires. The
+# THIS IS NOT A CLOSED QUESTION. THREE galaxies have now been generated at
+# 1000 and all three contained zero Trek AI empires. The
 # define was a real defect and is a real fix; it was never the cause. Do not
 # read this file as the answer to "why is there no Trek in the galaxy", and do
 # not raise or lower the value looking for one -- at 100% the draw rate is no
@@ -28,14 +28,12 @@
 # What DOES place them: the home system's initializer creates the empire with
 # `create_country`, and a static_galaxy_scenario puts that system on the map.
 # Vanilla's own com_sol_system does it for the United Nations of Earth.
-# .docs/decisions/92-create-country-initializers.md
+# .docs/decisions/85-create-country-initializers.md
 # .docs/planning/static-galaxy-plan.md
-# .docs/decisions/91-static-galaxy-is-the-mechanism.md
+# .docs/decisions/84-static-galaxy-is-the-mechanism.md
 # .docs/planning/open-questions.md, "Whether the prescripted pool can ever be
 # drawn from"
-# .docs/decisions/86-prescripted-empires-never-drawn.md
-# .docs/decisions/88-playable-gates-the-design-database.md
-# .docs/decisions/90-design-database-is-not-the-cause.md
+# .docs/decisions/83-design-database-is-not-the-cause.md
 #
 # This is the only lever of its kind: the designer's force-spawn checkbox exists
 # for player-made empires and a prescripted one cannot reach it. CONFIRMED at the

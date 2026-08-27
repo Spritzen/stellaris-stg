@@ -15,7 +15,7 @@ STELLARIS_GAME_DIR ?= /stellaris
 # The live user data is ~/.local/share/Paradox Interactive/Stellaris, mounted at
 # /paradox/stellaris -- the native-Linux location, live again since compatibility
 # mode was turned off on 2026-08-02. NOT the Proton prefix under compatdata/281990
-# -- see .docs/decisions/15-native-linux-runtime.md.
+# -- see .docs/decisions/14-native-linux-runtime.md.
 PARADOX_MOD_DIR ?= /paradox/stellaris/mod
 
 # tools/*.py read these from the environment, so make must export them --
@@ -96,7 +96,7 @@ fix-bom: ## Add the required UTF-8 BOM to every localisation file in src/
 print('src/localisation BOMs normalised')"
 
 # Zips the built tree and nothing else, so the exclude list that guarded this
-# is gone with the restructure -- see decision 13.
+# is gone with the restructure -- see decision 12.
 dist: validate ## Zip the built mod into dist/ (for archiving — STG is never published)
 	@mkdir -p dist
 	@rm -f dist/$(MOD_ID).zip

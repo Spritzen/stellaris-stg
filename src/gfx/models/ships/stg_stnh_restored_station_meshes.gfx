@@ -12,7 +12,7 @@
 # 26 of the 190 group-C records in the 2026-08-03 run. STNH's own .gfx files are
 # NOT vendored: the four they live in declare 2, 3, 11, 20 and 77 meshes, so
 # taking them whole would trade five dangling references for roughly a hundred
-# more, in cultures decision 18 pruned on purpose. Each block below is STNH's
+# more, in cultures decision 17 pruned on purpose. Each block below is STNH's
 # verbatim, re-indented; the .mesh and .dds files they name are vendored by
 # explicit include: entries in vendor.yml.
 

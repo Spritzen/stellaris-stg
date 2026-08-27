@@ -10,7 +10,7 @@ Every question the plan originally marked `[OPEN]` is decided, and the
 keep-or-drop calls on source mods are closed. The *rule* that closed them is what
 carries forward, not the verdicts: **error count is a cost to pay down, not a
 reason to drop a mod; sources go on content grounds only**
-([decision 12](../decisions/12-fix-source-errors-dont-drop.md)).
+([decision 11](../decisions/11-fix-source-errors-dont-drop.md)).
 
 ---
 
@@ -18,8 +18,8 @@ reason to drop a mod; sources go on content grounds only**
 
 **A reference that resolves produces no log record.** `make validate` clean is not
 evidence for anything in this section — the standing lesson of decisions
-[08](../decisions/08-stnh-art-shadows-vanilla.md) and
-[42](../decisions/42-event-picture-geometry.md).
+[07](../decisions/07-stnh-art-shadows-vanilla.md) and
+[40](../decisions/40-event-picture-geometry.md).
 
 > **Read [ufp-run-remediation.md](ufp-run-remediation.md) and
 > [analysis 2026-08-16](../analysis/2026-08-16.md) before working any item
@@ -32,15 +32,14 @@ evidence for anything in this section — the standing lesson of decisions
 > **Both planned runs ended before the long half of their plan.** The dig sites,
 > the anomalies, the story events and every hull above corvette are **unreached
 > twice** — unmeasured, not negative. The long 2026-08-24 run had **no run plan
-> and no analysis**, and reported only what
-> [decision 86](../decisions/86-prescripted-empires-never-drawn.md) records, so
-> it adds nothing here either: **the next run's first job is a plan, then
+> and no analysis**, and reported only what the spawn-chance investigation
+> records, so it adds nothing here either: **the next run's first job is a plan, then
 > length**. [The 2026-08-15 audit](../analysis/2026-08-15.md), finding 1;
 > [analysis 2026-08-16](../analysis/2026-08-16.md), "What this run could not
 > reach".
 >
 > **The three questions the Vulcan run opened are all closed** as of 2026-08-22
-> ([decision 84](../decisions/84-shipset-descs-and-home-system-names.md)) and
+> ([decision 79](../decisions/79-shipset-descs-and-home-system-names.md)) and
 > none of them needed a live run or a content call. Two were mechanical and both
 > were **larger than the analysis recorded** — 30 shipset description keys wrong
 > rather than 7, and seven duplicate body names from three separate generator
@@ -57,7 +56,7 @@ Trek.**
 
 **It is also the first run since 2026-08-22 to leave a save on disk, and that
 save closed half the question** —
-[decision 90](../decisions/90-design-database-is-not-the-cause.md). `ironman` is
+[decision 83](../decisions/83-design-database-is-not-the-cause.md). `ironman` is
 off now, so keep it that way.
 
 > **The question below is framed wrongly and is kept only for its measurements.**
@@ -66,8 +65,8 @@ off now, so keep it that way.
 > **created by their home system's initializer**, which a **static galaxy
 > scenario** puts on the map — vanilla's own `com_sol_system` does it for the
 > United Nations of Earth, and STNH does it 40 times
-> ([92](../decisions/92-create-country-initializers.md),
-> [91](../decisions/91-static-galaxy-is-the-mechanism.md)).
+> ([85](../decisions/85-create-country-initializers.md),
+> [84](../decisions/84-static-galaxy-is-the-mechanism.md)).
 >
 > **The work is planned in
 > [static-galaxy-plan.md](static-galaxy-plan.md). Go there.** What stays live
@@ -76,8 +75,8 @@ off now, so keep it that way.
 > still its suspect — but it no longer gates whether the galaxy is Trek.
 >
 > **And the mechanism has now run, and it works**
-> ([93](../decisions/93-static-galaxy-scenario.md),
-> [94](../decisions/94-static-map-lanes-are-generated.md)): a 95-system static
+> ([86](../decisions/86-static-galaxy-scenario.md),
+> [87](../decisions/87-static-map-lanes-are-generated.md)): a 95-system static
 > map with 21 empires on their canon positions, 36 `create_country`
 > initializers, and the `common/prescripted_flags/` join that lets an
 > initializer tell "nobody is playing this empire" from "the player is". The
@@ -88,21 +87,21 @@ off now, so keep it that way.
 > **What that run also found was a galaxy with one hyperlane in it** — the map
 > declared none and nothing built them. Fixed and regenerated (162 lanes), but
 > **not yet run with lanes**, so the top item on this page is still a live run:
-> check you can fly out of Qo'noS. Decisions 94 and 95 end with what to watch
+> check you can fly out of Qo'noS. Decisions 87 and 88 end with what to watch
 > for. **No longer "select *The Known Galaxy*"** — the picker is locked and it is
-> the only galaxy there is ([95](../decisions/95-lock-the-galaxy-picker.md)), so
+> the only galaxy there is ([88](../decisions/88-lock-the-galaxy-picker.md)), so
 > the first thing that run grades is whether the setup screen comes up at all.
 > Nothing below has changed and nothing below is the thing to do first.
 
-That does not falsify decision 88 — the gate it removed was real and had to go —
-but it does say the gate was **not the whole cause**. Both levers are now in and
+That does not falsify the `playable` fix — the gate it removed was real and had
+to go — but it does say the gate was **not the whole cause**. Both levers are now in and
 neither moved the number:
 
 | lever | in since | what the run says |
 |---|---|---|
-| `CUSTOM_EMPIRE_SPAWN_CHANCE = 1000` — 100% of AI slots draw from the prescripted pool ([86](../decisions/86-prescripted-empires-never-drawn.md)) | 2026-08-24 | **three** galaxies at 100%, zero drawn. At 100% the die roll is not the variable |
-| `playable = stg_never` removed from the 79 minors, so they load into the design database ([88](../decisions/88-playable-gates-the-design-database.md)) | 2026-08-25 | pool went from 22 to 100 designs. Still zero |
-| — | 2026-08-26 | **the save proves the pool is right**: 99 `design=` blocks, `spawn_enabled=yes` on each, and 1 of 77 countries prescripted. The database is not the cause ([90](../decisions/90-design-database-is-not-the-cause.md)) |
+| `CUSTOM_EMPIRE_SPAWN_CHANCE = 1000` — 100% of AI slots draw from the prescripted pool | 2026-08-24 | **three** galaxies at 100%, zero drawn. At 100% the die roll is not the variable |
+| `playable = stg_never` removed from the 79 minors, so they load into the design database | 2026-08-25 | pool went from 22 to 100 designs. Still zero |
+| — | 2026-08-26 | **the save proves the pool is right**: 99 `design=` blocks, `spawn_enabled=yes` on each, and 1 of 77 countries prescripted. The database is not the cause ([83](../decisions/83-design-database-is-not-the-cause.md)) |
 
 **Verified on disk after the run**, so none of these is still a candidate: the
 build under test was stamped 16:56:28 and the run started at 18:02, so it
@@ -139,7 +138,7 @@ place, and five of the six are `spawn_enabled = yes`.
 **Vanilla never ships a prescripted empire that both owns a named home system
 and can spawn as AI.** 37 of STG's 99 do, including all 22 of the majors,
 quadrant and frontier powers, and that is
-[decision 25](../decisions/25-real-home-systems.md) working exactly as intended:
+[decision 23](../decisions/23-real-home-systems.md) working exactly as intended:
 40 Eridani with Keid and T'Khut, Qo'noS with Boreth, Romulus with Remus. The
 community advice on the same symptom says the same thing from the other end —
 *set every custom empire's starting system to Random* — and the engine's own
@@ -172,7 +171,7 @@ a result.** 62 of the 99 designs carry no `initializer` at all. On the
 initializer theory those 62 were free to spawn and none did. That left two
 readings — they were still not in the design database, or the cause is something
 else again — and **the save settles it: all 99 are in the database**
-([decision 90](../decisions/90-design-database-is-not-the-cause.md)). It is
+([decision 83](../decisions/83-design-database-is-not-the-cause.md)). It is
 something else again. The initializer theory survives only as a *second* filter
 over the 36 that do carry one; it cannot reach the other 62, so it is no longer
 a candidate for the whole cause.
@@ -186,7 +185,7 @@ saying "empire **template**". `spawn_enabled` in script is the only forcing leve
 STG has. Build a test instead: **`randomized = yes` on three major powers'
 species classes only**, everything else left at `no`, and one galaxy separates
 "the draw is the problem" from "the engine will not place these at all" —
-[decision 91](../decisions/91-static-galaxy-is-the-mechanism.md).
+[decision 84](../decisions/84-static-galaxy-is-the-mechanism.md).
 
 **1b. The AI empire preview, before generating anything.** The galaxy setup
 screen previews the AI empires that will spawn; vanilla ships tooltips for
@@ -197,7 +196,7 @@ shows 18 *Random AI Empire* slots, the generator never consults the pool. If it
 shows Trek empires and the galaxy does not contain them, the question is
 placement. **One glance, before pressing start.** The database half of what this
 used to discriminate is now closed
-([90](../decisions/90-design-database-is-not-the-cause.md)), so this glance now
+([83](../decisions/83-design-database-is-not-the-cause.md)), so this glance now
 answers the whole of what is left, and it is the only cheap thing still
 outstanding.
 
@@ -206,7 +205,7 @@ they closed half the question in minutes. `settings.txt` no longer carries
 `ironman`, so saves land in `save games/<empire>_<id>/` by themselves. **Do not
 turn ironman back on while this is open.** The one trap:
 `design={…}` blocks are nested inside `galaxy={…}` with the brace on the
-following line, so decision 86's `grep 'design={'` finds zero in a 4.4.6 save —
+following line, so an earlier `grep 'design={'` finds zero in a 4.4.6 save —
 match `^\tdesign=$` instead.
 
 **3. The `randomized` question, which is now stronger than it was.** Vanilla is
@@ -214,20 +213,20 @@ match `^\tdesign=$` instead.
 STG is 0 of 99. The STNH counterexample that was against it **fell** — STNH's
 Trek galaxy comes from static maps, not from its prescripted pool, so the pool
 was never under test there
-([91](../decisions/91-static-galaxy-is-the-mechanism.md)). What remains against
+([84](../decisions/84-static-galaxy-is-the-mechanism.md)). What remains against
 it: vanilla's own `mindwardens`, and the fact that the fix is not one line —
 vanilla ships a `common/species_names/` entry for every class it randomizes and
 STG ships none. Community material names the same mechanism and names
 `non_randomized_portraits` alongside it, which catches **three** STG empires on
 the `human` portrait, the Federation among them. Both sides in
-[90](../decisions/90-design-database-is-not-the-cause.md) and
-[91](../decisions/91-static-galaxy-is-the-mechanism.md).
+[83](../decisions/83-design-database-is-not-the-cause.md) and
+[84](../decisions/84-static-galaxy-is-the-mechanism.md).
 
 **4. ~~The static galaxy scenario~~ — built 2026-08-27, run the same day, and
 it works.** Not a fallback — the mechanism.
-[Decision 93](../decisions/93-static-galaxy-scenario.md) has what shipped and
+[Decision 86](../decisions/86-static-galaxy-scenario.md) has what shipped and
 what is deliberately absent from it (an AI Federation, the Terran Empire);
-[decision 94](../decisions/94-static-map-lanes-are-generated.md) has what the
+[decision 87](../decisions/87-static-map-lanes-are-generated.md) has what the
 run returned: 20 AI Trek empires created, the flag guard firing, and a galaxy
 with no hyperlanes in it because the map declared none. The lanes are generated
 now and want one more run. Items 1, 1b and 3 above are all about the *pool*, and
@@ -236,12 +235,12 @@ the pool no longer gates the galaxy — do them after that run, not before it.
 #### What not to do yet
 
 **Do not strip the `initializer` lines.** It is the change the vanilla table
-points at, and it would cost decision 25 in full — the real home systems are one
+points at, and it would cost decision 23 in full — the real home systems are one
 of the most visible things in the mod, and the last run confirmed 40 Eridani
 reads correctly. **The 2026-08-26 save strengthened this, not weakened it**: 62
 of the 99 designs carry no `initializer` and were not drawn either, so stripping
 the other 36 could not have reached most of the pool anyway
-([90](../decisions/90-design-database-is-not-the-cause.md)).
+([83](../decisions/83-design-database-is-not-the-cause.md)).
 
 ### Devastated Trek city sets — six sets, no `_devastated` art
 
@@ -260,7 +259,7 @@ open the planet view.** The question is only whether the engine falls back to
 the intact layers or draws nothing. If it falls back cleanly this is not a
 defect at all; if it draws nothing it is a content gap and the fix is art, which
 is a call nobody has made.
-[Decision 87](../decisions/87-city-horizon-band.md), "What this does not fix".
+[Decision 81](../decisions/81-city-horizon-band.md), "What this does not fix".
 
 ### The shipsets' weapons
 
@@ -269,8 +268,8 @@ quadrant and frontier powers fly one — and whether the pruned event pictures
 took anything visible with them.
 
 Then the weapon-mount re-derivation
-([60](../decisions/60-mounts-share-existing-points.md),
-[67](../decisions/67-source-art-hardpoint-names.md)) across all 27 shipsets — the
+([57](../decisions/57-mounts-share-existing-points.md),
+[64](../decisions/64-source-art-hardpoint-names.md)) across all 27 shipsets — the
 thing to look for is a mount that no longer breaks the pattern of the ones beside
 it, and, on the 66% still placed from the bounding box, whether any of them reads
 as badly as the corvette's third gun did.
@@ -291,7 +290,7 @@ as badly as the corvette's third gun did.
 > row looked like evidence about the shipsets.
 >
 > **Fixed the same day** — 230 attach points over 100 files
-> ([82](../decisions/82-hull-section-attach-points.md)) — and **nothing about it
+> ([77](../decisions/77-hull-section-attach-points.md)) — and **nothing about it
 > is confirmed in game after five runs.** The 2026-08-22 run flew corvettes and
 > science ships only. The 2026-08-24 run played ~7 hours and its `error.log`
 > carries **zero** `has no attach point` records against 2026-08-10's eight —
@@ -301,7 +300,7 @@ as badly as the corvette's third gun did.
 > than an unanswerable one, and it is the single most valuable unmeasured thing
 > in the project.
 > [ufp-run-remediation.md](ufp-run-remediation.md), item 1. The check that now
-> guards the repair is [83](../decisions/83-widen-attach-points-and-two-new-checks.md);
+> guards the repair is [78](../decisions/78-widen-attach-points-and-two-new-checks.md);
 > a clean check only says the locators exist.
 
 ### The ruler clothes
@@ -313,12 +312,12 @@ no index between the two.
 
 If any one of them is still wrong, the one-texture selector is not being reached at
 all and the portrait clone is the thing to doubt, not a number.
-[Decision 69](../decisions/69-ruler-clothes-dedicated-selectors.md), which
-falsified [68](../decisions/68-ruler-clothes-index-restored.md).
+[Decision 65](../decisions/65-ruler-clothes-dedicated-selectors.md), which
+falsified the earlier index model.
 
 > **Answered for Vulcan, 2026-08-22: T'Pau draws in a Vulcan civilian robe.**
 > The dedicated one-texture selector is reached, which is the clean test
-> [decision 69](../decisions/69-ruler-clothes-dedicated-selectors.md) was waiting
+> [decision 65](../decisions/65-ruler-clothes-dedicated-selectors.md) was waiting
 > for. **The president and the Terran empress are still ungraded** — different
 > empires, different selectors, and a Vulcan run says nothing about either.
 >
@@ -327,7 +326,7 @@ falsified [68](../decisions/68-ruler-clothes-index-restored.md).
 > selector; the **female** master was never touched and still held eleven, which
 > the Vulcan run logged three of. All eleven landed 2026-08-22 and
 > `check_selector_texture_paths` holds the tree at zero
-> ([83](../decisions/83-widen-attach-points-and-two-new-checks.md)).
+> ([78](../decisions/78-widen-attach-points-and-two-new-checks.md)).
 >
 > **The caveat that used to sit here is closed.** The same sweep found selector
 > rows pointing at textures that exist in no source mod at all, recorded as 196
@@ -337,7 +336,7 @@ falsified [68](../decisions/68-ruler-clothes-index-restored.md).
 > thirteen decisions.** Every row now resolves, and
 > `check_selector_texture_files` holds it there, so a ruler that still looks
 > wrong is no longer explained by a missing garment.
-> [Decision 85](../decisions/85-selector-textures-that-resolve.md),
+> [Decision 80](../decisions/80-selector-textures-that-resolve.md),
 > [ufp-run-remediation.md](ufp-run-remediation.md) item 2.
 >
 > **And the clothes-slider wrap is arithmetic, not a defect.** The designer's
@@ -353,18 +352,18 @@ Six `vendor.yml` renames changed which declaration the engine is left with, and 
 rename that works produces no log record. The 2026-08-10 run graded one half —
 **nebula sizing on the galaxy map is correct**. What is still unseen: whether
 habitats draw as vanilla's orbital ring rather than a Suliban helix.
-[Decision 53](../decisions/53-duplicate-entity-triage.md).
+[Decision 50](../decisions/50-duplicate-entity-triage.md).
 
 ### Music
 
 **Closed 2026-08-10, by measurement rather than by a change.** The anthem is in
-rotation ([55](../decisions/55-federation-anthem.md)) and the track names are all
-distinct ([61](../decisions/61-music-player-track-names.md)). Nothing in the tree
+rotation ([52](../decisions/52-federation-anthem.md)) and the track names are all
+distinct ([58](../decisions/58-music-player-track-names.md)). Nothing in the tree
 needed fixing; the *expectation* did.
 
 > **The two figures count different things, and a run plan must carry both.** The
 > player lists **55 declarations**; the rotation is **27 playlist entries**,
-> reproducing [decision 65](../decisions/65-music-rotation-dedupe.md) exactly. A
+> reproducing [decision 62](../decisions/62-music-rotation-dedupe.md) exactly. A
 > run reporting "approx. 70 tracks" is eyeballing the 55.
 > [ufp-run-remediation.md](ufp-run-remediation.md), item 6.
 
@@ -375,9 +374,9 @@ right beside the eighteen derived ones.
 
 Whether the Trek registries read right on the right hulls, and whether the class
 names fold by the same tonnage table without leaking across empires.
-[Decisions 59](../decisions/59-ship-name-pools.md),
-[72](../decisions/72-ship-class-names.md),
-[73](../decisions/73-class-name-thematic-fill.md). Five things to watch, in
+[Decisions 56](../decisions/56-ship-name-pools.md),
+[67](../decisions/67-ship-class-names.md),
+[68](../decisions/68-class-name-thematic-fill.md). Five things to watch, in
 descending order of how obviously they would be wrong:
 
 - **A Nebula-class name on a corvette.** The tonnage table is a judgement and
@@ -386,7 +385,7 @@ descending order of how obviously they would be wrong:
 - **Whether the Klingon and Romulan lists read as their own.** The fuzzy join
   that would have put Saber, Steamrunner and Sovereign in the Klingon fleet was
   deleted before it shipped; this is a check that nothing else does the same.
-- **Whether the invented English sits beside the canon names.** Decision 73
+- **Whether the invented English sits beside the canon names.** Decision 68
   filled the empty tiers from vanilla's own second idiom (NEC4's vices, AQU1's
   water), so what to look for is `Stormwall` next to `Bolarus` and `Escrow` next
   to `Jaglom Shrek` — and whether the Xindi species names read as classes or
@@ -410,7 +409,7 @@ descending order of how obviously they would be wrong:
 
 **21 categories, 27 outcome events, 24 pictures, 123 loc keys and ~3,500 words**,
 none of which any check can grade
-([decision 75](../decisions/75-trek-anomalies.md)). Three separate questions, and
+([decision 70](../decisions/70-trek-anomalies.md)). Three separate questions, and
 they fail differently:
 
 - **Does the writing sound like Star Trek, or like a different mod?** The
@@ -424,7 +423,7 @@ they fail differently:
 - **Do the levels and rewards feel right?** An anomaly level gates which
   scientist can crack it and how often the roll fails. The mapping is a
   judgement, but there is a number to hold it against
-  ([78](../decisions/78-phase-4-count-corrections.md)):
+  ([73](../decisions/73-phase-4-count-corrections.md)):
 
   | level | 1 | 2 | 3 | 4 | 5 | 6 | 7 | mean |
   |---|---|---|---|---|---|---|---|---|
@@ -438,21 +437,21 @@ they fail differently:
   scientists will bounce off it.
 
 > **And the framing question underneath all three.**
-> [Decision 74](../decisions/74-event-picture-families.md) centre-crops these
+> [Decision 69](../decisions/69-event-picture-families.md) centre-crops these
 > pictures from 620×264 to 450×150, losing 21 px top and bottom. For the 569
 > that shadow a vanilla path that crop was verified against the vanilla scene
 > they replace; **the anomalies' 24 shadow nothing, so there is no control** —
 > twelve were looked at and read correctly, which is a sample. A subject cropped
 > at the chin is what it would look like. The archaeology's 27 and the story
 > events' 21 were each looked at in the exact crop before being chosen
-> ([76](../decisions/76-trek-archaeology.md),
-> [77](../decisions/77-trek-story-events.md)), **so if a framing problem shows
+> ([71](../decisions/71-trek-archaeology.md),
+> [72](../decisions/72-trek-story-events.md)), **so if a framing problem shows
 > up, the anomalies' 24 are where to look first.**
 
 ### The Trek archaeology
 
 **6 dig sites, 27 stage events, 27 pictures, 117 loc keys and ~3,800 words**
-([decision 76](../decisions/76-trek-archaeology.md)). The writing and picture
+([decision 71](../decisions/71-trek-archaeology.md)). The writing and picture
 questions above apply here unchanged. Three that are specific to a dig:
 
 - **Do they turn up at all?** This is the one question a live run answers
@@ -472,14 +471,14 @@ questions above apply here unchanged. Three that are specific to a dig:
 ### The Trek story events
 
 **21 events, 21 pictures, 84 loc keys and ~4,000 words**
-([decision 77](../decisions/77-trek-story-events.md)). The writing and picture
+([decision 72](../decisions/72-trek-story-events.md)). The writing and picture
 questions above apply here unchanged. Four that are specific to a story event:
 
 - **Do they fire at all, and at the right rate?** The pool is calibrated against
   vanilla's own 18.6% per five-year pulse, and `stg_recent_story` blanks the
   pulse after a hit, so the long-run figure is ~17% for the Federation and ~13%
   for an ungated empire — roughly one story event per decade per empire
-  ([78](../decisions/78-phase-4-count-corrections.md) has the three tiers). If
+  ([73](../decisions/73-phase-4-count-corrections.md) has the three tiers). If
   **none** appears in a long game the thing to doubt is the hook, not the
   weights: a custom on_action reached only by `fire_on_action` is exactly the
   arrangement `check_story_events` was written to police, and a check that has
@@ -497,7 +496,7 @@ questions above apply here unchanged. Four that are specific to a story event:
   > never see my own story" is reporting the content, not the gate**, so ask
   > which empire before doubting the trigger. Left open as a content gap;
   > growing the pool is cheap, because `random_events` fires exactly one winner
-  > ([78](../decisions/78-phase-4-count-corrections.md)).
+  > ([73](../decisions/73-phase-4-count-corrections.md)).
 - **Does a five-year flavour popup read as texture or as interruption?** This is
   the one question the anomalies and dig sites do not raise, because those are
   answers to something the player did. A story event arrives unbidden. If it
@@ -515,25 +514,25 @@ finding itself is in the decision.
 
 - Rooms and hidden empires — all four hidden empires are back and the designer's
   room list is *"realistically over 300"*
-  ([48](../decisions/48-room-selector-merge.md),
-  [62](../decisions/62-city-set-cultures-undeclared.md)).
+  ([46](../decisions/46-room-selector-merge.md),
+  [59](../decisions/59-city-set-cultures-undeclared.md)).
 - Star names **append** rather than replace, confirmed by the three-way mix on
   the galaxy map — the property, not the total, is what carries: STG's 806 names
   add to Real Space's and YAGEM's 5,702 rather than displacing them
-  ([52](../decisions/52-trek-star-names.md), correcting
-  [44](../decisions/44-random-names-pools-append.md)).
-- The Vulcan city framing needed no change
-  ([70](../decisions/70-vulcan-city-framing.md)) — **falsified 2026-08-24.** It
-  needed a change on the axis 70 ruled out: the skyline filled 325 of 400 rows
-  against a family median of 289, and UIOD's window cut the top 33 off. 70
-  measured the canvas three ways and never measured the *content*
-  ([87](../decisions/87-city-horizon-band.md)).
+  (the Trek star-name harvest, correcting
+  [42](../decisions/42-random-names-pools-append.md)).
+- The Vulcan city framing needed no change (2026-08-08) — **falsified
+  2026-08-24.** It needed a change on the axis that review ruled out: the
+  skyline filled 325 of 400 rows against a family median of 289, and UIOD's
+  window cut the top 33 off. That review measured the canvas three ways and
+  never measured the *content*
+  ([81](../decisions/81-city-horizon-band.md)).
 
 ---
 
 ## Confirmed on disk — all three worked, and one was not a defect
 
-*[Decision 84](../decisions/84-shipset-descs-and-home-system-names.md), 2026-08-22.
+*[Decision 79](../decisions/79-shipset-descs-and-home-system-names.md), 2026-08-22.
 This section held three items each described as needing somebody to decide what
 the right answer was. **None of them did.** Two were mechanical once measured
 properly and both turned out larger than recorded; the third dissolved on
@@ -566,11 +565,11 @@ measurement stopped one question short of the mechanism.***
   rule. `check_graphical_culture_art` asks the invariant that does have a floor
   — an offerable culture reaches art, its own or its fallback's — and vanilla is
   0 of 22 with STG 0 of 41. The orphan `generic_01`–`generic_06` art is
-  `check_unreferenced`'s question and [decision 45](../decisions/45-clutter-pass.md)'s
+  `check_unreferenced`'s question and [decision 43](../decisions/43-clutter-pass.md)'s
   standing policy, not a defect.
 
 > **What generalises, and it has now happened twice.** [Decision
-> 83](../decisions/83-widen-attach-points-and-two-new-checks.md) struck
+> 83](../decisions/78-widen-attach-points-and-two-new-checks.md) struck
 > [analysis 2026-08-16](../analysis/2026-08-16.md) finding 5 for the same
 > reason this strikes finding 2: **both were measurements taken without reading
 > the thing that had already measured them** — a helper in `tools/validate.py`
@@ -594,10 +593,10 @@ breakdown of the init window, which has not changed shape since.*
   keeps one. **Still open: which one renders.**
 - **SBX — 67 records**, naming techs from an older Stellaris, plus the only in-play
   findings in that run. SBX also renumbers vanilla's citadel gun slots, breaking
-  vanilla's own design ([39](../decisions/39-sbx-citadel-slot-renumbering.md)). Its
+  vanilla's own design ([37](../decisions/37-sbx-citadel-slot-renumbering.md)). Its
   `advanced_military_program` — the one `potential` block in either its file or
   vanilla's that switched to `solar_system` unguarded — is patched as of 2026-08-07
-  ([46](../decisions/46-coalition-of-hope-takes-vul.md)).
+  ([44](../decisions/44-coalition-of-hope-takes-vul.md)).
 - **143 duplicate textures** where STNH's `shared_assets/` meets Walshicus'
   `stnc_shipset_shared/` — [the conflict register](../architecture/conflict-register.md)
   explains why last-wins is correct here. Now watched by
@@ -606,7 +605,7 @@ breakdown of the init window, which has not changed shape since.*
 - **`legend` — 2 records**, inside vendored Klingon art at
   `gfx/portraits/asset_selectors/klingon/klingon_male_clothes_combined.txt:42,48`.
 - The small defects of that run and what each cost are in
-  [decision 40](../decisions/40-live-run-2026-08-07-repairs.md).
+  [decision 38](../decisions/38-live-run-2026-08-07-repairs.md).
 
 ---
 
@@ -617,13 +616,13 @@ breakdown of the init window, which has not changed shape since.*
   systems exceed it, and System Scale makes them *smaller*. Changing either the
   geometry or the threshold would be inventing or silencing. STG's own home systems
   top out at 515 and are clear.
-  [Decision 36](../decisions/36-oversized-real-space-systems.md).
+  [Decision 34](../decisions/34-oversized-real-space-systems.md).
 - **`PLANET_SCALE_SYSTEM` keeps its 8 entries.** The engine measures it against
   `ZOOM_STEPS_SYSTEM`, an array no script can set, and the visual test found
   13-against-8 rendering correctly.
-  [Decision 43](../decisions/43-planet-scale-system-length.md).
+  [Decision 41](../decisions/41-planet-scale-system-length.md).
 - **700 report-tier orphans** from the clutter closure (build of 2026-08-24;
-  [decision 45](../decisions/45-clutter-pass.md) recorded 706, and `make
+  [decision 43](../decisions/43-clutter-pass.md) recorded 706, and `make
   validate` prints the live figure). At vanilla's own 4.9%
   leftover rate in `gfx/models`, a finding there is indistinguishable from
   Paradox's. Widening the prune scope means moving a tier in `tools/clutter.py`
@@ -633,7 +632,7 @@ breakdown of the init window, which has not changed shape since.*
   published. Leave it.
 - **Nine `Failed to find entity … for attachment` records every run** — five
   Romulan bird-of-prey sections, three Klingon cores, one named `_test_`. Triaged
-  in [decision 37](../decisions/37-attach-edges-into-pruned-art.md): STNH art
+  in [decision 35](../decisions/35-attach-edges-into-pruned-art.md): STNH art
   whose consumers live in a `common/` STG does not vendor, with a twelve-line
   rationale under `attach_target_ack` in `vendor.yml`. Stable across three runs
   and costing nothing at runtime. **The shape worth keeping: the ack silences
@@ -643,7 +642,7 @@ breakdown of the init window, which has not changed shape since.*
 - **The prescripted-power sweep is done and clean.** `stg_minor_powers` shipped
   with 78 of its 79 empire names truncated and 16 loc values that were the loc key
   itself; all 100 are repaired
-  ([47](../decisions/47-minor-power-names-truncated.md)). The other three files
+  ([45](../decisions/45-minor-power-names-truncated.md)). The other three files
   were swept and are clean: **0 leaked loc keys, 0 truncations** across all 22
   empires.
 
@@ -651,7 +650,7 @@ breakdown of the init window, which has not changed shape since.*
   > keeping: **those three were hand-authored and only the minors were generated**,
   > and truncation is a *generator* failure. "Same hand" describes who chose the
   > content, not what produced the file, and only the second matters for this
-  > defect class. [Decision 51](../decisions/51-prescripted-loc-scope.md).
+  > defect class. [Decision 49](../decisions/49-prescripted-loc-scope.md).
 
 ---
 
@@ -661,4 +660,4 @@ breakdown of the init window, which has not changed shape since.*
 — in scope, waiting on this page's eyes-only surface being graded first.
 **Only the timing is closed**; which paths are taken and how MEM's events sit
 beside Trek ones are the pass itself and are open.
-[Decision 80](../decisions/80-mem-integration-deferred.md).
+[Decision 75](../decisions/75-mem-integration-deferred.md).

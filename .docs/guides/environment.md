@@ -4,7 +4,7 @@
 > container can do and what only the host can.
 > **Open when** — reading or writing anything outside the repo, or about to
 > claim something about the game install.
-> **Then** — [Deployment](deployment.md) · [Live runs](live-runs.md) · [decision 15](../decisions/15-native-linux-runtime.md)
+> **Then** — [Deployment](deployment.md) · [Live runs](live-runs.md) · [decision 14](../decisions/14-native-linux-runtime.md)
 
 Everything runs inside the dev container. Five mounts matter:
 
@@ -39,8 +39,8 @@ python3 -c "import json;print(json.load(open('/stellaris/launcher-settings.json'
 
 `/stellaris/launcher-settings.json:gameDataPath` is the authority. Deploying
 into the wrong one produces a flawless mod folder that nothing reads, and has
-cost a session before. [Decision 15](../decisions/15-native-linux-runtime.md) is
-the current story; [decision 07](../decisions/07-launcher-local-mod-registration.md)
+cost a session before. [Decision 14](../decisions/14-native-linux-runtime.md) is
+the current story; [decision 06](../decisions/06-launcher-local-mod-registration.md)
 is the same failure from the other side.
 
 ## Check /workshop before shadowing a vanilla file

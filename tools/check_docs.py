@@ -13,7 +13,7 @@ DOES EVERY REFERENCE RESOLVE?
   4. Does every category folder have a README that names its files?
 
 (1) and (2) are the ones that earned this tool: a planning file named
-clutter-pass.md was cited from tools/clutter.py and from decision 45 for five
+clutter-pass.md was cited from tools/clutter.py and from decision 43 for five
 days after it stopped existing, and nothing anywhere said so. That is why (2)
 exists at all -- the docs can link to each other perfectly while every file
 header in tools/ points at nothing. See .docs/style-guide.md.
@@ -369,7 +369,7 @@ def check_make_targets() -> int:
 
     for f in md_files():
         # Decisions name `make deploy` and `make undeploy`, which became link
-        # and unlink in decision 13. A decision records what was true when it
+        # and unlink in decision 12. A decision records what was true when it
         # was made; it is not a stale citation.
         if f.parent.name == "decisions":
             continue

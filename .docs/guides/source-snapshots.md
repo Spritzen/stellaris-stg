@@ -4,7 +4,7 @@
 > `/workshop`, and the four-step procedure for accepting an upstream change.
 > **Open when** — a source mod has updated, or you are about to run any
 > `sources-*` target.
-> **Then** — [Vendored merge](../architecture/vendored-merge.md) · [decision 09](../decisions/09-source-snapshot.md)
+> **Then** — [Vendored merge](../architecture/vendored-merge.md) · [decision 08](../decisions/08-source-snapshot.md)
 
 The pipeline has four stages, and the first one is not automatic:
 
@@ -39,7 +39,7 @@ accept** rather than something that happens to you mid-rebuild.
 
 `/workshop` and this repo are the same btrfs subvolume, so the copy reflinks: 51
 snapshots, 22 GB, no measurable disk consumed
-([decision 09](../decisions/09-source-snapshot.md) has the timings as first
+([decision 08](../decisions/08-source-snapshot.md) has the timings as first
 measured, when only 29 mods were snapshotted).
 
 `sources.lock.yml` — the one part of this that git tracks — records a

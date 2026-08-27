@@ -5,6 +5,6 @@
 # reads a scenario's `name` field as a localisation key and renders the whole
 # string in the setup screen's map list, so the line breaks and the £icon£
 # tokens below are deliberate — STNH's own map entries read the same way.
-# See .docs/decisions/93-static-galaxy-scenario.md.
+# See .docs/decisions/86-static-galaxy-scenario.md.
 
  STG_galaxy_alpha_beta:0 "§YThe Known Galaxy§!\n£system£ 95 Star Systems\n£pops£ 21 Empires\n\n§YStatic Galaxy§!\n\nThe Alpha and Beta Quadrants at their canon positions, with the Delta and Gamma powers beyond them. Every empire starts on its own home system: Sol, Qo'noS, Romulus, Cardassia, 40 Eridani, Bajor. No randomly generated empires."

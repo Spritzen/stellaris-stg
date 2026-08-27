@@ -7,4 +7,4 @@
 # it only stops the engine listing this alias as a separate track.
 #
 # `maintheme` is the one kept — it is vanilla's own name and the main menu's.
-# See .docs/decisions/61-music-player-track-names.md
+# See .docs/decisions/58-music-player-track-names.md

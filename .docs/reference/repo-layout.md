@@ -25,7 +25,7 @@ src/                    hand-written STG content — mirrors the game's tree, ap
   <vanilla_name>.txt      SHADOWS vanilla or a source outright — the two merges,
                           pdxmesh.shader, the pruned URP topbar file,
                           sth_soundgroups.asset, and 19 comment-only prescripted-empire
-                          files that exist to delete vanilla's (decision 14). A header
+                          files that exist to delete vanilla's (decision 13). A header
                           comment saying what it overrides and why is required, and
                           make validate enforces it.
 tools/
@@ -37,39 +37,39 @@ tools/
   gen_check.py          re-runs every generator over the tree it produced and
                         diffs src/ against itself — `make gen-check`. A correct
                         generator is a fixpoint, so the floor is 0 by
-                        construction (decision 83)
+                        construction (decision 78)
   deploy.py             symlinks stg-build/ into the Paradox mod folder; writes the .mod
   gen_shipsets.py       one-shot: graphical cultures + vanilla-shaped ship entities
-                        (decision 17, narrowed by 18 to the five cultures with no
+                        (decision 16, narrowed by 18 to the five cultures with no
                         Walshicus set, plus the generic_* minor-power donors)
-  gen_home_systems.py   one-shot: the 36 home systems (decision 25), each with the
+  gen_home_systems.py   one-shot: the 36 home systems (decision 23), each with the
                         guarded `create_country` that makes the empire's AI copy
-                        (decision 93)
+                        (decision 86)
   gen_empire_flags.py   the 99 common/prescripted_flags/ entries — the country
                         flag a static map weights on and an initializer guards
-                        on (decision 93)
+                        on (decision 86)
   gen_static_galaxy.py  the static galaxy scenario: 95 systems, 21 empires, every
-                        coordinate harvested from STNH's own map (decision 93)
+                        coordinate harvested from STNH's own map (decision 86)
   gen_borg_vo.py        one-shot: src/sound/sth_soundgroups.asset
   gen_room_selector.py  the one room_selector: vanilla + STNH's 47 Trek rooms
-                        + Diverse Rooms' designer list (decision 48)
+                        + Diverse Rooms' designer list (decision 46)
   gen_paragon_backgrounds.py  the paragon leader backgrounds and their sprites
-                        (decision 50)
+                        (decision 48)
   gen_star_names.py     806 Trek star + 80 nebula names harvested from STNH's
-                        hand-built map/setup_scenarios (decision 52), plus a
+                        hand-built map/setup_scenarios (decision 84), plus a
                         localisation key for each of the 328 quoted ones —
-                        a quoted random name IS a key (decision 81)
+                        a quoted random name IS a key (decision 76)
   gen_ship_names.py     the ship_names pools: STNH's 38,707 registry names
-                        folded onto vanilla's ship sizes (decision 59). Owns the
+                        folded onto vanilla's ship sizes (decision 56). Owns the
                         tonnage table both halves of a ship's name fold by
   gen_ship_class_names.py  the other half: the ship_class_names pools, STNH's own
                         per-hull class declarations folded by the same table
-                        (decision 72)
+                        (decision 67)
   gen_ruler_clothes.py  the seven empire-select ruler portraits and their
-                        one-texture clothes selectors (decision 69)
+                        one-texture clothes selectors (decision 65)
   fix_ship_locators.py  weapon mount positions, and the hull section attach
                         points a borrowed corvette frame does not supply
-                        (decisions 28, 60, 67, 82)
+                        (decisions 26, 57, 64, 77)
   fix_prescripted_rooms.py    rewrites `room =` from STNH's own assignment
                         — these take their CONTENT from .source/, never from the
                         built tree. SIX of the eleven (gen_borg_vo,
@@ -77,7 +77,7 @@ tools/
                         gen_star_names, fix_ship_locators) also read stg-build/
                         to ask what the merge already declares; a generator that
                         does must exclude its own previous output, or it
-                        subtracts itself (decision 81). `make gen-check DEEP=1`
+                        subtracts itself (decision 76). `make gen-check DEEP=1`
                         is what asks that question — read the current six off
                         GENERATORS in tools/gen_check.py, not off this list
 .docs/                  documentation — see .docs/README.md for the map
@@ -113,4 +113,4 @@ Git tracks only `vendor.yml`, `src/`, `sources.lock.yml`, `tools/`, `.docs/`,
 
 The mod is one directory, so the Paradox mod folder is one symlink to it and
 `make dist` zips it whole —
-[decision 13](../decisions/13-build-dir-and-symlink-deploy.md).
+[decision 12](../decisions/12-build-dir-and-symlink-deploy.md).

@@ -12,13 +12,13 @@
 #
 # The art is 620x264 or a 9315x264 animation strip in .source/; `target: family`
 # on gfx/event_pictures in vendor.yml re-cuts it to vanilla's 450x150 at harvest.
-# WITHOUT THAT THIS FILE IS DECISION 42'S DEFECT: UIOD's eventwindow.gui draws
+# WITHOUT THAT THIS FILE IS DECISION 40'S DEFECT: UIOD's eventwindow.gui draws
 # at scale = 1.5 inside a 693x239 frame, so 620x264 art renders 930x396.
-# See .docs/decisions/74-event-picture-families.md.
+# See .docs/decisions/69-event-picture-families.md.
 #
 # Sprite names take the `stg_` prefix -- we invented them, no vendored art
-# references them, so decision 10's exception does not apply.
-# See .docs/decisions/75-trek-anomalies.md
+# references them, so decision 09's exception does not apply.
+# See .docs/decisions/70-trek-anomalies.md
 
 spriteTypes = {
 

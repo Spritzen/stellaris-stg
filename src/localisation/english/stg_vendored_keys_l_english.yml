@@ -3,10 +3,10 @@
  #
  # Every key here is a THIRD PARTY's database key, which the engine looks up
  # verbatim, so none of them may take the STG_ prefix -- only the FILE does.
- # Same rule as the species classes in decision 10 / decision 21.
+ # Same rule as the species classes in decision 09 / decision 19.
  #
  # All six were reported by the 2026-08-07 live run. See
- # .docs/decisions/40-live-run-2026-08-07-repairs.md.
+ # .docs/decisions/38-live-run-2026-08-07-repairs.md.
 
  # Real Space 4.0 declares these three dark-matter deposits in
  # common/deposits/realspace_sr_deposits.txt and localises none of them:

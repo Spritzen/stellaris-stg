@@ -15,11 +15,11 @@ Every file lands in exactly one of four classes:
 
   reachable   a root the engine enters names it, directly or through a chain
   shadowing   it sits at a vanilla path on purpose, so vanilla's own references
-              reach it (decision 08) -- nothing of ours needs to name it
+              reach it (decision 07) -- nothing of ours needs to name it
   kept        `clutter_keep:` in vendor.yml names it, with a written reason
   orphan      none of the above
 
-See .docs/validation/clutter.md and .docs/decisions/45-clutter-pass.md.
+See .docs/validation/clutter.md and .docs/decisions/43-clutter-pass.md.
 
 THE ONE THING TO UNDERSTAND BEFORE TRUSTING A FINDING. This closure deletes,
 where every other check here only reports, so its two errors are not
@@ -29,8 +29,8 @@ reference resolves by exact path, then by filename, then by stem, against the
 built tree and vanilla at once; a declaration file is a root wherever it sits;
 a `.mesh` is scanned as bytes because it names its textures inside the binary.
 Over-approximating reachability costs a file left in the tree. The other
-direction costs a screen going blank, and that is the failure decisions 24, 34
-and 37 already record three times over, one file type further down each time.
+direction costs a screen going blank, and that is the failure decisions 22, 32
+and 35 already record three times over, one file type further down each time.
 """
 
 from __future__ import annotations
@@ -72,7 +72,7 @@ MOD_DIRS = {
 # unreferenced is worth a few KB, while treating one as an orphan would delete
 # the thing that makes a whole directory of art reachable. The junk tier
 # (.bak, .wip, .pdn) is handled by `global_excludes:` in vendor.yml instead --
-# see .docs/decisions/45-clutter-pass.md phase 1 -- precisely because it is not a reachability
+# see .docs/decisions/43-clutter-pass.md phase 1 -- precisely because it is not a reachability
 # question and this closure should not be asked to answer it.
 DECLARATION_EXTS = {
     ".txt", ".gfx", ".gui", ".asset", ".yml", ".shader", ".fxh", ".settings",
@@ -101,7 +101,7 @@ ROOT_DIRS = (
     # by nothing, and the empire designer lists the folder.
     "flags/*",
     # Fixed filenames the engine opens itself (pdxmesh.shader is the one
-    # decision 34 turned on), plus the .fxh chain they include.
+    # decision 32 turned on), plus the .fxh chain they include.
     "gfx/FX/*",
     "fonts/*",
     "gfx/fonts/*",
@@ -240,7 +240,7 @@ def resolve(ref: str, home: str, *trees: Tree) -> list[tuple[Tree, str]]:
       2. the same path taken relative to the declaring file's own directory
       3. the bare filename, then the bare STEM, against every file loaded
 
-    Form 3 is decision 24's finding turned around: the engine keeps one global
+    Form 3 is decision 22's finding turned around: the engine keeps one global
     texture index keyed by basename and says so itself when two directories
     collide under one name, so a bare `texture_diffuse = "foo.dds"` reaches a
     file anywhere in the tree. Matching the stem as well as the name is

@@ -20,7 +20,7 @@
  # `vulcan` among them, which is how the 2026-08-22 Vulcan run came to see the
  # raw string `vulcan_shipset_desc` on screen. Stellaris draws an unresolved key
  # as the key text, so that IS the signature of a missing key, not of a second
- # defect. Repaired by decision 84; the check is what keeps it repaired.
+ # defect. Repaired by decision 79; the check is what keeps it repaired.
  #
  # Prose is grounded in the art each culture actually draws, not in lore alone:
  # the hull textures were read off `stg-build/gfx/models/ships/<culture>/` before

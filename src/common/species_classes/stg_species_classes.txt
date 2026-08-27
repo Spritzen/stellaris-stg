@@ -6,8 +6,8 @@
 # STNH clothing selectors gate every Trek uniform on `is_species_class = <KEY>`
 # and cannot be edited, so a prefix or a near miss dresses the species in human
 # civilian clothes with nothing in error.log.
-# .docs/decisions/10-species-class-keys-unprefixed.md
-# .docs/decisions/20-minor-power-species-class-keys.md
+# .docs/decisions/09-species-class-keys-unprefixed.md
+# .docs/decisions/18-minor-power-species-class-keys.md
 #
 # ARCHETYPES ARE VANILLA'S. STNH's own (HUMANOID, CRYSTALLINE, CHANGELING,
 # SYMBIONT) live in a common/species_archetypes/ we do not vendor -- naming one
@@ -17,11 +17,11 @@
 # choose, not ours, for the same reason the keys are unprefixed. Note it is set
 # on the prescripted EMPIRE too and the empire's copy wins --
 # .docs/reference/prescripted-empire-rules.md.
-# .docs/decisions/18-walshicus-shipsets-replace-stnh-hulls.md
+# .docs/decisions/17-walshicus-shipsets-replace-stnh-hulls.md
 #
 # `randomized = no` throughout: these appear only as the prescripted empires in
 # src/prescripted_countries/, and 30 of the 129 are selector stubs that no
-# empire names at all -- .docs/decisions/32-declare-stub-species-classes.md.
+# empire names at all -- .docs/decisions/30-declare-stub-species-classes.md.
 #
 # THAT REASONING IS NOW UNDER QUESTION and this is the file the answer would
 # change. Vanilla is 32 of 33 spawn-eligible prescripted empires on a
@@ -30,11 +30,11 @@
 # counterexample and STNH ships the same combination 94 times -- and the fix is
 # not one line: vanilla ships a common/species_names/ entry for every class it
 # randomizes and STG ships none. Read the argument before touching the field.
-# .docs/decisions/90-design-database-is-not-the-cause.md
+# .docs/decisions/83-design-database-is-not-the-cause.md
 #
 # EVERY CLASS NEEDS THE 27-KEY LOC FAMILY the engine derives from the class key
 # -- `FED_desc`, `FED_organ`. An `STG_` prefix there is a key nothing looks up.
-# .docs/decisions/21-species-class-localisation.md
+# .docs/decisions/19-species-class-localisation.md
 
 # United Federation of Planets — humans and the founding members.
 FED = {
@@ -349,7 +349,7 @@ BRG = {
 # ── The eight frontier powers ──────────────────────────────────────────────
 # Each names a Walshicus shipset culture directly. None is referenced by an STNH
 # clothing selector — STNH has no uniform art for these eight — so they wear the
-# selector's default. See .docs/decisions/18-walshicus-shipsets-replace-stnh-hulls.md.
+# selector's default. See .docs/decisions/17-walshicus-shipsets-replace-stnh-hulls.md.
 
 # Caitian Union.
 CAI = {
@@ -507,7 +507,7 @@ TER = {
 # One class per empire in stg_z_minor_powers.txt. Keys are derived from the
 # empire name and checked against BOTH the twenty-two above and the keys the
 # STNH clothing selectors reference, so none can collide with a uniform rule.
-# See .docs/decisions/19-stnh-minor-powers-as-ai-empires.md.
+# See .docs/decisions/18-minor-power-species-class-keys.md.
 
 # Sovereignty.
 ACA = {
@@ -1980,7 +1980,7 @@ ZAK = {
 # 439 records in the 2026-08-07 run, 22% of error.log -- and the species that
 # would have worn them falls through to the selector's `default`, i.e. human
 # civilian clothes. Declaring the key is what makes the reference resolve;
-# see .docs/decisions/10-species-class-keys-unprefixed.md.
+# see .docs/decisions/09-species-class-keys-unprefixed.md.
 #
 # `graphical_culture = generic_01` throughout, and it is INERT: no empire
 # declares these classes, so nothing ever resolves ship art through them. A kin
@@ -1989,7 +1989,7 @@ ZAK = {
 #
 # Spelling is STNH's, not ours, for the same reason the keys are unprefixed --
 # and four of these keys REPLACED a near miss of our own (DELT->DEL,
-# ELAU->ELA, MONE->MON, PARA->PAR), which is decision 20 applied again.
+# ELAU->ELA, MONE->MON, PARA->PAR), which is decision 18 applied again.
 # ============================================================================
 
 # Aenar -- referenced by the vendored clothes selectors, no empire of ours.

@@ -29,7 +29,7 @@ the entire point of the mod.
 
 *(The ship-model prune this section held in reserve as the load-time lever has
 since happened, forced by a directory-name collision rather than chosen —
-[decision 18](18-walshicus-shipsets-replace-stnh-hulls.md). "Take all of it" no
+[decision 17](17-walshicus-shipsets-replace-stnh-hulls.md). "Take all of it" no
 longer describes `gfx/models/ships`; `vendor.yml` is the list.)*
 
 ## Borg and Dominion — playable empires

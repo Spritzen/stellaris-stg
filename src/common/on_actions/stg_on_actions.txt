@@ -23,7 +23,7 @@
 #   on_five_year_pulse_country   this = country
 #   on_first_contact             this = country, FROM = the country we just met
 #
-# See .docs/decisions/77-trek-story-events.md
+# See .docs/decisions/72-trek-story-events.md
 
 # The gatekeeper. One line in a list vanilla and four source mods already share.
 on_five_year_pulse_country = {
@@ -61,7 +61,7 @@ on_first_contact = {
 # YRI, KRE, MAL, VID and TER -- the mirror Terran Empire being the notable one.
 # Growing the pool is cheap: `random_events` fires one winner, so more gated
 # events cannot make anyone see more popups.
-# See .docs/decisions/78-phase-4-count-corrections.md and
+# See .docs/decisions/73-phase-4-count-corrections.md and
 # .docs/planning/open-questions.md
 #
 # And these are per-pulse rates, not frequencies. `stg_recent_story` runs 3,600

@@ -7,7 +7,7 @@
 #
 # Copied verbatim from vanilla 4.4; additive by key, so this filename merges
 # rather than shadows. Re-copy if a Stellaris patch changes the originals.
-# See .docs/decisions/08-stnh-art-shadows-vanilla.md
+# See .docs/decisions/07-stnh-art-shadows-vanilla.md
 
 portraits = {
 	human_legacy_female_01 = {	entity = "portrait_human_female_01_entity"	clothes_selector = "mammalian_human_female_clothes_01" attachment_selector = "human_female_hair_01"	greeting_sound = "human_female_greetings_03" custom_attachment_label = "HAIR_STYLE" }

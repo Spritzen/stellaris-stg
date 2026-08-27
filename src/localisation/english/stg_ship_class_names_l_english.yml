@@ -7,7 +7,7 @@
  # stg_ship_names_l_english.yml (the registries); a name already
  # spelled in either is not repeated here.
  #
- # See .docs/decisions/72-ship-class-names.md
+ # See .docs/decisions/67-ship-class-names.md
  STG_N_AcquariusShuttle:0 "Acquarius Shuttle"
  STG_N_AdvancedAutomatedUnit:0 "Advanced Automated Unit"
  STG_N_AdvancedDreadnaught:0 "Advanced Dreadnaught"

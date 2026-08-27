@@ -3,7 +3,7 @@
  # sound/advisor_voice_types/STH_advisor_voice_types.txt.
  #
  # Keys are the vendored file's own `name =` values, which the game looks up
- # verbatim, so they are unprefixed; only the FILE takes stg_. Decision 10.
+ # verbatim, so they are unprefixed; only the FILE takes stg_. Decision 09.
  #
  # vo_breen and vo_rom weights gated on country flags nothing sets, so neither
  # voice could ever be chosen. Fixed by the two vendor.yml patches to

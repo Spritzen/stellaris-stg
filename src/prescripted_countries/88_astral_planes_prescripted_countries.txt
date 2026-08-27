@@ -2,4 +2,4 @@
 # deliberately empty, so vanilla's 2 empires (certeran_covenant,
 # guardianship_of_nyrr) drop out of the empire picker and AI spawning. Ours
 # are in stg_major_powers.txt.
-# See .docs/decisions/14-remove-vanilla-prescripted-empires.md
+# See .docs/decisions/13-remove-vanilla-prescripted-empires.md

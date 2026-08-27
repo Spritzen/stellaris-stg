@@ -2,4 +2,4 @@
 # vanilla's 7 empires (humans1, humans2, humans1_1, humans2_1, humans3,
 # lithoid_humans, plantoid_humans) drop out of the empire picker and AI
 # spawning. Ours are in stg_major_powers.txt.
-# See .docs/decisions/14-remove-vanilla-prescripted-empires.md
+# See .docs/decisions/13-remove-vanilla-prescripted-empires.md

@@ -23,8 +23,8 @@
 # inherits `weight = 0` and ships complete, validating clean and unreachable --
 # check_archaeology asks this now, against the whole tree, and its other half is
 # whether anything in script names the key at all.
-# See .docs/decisions/76-trek-archaeology.md and
-# .docs/decisions/79-reachability-checks.md
+# See .docs/decisions/71-trek-archaeology.md and
+# .docs/decisions/74-reachability-checks.md
 #
 # No `specimen`, no minor-artifact reward, no `has_ancrel` branch: STG is
 # standalone and behaves the same whatever the host owns. Vanilla's own comment
@@ -386,7 +386,7 @@ stg_site_hebitian_vaults = {
 # own: a site that names a specific thing -- one blade, one ark, one sanctuary --
 # reads as broken if the galaxy holds four of them, and a site that names a KIND
 # of thing does not. A colony that failed is a kind of thing. Same call as
-# .docs/decisions/75-trek-anomalies.md made over the anomaly categories.
+# .docs/decisions/70-trek-anomalies.md made over the anomaly categories.
 stg_site_lost_colony = {
 	desc = "stg_site_lost_colony_desc"
 	picture = GFX_evt_stg_colony_lander

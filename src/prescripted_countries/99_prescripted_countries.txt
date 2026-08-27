@@ -2,4 +2,4 @@
 # empty, so vanilla's 8 empires (tzynn, yondar, iferyx, glebsig, jehetma,
 # scyldari, kel_azaan, blorg) drop out of the empire picker and AI spawning.
 # Ours are in stg_major_powers.txt.
-# See .docs/decisions/14-remove-vanilla-prescripted-empires.md
+# See .docs/decisions/13-remove-vanilla-prescripted-empires.md

@@ -18,10 +18,10 @@
 ```
 /workshop/<id>        Steam's. Read by ONE command, never by the build.
   ↓  make sources-sync
-.source/<id>          our pinned copy — decision 09
+.source/<id>          our pinned copy — decision 08
   ↓  make vendor      driven by vendor.yml, then the prune closure
      + src/           hand-written STG content, applied last, always wins
-stg-build/            generated; never hand-edited — decision 13
+stg-build/            generated; never hand-edited — decision 12
   ↑  symlink
 /paradox/stellaris/mod
 ```

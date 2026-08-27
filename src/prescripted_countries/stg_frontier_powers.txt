@@ -4,9 +4,9 @@
 # majors' header for the per-field notes, which apply here unchanged.
 #
 # THESE EIGHT EXIST BECAUSE THE ART DID. Each names a Walshicus shipset that
-# decision 18 brought into the harvest for a species STG had no empire for --
+# decision 17 brought into the harvest for a species STG had no empire for --
 # ships, portraits and heraldry all already in the tree and idle.
-# .docs/decisions/18-walshicus-shipsets-replace-stnh-hulls.md
+# .docs/decisions/17-walshicus-shipsets-replace-stnh-hulls.md
 #
 # EVERY authority/government/civic/ethic TUPLE BELOW IS COPIED WHOLE FROM A
 # VANILLA PRESCRIPTED EMPIRE, and that is the rule to keep rather than the tuples
@@ -22,7 +22,7 @@
 #
 # None of the eight is referenced by an STNH clothing selector -- STNH ships no
 # uniform art for them -- so they wear the selector's default
-# (.docs/decisions/16-phase-3-clothing-triggers.md).
+# (.docs/decisions/15-phase-3-clothing-triggers.md).
 
 # ── Caitian Union ──────────────────────────────────────────────
 # Cait, in the Ferasa system — a Federation member world.
@@ -557,7 +557,7 @@ stg_terran_empire = {
 
 	# Its own mirror Sol, NOT the Federation's. Two prescripted empires naming
 	# one initializer is a documented engine failure that logs nothing and
-	# costs both of them — decision 88.
+	# costs both of them.
 	flag = empire_stg_terran_empire
 	initializer = "stg_terran_empire_home"
 	planet_name = "STG_planet_name_terran"

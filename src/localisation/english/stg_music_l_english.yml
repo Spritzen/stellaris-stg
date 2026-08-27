@@ -7,12 +7,12 @@
  # drawn VERBATIM and logs nothing, because a name that resolves to itself still
  # resolves -- so 16 of the built tree's 22 playlist entries listed as
  # `newhorizonssong1`, `maintheme7`, `stg_ufp_anthem`. Reported from the
- # 2026-08-08 live run. See .docs/decisions/61-music-player-track-names.md
+ # 2026-08-08 live run. See .docs/decisions/58-music-player-track-names.md
  #
  # KEYS ARE NOT OURS TO PREFIX. The key is the `name =` in a vendored
  # music/*.asset that we do not own and cannot rename, so it takes STNH's
  # spelling and vanilla's. Same exception as the species classes
- # (.docs/decisions/10-species-class-keys-unprefixed.md); only `stg_ufp_anthem`
+ # (.docs/decisions/09-species-class-keys-unprefixed.md); only `stg_ufp_anthem`
  # is ours and carries the prefix.
  #
  # Every value below is DERIVED, in this order of preference: STNH's own
@@ -21,7 +21,7 @@
 
  # ── STNH's ambient tracks. Values are STNH's own localisation/, which STG
  # does not vendor (.docs/architecture/stnh-art.md takes its art paths and not its script), so the
- # titles had to be harvested the same way decision 52 harvested star names.
+ # titles had to be harvested the same way the star names were.
  newhorizonssong1:0 "New Horizons - Inner Light"
  newhorizonssong2:0 "New Horizons - Deep Space 9"
  newhorizonssong3:0 "New Horizons - Voyager"
@@ -42,7 +42,7 @@
  # `maintheme` and STNH's added `maintheme7/8/9/10/12` ALL declare
  # newhorizonstheme.ogg -- six playlist entries, ONE recording, taking 6 of the
  # rotation's 32 slots because Stellaris picks uniformly across song entries.
- # Decision 61 kept all six with distinct titles at the user's direction; the
+ # Decision 58 kept all six with distinct titles at the user's direction; the
  # 2026-08-08 Cardassian run reversed that, and the five aliases now have
  # comment-only playlist files in src/music/. Their `music = { }` declarations
  # and these five keys are deliberately NOT removed: the declarations are what
@@ -60,6 +60,6 @@
  maintheme12:0 "New Horizons - To Boldly Go"
 
  # ── Ours ────────────────────────────────────────────────────────────────────
- # Declared in src/music/stg_music.{asset,txt} by decision 55, which got the
+ # Declared in src/music/stg_music.{asset,txt} by decision 52, which got the
  # track playing and left it listed under its own key.
  stg_ufp_anthem:0 "Anthem of the United Federation of Planets"

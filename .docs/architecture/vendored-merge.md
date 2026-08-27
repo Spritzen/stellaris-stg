@@ -21,10 +21,10 @@ merge decision. `make vendor` replays that manifest to produce the tree.
 ```
 /workshop/<id>        ← Steam's. Read by ONE command, and never by the build.
   ↓  make sources-sync   (deliberate; diff first with make sources-status/-diff)
-.source/<id>          ← our pinned copy of each source mod — decision 09
-  ↓  make vendor      ← driven by vendor.yml, plus the prune closure (decision 45)
+.source/<id>          ← our pinned copy of each source mod — decision 08
+  ↓  make vendor      ← driven by vendor.yml, plus the prune closure (decision 43)
      + src/           ← hand-written STG content, applied last, always wins
-stg-build/            ← generated; regenerable; never hand-edited — decision 13
+stg-build/            ← generated; regenerable; never hand-edited — decision 12
   ↑  symlink (make link, once)
 /paradox/stellaris/mod
 ```
@@ -32,7 +32,7 @@ stg-build/            ← generated; regenerable; never hand-edited — decision
 The last arrow points the other way on purpose: the mod folder holds a **link**
 to `stg-build/`, not a copy, so `make vendor` alone changes what the game loads.
 A copy is a step you can forget, and on 2026-08-02 one sat five hours stale —
-[decision 13](../decisions/13-build-dir-and-symlink-deploy.md).
+[decision 12](../decisions/12-build-dir-and-symlink-deploy.md).
 
 ## What this buys, none of which comes from hand-copying
 
@@ -70,7 +70,7 @@ version of a file the author has since fixed.
 > Space's gas giant rings drew with no material and `make validate` was clean
 > throughout. `check_src_source_regression` now asks that question over every
 > such path — 182 on the build of 2026-08-25, read off the manifest's
-> `overwrites`. [Decision 34](../decisions/34-src-shadows-drop-source-declarations.md).
+> `overwrites`. [Decision 32](../decisions/32-src-shadows-drop-source-declarations.md).
 
 Two further levers exist for what neither can do:
 
@@ -79,8 +79,8 @@ Two further levers exist for what neither can do:
 - **`resample_to_vanilla:`** re-cuts vendored art that shadows a vanilla texture
   path at the wrong pixel dimensions, reading the target off the vanilla file at
   harvest so it survives a game patch
-  ([42](../decisions/42-event-picture-geometry.md),
-  [58](../decisions/58-city-set-geometry.md)).
+  ([40](../decisions/40-event-picture-geometry.md),
+  [55](../decisions/55-city-set-geometry.md)).
 
 ### 2. Never hand-edit `.source/` either
 
@@ -110,11 +110,11 @@ harvest change and this section has been stale more than once.
 | | |
 |---|---|
 | Gameplay/UI tier — [26 harvest positions](harvest-order.md), 25 with surviving files | 4.7 GiB, 8,026 files |
-| STNH — art paths only, ship tree pruned per [decision 18](../decisions/18-walshicus-shipsets-replace-stnh-hulls.md) | 7.0 GiB, 10,929 files |
+| STNH — art paths only, ship tree pruned per [decision 17](../decisions/17-walshicus-shipsets-replace-stnh-hulls.md) | 7.0 GiB, 10,929 files |
 | Walshicus' 22 Trek shipsets | 2.5 GiB, 3,092 files |
 | `src/` — hand-written | 5.0 MB, 359 files |
 | **Built mod, total** | **14.3 GiB**, 22,406 files, 49 sources + `src/` |
-| `.source/` — 51 mods: the 49 harvested plus Kammarheit and Apocryphos | 22 GB apparent, **~0 real** (reflinked; [decision 09](../decisions/09-source-snapshot.md)) |
+| `.source/` — 51 mods: the 49 harvested plus Kammarheit and Apocryphos | 22 GB apparent, **~0 real** (reflinked; [decision 08](../decisions/08-source-snapshot.md)) |
 
 *(The gameplay/UI tier holds 26 harvest positions but only 25 leave a file
 behind: URP harvests one file and `src/` shadows it —
@@ -126,7 +126,7 @@ Re-derive the whole table by counting `generated[*].id` in
 predates `.source/`. It is the one mod in `/workshop` with no copy here.)*
 
 Disk is not a concern, and it is **never the argument for removing anything** —
-[decision 45](../decisions/45-clutter-pass.md) removed 1.0 GB and says so
+[decision 43](../decisions/43-clutter-pass.md) removed 1.0 GB and says so
 explicitly. Two things that *do* follow from the size:
 
 - **Git tracks the inputs, never the output.** The generated tree and `.source/`

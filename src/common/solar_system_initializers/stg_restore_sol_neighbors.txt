@@ -15,7 +15,7 @@
 # file cannot inherit them and redeclaring them would add to the
 # `Variable name ... is already taken` noise this directory already produces.
 #
-# See .docs/decisions/38-real-space-drops-sol-neighbours.md.
+# See .docs/decisions/36-real-space-drops-sol-neighbours.md.
 
 sol_neighbor_t1 = {
 	name = "NAME_Barnards_Star"

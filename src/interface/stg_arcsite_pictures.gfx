@@ -16,14 +16,14 @@
 #   at harvest, freezing frame 0 of a strip. Without that this file is decision
 #   42's defect: UIOD's eventwindow.gui draws at scale = 1.5 inside a 693x239
 #   frame, so 620x264 art renders 930x396.
-#   See .docs/decisions/74-event-picture-families.md.
+#   See .docs/decisions/69-event-picture-families.md.
 #
 # ALL 27 WERE LOOKED AT AS THE BUILD WILL CUT THEM -- frame 0, centre-cropped
 # to 450x150 -- and eleven candidates were rejected on what that crop showed:
 # four TAS-animated frames, three close-ups of a named character's face, two
 # near-featureless gradients and two too dark to read at this size. A filename
 # cannot make that call. Same standard as
-# .docs/decisions/75-trek-anomalies.md set for the anomaly pictures.
+# .docs/decisions/70-trek-anomalies.md set for the anomaly pictures.
 #
 # NONE OF THE 27 IS ALREADY DECLARED by the anomalies' file, which is a
 # constraint and not a coincidence: theChase, undergroundTunnels, stone_of_gol
@@ -31,7 +31,7 @@
 # spent on an anomaly, so the sites took stone_of_gol_1/_3 and ancientCapsule2
 # and found other art for the caves. One picture, one subject.
 #
-# See .docs/decisions/76-trek-archaeology.md
+# See .docs/decisions/71-trek-archaeology.md
 
 spriteTypes = {
 

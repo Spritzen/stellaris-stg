@@ -13,11 +13,11 @@
 #
 #   Four are on Walshicus shipsets; five (BAJ, TRI, ADR, BOL, BRE) are still on
 #   STNH art wired up by tools/gen_shipsets.py --
-#   .docs/decisions/18-walshicus-shipsets-replace-stnh-hulls.md
+#   .docs/decisions/17-walshicus-shipsets-replace-stnh-hulls.md
 #
 #   The Bolians have no flag of their own: STNH ships none and neither does any
 #   Walshicus shipset. Every other flag here is vendored STNH heraldry at
-#   flags/trek/ -- .docs/decisions/49-flags-city-sets.md
+#   flags/trek/ -- .docs/decisions/47-flags-city-sets.md
 
 # ── Ferengi Alliance ───────────────────────────────────────────────────────
 # auth_corporate ⇒ is_megacorp, which gov_trade_league wants together with

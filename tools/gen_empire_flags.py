@@ -43,7 +43,7 @@ The matching `flag = empire_<key>` line in `src/prescripted_countries/` is
 hand-authored content, not generated — `check_prescripted_empires` asserts the
 two sides agree.
 
-See .docs/decisions/93-static-galaxy-scenario.md.
+See .docs/decisions/86-static-galaxy-scenario.md.
 
 Run:  python3 tools/gen_empire_flags.py
 """
@@ -69,7 +69,7 @@ HEADER = """\
 #
 # The flag IS the prescripted design key. Do not invent a second name for it.
 #
-# See .docs/decisions/93-static-galaxy-scenario.md.
+# See .docs/decisions/86-static-galaxy-scenario.md.
 """
 
 

@@ -12,7 +12,7 @@
  # vanilla does for HUM and STNH does for BAJ. This is convention exception 2 in
  # .docs/guides/writing-script.md, for the same reason as the class keys in
  # src/common/species_classes/stg_species_classes.txt: the name is not ours to
- # choose. See .docs/decisions/21-species-class-localisation.md.
+ # choose. See .docs/decisions/19-species-class-localisation.md.
 
  # ── empire designer ──
  STG_PORTRAIT_CATEGORY_TREK:0 "Alpha Quadrant"
@@ -2827,7 +2827,7 @@
 
  # Classes the vendored clothes selectors name and no empire declares.
  # Same rule as every family above: keys hang off the class key, unprefixed
- # (.docs/decisions/21-species-class-localisation.md).
+ # (.docs/decisions/19-species-class-localisation.md).
  AEN:0 "Aenar"
  AEN_desc:0 "A blind, telepathic people of Andoria's northern ice, kin to the Andorians and long kept apart from them."
  AEN_plural:0 "Aenar"

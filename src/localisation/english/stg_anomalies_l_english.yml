@@ -9,7 +9,7 @@
  # Categories live in common/anomalies/stg_anomaly_categories.txt, events in
  # events/stg_anomaly_events.txt, pictures in interface/stg_event_pictures.gfx.
  # check_anomalies walks all four and fails on any key with nothing behind it.
- # See .docs/decisions/75-trek-anomalies.md
+ # See .docs/decisions/70-trek-anomalies.md
 
  # ── Asteroids, hulks and debris ──────────────────────────────────────────────
 

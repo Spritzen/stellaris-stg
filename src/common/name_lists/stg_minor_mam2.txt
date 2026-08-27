@@ -5,7 +5,7 @@
 # ship-size buckets are rebuilt for VANILLA's ladder -- STNH's file buckets by
 # its own (saber, sovereign, steamrunner) and those keys mean nothing here.
 #
-# See .docs/decisions/19-stnh-minor-powers-as-ai-empires.md.
+# One of the 79 minor powers converted from STNH's prescripted empires.
 
 STG_MAM2 = {
 	category = "Humanoid"

@@ -49,7 +49,7 @@ from fnmatch import fnmatch as _fnmatch
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent
-# The generated mod tree (decision 13). Every check that asks "what will the
+# The generated mod tree (decision 12). Every check that asks "what will the
 # game load" reads BUILD; every check that asks "what did we write" reads
 # REPO/src. Keeping the two apart in the path is the point of the split -- the
 # cross-reference checks exist precisely because those are different questions.
@@ -70,7 +70,7 @@ TEXT_SUFFIXES = {
 #
 # Which of two files claiming the same key the engine keeps. Transcribed from
 # Irony Mod Manager, which maintains it against years of bug reports; see
-# .docs/decisions/29-merge-semantics-per-directory.md for what was taken, what
+# .docs/decisions/27-merge-semantics-per-directory.md for what was taken, what
 # was rejected, and why this one table is not measured against /stellaris the
 # way every other allowlist here is.
 #
@@ -84,7 +84,7 @@ TEXT_SUFFIXES = {
 
 # FIOS -- "first in order of sequence". A contested key goes to the FIRST
 # filename in ordinal sort. Every directory NOT listed here is LIOS and the last
-# filename wins, which is what this file assumed everywhere before decision 29.
+# filename wins, which is what this file assumed everywhere before decision 27.
 # Paths are exact; Irony matches a trailing component, which also catches
 # common/inline_scripts/traits and is not what it means.
 FIOS_DIRS = {
@@ -390,7 +390,7 @@ def check_vanilla_regression() -> int:
     minus whatever 4.4 added -- and the game loads it in place of the real thing
     with no complaint. That is how we shipped a flags/colors.txt missing 47 of
     vanilla's 72 flag colours while vanilla prescripted empires still asked for
-    them. See .docs/decisions/08-stnh-art-shadows-vanilla.md.
+    them. See .docs/decisions/07-stnh-art-shadows-vanilla.md.
 
     Checked: `additive_only` sources, PLUS any source whose descriptor declares
     a supported_version below the target. The original scope was additive_only
@@ -568,7 +568,7 @@ def _vanilla_regression_body(state: dict, checkable: frozenset[str],
         # `Invalid initializer` errors a run and three neighbour systems that
         # never generate. Intent is not the discriminator. A mod may replace a
         # vanilla database on purpose and still strand a THIRD mod that calls
-        # the old keys. See .docs/decisions/38-real-space-drops-sol-neighbours.md.
+        # the old keys. See .docs/decisions/36-real-space-drops-sol-neighbours.md.
         #
         # Widening cost one line and was calibrated first: over every vendored
         # .txt shadowing a vanilla path it yields 31 dropped keys in 11 files,
@@ -586,7 +586,7 @@ def _vanilla_regression_body(state: dict, checkable: frozenset[str],
         # src/common/prescripted_countries/ is the point, not a regression, and
         # widening without this gate reported 63 such keys across 19 files.
         # src/ has its own two checks -- check_src_shadowing demands every
-        # shadow be annotated, and check_src_source_regression (decision 34)
+        # shadow be annotated, and check_src_source_regression (decision 32)
         # catches src/ dropping what a SOURCE declares.
         if suffix == ".gui" and info.get("source") not in checkable:
             continue
@@ -644,7 +644,7 @@ def _declared_keys(path: Path) -> set[str]:
     """What a file DECLARES, by whatever names identity actually uses.
 
     Three shapes, and picking the wrong one gives a confident wrong answer --
-    decision 33. Depth-0 block keys are identity in a `.txt`; in an `.asset`
+    decision 31. Depth-0 block keys are identity in a `.txt`; in an `.asset`
     every declaration reads `entity = { name = "…" }` so identity is the nested
     name; in a `.shader` it is the `Effect`/state declaration line.
     """
@@ -692,7 +692,7 @@ def check_src_source_regression() -> int:
     effect in play. Nothing reported it -- check_vanilla_regression compares
     against vanilla, which never declared it, and check_dangling_shaders found
     the name declared in Real Space's own rs_pdxmesh.shader and was satisfied.
-    See .docs/decisions/34-src-shadows-drop-source-declarations.md.
+    See .docs/decisions/32-src-shadows-drop-source-declarations.md.
 
     A dropped name is only lost if nothing else declares it, so an override that
     moves a declaration to another filename is not a regression.
@@ -783,7 +783,7 @@ def check_src_source_regression() -> int:
                 f"applied last, so the source's version is gone — anything that "
                 f"referenced these resolves against nothing. Restore them in the "
                 f"override, or ack in vendor.yml under src_regression_ack. "
-                f"See .docs/decisions/34-src-shadows-drop-source-declarations.md.")
+                f"See .docs/decisions/32-src-shadows-drop-source-declarations.md.")
     return checked
 
 
@@ -813,7 +813,7 @@ def _strip_comments(text: str) -> str:
 def _body_sha(body: str) -> str:
     """Content identity for a declaration body, indifferent to formatting.
 
-    Irony Mod Manager's DefinitionSHA (decision 29): flatten to one line,
+    Irony Mod Manager's DefinitionSHA (decision 27): flatten to one line,
     collapse every run of whitespace, then delete the spaces that sit next to
     `=`, `{` and `}` -- the three places Stellaris script is written a dozen
     ways and means one. Two sources shipping `trait = { cost = 2 }` and a
@@ -1043,7 +1043,7 @@ def check_dangling_identifiers() -> int:
             f"{where}: {kind} '{name}' is referenced by vendored art ({count} "
             f"reference(s)) but defined nowhere in vanilla, the vendored tree or "
             f"src/. Every reference is an error.log entry. Stub it in "
-            f"src/common/ — see .docs/decisions/10-species-class-keys-unprefixed.md.")
+            f"src/common/ — see .docs/decisions/09-species-class-keys-unprefixed.md.")
     if len(dangling) > 12:
         errors.append(f"... and {len(dangling) - 12} more dangling identifier(s)")
     return n
@@ -1201,7 +1201,7 @@ def check_gfx_file_refs() -> int:
     says so in its own docstring -- "the question is 'does the file exist' and
     belongs with the vendoring rules" -- and nothing implemented it.
 
-    Decision 18 pruned STNH's ship tree from 104 directories to 13, driving the
+    Decision 17 pruned STNH's ship tree from 104 directories to 13, driving the
     include list to closure against the *name* check. It converged: every mesh
     name still resolved, because the .gfx that DECLARES them
     (gfx/models/ships/federation/federation_all_ships.gfx) was kept. Its
@@ -1275,7 +1275,7 @@ def check_texture_basenames() -> int:
     never asked about at all, in any form. The 2026-08-03 run answered with 139
     `pdxassetutil.cpp` "Failed to find texture" records -- and NOT ONE of the
     139 was anywhere in the built tree, while 132 sat in .source/ in ship
-    directories decision 18's prune had removed. `make validate` was clean.
+    directories decision 17's prune had removed. `make validate` was clean.
 
     Resolving from the root is the wrong question; resolving by BASENAME
     against everything loaded is the right one, and the engine says so itself:
@@ -1353,7 +1353,7 @@ def check_texture_basenames() -> int:
 #
 # THIS IS A COHERENCE HEURISTIC, NOT AN ENGINE REQUIREMENT, and it used to claim
 # to be one. The only evidence that the engine coupled these two was the D13
-# error of the 2026-08-01 run — and decision 43 showed that error is about
+# error of the 2026-08-01 run — and decision 41 showed that error is about
 # NCamera.ZOOM_STEPS_SYSTEM, a different array that no script can set and that
 # is fixed at 7. With D13 explained, nothing is left that says these two must
 # match: Cinematic Camera shipped 13 against System Scale's 8 planet scales and
@@ -1362,7 +1362,7 @@ def check_texture_basenames() -> int:
 #
 # So it warns rather than errors, and it says which of the two it is. A rule
 # that survives only because nobody re-tested it after its evidence was
-# reattributed is exactly what decision 43 is about.
+# reattributed is exactly what decision 41 is about.
 COUPLED_DEFINE_ARRAYS = [
     ("NCamera.ZOOM_STEPS_SYSTEM_PERCENTAGES", "NGraphics.PLANET_SCALE_SYSTEM"),
 ]
@@ -1390,7 +1390,7 @@ COUPLED_DEFINE_ARRAYS = [
 # sufficient: it passed 8-against-8 while the engine went on reporting the same
 # error, which is the decision-30 trap -- a check calibrated on the near side of
 # a repair and never re-run against the far side.
-# See .docs/decisions/43-planet-scale-system-length.md.
+# See .docs/decisions/41-planet-scale-system-length.md.
 ENGINE_FIXED_LENGTH_ARRAYS = [
     ("NGraphics.PLANET_SCALE_SYSTEM", "NCamera.ZOOM_STEPS_SYSTEM"),
 ]
@@ -1406,7 +1406,7 @@ ENGINE_FIXED_LENGTH_ARRAYS = [
 # the one key of 34 that no ack covered, reported by nothing.
 #
 # NOT the same as `class = "star"`, where quoting stops a keyword being a keyword
-# and the body is silently dropped (decision 27). There, the written form changes
+# and the body is silently dropped (decision 25). There, the written form changes
 # the meaning and normalising it away deletes the defect; here the form is
 # cosmetic and refusing to read one of the two deletes the reference. Ask which
 # of those a field is before writing the regex.
@@ -1427,7 +1427,7 @@ def _placed_locators(body: str) -> dict[str, bool]:
     """Locator name -> whether it carries a position away from the origin.
 
     A locator declared with no position, or at { 0 0 0 }, puts the gun at the
-    model origin — the middle of the ship. See decision 28.
+    model origin — the middle of the ship. See decision 26.
     """
     out: dict[str, bool] = {}
     for m in _LOCATOR_BODY_RE.finditer(body):
@@ -1542,7 +1542,7 @@ def check_asset_load_order() -> int:
     clone chain into vendored and vanilla art -- but only reports on entities
     STG itself declares. Vanilla ships section entities of its own that fail the
     same test and never appear in error.log, so judging them would be 191
-    findings nobody can act on; decision 12's rule is that a source's errors are
+    findings nobody can act on; decision 11's rule is that a source's errors are
     ours to fix, but vanilla's own art is not ours to second-guess.
 
     CALIBRATION against the 2026-08-03 run, which is the only way to know this
@@ -1572,7 +1572,7 @@ def check_asset_load_order() -> int:
     It asks about PLACEMENT, not existence. An .asset declaration does satisfy
     the engine -- 0 of 2,780 such mounts were reported in that run -- but a
     declaration with no position leaves the gun at the model origin, which no
-    log will ever mention. Decision 28.
+    log will ever mention. Decision 26.
     """
     if not (BUILD / "gfx/models/ships").is_dir():
         return 0
@@ -1676,7 +1676,7 @@ def check_asset_load_order() -> int:
         A locator declared beside a `clone` counts for nothing at all: it is
         dropped before the engine ever sees it, and `locs` is empty for those
         entities. That is enforced where `ents` is built, not here.
-        See .docs/decisions/28-weapon-locator-positions.md.
+        See .docs/decisions/26-weapon-locator-positions.md.
         """
         seen = seen or set()
         if name in seen or name not in ents:
@@ -1719,7 +1719,7 @@ def check_asset_load_order() -> int:
     # declared with a position anywhere up the clone chain.
     #
     # THE NUMBER IS THE SIGNAL, and the baseline is now 0. gen_shipsets.py places
-    # every mount it generates from the donor hull's bounding box (decision 28),
+    # every mount it generates from the donor hull's bounding box (decision 26),
     # so anything reported here is either art whose geometry could not be read or
     # a section the generator does not cover. Both are findings.
     if unmounted:
@@ -1731,7 +1731,7 @@ def check_asset_load_order() -> int:
             f"with one in its .asset ({per}). The gun fires from the model "
             f"origin, i.e. the middle of the ship. gen_shipsets.py places the "
             f"mounts it generates from hull geometry, so the baseline is 0; see "
-            f".docs/decisions/28-weapon-locator-positions.md. Fix by giving the "
+            f".docs/decisions/26-weapon-locator-positions.md. Fix by giving the "
             f"locator a real position, or ack it in vendor.yml under "
             f"asset_load_order_ack once looked at.")
     return n
@@ -1772,7 +1772,7 @@ def check_section_attach_points() -> int:
     stale. This docstring used to record 41 vanilla against 147 mod findings
     over all 317 sizes, "not a signal anyone can act on". Re-measured against
     the build of 2026-08-11, that whole population is 12: 7 vanilla-only and 5
-    in vendored files. Decision 82's 230 attach points collapsed the mod side.
+    in vendored files. Decision 77's 230 attach points collapsed the mod side.
 
     BUT WIDENING ON THAT NUMBER ALONE WOULD HAVE SHIPPED FALSE POSITIVES, and
     what they are is the reason for the gate:
@@ -1784,7 +1784,7 @@ def check_section_attach_points() -> int:
       - the other four fly THEIR OWN culture's art, and 28 of vanilla's 33
         `*_constructor_entity` declare no part1 in the .asset either. The point
         comes from the animated rig, which is not readable from the container
-        (decision 82 records the same caveat for vanilla's titan and colossus
+        (decision 77 records the same caveat for vanilla's titan and colossus
         frames, which name no part locators and work).
 
     So the hull half is gated on the frame being BORROWED -- `pdxmesh` not
@@ -1796,8 +1796,8 @@ def check_section_attach_points() -> int:
 
     Baseline is 0 on both halves. Reverting the vendor.yml patches restores all
     66 stations; stripping fix_ship_locators' output restores 132 hulls.
-    See .docs/decisions/35-station-section-attach-points.md and
-    .docs/decisions/82-hull-section-attach-points.md.
+    See .docs/decisions/33-station-section-attach-points.md and
+    .docs/decisions/77-hull-section-attach-points.md.
     """
     if not (BUILD / "gfx/models/ships").is_dir():
         return 0
@@ -1862,7 +1862,7 @@ def check_section_attach_points() -> int:
                 ents[name] = {
                     "mesh": mesh.group(1) if mesh else None,
                     "clone": parent.group(1) if parent else None,
-                    # Decision 30: a locator beside a `clone` is discarded.
+                    # Decision 28: a locator beside a `clone` is discarded.
                     "locs": set() if parent else set(_placed_locators(body)),
                     "file": f.relative_to(root),
                 }
@@ -1918,7 +1918,7 @@ def check_section_attach_points() -> int:
                     f"{name} [{' '.join(miss)}]")
 
     # The hull scope, gated on the frame being BORROWED -- the discriminator
-    # decision 82's own fix tool is scoped by, reused here so the check guards
+    # decision 77's own fix tool is scoped by, reused here so the check guards
     # exactly the population that tool repairs.
     for size, want in hull_required.items():
         for prefix in cultures:
@@ -1941,9 +1941,9 @@ def check_section_attach_points() -> int:
             f"{' …' if len(bad) > 3 else ''}. The section has nowhere to attach, "
             f"so its guns are reported missing and nothing mounts there. Vanilla "
             f"bakes these into the mesh; art that does not must declare them (not "
-            f"beside a `clone` — decision 30). Fix, or ack in vendor.yml under "
+            f"beside a `clone` — decision 28). Fix, or ack in vendor.yml under "
             f"section_attach_point_ack. "
-            f"See .docs/decisions/35-station-section-attach-points.md.")
+            f"See .docs/decisions/33-station-section-attach-points.md.")
     return n
 
 
@@ -1954,13 +1954,13 @@ def check_attach_targets() -> int:
     """Entities an `attach = { "slot" = "X" }` names that nothing declares.
 
     A reference edge no other check here follows, and the one an include list
-    scoped by directory is most likely to sever -- the same shape as decision 24,
+    scoped by directory is most likely to sever -- the same shape as decision 22,
     one file type further down again. `clone` and `pdxmesh` were already covered;
     `attach` hangs one entity off another's locator and had nobody asking.
 
     VANILLA IS THE CALIBRATION, and it is unusually clean: 5,672 attach
     references across 2,461 distinct targets and **0 unresolved**. Like the
-    8,409 entity names it never repeats (decision 33), that makes any unresolved
+    8,409 entity names it never repeats (decision 31), that makes any unresolved
     attach in our tree a finding rather than a judgement call.
 
     THE FORM MATTERS AND ALMOST COST THIS CHECK. The syntax is
@@ -1970,7 +1970,7 @@ def check_attach_targets() -> int:
     reported 0 unresolved against 18 that exist. Vanilla writes the locator both
     quoted (2,763) and bare (1,000+), so the key's quoting is cosmetic here and
     both are accepted; the value is always quoted.
-    See .docs/decisions/37-attach-edges-into-pruned-art.md.
+    See .docs/decisions/35-attach-edges-into-pruned-art.md.
     """
     if not (BUILD / "gfx").is_dir():
         return 0
@@ -2015,7 +2015,7 @@ def check_attach_targets() -> int:
             f"5,672 attach references unresolved, so each of these is art calling "
             f"for art the tree has not got. Either vendor what declares it, or "
             f"ack the referencing file in vendor.yml under attach_target_ack. "
-            f"See .docs/decisions/37-attach-edges-into-pruned-art.md.")
+            f"See .docs/decisions/35-attach-edges-into-pruned-art.md.")
     return n
 
 
@@ -2056,7 +2056,7 @@ def check_defines_conflicts() -> int:
     union, our copy shadowing vanilla's on an identical filename — so "who wins"
     here is who wins in-game, not who wins in the harvest order.
 
-    Last-wins is correct HERE and is not an oversight left behind by decision 29:
+    Last-wins is correct HERE and is not an oversight left behind by decision 27:
     neither common/defines nor unchecked_defines is in FIOS_DIRS, so this
     database resolves LIOS and the last filename in sort order takes the key.
     """
@@ -2097,7 +2097,7 @@ def check_defines_conflicts() -> int:
             continue
         # Set twice to the same value is not a conflict: whichever file the
         # engine reads last, the define ends up identical. Same rule as
-        # check_key_conflicts' body hashing (decision 29), and it is what an
+        # check_key_conflicts' body hashing (decision 27), and it is what an
         # ack entry used to be spent on -- worse than this, because an ack goes
         # on saying nothing after the two values diverge.
         if len({sha for _, sha in entries}) == 1:
@@ -2116,7 +2116,7 @@ def check_defines_conflicts() -> int:
     for a, b in COUPLED_DEFINE_ARRAYS:
         # Acking EITHER member retires the pair: the ack is a statement about a
         # reviewed combination of values, and there is no half of one to keep.
-        # This is the weaker, group kind of ack (decision 29) -- it will also
+        # This is the weaker, group kind of ack (decision 27) -- it will also
         # sit on a future source that sets the acked key to something new, so
         # every entry says what it is about and when to delete it.
         if a in ack or b in ack:
@@ -2134,7 +2134,7 @@ def check_defines_conflicts() -> int:
             f"that used to be cited as proof of one is about "
             f"NCamera.ZOOM_STEPS_SYSTEM and is reported with or without the mod "
             f"that was blamed for it. Worth a look, not worth a revert on its "
-            f"own. See .docs/decisions/43-planet-scale-system-length.md.")
+            f"own. See .docs/decisions/41-planet-scale-system-length.md.")
 
     # Vanilla read alone: the length the engine's own un-scriptable array has.
     vanilla_only: dict[str, str] = {}
@@ -2167,7 +2167,7 @@ def check_defines_conflicts() -> int:
             f"visually instead: do planets change size across zoom steps, at "
             f"System Scale's sizes rather than vanilla's? Then re-cut it to "
             f"{want} entries or ack it under defines_conflict_ack. "
-            f"See .docs/decisions/43-planet-scale-system-length.md.")
+            f"See .docs/decisions/41-planet-scale-system-length.md.")
 
     return len(files), same_value
 
@@ -2196,12 +2196,12 @@ def check_key_conflicts() -> int:
 
     2. **Shrunk pool.** A key that is a flat list in both vanilla and our tree,
        defined in a DIFFERENTLY-NAMED file, with fewer entries than vanilla has.
-       That is decision 08's flag-colours defect — 47 of vanilla's 72 colours
+       That is decision 07's flag-colours defect — 47 of vanilla's 72 colours
        lost to a 3.12-era file — expressed at the key level instead of the path
        level, so check_vanilla_regression cannot reach it.
 
     Report (1) NAMES THE WINNER, and which file that is depends on the directory.
-    This said "last alphabetically wins" for every directory until decision 29,
+    This said "last alphabetically wins" for every directory until decision 27,
     which is correct for LIOS and precisely backwards for the FIOS ones — of
     which we vendor into common/traits, common/scripted_variables,
     common/solar_system_initializers and common/component_templates. See
@@ -2338,11 +2338,11 @@ def check_key_conflicts() -> int:
             contested += 1
             if contested <= 8:
                 # WHICH file wins is a property of the directory, not a constant.
-                # This said "last alphabetically" everywhere until decision 29,
+                # This said "last alphabetically" everywhere until decision 27,
                 # which is right for LIOS and exactly backwards for the fourteen
                 # FIOS directories. TEN of the fourteen have files in the built
                 # tree and SEVEN are fed by more than one source (measured
-                # 2026-08-22; decision 29 recorded four, before Phase 2 and
+                # 2026-08-22; decision 27 recorded four, before Phase 2 and
                 # Phase 4 added to events/ and solar_system_initializers/).
                 #
                 # Vanilla's own file is in the sort too. It is excluded from
@@ -2355,7 +2355,7 @@ def check_key_conflicts() -> int:
                 win = sorted(who)[0] if fios else sorted(who)[-1]
                 note = ""
                 if full_db in WHOLE_TEXT_DIRS:
-                    note = (f" common/{db} is a whole-file database (decision 29): "
+                    note = (f" common/{db} is a whole-file database (decision 27): "
                             f"the engine's unit here is the file, not the key, so "
                             f"the question is which whole file survives, and this "
                             f"key is only the part of it we can see.")
@@ -2402,7 +2402,7 @@ def check_order_sensitive_databases() -> int:
     A handful of databases carry meaning in the ORDER their entries are declared
     across the whole directory, not just in which entries exist: ethics,
     ship_sizes, starbase_modules, strategic_resources, governments/authorities
-    (ORDER_SENSITIVE_DIRS, decision 29). Irony Mod Manager re-emits each of them
+    (ORDER_SENSITIVE_DIRS, decision 27). Irony Mod Manager re-emits each of them
     as one file for exactly this reason.
 
     We cannot do that -- we ship the source mods' files as they stand -- so when
@@ -2445,7 +2445,7 @@ def check_order_sensitive_databases() -> int:
             warnings.append(
                 f"{db}: {sum(len(v) for v in srcs.values())} file(s) from "
                 f"{len(srcs)} sources — {who}. Entry order across this directory "
-                f"is semantic (decision 29), and with two sources contributing "
+                f"is semantic (decision 27), and with two sources contributing "
                 f"the entries interleave by filename sort into an order neither "
                 f"source chose and the harvest order did not decide. Check what "
                 f"this database does with order, then ack it in vendor.yml under "
@@ -2574,8 +2574,8 @@ def check_prescripted_empires() -> int:
 
     # An empire the designer never offers cannot be hidden by it. Vanilla marks
     # those `playable = empire_design_never`, a scripted trigger whose body is
-    # `always = no`. STG no longer gates any empire this way -- decision 88
-    # established that `playable` keeps an empire out of the engine's design
+    # `always = no`. STG no longer gates any empire this way: `playable` keeps
+    # an empire out of the engine's design
     # DATABASE, not just the picker, so a gated empire cannot spawn as AI
     # either. Resolve the trigger rather than matching a name, so the rule
     # stays vanilla's idiom and catches a gate reintroduced under any spelling.
@@ -2597,7 +2597,7 @@ def check_prescripted_empires() -> int:
     # species to already carry it and reports `Design species was missing trait
     # <t>` when it does not -- deduplicated BY TRAIT NAME, so six broken
     # empires surfaced as three log lines.
-    # See .docs/decisions/41-civic-granted-species-traits.md.
+    # See .docs/decisions/39-civic-granted-species-traits.md.
     civics_db = _defs_and_blocks(GAME_DIR / "common/governments/civics",
                                  BUILD / "common/governments/civics",
                                  REPO / "src/common/governments/civics")
@@ -2891,7 +2891,7 @@ def check_name_lists() -> int:
 def check_colony_name_collisions() -> int:
     """A `planet_names` pool must not offer a name some empire's CAPITAL uses.
 
-    These pools name colonies. Before decision 25 they also, in effect, named
+    These pools name colonies. Before decision 23 they also, in effect, named
     the other planets of the home system, and the Federation's pool is a list of
     Federation MEMBER worlds -- so Sol was generated containing Bajor and
     Andoria. Pinning home systems fixed that symptom and not the cause: the pool
@@ -2950,7 +2950,7 @@ def check_colony_name_collisions() -> int:
                 f"{', '.join(uniq[:6])}"
                 f"{f' (+{len(uniq) - 6} more)' if len(uniq) > 6 else ''}. "
                 f"A colony would carry a homeworld's name. Drop the token and "
-                f"top the pool back up — see .docs/decisions/25-real-home-systems.md.")
+                f"top the pool back up — see .docs/decisions/23-real-home-systems.md.")
     return n
 
 
@@ -3025,7 +3025,7 @@ def _initializer_class_tokens(text: str) -> set[tuple[str, bool]]:
 
     The quote flag is carried because it is *semantic* here, which cost a live
     run to learn: a quoted engine keyword parses and then resolves to nothing.
-    See .docs/decisions/27-quoted-class-keyword.md.
+    See .docs/decisions/25-quoted-class-keyword.md.
     """
     refs: set[tuple[str, bool]] = set()
     stack: list[str] = []
@@ -3106,7 +3106,7 @@ def check_initializer_classes() -> int:
     names had just been introduced: seven STNH planet classes and two STNH star
     classes, written through unchanged by a generator whose remap tables were
     `MAP.get(val, val)`, into a build that does not vendor STNH's common/.
-    See .docs/decisions/26-home-system-classes.md.
+    See .docs/decisions/24-home-system-classes.md.
 
     Scope is the merged tree, not src/: STNH's classes are perfectly valid in
     STNH, and only the merge decides whether they exist here.
@@ -3173,7 +3173,7 @@ def check_initializer_classes() -> int:
     # `ideal_planet_class` appear 671 times and never once in quotes, while
     # every `rl_*` and every `pc_*` is quoted somewhere. Same rule as the BOM
     # and shader allowlists: ask vanilla, don't declare the answer.
-    # See .docs/decisions/27-quoted-class-keyword.md.
+    # See .docs/decisions/25-quoted-class-keyword.md.
     bare_only = van_bare - van_quoted - valid
 
     ack = _ack_list("initializer_class_ack")
@@ -3194,7 +3194,7 @@ def check_initializer_classes() -> int:
                 # starbase has nothing to anchor to, and its starting fleets
                 # fail on `capital_star`. One line in error.log, and only for
                 # the system someone actually played.
-                # See .docs/decisions/27-quoted-class-keyword.md.
+                # See .docs/decisions/25-quoted-class-keyword.md.
                 if quoted and name in bare_only and name not in ack:
                     errors.append(
                         f"{rp}: writes `class = \"{name}\"` quoted. Vanilla "
@@ -3268,7 +3268,7 @@ def check_home_planet_generation() -> int:
     empire on fixed geometry, and it pairs `starting_planet = yes` with the
     effect in a second `init_effect` block.
 
-    See .docs/decisions/26-home-system-classes.md.
+    See .docs/decisions/24-home-system-classes.md.
     """
     init_dir = BUILD / "common/solar_system_initializers"
     if not init_dir.is_dir():
@@ -3379,7 +3379,7 @@ def check_species_class_loc() -> int:
     below the title. Both fail silently: `error.log` had nothing to say about
     either through the 08-15 run, in which 87 of 101 classes had no loc at all
     and the other 14 had a title and 26 keys the engine never looks up.
-    See .docs/decisions/21-species-class-localisation.md.
+    See .docs/decisions/19-species-class-localisation.md.
 
     The required suffix set is derived from vanilla's own usage — the suffixes
     it defines for *every* one of its species classes — so a game patch that
@@ -3438,7 +3438,7 @@ def check_species_class_loc() -> int:
                 f"common/species_classes: species class '{cls}' localises "
                 f"{len(prefixed)} of its keys as STG_{cls}_* . The engine derives "
                 f"them from the class key and never looks up a prefixed one — "
-                f"drop the prefix (convention exception 2, decision 21).")
+                f"drop the prefix (convention exception 2, decision 19).")
         else:
             errors.append(
                 f"common/species_classes: species class '{cls}' is missing "
@@ -3486,11 +3486,12 @@ def check_prescripted_appearance() -> int:
     nothing — it falls back rather than refusing.
 
     `clothes` IS THE SECOND HALF, and what it asks changed on 2026-08-08.
-    Decision 68 believed the index enumerates the distinct texture paths of the
-    portrait's selector in file order, and this check re-derived that number
-    every run. A live run wore six garments the model does not predict, so the
-    enumeration is NOT that and nothing readable here says what it is. Asking a
-    question whose answer we cannot establish is worse than not asking: it
+    An earlier model held that the index enumerates the distinct texture paths
+    of the portrait's selector in file order, and this check re-derived that
+    number every run. A live run wore six garments the model does not predict,
+    so the enumeration is NOT that and nothing readable here says what it is.
+    Asking a question whose answer we cannot establish is worse than not
+    asking: it
     reported `ok` on six wrong rulers for a day.
 
     So the question is now the one that does not need the enumeration: **a
@@ -3500,7 +3501,7 @@ def check_prescripted_appearance() -> int:
     construction. The fix is STNH's own — a dedicated one-texture selector and
     `clothes = 0`, the one index a live run HAS confirmed — and it is generated
     by tools/gen_ruler_clothes.py.
-    See .docs/decisions/69-ruler-clothes-dedicated-selectors.md.
+    See .docs/decisions/65-ruler-clothes-dedicated-selectors.md.
 
     Calibrated by reverting the repair: **7 findings before, 0 after.**
 
@@ -3510,7 +3511,7 @@ def check_prescripted_appearance() -> int:
 
     94 rulers still pin nothing, and this says nothing about them: on a
     per-species selector index 0 is already that species' own clothing, which
-    is decision 57's state and is correct.
+    is decision 54's state and is correct.
     """
     root = REPO / "src" / "prescripted_countries"
     if not root.is_dir():
@@ -3594,7 +3595,7 @@ def check_selector_texture_paths() -> int:
     content call behind it. The other half -- does the path RESOLVE -- is
     check_selector_texture_files below, landed 2026-08-24 once the population
     was measured properly: 117 rows, not the 196 recorded, and 76 of those were
-    somebody's typo rather than a content call (decision 85). This half
+    somebody's typo rather than a content call (decision 80). This half
     is mechanical: the path is malformed, the engine cannot load it, and
     appending `.dds` cannot be the wrong answer.
 
@@ -3648,7 +3649,7 @@ def check_selector_texture_paths() -> int:
 def check_selector_texture_files() -> int:
     """A quoted texture path in an asset selector that resolves to no file.
 
-    THE RESOLVES HALF of the question decision 83 split in two. The syntax half
+    THE RESOLVES HALF of the question decision 78 split in two. The syntax half
     above is pure form -- a path with no `.dds` is malformed whatever is on
     disk. This half asks the harder thing, and it waited two weeks because its
     findings were believed to need a content call each. Most of them did not: of
@@ -3682,11 +3683,11 @@ def check_selector_texture_files() -> int:
 
     A FINDING IS REPOINTED, NEVER DELETED. Deleting an entry from a
     `list = { }` shifts every index after it and changes what other species
-    wear, which is why decision 83 accepted a duplicated entry rather than drop
+    wear, which is why decision 78 accepted a duplicated entry rather than drop
     one. `"path" = { trigger }` rows are index-free, but a deletion there still
     changes what that trigger draws.
 
-    See .docs/decisions/85-selector-textures-that-resolve.md.
+    See .docs/decisions/80-selector-textures-that-resolve.md.
     """
     d = BUILD / "gfx/portraits/asset_selectors"
     if not d.is_dir():
@@ -3730,7 +3731,7 @@ def check_selector_texture_files() -> int:
             f"substitute named by the male mirror of the same trigger or by "
             f"the rows beside them. Repoint, never delete — a deletion shifts "
             f"every index after it. "
-            f"See .docs/decisions/85-selector-textures-that-resolve.md.")
+            f"See .docs/decisions/80-selector-textures-that-resolve.md.")
     return n
 
 
@@ -3748,11 +3749,12 @@ def check_portrait_clothes_selectors() -> int:
     That is how eight minor powers shipped with near-miss keys of STG's own
     invention (BENZ for STNH's BEN, DENO for DEN, TELL for TEL, ...) through
     every run to 2026-08-03. See
-    .docs/decisions/20-minor-power-species-class-keys.md.
+    .docs/decisions/18-minor-power-species-class-keys.md.
 
     Two reasons no existing check could see it. `check_prescripted_empires`
     asks about `common/portrait_sets/` and skipped `playable = stg_never`,
-    which was then every minor power (decision 88 removed that gate). `check_dangling_identifiers` saw the other side of the
+    which was then every minor power (that gate has since been
+    removed). `check_dangling_identifiers` saw the other side of the
     same fact -- BEN referenced and undeclared -- and it was acked as Phase 2
     content STG did not ship, which had stopped being true.
 
@@ -3818,7 +3820,7 @@ def check_portrait_clothes_selectors() -> int:
                 # both kriosian and valtese at trill_female_01 -- and scraping it
                 # as a member made this check report the master selector against
                 # two groups that use a dedicated one for all ten of their own
-                # portraits, prescribing decision 20's respelling as the fix for
+                # portraits, prescribing decision 18's respelling as the fix for
                 # species that already have a full wardrobe.
                 mem: set[str] = set()
                 for pm in re.finditer(r"portraits\s*=\s*{([^{}]*)}", b):
@@ -3885,7 +3887,7 @@ def check_portrait_clothes_selectors() -> int:
                         f"'{grp}' uses ({', '.join(missing)}), so the species "
                         f"falls through to that selector's `default` — usually "
                         f"human civilian clothes. Either the class should carry "
-                        f"the source's own spelling (decision 20) or this people "
+                        f"the source's own spelling (decision 18) or this people "
                         f"has no vendored clothing yet; ack it in vendor.yml "
                         f"under portrait_clothes_ack once looked at.")
 
@@ -3905,7 +3907,7 @@ def check_portrait_clothes_selectors() -> int:
                         f"civilian clothes, which is how the Federation, "
                         f"Vulcan, Andorian, Bajoran and Trill empires were all "
                         f"drawn as humans through the 08-15 run. Gate "
-                        f"`game_setup` too (decision 22), or ack it.")
+                        f"`game_setup` too (decision 20), or ack it.")
     return n
 
 
@@ -3915,7 +3917,7 @@ _ENT_NAME = re.compile(r'\bname\s*=\s*"([^"]+)"')
 
 def _norm_body(body: str) -> str:
     """An entity body with whitespace collapsed — two bodies differing only in
-    indentation are not in conflict (decision 29)."""
+    indentation are not in conflict (decision 27)."""
     return re.sub(r"\s+", " ", body).strip()
 
 
@@ -3968,14 +3970,14 @@ def check_duplicate_entities() -> int:
     was four of this check's thirteen findings, all against PD - More Arcologies'
     fork of _planetary_entities.asset. Suppressed by CONTENT rather than by ack,
     so it reports again by itself the day either side stops matching vanilla.
-    See .docs/decisions/53-duplicate-entity-triage.md.
+    See .docs/decisions/50-duplicate-entity-triage.md.
 
     Reported as a warning, not an error, and modelled on check_key_conflicts:
     the finding is "confirm this is the winner you want", and only a live run or
     the source's intent settles it. Identical bodies are not a conflict
-    (decision 29) and are not reported.
+    (decision 27) and are not reported.
 
-    See .docs/decisions/33-duplicate-entity-declarations.md.
+    See .docs/decisions/31-duplicate-entity-declarations.md.
     """
     art = BUILD / "gfx" / "models"
     if not art.is_dir():
@@ -4021,7 +4023,7 @@ def check_duplicate_entities() -> int:
         files = sorted({p for p, _ in places})
         if len(files) < 2:
             continue
-        # Bodies that differ only in whitespace are not in conflict (decision 29).
+        # Bodies that differ only in whitespace are not in conflict (decision 27).
         shapes = {b for _, b in places}
         if len(shapes) < 2:
             continue
@@ -4035,7 +4037,7 @@ def check_duplicate_entities() -> int:
             f"anywhere, so this silently decides which art renders. Vanilla never "
             f"declares an entity name twice in 8,409 declarations. Remove the "
             f"conflict or ack it in vendor.yml under duplicate_entity_ack. "
-            f"See .docs/decisions/33-duplicate-entity-declarations.md.")
+            f"See .docs/decisions/31-duplicate-entity-declarations.md.")
     if findings > 12:
         warnings.append(f"... and {findings - 12} more duplicated entity name(s)")
     return n
@@ -4108,7 +4110,7 @@ def check_prescripted_loc() -> int:
     and a check that reported them would be reporting a preference.
 
     THE TWO HALVES HAVE DIFFERENT SCOPES, and that is a calibration result
-    rather than an oversight — see .docs/decisions/51-prescripted-loc-scope.md.
+    rather than an oversight — see .docs/decisions/49-prescripted-loc-scope.md.
 
     * **Truncation stays on `stg_z_minor_powers.txt` alone.** It is the only one
       of the four GENERATED from the source, and truncation is a generator
@@ -4204,10 +4206,10 @@ def check_prescripted_loc() -> int:
                 f"this — loc that resolves to the wrong string still resolves. "
                 f"Ack in vendor.yml under prescripted_loc_ack if the short form "
                 f"is deliberate. See "
-                f".docs/decisions/47-minor-power-names-truncated.md.")
+                f".docs/decisions/45-minor-power-names-truncated.md.")
 
     # The leaked-key half asks nothing of the source, so it covers all four
-    # prescripted loc files rather than just the generated one — decision 51.
+    # prescripted loc files rather than just the generated one — decision 49.
     leaked: list[tuple[str, str, str]] = []
     for stem in ("stg_minor_powers", "stg_major_powers",
                  "stg_frontier_powers", "stg_quadrant_powers"):
@@ -4225,7 +4227,7 @@ def check_prescripted_loc() -> int:
             f"localisation/english/{fn}: {k} is \"{v}\" — a "
             f"localisation KEY, drawn on screen verbatim. The generator failed "
             f"to resolve it against the source. "
-            f"See .docs/decisions/47-minor-power-names-truncated.md.")
+            f"See .docs/decisions/45-minor-power-names-truncated.md.")
     if len(leaked) > 6:
         warnings.append(f"... and {len(leaked) - 6} more unresolved loc key(s)")
     return n
@@ -4256,12 +4258,12 @@ def check_duplicate_textures() -> int:
     would report -- vanilla's tree is not searched because its own files are not
     in the merge twice.
 
-    Content is compared, not just names (decision 29): byte-identical copies of
+    Content is compared, not just names (decision 27): byte-identical copies of
     one texture in two folders cost disk and nothing else, and are not reported.
     All 142 in that run differed.
 
-    See .docs/decisions/46-coalition-of-hope-takes-vul.md for the run this came
-    from and .docs/decisions/42-event-picture-geometry.md for the sibling failure
+    See .docs/decisions/44-coalition-of-hope-takes-vul.md for the run this came
+    from and .docs/decisions/40-event-picture-geometry.md for the sibling failure
     where the path resolves and only the pixels are wrong.
     """
     art = BUILD / "gfx" / "models"
@@ -4333,7 +4335,7 @@ def check_asset_variables() -> int:
     common/scripted_variables/ -- and vanilla's own 1,788 art files score exactly
     0 under that rule, which is what says the rule is right.
 
-    See .docs/decisions/31-asset-local-variables.md.
+    See .docs/decisions/29-asset-local-variables.md.
     """
     art = BUILD / "gfx"
     if not art.is_dir():
@@ -4365,7 +4367,7 @@ def check_asset_variables() -> int:
             f"{where}: '@{name}' is referenced but declared neither in that file "
             f"nor in common/scripted_variables/ ({count} file(s)). The engine "
             f"reports `Malformed token` and drops the value it was assigned to. "
-            f"See .docs/decisions/31-asset-local-variables.md.")
+            f"See .docs/decisions/29-asset-local-variables.md.")
     if len(found) > 12:
         errors.append(f"... and {len(found) - 12} more unresolved @variable(s)")
     return n
@@ -4387,7 +4389,7 @@ _GEOMETRY_DIRS = ("gfx/event_pictures", "gfx/portraits/city_sets")
 # other 59 are a genuine second size" is what one glob over the whole directory
 # measures, and the 59 are the origins/ subdirectory -- 59 of 59 at 220x115.
 # Split, both families are 100% uniform.
-# See .docs/decisions/74-event-picture-families.md.
+# See .docs/decisions/69-event-picture-families.md.
 #
 # Mirrors `target: family` in vendor.yml; the two must name the same families in
 # the same order, or the build fixes what the check does not ask about.
@@ -4456,7 +4458,7 @@ def check_shadowed_texture_geometry() -> int:
     vanilla's 639 event pictures with 620x264 art; vanilla's sprites and UIOD's
     eventwindow.gui stayed, and `scale = 1.5` -- which is cut for 450x150 --
     rendered them 930x396 inside a 693x239 frame. `make validate` said ok
-    throughout. See .docs/decisions/42-event-picture-geometry.md.
+    throughout. See .docs/decisions/40-event-picture-geometry.md.
 
     THE SCOPE IS A CALIBRATION RESULT, NOT A CONVENIENCE FILTER. Over the whole
     tree the same rule reports 865 findings and almost all of them are by
@@ -4484,7 +4486,7 @@ def check_shadowed_texture_geometry() -> int:
     every planet with the backdrop behind it correct. The backdrop was right
     because `additive_only` makes STNH lose all 121 environments/ paths to the
     mods that own them, so only the half nobody else claims was ever wrong.
-    See .docs/decisions/58-city-set-geometry.md.
+    See .docs/decisions/55-city-set-geometry.md.
 
     GFX_EVENT_PICTURES BECAME THAT CASE TOO ON 2026-08-09, and it had been read
     as failing the test by a measurement that asked one glob of two families.
@@ -4494,8 +4496,8 @@ def check_shadowed_texture_geometry() -> int:
     865 STNH pictures that shadow NO vanilla path -- every picture a Trek event
     would want -- had no question asked of them at all, at 620x264 against a
     family of 450x150. Same blindness as the city sets, in the very directory
-    decision 42 was written about.
-    See .docs/decisions/74-event-picture-families.md.
+    decision 40 was written about.
+    See .docs/decisions/69-event-picture-families.md.
     """
     ack = _ack_list("texture_geometry_ack")
     found: list[tuple[str, tuple[int, int], tuple[int, int]]] = []
@@ -4525,7 +4527,7 @@ def check_shadowed_texture_geometry() -> int:
             # if it belongs to a family vanilla is uniform about -- which is
             # how STNH's six own Trek city prefixes stayed at 70% through two
             # live runs while this check reported 0. Same question, asked of
-            # the family instead of the file. See decision 58.
+            # the family instead of the file. See decision 55.
             pat = _geometry_family_of(f.relative_to(art).as_posix(), patterns)
             if pat is None:
                 continue
@@ -4544,7 +4546,7 @@ def check_shadowed_texture_geometry() -> int:
             f"pixels, so the picture draws at the wrong size. Re-cut it with "
             f"`resample_to_vanilla:` in vendor.yml, or ack it under "
             f"texture_geometry_ack. See "
-            f".docs/decisions/42-event-picture-geometry.md.")
+            f".docs/decisions/40-event-picture-geometry.md.")
     if len(found) > 8:
         errors.append(f"... and {len(found) - 8} more re-dimensioned texture(s)")
     return n
@@ -4559,7 +4561,7 @@ def check_music_declarations() -> int:
     is logged, because a file nobody asks for is not an error. STNH ships
     Anthem_of_the_United_Federation_of_Planets.ogg and declares it in neither
     half, so it sat unheard through every live run
-    (.docs/decisions/55-federation-anthem.md).
+    (.docs/decisions/52-federation-anthem.md).
 
     THE RULE IS VANILLA'S OWN AND IT IS EXACT: 30 .ogg files, 30 named by a music
     declaration, and 0 declarations naming a file that is not there. Both
@@ -4575,7 +4577,7 @@ def check_music_declarations() -> int:
     files settle -- vanilla's one piece of evidence is `chance = { factor = 0 }`
     on a DLC main theme, which says the two are separable without saying how.
     Asserting a rule there would be guessing at the engine, which is the failure
-    decision 27 records.
+    decision 25 records.
     """
     d = BUILD / "music"
     if not d.is_dir():
@@ -4592,7 +4594,7 @@ def check_music_declarations() -> int:
             f"nothing can play it and nothing will ever log that. Vanilla names "
             f"all 30 of its own. Declare it in src/music/ (name + file), and a "
             f"`song = {{ }}` beside it to put it in the rotation. "
-            f"See .docs/decisions/55-federation-anthem.md.")
+            f"See .docs/decisions/52-federation-anthem.md.")
 
     for f in sorted(named):
         if not (d / f).is_file() and not (GAME_DIR / "music" / f).is_file():
@@ -4607,10 +4609,10 @@ def check_music_declarations() -> int:
     # writes `name = "cradleofthegalaxy"` and `cradleofthegalaxy:0 "Cradle of
     # the Galaxy"` beside it. A name with no key is drawn verbatim and logs
     # NOTHING, because a name that resolves to itself still resolves: the same
-    # silence decision 47 found in the prescripted loc, in a different database.
-    # Decision 61 measured it: 16 of the playlist's 22 entries THEN listed as
+    # silence decision 45 found in the prescripted loc, in a different database.
+    # Decision 58 measured it: 16 of the playlist's 22 entries THEN listed as
     # `newhorizonssong1`, `maintheme7` and `stg_ufp_anthem` through every live
-    # run. Both halves of that figure have since moved -- decision 65 deduped
+    # run. Both halves of that figure have since moved -- decision 62 deduped
     # the rotation to 27 entries (17 ours + 10 vanilla's) and every one is
     # keyed. Read the live count off this check's own summary line, not here.
     #
@@ -4624,7 +4626,7 @@ def check_music_declarations() -> int:
     # music/ scores 6 of 30 -- `towardsutopianovaflare`, `syntheticgod`,
     # `maintheme3` and three more that Paradox never gave a key. We ship none of
     # those files, so vanilla's rate is a floor to know about rather than a
-    # false-positive source. See .docs/decisions/61-music-player-track-names.md.
+    # false-positive source. See .docs/decisions/58-music-player-track-names.md.
     # Resolve against the MERGED loc -- the built tree plus vanilla's -- because
     # a track's title may come from a vendored mod as easily as from src/.
     loc_keys: set[str] = set()
@@ -4655,7 +4657,7 @@ def check_music_declarations() -> int:
                 f"Nothing is logged -- a name that resolves to itself still "
                 f"resolves. Add it to "
                 f"src/localisation/english/stg_music_l_english.yml. "
-                f"See .docs/decisions/61-music-player-track-names.md.")
+                f"See .docs/decisions/58-music-player-track-names.md.")
 
     return len(oggs)
 
@@ -4773,7 +4775,7 @@ def check_anomalies() -> int:
     name, the category description, the event title, the event description and
     every option button. Get any one wrong and the game logs nothing useful --
     a missing outcome event means the anomaly resolves to a blank popup, and a
-    missing loc key means the raw key is drawn on screen, which is decision 47's
+    missing loc key means the raw key is drawn on screen, which is decision 45's
     silence in a fifth database.
 
     VANILLA IS THE CALIBRATION AND IT IS NEARLY PERFECT, measured over its 327
@@ -4794,7 +4796,7 @@ def check_anomalies() -> int:
     THE SEVENTH IS `spawn_chance`, AND IT IS THE ONE THE SIX ABOVE CANNOT SEE.
     `spawn_chance` defaults to `base = 0`, so a category with none, or with one
     that never adds to it, is complete, correct, validating clean and never
-    rolled -- decision 76's `weight = 0` and decision 62's undeclared graphical
+    rolled -- decision 71's `weight = 0` and decision 59's undeclared graphical
     culture in an eighth database, and the defect class this whole family of
     checks exists for. It is asked with the reachability filter
     _script_tokens_outside describes, because a category can also be placed by
@@ -4807,7 +4809,7 @@ def check_anomalies() -> int:
                                              localisation. A floor of three
                                              known instances, not zero.
 
-    See .docs/decisions/79-reachability-checks.md.
+    See .docs/decisions/74-reachability-checks.md.
 
     THE SEVENTH QUESTION HAS A SCOPE, because its floor is nothing like zero:
     "an anomaly event no category names" scores 114 of vanilla's 310, since
@@ -4816,9 +4818,9 @@ def check_anomalies() -> int:
     construction -- every event there is a category outcome and there are no
     chains -- so the question is exact there and meaningless everywhere else.
     A check can want two scopes at once: .docs/validation/check-design.md rule 11
-    and .docs/decisions/51-prescripted-loc-scope.md.
+    and .docs/decisions/49-prescripted-loc-scope.md.
 
-    See .docs/decisions/75-trek-anomalies.md.
+    See .docs/decisions/70-trek-anomalies.md.
     """
     cat_dir = BUILD / "common" / "anomalies"
     if not cat_dir.is_dir():
@@ -4943,7 +4945,7 @@ def check_archaeology() -> int:
     finale hands out, and localisation/ carries the situation-log entry, the
     stage popup and every option button. Miss one and the game logs nothing
     useful -- a stage naming an event nobody declares completes in silence, and
-    a missing loc key draws the raw key on the dig-site panel. Decision 47's
+    a missing loc key draws the raw key on the dig-site panel. Decision 45's
     silence in a sixth database.
 
     ONE QUESTION HERE HAS NO COUNTERPART IN check_anomalies, and it is the one
@@ -4983,7 +4985,7 @@ def check_archaeology() -> int:
     question is exact there and meaningless everywhere else.
     See .docs/validation/check-design.md rule 11.
 
-    THE TWELFTH IS `weight`, WHICH DECISION 76 CALLS "the whole question" AND
+    THE TWELFTH IS `weight`, WHICH DECISION 71 CALLS "the whole question" AND
     THE FIRST ELEVEN CANNOT SEE. A `weight = 0` site is complete, correct,
     validating clean and never placed, and it is what six of vanilla's ten
     base-game sites look like -- so it is exactly what a site copied from a
@@ -5000,8 +5002,8 @@ def check_archaeology() -> int:
     file -- scope is a calibration result (check-design rule 11), and here the
     calibration says none is needed.
 
-    See .docs/decisions/76-trek-archaeology.md and
-    .docs/decisions/79-reachability-checks.md.
+    See .docs/decisions/71-trek-archaeology.md and
+    .docs/decisions/74-reachability-checks.md.
     """
     site_dir = BUILD / "common" / "archaeological_site_types"
     if not site_dir.is_dir():
@@ -5180,7 +5182,7 @@ def check_story_events() -> int:
     when they do not: common/on_actions/ names an on_action key and an event id
     under it, events/ declares the event, interface/*.gfx declares the picture,
     and localisation/ carries the title, the description and every option
-    button. Decision 47's silence in a seventh database.
+    button. Decision 45's silence in a seventh database.
 
     THE FIRST QUESTION HAS NO COUNTERPART IN check_anomalies OR
     check_archaeology, and it is the one worth having: an on_action block whose
@@ -5188,8 +5190,8 @@ def check_story_events() -> int:
     it exists, draws real art and reads correctly. It simply never runs, because
     Stellaris only fires on_action keys the engine knows or a `fire_on_action`
     names -- a mod that hooks `on_survey` when the engine renamed it
-    `on_survey_planet` gets no error and no events. That is decision 76's
-    `weight = 0` and decision 62's undeclared graphical culture, one database
+    `on_survey_planet` gets no error and no events. That is decision 71's
+    `weight = 0` and decision 59's undeclared graphical culture, one database
     over: everything present, nothing dangling, the content never appears.
 
     An EMPTY block is not that defect and is not reported. All six findings in
@@ -5200,10 +5202,10 @@ def check_story_events() -> int:
 
     VANILLA IS THE CALIBRATION, over its 485 on_action keys and the events they
     name -- 396 in 00_on_actions.txt, 33 in 01_planet_destruction.txt and 56 in
-    02_component_on_actions.txt. (Decision 77 and this docstring both said 452,
+    02_component_on_actions.txt. (Decision 72 and this docstring both said 452,
     which is the sum with the planet-destruction file silently dropped. The
     figure is corrected here and recorded in
-    .docs/decisions/78-phase-4-count-corrections.md; the decision keeps its
+    .docs/decisions/73-phase-4-count-corrections.md; the decision keeps its
     text, per style guide 7.)
 
         on_action key declared or fired      0 findings in the built tree
@@ -5238,7 +5240,7 @@ def check_story_events() -> int:
     so the pair is closed for our own file and the transitive walk buys nothing
     it does not already have.
 
-    See .docs/decisions/77-trek-story-events.md.
+    See .docs/decisions/72-trek-story-events.md.
     """
     hook_dir = BUILD / "common" / "on_actions"
     if not hook_dir.is_dir():
@@ -5418,7 +5420,7 @@ def check_room_references() -> int:
     `ruler` rules, gates all 29 Trek rooms it names on country flags STG never
     sets, and names `futuresf_room`, which is not a texture in either tree.
     None of that produced one `error.log` record or one warning here.
-    See .docs/decisions/48-room-selector-merge.md.
+    See .docs/decisions/46-room-selector-merge.md.
 
     `city_graphical_culture` is the same shape of reference and rides along
     here for that reason: `= "klingon"` finds `klingon_city_l01.dds` in the same
@@ -5453,9 +5455,9 @@ def check_room_references() -> int:
        six-layer art under a key nothing declared. Nothing dangles — the bare
        name finds its .dds — so the engine says nothing at load. It refuses at
        the empire designer instead, with EMPIRE_DESIGN_INVALID_GFX_CULTURE, and
-       hides the empire from the picker. That is decision 34's rule in a new
+       hides the empire from the picker. That is decision 32's rule in a new
        database: "declared somewhere" is not "declared where the engine looks".
-       See .docs/decisions/62-city-set-cultures-undeclared.md.
+       See .docs/decisions/59-city-set-cultures-undeclared.md.
 
     The reverse — a room texture the selector never names — is asked by
     `check_unreferenced` over `gfx/portraits/city_sets`, which is a closure root.
@@ -5469,7 +5471,7 @@ def check_room_references() -> int:
 
     # Which file the engine reads for room_selector. Same rule as everywhere
     # else: a mod file at vanilla's path shadows it, and among mod files the
-    # last filename in sort order takes a contested key (decision 29).
+    # last filename in sort order takes a contested key (decision 27).
     claimants = sorted(
         f for f in (sel_dir.glob("*.txt") if sel_dir.is_dir() else [])
         if re.search(r"^\s*room_selector\s*=\s*\{", _read(f), re.M))
@@ -5484,7 +5486,7 @@ def check_room_references() -> int:
             f"sort order is the rule this file assumes, and a selector is not a "
             f"database whose entries merge. Fold the loser into src/'s copy and "
             f"exclude it in vendor.yml. See "
-            f".docs/decisions/48-room-selector-merge.md.")
+            f".docs/decisions/46-room-selector-merge.md.")
     sel = _read(claimants[-1])
     where = claimants[-1].name
 
@@ -5550,7 +5552,7 @@ def check_room_references() -> int:
                     f"designer with EMPIRE_DESIGN_INVALID_GFX_CULTURE, and an "
                     f"empire nobody opens in the designer produces no log "
                     f"will ever name it. See "
-                    f".docs/decisions/62-city-set-cultures-undeclared.md.")
+                    f".docs/decisions/59-city-set-cultures-undeclared.md.")
             m = re.search(r'room = "([a-z0-9_]+)"', text[a:b])
             if not m or key in ack:
                 continue
@@ -5697,7 +5699,7 @@ def check_graphical_culture_art() -> int:
             f"style and the planet surface has nothing to draw. Vanilla's floor "
             f"is 0 of 22. Either ship `<key>_city_l01.dds` or declare a "
             f"`fallback` that resolves. "
-            f"See .docs/decisions/84-shipset-descs-and-home-system-names.md.")
+            f"See .docs/decisions/79-shipset-descs-and-home-system-names.md.")
     return n
 
 
@@ -5724,7 +5726,7 @@ def check_shipset_descriptions() -> int:
     cultures had no key at all -- 30 of 30 wrong in one direction or the other,
     from prose that was written and good. A rename plus sixteen new descriptions
     closed it; this check is what keeps a 31st culture from shipping mute.
-    See .docs/decisions/84-shipset-descs-and-home-system-names.md.
+    See .docs/decisions/79-shipset-descs-and-home-system-names.md.
     """
     flown = _flown_cultures()
     declared = set(_culture_blocks(BUILD))
@@ -5747,7 +5749,7 @@ def check_shipset_descriptions() -> int:
             f"{' …' if len(missing) > 4 else ''}. Stellaris draws an unresolved "
             f"key as the key text, so the shipset browser shows the raw string. "
             f"Vanilla keys all 19 of its own flown cultures. "
-            f"See .docs/decisions/84-shipset-descs-and-home-system-names.md.")
+            f"See .docs/decisions/79-shipset-descs-and-home-system-names.md.")
 
     orphan = sorted(keys - declared)
     if orphan:
@@ -5757,7 +5759,7 @@ def check_shipset_descriptions() -> int:
             f"{', '.join(orphan[:6])}{' …' if len(orphan) > 6 else ''}. The prose "
             f"can never render. Vanilla writes 20 such keys and every one names "
             f"a declared culture. "
-            f"See .docs/decisions/84-shipset-descs-and-home-system-names.md.")
+            f"See .docs/decisions/79-shipset-descs-and-home-system-names.md.")
     return len(flown)
 
 
@@ -5791,7 +5793,7 @@ def check_home_system_body_names() -> int:
 
     Analysis 2026-08-16 finding 4 saw one of the six and read it as a one-line
     content fix. It was three bugs.
-    See .docs/decisions/84-shipset-descs-and-home-system-names.md.
+    See .docs/decisions/79-shipset-descs-and-home-system-names.md.
     """
     d = REPO / "src/common/solar_system_initializers"
     if not d.is_dir():
@@ -5830,7 +5832,7 @@ def check_home_system_body_names() -> int:
             f"one label. Vanilla's own nine `usage = custom_empire` "
             f"initializers do this 0 times. These files are GENERATED, so the "
             f"fix belongs in tools/gen_home_systems.py, not here. "
-            f"See .docs/decisions/84-shipset-descs-and-home-system-names.md.")
+            f"See .docs/decisions/79-shipset-descs-and-home-system-names.md.")
     return n
 
 
@@ -5894,7 +5896,7 @@ def check_static_galaxy() -> int:
     WHY THIS EXISTS. A static galaxy scenario is how a total conversion puts
     named empires in the galaxy — `prescripted_countries/` is only the roster
     the player picks from
-    (.docs/decisions/92-create-country-initializers.md). Every join it depends
+    (.docs/decisions/85-create-country-initializers.md). Every join it depends
     on fails quietly: an initializer that does not resolve logs one line and
     leaves a generated system in its place, a `spawn_weight` testing a country
     flag nothing ever sets is simply never satisfied, and two systems sharing a
@@ -5914,7 +5916,7 @@ def check_static_galaxy() -> int:
         not a tolerated shape. This bullet used to say the opposite, and that
         is how STG shipped a 95-system galaxy containing exactly one hyperlane
         -- an accident of a Planetary Diversity `spawn_system`, found in a save
-        and not in any log (.docs/decisions/94-static-map-lanes-are-generated.md).
+        and not in any log (.docs/decisions/87-static-map-lanes-are-generated.md).
         `random_hyperlanes = no` builds nothing; `num_hyperlanes` is the
         random-generation density and is inert beside it. 21 of STNH's 22 maps
         do declare none, but they build the network in script at game start
@@ -6136,9 +6138,9 @@ def check_unreferenced() -> tuple[int, int]:
     had named: 1,748 files, 1.5 GB, that arrived inside a directory we included
     and that nothing anywhere referred to — 813 STNH event pictures no
     spriteType declares, 107 .wav files no .asset names, two whole directories
-    of re-skins for mods not in the harvest. Decision 24's lesson was that an
+    of re-skins for mods not in the harvest. Decision 22's lesson was that an
     include list converges on whatever question the checks ask; this is the
-    question that was never asked. See .docs/decisions/45-clutter-pass.md.
+    question that was never asked. See .docs/decisions/43-clutter-pass.md.
 
     `make vendor` now removes those, so this is the assertion that it did, and
     that nothing has been added since that it would have removed. It GATES on
@@ -6247,7 +6249,7 @@ def check_descriptor() -> None:
         # Compare against `rawVersion` ("v4.4.6"), the exact installed build,
         # not `modsCompatibilityVersion` ("4.4"), which is only the launcher's
         # bucket and cannot see a patch -- and a patch is what silently
-        # invalidates a vendored copy of a vanilla file (decision 08). Comparing
+        # invalidates a vendored copy of a vanilla file (decision 07). Comparing
         # the major against the bucket, as this once did, could not fire short
         # of Stellaris 5: a check that cannot fail.
         installed = settings.get("rawVersion", "").lstrip("v")

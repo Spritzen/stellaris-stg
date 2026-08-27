@@ -27,8 +27,8 @@ which one you want is a real decision:
 |---|---|---|
 | `src/` override | you genuinely mean to own the whole file | [vendored merge](../architecture/vendored-merge.md#the-rules) |
 | `patches:` in `vendor.yml` | you want to change named bytes in someone else's file | same |
-| `resample_to_vanilla:` | vendored art shadows a vanilla texture path at the wrong pixel dimensions | [decision 42](../decisions/42-event-picture-geometry.md), [58](../decisions/58-city-set-geometry.md) |
-| `renames:` in `vendor.yml` | you need to change *which* of two files defining one key the engine keeps | [decision 29](../decisions/29-merge-semantics-per-directory.md) |
+| `resample_to_vanilla:` | vendored art shadows a vanilla texture path at the wrong pixel dimensions | [decision 40](../decisions/40-event-picture-geometry.md), [55](../decisions/55-city-set-geometry.md) |
+| `renames:` in `vendor.yml` | you need to change *which* of two files defining one key the engine keeps | [decision 27](../decisions/27-merge-semantics-per-directory.md) |
 
 `resample_to_vanilla:` reads its target off the vanilla file at harvest, so it
 survives a game patch, and the output stays in the gitignored tree rather than
@@ -46,7 +46,7 @@ touch it.
 `.source/<workshop-id>/` is our pinned copy of each source mod. `make sources-sync`
 is the only thing that touches `/workshop`, and it is a deliberate act.
 `.source/` is a mirror: **never hand-edit it either.**
-[Source snapshots](source-snapshots.md) · [decision 09](../decisions/09-source-snapshot.md).
+[Source snapshots](source-snapshots.md) · [decision 08](../decisions/08-source-snapshot.md).
 
 ### 4. Fix a source mod's errors; never drop the mod to silence them
 
@@ -58,7 +58,7 @@ mean to own the file.
 A source is dropped only on **content** grounds — no Trek fit, breaks another
 source, duplicates something we prefer — and the case is made in those terms,
 **never by quoting an error count**.
-[Decision 12](../decisions/12-fix-source-errors-dont-drop.md).
+[Decision 11](../decisions/11-fix-source-errors-dont-drop.md).
 
 ---
 
@@ -78,7 +78,7 @@ source, duplicates something we prefer — and the case is made in those terms,
    and stop. **But once the user reports a live run, read
    `/paradox/stellaris/logs/error.log`** — that is real evidence and it is
    readable from here. The first read of it found a 72 MB log and produced
-   [decision 08](../decisions/08-stnh-art-shadows-vanilla.md), with
+   [decision 07](../decisions/07-stnh-art-shadows-vanilla.md), with
    `make validate` clean the whole time. [Live runs](live-runs.md).
 5. **Never write to `/stellaris` or `/workshop`.** Read-only by design.
 6. **Run `make validate` after any script edit**, `make clutter` after any change

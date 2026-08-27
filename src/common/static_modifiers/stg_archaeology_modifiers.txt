@@ -21,7 +21,7 @@
 # way vanilla's unique-site rewards are; the Lost Colony can recur, so its one
 # is timed and cannot stack into an empire-wide bonus by digging.
 #
-# See .docs/decisions/76-trek-archaeology.md
+# See .docs/decisions/71-trek-archaeology.md
 
 # ── The Hall of the Blade ─────────────────────────────────────────────────────
 stg_blade_recovered = {

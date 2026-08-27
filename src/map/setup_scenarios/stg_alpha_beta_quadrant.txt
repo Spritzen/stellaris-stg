@@ -3,7 +3,7 @@
 # STG's first static galaxy scenario. Every Trek empire in the galaxy is placed
 # here and created by the initializer this file names for it; the prescripted
 # pool is the player's roster and has nothing to do with it.
-# See .docs/decisions/93-static-galaxy-scenario.md.
+# See .docs/decisions/86-static-galaxy-scenario.md.
 #
 # Positions are STNH's, harvested from their default galaxy map and scaled by
 # 0.36. Filler systems carry no initializer and no name: the engine builds

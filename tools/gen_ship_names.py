@@ -11,7 +11,7 @@ WHY THEY COULD NOT BE COPIED, which is the whole problem this file solves.
 STNH replaced vanilla's ship sizes with its own single-slot hull ladder, so its
 pools are keyed by HULL: `fed_heavy_cruiser_nebula` (96 names),
 `fed_heavy_escort_defiant` (91), `kdf_battlecruiser_vorcha` (119). STG flies a
-vanilla chassis (decision 18), so none of those keys exists here and every one
+vanilla chassis (decision 17), so none of those keys exists here and every one
 of them would be read as a pool the engine never asks for. They have to be
 FOLDED onto vanilla's corvette / destroyer / cruiser / battleship / titan by
 tonnage, which is a judgement, so the table is written out below and every one
@@ -21,7 +21,7 @@ Reads .source/, never the built tree -- the same rule as the other one-shots.
 
     python3 tools/gen_ship_names.py [--dry-run]
 
-See .docs/decisions/59-ship-name-pools.md
+See .docs/decisions/56-ship-name-pools.md
 """
 from __future__ import annotations
 
@@ -407,7 +407,7 @@ def main() -> None:
                 if value is None or not value.strip():
                     unmapped[t] += 1
                     continue
-                # Decision 47's rule: a value that is still a loc key, or that
+                # Decision 45's rule: a value that is still a loc key, or that
                 # carries markup, is not a name and must never be shipped.
                 if re.fullmatch(r"[A-Z][A-Z0-9_]{3,}", value) or "§" in value \
                         or "$" in value or "[" in value:
@@ -447,7 +447,7 @@ def main() -> None:
             " # stg_names_l_english.yml, which holds the hand-written names; a\n"
             " # name already spelled there is not repeated here.\n"
             " #\n"
-            " # See .docs/decisions/59-ship-name-pools.md\n")
+            " # See .docs/decisions/56-ship-name-pools.md\n")
         lines = [head]
         for k in sorted(new_loc):
             lines.append(f' {k}:0 "{new_loc[k]}"\n')

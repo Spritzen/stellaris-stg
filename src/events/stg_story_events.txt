@@ -23,7 +23,7 @@
 # No DLC-gated effect, no `specimen`, no event chain: STG is standalone and has
 # to behave the same whatever the host owns.
 #
-# See .docs/decisions/77-trek-story-events.md
+# See .docs/decisions/72-trek-story-events.md
 #
 ############################
 

@@ -4,7 +4,7 @@
 > explicit excludes.
 > **Open when** — a file in the build came from a mod you did not expect, or you
 > are adding a source that ships a path something else already does.
-> **Then** — [Harvest order](harvest-order.md) · [decision 29](../decisions/29-merge-semantics-per-directory.md) · [Key-conflict checks](../validation/checks.md#c-two-sources-one-key)
+> **Then** — [Harvest order](harvest-order.md) · [decision 27](../decisions/27-merge-semantics-per-directory.md) · [Key-conflict checks](../validation/checks.md#c-two-sources-one-key)
 
 **`make vendor` reports 947 overwrite events — plus 220 paths skipped by the
 additive-only rule and 888 files removed by the prune closure** (build of
@@ -40,7 +40,7 @@ scores twice.
 > the nearest thing used to be an `src/` copy of the whole losing file altered in
 > nothing but its name.
 >
-> [Decision 29](../decisions/29-merge-semantics-per-directory.md) has the FIOS
+> [Decision 27](../decisions/27-merge-semantics-per-directory.md) has the FIOS
 > table, what was rejected from it, and why it is the one allowlist here not
 > measured against `/stellaris`.
 
@@ -89,15 +89,15 @@ diff <(tr -d '\r' < /stellaris/common/planet_classes/00_planet_classes.txt) \
 
 *(Two `interface/*.gui` files this section once listed as needing merges do not —
 UIOD's rewrite subsumes both deltas and transplanting them would have introduced
-bugs. [Decision 06](../decisions/06-gui-merges-unnecessary.md).)*
+bugs. [Decision 05](../decisions/05-gui-merges-unnecessary.md).)*
 
 The `gfx/` overwrites are all last-wins within a family and need no individual
 decisions — the large groups are UIOD → Dark UI (189), the 172 ship-asset
 overrides written into `src/` by `tools/fix_ship_locators.py` (**150** from the
 Walshicus sets, **20** from STNH, one from ASB Ironman and one from `src/`'s own
 `zz_stg_shipsets.asset`, measured 2026-08-24 — decisions
-[28](../decisions/28-weapon-locator-positions.md) and
-[82](../decisions/82-hull-section-attach-points.md)), Starfleet TNG → Terran NX
+[26](../decisions/26-weapon-locator-positions.md) and
+[77](../decisions/77-hull-section-attach-points.md)), Starfleet TNG → Terran NX
 (49), PD → Vanilla Replacements (45), PD → Ascension Worlds (41).
 
 > **One family is worth knowing about**: the 22 Walshicus shipsets overwrite each
@@ -105,8 +105,8 @@ Walshicus sets, **20** from STNH, one from ASB Ironman and one from `src/`'s own
 > family sharing a `stnc_shipset_shared/` vocabulary. Last-wins is correct and no
 > decision is needed; the visible cost is the 143 duplicate-texture records in
 > every live run, where that library meets STNH's `shared_assets/`
-> ([46](../decisions/46-coalition-of-hope-takes-vul.md),
-> [54](../decisions/54-federation-texture-collisions.md)).
+> ([44](../decisions/44-coalition-of-hope-takes-vul.md),
+> [51](../decisions/51-federation-texture-collisions.md)).
 
 ---
 
@@ -115,13 +115,13 @@ Walshicus sets, **20** from STNH, one from ASB Ironman and one from `src/`'s own
 | Source | Exclude | Why |
 |---|---|---|
 | Whiter Stars | `gfx/map/star_classes/b_star.dds`, `t_star.dds` | Real Space owns star classes and ships art for all of them. Whiter Stars is a 16-file mod declaring `supported_version="3.*"`; letting it override Real Space's star art is an accident of tier placement, not a decision. Its other 14 files are kept. |
-| All sources | `desktop.ini`, `*.psd`, `Thumbs.db`, `*.bak`, `*.wip`, `*.wavorig`, `*.pdn`, `*.dcm` | Editor and Explorer by-products naming no Stellaris format at all. Vanilla ships 99 `.editordata`, 6 `.bak` and 2 `.ods` itself, which makes it a category rather than a complaint about one mod. [Decision 45](../decisions/45-clutter-pass.md), phase 1. |
-| All sources | nine non-English `localisation/` trees | 235 files, plus 38 loose per-language files. Not unreachable — deliberate upstream content STG has no use for, on the same taste grounds as [decision 11](../decisions/11-drop-cinematic-camera-and-ambient-soundtracks.md). Decision 45, phase 3. |
-| UIOD - Dark UI | `gfx/speeddial/**`, `gfx/tiny_outliner/**` | Re-skins for two mods not in the harvest — the only two directories in the tree with **zero** reachable siblings. Same class as the five URP topbar-compat files [decision 12](../decisions/12-fix-source-errors-dont-drop.md) excluded. |
+| All sources | `desktop.ini`, `*.psd`, `Thumbs.db`, `*.bak`, `*.wip`, `*.wavorig`, `*.pdn`, `*.dcm` | Editor and Explorer by-products naming no Stellaris format at all. Vanilla ships 99 `.editordata`, 6 `.bak` and 2 `.ods` itself, which makes it a category rather than a complaint about one mod. [Decision 43](../decisions/43-clutter-pass.md), phase 1. |
+| All sources | nine non-English `localisation/` trees | 235 files, plus 38 loose per-language files. Not unreachable — deliberate upstream content STG has no use for, on the same taste grounds as [decision 10](../decisions/10-drop-cinematic-camera-and-ambient-soundtracks.md). Decision 43, phase 3. |
+| UIOD - Dark UI | `gfx/speeddial/**`, `gfx/tiny_outliner/**` | Re-skins for two mods not in the harvest — the only two directories in the tree with **zero** reachable siblings. Same class as the five URP topbar-compat files [decision 11](../decisions/11-fix-source-errors-dont-drop.md) excluded. |
 | PD, PD - Unique Worlds | the two `*placehold*` civics/origins files | Each stubs a key that a submod **in the harvest** defines for real, with a body of `potential = { always = no }`. It loses on filename sort today and would win outright in a FIOS directory. |
 | Real Space 4.0 | `localisation/replace/patrons_list.yml` | Two Patreon credit keys read by nothing, naming real people. |
 | STNH | `gfx/models/ships/borg_01/test_diff` | A 128×128 DDS with no extension, so no loader can open it by any name. |
-| Diverse Rooms | `gfx/portraits/asset_selectors/dr_room_textures.txt` | A SECOND file claiming `room_selector`, which STNH's copy of vanilla's file also claims — decided by nothing on disk, and under the reading where DR wins, its 277 unconditional `ruler` rows put every empire in a cave. Its 297 designer rows are merged into `src/`'s single selector instead. [Decision 48](../decisions/48-room-selector-merge.md). |
+| Diverse Rooms | `gfx/portraits/asset_selectors/dr_room_textures.txt` | A SECOND file claiming `room_selector`, which STNH's copy of vanilla's file also claims — decided by nothing on disk, and under the reading where DR wins, its 277 unconditional `ruler` rows put every empire in a cave. Its 297 designer rows are merged into `src/`'s single selector instead. [Decision 46](../decisions/46-room-selector-merge.md). |
 
 Beyond these, **`make vendor` removes unreferenced files itself** — 888 of them
 on the build of 2026-08-24,

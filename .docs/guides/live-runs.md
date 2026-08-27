@@ -51,7 +51,7 @@ designer.
 Worse, sweeping the *rule* behind those findings turned up nine more empires with
 the same defect, all of them gated out of the designer at the time and so beyond
 any log: the engine drops a trait silently rather than refusing it. (They reach
-the designer now — [decision 88](../decisions/88-playable-gates-the-design-database.md).)
+the designer now: the `playable = stg_never` gate is gone from all 79.)
 [Prescripted empire rules](../reference/prescripted-empire-rules.md#why-this-is-a-swept-rule-and-not-a-list-of-fixes)
 holds the rules themselves and the count.
 
@@ -72,7 +72,7 @@ carry most of the answers:
 
 | section | answers |
 |---|---|
-| `design={…}` blocks | which empire designs the engine **loaded** — the pool the galaxy generator draws AI empires from. Count the blocks; do not count key occurrences, which is how [decision 86](../decisions/86-prescripted-empires-never-drawn.md) read 101 where there were 22. **In a 4.4.6 save the blocks nest inside `galaxy={…}` and the brace sits on the following line**, so `grep 'design={'` finds zero and reads as "nothing loaded". Match the key: `grep -cP '^\tdesign=$' gamestate` — [decision 90](../decisions/90-design-database-is-not-the-cause.md). |
+| `design={…}` blocks | which empire designs the engine **loaded** — the pool the galaxy generator draws AI empires from. Count the blocks; do not count key occurrences, which is how an earlier pass read 101 where there were 22. **In a 4.4.6 save the blocks nest inside `galaxy={…}` and the brace sits on the following line**, so `grep 'design={'` finds zero and reads as "nothing loaded". Match the key: `grep -cP '^\tdesign=$' gamestate` — [decision 83](../decisions/83-design-database-is-not-the-cause.md). |
 | `country={…}` entries | who is actually in the galaxy. A procedurally generated empire's name key is `%ADJECTIVE%` or `%ADJ%`; a prescripted one carries its own key. |
 | `initializer="…"` | every system the generator placed, and so which home systems were used and which were never reached. |
 
@@ -88,8 +88,8 @@ A reference that resolves produces **no log record**. Rooms, city sets, weapon
 mount positions, leader backgrounds, music titles, texture dimensions and ship
 name pools are all graded by eye or not at all — `make validate` clean is not
 evidence for any of them. That is the standing lesson of
-[decision 08](../decisions/08-stnh-art-shadows-vanilla.md) and
-[decision 42](../decisions/42-event-picture-geometry.md).
+[decision 07](../decisions/07-stnh-art-shadows-vanilla.md) and
+[decision 40](../decisions/40-event-picture-geometry.md).
 
 [Open questions](../planning/open-questions.md) keeps the list of what is
 currently waiting on somebody's eyes, and what specifically to look at.

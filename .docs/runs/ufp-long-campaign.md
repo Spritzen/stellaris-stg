@@ -48,7 +48,7 @@ carry.
       be in the **Starfleet formal robe** — not an ENT jumpsuit, not a random
       garment. If he is wrong, the selector is not being reached at all and the
       portrait clone is the thing to doubt, not the index
-      ([69](../decisions/69-ruler-clothes-dedicated-selectors.md)).
+      ([65](../decisions/65-ruler-clothes-dedicated-selectors.md)).
 ```markdown
 #OBSERVATIONS 
 - no its not what is expected; also I can't tell what clothing number it's pointed to as the ruler appearance isn't set, i.e. its set to 1 and if i increment and then decrement back to 1 it shows the default, so the image isn't showing the same as the settings
@@ -59,20 +59,20 @@ carry.
 ```
 - [Y] **The room behind him** is `earth_room`, STNH's own assignment — a Trek
       room, not a vanilla personality room
-      ([48](../decisions/48-room-selector-merge.md)).
+      ([46](../decisions/46-room-selector-merge.md)).
 ```markdown
 #OBSERVATIONS 
 - yes the room behind is appropriately star trek and fitting for UFP
 ```
 - [Y] **Skim the room dropdown.** It should still be "realistically over 300"
       entries with the four hidden empires present
-      ([62](../decisions/62-city-set-cultures-undeclared.md)).
+      ([59](../decisions/59-city-set-cultures-undeclared.md)).
 ```markdown
 #OBSERVATIONS 
 - looks correct
 ```
 - [Y] **The flag draws** — `Federation1.dds` from the `trek` category, blue on
-      light blue ([49](../decisions/49-flags-city-sets.md)).
+      light blue ([47](../decisions/47-flags-city-sets.md)).
 ```markdown
 #OBSERVATIONS 
 - looks correct
@@ -106,7 +106,7 @@ worth more than any impression.
       the only ones in the project whose 620×264 → 450×150 centre-crop has **no
       vanilla control behind it** — the archaeology's 27 and the story events' 21
       were each checked in the exact crop before being chosen
-      ([74](../decisions/74-event-picture-families.md)). **A subject cropped at
+      ([69](../decisions/69-event-picture-families.md)). **A subject cropped at
       the chin is what the failure looks like.**
 - **Nine of the 24 are frames pulled from a 9315×264 animation strip**, and a
       wrong frame is the specific failure mode there — a picture that is
@@ -117,7 +117,7 @@ worth more than any impression.
       rather than as something a science officer wrote.
 - **Do the levels feel like a wall?** STG puts 43% of its categories at level
       5+ against vanilla's base-game 10%, and 19% at level 1–2 against vanilla's
-      65% ([78](../decisions/78-phase-4-count-corrections.md)). The galaxy is not
+      65% ([73](../decisions/73-phase-4-count-corrections.md)). The galaxy is not
       harder overall, but **the Trek half is the slow, failure-prone half** and
       that is the half you are meant to notice. Say whether early scientists
       bounce off it.
@@ -145,7 +145,7 @@ worth more than any impression.
       be a Trek one before planet class is taken into account. Zero over a few dozen
       surveys means nothing; **zero over a whole large-galaxy game is the
       signal**, and then the weights are the thing to doubt, not the content
-      ([76](../decisions/76-trek-archaeology.md)).
+      ([71](../decisions/71-trek-archaeology.md)).
 - **Survey the ugly worlds, not just the good ones.** The weights are keyed
       on planet class: barren and nuked (Hall of the Blade), desert and arid (Ark
       in the Sand, Desert Sanctuary), frozen and toxic (Sealed Mechanism), nuked
@@ -177,7 +177,7 @@ hook and is not part of that ten.
       that is the single highest-value negative result available on this run, and
       it points straight at `stg_on_five_year_story_pulse`, a custom on_action
       reached only by `fire_on_action`
-      ([79](../decisions/79-reachability-checks.md)).
+      ([74](../decisions/74-reachability-checks.md)).
 - **Watch for the Federation's own two by name**: *The Academy Class* and
       *A Session of the Council*. Seeing neither across a long game is the gate
       failing in one direction; seeing another empire's — the Klingon Great Hall,
@@ -203,10 +203,10 @@ hook and is not part of that ten.
       **exactly on top of the first** rather than starboard-amidships where the
       bounding-box spread put it. Two turrets on one point is the intended cost —
       what would be wrong is a gun somewhere nobody drew
-      ([60](../decisions/60-mounts-share-existing-points.md)).
+      ([57](../decisions/57-mounts-share-existing-points.md)).
 - [?] **Then every hull as you unlock it** — destroyer, cruiser, battleship,
       titan. 66% of mounts across the 27 shipsets are still placed from the
-      bounding box ([67](../decisions/67-source-art-hardpoint-names.md)); the
+      bounding box ([64](../decisions/64-source-art-hardpoint-names.md)); the
       thing to look for is a mount that **breaks the pattern of the ones beside
       it**.
 - [N] **Do the weapons draw at all**, and did the pruned event pictures take
@@ -219,9 +219,9 @@ hook and is not part of that ten.
       one glance. The Federation corvette tier should read Oberth, Nova,
       Peregrine, Danube; the cruiser tier Constitution, Sovereign, Nebula, Akira;
       the battleship tier Galaxy, Excelsior, Ambassador, Odyssey
-      ([72](../decisions/72-ship-class-names.md)).
+      ([67](../decisions/67-ship-class-names.md)).
 - [?] **Does the invented English sit beside the canon names** without announcing
-      itself ([73](../decisions/73-class-name-thematic-fill.md))?
+      itself ([68](../decisions/68-class-name-thematic-fill.md))?
 - [?] **The Defiant appears at two tonnages** — destroyer and cruiser — which is
       STNH's own modelling. Say whether that reads as wrong or as fine.
 - [?] **A class name plainly belonging to another tonnage** means a `generic`
@@ -233,16 +233,16 @@ hook and is not part of that ten.
 ### Music
 
 - [Y] **The Federation anthem is in the ambient rotation** and takes one hearing
-      to confirm ([55](../decisions/55-federation-anthem.md)).
+      to confirm ([52](../decisions/52-federation-anthem.md)).
 - [N] **Open the music player and read the 22 track names.** What to listen for
       is whether the four chosen main-theme titles sit right beside the eighteen
-      derived ones ([61](../decisions/61-music-player-track-names.md)).
+      derived ones ([58](../decisions/58-music-player-track-names.md)).
 ```markdown
 #OBSERVATIONS 
 - Track list has approx. 70 tracks in it
 ```
 - [?] **Does the rotation read as 27 distinct recordings**, or does something
-      repeat ([65](../decisions/65-music-rotation-dedupe.md))?
+      repeat ([62](../decisions/62-music-rotation-dedupe.md))?
 ```markdown
 #OBSERVATIONS 
 - All the names of tracks are unique from what I can tell and going by an eyeballing of duplicate track lengths this looks to confirm no duplicates, still hard to eyeball.

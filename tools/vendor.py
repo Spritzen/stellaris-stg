@@ -56,7 +56,7 @@ REPO = Path(__file__).resolve().parent.parent
 # The mod tree. The repo root is NOT the mod root: the game's directory layout
 # lives under stg-build/, so "generated" and "hand-written" are separable by
 # path rather than by memory, and the deploy is one symlink to one directory.
-# Decision 13. Everything in here is regenerable -- never hand-edit it.
+# Decision 12. Everything in here is regenerable -- never hand-edit it.
 BUILD = REPO / "stg-build"
 MANIFEST = REPO / "vendor.yml"
 STATE = REPO / ".vendor-manifest.json"
@@ -248,7 +248,7 @@ def hash_existing(path: Path) -> str:
 # a vanilla TEXTURE at its own dimensions, while the sprite that declares it and
 # the layout that draws it stay vanilla's or another mod's. Nothing dangles --
 # every name resolves -- and the picture renders at the wrong size.
-# See .docs/decisions/42-event-picture-geometry.md.
+# See .docs/decisions/40-event-picture-geometry.md.
 #
 # The target is always read off the vanilla file being shadowed, never written
 # down here: this must keep working across a game patch that re-cuts vanilla art.
@@ -310,7 +310,7 @@ def resample_to(src_path: Path, dst_path: Path, target: tuple[int, int],
     canvas TOP-TRIMMED, every one of them with its content ending flush at the
     bottom edge. Padding the top back and scaling 10:7 is therefore lossless in
     geometry, where a crop-to-fill would have cut 20% off the width of every
-    trimmed layer. See .docs/decisions/58-city-set-geometry.md.
+    trimmed layer. See .docs/decisions/55-city-set-geometry.md.
 
     Written uncompressed. That is vanilla's own format for most of these paths,
     it avoids a second lossy pass over the ~1/3 of STNH's that are already DXT,
@@ -328,12 +328,12 @@ def resample_to(src_path: Path, dst_path: Path, target: tuple[int, int],
         # box of the wrong aspect, which scales x and y by different factors:
         # vulcan_01's l06 is 560x367 against a 560x280 canvas and was squashed
         # to 76% of its height, drawing Vulcan's buildings flat and low -- the
-        # symptom decisions 58 and 63 exist to remove, arriving through the one
+        # symptom decisions 55 and 60 exist to remove, arriving through the one
         # door neither of them closed. A file taller than the canvas overflows
         # the source's own frame, so cropping the top is what the source mod
         # itself draws. Width still only ever grows, where a crop would cut art
         # out of the middle of the frame rather than off its top edge.
-        # See .docs/decisions/66-city-set-canvas-overflow.md.
+        # See .docs/decisions/63-city-set-canvas-overflow.md.
         cw = max(canvas[0], dims[0])
         ch = round(canvas[1] * cw / canvas[0])
         pre = ["-background", "transparent", "-gravity", "south",
@@ -415,7 +415,7 @@ def vanilla_families(
     its own, reading as one family that is 90.8% uniform -- a hair over the floor
     and one game patch away from silently falling under it. Ordering the origins
     rule first makes both measure 100%.
-    See .docs/decisions/74-event-picture-families.md.
+    See .docs/decisions/69-event-picture-families.md.
 
     UNIFORMITY_FLOOR is a threshold on a measurement, not a guess at an answer:
     vanilla's `*_room.dds` is 91 of 91 at 952x340 and its `*_city_l0N.dds` is
@@ -459,7 +459,7 @@ def resample_plan(root: Path, entries: list,
     structurally blind to half the corpus:
 
     1. Vanilla ships a file at the SAME PATH and the two disagree on pixel
-       dimensions. That is decision 42's rule and it is the exact one: the
+       dimensions. That is decision 40's rule and it is the exact one: the
        target tracks a game patch that re-cuts vanilla art.
 
     2. Vanilla ships NOTHING at that path, but the rule says `target: family`
@@ -469,11 +469,11 @@ def resample_plan(root: Path, entries: list,
        borg_01, tholian_01, undine_01, named by six of our empires -- on a
        560x280 canvas in an 800x400 planet view, drawing the buildings small and
        low on Cardassia Prime while the backdrop behind them was right. Decision
-       58 predicted this exactly and could not reach it, because reading the
+       55 predicted this exactly and could not reach it, because reading the
        target off one vanilla FILE has no answer when there is no such file.
        Reading it off the vanilla FAMILY does, and is still derived rather than
-       asserted -- which is the property decision 42 refused to give up.
-       See .docs/decisions/58-city-set-geometry.md.
+       asserted -- which is the property decision 40 refused to give up.
+       See .docs/decisions/55-city-set-geometry.md.
 
     A SIZE VANILLA ITSELF USES IN THAT FAMILY IS LEFT ALONE, and that is not an
     optimisation. Vanilla ships `ai_01_city_l01..l05` at 4x4 -- its own way of
@@ -663,7 +663,7 @@ def apply_renames(data: dict, generated: dict[str, dict], *, dry_run: bool) -> i
     change a file's contents; neither changes which of two files defining the
     same key the engine keeps, because that is decided by FILENAME sort order
     within the directory -- first for FIOS directories, last for LIOS ones
-    (.docs/decisions/29-merge-semantics-per-directory.md).
+    (.docs/decisions/27-merge-semantics-per-directory.md).
 
     Harvest order does not decide it. Harvest order settles two sources claiming
     the same PATH; once every source is one mod, two sources shipping the same
@@ -795,13 +795,13 @@ def normalize_city_scale(rule: dict, generated: dict[str, dict], *,
     560x367 frame with its content filling 227 rows -- 62% of the frame, where
     the sets around it fill 72%. Padding to 560x367 leaves the buildings too
     short; cropping to the 560x280 family canvas (which is what
-    decision 66 did) leaves them too tall. No choice of canvas reaches the
+    decision 63 did) leaves them too tall. No choice of canvas reaches the
     family band, because the ratio itself differs. Only rescaling the content
     does, so the target is read off the content box rather than the canvas.
 
     The family median is measured over the MERGED tree, not vanilla. Vanilla's
     own humanoid_01 horizon is 328 rows tall, but the built tree's humanoid_01
-    is STNH's at 291 -- STNH shadows the vanilla path (decision 08) and every
+    is STNH's at 291 -- STNH shadows the vanilla path (decision 07) and every
     Trek set sits beside STNH's, not beside Paradox's. The band a player
     actually sees is therefore the one to measure against.
 
@@ -886,14 +886,14 @@ def apply_prune(generated: dict[str, dict], *, dry_run: bool) -> list[str]:
 
     THE FOURTH CLASS. Until now every file that arrived because it sat inside a
     directory we included stayed, whether or not anything referred to it —
-    23,555 files of which `make clutter` could account for 21,807. Decision 37
+    23,555 files of which `make clutter` could account for 21,807. Decision 35
     looked straight at 115 such entities and kept them ("trading content for
     tidiness"); this reverses that, and the reversal is the whole of
-    .docs/decisions/45-clutter-pass.md.
+    .docs/decisions/43-clutter-pass.md.
 
     NOT AN `exclude:` LIST, deliberately. 813 event-picture paths written down
     here would be correct the day they were written and silently wrong after the
-    next `make sources-sync` — which is exactly the artefact decision 24 showed
+    next `make sources-sync` — which is exactly the artefact decision 22 showed
     cannot track reference edges. The closure re-derives itself every build, so
     a source mod that starts declaring a sprite over one of these gets its
     picture back with no edit here. The cost is that vendor.yml alone no longer
@@ -985,7 +985,7 @@ def vendor(args: argparse.Namespace) -> int:
         # `additive_only: yes` covers the whole source (STNH). A LIST scopes it
         # to path prefixes, which is what a source needs when it must beat an
         # earlier one somewhere and lose to it elsewhere: the Walshicus shipsets
-        # overwrite STNH's ship directories on purpose (decision 18) and must
+        # overwrite STNH's ship directories on purpose (decision 17) and must
         # not overwrite its flags, where STNH is the agreed source and the
         # shipsets carry 13 basenames it has not got.
         additive = src.get("additive_only")
@@ -1219,7 +1219,7 @@ def write_provenance(state: dict) -> None:
             "`vendor.yml`. The contents are the source mod's; only the name "
             "changed, because within one merged mod the filename is what decides "
             "which of two files defining the same key the engine keeps — see "
-            "`.docs/decisions/29-merge-semantics-per-directory.md`.", ""]
+            "`.docs/decisions/27-merge-semantics-per-directory.md`.", ""]
     if renamed:
         out += ["| File | Was | Source | Why |", "|---|---|---|---|"]
         for rel in sorted(renamed):
@@ -1239,7 +1239,7 @@ def write_provenance(state: dict) -> None:
             "own false-positive floor is near zero. `make clutter` reports the "
             "same census without removing anything; `clutter_keep:` in "
             "`vendor.yml` overrides it per file. See "
-            "`.docs/decisions/45-clutter-pass.md`.", ""]
+            "`.docs/decisions/43-clutter-pass.md`.", ""]
     if pruned:
         by_tier: dict[str, int] = {}
         for rel in pruned:

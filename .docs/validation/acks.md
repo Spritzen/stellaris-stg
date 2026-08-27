@@ -19,14 +19,14 @@ Both conflict checks compare *content*, not just names: two sources claiming one
 key with bodies that differ only in whitespace, or setting one define to the same
 value, are not in conflict and are not reported. Two `defines_conflict_ack`
 entries were deleted on those grounds rather than kept.
-[Decision 29](../decisions/29-merge-semantics-per-directory.md).
+[Decision 27](../decisions/27-merge-semantics-per-directory.md).
 
 Where an ack is genuinely right, **scope it as narrowly as the evidence you
 have**: `check_duplicate_textures` is acked *by directory* on the STNH side, so
 the reviewed library stays silent and a **new** collision against the live
 Walshicus set still reports
-([46](../decisions/46-coalition-of-hope-takes-vul.md),
-[54](../decisions/54-federation-texture-collisions.md)).
+([44](../decisions/44-coalition-of-hope-takes-vul.md),
+[51](../decisions/51-federation-texture-collisions.md)).
 
 ## Price an ack against a live run before writing one — and re-price the ones you inherit
 
@@ -39,7 +39,7 @@ unresolved species class falls through to the clothes selector's `default` and
 **dresses a Trek people in human civilian clothing**.
 
 The list is now empty and all 34 classes are declared
-([decision 32](../decisions/32-declare-stub-species-classes.md)).
+([decision 30](../decisions/30-declare-stub-species-classes.md)).
 
 > **An ack whose justification is a *cost estimate* rather than a reviewed
 > correctness argument is the kind that rots**: the estimate is never revisited,

@@ -2,7 +2,7 @@
 #
 # Harvested from STNH's hand-built map/setup_scenarios by
 # tools/gen_star_names.py. These pools APPEND rather than replace
-# (decision 44), so this file adds to the 5,702 names Real Space and
+# (decision 42), so this file adds to the 5,702 names Real Space and
 # YAGEM already contribute and replaces none of them.
 #
 # A QUOTED entry is a localisation KEY — all 110 of vanilla's own are
@@ -11,7 +11,7 @@
 # src/localisation/english/stg_random_names_l_english.yml, written by
 # the same tool. Unquoted single-word entries are literals and need
 # none; apostrophes are ordinary here, unlike name lists.
-# See .docs/decisions/52-trek-star-names.md and its falsification.
+# See .docs/decisions/76-random-names-are-loc-keys.md.
 
 star_names = {
 	"10_Scorpii"

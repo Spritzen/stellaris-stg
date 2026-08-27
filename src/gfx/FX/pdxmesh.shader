@@ -11,7 +11,7 @@
 #
 # This file shadows TWO sources, not one. Vanilla ships it and so does Real
 # Space, and a `src/` override replaces whichever of them the merge would have
-# kept. See .docs/decisions/34-src-shadows-drop-source-declarations.md.
+# kept. See .docs/decisions/32-src-shadows-drop-source-declarations.md.
 #
 # STNH's ship meshes bake in five shader effect names that vanilla does not
 # declare -- PdxMeshShipTransp, PdxMeshShipTranspShadow, PdxMeshShipHue120,
@@ -24,7 +24,7 @@
 # -------------------------------
 # STNH's gfx/FX/pdxmesh.shader is its 3.12-era copy of this file. Adding gfx/FX
 # to vendor.yml's STNH include list would shadow a vanilla 4.4 file wholesale
-# from a 3.12 source -- the exact failure mode decision 08 exists to prevent --
+# from a 3.12 source -- the exact failure mode decision 07 exists to prevent --
 # and gfx/FX/ holds much more than this one file. Measured, the STNH delta is
 # 55 lines and drops ZERO vanilla effect blocks, so an additive merge here is
 # both smaller and honest: it survives the next Stellaris patch as a visible
@@ -43,7 +43,7 @@
 #
 # NOTE ON THE REAL SPACE BLOCK: RS appends 41 effects to this file. Only four
 # are restored here; the other 37 are left out on purpose and the reasoning is
-# in decision 34, not repeated at the block.
+# in decision 32, not repeated at the block.
 # END STG HEADER
 
 Includes = {
@@ -4651,7 +4651,7 @@ Effect PdxMeshWaterShipShadow
 # -----------------------------------------------------------------------------
 # BEGIN STG ADDITIONS -- Real Space. Copied verbatim from
 # .source/937289339/gfx/FX/pdxmesh.shader, which is vanilla 4.4 plus 411 lines.
-# Four of its 41 effects; the other 37 are excluded per decision 34.
+# Four of its 41 effects; the other 37 are excluded per decision 32.
 # -----------------------------------------------------------------------------
 
 Effect PdxMeshPlanetRingsRS

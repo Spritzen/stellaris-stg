@@ -17,9 +17,9 @@ getting them wrong has been.
 false positive costs someone a look. `check_unreferenced` and the prune stage
 behind it are the first that **remove files**, and an edge type they fail to
 follow becomes a deleted file that rendered perfectly — the failure decisions
-[24](../decisions/24-group-c-texture-references.md),
-[34](../decisions/34-src-shadows-drop-source-declarations.md) and
-[37](../decisions/37-attach-edges-into-pruned-art.md) already record three times
+[22](../decisions/22-group-c-texture-references.md),
+[32](../decisions/32-src-shadows-drop-source-declarations.md) and
+[35](../decisions/35-attach-edges-into-pruned-art.md) already record three times
 over, one file type further down each time.
 
 So that closure is deliberately **generous** where the others are strict: it
@@ -29,7 +29,7 @@ it scans `.mesh` files as **bytes**, because a mesh names its textures inside th
 binary and no text file mentions them.
 
 **Ask which direction an error costs more before choosing how tight to make the
-question.** [Decision 45](../decisions/45-clutter-pass.md).
+question.** [Decision 43](../decisions/43-clutter-pass.md).
 
 ### A rule that SUPPRESSES a finding belongs to this family too
 
@@ -40,7 +40,7 @@ dummy entity that was one coin-flip from becoming every empire's habitat art.
 
 **Calibrate a suppression by watching what it removes, never by reading it**: it
 reports a smaller number, which is exactly what you were hoping to see.
-[Decision 53](../decisions/53-duplicate-entity-triage.md).
+[Decision 50](../decisions/50-duplicate-entity-triage.md).
 
 ---
 
@@ -53,7 +53,7 @@ alphabetical sequence with files and directories interleaved.
 
 "Declared somewhere" said yes 982 times while the Vulcan and Tholian shipsets did
 not render at all — 537 records, `make validate` clean throughout.
-[Decision 30](../decisions/30-clone-discards-sibling-locators.md).
+[Decision 28](../decisions/28-clone-discards-sibling-locators.md).
 
 ---
 
@@ -77,7 +77,7 @@ other database zero.
 
 **This rule also kills checks before they ship.** A proposed check that five
 databases must live in one file died against vanilla's own 40 files in
-`common/ship_sizes` ([decision 29](../decisions/29-merge-semantics-per-directory.md)).
+`common/ship_sizes` ([decision 27](../decisions/27-merge-semantics-per-directory.md)).
 
 ---
 
@@ -91,7 +91,7 @@ dissolved into the checks that read it.
 
 Do not let a borrowed table pass as a measured one; the next reader needs to know
 which of the two they are trusting.
-[Decision 29](../decisions/29-merge-semantics-per-directory.md).
+[Decision 27](../decisions/27-merge-semantics-per-directory.md).
 
 ---
 
@@ -131,7 +131,7 @@ reported against a pair it was written for.
 
 **Finding a name is not the same problem as getting the body**, and a regex that
 solves the first hands you a confident wrong answer to the second. Brace-count
-the body. [Decision 33](../decisions/33-duplicate-entity-declarations.md).
+the body. [Decision 31](../decisions/31-duplicate-entity-declarations.md).
 
 ---
 
@@ -147,7 +147,7 @@ Quoting is semantic in that position, and **vanilla says so per name**: 0 quoted
 against 671 bare for the keywords, 891 quoted for the `pc_*` names. Ask vanilla
 which form each name takes rather than asserting a rule about the *class* of name
 — asserting one produced 14 false positives against 1 true finding.
-[Decision 27](../decisions/27-quoted-class-keyword.md).
+[Decision 25](../decisions/25-quoted-class-keyword.md).
 
 **The converse is a separate trap, and it looks identical in a regex.** Where the
 form is *cosmetic*, refusing to read one of the two deletes the reference instead
@@ -158,7 +158,7 @@ of 34 that no ack covered, reported by nothing while the engine reported it twic
 **Ask whether a field's written form changes its *meaning* before deciding
 whether to normalise it.** If it does, keep the form and check it; if it does
 not, accept every form the sources use.
-[Decision 32](../decisions/32-declare-stub-species-classes.md).
+[Decision 30](../decisions/30-declare-stub-species-classes.md).
 
 ---
 
@@ -171,7 +171,7 @@ reporting the same 506**, because the repair put those declarations beside a
 
 A check calibrated against one shape of the data is not calibrated against the
 shape the repair leaves behind, and this one had a number to show for itself the
-whole time. [Decision 30](../decisions/30-clone-discards-sibling-locators.md).
+whole time. [Decision 28](../decisions/28-clone-discards-sibling-locators.md).
 
 ---
 
@@ -184,12 +184,12 @@ Real Space declares `PdxMeshPlanetRingsRS` in two files on purpose; we shipped
 one of them, `check_dangling_shaders` found the name and was satisfied, and the
 gas giant rings drew with no material anyway — because a mesh material resolves
 against `pdxmesh.shader` and nothing else
-([34](../decisions/34-src-shadows-drop-source-declarations.md)).
+([32](../decisions/32-src-shadows-drop-source-declarations.md)).
 
 The mirror of it: `pdxmesh = "X_mesh"` names a *declaration*, and the `.mesh`
 file it stands for is named by a `.gfx`. A check that globbed for `X_mesh.mesh`
 found nothing anywhere and reported **1,279 findings, most of them vanilla's**
-([35](../decisions/35-station-section-attach-points.md)).
+([33](../decisions/33-station-section-attach-points.md)).
 
 **Resolve the indirection, then ask the question.**
 
@@ -207,7 +207,7 @@ same reasoning kept `check_asset_load_order` scoped to entities STG owns.
 > That scope was held shut by a second figure — 147 mod findings against 41
 > vanilla ones over all 317 ship sizes, *"not a signal anyone can act on"*. It
 > was true when it was measured and false by the time anyone read it: once
-> [decision 82](../decisions/82-hull-section-attach-points.md) repaired the
+> [decision 77](../decisions/77-hull-section-attach-points.md) repaired the
 > hulls, the whole population was **12**, and the check that should have guarded
 > those 230 attach points was still declining to look at them.
 >
@@ -215,14 +215,14 @@ same reasoning kept `check_asset_load_order` scoped to entities STG owns.
 > Re-measure it before citing it as the reason not to widen — and note that
 > widening on the new number alone would still have shipped false positives, so
 > the hull half is gated on the frame being *borrowed* rather than on the count.
-> [Decision 83](../decisions/83-widen-attach-points-and-two-new-checks.md).
+> [Decision 78](../decisions/78-widen-attach-points-and-two-new-checks.md).
 
 **A check can want two scopes at once.** `check_prescripted_loc`'s truncation
 half stays on the one *generated* file, because truncation is a generator failure
 and the 22 hand-authored empires diverge from their source deliberately; its
 leaked-key half covers all four, because it asks nothing of the source, so it
 costs nothing and cannot produce a false positive.
-[Decision 51](../decisions/51-prescripted-loc-scope.md).
+[Decision 49](../decisions/49-prescripted-loc-scope.md).
 
 ---
 
@@ -247,4 +247,4 @@ reaches its own zroni chain through `$DIGSITE$` inside an inline script and a mo
 can invent a route vanilla has not used. For a check whose finding is *"delete
 this or wire it up"*, over-accepting is the safe direction
 ([rule 1](#1-a-check-that-deletes-is-not-a-check-that-reports)).
-[Decision 79](../decisions/79-reachability-checks.md).
+[Decision 74](../decisions/74-reachability-checks.md).

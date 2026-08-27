@@ -43,7 +43,7 @@ make game-version    # confirm what the installed game expects
 The mod folder holds a symlink to `stg-build/`, so a rebuild is live the moment
 it finishes and there is no copy step to forget. `make link` is needed once, or
 again only if the mod folder is wiped. That is
-[decision 13](../decisions/13-build-dir-and-symlink-deploy.md), and it exists
+[decision 12](../decisions/12-build-dir-and-symlink-deploy.md), and it exists
 because a copy sat five hours stale and would have made the next live run
 measure the wrong build.
 
@@ -78,7 +78,7 @@ in `tools/clutter.py` describe it together, and
 
 Nothing is destroyed: `.source/` is untouched and the closure re-derives itself
 every build, so content that gains a declaration comes back by itself.
-[Decision 45](../decisions/45-clutter-pass.md), and
+[Decision 43](../decisions/43-clutter-pass.md), and
 [the clutter closure](../validation/clutter.md) for how it decides.
 
 ## What each step does and does not prove

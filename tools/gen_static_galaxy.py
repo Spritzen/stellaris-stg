@@ -7,9 +7,9 @@ the prescripted pool moved the number by nothing, because the pool is not the
 mechanism: `prescripted_countries/` is what the PLAYER picks from, and an AI
 Trek empire is created by its home system's initializer, which a
 `static_galaxy_scenario` puts on the map at a fixed position.
-.docs/decisions/91-static-galaxy-is-the-mechanism.md,
-.docs/decisions/92-create-country-initializers.md,
-.docs/decisions/93-static-galaxy-scenario.md.
+.docs/decisions/84-static-galaxy-is-the-mechanism.md,
+.docs/decisions/85-create-country-initializers.md,
+.docs/decisions/86-static-galaxy-scenario.md.
 
 WHAT A SYSTEM ENTRY DOES, in three parts that all have to agree:
 
@@ -40,11 +40,12 @@ re-run reproduces the file byte for byte (`make gen-check`).
 
 Filler systems carry `name = ""` on purpose. The engine draws their names from
 the pool, which is 1,444 Trek star names already
-(.docs/decisions/52-trek-star-names.md), and hard-coding STNH's own names here
+(.docs/decisions/84-static-galaxy-is-the-mechanism.md), and hard-coding STNH's
+own names here
 would both duplicate that pool and put raw English in a file that should hold
 loc keys.
 
-TWO EMPIRES ARE DELIBERATELY ABSENT and both are recorded in decision 93:
+TWO EMPIRES ARE DELIBERATELY ABSENT and both are recorded in decision 86:
 
   * the Terran Empire, whose home system is Sol and whose planet is Earth —
     the mirror of the Federation's. STNH places it only in its five MIRROR
@@ -125,7 +126,7 @@ SCALE = 0.36
 # `random_hyperlanes = no` is theirs. THE LANES ARE NOT, AND COPYING THEIR
 # ABSENCE SHIPPED A GALAXY WITH NO LANES AT ALL -- one live run, one save, one
 # hyperlane in 98 systems, and that one an accident of a Planetary Diversity
-# `spawn_system`. .docs/decisions/94-static-map-lanes-are-generated.md.
+# `spawn_system`. .docs/decisions/87-static-map-lanes-are-generated.md.
 #
 # 21 of STNH's 22 maps do define no lanes, the exception being the 468-system
 # BotF map with 892 of them. What those 21 pair it with is a SCRIPT: their
@@ -158,7 +159,7 @@ LANE_MAX = 50.0
 LANE_NEIGHBOURS = 3
 #
 # `default = yes` IS set, as of the picker lock
-# (.docs/decisions/95-lock-the-galaxy-picker.md). It was deliberately left off
+# (.docs/decisions/88-lock-the-galaxy-picker.md). It was deliberately left off
 # while YAGEM's `medium.txt` still carried it -- two defaults is worse than
 # none -- and YAGEM's twelve maps are now excluded and vanilla's five masked by
 # 0-byte files, so this is the only scenario the picker has and the default has
@@ -170,7 +171,7 @@ HEADER = """\
 # STG's first static galaxy scenario. Every Trek empire in the galaxy is placed
 # here and created by the initializer this file names for it; the prescripted
 # pool is the player's roster and has nothing to do with it.
-# See .docs/decisions/93-static-galaxy-scenario.md.
+# See .docs/decisions/86-static-galaxy-scenario.md.
 #
 # Positions are STNH's, harvested from their default galaxy map and scaled by
 # {scale}. Filler systems carry no initializer and no name: the engine builds

@@ -10,7 +10,7 @@
 # empire, Klingon and Borg included — acceptable in a Trek conversion, and the
 # alternative was leaving it unheard.
 #
-# See .docs/decisions/55-federation-anthem.md.
+# See .docs/decisions/52-federation-anthem.md.
 
 song = {
 	name = "stg_ufp_anthem"

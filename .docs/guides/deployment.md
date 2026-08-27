@@ -4,13 +4,13 @@
 > and the three separate systems that must all agree before the mod loads.
 > **Open when** — `make link` fails, the launcher can't see the mod, or a run
 > looks suspiciously clean.
-> **Then** — [Live runs](live-runs.md) · [decision 15](../decisions/15-native-linux-runtime.md) · [decision 07](../decisions/07-launcher-local-mod-registration.md)
+> **Then** — [Live runs](live-runs.md) · [decision 14](../decisions/14-native-linux-runtime.md) · [decision 06](../decisions/06-launcher-local-mod-registration.md)
 
 **Confirmed working on the native Linux build.** Every run since the platform
 switch records `enabled_mods: ["mod/star_trek_galaxies.mod"]` in `dlc_load.json`
 and reads files that exist nowhere but `stg-build/`, so the registry entry, the
 playset and the symlink all survived
-([decision 15](../decisions/15-native-linux-runtime.md)). The link is an ordinary
+([decision 14](../decisions/14-native-linux-runtime.md)). The link is an ordinary
 Linux symlink read by an ordinary Linux process, with no Wine layer in between.
 
 ## The `path=` is derived, never assumed
@@ -59,7 +59,7 @@ you don't go looking for it.
 `source=local`, `status=ready_to_play` — and survived the 2026-08-02 platform
 switch, because that entry was written by the Aug-1 deploy into what was then the
 dormant folder. Full diagnosis in
-[decision 07](../decisions/07-launcher-local-mod-registration.md).
+[decision 06](../decisions/06-launcher-local-mod-registration.md).
 
 ### 3. A playset contains it, and that playset is active
 

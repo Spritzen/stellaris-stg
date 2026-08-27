@@ -63,7 +63,7 @@ second copy that drifts, and the drift is invisible — both files read as
 confident.
 
 The exception is the **one-line hook**, which is deliberately too short to drift
-into a contradiction: `[decision 42](…) — event pictures are re-cut at harvest`.
+into a contradiction: `[decision 40](…) — event pictures are re-cut at harvest`.
 If your summary needs a subordinate clause, link instead.
 
 ## 5. If it is written down nowhere else, it is not a comment — it is a missing doc
@@ -104,8 +104,8 @@ for exactly that reason.
 **Supersedes / Follows / Falsified by:** links, where any apply
 ```
 
-The title is the *finding*, not the topic: `61 — The music player draws the
-declaration name, and 16 had no key` beats `61 — Music player names`. The index
+The title is the *finding*, not the topic: `58 — The music player draws the
+declaration name, and 16 had no key` beats `58 — Music player names`. The index
 is written from these titles, so a vague one costs every future session.
 
 Decisions have **no nav card** — this head answers the same question in a
@@ -113,22 +113,22 @@ different shape, and `make docs` checks them accordingly. What it enforces is
 the title (`# NN — …`, number matching the filename), a dated status line, and
 a row in [the index](decisions/README.md).
 
-Five decisions — [24](decisions/24-group-c-texture-references.md) through
-[29](decisions/29-merge-semantics-per-directory.md), bar 28 — write their status
+Five decisions — [22](decisions/22-group-c-texture-references.md) through
+[27](decisions/27-merge-semantics-per-directory.md), bar 26 — write their status
 as an italic `*Decided 2026-08-03…*` paragraph instead. Those **stay as written**:
 a decision records what was true when it was made, so retrofitting its head is
 editing a record. The checker accepts both forms. See §9 and the migration note
 in the index.
 
 A decision is never edited to say something different. When it turns out wrong,
-it keeps its text and gains a `Falsified by` line — [68](decisions/68-ruler-clothes-index-restored.md)
-and [69](decisions/69-ruler-clothes-dedicated-selectors.md) are the worked
+it keeps its text and gains a `Falsified by` line — [63](decisions/63-city-set-canvas-overflow.md)
+and [81](decisions/81-city-horizon-band.md) are the worked
 example, and the pair is worth more than either would be alone.
 
 ## 8. Link with relative paths, always
 
-`[decision 42](../decisions/42-event-picture-geometry.md)` from inside `.docs/`,
-`[decision 42](.docs/decisions/42-event-picture-geometry.md)` from the repo root.
+`[decision 40](../decisions/40-event-picture-geometry.md)` from inside `.docs/`,
+`[decision 40](.docs/decisions/40-event-picture-geometry.md)` from the repo root.
 Never a bare filename, never an absolute path.
 
 Code cites by **repo-relative path** in a comment: `See .docs/validation/check-design.md`.
@@ -163,7 +163,7 @@ make docs        # references resolve, and documented inventories match the repo
 A rule with no check behind it is a rule that erodes silently — the standing
 lesson of this project, applied to its own documentation. `make docs` exists
 because `.docs/planning/clutter-pass.md` was cited from `tools/clutter.py` and
-[decision 45](decisions/45-clutter-pass.md) for five days after it stopped
+[decision 43](decisions/43-clutter-pass.md) for five days after it stopped
 existing, and nothing anywhere said so.
 
 It asks two kinds of question:

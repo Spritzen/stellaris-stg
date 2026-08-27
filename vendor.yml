@@ -37,7 +37,7 @@ version: 1
 # vanishes if we unsubscribe, so the build must not depend on it directly.
 # `make sources-sync` is the only thing that copies one to the other, and
 # `make sources-status` / `make sources-diff` show the gap first.
-# See tools/sources.py and .docs/decisions/09-source-snapshot.md.
+# See tools/sources.py and .docs/decisions/08-source-snapshot.md.
 source_root: .source
 workshop_root: /workshop
 
@@ -46,7 +46,7 @@ workshop_root: /workshop
 # (.docs/architecture/conflict-register.md, "Explicit excludes")
 #
 # The extension list below is the clutter pass's junk tier
-# (.docs/decisions/45-clutter-pass.md, phase 1). These are not a reachability
+# (.docs/decisions/43-clutter-pass.md, phase 1). These are not a reachability
 # question and `make clutter` is deliberately not asked to answer one: they are
 # authoring by-products that name no Stellaris format at all. Vanilla ships the
 # same class itself — 99 `.editordata`, 6 `.bak`, 2 `.ods` — which is what
@@ -71,8 +71,8 @@ global_excludes:
   # Not unreachable — deliberate upstream content STG has no use for. STG is
   # personal and never published (.docs/planning/scope.md) and is played in English, so
   # every one of these is a file the engine parses and then never reads a key
-  # from. This is a taste call in the shape of decision 11's, taken explicitly
-  # rather than swept: see .docs/decisions/45-clutter-pass.md, phase 3.
+  # from. This is a taste call in the shape of decision 10's, taken explicitly
+  # rather than swept: see .docs/decisions/43-clutter-pass.md, phase 3.
   #
   # Both forms are needed. The directory glob catches the four files whose
   # names do not carry the tag (`pd_uniques_l_spanish..yml`,
@@ -103,7 +103,7 @@ global_excludes:
 # engine reaches this file by a route `make clutter` cannot see — and never a
 # cost estimate. An ack justified by "it's only load time" is what
 # dangling_identifier_ack cost: 439 errors, 21.8% of a run's error.log, behind
-# an estimate nobody revisited (decision 32). If the fix is cheap, take the fix.
+# an estimate nobody revisited (decision 30). If the fix is cheap, take the fix.
 clutter_keep: []
 
 # ── city-set scale normalisation ─────────────────────────────────────────────
@@ -113,14 +113,14 @@ clutter_keep: []
 # to every other empire's -- which is what the 2026-08-24 Vulcan run reported.
 #
 # vulcan_01 filled 325 rows against a merged-tree median of 289. STNH drew it on
-# a 560x367 frame where the family canvas is 560x280, and decision 66 resolved
+# a 560x367 frame where the family canvas is 560x280, and decision 63 resolved
 # that overflow by cropping the top -- which inflated the content ratio from the
 # source's 62% to 81%. UIOD's planet window shows roughly source rows 108-356,
 # so the extra 33 rows at the top were not merely large, they were cut off.
 #
 # THIS RULE CROPS NOTHING. It scales the layer on the vertical axis only and
 # pads it back onto its own 800x400 canvas bottom-aligned, so the full width is
-# kept (no transparent side bands, which is the seam decision 70 refused) and
+# kept (no transparent side bands, which is the seam a crop would open) and
 # the rows added at the top are sky the environment backdrop already draws.
 #
 # `tolerance: 0.10` is calibrated, not guessed. The merged tree's median is 289
@@ -139,7 +139,7 @@ clutter_keep: []
 # Layers whose content fills the whole canvas are skipped by kind, not by name:
 # they are opaque backdrop art rather than a skyline, and have no band to sit
 # inside. cardassian_01 is one of them.
-# See .docs/decisions/87-city-horizon-band.md.
+# See .docs/decisions/81-city-horizon-band.md.
 normalize_city_scale:
   glob: "gfx/portraits/city_sets/*_city_l0*.dds"
   horizon: "_city_l06"
@@ -147,7 +147,7 @@ normalize_city_scale:
 
 # Vendored files that shadow a vanilla file and drop a definition, where the
 # drop has been checked and is fine. tools/validate.py's vanilla-regression
-# check (decision 08) warns about every one of these otherwise. Anything NOT
+# check (decision 07) warns about every one of these otherwise. Anything NOT
 # listed here is an unreviewed regression -- go and look at it.
 vanilla_regression_ack:
   # Vanilla defines avian_hair_1 / molluscoid_hair_1 in several clothes files at
@@ -191,14 +191,14 @@ vanilla_regression_ack:
 #
 # All 34 are now declared as stubs in src/common/species_classes/, four of them
 # by correcting a near miss of our own (DELT->DEL, ELAU->ELA, MONE->MON,
-# PARA->PAR -- decision 20 again). The list stays here, empty, because the next
+# PARA->PAR -- decision 18 again). The list stays here, empty, because the next
 # reader needs to find this note rather than wonder why there is no ack.
-# See .docs/decisions/32-declare-stub-species-classes.md.
+# See .docs/decisions/30-declare-stub-species-classes.md.
 dangling_identifier_ack: []
 
 # Prescripted empires whose species class is named by no line of the class-gated
 # clothes selector their portraits use, and where that is CORRECT.
-# See .docs/decisions/20-minor-power-species-class-keys.md and
+# See .docs/decisions/18-minor-power-species-class-keys.md and
 # check_portrait_clothes_selectors in tools/validate.py.
 #
 # BOTH wear human art. The master selector's `default` IS human civilian
@@ -207,19 +207,19 @@ dangling_identifier_ack: []
 #
 # The list is two entries and the check is quiet: the five peoples this note
 # used to name as "still reported every run" (KRI, MONE, PARA, TNG, VALT) are
-# not findings any more. MONE and PARA stopped existing when decision 32
+# not findings any more. MONE and PARA stopped existing when decision 30
 # renamed them MON and PAR, and MON is named by both master selectors; KRI and
 # VALT have DEDICATED selectors (e.g. gfx/portraits/asset_selectors/kriosian/),
 # which this check skips by design; TNG stopped existing on 2026-08-25 with the
 # empire it was declared for
-# (.docs/decisions/89-remove-mirror-timeline-duplicates.md).
+# (.docs/decisions/82-remove-mirror-timeline-duplicates.md).
 # A new finding here is therefore a new defect, not backlog.
 portrait_clothes_ack:
   - stg_terran_empire            # human art (mirror universe)
   - stg_minor_confederation_earth  # human art
   # stg_minor_deltan_union and stg_minor_elaurian_auditorium were removed
   # 2026-08-07: both were acked as "generic human_02 art" while their real
-  # defect was the decision-20 misspelling, and decision 32's DELT→DEL /
+  # defect was the decision-20 misspelling, and decision 30's DELT→DEL /
   # ELAU→ELA rename gave each people the clothing that was already vendored.
   # The ack outlived the fix and would have hidden a regression.
 
@@ -248,8 +248,8 @@ dangling_art_ack:
   # ── FIVE ENTRIES REMOVED 2026-08-07, because they had stopped suppressing
   # anything. dominion_01_base_mesh, cardassian_01_orbital_station_mesh,
   # voth_01_sovereign_coreA_mesh, talaxian_particle_fountain_mesh and
-  # klingon_shipyard_muesum_mesh were acked when decision 18's prune stranded
-  # them; decision 24 then REDECLARED all five in
+  # klingon_shipyard_muesum_mesh were acked when decision 17's prune stranded
+  # them; decision 22 then REDECLARED all five in
   # src/gfx/models/ships/stg_stnh_restored_station_meshes.gfx and nobody
   # deleted the ack. Verified by removing each entry and re-running the check:
   # the findings are identical either way. This is the failure mode .docs/validation/acks.md
@@ -285,7 +285,7 @@ dangling_art_ack:
   # STNH declares fluidic_rift_effect_particle only in its copy of
   # gfx/particles/_projectiles_particles.gfx, which is EXCLUDED above because it
   # is a 3.12-era shadow of a vanilla 4.4 file. One reference; taking the whole
-  # file back to fix it would trade one record for decision 08's failure mode.
+  # file back to fix it would trade one record for decision 07's failure mode.
   - fluidic_rift_effect_particle
 
 # Art files a vendored .gfx/.asset names by PATH that are not on disk. Listed =
@@ -302,14 +302,14 @@ gfx_file_ref_ack:
 # Bare texture filenames named by vendored art that exist in no source and in no
 # vanilla install — check_texture_basenames. Listed = looked for in .source/ and
 # in /stellaris and genuinely absent, so no include: can fix them. These are
-# upstream bugs in someone else's art, which decision 12 says we repair rather
+# upstream bugs in someone else's art, which decision 11 says we repair rather
 # than drop the mod for — but a texture nobody ships cannot be repaired from
 # here, and the cost is one untextured material, not a missing mesh.
 texture_basename_ack:
   # Real Space – System Scale's copy of the planetary entities asset names six
   # Infernals ring-world textures. Vanilla 4.4's own _planetary_entities.asset
   # names none of them and vanilla ships no file of that name, so these are not
-  # a 4.4 regression the way decision 08's dropped entities were — System Scale
+  # a 4.4 regression the way decision 07's dropped entities were — System Scale
   # invented references to art it does not carry.
   - infernal_ring_world_habitat_diffuse.dds
   - infernal_ring_world_habitat_normal.dds
@@ -342,7 +342,7 @@ key_conflict_ack:
   # 00_random_names.txt (1,569 star names) and a 15-name patron file with zero
   # overlap, which only makes sense if the second adds to the first; YAGEM's 60
   # asteroid prefixes likewise share none of the 136 already there.
-  # See .docs/decisions/44-random-names-pools-append.md.
+  # See .docs/decisions/42-random-names-pools-append.md.
   - random_names/base/*
 
 defines_conflict_ack:
@@ -365,7 +365,7 @@ defines_conflict_ack:
   #
   # ACKED AS A GROUP, WHICH IS THE WEAKER KIND OF ACK, and it is worth knowing
   # why it is acceptable here: normally a content comparison beats an ack
-  # because it starts firing again when the two values diverge (decision 29).
+  # because it starts firing again when the two values diverge (decision 27).
   # These are acked precisely BECAUSE they differ and we want the newer one to
   # win, so divergence is the intended state and there is nothing for a
   # comparison to catch. If Cinematic Camera is ever dropped again, delete this
@@ -405,21 +405,21 @@ defines_conflict_ack:
   # is the distinction .docs/validation/acks.md draws between an ack that holds and one that
   # rots. DELETE THIS ENTRY IF SYSTEM SCALE GOES, or if its ramp changes: the
   # argument is about these eight values, not about the key.
-  # See .docs/decisions/43-planet-scale-system-length.md.
+  # See .docs/decisions/41-planet-scale-system-length.md.
   - NGraphics.PLANET_SCALE_SYSTEM
   #
   # NShip.FLEET_BASE_FORMATION_SCALE and NInterface.NOTIFICATION_MESSAGE_YPOS
   # WERE HERE AND ARE DELIBERATELY GONE (2026-08-03). Both are set by two
   # sources to the SAME value — 0.6 and 0 — so neither was ever a conflict, and
   # check_defines_conflicts now compares values instead of counting setters
-  # (decision 29). Removing them is the safer state, not the laxer one: an ack
+  # (decision 27). Removing them is the safer state, not the laxer one: an ack
   # would go on saying nothing if a source update made the two values diverge,
   # where now the check simply starts firing again.
 
 # Order-sensitive databases fed by more than one source, reviewed and accepted.
 # These five carry meaning in the ORDER their entries are declared across the
 # whole directory, so two sources contributing files interleave into an order
-# neither chose (decision 29). Listed by directory, e.g. `common/ethics`.
+# neither chose (decision 27). Listed by directory, e.g. `common/ethics`.
 order_sensitive_ack:
   # Looked at 2026-08-08, which is what this check asks for, and the interleaving
   # it warns about does not happen here. Sorted, the directory reads: vanilla's
@@ -438,8 +438,8 @@ order_sensitive_ack:
   # SBX also redefines seven vanilla keys (gun_battery, missile_battery,
   # hangar_bay, detection_array and three orbital_ring_*). starbase_modules is
   # LIOS, sbx_* sorts after 00_*, so SBX wins — which is what SBX intends
-  # (decision 39). That is check_key_conflicts' question, not this one's.
-  # See .docs/decisions/56-starbase-modules-order.md.
+  # (decision 37). That is check_key_conflicts' question, not this one's.
+  # See .docs/decisions/53-starbase-modules-order.md.
   - common/starbase_modules
 
 # Entity names declared twice with bodies that differ, reviewed and accepted.
@@ -450,7 +450,7 @@ order_sensitive_ack:
 # six suppress themselves by content (one body is vanilla's own and the other is
 # a live 4.x mod's deliberate override of it), six are repaired by the renames in
 # `patches:`, and this is the one that is genuinely inert.
-# See .docs/decisions/53-duplicate-entity-triage.md.
+# See .docs/decisions/50-duplicate-entity-triage.md.
 duplicate_entity_ack:
   # PD - More Arcologies' _pd_gestalt_arcologies.asset and PD's own
   # _pd_ma_hive_arcologies.asset both declare it, pointing at
@@ -462,7 +462,7 @@ duplicate_entity_ack:
   # bytes each). Both files also attach it only from their own arcology entities.
   # A correctness argument, not a cost estimate: there is no visible difference to
   # decide. Resolving mesh names to their .gfx bodies to prove that automatically
-  # is the indirection decision 35 warns about, and would buy one finding.
+  # is the indirection decision 33 warns about, and would buy one finding.
   - pd_machine_planet_shield_effect_entity
 
 # Texture basenames carried by two folders with different content, reviewed and
@@ -495,7 +495,7 @@ duplicate_entity_ack:
 #
 # Acked on the STNH side only, so a NEW collision against the live Walshicus
 # Federation shipset still reports.
-# See .docs/decisions/54-federation-texture-collisions.md.
+# See .docs/decisions/51-federation-texture-collisions.md.
 duplicate_texture_ack:
   - gfx/models/ships/stnc_shipset_shared/textures
   - gfx/models/ships/federation/olympic
@@ -507,19 +507,19 @@ duplicate_texture_ack:
 #
 # Empty, and the baseline is 0: all 66 findings — 22 Walshicus shipsets x 3
 # station entities — are repaired by the patches below rather than acked.
-# See .docs/decisions/35-station-section-attach-points.md.
+# See .docs/decisions/33-station-section-attach-points.md.
 section_attach_point_ack: []
 
 # Weapon mounts with no position anywhere, and `clone` blocks that resolve
 # against an entity the engine has not loaded yet. Read by tools/validate.py's
 # check_asset_load_order. Keyed by entity name.
-# Empty: the baseline is 0 (decisions 28 and 30) and any movement is a finding.
+# Empty: the baseline is 0 (decisions 26 and 28) and any movement is a finding.
 asset_load_order_ack: []
 
 # `@variables` an art file references that nothing declares, which load as
 # `Malformed token` and drop the value they stood for. Read by
 # tools/validate.py's check_asset_variables. Keyed by the `@name`.
-# Empty: decision 31 closed all of them.
+# Empty: decision 29 closed all of them.
 asset_variable_ack: []
 
 # src/ overrides that drop declarations the SOURCE they shadow makes, reviewed
@@ -527,7 +527,7 @@ asset_variable_ack: []
 # Keyed by the path, e.g. `- gfx/FX/pdxmesh.shader`.
 #
 # Ack sparingly. This exists because one such drop cost Real Space's gas giant
-# rings their shader for five days with nothing reporting it (decision 34). A
+# rings their shader for five days with nothing reporting it (decision 32). A
 # drop is a real loss unless you can say why the declaration cannot work.
 src_regression_ack:
   # 37 of Real Space's 41 appended effects. NOT a judgement call about whether
@@ -540,7 +540,7 @@ src_regression_ack:
   # references it. The four that resolve are restored in the override.
   - gfx/FX/pdxmesh.shader
   # The five galaxy sizes, dropped ON PURPOSE -- this is the picker lock, not a
-  # regression (.docs/decisions/95-lock-the-galaxy-picker.md). Each override
+  # regression (.docs/decisions/88-lock-the-galaxy-picker.md). Each override
   # withdraws exactly one `setup_scenario` declaration, which is the entire
   # point of the file: STG offers one galaxy and these five are the vanilla
   # sizes it replaces. Nothing references a scenario by name -- the setup screen
@@ -561,14 +561,14 @@ src_regression_ack:
 # vendor: between them they declare 115 entities and NOT ONE is referenced from
 # anywhere else in the merged tree. Nine of the 23 targets could be recovered
 # from .source/688086068/gfx/models/ships/{romulan,klingon} — and doing so would
-# re-open exactly the collision decision 18 pruned those directories to close,
+# re-open exactly the collision decision 17 pruned those directories to close,
 # in order to feed art nothing can reach. The other 14 exist in no source at all.
 #
-# KEPT rather than excluded, per decision 12: the Federation attack wings, the
+# KEPT rather than excluded, per decision 11: the Federation attack wings, the
 # Galileo and Delta Flyer shuttles and the Maquis ships are real Trek content
 # with no home YET, and Phase 4 may want them. Re-including the pruned
 # directories is a one-line change if it ever does.
-# See .docs/decisions/37-attach-edges-into-pruned-art.md.
+# See .docs/decisions/35-attach-edges-into-pruned-art.md.
 attach_target_ack:
   - gfx/models/ships/other/fed_ent_naval_museum.asset
   - gfx/models/ships/other/rom_naval_museum.asset
@@ -588,7 +588,7 @@ prescripted_empire_ack: []
 
 # Name lists whose colony pool offers a name some empire already holds as a
 # capital. Read by tools/validate.py's check_colony_name_collisions.
-# Empty: decision 25 removed the collisions by giving 39 empires real home
+# Empty: decision 23 removed the collisions by giving 39 empires real home
 # systems, and a new one means two places in the galaxy share a name.
 colony_name_ack: []
 
@@ -602,7 +602,7 @@ prescripted_initializer_ack: []
 # and have been reviewed. Read by tools/validate.py's check_initializer_classes.
 #
 # Ack sparingly: an unresolvable class is what hard-crashed the game on
-# 2026-08-03 (decision 26), and the crash leaves nothing in error.log.
+# 2026-08-03 (decision 24), and the crash leaves nothing in error.log.
 #
 # These five are Real Space's own, in realspace_special_system_initializers.txt,
 # and are dangling in Real Space's source too — its randomizer lists are all
@@ -641,7 +641,7 @@ initializer_class_ack:
 #
 # Nothing else belongs here: shipping a generated home system without the
 # effect is the 2026-08-03 "I do not own my home system" defect, and it logs
-# nothing at all. See .docs/decisions/26-home-system-classes.md.
+# nothing at all. See .docs/decisions/24-home-system-classes.md.
 home_planet_generation_ack:
   - sol_system_initializer
   - sol_system_solsector_large
@@ -688,7 +688,7 @@ key_conflict_families:
 # `reserved:` used to live here — the list of paths vendor.py refused to write,
 # because the mod tree was the repo root and a source shipping `tools/` (a real
 # vanilla game directory as well as ours) would have overwritten the build
-# scripts with game data. Decision 13 moved the tree to stg-build/, so that
+# scripts with game data. Decision 12 moved the tree to stg-build/, so that
 # collision is structurally impossible and the guard was removed rather than
 # kept as a check that can no longer fire. It also un-breaks the case it was
 # guarding: `stg-build/tools/` is now simply the game folder of that name, which
@@ -721,7 +721,7 @@ key_conflict_families:
 # All 42 patched errors below are ASB Ironman's, measured from the 2026-08-01
 # run: every `.asset`/parse error in the log except 4 belonging to Starbase
 # Extended. ASB is KEPT -- it is a combat VFX mod and its value survives Phase 3
-# (decision 11) -- but it was last updated against a 3.x Stellaris and 4.4's
+# (decision 10) -- but it was last updated against a 3.x Stellaris and 4.4's
 # parser rejects several things it does. A rejected curve or emitter is not just
 # log noise: the affected muzzle, shield-hit and explosion effects fall back or
 # do not play at all, which is the mod's entire purpose.
@@ -1361,8 +1361,8 @@ patches:
       SBX's STRONGHOLD/HEADQUARTERS _XL sections (which already run to 16 and 20
       and are SBX's own) are deliberately untouched. Every slot in this section
       shares locatorname "medium_gun_01", so the added slot needs no new
-      locator and cannot fire from the hull centre (decision 28).
-      See .docs/decisions/39-sbx-citadel-slot-renumbering.md.
+      locator and cannot fire from the hull centre (decision 26).
+      See .docs/decisions/37-sbx-citadel-slot-renumbering.md.
     replace:
       - from: "\t\tname = \"MEDIUM_GUN_10\"\r\n\t\ttemplate = \"invisible_medium_turret\"\r\n\t\tlocatorname = \"medium_gun_01\"\r\n\t}\r\n\r\n\tcomponent_slot = {\r\n\t\tname = \"MEDIUM_GUN_11\"\r\n\t\ttemplate = \"invisible_medium_turret\"\r\n\t\tlocatorname = \"medium_gun_01\"\r\n\t}\r\n\r\n\tcomponent_slot = {\r\n\t\tname = \"MEDIUM_GUN_12\"\r\n\t\ttemplate = \"invisible_medium_turret\"\r\n\t\tlocatorname = \"medium_gun_01\"\r\n\t}\r\n\r\n\tcomponent_slot = {\r\n\t\tname = \"SMALL_GUN_01\""
         to: "\t\tname = \"MEDIUM_GUN_010\"\r\n\t\ttemplate = \"invisible_medium_turret\"\r\n\t\tlocatorname = \"medium_gun_01\"\r\n\t}\r\n\r\n\tcomponent_slot = {\r\n\t\tname = \"MEDIUM_GUN_011\"\r\n\t\ttemplate = \"invisible_medium_turret\"\r\n\t\tlocatorname = \"medium_gun_01\"\r\n\t}\r\n\r\n\tcomponent_slot = {\r\n\t\tname = \"MEDIUM_GUN_012\"\r\n\t\ttemplate = \"invisible_medium_turret\"\r\n\t\tlocatorname = \"medium_gun_01\"\r\n\t}\r\n\r\n\tcomponent_slot = {\r\n\t\tname = \"MEDIUM_GUN_013\"\r\n\t\ttemplate = \"invisible_medium_turret\"\r\n\t\tlocatorname = \"medium_gun_01\"\r\n\t}\r\n\r\n\tcomponent_slot = {\r\n\t\tname = \"SMALL_GUN_01\""
@@ -1388,7 +1388,7 @@ patches:
   - path: gfx/particles/_ships_particles.gfx
     source: ASB Ironman
     why: >-
-      DECISION 08's FAILURE MODE, IN A MOD THAT IS NOT STNH. ASB's copy of this
+      DECISION 07's FAILURE MODE, IN A MOD THAT IS NOT STNH. ASB's copy of this
       vanilla file is the 3.x one, so it declares 151 of vanilla 4.4's 155 ship
       particles and silently drops four: astral_rift_particle,
       astral_scar_particle, crystal_rift_particle (Astral Planes) and
@@ -1487,7 +1487,7 @@ patches:
   #
   # TER IS THE SIXTH, added 2026-08-08 after a live run reported several
   # designer rulers sharing one outfit. The mirror Terran Empire arrived with
-  # Phase 2's eight frontier powers, AFTER decision 22 swept the master pair,
+  # Phase 2's eight frontier powers, AFTER decision 20 swept the master pair,
   # and its ruler portrait (human_female_01) points at the same master
   # selector -- so it fell through to civ_human_female_clothes_13.dds, the
   # human civilian default. Swept across all 22 majors, quadrant and frontier powers rather than
@@ -1503,16 +1503,16 @@ patches:
   # same place. The Federation gets STNH's dedicated president art rather than
   # the generic `human_president_*` the in-game ruler scope falls back to, and
   # Andor gets the admiral coat its species scope already names.
-  # See .docs/decisions/22-empire-designer-clothes.md. CRLF is STNH's.
+  # See .docs/decisions/20-empire-designer-clothes.md. CRLF is STNH's.
   - path: gfx/portraits/asset_selectors/humanoid_master_male_clothes_01.txt
     source: "Star Trek: New Horizons"
     why: >-
       The master selector's game_setup scope is a bare human-civilian default,
       so every STG species sharing it wore human clothes in the empire
       designer. Gate it by species class, as every per-species selector is.
-      Six rows in 2026-08-03 (decision 22); twelve more on 2026-08-25, when
-      decision 88 made the 79 minor powers playable and they reached the
-      designer for the first time. Each new row is the art that species' own
+      Six rows in 2026-08-03 (decision 20); twelve more on 2026-08-25, when
+      the 79 minor powers were made playable and reached the designer for
+      the first time. Each new row is the art that species' own
       `species` scope already names, so the picker matches the game.
     replace:
       - from: "\t\tdefault = \"gfx/models/portraits/human_civilian/civ_human_male_clothes_01.dds\"\r\n"
@@ -1590,7 +1590,7 @@ patches:
       was added 2026-08-22 and is the only one whose art is genuinely absent --
       sth_humanoid_08_male_clothes_01 is in no source mod, so appending .dds
       moves it from malformed to dangling, which is the honest population for
-      it. See .docs/decisions/83-widen-attach-points-and-two-new-checks.md.
+      it. See .docs/decisions/78-widen-attach-points-and-two-new-checks.md.
     replace:
       - from: "\"gfx/models/portraits/human_civilian/human_president_male_1\""
         to: "\"gfx/models/portraits/human_civilian/human_president_male_1.dds\""
@@ -1678,9 +1678,9 @@ patches:
       The master selector's game_setup scope is a bare human-civilian default,
       so every STG species sharing it wore human clothes in the empire
       designer. Gate it by species class, as every per-species selector is.
-      Six rows in 2026-08-03 (decision 22); twelve more on 2026-08-25, when
-      decision 88 made the 79 minor powers playable and they reached the
-      designer for the first time. Each new row is the art that species' own
+      Six rows in 2026-08-03 (decision 20); twelve more on 2026-08-25, when
+      the 79 minor powers were made playable and reached the designer for
+      the first time. Each new row is the art that species' own
       `species` scope already names, so the picker matches the game.
     replace:
       - from: "\t\tdefault = \"gfx/models/portraits/human_civilian/civ_human_female_clothes_13.dds\"\r\n"
@@ -1715,7 +1715,7 @@ patches:
       the first of the four wins for all of them. VUL itself is unaffected: it
       has properly gated rows 200 lines earlier. The fix is the MALE file's own
       gating, copied across rather than invented; all four triggers are on
-      decision 16's INERT list, so the rows go dead and each species falls to
+      decision 15's INERT list, so the rows go dead and each species falls to
       its own entry. Found while wiring the Terran Empire's mirror uniforms,
       which these rows pre-empt -- they sit at 1290 and the mirror rows at 1798.
     replace:
@@ -1733,7 +1733,7 @@ patches:
         count: 1
 
   # --- 28 selector textures named by a path that resolves to nothing ---------
-  # THE OTHER HALF OF THE MALFORMED-PATH QUESTION -- the half decision 83
+  # THE OTHER HALF OF THE MALFORMED-PATH QUESTION -- the half decision 78
   # landed the syntax half of and left for a content call. Re-measured against
   # the build of 2026-08-24: 117 rows in 43 files name a texture that is in
   # NEITHER stg-build/ NOR /stellaris. The 196 the docs carried does not
@@ -1746,13 +1746,13 @@ patches:
   # each row is repointed at the art its author named -- the same disposition
   # as the brunali/norcadian redirect above. The remaining 17 textures are art
   # NO source mod ships and no rename can conjure; they stay dangling until
-  # they get their call, and decision 85 lists them.
+  # they get their call, and decision 80 lists them.
   #
   # A ROW IS REPOINTED, NEVER DELETED. A third of the misses sit inside a
   # `list = { }`, where deleting an entry shifts every index after it and
-  # changes what other species wear -- the reason decision 83 accepted a
+  # changes what other species wear -- the reason decision 78 accepted a
   # duplicated entry rather than delete one.
-  # See .docs/decisions/85-selector-textures-that-resolve.md.
+  # See .docs/decisions/80-selector-textures-that-resolve.md.
 
   - path: gfx/portraits/asset_selectors/acamarian/acamarian_female_clothes_01.txt
     source: "Star Trek: New Horizons"
@@ -1760,7 +1760,7 @@ patches:
       The Discovery medical top is in `starfleet_discovery/`; `starfleet_tmp/`
       holds only the `tmp_` set. The TOS-era tops are in
       `starfleet_original_series/`; `starfleet_tmp/` holds only the `tmp_`
-      set. See .docs/decisions/85-selector-textures-that-resolve.md.
+      set. See .docs/decisions/80-selector-textures-that-resolve.md.
     replace:
       - from: "\"gfx/models/portraits/starfleet_tmp/dis_human_female_medical.dds\""
         to: "\"gfx/models/portraits/starfleet_discovery/dis_human_female_medical.dds\""
@@ -1784,7 +1784,7 @@ patches:
       The TNG folders are spelled two ways and these rows mix them: the era-2
       art is in `starfleet next generation 02/` (spaces) and the era-1 art in
       `starfleet_next_generation_01/` (underscores). See
-      .docs/decisions/85-selector-textures-that-resolve.md.
+      .docs/decisions/80-selector-textures-that-resolve.md.
     replace:
       - from: "\"gfx/models/portraits/starfleet_next generation_01/tng1_human_male_cmo.dds\""
         to: "\"gfx/models/portraits/starfleet_next_generation_01/tng1_human_male_cmo.dds\""
@@ -1796,7 +1796,7 @@ patches:
       The TNG folders are spelled two ways and these rows mix them: the era-2
       art is in `starfleet next generation 02/` (spaces) and the era-1 art in
       `starfleet_next_generation_01/` (underscores). See
-      .docs/decisions/85-selector-textures-that-resolve.md.
+      .docs/decisions/80-selector-textures-that-resolve.md.
     replace:
       - from: "\"gfx/models/portraits/starfleet_next generation_01/tng1_human_male_cmo.dds\""
         to: "\"gfx/models/portraits/starfleet_next_generation_01/tng1_human_male_cmo.dds\""
@@ -1808,7 +1808,7 @@ patches:
       The TNG folders are spelled two ways and these rows mix them: the era-2
       art is in `starfleet next generation 02/` (spaces) and the era-1 art in
       `starfleet_next_generation_01/` (underscores). See
-      .docs/decisions/85-selector-textures-that-resolve.md.
+      .docs/decisions/80-selector-textures-that-resolve.md.
     replace:
       - from: "\"gfx/models/portraits/starfleet_next generation_01/tng1_human_male_cmo.dds\""
         to: "\"gfx/models/portraits/starfleet_next_generation_01/tng1_human_male_cmo.dds\""
@@ -1820,7 +1820,7 @@ patches:
       The TNG folders are spelled two ways and these rows mix them: the era-2
       art is in `starfleet next generation 02/` (spaces) and the era-1 art in
       `starfleet_next_generation_01/` (underscores). See
-      .docs/decisions/85-selector-textures-that-resolve.md.
+      .docs/decisions/80-selector-textures-that-resolve.md.
     replace:
       - from: "\"gfx/models/portraits/starfleet_next generation_01/tng1_human_male_cmo.dds\""
         to: "\"gfx/models/portraits/starfleet_next_generation_01/tng1_human_male_cmo.dds\""
@@ -1832,7 +1832,7 @@ patches:
       The TNG folders are spelled two ways and these rows mix them: the era-2
       art is in `starfleet next generation 02/` (spaces) and the era-1 art in
       `starfleet_next_generation_01/` (underscores). See
-      .docs/decisions/85-selector-textures-that-resolve.md.
+      .docs/decisions/80-selector-textures-that-resolve.md.
     replace:
       - from: "\"gfx/models/portraits/starfleet_next generation_01/tng1_human_male_cmo.dds\""
         to: "\"gfx/models/portraits/starfleet_next_generation_01/tng1_human_male_cmo.dds\""
@@ -1844,7 +1844,7 @@ patches:
       The TNG folders are spelled two ways and these rows mix them: the era-2
       art is in `starfleet next generation 02/` (spaces) and the era-1 art in
       `starfleet_next_generation_01/` (underscores). See
-      .docs/decisions/85-selector-textures-that-resolve.md.
+      .docs/decisions/80-selector-textures-that-resolve.md.
     replace:
       - from: "\"gfx/models/portraits/starfleet_next generation_01/tng2_human_female_science.dds\""
         to: "\"gfx/models/portraits/starfleet next generation 02/tng2_human_female_science.dds\""
@@ -1856,7 +1856,7 @@ patches:
       The TNG folders are spelled two ways and these rows mix them: the era-2
       art is in `starfleet next generation 02/` (spaces) and the era-1 art in
       `starfleet_next_generation_01/` (underscores). See
-      .docs/decisions/85-selector-textures-that-resolve.md.
+      .docs/decisions/80-selector-textures-that-resolve.md.
     replace:
       - from: "\"gfx/models/portraits/starfleet_next generation_01/tng1_human_male_cmo.dds\""
         to: "\"gfx/models/portraits/starfleet_next_generation_01/tng1_human_male_cmo.dds\""
@@ -1871,7 +1871,7 @@ patches:
       The TNG folders are spelled two ways and these rows mix them: the era-2
       art is in `starfleet next generation 02/` (spaces) and the era-1 art in
       `starfleet_next_generation_01/` (underscores). See
-      .docs/decisions/85-selector-textures-that-resolve.md.
+      .docs/decisions/80-selector-textures-that-resolve.md.
     replace:
       - from: "\"gfx/models/portraits/starfleet_next generation_01/tng2_human_female_science.dds\""
         to: "\"gfx/models/portraits/starfleet next generation 02/tng2_human_female_science.dds\""
@@ -1883,7 +1883,7 @@ patches:
       The TNG folders are spelled two ways and these rows mix them: the era-2
       art is in `starfleet next generation 02/` (spaces) and the era-1 art in
       `starfleet_next_generation_01/` (underscores). See
-      .docs/decisions/85-selector-textures-that-resolve.md.
+      .docs/decisions/80-selector-textures-that-resolve.md.
     replace:
       - from: "\"gfx/models/portraits/starfleet_next generation_01/tng1_human_male_cmo.dds\""
         to: "\"gfx/models/portraits/starfleet_next_generation_01/tng1_human_male_cmo.dds\""
@@ -1898,7 +1898,7 @@ patches:
       The TNG folders are spelled two ways and these rows mix them: the era-2
       art is in `starfleet next generation 02/` (spaces) and the era-1 art in
       `starfleet_next_generation_01/` (underscores). See
-      .docs/decisions/85-selector-textures-that-resolve.md.
+      .docs/decisions/80-selector-textures-that-resolve.md.
     replace:
       - from: "\"gfx/models/portraits/starfleet_next generation_01/tng1_human_male_cmo.dds\""
         to: "\"gfx/models/portraits/starfleet_next_generation_01/tng1_human_male_cmo.dds\""
@@ -1910,7 +1910,7 @@ patches:
       The TNG folders are spelled two ways and these rows mix them: the era-2
       art is in `starfleet next generation 02/` (spaces) and the era-1 art in
       `starfleet_next_generation_01/` (underscores). See
-      .docs/decisions/85-selector-textures-that-resolve.md.
+      .docs/decisions/80-selector-textures-that-resolve.md.
     replace:
       - from: "\"gfx/models/portraits/starfleet_next generation_01/tng2_human_female_science.dds\""
         to: "\"gfx/models/portraits/starfleet next generation 02/tng2_human_female_science.dds\""
@@ -1922,7 +1922,7 @@ patches:
       The TNG folders are spelled two ways and these rows mix them: the era-2
       art is in `starfleet next generation 02/` (spaces) and the era-1 art in
       `starfleet_next_generation_01/` (underscores). See
-      .docs/decisions/85-selector-textures-that-resolve.md.
+      .docs/decisions/80-selector-textures-that-resolve.md.
     replace:
       - from: "\"gfx/models/portraits/starfleet_next_generation_02/tng2_human_male_science.dds\""
         to: "\"gfx/models/portraits/starfleet next generation 02/tng2_human_male_science.dds\""
@@ -1934,7 +1934,7 @@ patches:
       The TNG folders are spelled two ways and these rows mix them: the era-2
       art is in `starfleet next generation 02/` (spaces) and the era-1 art in
       `starfleet_next_generation_01/` (underscores). See
-      .docs/decisions/85-selector-textures-that-resolve.md.
+      .docs/decisions/80-selector-textures-that-resolve.md.
     replace:
       - from: "\"gfx/models/portraits/starfleet_next generation_01/tng1_human_male_cmo.dds\""
         to: "\"gfx/models/portraits/starfleet_next_generation_01/tng1_human_male_cmo.dds\""
@@ -1946,7 +1946,7 @@ patches:
       The TNG folders are spelled two ways and these rows mix them: the era-2
       art is in `starfleet next generation 02/` (spaces) and the era-1 art in
       `starfleet_next_generation_01/` (underscores). See
-      .docs/decisions/85-selector-textures-that-resolve.md.
+      .docs/decisions/80-selector-textures-that-resolve.md.
     replace:
       - from: "\"gfx/models/portraits/starfleet_next generation_01/tng1_human_male_cmo.dds\""
         to: "\"gfx/models/portraits/starfleet_next_generation_01/tng1_human_male_cmo.dds\""
@@ -1958,7 +1958,7 @@ patches:
       The TNG folders are spelled two ways and these rows mix them: the era-2
       art is in `starfleet next generation 02/` (spaces) and the era-1 art in
       `starfleet_next_generation_01/` (underscores). See
-      .docs/decisions/85-selector-textures-that-resolve.md.
+      .docs/decisions/80-selector-textures-that-resolve.md.
     replace:
       - from: "\"gfx/models/portraits/starfleet_next generation_01/tng2_human_female_science.dds\""
         to: "\"gfx/models/portraits/starfleet next generation 02/tng2_human_female_science.dds\""
@@ -1970,7 +1970,7 @@ patches:
       The TNG folders are spelled two ways and these rows mix them: the era-2
       art is in `starfleet next generation 02/` (spaces) and the era-1 art in
       `starfleet_next_generation_01/` (underscores). See
-      .docs/decisions/85-selector-textures-that-resolve.md.
+      .docs/decisions/80-selector-textures-that-resolve.md.
     replace:
       - from: "\"gfx/models/portraits/starfleet_next generation_01/tng1_human_male_cmo.dds\""
         to: "\"gfx/models/portraits/starfleet_next_generation_01/tng1_human_male_cmo.dds\""
@@ -1985,7 +1985,7 @@ patches:
       Vanilla moved this hair texture into `human/human_female_hair_update/`
       and names it there in its own human_female_01_hair.txt; STNH's copy of
       the row dropped the folder.
-      See .docs/decisions/85-selector-textures-that-resolve.md.
+      See .docs/decisions/80-selector-textures-that-resolve.md.
     replace:
       - from: "\"gfx/models/portraits/human/human_female_hair_blonde_style_05.dds\""
         to: "\"gfx/models/portraits/human/human_female_hair_update/human_female_hair_blonde_style_05.dds\""
@@ -1997,7 +1997,7 @@ patches:
       The TNG folders are spelled two ways and these rows mix them: the era-2
       art is in `starfleet next generation 02/` (spaces) and the era-1 art in
       `starfleet_next_generation_01/` (underscores). See
-      .docs/decisions/85-selector-textures-that-resolve.md.
+      .docs/decisions/80-selector-textures-that-resolve.md.
     replace:
       - from: "\"gfx/models/portraits/starfleet_next generation_01/tng1_human_male_cmo.dds\""
         to: "\"gfx/models/portraits/starfleet_next_generation_01/tng1_human_male_cmo.dds\""
@@ -2014,7 +2014,7 @@ patches:
       The mirror set is named `tng2_mirror_*` and this row drops the infix.
       Its trigger is `uses_terran_uniform_pop`, so the mirror file in the same
       folder is the one meant -- not the prime one of the same basename. See
-      .docs/decisions/85-selector-textures-that-resolve.md.
+      .docs/decisions/80-selector-textures-that-resolve.md.
     replace:
       - from: "\"gfx/models/portraits/bajoran/civ_bajoran_female_clothes_04.dds\""
         to: "\"gfx/models/portraits/bajoran civilian/civ_bajoran_female_clothes_04.dds\""
@@ -2049,7 +2049,7 @@ patches:
       `tng2_mirror_*` and this row drops the infix. Its trigger is
       `uses_terran_uniform_pop`, so the mirror file in the same folder is the
       one meant -- not the prime one of the same basename. See
-      .docs/decisions/85-selector-textures-that-resolve.md.
+      .docs/decisions/80-selector-textures-that-resolve.md.
     replace:
       - from: "\"gfx/models/portraits/bajoran/civ_bajoran_male_clothes_04.dds\""
         to: "\"gfx/models/portraits/bajoran civilian/civ_bajoran_male_clothes_04.dds\""
@@ -2080,7 +2080,7 @@ patches:
     source: "Star Trek: New Horizons"
     why: >-
       The Kinshaya royal outfit is in `kinshaya/`; `ellora/` holds only Ellora
-      clothes. See .docs/decisions/85-selector-textures-that-resolve.md.
+      clothes. See .docs/decisions/80-selector-textures-that-resolve.md.
     replace:
       - from: "\"gfx/models/portraits/ellora/kinshaya_normal_outfit_royal.dds\""
         to: "\"gfx/models/portraits/kinshaya/kinshaya_normal_outfit_royal.dds\""
@@ -2092,7 +2092,7 @@ patches:
       The female KDF All Good Things science top is filed under
       `starfleet_all_good_things/`; `klingon_starfleet/` holds only the male
       one. `_df` for `_kdf` -- every other file in `klingon_starfleet/` ends
-      `_kdf`. See .docs/decisions/85-selector-textures-that-resolve.md.
+      `_kdf`. See .docs/decisions/80-selector-textures-that-resolve.md.
     replace:
       - from: "\"gfx/models/portraits/klingon_starfleet/agt_human_female_science_kdf.dds\""
         to: "\"gfx/models/portraits/starfleet_all_good_things/agt_human_female_science_kdf.dds\""
@@ -2105,7 +2105,7 @@ patches:
     source: "Star Trek: New Horizons"
     why: >-
       `_df` for `_kdf` -- every other file in `klingon_starfleet/` ends
-      `_kdf`. See .docs/decisions/85-selector-textures-that-resolve.md.
+      `_kdf`. See .docs/decisions/80-selector-textures-that-resolve.md.
     replace:
       - from: "\"gfx/models/portraits/klingon_starfleet/tng2_human_male_science_df.dds\""
         to: "\"gfx/models/portraits/klingon_starfleet/tng2_human_male_science_kdf.dds\""
@@ -2117,7 +2117,7 @@ patches:
       The TNG folders are spelled two ways and these rows mix them: the era-2
       art is in `starfleet next generation 02/` (spaces) and the era-1 art in
       `starfleet_next_generation_01/` (underscores). See
-      .docs/decisions/85-selector-textures-that-resolve.md.
+      .docs/decisions/80-selector-textures-that-resolve.md.
     replace:
       - from: "\"gfx/models/portraits/starfleet_next generation_01/tng2_human_female_science.dds\""
         to: "\"gfx/models/portraits/starfleet next generation 02/tng2_human_female_science.dds\""
@@ -2129,7 +2129,7 @@ patches:
       The TNG folders are spelled two ways and these rows mix them: the era-2
       art is in `starfleet next generation 02/` (spaces) and the era-1 art in
       `starfleet_next_generation_01/` (underscores). See
-      .docs/decisions/85-selector-textures-that-resolve.md.
+      .docs/decisions/80-selector-textures-that-resolve.md.
     replace:
       - from: "\"gfx/models/portraits/starfleet_next_generation_02/tng2_human_male_science.dds\""
         to: "\"gfx/models/portraits/starfleet next generation 02/tng2_human_male_science.dds\""
@@ -2141,7 +2141,7 @@ patches:
       The TNG folders are spelled two ways and these rows mix them: the era-2
       art is in `starfleet next generation 02/` (spaces) and the era-1 art in
       `starfleet_next_generation_01/` (underscores). See
-      .docs/decisions/85-selector-textures-that-resolve.md.
+      .docs/decisions/80-selector-textures-that-resolve.md.
     replace:
       - from: "\"gfx/models/portraits/starfleet_next_generation_02/tng2_human_male_science.dds\""
         to: "\"gfx/models/portraits/starfleet next generation 02/tng2_human_male_science.dds\""
@@ -2155,7 +2155,7 @@ patches:
       `starfleet_next_generation_01/` (underscores). One of these occurrences
       is a commented-out row; the literal replace carries it along, which
       leaves the comment naming a path that exists. See
-      .docs/decisions/85-selector-textures-that-resolve.md.
+      .docs/decisions/80-selector-textures-that-resolve.md.
     replace:
       - from: "\"gfx/models/portraits/starfleet_next generation_01/tng2_human_female_science.dds\""
         to: "\"gfx/models/portraits/starfleet next generation 02/tng2_human_female_science.dds\""
@@ -2169,7 +2169,7 @@ patches:
       `starfleet_next_generation_01/` (underscores). One of these occurrences
       is a commented-out row; the literal replace carries it along, which
       leaves the comment naming a path that exists. See
-      .docs/decisions/85-selector-textures-that-resolve.md.
+      .docs/decisions/80-selector-textures-that-resolve.md.
     replace:
       - from: "\"gfx/models/portraits/starfleet_next_generation_02/tng2_human_male_science.dds\""
         to: "\"gfx/models/portraits/starfleet next generation 02/tng2_human_male_science.dds\""
@@ -2180,7 +2180,7 @@ patches:
     why: >-
       Nothing is named `picard_era_*`; this same selector's other `picard_era
       = yes` rows name pic_human_female_command.dds. See
-      .docs/decisions/85-selector-textures-that-resolve.md.
+      .docs/decisions/80-selector-textures-that-resolve.md.
     replace:
       - from: "\"gfx/models/portraits/starfleet_picard/picard_era_human_female_command.dds\""
         to: "\"gfx/models/portraits/starfleet_picard/pic_human_female_command.dds\""
@@ -2190,7 +2190,7 @@ patches:
     source: "Star Trek: New Horizons"
     why: >-
       A hyphen for the final 0 of 2380; every other file in that folder is
-      `2380_`. See .docs/decisions/85-selector-textures-that-resolve.md.
+      `2380_`. See .docs/decisions/80-selector-textures-that-resolve.md.
     replace:
       - from: "\"gfx/models/portraits/starfleet_2380/238-_human_female_command.dds\""
         to: "\"gfx/models/portraits/starfleet_2380/2380_human_female_command.dds\""
@@ -2202,7 +2202,7 @@ patches:
       The TNG folders are spelled two ways and these rows mix them: the era-2
       art is in `starfleet next generation 02/` (spaces) and the era-1 art in
       `starfleet_next_generation_01/` (underscores). See
-      .docs/decisions/85-selector-textures-that-resolve.md.
+      .docs/decisions/80-selector-textures-that-resolve.md.
     replace:
       - from: "\"gfx/models/portraits/starfleet_next generation_01/tng2_human_female_science.dds\""
         to: "\"gfx/models/portraits/starfleet next generation 02/tng2_human_female_science.dds\""
@@ -2211,8 +2211,8 @@ patches:
   # These four are bucket C -- art no source ships -- but not one of them needed
   # a content call, because the evidence for the substitute is inside the files.
   # Each `why` below records which file answered it. The other thirteen are in
-  # decision 85 §5 and stay dangling until they get their call.
-  # See .docs/decisions/85-selector-textures-that-resolve.md.
+  # decision 80 §5 and stay dangling until they get their call.
+  # See .docs/decisions/80-selector-textures-that-resolve.md.
 
   - path: gfx/portraits/asset_selectors/acamarian/acamarian_female_clothes_01.txt
     source: "Star Trek: New Horizons"
@@ -2221,7 +2221,7 @@ patches:
       the era is TMP and the `tos_` prefix is the typo: the male row with the
       identical trigger set names tmp_human_male_engineering.dds in this same
       folder. No TOS-era engineering top exists in any folder, for either
-      gender. See .docs/decisions/85-selector-textures-that-resolve.md.
+      gender. See .docs/decisions/80-selector-textures-that-resolve.md.
     replace:
       - from: "\"gfx/models/portraits/starfleet_tmp/tos_human_female_engineering.dds\""
         to: "\"gfx/models/portraits/starfleet_tmp/tmp_human_female_engineering.dds\""
@@ -2233,7 +2233,7 @@ patches:
       Kelpian clothes are gendered and nothing is named kelpian_clothes_*. The
       three rows around this one in the same leader scope all name
       kelpian_male_*, which settles which of the two `_02` files was meant.
-      See .docs/decisions/85-selector-textures-that-resolve.md.
+      See .docs/decisions/80-selector-textures-that-resolve.md.
     replace:
       - from: "\"gfx/models/portraits/kelpian/kelpian_clothes_02.dds\""
         to: "\"gfx/models/portraits/kelpian/kelpian_male_clothes_02.dds\""
@@ -2247,8 +2247,8 @@ patches:
       uses_mirror_starfleet_uniform = yes snw_clothing_era = yes` draws
       tos_mirror_human_male_admiral.dds -- so the female rows take the female
       admiral coat rather than a look invented here, the same way decision
-      22's female gating was copied from the male file. See
-      .docs/decisions/85-selector-textures-that-resolve.md.
+      20's female gating was copied from the male file. See
+      .docs/decisions/80-selector-textures-that-resolve.md.
     replace:
       - from: "\"gfx/models/portraits/starfleet_original_series_mirror/tos_mirror_human_female_ruler.dds\""
         to: "\"gfx/models/portraits/starfleet_original_series_mirror/tos_mirror_human_female_admiral.dds\""
@@ -2262,8 +2262,8 @@ patches:
       uses_mirror_starfleet_uniform = yes snw_clothing_era = yes` draws
       tos_mirror_human_male_admiral.dds -- so the female rows take the female
       admiral coat rather than a look invented here, the same way decision
-      22's female gating was copied from the male file. See
-      .docs/decisions/85-selector-textures-that-resolve.md.
+      20's female gating was copied from the male file. See
+      .docs/decisions/80-selector-textures-that-resolve.md.
     replace:
       - from: "\"gfx/models/portraits/starfleet_original_series_mirror/tos_mirror_human_female_ruler.dds\""
         to: "\"gfx/models/portraits/starfleet_original_series_mirror/tos_mirror_human_female_admiral.dds\""
@@ -2277,8 +2277,8 @@ patches:
       uses_mirror_starfleet_uniform = yes snw_clothing_era = yes` draws
       tos_mirror_human_male_admiral.dds -- so the female rows take the female
       admiral coat rather than a look invented here, the same way decision
-      22's female gating was copied from the male file. See
-      .docs/decisions/85-selector-textures-that-resolve.md.
+      20's female gating was copied from the male file. See
+      .docs/decisions/80-selector-textures-that-resolve.md.
     replace:
       - from: "\"gfx/models/portraits/starfleet_original_series_mirror/tos_mirror_human_female_ruler.dds\""
         to: "\"gfx/models/portraits/starfleet_original_series_mirror/tos_mirror_human_female_admiral.dds\""
@@ -2292,8 +2292,8 @@ patches:
       uses_mirror_starfleet_uniform = yes snw_clothing_era = yes` draws
       tos_mirror_human_male_admiral.dds -- so the female rows take the female
       admiral coat rather than a look invented here, the same way decision
-      22's female gating was copied from the male file. See
-      .docs/decisions/85-selector-textures-that-resolve.md.
+      20's female gating was copied from the male file. See
+      .docs/decisions/80-selector-textures-that-resolve.md.
     replace:
       - from: "\"gfx/models/portraits/starfleet_original_series_mirror/tos_mirror_human_female_ruler.dds\""
         to: "\"gfx/models/portraits/starfleet_original_series_mirror/tos_mirror_human_female_admiral.dds\""
@@ -2307,8 +2307,8 @@ patches:
       uses_mirror_starfleet_uniform = yes snw_clothing_era = yes` draws
       tos_mirror_human_male_admiral.dds -- so the female rows take the female
       admiral coat rather than a look invented here, the same way decision
-      22's female gating was copied from the male file. See
-      .docs/decisions/85-selector-textures-that-resolve.md.
+      20's female gating was copied from the male file. See
+      .docs/decisions/80-selector-textures-that-resolve.md.
     replace:
       - from: "\"gfx/models/portraits/starfleet_original_series_mirror/tos_mirror_human_female_ruler.dds\""
         to: "\"gfx/models/portraits/starfleet_original_series_mirror/tos_mirror_human_female_admiral.dds\""
@@ -2321,7 +2321,7 @@ patches:
       is why the name looks plausible. The tree's shared one is
       gfx/models/portraits/all/bald.dds, named by 55 selector files, and this
       row is one entry of three in a ruler-scope random list. See
-      .docs/decisions/85-selector-textures-that-resolve.md.
+      .docs/decisions/80-selector-textures-that-resolve.md.
     replace:
       - from: "\"gfx/models/portraits/pakled/pakled_male_hair_bald.dds\""
         to: "\"gfx/models/portraits/all/bald.dds\""
@@ -2335,8 +2335,8 @@ patches:
       uses_mirror_starfleet_uniform = yes snw_clothing_era = yes` draws
       tos_mirror_human_male_admiral.dds -- so the female rows take the female
       admiral coat rather than a look invented here, the same way decision
-      22's female gating was copied from the male file. See
-      .docs/decisions/85-selector-textures-that-resolve.md.
+      20's female gating was copied from the male file. See
+      .docs/decisions/80-selector-textures-that-resolve.md.
     replace:
       - from: "\"gfx/models/portraits/starfleet_original_series_mirror/tos_mirror_human_female_ruler.dds\""
         to: "\"gfx/models/portraits/starfleet_original_series_mirror/tos_mirror_human_female_admiral.dds\""
@@ -2350,8 +2350,8 @@ patches:
       uses_mirror_starfleet_uniform = yes snw_clothing_era = yes` draws
       tos_mirror_human_male_admiral.dds -- so the female rows take the female
       admiral coat rather than a look invented here, the same way decision
-      22's female gating was copied from the male file. See
-      .docs/decisions/85-selector-textures-that-resolve.md.
+      20's female gating was copied from the male file. See
+      .docs/decisions/80-selector-textures-that-resolve.md.
     replace:
       - from: "\"gfx/models/portraits/starfleet_original_series_mirror/tos_mirror_human_female_ruler.dds\""
         to: "\"gfx/models/portraits/starfleet_original_series_mirror/tos_mirror_human_female_admiral.dds\""
@@ -2365,8 +2365,8 @@ patches:
       uses_mirror_starfleet_uniform = yes snw_clothing_era = yes` draws
       tos_mirror_human_male_admiral.dds -- so the female rows take the female
       admiral coat rather than a look invented here, the same way decision
-      22's female gating was copied from the male file. See
-      .docs/decisions/85-selector-textures-that-resolve.md.
+      20's female gating was copied from the male file. See
+      .docs/decisions/80-selector-textures-that-resolve.md.
     replace:
       - from: "\"gfx/models/portraits/starfleet_original_series_mirror/tos_mirror_human_female_ruler.dds\""
         to: "\"gfx/models/portraits/starfleet_original_series_mirror/tos_mirror_human_female_admiral.dds\""
@@ -2377,7 +2377,7 @@ patches:
   # taken 2026-08-24 under one policy: REPOINT AT THE NEAREST SURVIVING SIBLING
   # IN THE SAME FAMILY, NEVER DELETE. A deletion inside a `list = { }` shifts
   # every index after it and changes what other species wear; a duplicate entry
-  # draws the right clothes and a fallback does not (decision 83).
+  # draws the right clothes and a fallback does not (decision 78).
   #
   # Each `why` records what the family had left to offer. Two of them duplicate
   # an entry already in the same list -- malon and sth_avian -- and that is the
@@ -2385,7 +2385,7 @@ patches:
   # include three occurrences that are commented out in human_male_03_hair.txt
   # and three in human_male_04_hair.txt; the literal replace carries them along,
   # which leaves those comments naming a texture that exists.
-  # See .docs/decisions/85-selector-textures-that-resolve.md.
+  # See .docs/decisions/80-selector-textures-that-resolve.md.
 
   - path: gfx/portraits/asset_selectors/doopler/doopler_male_clothes_01.txt
     source: "Star Trek: New Horizons"
@@ -2394,7 +2394,7 @@ patches:
       `_01` and `_02`, which exist only for the female. Mapping them onto
       `_03` and `_04` leaves each list naming the two male textures that
       exist, with no duplicate. See
-      .docs/decisions/85-selector-textures-that-resolve.md.
+      .docs/decisions/80-selector-textures-that-resolve.md.
     replace:
       - from: "\"gfx/models/portraits/doopler/doopler_male_clothes_01.dds\""
         to: "\"gfx/models/portraits/doopler/doopler_male_clothes_03.dds\""
@@ -2411,7 +2411,7 @@ patches:
       one of its `default` rows. Keeping the author's `_04` inside the family
       the file already borrows leaves the ruler visually distinct from that
       default, which is what a ruler row is for. See
-      .docs/decisions/85-selector-textures-that-resolve.md.
+      .docs/decisions/80-selector-textures-that-resolve.md.
     replace:
       - from: "\"gfx/models/portraits/elaysian/elaysian_female_clothes_04.dds\""
         to: "\"gfx/models/portraits/argrathian/argrathian_female_clothes_04.dds\""
@@ -2422,7 +2422,7 @@ patches:
     why: >-
       There is no male `05a` -- `_05` and `_06a` exist, and the FEMALE set has
       its `05a`, which is where the name came from. See
-      .docs/decisions/85-selector-textures-that-resolve.md.
+      .docs/decisions/80-selector-textures-that-resolve.md.
     replace:
       - from: "\"gfx/models/portraits/human/sth_human_male_hair_black_style_05a.dds\""
         to: "\"gfx/models/portraits/human/sth_human_male_hair_black_style_05.dds\""
@@ -2433,7 +2433,7 @@ patches:
     why: >-
       There is no male `05a` -- `_05` and `_06a` exist, and the FEMALE set has
       its `05a`, which is where the name came from. See
-      .docs/decisions/85-selector-textures-that-resolve.md.
+      .docs/decisions/80-selector-textures-that-resolve.md.
     replace:
       - from: "\"gfx/models/portraits/human/sth_human_male_hair_black_style_05a.dds\""
         to: "\"gfx/models/portraits/human/sth_human_male_hair_black_style_05.dds\""
@@ -2444,7 +2444,7 @@ patches:
     why: >-
       There is no male `05a` -- `_05` and `_06a` exist, and the FEMALE set has
       its `05a`, which is where the name came from. See
-      .docs/decisions/85-selector-textures-that-resolve.md.
+      .docs/decisions/80-selector-textures-that-resolve.md.
     replace:
       - from: "\"gfx/models/portraits/human/sth_human_male_hair_black_style_05a.dds\""
         to: "\"gfx/models/portraits/human/sth_human_male_hair_black_style_05.dds\""
@@ -2458,7 +2458,7 @@ patches:
       Kriosian clothes stop at `_04` for both genders. Both of these are
       single-entry Mizar civilian ruler rows in the master selectors, so each
       missed on every draw. See
-      .docs/decisions/85-selector-textures-that-resolve.md.
+      .docs/decisions/80-selector-textures-that-resolve.md.
     replace:
       - from: "\"gfx/models/portraits/human_civilian/human_terran_ruler_female_2.dds\""
         to: "\"gfx/models/portraits/human_civilian/human_terran_ruler_female_1.dds\""
@@ -2473,7 +2473,7 @@ patches:
       sth_humanoid_08 ships male `_02`-`_04` and no `_01`; the female `_01`
       exists, which is what makes the name look plausible. One of these rows
       is the single-entry Capellan civilian ruler, so it missed on every draw.
-      See .docs/decisions/85-selector-textures-that-resolve.md.
+      See .docs/decisions/80-selector-textures-that-resolve.md.
     replace:
       - from: "\"gfx/models/portraits/kriosian/kriosian_male_clothes_05.dds\""
         to: "\"gfx/models/portraits/kriosian/kriosian_male_clothes_04.dds\""
@@ -2488,7 +2488,7 @@ patches:
       The `pic_` era ships admiral, command and security for both genders and
       no science; `pic2_` ships the full set. The later-era science top is the
       only KDF science top there is. See
-      .docs/decisions/85-selector-textures-that-resolve.md.
+      .docs/decisions/80-selector-textures-that-resolve.md.
     replace:
       - from: "\"gfx/models/portraits/klingon_starfleet/pic_human_female_science_kdf.dds\""
         to: "\"gfx/models/portraits/klingon_starfleet/pic2_human_female_science_kdf.dds\""
@@ -2497,7 +2497,7 @@ patches:
   - path: gfx/portraits/asset_selectors/klingon/klingon_male_clothes_combined.txt
     source: "Star Trek: New Horizons"
     why: >-
-       See .docs/decisions/85-selector-textures-that-resolve.md.
+       See .docs/decisions/80-selector-textures-that-resolve.md.
     replace:
       - from: "\"gfx/models/portraits/klingon_starfleet/pic_human_male_science_kdf.dds\""
         to: "\"gfx/models/portraits/klingon_starfleet/pic2_human_male_science_kdf.dds\""
@@ -2508,9 +2508,9 @@ patches:
     why: >-
       `_04` is absent for both genders; the list runs `_01`-`_06` around the
       hole, so any substitute duplicates one entry of six. Deleting the entry
-      instead would shift every index after it -- decision 83's reasoning, and
+      instead would shift every index after it -- decision 78's reasoning, and
       the reason a duplicate is the cheaper of the two. See
-      .docs/decisions/85-selector-textures-that-resolve.md.
+      .docs/decisions/80-selector-textures-that-resolve.md.
     replace:
       - from: "\"gfx/models/portraits/malon/malon_female_clothes_04.dds\""
         to: "\"gfx/models/portraits/malon/malon_female_clothes_05.dds\""
@@ -2523,7 +2523,7 @@ patches:
       govenor, ruler, scientist -- and nothing is named `_clothes_*`. This row
       is the `leader_class = scientist` one, so it takes the scientist outfit,
       which the `official` row beside it also draws. See
-      .docs/decisions/85-selector-textures-that-resolve.md.
+      .docs/decisions/80-selector-textures-that-resolve.md.
     replace:
       - from: "\"gfx/models/portraits/sth_avian/sth_avian_clothes_02.dds\""
         to: "\"gfx/models/portraits/sth_avian/sth_avian_scientist.dds\""
@@ -2535,7 +2535,7 @@ patches:
       sth_humanoid_08 ships male `_02`-`_04` and no `_01`; the female `_01`
       exists, which is what makes the name look plausible. One of these rows
       is the single-entry Capellan civilian ruler, so it missed on every draw.
-      See .docs/decisions/85-selector-textures-that-resolve.md.
+      See .docs/decisions/80-selector-textures-that-resolve.md.
     replace:
       - from: "\"gfx/models/portraits/sth humanoid 08/sth_humanoid_08_male_clothes_01.dds\""
         to: "\"gfx/models/portraits/sth humanoid 08/sth_humanoid_08_male_clothes_02.dds\""
@@ -2550,7 +2550,7 @@ patches:
       Starfleet's security top: this folder exists to make the Confederation
       look unlike Starfleet, and the row is one of many gated on
       `uses_confed_corps_uniform`. See
-      .docs/decisions/85-selector-textures-that-resolve.md.
+      .docs/decisions/80-selector-textures-that-resolve.md.
     replace:
       - from: "\"gfx/models/portraits/confederation/confederation_enterprise/coe_ent_human_male_security.dds\""
         to: "\"gfx/models/portraits/confederation/confederation_enterprise/coe_ent_human_male_command.dds\""
@@ -2579,7 +2579,7 @@ patches:
       Space declares -- and that event gates on planet_size = 30 where Real
       Space's Sol builds Saturn at 35, so it is unlikely to fire here at all.
 
-      See .docs/decisions/33-duplicate-entity-declarations.md.
+      See .docs/decisions/31-duplicate-entity-declarations.md.
     replace:
       - from: "\tname = \"gas_giant_saturn_entity\""
         to: "\tname = \"pd_gas_giant_saturn_entity\""
@@ -2599,7 +2599,7 @@ patches:
   # under a name nothing places. Nothing dangles: System Scale still declares
   # every one of these names, so the `attach` edges inside STNH's own file bind
   # to the rescaled entity, which is what an ordinary Real Space install does.
-  # See .docs/decisions/53-duplicate-entity-triage.md.
+  # See .docs/decisions/50-duplicate-entity-triage.md.
   - path: gfx/models/ships/other/realspace_other_entities.asset
     source: "Star Trek: New Horizons"
     why: >-
@@ -2653,25 +2653,25 @@ patches:
       habitats render as vanilla's orbital ring or as the Suliban helix. Vanilla
       wins: habitat art is shared by all 101 empires and the helix is one
       species' ship. The Suliban empire flies the Walshicus suliban set anyway
-      (decision 18). Renamed rather than deleted, per the Saturn precedent;
+      (decision 17). Renamed rather than deleted, per the Saturn precedent;
       suliban_01_orbital_habitat_entity is untouched and still resolves.
-      See .docs/decisions/53-duplicate-entity-triage.md.
+      See .docs/decisions/50-duplicate-entity-triage.md.
     replace:
       - from: "\tname = \"orbital_habitat_01_entity\""
         to: "\tname = \"stnh_suliban_orbital_habitat_01_entity\""
         count: 1
 
-  # --- Walshicus shipsets: station section attach points (decision 35) ---
+  # --- Walshicus shipsets: station section attach points (decision 33) ---
   # vanilla's military_station_* and ion_cannon ship sizes name section_slots
   # locators part1..partN. Vanilla's own station meshes bake them in; these 22
   # do not, and the .asset declares only `root`, so every section fails to
-  # attach. See .docs/decisions/35-station-section-attach-points.md.
+  # attach. See .docs/decisions/33-station-section-attach-points.md.
   - path: gfx/models/ships/betazoid/military_stations/betazoid_military_stations.asset
     source: Betazoid Shipset
     why: >-
       betazoid's three station entities declare only a `root` locator and the
       meshes bake in no attach points, so vanilla's section_slots (part1..partN)
-      resolve against nothing. Positions are origin on purpose -- decision 28.
+      resolve against nothing. Positions are origin on purpose -- decision 26.
     replace:
       - from: " \tname = \"betazoid_military_station_small_entity\"\r\n"
         to: " \tname = \"betazoid_military_station_small_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part2\" position = { 0 0 0 } }\r\n"
@@ -2687,7 +2687,7 @@ patches:
     why: >-
       borg's three station entities declare only a `root` locator and the
       meshes bake in no attach points, so vanilla's section_slots (part1..partN)
-      resolve against nothing. Positions are origin on purpose -- decision 28.
+      resolve against nothing. Positions are origin on purpose -- decision 26.
     replace:
       - from: " \tname = \"borg_military_station_small_entity\"\r\n"
         to: " \tname = \"borg_military_station_small_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part2\" position = { 0 0 0 } }\r\n"
@@ -2703,7 +2703,7 @@ patches:
     why: >-
       caitian's three station entities declare only a `root` locator and the
       meshes bake in no attach points, so vanilla's section_slots (part1..partN)
-      resolve against nothing. Positions are origin on purpose -- decision 28.
+      resolve against nothing. Positions are origin on purpose -- decision 26.
     replace:
       - from: " \tname = \"caitian_military_station_small_entity\"\r\n"
         to: " \tname = \"caitian_military_station_small_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part2\" position = { 0 0 0 } }\r\n"
@@ -2719,7 +2719,7 @@ patches:
     why: >-
       cardassian's three station entities declare only a `root` locator and the
       meshes bake in no attach points, so vanilla's section_slots (part1..partN)
-      resolve against nothing. Positions are origin on purpose -- decision 28.
+      resolve against nothing. Positions are origin on purpose -- decision 26.
     replace:
       - from: " \tname = \"cardassian_military_station_small_entity\"\r\n"
         to: " \tname = \"cardassian_military_station_small_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part2\" position = { 0 0 0 } }\r\n"
@@ -2735,7 +2735,7 @@ patches:
     why: >-
       dominion's three station entities declare only a `root` locator and the
       meshes bake in no attach points, so vanilla's section_slots (part1..partN)
-      resolve against nothing. Positions are origin on purpose -- decision 28.
+      resolve against nothing. Positions are origin on purpose -- decision 26.
     replace:
       - from: " \tname = \"dominion_military_station_small_entity\"\r\n"
         to: " \tname = \"dominion_military_station_small_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part2\" position = { 0 0 0 } }\r\n"
@@ -2751,7 +2751,7 @@ patches:
     why: >-
       elachi's three station entities declare only a `root` locator and the
       meshes bake in no attach points, so vanilla's section_slots (part1..partN)
-      resolve against nothing. Positions are origin on purpose -- decision 28.
+      resolve against nothing. Positions are origin on purpose -- decision 26.
     replace:
       - from: " \tname = \"elachi_military_station_small_entity\"\r\n"
         to: " \tname = \"elachi_military_station_small_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part2\" position = { 0 0 0 } }\r\n"
@@ -2767,7 +2767,7 @@ patches:
     why: >-
       ferengi's three station entities declare only a `root` locator and the
       meshes bake in no attach points, so vanilla's section_slots (part1..partN)
-      resolve against nothing. Positions are origin on purpose -- decision 28.
+      resolve against nothing. Positions are origin on purpose -- decision 26.
     replace:
       - from: " \tname = \"ferengi_military_station_small_entity\"\r\n"
         to: " \tname = \"ferengi_military_station_small_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part2\" position = { 0 0 0 } }\r\n"
@@ -2783,7 +2783,7 @@ patches:
     why: >-
       klingon's three station entities declare only a `root` locator and the
       meshes bake in no attach points, so vanilla's section_slots (part1..partN)
-      resolve against nothing. Positions are origin on purpose -- decision 28.
+      resolve against nothing. Positions are origin on purpose -- decision 26.
     replace:
       - from: " \tname = \"klingon_military_station_small_entity\"\r\n"
         to: " \tname = \"klingon_military_station_small_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part2\" position = { 0 0 0 } }\r\n"
@@ -2799,7 +2799,7 @@ patches:
     why: >-
       krenim's three station entities declare only a `root` locator and the
       meshes bake in no attach points, so vanilla's section_slots (part1..partN)
-      resolve against nothing. Positions are origin on purpose -- decision 28.
+      resolve against nothing. Positions are origin on purpose -- decision 26.
     replace:
       - from: " \tname = \"krenim_military_station_small_entity\"\r\n"
         to: " \tname = \"krenim_military_station_small_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part2\" position = { 0 0 0 } }\r\n"
@@ -2815,7 +2815,7 @@ patches:
     why: >-
       lukari's three station entities declare only a `root` locator and the
       meshes bake in no attach points, so vanilla's section_slots (part1..partN)
-      resolve against nothing. Positions are origin on purpose -- decision 28.
+      resolve against nothing. Positions are origin on purpose -- decision 26.
     replace:
       - from: " \tname = \"lukari_military_station_small_entity\"\r\n"
         to: " \tname = \"lukari_military_station_small_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part2\" position = { 0 0 0 } }\r\n"
@@ -2831,7 +2831,7 @@ patches:
     why: >-
       malon's three station entities declare only a `root` locator and the
       meshes bake in no attach points, so vanilla's section_slots (part1..partN)
-      resolve against nothing. Positions are origin on purpose -- decision 28.
+      resolve against nothing. Positions are origin on purpose -- decision 26.
     replace:
       - from: " \tname = \"malon_military_station_small_entity\"\r\n"
         to: " \tname = \"malon_military_station_small_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part2\" position = { 0 0 0 } }\r\n"
@@ -2847,7 +2847,7 @@ patches:
     why: >-
       romulan's three station entities declare only a `root` locator and the
       meshes bake in no attach points, so vanilla's section_slots (part1..partN)
-      resolve against nothing. Positions are origin on purpose -- decision 28.
+      resolve against nothing. Positions are origin on purpose -- decision 26.
     replace:
       - from: " \tname = \"romulan_military_station_small_entity\"\r\n"
         to: " \tname = \"romulan_military_station_small_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part2\" position = { 0 0 0 } }\r\n"
@@ -2863,7 +2863,7 @@ patches:
     why: >-
       starfleet_tng's three station entities declare only a `root` locator and the
       meshes bake in no attach points, so vanilla's section_slots (part1..partN)
-      resolve against nothing. Positions are origin on purpose -- decision 28.
+      resolve against nothing. Positions are origin on purpose -- decision 26.
     replace:
       - from: " \tname = \"starfleet_tng_military_station_small_entity\"\r\n"
         to: " \tname = \"starfleet_tng_military_station_small_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part2\" position = { 0 0 0 } }\r\n"
@@ -2879,7 +2879,7 @@ patches:
     why: >-
       suliban's three station entities declare only a `root` locator and the
       meshes bake in no attach points, so vanilla's section_slots (part1..partN)
-      resolve against nothing. Positions are origin on purpose -- decision 28.
+      resolve against nothing. Positions are origin on purpose -- decision 26.
     replace:
       - from: " \tname = \"suliban_military_station_small_entity\"\r\n"
         to: " \tname = \"suliban_military_station_small_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part2\" position = { 0 0 0 } }\r\n"
@@ -2895,7 +2895,7 @@ patches:
     why: >-
       talarian's three station entities declare only a `root` locator and the
       meshes bake in no attach points, so vanilla's section_slots (part1..partN)
-      resolve against nothing. Positions are origin on purpose -- decision 28.
+      resolve against nothing. Positions are origin on purpose -- decision 26.
     replace:
       - from: " \tname = \"talarian_military_station_small_entity\"\r\n"
         to: " \tname = \"talarian_military_station_small_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part2\" position = { 0 0 0 } }\r\n"
@@ -2911,7 +2911,7 @@ patches:
     why: >-
       terran_nx's three station entities declare only a `root` locator and the
       meshes bake in no attach points, so vanilla's section_slots (part1..partN)
-      resolve against nothing. Positions are origin on purpose -- decision 28.
+      resolve against nothing. Positions are origin on purpose -- decision 26.
     replace:
       - from: " \tname = \"terran_nx_military_station_small_entity\"\r\n"
         to: " \tname = \"terran_nx_military_station_small_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part2\" position = { 0 0 0 } }\r\n"
@@ -2927,7 +2927,7 @@ patches:
     why: >-
       tholian's three station entities declare only a `root` locator and the
       meshes bake in no attach points, so vanilla's section_slots (part1..partN)
-      resolve against nothing. Positions are origin on purpose -- decision 28.
+      resolve against nothing. Positions are origin on purpose -- decision 26.
     replace:
       - from: " \tname = \"tholian_military_station_small_entity\"\r\n"
         to: " \tname = \"tholian_military_station_small_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part2\" position = { 0 0 0 } }\r\n"
@@ -2943,7 +2943,7 @@ patches:
     why: >-
       tuterian's three station entities declare only a `root` locator and the
       meshes bake in no attach points, so vanilla's section_slots (part1..partN)
-      resolve against nothing. Positions are origin on purpose -- decision 28.
+      resolve against nothing. Positions are origin on purpose -- decision 26.
     replace:
       - from: " \tname = \"tuterian_military_station_small_entity\"\r\n"
         to: " \tname = \"tuterian_military_station_small_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part2\" position = { 0 0 0 } }\r\n"
@@ -2959,7 +2959,7 @@ patches:
     why: >-
       vidiian's three station entities declare only a `root` locator and the
       meshes bake in no attach points, so vanilla's section_slots (part1..partN)
-      resolve against nothing. Positions are origin on purpose -- decision 28.
+      resolve against nothing. Positions are origin on purpose -- decision 26.
     replace:
       - from: " \tname = \"vidiian_military_station_small_entity\"\r\n"
         to: " \tname = \"vidiian_military_station_small_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part2\" position = { 0 0 0 } }\r\n"
@@ -2975,7 +2975,7 @@ patches:
     why: >-
       vulcan's three station entities declare only a `root` locator and the
       meshes bake in no attach points, so vanilla's section_slots (part1..partN)
-      resolve against nothing. Positions are origin on purpose -- decision 28.
+      resolve against nothing. Positions are origin on purpose -- decision 26.
     replace:
       - from: " \tname = \"vulcan_military_station_small_entity\"\r\n"
         to: " \tname = \"vulcan_military_station_small_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part2\" position = { 0 0 0 } }\r\n"
@@ -2991,7 +2991,7 @@ patches:
     why: >-
       xindi's three station entities declare only a `root` locator and the
       meshes bake in no attach points, so vanilla's section_slots (part1..partN)
-      resolve against nothing. Positions are origin on purpose -- decision 28.
+      resolve against nothing. Positions are origin on purpose -- decision 26.
     replace:
       - from: " \tname = \"xindi_military_station_small_entity\"\r\n"
         to: " \tname = \"xindi_military_station_small_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part2\" position = { 0 0 0 } }\r\n"
@@ -3007,7 +3007,7 @@ patches:
     why: >-
       yridian's three station entities declare only a `root` locator and the
       meshes bake in no attach points, so vanilla's section_slots (part1..partN)
-      resolve against nothing. Positions are origin on purpose -- decision 28.
+      resolve against nothing. Positions are origin on purpose -- decision 26.
     replace:
       - from: " \tname = \"yridian_military_station_small_entity\"\r\n"
         to: " \tname = \"yridian_military_station_small_entity\"\r\n \tlocator = { name = \"part1\" position = { 0 0 0 } }\r\n \tlocator = { name = \"part2\" position = { 0 0 0 } }\r\n"
@@ -3020,11 +3020,11 @@ patches:
         count: 1
 
   # ── 2026-08-07 live-run repairs ─────────────────────────────────────────────
-  # Nine files, all found by reading error.log after the 15:41 run: decision 40's
+  # Nine files, all found by reading error.log after the 15:41 run: decision 38's
   # items 1, 2, 3, 5, 8 and 9 (that last one is three files), plus the starbase
   # view's missing `design_name` box, which its table does not list. Each removes
   # or restores named lines in someone else's file; none changes a balance value.
-  # See .docs/decisions/40-live-run-2026-08-07-repairs.md.
+  # See .docs/decisions/38-live-run-2026-08-07-repairs.md.
 
   - path: common/governments/civics/pd_origins_unique.txt
     source: PD - Unique Worlds
@@ -3035,7 +3035,7 @@ patches:
       engine reports `Invalid government species_class reference [CRYO]` and the
       clause is dead either way: with no species ever of class CRYO the NOT is
       always true, so deleting the line is behaviour-identical. Declaring a stub
-      class instead (decision 32) would be wrong here -- nothing references CRYO
+      class instead (decision 30) would be wrong here -- nothing references CRYO
       for art, so a stub would be a phantom species class that exists only to
       satisfy a test that can never fail.
     replace:
@@ -3189,7 +3189,7 @@ patches:
 # FIRST filename, everything else keeps the LAST. Irony Mod Manager's convention
 # is `!!!_` to win a FIOS sort and `zzz_` to win a LIOS one. The list of FIOS
 # directories, and why it is the one table in this repo not measured against
-# vanilla, is .docs/decisions/29-merge-semantics-per-directory.md.
+# vanilla, is .docs/decisions/27-merge-semantics-per-directory.md.
 #
 # Fields:
 #   path    Generated path to rename. Must exist in the tree.
@@ -3266,7 +3266,7 @@ sources:
       # common/governments/civics is LIOS, so the real file wins on filename
       # sort today; the stub's leading `!` sorts FIRST and would win outright in
       # any FIOS directory, and nothing on disk records which of the two this is
-      # (decision 29). One key, checked: the file is three lines long.
+      # (decision 27). One key, checked: the file is three lines long.
       - "common/governments/civics/!_pd_placehold_civics_for_submods.txt"
 
   - id: "3241119393"
@@ -3285,7 +3285,7 @@ sources:
   - id: "1327874725"
     name: Yet Another Galaxy Enhancement Mod
     # STG ships one galaxy and the picker offers only it
-    # (.docs/decisions/95-lock-the-galaxy-picker.md). YAGEM's twelve alternative
+    # (.docs/decisions/88-lock-the-galaxy-picker.md). YAGEM's twelve alternative
     # maps go; its other twelve files -- the defines, on_actions, astro and
     # species names, setup.gui and loc -- are why the mod stays.
     #
@@ -3344,7 +3344,7 @@ sources:
       # overrides that put every empire in the galaxy in a cave. Its 297
       # game_setup entries are merged into src/'s single selector by
       # tools/gen_room_selector.py, so the rooms stay offered and the ambiguity
-      # is gone. See .docs/decisions/48-room-selector-merge.md.
+      # is gone. See .docs/decisions/46-room-selector-merge.md.
       - gfx/portraits/asset_selectors/dr_room_textures.txt
 
   # RESTORED 2026-08-07, having been dropped 2026-08-02 on a misdiagnosis.
@@ -3355,7 +3355,7 @@ sources:
   # ZOOM_STEPS_SYSTEM turns out to be settable by no file anywhere and fixed at
   # vanilla's 7 -- so Real Space - System Scale's own 8-entry PLANET_SCALE_SYSTEM
   # was always the cause. Restoring this mod neither causes nor fixes it.
-  # See .docs/decisions/43-planet-scale-system-length.md.
+  # See .docs/decisions/41-planet-scale-system-length.md.
   #
   # WHAT RESTORING IT ACTUALLY DOES, which the D13 story obscured: this file is
   # NOTHING BUT camera defines, `zzzzz_` sorts last, so it wins all 20 keys it
@@ -3380,7 +3380,7 @@ sources:
   # live run: entering a system lands the camera sensibly, so the camera does
   # offer the steps ZOOM_STEPS_SYSTEM_PERCENTAGES declares and the engine's
   # ZOOM_STEPS_SYSTEM is measuring something else.
-  # See .docs/decisions/43-planet-scale-system-length.md.
+  # See .docs/decisions/41-planet-scale-system-length.md.
   - id: "703156866"
     name: Cinematic Camera
 
@@ -3401,7 +3401,7 @@ sources:
       # paths; with neither mod present nothing declares a sprite over either
       # directory, and `make clutter` finds 30 and 8 files with zero reachable
       # siblings — the only two directories in the tree that are 100%
-      # unreferenced. Same class as the five URP topbar-compat files decision 12
+      # unreferenced. Same class as the five URP topbar-compat files decision 11
       # excluded, and the one nobody swept for afterwards.
       - "gfx/speeddial/**"
       - "gfx/tiny_outliner/**"
@@ -3447,7 +3447,7 @@ sources:
     # 7,635 records in the 2026-08-02 live run -- 61% of the whole log for five
     # files that cannot draw anything.
     #
-    # This is decision 12 rule 2, not a drop: URP itself stays, and the file it
+    # This is decision 11 rule 2, not a drop: URP itself stays, and the file it
     # is vendored for (topbar_other_resource_groups.txt, the 1,271-line superset
     # carrying PD's resources and an annotated STNH block) is untouched.
     #
@@ -3474,7 +3474,7 @@ sources:
   # `additive_only` only protects paths an earlier SOURCE claims. It does not
   # protect vanilla. STNH is a 3.12-era total conversion, so several of its art
   # files shadow a vanilla 4.4 path and silently drop content vanilla still
-  # references. The three below are excluded outright; see decision 08.
+  # references. The three below are excluded outright; see decision 07.
   - id: "688086068"
     name: "Star Trek: New Horizons"
     additive_only: true
@@ -3485,8 +3485,8 @@ sources:
     # was clean throughout. Re-cut to whatever vanilla ships at each path — and
     # since 2026-08-09, to whatever vanilla ships across the FAMILY, which is
     # what lets a Trek event use a picture vanilla has no path for at all.
-    # See .docs/decisions/42-event-picture-geometry.md and
-    # .docs/decisions/74-event-picture-families.md.
+    # See .docs/decisions/40-event-picture-geometry.md and
+    # .docs/decisions/69-event-picture-families.md.
     # And the planet view's city layers, 2026-08-08 — the same defect one
     # directory over, found because a live run reported the city art sitting
     # too low on every planet while the backdrop behind it looked right.
@@ -3498,20 +3498,20 @@ sources:
     # was right the whole time because `additive_only` makes STNH lose all 121
     # gfx/portraits/environments/ paths to the mods that own them (.docs/architecture/stnh-art.md),
     # so only the half nobody else claims was ever wrong.
-    # See .docs/decisions/58-city-set-geometry.md.
+    # See .docs/decisions/55-city-set-geometry.md.
     resample_to_vanilla:
       # ORDER IS LOAD-BEARING: fnmatch's `*` spans `/`, so the broad event
       # picture glob below matches `origins/` too and would claim these first.
       # Vanilla ships all 59 of its origin pictures at 220×115 against 450×150
       # everywhere else in the directory — a second family, not a second size.
-      # See .docs/decisions/74-event-picture-families.md.
+      # See .docs/decisions/69-event-picture-families.md.
       - glob: "gfx/event_pictures/origins/*.dds"
         target: family
-      # `target: family`, added 2026-08-09. Decision 42's per-path rule re-cut
+      # `target: family`, added 2026-08-09. Decision 40's per-path rule re-cut
       # the 569 STNH pictures that shadow a vanilla path and was structurally
       # blind to the 865 that shadow nothing — which is every picture Phase 4
       # would want to put on a Trek event. Those are 620×264, and UIOD's
-      # `scale = 1.5` draws them 930×396 inside a 693×239 frame: decision 42's
+      # `scale = 1.5` draws them 930×396 inside a 693×239 frame: decision 40's
       # exact defect, waiting behind the first `.gfx` that declares one.
       # Vanilla is 580/580 at 450×150 here once origins are claimed above.
       - glob: "gfx/event_pictures/*.dds"
@@ -3530,7 +3530,7 @@ sources:
         # `target: family` because six of these prefixes — klingon, vulcan_01,
         # cardassian_01, borg_01, tholian_01, undine_01, named by six of our
         # empires — shadow NO vanilla path, so reading the target off one
-        # vanilla file has no answer and decision 58 had to leave them at 70%.
+        # vanilla file has no answer and decision 55 had to leave them at 70%.
         # Vanilla is 266/271 at 800×400 here, so the family has one.
         target: family
       # A room is the opposite kind of art: ONE full-bleed backdrop drawn behind
@@ -3565,7 +3565,7 @@ sources:
       # ── gfx/particles: the 11 paths that shadow VANILLA ────────────────────
       # `additive_only` protects paths an earlier SOURCE claimed; it does not
       # protect vanilla, and these 11 are STNH 3.12-era copies of vanilla 4.4
-      # files. Excluded for exactly the reason in decision 08. The other 310
+      # files. Excluded for exactly the reason in decision 07. The other 310
       # files under gfx/particles are uniquely STNH's and arrive untouched.
       - "gfx/particles/muzzle_flash.dds"
       - "gfx/particles/_projectiles_particles.gfx"
@@ -3607,7 +3607,7 @@ sources:
       - "gfx/models/ships/other/transwarp_conduit.asset"
       # Declares `yridian_destroyer_entity` a SECOND time, and points it at
       # `federation_01_corvette_frame_mesh`. Yridian ship art comes from the
-      # Walshicus Yridian Shipset now (decision 18), whose own
+      # Walshicus Yridian Shipset now (decision 17), whose own
       # yridian/destroyer/yridian_destroyer.asset declares the same name against
       # yridian_destroyer_mesh. `other/` sorts before `yridian/`, so STNH's is
       # read first — and which of two duplicate declarations the engine keeps is
@@ -3616,7 +3616,7 @@ sources:
       # referenced by nothing in the built tree.
       # One of the 18 mod-vs-mod duplicates in the 2026-08-07 run; the other 17
       # are third-party files duplicating within themselves or within their own
-      # mod family. See .docs/decisions/33-duplicate-entity-declarations.md.
+      # mod family. See .docs/decisions/31-duplicate-entity-declarations.md.
       - "gfx/models/ships/other/yridian_destroyer.asset"
       - "gfx/models/ships/hero_ships_01/hero_ships_01_ENT_romulan_coreA.asset"
       - "gfx/models/ships/hero_ships_01/hero_ships_01_ENT_seleya_coreA.asset"
@@ -3624,7 +3624,7 @@ sources:
       - gfx/portraits
       # ── gfx/models/ships: THIRTEEN directories of 104, not the tree ─────────
       # Walshicus' shipsets took over ship art for nine of the fourteen Trek
-      # cultures (decision 18), so all STNH is still asked for is the five that
+      # cultures (decision 17), so all STNH is still asked for is the five that
       # have no such set — BAJ, TRI, ADR, BOL, BRE — plus the directories
       # tools/gen_shipsets.py borrows their stations and civilian craft from.
       # The list is READ OUT of that script's own output, not guessed, and the
@@ -3726,7 +3726,7 @@ sources:
       # The other 34 sit beside art in cultures the harvest no longer takes, so
       # they are named file by file rather than by directory — a directory here
       # would pull the culture's meshes back in behind it, which is the prune
-      # decision 18 forced. Derived from the log, then resolved against
+      # decision 17 forced. Derived from the log, then resolved against
       # .source/: every one had exactly one home, so there is no ambiguity.
       - gfx/models/ships/borg_blue_01/blue.dds
       - gfx/models/ships/cardassian_01/pylongrid.dds
@@ -3808,27 +3808,27 @@ sources:
   #
   # That is what retires tools/gen_shipsets.py for these nine cultures: no
   # generated sections, no `clone` chain, no load-order hazard.
-  # See .docs/decisions/18-walshicus-shipsets-replace-stnh-hulls.md.
+  # See .docs/decisions/17-walshicus-shipsets-replace-stnh-hulls.md.
   #
   # AFTER STNH on purpose. Paths are disjoint in practice (each set owns its own
   # gfx/models/ships/<culture>/), but where they are not, the newer art wins.
   #
   # Only two prefixes are taken from each, and the omissions are deliberate:
   #   * `interface/` — every set ships a 3,391-line interface/credits.txt that
-  #     SHADOWS vanilla's 10,945-line one. Decision 08's failure mode exactly.
+  #     SHADOWS vanilla's 10,945-line one. Decision 07's failure mode exactly.
   #   * `common/species_classes/` — each declares its own (STARFLEET_TNG,
   #     KLINGON …). STG owns that namespace; the binding is one
-  #     `graphical_culture =` line in src/, per decision 10.
+  #     `graphical_culture =` line in src/, per decision 09.
   #   * `flags/` is taken, but ADDITIVELY (2026-08-08). All 22 write
   #     flags/trek/, where 42 of their 81 .dds collide with STNH's 425 at a
   #     different size — 256x256 against STNH's 128x128 — and STNH stays the
-  #     agreed flag source (decision 18). `additive_only: [flags]` gives STNH
+  #     agreed flag source (decision 17). `additive_only: [flags]` gives STNH
   #     every contested path and takes only the 13 basenames it has not got:
   #     Borg, dominion, elachi, federation_01..07, krenim_old, lukari, malon,
   #     39 files with their map/ and small/ variants. Scoped to `flags` and not
-  #     the source, because gfx/ must still beat STNH — decision 18 again.
+  #     the source, because gfx/ must still beat STNH — decision 17 again.
   #     The Bolian Union and 22 of the 79 minor powers are still on a fallback
-  #     icon: no shipset ships those either. See decision 49.
+  #     icon: no shipset ships those either. See decision 47.
   #   * `localisation/` — carries only the species-class name we don't take and
   #     FLAG_CATEGORY_trek, which STNH already provides.
   - id: "2990277402"

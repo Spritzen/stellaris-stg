@@ -16,12 +16,12 @@
 #
 # The `if = { limit = { NOT = { has_deposit_for = shipclass_research_station } }
 # clear_deposits = yes }` before a research deposit is vanilla's, for the reason
-# .docs/decisions/75-trek-anomalies.md records: without it the body keeps a
+# .docs/decisions/70-trek-anomalies.md records: without it the body keeps a
 # deposit that makes the research station unbuildable and the reward is
 # unreachable.
 #
 # No `specimen`, no minor artifacts, no `has_ancrel` branch: STG is standalone.
-# See .docs/decisions/76-trek-archaeology.md
+# See .docs/decisions/71-trek-archaeology.md
 #
 ##########################
 

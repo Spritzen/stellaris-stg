@@ -27,7 +27,7 @@ That splits the repo cleanly in two:
 
 `stg-build/` **is the mod** — the game's own directory layout plus
 `descriptor.mod`, produced entirely by `make vendor`. The repo root is *not* the
-mod root ([decision 13](.docs/decisions/13-build-dir-and-symlink-deploy.md)).
+mod root ([decision 12](.docs/decisions/12-build-dir-and-symlink-deploy.md)).
 
 **Editing a file under `stg-build/` is always wrong.** It is discarded by the
 next `make vendor` and invisible in review. Every change goes through `src/` or
@@ -89,8 +89,8 @@ python3 -c "import json;print(json.load(open(
 
 Both directories usually exist on disk and only one is live. `make link` checks
 that the mount and the installed build agree and refuses if they don't
-([decision 15](.docs/decisions/15-native-linux-runtime.md);
-[decision 07](.docs/decisions/07-launcher-local-mod-registration.md) is the
+([decision 14](.docs/decisions/14-native-linux-runtime.md);
+[decision 06](.docs/decisions/06-launcher-local-mod-registration.md) is the
 session this cost).
 
 ### 2. Open the container
@@ -209,20 +209,20 @@ ls /workshop/*/descriptor.mod | wc -l # a few mods ship as .zip instead
 
 `.source/` is 22 GB across 51 mods — the 49 the build vendors, plus two ambient
 soundtracks kept snapshotted after
-[decision 11](.docs/decisions/11-drop-cinematic-camera-and-ambient-soundtracks.md)
+[decision 10](.docs/decisions/10-drop-cinematic-camera-and-ambient-soundtracks.md)
 dropped them from the harvest. `stg-build/` is a further ~15 GB. But on this
 machine `/workshop` and the repo are the same btrfs subvolume, so the snapshot
 **reflinks** — the copy shares extents with the original and takes about a
 second. `tools/sources.py` uses `cp --reflink=auto`, which degrades silently to a
 real copy on any filesystem without reflink support (ext4, NTFS). There it costs
 the full 22 GB and several minutes.
-[Decision 09](.docs/decisions/09-source-snapshot.md).
+[Decision 08](.docs/decisions/08-source-snapshot.md).
 
 ### A source mod is never dropped to silence its errors
 
 Errors get **fixed**. A source is dropped only on content grounds, never by
 quoting an error count —
-[decision 12](.docs/decisions/12-fix-source-errors-dont-drop.md).
+[decision 11](.docs/decisions/11-fix-source-errors-dont-drop.md).
 
 ---
 
@@ -324,7 +324,7 @@ Three things that will actually bite:
    not patching around it.
 2. **The symlink may not survive.** Creating a symlink from inside the container
    onto a bind-mounted Windows drive is unreliable, and the whole
-   [decision 13](.docs/decisions/13-build-dir-and-symlink-deploy.md) deploy model
+   [decision 12](.docs/decisions/12-build-dir-and-symlink-deploy.md) deploy model
    rests on it. If it fails, the fallback is copying `stg-build/` into the mod
    folder after every build — which reintroduces exactly the staleness that
    decision was written to eliminate, so automate it, don't do it by hand.

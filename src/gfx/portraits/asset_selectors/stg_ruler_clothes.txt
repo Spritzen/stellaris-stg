@@ -6,11 +6,11 @@
 # A prescripted ruler whose species portrait uses a humanoid_master_*
 # clothes selector cannot be dressed by an index: that selector is shared
 # by 44 species classes, and what `clothes = N` enumerates in it is not
-# something this container can establish -- decision 68 inferred a model
-# from one data point and a live run falsified it at all six positions.
+# something this container can establish -- a model inferred from one
+# data point was falsified by a live run at all six positions.
 # STNH's own answer is a one-texture selector plus `clothes = 0`, which is
 # the one index a live run HAS confirmed. See
-# .docs/decisions/69-ruler-clothes-dedicated-selectors.md.
+# .docs/decisions/65-ruler-clothes-dedicated-selectors.md.
 
 stg_adr_ruler_clothes = {
 	default = "gfx/models/portraits/andorian/andorian_male_clothes_admiral.dds"

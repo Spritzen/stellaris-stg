@@ -20,14 +20,14 @@ measuring first.
 
 | | Item | |
 |---|---|---|
-| 1 | Hull section attach points | **Fixed** — 230 points, 22 shipsets ([82](../decisions/82-hull-section-attach-points.md)) |
-| 2 | Malformed portrait paths | **Fixed** — 29 patched, then 11 more in the female master on 2026-08-22 ([83](../decisions/83-widen-attach-points-and-two-new-checks.md)). The dangling textures found beside them were **117 rows, not 196**, and all 117 were repointed on 2026-08-24 — 76 with no content call to make, 41 under one policy ([85](../decisions/85-selector-textures-that-resolve.md)). **`check_selector_texture_files` now holds the tree at zero** |
-| 3 | Star and nebula names unlocalised | **Fixed** — 328 keys, one per quoted entry ([81](../decisions/81-random-names-are-loc-keys.md)) |
-| 4 | No Trek empires met | **Reopened 2026-08-25, and the oldest open defect in the project.** Closed twice and wrong twice: the spawn-chance define ([86](../decisions/86-prescripted-empires-never-drawn.md)) and the `playable` gate ([88](../decisions/88-playable-gates-the-design-database.md)) were both real and neither was sufficient. Five galaxies, five times zero. Now lives in [open-questions.md](open-questions.md) |
+| 1 | Hull section attach points | **Fixed** — 230 points, 22 shipsets ([77](../decisions/77-hull-section-attach-points.md)) |
+| 2 | Malformed portrait paths | **Fixed** — 29 patched, then 11 more in the female master on 2026-08-22 ([78](../decisions/78-widen-attach-points-and-two-new-checks.md)). The dangling textures found beside them were **117 rows, not 196**, and all 117 were repointed on 2026-08-24 — 76 with no content call to make, 41 under one policy ([80](../decisions/80-selector-textures-that-resolve.md)). **`check_selector_texture_files` now holds the tree at zero** |
+| 3 | Star and nebula names unlocalised | **Fixed** — 328 keys, one per quoted entry ([76](../decisions/76-random-names-are-loc-keys.md)) |
+| 4 | No Trek empires met | **Reopened 2026-08-25, and the oldest open defect in the project.** Closed twice and wrong twice: the spawn-chance define and the `playable` gate were both real and neither was sufficient. Five galaxies, five times zero. Now lives in [open-questions.md](open-questions.md) |
 | 5 | Planetary Diversity event scope | **Fixed and confirmed in game** — 6 patches; 98 records on 2026-08-10, **0** on 2026-08-22 |
 | 6 | ~70 music tracks | **Not a defect** — 55 declarations, 27 rotation; the run plan's "22" was stale |
-| 7 | Shipset dropdown lists species | **Not a defect** — vanilla has no shipset name key either. The *descriptions* half was a real defect and is **fixed**: 30 keys, [84](../decisions/84-shipset-descs-and-home-system-names.md) |
-| 8 | City art 25% small in the designer | **Not the art, and not the declarations either** — every file is at canvas, and every declared culture reaches art through its `fallback` ([84](../decisions/84-shipset-descs-and-home-system-names.md)). **The rect is all that is left, and it needs one screenshot comparison** |
+| 7 | Shipset dropdown lists species | **Not a defect** — vanilla has no shipset name key either. The *descriptions* half was a real defect and is **fixed**: 30 keys, [79](../decisions/79-shipset-descs-and-home-system-names.md) |
+| 8 | City art 25% small in the designer | **Not the art, and not the declarations either** — every file is at canvas, and every declared culture reaches art through its `fallback` ([79](../decisions/79-shipset-descs-and-home-system-names.md)). **The rect is all that is left, and it needs one screenshot comparison** |
 
 **Six of the eight are closed, three of those by measurement rather than by a
 change.** What is still open is item 8's rect, **item 4 — which has now been
@@ -75,9 +75,9 @@ grep -cE '^\[[0-9:]{8}\]' /paradox/stellaris/logs/error.log
 
 ## Tier 1 — root cause confirmed, fix is mechanical
 
-**All three landed 2026-08-10**, as [decision 82](../decisions/82-hull-section-attach-points.md)
+**All three landed 2026-08-10**, as [decision 77](../decisions/77-hull-section-attach-points.md)
 (item 1), `vendor.yml` patches (item 2) and
-[decision 81](../decisions/81-random-names-are-loc-keys.md) (item 3). `make
+[decision 76](../decisions/76-random-names-are-loc-keys.md) (item 3). `make
 vendor`, `make validate` and `make docs` all report **0 errors, 0 warnings**
 against the build of 2026-08-10 (22,406 files). **None of the three is
 confirmed in game** — every one of them is an eyes-only property once the
@@ -162,12 +162,12 @@ entities, and [invariant 2](../../CLAUDE.md) forbids touching the vendored copy.
 **The check already exists, and it was scoped away from this.**
 `check_section_attach_points` in `tools/validate.py` asks exactly this question —
 does the hull carry the attach points its size's `section_slots` name — and
-[decision 35](../decisions/35-station-section-attach-points.md) narrowed it to
+[decision 33](../decisions/33-station-section-attach-points.md) narrowed it to
 the **station** family on calibration grounds: over all 317 sizes with
 `section_slots`, vanilla itself produces 41 findings against the mods' 147, a
 ratio nobody can act on.
 
-So this is **decision 35's defect recurring one database over**. That decision
+So this is **decision 33's defect recurring one database over**. That decision
 came from the same `pdx_entity.cpp:1217` message in a live run, swept the rule
 across all 22 shipsets' stations, and stopped at the station boundary — where
 the calibration stopped. The hulls were never covered, and no run had flown one
@@ -181,7 +181,7 @@ their own culture's art, where the attach point comes from a rig the container
 cannot read. So the widened half is gated on the frame being **borrowed**, the
 same discriminator `fix_ship_locators.py` scopes its repair by, and it now guards
 exactly the population that tool writes.
-[Decision 83](../decisions/83-widen-attach-points-and-two-new-checks.md).
+[Decision 78](../decisions/78-widen-attach-points-and-two-new-checks.md).
 
 **Still needs eyes afterwards.** Section placement is a visual property; a clean
 log only says the locators exist now.
@@ -193,7 +193,7 @@ log only says the locators exist now.
 > strongest correspondence available without launching the game. Two parsers
 > that counted braces inside comments were fixed on the way — one in this tool,
 > one in `validate.py`.
-> [Decision 82](../decisions/82-hull-section-attach-points.md).
+> [Decision 77](../decisions/77-hull-section-attach-points.md).
 
 ### 2. STNH's master clothes selector names textures that cannot load
 
@@ -216,12 +216,12 @@ unchanged from the source mod (`.source/688086068/`). A texture that fails to
 load falls back, which is exactly "the image isn't showing the same as the
 settings" and exactly why high slider indices redraw as index 1.
 
-**This does not reopen [decision 69](../decisions/69-ruler-clothes-dedicated-selectors.md).**
+**This does not reopen [decision 65](../decisions/65-ruler-clothes-dedicated-selectors.md).**
 The Federation ruler takes `stg_fed_ruler_clothes`, a dedicated one-texture
 selector pointing at `federation_president_male_1.dds`, and that file is present
 and logged no error. Whether the dedicated selector is *reached* remains
 unproven — the run says the garment is wrong, and nothing on disk contradicts
-decision 69 yet. **Fix the selector first and look again**; a fallback happening
+decision 65 yet. **Fix the selector first and look again**; a fallback happening
 anywhere in the chain is enough to explain a wrong garment.
 
 **The mechanism:** `patches:` entries in `vendor.yml`. Unlike the locator work
@@ -238,11 +238,11 @@ in the directory name) misses in the same log.
 > `.dds` half only — it is pure syntax with a vanilla floor of exactly 0 (7,845
 > paths, every one `.dds`), so it cost nothing to land alone. **The resolves
 > half is still unwritten**, because each of its 196 findings needs a content
-> call. [Decision 83](../decisions/83-widen-attach-points-and-two-new-checks.md).
+> call. [Decision 78](../decisions/78-widen-attach-points-and-two-new-checks.md).
 >
 > **Both halves are in as of 2026-08-24**, the second as
 > `check_selector_texture_files`, and the 196 that made it look unaffordable was
-> a measurement error. [Decision 85](../decisions/85-selector-textures-that-resolve.md).
+> a measurement error. [Decision 80](../decisions/80-selector-textures-that-resolve.md).
 
 > **What landed** — 29 replacements over the two master selectors: seven
 > president rows given the `.dds` they were missing, and 22 Terran ruler rows
@@ -296,14 +296,14 @@ in the directory name) misses in the same log.
 >
 > **The last 41 rows were the genuine content call, and they took one policy
 > rather than thirteen decisions**: repoint at the nearest surviving sibling in
-> the same family, never delete. Decision 85 §5 records what each of the
+> the same family, never delete. Decision 80 §5 records what each of the
 > thirteen textures took. Three of those rows were single-entry trigger-gated
 > ones — the Capellan and the two Mizar civilian rulers — which missed *every*
 > time the trigger fired rather than one draw in N.
 >
 > **The population is 0 and `check_selector_texture_files` holds it there.**
 > `check_selector_texture_files` now reports the whole population every run.
-> [Decision 85](../decisions/85-selector-textures-that-resolve.md).
+> [Decision 80](../decisions/80-selector-textures-that-resolve.md).
 
 ### 3. 330 star and nebula names ship without a single localisation key
 
@@ -311,7 +311,7 @@ in the directory name) misses in the same log.
 Arachnid_Nebula and Class_9_Nebula"*, *"System name: Kullat_Nunu"*.
 
 **Logged:** nothing, and that is the point — this is
-[decision 61](../decisions/61-music-player-track-names.md)'s
+[decision 58](../decisions/58-music-player-track-names.md)'s
 *a name that resolves to itself still resolves*, in a third database.
 
 **The mechanism.** A quoted entry in `random_names` is a **localisation key**,
@@ -331,7 +331,7 @@ space, reviewed by hand where that is not the right answer.
 
 **The check:** every quoted `random_names` entry has a localisation key. This
 is the third database to need the same question asked, after the music player
-([61](../decisions/61-music-player-track-names.md)) and the shipset dropdown
+([58](../decisions/58-music-player-track-names.md)) and the shipset dropdown
 below — which argues for one check over the pattern rather than three checks over
 three files.
 
@@ -350,7 +350,7 @@ three files.
 > generator last ran, not a new call.
 >
 > The **display values** are unread, 328 of them. No check can ask whether a
-> name reads well. [Decision 81](../decisions/81-random-names-are-loc-keys.md).
+> name reads well. [Decision 76](../decisions/76-random-names-are-loc-keys.md).
 
 ---
 
@@ -430,11 +430,8 @@ and excluded.)*
 >
 > Fixed by `CUSTOM_EMPIRE_SPAWN_CHANCE = 1000` (100%) in
 > `src/common/defines/stg_defines.txt` — safe only because
-> [decision 14](../decisions/14-remove-vanilla-prescripted-empires.md) left the
-> pool all-Trek and
-> [decision 19](../decisions/19-stnh-minor-powers-as-ai-empires.md) made it deep
-> enough to fill a galaxy.
-> [Decision 86](../decisions/86-prescripted-empires-never-drawn.md).
+> [decision 13](../decisions/13-remove-vanilla-prescripted-empires.md) left the
+> pool all-Trek and the 79 minor powers made it deep enough to fill a galaxy.
 >
 > **The Federation's `always` still did not fire, and that is now its own
 > question** — it did not appear in the 2026-08-22 galaxy despite the player
@@ -445,7 +442,7 @@ and excluded.)*
 >
 > **REOPENED 2026-08-25. It was not the define, and it was not only the gate.**
 > Two more galaxies were played with `CUSTOM_EMPIRE_SPAWN_CHANCE = 1000` and the
-> second also carried decision 88's fix, so all 100 designs were loaded and every
+> second also carried the `playable` fix, so all 100 designs were loaded and every
 > AI slot drew from the pool. **Both galaxies contained zero Trek empires**, and
 > on the second the player met every empire in it. Five galaxies now, five times
 > zero. Neither closure was wrong about its own mechanism; both were wrong that
@@ -469,7 +466,7 @@ and excluded.)*
 > be drawn from", is, and it carries the vanilla cross-tabulation and what is
 > left to test. **The galaxy half of item 4 has since moved out of that question
 > entirely** — it is answered by
-> [decision 92](../decisions/92-create-country-initializers.md) and planned in
+> [decision 85](../decisions/85-create-country-initializers.md) and planned in
 > [static-galaxy-plan.md](static-galaxy-plan.md).
 
 ### 5. Planetary Diversity's infester events fire into the wrong scope
@@ -479,7 +476,7 @@ and excluded.)*
 but are fired from a ship scope by
 `stg-build/common/on_actions/pd_on_actions.txt` and its `pd_aw_` twin.
 Vendored, therefore ours to fix and never a reason to drop the mod
-([decision 12](../decisions/12-fix-source-errors-dont-drop.md)).
+([decision 11](../decisions/11-fix-source-errors-dont-drop.md)).
 
 **Vanilla settles the type without ambiguity.** `on_building_complete` is
 documented `# This = Colony` in `00_on_actions.txt`, and **every** vanilla event
@@ -510,16 +507,16 @@ of them; what changed is what we know.
 
 **Seen:** *"Track list has approx. 70 tracks in it"*, against the 22 the
 checklist expected and the 27 distinct recordings
-[decision 65](../decisions/65-music-rotation-dedupe.md) measured.
+[decision 62](../decisions/62-music-rotation-dedupe.md) measured.
 
 Both of those figures count **STG's own** rotation. The player lists everything
 loaded, and base vanilla ships only 7 `music/*.asset` files — the rest arrive
-from the DLC folders, which decision 65's replacement model never counted.
+from the DLC folders, which decision 62's replacement model never counted.
 Re-measure across `/stellaris/dlc/*/music/` before touching anything. If ~70 is
-correct, the stale document is the defect and decision 65 is what gets fixed.
+correct, the stale document is the defect and decision 62 is what gets fixed.
 
 The same run reports the names are all distinct and the lengths show no
-duplicates, which is the half of decision 65 that still holds.
+duplicates, which is the half of decision 62 that still holds.
 
 > **Measured — the two decisions count different things, and both are right.**
 > The DLC theory was wrong: the game ships **no** music outside `/stellaris/music`
@@ -528,16 +525,16 @@ duplicates, which is the half of decision 65 that still holds.
 >
 > | | at runtime | |
 > |---|---|---|
-> | `music = { … }` declarations | 45 STG + 10 vanilla = **55** | what the player lists ([61](../decisions/61-music-player-track-names.md)) |
-> | `song = { … }` playlist entries | 17 STG + 10 vanilla = **27** | the rotation ([65](../decisions/65-music-rotation-dedupe.md)) |
+> | `music = { … }` declarations | 45 STG + 10 vanilla = **55** | what the player lists ([58](../decisions/58-music-player-track-names.md)) |
+> | `song = { … }` playlist entries | 17 STG + 10 vanilla = **27** | the rotation ([62](../decisions/62-music-rotation-dedupe.md)) |
 >
-> Decision 65's 27 reproduces **exactly**. The run's "approx. 70" is an eyeball
+> Decision 62's 27 reproduces **exactly**. The run's "approx. 70" is an eyeball
 > count of the 55 declarations, and `setup.log` corroborates the order of
 > magnitude directly: `musicmanager.cpp` reports **162 songs loaded** across the
 > whole session, a running total that counts every declaration in every context.
 >
-> **The stale number is the run plan's "22"** — decision 61's playlist count from
-> before 65 remeasured it. Neither the tree nor decision 65 needs anything. A
+> **The stale number is the run plan's "22"** — decision 58's playlist count from
+> before 65 remeasured it. Neither the tree nor decision 62 needs anything. A
 > future run plan should say *55 names in the player, 27 in the rotation*.
 
 ### 7. The ship-appearance dropdown lists species, not shipset names
@@ -552,7 +549,7 @@ defaulted to does look correctly TNG era ships."*
 > "Mammalian", "Avian", "Reptilian" because its shipsets are named after the
 > species classes they belong to — so a list of species names *is* the vanilla
 > presentation, and STG's graphical cultures inherit it. My Tier 3 framing of
-> this as decision 61's family was wrong: there is no missing key, because there
+> this as decision 58's family was wrong: there is no missing key, because there
 > is no key.
 >
 > **Corrected 2026-08-22 — the second half of this note was wrong twice over,
@@ -580,7 +577,7 @@ defaulted to does look correctly TNG era ships."*
 > descriptions grounded in the hull textures. `check_shipset_descriptions` holds
 > both directions at vanilla's floor of 0 and 0.
 > [Analysis 2026-08-16](../analysis/2026-08-16.md), finding 3;
-> [decision 84](../decisions/84-shipset-descs-and-home-system-names.md).
+> [decision 79](../decisions/79-shipset-descs-and-home-system-names.md).
 
 ### 8. City art is undersized in the designer
 
@@ -591,9 +588,9 @@ to small, but surely this can be measured correctly"*, and on the planet screen,
 > **Measured — the art is not the problem, and that narrows this a lot.** Every
 > city layer in the built tree is now at vanilla's canvas and every room file at
 > vanilla's: **299 layers at 800×400** and **327 rooms at 952×340**, with no tail
-> at all. Decisions [58](../decisions/58-city-set-geometry.md),
-> [63](../decisions/63-city-set-family-targets.md) and
-> [66](../decisions/66-city-set-canvas-overflow.md) between them fixed 153 files
+> at all. Decisions [55](../decisions/55-city-set-geometry.md),
+> [60](../decisions/60-city-set-family-targets.md) and
+> [63](../decisions/63-city-set-canvas-overflow.md) between them fixed 153 files
 > and the check behind them holds. **A file cut to the right canvas cannot be
 > 25% small because of its dimensions.**
 >
@@ -601,7 +598,7 @@ to small, but surely this can be measured correctly"*, and on the planet screen,
 > empire designer is not vanilla's screen: `interface/customize_species.gui`
 > comes from **UI Overhaul Dynamic** and replaces vanilla's wholesale — 734 diff
 > lines, not an edit. Art cut for vanilla's canvas is being drawn into UI
-> Overhaul's rect. That is decision 58's exact mechanism — art cut for one canvas
+> Overhaul's rect. That is decision 55's exact mechanism — art cut for one canvas
 > shown in another — one screen over.
 >
 > **The trap, and why this is not a resample.** The same file serves the planet
@@ -625,7 +622,7 @@ to small, but surely this can be measured correctly"*, and on the planet screen,
 > states in the header of that same file; all six declare one that reaches art,
 > and **24 of vanilla's own 52 declared cultures ship no city art either**.
 > So none of the ten is a style with nothing behind it, and there is no content
-> call here after all ([decision 84](../decisions/84-shipset-descs-and-home-system-names.md);
+> call here after all ([decision 79](../decisions/79-shipset-descs-and-home-system-names.md);
 > `check_graphical_culture_art` now asks it). **The rect question is still
 > unanswered**, because the comparison item 8 asked for — the designer preview
 > and the planet screen for the *same* empire, side by side — has now gone
@@ -646,13 +643,13 @@ orphan rather than a defect, and worth deleting rather than fixing.
 
 | | |
 |---|---|
-| Trek dig sites | **Unreached** — only part of the map was surveyed, so this is unmeasured, not negative ([76](../decisions/76-trek-archaeology.md)) |
-| Story events | Four seen, all four correct on picture, framing and register. The pulse fires; [decision 79](../decisions/79-reachability-checks.md)'s worst case did not happen |
+| Trek dig sites | **Unreached** — only part of the map was surveyed, so this is unmeasured, not negative ([71](../decisions/71-trek-archaeology.md)) |
+| Story events | Four seen, all four correct on picture, framing and register. The pulse fires; [decision 74](../decisions/74-reachability-checks.md)'s worst case did not happen |
 | The remaining hulls | Everything above destroyer, once item 1 lands |
 | Event sound | `first_contact.5` and `first_contact.380` both logged `Failed to pick an event sound`. Small, real, cheap |
 | Force-spawn a Trek empire | Item 4's remaining half, and the cheapest decisive test on this list |
 | The music numbers | **55** names in the player, **27** in the rotation — not 22. Carry the right figures into the next plan |
-| Stern mount symmetry | On the destroyer, `small_gun_01` sits at `{ 4.384 0.407 2.054 }` and `small_gun_02` at `{ -4.384 0.407 7.189 }` — mirrored in x but not in z. The run's own guess, that a horizontal mirror of the first is the right answer, is a live hypothesis; 66% of mounts are still bounding-box placements ([67](../decisions/67-source-art-hardpoint-names.md)) and this looks like one beside an artist's. **Only worth judging after item 1**, since today those guns are attached to nothing |
+| Stern mount symmetry | On the destroyer, `small_gun_01` sits at `{ 4.384 0.407 2.054 }` and `small_gun_02` at `{ -4.384 0.407 7.189 }` — mirrored in x but not in z. The run's own guess, that a horizontal mirror of the first is the right answer, is a live hypothesis; 66% of mounts are still bounding-box placements ([64](../decisions/64-source-art-hardpoint-names.md)) and this looks like one beside an artist's. **Only worth judging after item 1**, since today those guns are attached to nothing |
 
 ---
 
@@ -660,15 +657,15 @@ orphan rather than a defect, and worth deleting rather than fixing.
 
 Recorded so no future session re-opens them: the room behind the ruler is a Trek
 room and the dropdown still runs past 300 entries
-([48](../decisions/48-room-selector-merge.md),
-[62](../decisions/62-city-set-cultures-undeclared.md)); the flag draws
-([49](../decisions/49-flags-city-sets.md)); the corvette's mounts are right
-([60](../decisions/60-mounts-share-existing-points.md)); the Federation anthem is
-in rotation ([55](../decisions/55-federation-anthem.md)); nebula sizing on the
+([46](../decisions/46-room-selector-merge.md),
+[59](../decisions/59-city-set-cultures-undeclared.md)); the flag draws
+([47](../decisions/47-flags-city-sets.md)); the corvette's mounts are right
+([57](../decisions/57-mounts-share-existing-points.md)); the Federation anthem is
+in rotation ([52](../decisions/52-federation-anthem.md)); nebula sizing on the
 galaxy map is correct; a newly elected president wore the correct clothes; and
 all four story events read as Trek, with pictures correctly fitted
-([74](../decisions/74-event-picture-families.md),
-[77](../decisions/77-trek-story-events.md)).
+([69](../decisions/69-event-picture-families.md),
+[72](../decisions/72-trek-story-events.md)).
 
 **The run also states what it could not see** — *"if there were oddities that
 were missed they were likely not glaring"* — which is the honest form and should

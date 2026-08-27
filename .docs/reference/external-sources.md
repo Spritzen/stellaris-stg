@@ -21,7 +21,7 @@ changes between launcher releases without announcement.
 | Source | Good for |
 |---|---|
 | [Mods](https://stellaris.paradoxwikis.com/Mods) | Manual mod installation, the `mod/` folder layout, `.mod` vs `descriptor.mod`. Documents the **relative** `path="mod/<foldername>/"` form for manual installs. |
-| [Modding tutorial](https://stellaris.paradoxwikis.com/Modding_tutorial) | The launcher's *Mod Tools → Create a Mod* flow and exactly what it generates: an outer `<name>.mod` carrying the path, plus an inner `descriptor.mod` with metadata only. Says the outer one holds "the full file path specification" — i.e. **absolute**, contradicting the Mods page above. This install answers **absolute** — Windows-side under Proton (decision 07), and **plain native-Linux since 2026-08-02** (decision 15), which is what `tools/deploy.py` emits today. Both forms are confirmed by live runs; see "This install, verified from disk" below. |
+| [Modding tutorial](https://stellaris.paradoxwikis.com/Modding_tutorial) | The launcher's *Mod Tools → Create a Mod* flow and exactly what it generates: an outer `<name>.mod` carrying the path, plus an inner `descriptor.mod` with metadata only. Says the outer one holds "the full file path specification" — i.e. **absolute**, contradicting the Mods page above. This install answers **absolute** — Windows-side under Proton (decision 06), and **plain native-Linux since 2026-08-02** (decision 14), which is what `tools/deploy.py` emits today. Both forms are confirmed by live runs; see "This install, verified from disk" below. |
 | [Modding](https://stellaris.fandom.com/wiki/Modding) (Fandom) | Mirror of much of the same material. Occasionally more current, occasionally more wrong. Cross-check. **Returns HTTP 402 to `WebFetch`** — use the paradoxwikis copy or search snippets. |
 
 ### The per-directory overwrite table — [Modding § common](https://stellaris.paradoxwikis.com/Modding)
@@ -50,7 +50,7 @@ before patch 2.5.
 only — **the `gfx/` tables have no overwrite column at all**, so duplicate
 `.asset` entity precedence is undocumented anywhere online. And `❓` is common
 on exactly the rows you want: `random_names` is one, and it had to be settled
-from the source mods' own file layouts instead (decision 44).
+from the source mods' own file layouts instead (decision 42).
 
 ## Prescripted empires and whether the AI ever spawns one
 
@@ -65,13 +65,13 @@ ways when checked against 4.4.
 |---|---|
 | [Empire modding](https://stellaris.paradoxwikis.com/Empire_modding) | The only authoritative page on `prescripted_countries/`. Documents `spawn_enabled` as `no` / `yes` / `always` and says deleting the `initializer` line spawns the empire in a randomly generated system. **Says nothing about what makes a prescripted empire eligible for an AI slot**, which is the question, and nothing about `randomized`. |
 | [Empire modding (Fandom)](https://stellaris.fandom.com/wiki/Empire_modding) | Mirror. **Returns HTTP 402 to `WebFetch`** — same as the Modding mirror above. |
-| Steam workshop force-spawn mods and their comment threads | **Rate-limited: `WebFetch` returns "You've made too many requests recently."** Readable only via search snippets. Two claims recur and both are worth knowing: that two empires sharing a starting system lock each other out (**true**, and vanilla ships the string for it — `AI_EMPIRE_PREVIEW_TOOLTIP_INCOMPATIBLE_SYSTEM`), and that `randomized = no` on a species class or portrait set blocks a prescripted empire from force-spawning (**half-checked, and the wrong half**: the dismissal here read `/stellaris/common/portrait_sets/00_portrait_sets.txt`, whose `randomizable` and `non_randomized_portraits` do apply only to *"empires whose design was randomly generated"* — but the claim is also about `common/species_classes/`, a different database with a different field, and nobody cross-tabulated that one until 2026-08-26. Vanilla is **32 of 33** spawn-eligible prescripted empires on a randomizable species class; STG is **0 of 99**. Still not settled — see [decision 90](../decisions/90-design-database-is-not-the-cause.md) for what is against it too). |
+| Steam workshop force-spawn mods and their comment threads | **Rate-limited: `WebFetch` returns "You've made too many requests recently."** Readable only via search snippets. Two claims recur and both are worth knowing: that two empires sharing a starting system lock each other out (**true**, and vanilla ships the string for it — `AI_EMPIRE_PREVIEW_TOOLTIP_INCOMPATIBLE_SYSTEM`), and that `randomized = no` on a species class or portrait set blocks a prescripted empire from force-spawning (**half-checked, and the wrong half**: the dismissal here read `/stellaris/common/portrait_sets/00_portrait_sets.txt`, whose `randomizable` and `non_randomized_portraits` do apply only to *"empires whose design was randomly generated"* — but the claim is also about `common/species_classes/`, a different database with a different field, and nobody cross-tabulated that one until 2026-08-26. Vanilla is **32 of 33** spawn-eligible prescripted empires on a randomizable species class; STG is **0 of 99**. Still not settled — see [decision 83](../decisions/83-design-database-is-not-the-cause.md) for what is against it too). |
 
 **The 2026-08-26 search found the answer somewhere else again: in `.source/`.**
 STNH is the closest working reference and its files were already on disk. It
 leaves `CUSTOM_EMPIRE_SPAWN_CHANCE` at vanilla's 50 and ships twenty-two
 `static_galaxy_scenario` maps; STG ships none —
-[decision 91](../decisions/91-static-galaxy-is-the-mechanism.md). Three web pages
+[decision 84](../decisions/84-static-galaxy-is-the-mechanism.md). Three web pages
 did carry real mechanism and are worth re-reading before anyone reopens this:
 [Map modding](https://stellaris.paradoxwikis.com/Map_modding) (`spawn_weight`,
 `has_country_flag`, and why a static map must define nearly everything),
@@ -140,7 +140,7 @@ rather than remembering:
 | `%USER_DOCUMENTS%/…` | Windows under Proton | `…/compatdata/281990/pfx/drive_c/users/steamuser/Documents/Paradox Interactive/Stellaris/` |
 
 Both directories exist on disk and each holds a plausible-looking registry, so
-reading the wrong one yields confident wrong answers. Decision 15; decision 07 is
+reading the wrong one yields confident wrong answers. Decision 14; decision 06 is
 the session that cost.
 
 Back up both registry files before touching either. Playsets live in the sqlite
@@ -180,7 +180,7 @@ two bullets are the ones that flipped.
   only `mods_registry.json`; the native folder had `launcher-v2.sqlite` alone,
   last written 2025-11-09. Its 33 Workshop `.mod` entries carry absolute native
   Linux paths — **evidence about the native launcher, which is the one running
-  now**, and the thing decision 07 rightly warned against reading as evidence
+  now**, and the thing decision 06 rightly warned against reading as evidence
   about Proton. Same files, opposite conclusion, because a different build is
   installed. Check what wrote a file *and* whether that thing is still what you
   are reasoning about.
@@ -194,6 +194,6 @@ two bullets are the ones that flipped.
   string verbatim and does not normalise it: `4.4.6` registers fine but badges
   the mod "made for a different version", where `v4.4.6` does not. (An earlier
   version of this line said the `v` was optional, generalising from mods whose
-  stale `2.1.*`-era versions could not discriminate.) Decision 07's addendum has
+  stale `2.1.*`-era versions could not discriminate.) Decision 06's addendum has
   the 26-mod distribution that settles it.
 - Installed game: `Pegasus v4.4.6`, `modsCompatibilityVersion 4.4`.

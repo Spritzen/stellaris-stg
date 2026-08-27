@@ -15,7 +15,7 @@ other planets were named from the Federation name list's `planet_names` pool --
 which is a list of Federation MEMBER worlds. Sol therefore contained Bajor and
 Andoria. The same was true of all 101 empires.
 
-WHAT IT DOES. Decision 19's pattern, applied to systems instead of empires:
+WHAT IT DOES. The conversion's pattern, applied to systems not empires:
 STNH's *identity*, vanilla's *mechanics*. STNH ships 168 home systems with
 `usage = custom_empire` -- Qo'noS with Boreth and Gorath, 40 Eridani with Keid
 and T'Khut, Romulus with Remus. We take their geometry (system name, star class,
@@ -44,7 +44,7 @@ Luna, the Galileans, Titan and Triton, and Real Space overrides that same key
 with a rescaled copy. Pointing at it beats reproducing it. The mirror Terran
 Empire does NOT share it -- it has its own authored Sol below. Sharing an
 initializer between two prescripted empires costs both of them and logs nothing;
-see SKIP, and .docs/decisions/88-playable-gates-the-design-database.md.
+see SKIP, and .docs/decisions/83-design-database-is-not-the-cause.md.
 
 Run:  python3 tools/gen_home_systems.py
 """
@@ -67,7 +67,7 @@ VANILLA = Path("/stellaris")
 # Class names the engine understands without any planet_classes/ declaration:
 # `star` is filled in from the system's own star class, `black_hole` and the
 # asteroid keywords are built in. They must be emitted BARE -- quoting one
-# stops it resolving. See .docs/decisions/27-quoted-class-keyword.md.
+# stops it resolving. See .docs/decisions/25-quoted-class-keyword.md.
 CLASS_BUILTINS = {"star", "black_hole"}
 
 # Empires that do not get a generated system, and why.
@@ -81,7 +81,7 @@ SKIP = {
     # spawned in any of them, the Federation not even on `spawn_enabled =
     # always`. Two prescripted empires naming one starting system is a
     # documented engine failure that logs nothing and costs BOTH of them.
-    # See .docs/decisions/88-playable-gates-the-design-database.md.
+    # See .docs/decisions/83-design-database-is-not-the-cause.md.
 }
 
 # STG name -> STNH initializer key, where the two genuinely disagree.
@@ -91,7 +91,7 @@ ALIASES = {
 
 # A NAME STNH ITSELF DUPLICATES. Not a conversion bug -- their own file gives
 # both moons of the gas giant S'latas the name "S'latas a", where the rest of
-# their Romulan system uses the letter suffix properly. Decision 12 says fix a
+# their Romulan system uses the letter suffix properly. Decision 11 says fix a
 # source's errors rather than drop the source, and their own convention says
 # what the fix is, so the second moon becomes "S'latas b".
 #
@@ -109,7 +109,7 @@ SOURCE_NAME_FIXES = {
 #
 # Each must keep the *number* of stars, because the initializer's own
 # `class = star` planets are filled from this class: a binary system given a
-# single-star class loses a star. See .docs/decisions/26-home-system-classes.md.
+# single-star class loses a star. See .docs/decisions/24-home-system-classes.md.
 STAR_CLASS = {
     "sc_trinary_kdm": "sc_trinary_k_m_d",
     # STNH's G+K binary; vanilla's g_k binary is the same two stars.
@@ -166,7 +166,7 @@ ASTEROID_BELT = {"icy_asteroid_belt_dispersed": "icy_asteroid_belt"}
 # declares `sc_m` and then places **Hobus** — the star that destroys Romulus in
 # the 2009 film — as a second star flagged `secondaryStar`. Two M stars keeps
 # both STNH's star type and Hobus.
-# See .docs/decisions/26-home-system-classes.md.
+# See .docs/decisions/24-home-system-classes.md.
 SYSTEM_STAR_CLASS = {"stg_romulan_star_empire": "sc_binary_m_m"}
 
 # Keys copied straight through from an STNH planet/moon block. Everything else
@@ -369,7 +369,7 @@ def sub_blocks(body: str, keyword: str) -> list[str]:
     that nested planet was therefore returned as a moon of the STAR as well as
     of its own parent. Both got emitted, so two different bodies in 40 Eridani
     came out named "Kerkhov's Moon". See `planets_flattened` for the other half
-    of the repair, and .docs/decisions/84-shipset-descs-and-home-system-names.md.
+    of the repair, and .docs/decisions/79-shipset-descs-and-home-system-names.md.
     """
     out = []
     for m in re.finditer(rf"\b{keyword}\s*=\s*\{{", body):
@@ -533,7 +533,7 @@ def is_class_keyword(val: str) -> bool:
     `random_non_colonizable`, `ideal_planet_class` and the rest. A quoted
     keyword parses cleanly and then fails to resolve, so the body is simply
     never created and the log says one line.
-    See .docs/decisions/27-quoted-class-keyword.md.
+    See .docs/decisions/25-quoted-class-keyword.md.
     """
     pool = declared_classes()
     return bool(pool) and val not in pool
@@ -576,8 +576,8 @@ def check_references(text: str) -> list[str]:
     `class = star` planet beyond what the system's star class supplies has no
     star to draw from, and vanilla never does it in 40 files — and the
     *quoting* of a class keyword, which decides whether it resolves at all.
-    See .docs/decisions/26-home-system-classes.md and
-    .docs/decisions/27-quoted-class-keyword.md.
+    See .docs/decisions/24-home-system-classes.md and
+    .docs/decisions/25-quoted-class-keyword.md.
     """
     pc = declared("planet_classes", "pc_")
     sc = declared("star_classes", "sc_")
@@ -676,7 +676,7 @@ def ai_empire_block(stg_key: str, emp: dict, indent: str) -> str:
     empire is *created* by its home system's initializer, which a static galaxy
     scenario puts on the map. Vanilla does exactly this for the United Nations
     of Earth in `com_sol_system`, and STNH does it 43 times.
-    .docs/decisions/92-create-country-initializers.md.
+    .docs/decisions/85-create-country-initializers.md.
 
     THE GUARD IS THE WHOLE DIFFERENCE BETWEEN ONE KLINGON EMPIRE AND TWO. When
     the player picks this empire, their country already carries the design key
@@ -844,7 +844,7 @@ def convert(stg_key: str, stnh_key: str, body: str, emp: dict,
             # prescripted empire on fixed geometry -- and it pairs this with
             # `starting_planet = yes` in a SECOND init_effect block, which is
             # why this is not merged into the one above.
-            # See .docs/decisions/26-home-system-classes.md.
+            # See .docs/decisions/24-home-system-classes.md.
             out.append(f"{indent}\tinit_effect = "
                        f"{{ generate_empire_home_planet = yes }}")
             out.append(ai_empire_block(stg_key, emp, indent + "\t"))
@@ -964,25 +964,25 @@ def main() -> int:
 # GENERATED by tools/gen_home_systems.py — do not hand-edit; regenerate.
 #
 # A real home system for every STG prescripted empire that has one, converted
-# from STNH's own (decision 19's pattern: their identity, vanilla's mechanics).
-# STNH's init_effect scripting is dropped wholesale — it sets STNH country
+# from STNH's own — their identity, vanilla's mechanics, as everywhere in this
+# conversion. STNH's init_effect scripting is dropped wholesale — it sets STNH country
 # flags and event targets we do not vendor — and its Trek planet and star
 # classes are mapped onto vanilla's. Every class emitted here is checked to
 # resolve before this file is written: an unmapped one crashes the game at
-# startup and logs nothing (.docs/decisions/26-home-system-classes.md).
-# See .docs/decisions/25-real-home-systems.md.
+# startup and logs nothing (.docs/decisions/24-home-system-classes.md).
+# See .docs/decisions/23-real-home-systems.md.
 #
 # The Federation is not here: it uses vanilla's own sol_system_initializer,
 # which Real Space rescales, and which is already the real solar system. That
 # also means the Federation has no AI copy — the block below is what creates one
-# and there is nowhere to put it (.docs/decisions/93-static-galaxy-scenario.md).
+# and there is nowhere to put it (.docs/decisions/86-static-galaxy-scenario.md).
 #
 # EACH CAPITAL CARRIES A GUARDED create_country. It creates this empire's AI
 # copy, and only when no country already carries the empire's own design key as
 # a country flag — which the player's copy does, from
 # common/prescripted_flags/. That is the mechanism a Trek galaxy runs on; the
 # prescripted pool is the player's roster and places nobody
-# (.docs/decisions/92-create-country-initializers.md).
+# (.docs/decisions/85-create-country-initializers.md).
 #
 # {len(chunks)} systems generated, {len(unplaced)} empires left on generated systems.
 

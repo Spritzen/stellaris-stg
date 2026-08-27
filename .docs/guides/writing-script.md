@@ -46,7 +46,7 @@ vendored clothes selectors make, and no Trek species can ever wear a Trek
 uniform. Re-measure with
 `grep -rc is_species_class stg-build/gfx/`. The *file* still
 takes the `stg_` prefix; only the keys do not, and each such file says so in its
-header. [Decision 10](../decisions/10-species-class-keys-unprefixed.md) has the
+header. [Decision 09](../decisions/09-species-class-keys-unprefixed.md) has the
 reasoning and the collision risk we accepted.
 
 > **This reaches the loc keys too, and that is the easy half to miss.** The
@@ -54,7 +54,7 @@ reasoning and the collision risk we accepted.
 > `FED_desc`, `FED_organ`, `FED_insult_01` — so `STG_FED_organ` is a key nothing
 > ever looks up. STG shipped 14 classes that way and 87 with no loc at all, and
 > the symptom was a raw three-letter key on screen with nothing in `error.log`.
-> [Decision 21](../decisions/21-species-class-localisation.md).
+> [Decision 19](../decisions/19-species-class-localisation.md).
 
 ## File-level rules
 
@@ -75,7 +75,7 @@ Rooms (`room = "klingon_room"`), city sets
 name against a directory**, with nothing declaring them anywhere.
 `make validate`'s cross-reference family is built on "does this declaration
 resolve", so it saw none of them until
-[decision 48](../decisions/48-room-selector-merge.md).
+[decision 46](../decisions/46-room-selector-merge.md).
 
 **When you add art addressed this way, add the check with it.**
 

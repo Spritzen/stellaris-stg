@@ -4,7 +4,7 @@
 > sources, and the four ways STNH's art is wired to a `common/` we never vendor.
 > **Open when** — touching anything from Star Trek: New Horizons, or an STNH
 > reference resolves to nothing.
-> **Then** — [Harvest order](harvest-order.md) · [Conflict register](conflict-register.md) · [decision 08](../decisions/08-stnh-art-shadows-vanilla.md)
+> **Then** — [Harvest order](harvest-order.md) · [Conflict register](conflict-register.md) · [decision 07](../decisions/07-stnh-art-shadows-vanilla.md)
 
 Take from STNH only these paths — `gfx/portraits`, `gfx/models/ships`,
 `gfx/models/portraits`, `gfx/particles`, `gfx/event_pictures`,
@@ -27,7 +27,7 @@ total-conversion script we are deliberately not shipping.
 (`resample_to_vanilla:`). STNH ships 569 vanilla paths at 620×264 where vanilla is
 450×150, and `additive_only` has never protected vanilla — so vanilla's sprites
 and UIOD's `eventwindow.gui`, both cut for 450×150, drew them at 930×396 inside a
-693×239 frame. [Decision 42](../decisions/42-event-picture-geometry.md).
+693×239 frame. [Decision 40](../decisions/40-event-picture-geometry.md).
 
 **`gfx/portraits/city_sets`** is re-cut the same way, and it needed a second fit
 mode — and then a second way of getting a target.
@@ -37,7 +37,7 @@ reading the target off *a vanilla file* had no answer for them and they stayed a
 70% through two live runs. `target: family` reads it off vanilla's own *family*
 instead — 266/271 at 800×400, 91/91 at 952×340 — which is still derived rather
 than asserted. Opt-in per rule, because vanilla's event pictures have no such
-single answer. [Decision 63](../decisions/63-city-set-family-targets.md).
+single answer. [Decision 60](../decisions/60-city-set-family-targets.md).
 
 Vanilla ships all 266 of its `*_city_l0N.dds` at 800×400 with each layer's content
 at its own offset inside that canvas; STNH's is 560×280 — **exactly 70%** —
@@ -51,7 +51,7 @@ claims was ever wrong.*
 
 `fit: canvas` pads a trimmed file back onto the source's own canvas,
 bottom-aligned, before scaling — a centre crop would have cut 20% off the width of
-41 of them. [Decision 58](../decisions/58-city-set-geometry.md).
+41 of them. [Decision 55](../decisions/55-city-set-geometry.md).
 
 > **A third door into the same symptom, and the last: the ten files *larger* than
 > that canvas.** The pad grew the box to fit them rather than cropping, which fed
@@ -59,7 +59,7 @@ bottom-aligned, before scaling — a centre crop would have cut 20% off the widt
 > empire's — to 76% of its height. The pre-resize height is now derived from the
 > canvas, so the scale is always uniform and the failure mode is gone **by
 > construction** rather than checked for.
-> [Decision 66](../decisions/66-city-set-canvas-overflow.md).
+> [Decision 63](../decisions/63-city-set-canvas-overflow.md).
 
 ## What the skip rule protects
 
@@ -93,7 +93,7 @@ is generally the 3.12 file — the 4.4 one minus whatever 4.4 added. The game lo
 it and says nothing. `flags/colors.txt` cost 47 of vanilla's 72 flag colours that
 way. Fourteen files are excluded in `vendor.yml`, one is kept with the dropped
 definitions restored in `src/`, and `check_vanilla_regression` guards the rest.
-[Decision 08](../decisions/08-stnh-art-shadows-vanilla.md).
+[Decision 07](../decisions/07-stnh-art-shadows-vanilla.md).
 
 > **The hazard is not about STNH, and that is the part to carry forward.** ASB
 > Ironman — a live mod, not a total conversion — ships a 3.x
@@ -106,19 +106,19 @@ definitions restored in `src/`, and `check_vanilla_regression` guards the rest.
 > ones — and since 2026-08-07 to **script** as well as art, because a current mod
 > may replace a vanilla database on purpose and still strand a **third** mod
 > calling the old keys
-> ([decision 38](../decisions/38-real-space-drops-sol-neighbours.md)).
+> ([decision 36](../decisions/36-real-space-drops-sol-neighbours.md)).
 
 ## STNH's art is wired to STNH's *namespace* — in four ways
 
 "Take the art, not the script" assumes the two are separable. They are not. STNH's
 art depends on the `common/` we don't vendor in four distinct ways. **All four are
-closed**, and [decision 08](../decisions/08-stnh-art-shadows-vanilla.md) had found
+closed**, and [decision 07](../decisions/07-stnh-art-shadows-vanilla.md) had found
 only the first — the gap between "one" and "four" cost a live run to discover.
 
 | Dependency | Status |
 |---|---|
-| **Scripted triggers** (clothing/era selectors) | Closed. All of STNH's art triggers are declared in `src/common/scripted_triggers/stg_stnh_art_triggers.txt` — 141 as it stands, **24 of them with real bodies** and the rest inert `always = no`. (25 sit above the file's INERT divider; `is_tng_era` is deliberately still `always = no`, because every DS9 leader row requires it false.) Era is pinned to TNG/DS9 rather than STNH's `years_passed` windows, identity keyed to species class rather than country flags STG never sets. [Decision 16](../decisions/16-phase-3-clothing-triggers.md) recorded the 140 it harvested. |
-| **Species classes** | Closed. [Decision 10](../decisions/10-species-class-keys-unprefixed.md) renamed the five majors to STNH's bare keys; [decision 32](../decisions/32-declare-stub-species-classes.md) declared the remaining **34** selector keys as stubs after the 08-07 run priced them at 439 errors, 22% of `error.log`. STG declares **129** classes and `dangling_identifier_ack` is empty. Four of the 34 were misspellings of our own (DELT→DEL, ELAU→ELA, MONE→MON, PARA→PAR) — [decision 20](../decisions/20-minor-power-species-class-keys.md). |
+| **Scripted triggers** (clothing/era selectors) | Closed. All of STNH's art triggers are declared in `src/common/scripted_triggers/stg_stnh_art_triggers.txt` — 141 as it stands, **24 of them with real bodies** and the rest inert `always = no`. (25 sit above the file's INERT divider; `is_tng_era` is deliberately still `always = no`, because every DS9 leader row requires it false.) Era is pinned to TNG/DS9 rather than STNH's `years_passed` windows, identity keyed to species class rather than country flags STG never sets. [Decision 15](../decisions/15-phase-3-clothing-triggers.md) recorded the 140 it harvested. |
+| **Species classes** | Closed. [Decision 09](../decisions/09-species-class-keys-unprefixed.md) renamed the five majors to STNH's bare keys; [decision 30](../decisions/30-declare-stub-species-classes.md) declared the remaining **34** selector keys as stubs after the 08-07 run priced them at 439 errors, 22% of `error.log`. STG declares **129** classes and `dangling_identifier_ack` is empty. Four of the 34 were misspellings of our own (DELT→DEL, ELAU→ELA, MONE→MON, PARA→PAR) — [decision 18](../decisions/18-minor-power-species-class-keys.md). |
 | **Leader traits** | Closed. `leader_trait_starfleet_32` and `trait_pc_assimilated_preference` stubbed inert in `src/common/traits/`. |
 | **Shader effects** | Closed. `src/gfx/FX/pdxmesh.shader` is vanilla 4.4 verbatim plus STNH's five effect blocks — an additive merge, not a 3.12 file shadowing vanilla's. |
 

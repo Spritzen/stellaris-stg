@@ -8,7 +8,7 @@
 #
 # The flag IS the prescripted design key. Do not invent a second name for it.
 #
-# See .docs/decisions/93-static-galaxy-scenario.md.
+# See .docs/decisions/86-static-galaxy-scenario.md.
 
 empire_stg_caitian_empire = {
 	flags = { stg_caitian_empire }
