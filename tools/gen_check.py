@@ -8,8 +8,8 @@ pool a third the size. That went unnoticed until a live run reported unlocalised
 nebula names and somebody re-ran the tool by hand
 (.docs/planning/ufp-run-remediation.md, item 3).
 
-SIX OF THE ELEVEN GENERATORS READ `stg-build/`, and none of them is invoked by
-any `make` target -- so nothing has ever established that the other five are
+SIX OF THE THIRTEEN GENERATORS READ `stg-build/`, and none of them is invoked by
+any `make` target -- so nothing has ever established that the other seven are
 fixpoints. A correct generator is one: run it against the tree it already
 produced and nothing changes. The floor is therefore 0 by construction, not by
 calibration, which is the rare case where a check needs no vanilla ratio beside
@@ -57,7 +57,9 @@ GUARDED = (SRC, CACHE)
 # --deep exists for. Measured 2026-08-22 by grepping each tool for BUILD.
 GENERATORS: list[tuple[str, list[str], bool]] = [
     ("gen_borg_vo.py",             [],        True),
+    ("gen_empire_flags.py",        [],        False),
     ("gen_home_systems.py",        [],        True),
+    ("gen_static_galaxy.py",       [],        False),
     ("gen_paragon_backgrounds.py", [],        False),
     ("gen_room_selector.py",       [],        True),
     ("gen_ruler_clothes.py",       [],        True),

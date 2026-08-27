@@ -15,7 +15,7 @@ because every number here goes stale — [style guide §6](../style-guide.md).*
 |---|---|
 | **Phase 0** — vendoring pipeline | **complete** |
 | **Phase 1** — playable Federation | **complete**, run in-game repeatedly |
-| **Phase 2** — the rest of the galaxy | **complete**. 99 prescripted empires (22 majors/quadrant/frontier, 77 minors; all playable, and all in the pool the generator draws from since [decision 88](../decisions/88-playable-gates-the-design-database.md) — **and the 2026-08-26 save proves all 99 reach the design database — and that no galaxy has yet drawn one**, see [decision 90](../decisions/90-design-database-is-not-the-cause.md); the mechanism a Trek galaxy actually needs is a static map plus `create_country` initializers, neither of which STG ships — [decision 92](../decisions/92-create-country-initializers.md), planned in [static-galaxy-plan.md](static-galaxy-plan.md)) over 99 distinct species classes, 92 name lists, 36 generated home systems plus vanilla's Sol. `src/` declares **129** classes in all — the extra 30 are the STNH selector stubs of [decision 32](../decisions/32-declare-stub-species-classes.md) |
+| **Phase 2** — the rest of the galaxy | **complete**. 99 prescripted empires (22 majors/quadrant/frontier, 77 minors; all playable, and all in the pool the generator draws from since [decision 88](../decisions/88-playable-gates-the-design-database.md) — **and the 2026-08-26 save proves all 99 reach the design database — and that no galaxy has yet drawn one**, see [decision 90](../decisions/90-design-database-is-not-the-cause.md); the mechanism a Trek galaxy actually needs is a static map plus `create_country` initializers — [decision 92](../decisions/92-create-country-initializers.md) — and **both now ship, unrun**: 95 systems, 21 empires, 36 `create_country` blocks and the `prescripted_flags` join between them, [decision 93](../decisions/93-static-galaxy-scenario.md)) over 99 distinct species classes, 92 name lists, 36 generated home systems plus vanilla's Sol. `src/` declares **129** classes in all — the extra 30 are the STNH selector stubs of [decision 32](../decisions/32-declare-stub-species-classes.md) |
 | **Phase 3** — art and identity | **complete 2026-08-08**. Clothing triggers, shipsets, weapon mounts, flags, rooms, city sets, loading screens, `paragon_backgrounds.txt`, the shipsets' 39 extra flags |
 | **Phase 4** — polish | **started 2026-08-08**. Music, the ship registries and their class names, then the three slices [decision 75](../decisions/75-trek-anomalies.md) scoped: **21 Trek anomalies** ([75](../decisions/75-trek-anomalies.md)), **6 dig sites** ([76](../decisions/76-trek-archaeology.md)) and **21 story events** ([77](../decisions/77-trek-story-events.md)), all 2026-08-09. All three are shipped; what remains in the phase has no scope written for it |
 | **Phase 5** — the clutter pass | **complete 2026-08-07** (pipeline work, taken out of order) |
@@ -28,13 +28,13 @@ ones.
 
 | | Build of 2026-08-27 |
 |---|---|
-| Files / size | **22,406 / 14.3 GiB** ([the per-tier split](../architecture/vendored-merge.md#size)) |
+| Files / size | **22,409 / 14.3 GiB** ([the per-tier split](../architecture/vendored-merge.md#size)) |
 | Re-cut at harvest / pruned | 1,661 / **888** |
 | Overwrites / additive skips | 947 / 220 |
-| `make vendor` | 69 s |
+| `make vendor` | 67 s |
 | `make validate` | **0 warnings, 0 errors** |
 | `make docs` | **0 warnings, 0 errors** |
-| `make gen-check` | **11 of 11 generators are fixpoints** |
+| `make gen-check` | **13 of 13 generators are fixpoints** |
 
 **The prune has fallen 935 → 909 → 888 across three passes with no edit to
 `vendor.yml`**, and that is the property worth knowing rather than the number:
@@ -55,8 +55,10 @@ flying a borrowed frame, which is what finally guards
 [decision 82](../decisions/82-hull-section-attach-points.md)'s 230 attach points;
 `check_selector_texture_paths` is new and found ten malformed portrait paths that
 two live runs had sampled three of; and **`make gen-check`** is a new target
-asking whether each of the eleven generators still reproduces `src/` exactly.
-All eleven do.
+asking whether each of the generators still reproduces `src/` exactly.
+All of them do — eleven then, thirteen since
+[decision 93](../decisions/93-static-galaxy-scenario.md) added
+`gen_empire_flags.py` and `gen_static_galaxy.py`.
 
 **Then three more, from working the three items the Vulcan run left marked
 *waiting on a content call*** ([84](../decisions/84-shipset-descs-and-home-system-names.md)) —
@@ -73,6 +75,31 @@ constants in `tools/validate.py` with the ratio written beside them
 ([rule 11](../validation/check-design.md#11-scope-is-a-calibration-result-not-a-convenience-filter)).
 
 ---
+
+## The static galaxy, shipped and unrun
+
+**2026-08-27.** The mechanism [decision 92](../decisions/92-create-country-initializers.md)
+identified is now in the tree, in four parts and one correction —
+[decision 93](../decisions/93-static-galaxy-scenario.md):
+
+| | |
+|---|---|
+| `src/map/setup_scenarios/stg_alpha_beta_quadrant.txt` | **95 systems, 21 empires**, every coordinate harvested from STNH's default galaxy map and scaled. No defined hyperlanes, as 21 of STNH's 22 maps do |
+| `src/common/solar_system_initializers/stg_home_systems.txt` | **36 `create_country` blocks**, one per home system, each guarded so the player's own empire is never duplicated |
+| `src/common/prescripted_flags/stg_empire_flags.txt` | **99 country flags** — the join the plan did not have. It is what gives the *player's* copy of an empire the flag the map weights on |
+| `check_static_galaxy` | five questions; vanilla floor **0**, STNH's own maps **4,265** |
+
+**None of it is evidence.** `make validate` was clean through all six empty
+galaxies and is clean now; the next live run is the whole test, and what to
+watch for in the order it would fail is at the end of decision 93. **Select
+*The Known Galaxy* in the galaxy-shape picker** — it is not the default, and
+Ariphaos's `medium` still is.
+
+**Two empires are deliberately absent from the map**: the Terran Empire, whose
+Sol and Earth collide with the Federation's, and an AI Federation, because Sol
+is Real Space's file and STG does not own it. Both are content calls in
+decision 93.
+
 
 ## The `error.log` baseline
 
@@ -182,7 +209,8 @@ cause**: three further galaxies at 100% drew zero
 2026-08-26 save proved the pool itself is correct
 ([90](../decisions/90-design-database-is-not-the-cause.md)). The mechanism a
 Trek galaxy actually needs is a static map plus `create_country` initializers —
-[92](../decisions/92-create-country-initializers.md),
+[92](../decisions/92-create-country-initializers.md) — and it shipped 2026-08-27,
+unrun: [93](../decisions/93-static-galaxy-scenario.md),
 [static-galaxy-plan.md](static-galaxy-plan.md). **Do not treat this paragraph as
 the live record**; [open questions](open-questions.md) is. **The Federation's
 `spawn_enabled = always` still did not fire** and is still its own open

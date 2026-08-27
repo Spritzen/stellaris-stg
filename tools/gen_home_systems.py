@@ -329,6 +329,7 @@ CAPITAL = '''\tplanet = {
 \t\tmodifiers = none
 \t\tinit_effect = { prevent_anomaly = yes }
 \t\tinit_effect = { generate_empire_home_planet = yes }
+@AI_EMPIRE@
 \t}'''
 
 
@@ -455,6 +456,7 @@ def load_empires() -> dict[str, dict]:
                                                                errors="replace"))).items():
             out[key] = {
                 "file": p.name,
+                "body": body,
                 "system_key": scalar(body, "system_name"),
                 "planet_key": scalar(body, "planet_name"),
                 "planet_class": scalar(body, "planet_class"),
@@ -615,7 +617,11 @@ def check_references(text: str) -> list[str]:
         if have is None:
             continue
         want, stack = 0, []
-        for t in re.finditer(r'([a-z_][a-z0-9_]*)\s*=\s*\{|(\})|class\s*=\s*"?star"?\b', body):
+        # Uppercase keys push too. `NOT = {` is a block like any other, and a
+        # walker that popped on its `}` without pushing on its `{` unbalanced
+        # the stack from the first AI-empire guard onwards — see
+        # `ai_empire_block`.
+        for t in re.finditer(r'([A-Za-z_][A-Za-z0-9_]*)\s*=\s*\{|(\})|class\s*=\s*"?star"?\b', body):
             if t.group(1) is not None:
                 stack.append(t.group(1))
             elif t.group(2) is not None:
@@ -647,6 +653,147 @@ def convert_body(body: str, indent: str) -> list[str]:
         else:
             lines.append(f"{indent}{key} = {val}")
     return lines
+
+
+def scalars(body: str, key: str) -> list[str]:
+    """Every top-level `key = value` in `body`, in order — `ethic` and `trait`
+    are repeated keys and `scalar` only ever returns the first."""
+    flat = body
+    for _ in range(8):
+        nxt = re.sub(r"\{[^{}]*\}", " ", flat)
+        if nxt == flat:
+            break
+        flat = nxt
+    return re.findall(rf'\b{key}\s*=\s*"([^"]*)"', flat)
+
+
+def ai_empire_block(stg_key: str, emp: dict, indent: str) -> str:
+    """The `init_effect` that creates this empire's AI copy on its own capital.
+
+    THIS IS THE MECHANISM A TREK GALAXY ACTUALLY RUNS ON, and it is neither the
+    prescripted lottery nor anything to do with `CUSTOM_EMPIRE_SPAWN_CHANCE`.
+    `prescripted_countries/` is the roster the PLAYER picks from; an AI Trek
+    empire is *created* by its home system's initializer, which a static galaxy
+    scenario puts on the map. Vanilla does exactly this for the United Nations
+    of Earth in `com_sol_system`, and STNH does it 43 times.
+    .docs/decisions/92-create-country-initializers.md.
+
+    THE GUARD IS THE WHOLE DIFFERENCE BETWEEN ONE KLINGON EMPIRE AND TWO. When
+    the player picks this empire, their country already carries the design key
+    as a country flag — `src/common/prescripted_flags/stg_empire_flags.txt`,
+    vanilla's `empire_human_2` pattern — so `any_country = { has_country_flag =
+    <key> }` is already true and nothing is created. When nobody is playing it,
+    nothing carries the flag and the AI copy is made here.
+
+    Playable countries exist before the initializers run, which is what makes
+    that guard answerable: vanilla's own `com_sol_system` decides its
+    `usage_odds` by asking `any_playable_country = { … has_country_flag =
+    human_2 … }` during galaxy generation.
+
+    THE BODY IS VANILLA'S RECIPE, not STNH's. `create_country` then
+    `create_colony`, deposits, blockers, start buildings and pops, leaders and
+    `game_start.9` / `game_start.33` — the exact sequence `com_sol_system` uses
+    for npc_UNoE, whose comment ("needs delay for system ownership to settle")
+    is also the reason no `create_starbase` appears here: `create_colony`
+    establishes the system.
+
+    ONE LINE IS BORROWED FROM STNH RATHER THAN DERIVED FROM VANILLA and is
+    labelled here because of it: `ideal_planet_class` inside `traits`. Vanilla
+    gives a created species its habitability through a `trait_pc_*_preference`
+    trait and STG's prescripted empires carry none — they declare
+    `planet_class` instead, which `create_species` has no field for. STNH
+    writes `ideal_planet_class` in 42 initializer files on this same 4.4.6, so
+    the AI copy's preference matches its own homeworld the way the player's
+    copy does. If a live run shows AI empires with the wrong habitability, this
+    is the line that did not take.
+    """
+    body = emp["body"]
+    sp = (sub_blocks(body, "species") or [""])[0]
+    flag = (sub_blocks(body, "empire_flag") or [""])[0]
+    icon = (sub_blocks(flag, "icon") or [""])[0]
+    bg = (sub_blocks(flag, "background") or [""])[0]
+    colors = (sub_blocks(flag, "colors") or [""])[0]
+
+    civics = re.findall(r'"([^"]+)"', (sub_blocks(body, "civics") or [""])[0])
+    ethics = scalars(body, "ethic")
+    traits = scalars(sp, "trait")
+    species_class = scalar(sp, "class") or ""
+    tgt = stg_key.removeprefix("stg_")
+
+    def ln(depth: int, text: str) -> str:
+        return f"{indent}{'	' * depth}{text}"
+
+    out = [ln(0, "init_effect = {"),
+           ln(1, f"# The AI copy of {stg_key}, created only when no country is"),
+           ln(1, "# already playing it. See ai_empire_block in the generator."),
+           ln(1, "if = {"),
+           ln(2, "limit = { NOT = { any_country = { has_country_flag = "
+                 f"{stg_key} }} }} }}"),
+           ln(2, "create_species = {"),
+           ln(3, f'name = "{scalar(sp, "name")}"'),
+           ln(3, f'plural = "{scalar(sp, "plural")}"'),
+           ln(3, f'adjective = "{scalar(sp, "adjective")}"'),
+           # Bare, as vanilla writes `class = EXD` and `class = MOL`. Quoting is
+           # cosmetic on a species class -- but `check_references` reads every
+           # quoted `class =` in this file as a PLANET class, so a quoted one
+           # here would be reported as an undeclared planet class.
+           ln(3, f"class = {species_class}"),
+           ln(3, f'portrait = "{scalar(sp, "portrait")}"'),
+           ln(3, "homeworld = THIS"),
+           ln(3, f'namelist = "{scalar(sp, "name_list")}"'),
+           ln(3, "traits = {")]
+    out += [ln(4, f'trait = "{t}"') for t in traits]
+    out += [ln(4, f'ideal_planet_class = "{emp["planet_class"]}"'),
+            ln(3, "}"),
+            ln(3, f"effect = {{ save_event_target_as = {tgt}_species }}"),
+            ln(2, "}"),
+            ln(2, "create_country = {"),
+            ln(3, f'name = "{scalar(body, "name")}"'),
+            ln(3, f'adjective = "{scalar(body, "adjective")}"'),
+            ln(3, "type = default"),
+            ln(3, f'authority = "{scalar(body, "authority")}"'),
+            ln(3, "civics = { "
+                  + " ".join(f'civic = "{c}"' for c in civics) + " }"),
+            ln(3, "ethos = { "
+                  + " ".join(f'ethic = "{e}"' for e in ethics) + " }"),
+            ln(3, f'origin = "{scalar(body, "origin")}"'),
+            ln(3, f"species = event_target:{tgt}_species"),
+            ln(3, f'name_list = "{scalar(sp, "name_list")}"'),
+            ln(3, f'ship_prefix = "{scalar(body, "ship_prefix")}"'),
+            ln(3, "flag = {"),
+            ln(4, f'icon = {{ category = "{scalar(icon, "category")}" '
+                  f'file = "{scalar(icon, "file")}" }}'),
+            ln(4, f'background = {{ category = "{scalar(bg, "category")}" '
+                  f'file = "{scalar(bg, "file")}" }}'),
+            ln(4, "colors = { "
+                  + " ".join(f'"{c}"' for c in re.findall(r'"([^"]+)"', colors))
+                  + " }"),
+            ln(3, "}"),
+            ln(3, "effect = {"),
+            ln(4, f"save_event_target_as = {tgt}_country"),
+            ln(4, f"set_graphical_culture = {scalar(body, 'graphical_culture')}"),
+            ln(4, "set_city_graphical_culture = "
+                  f"{scalar(body, 'city_graphical_culture')}"),
+            ln(4, f"set_country_flag = {stg_key}"),
+            ln(3, "}"),
+            ln(2, "}"),
+            ln(2, f"create_colony = {{ owner = event_target:{tgt}_country }}"),
+            ln(2, "generate_start_deposits_and_blockers = yes"),
+            ln(2, "clear_blockers = yes"),
+            ln(2, "colony = {"),
+            ln(3, "generate_start_buildings_and_districts = yes"),
+            ln(3, "generate_start_pops = yes"),
+            ln(2, "}"),
+            ln(2, f"event_target:{tgt}_country = {{"),
+            ln(3, "create_starting_leaders = yes"),
+            ln(3, "country_event = { id = game_start.9 }"),
+            # The delay is vanilla's, with vanilla's reason: system ownership
+            # has to settle before game_start.33 reads it.
+            ln(3, "country_event = { id = game_start.33 days = 1 }"),
+            ln(2, "}"),
+            ln(1, "}"),
+            ln(0, "}")]
+    return "\n".join(out)
 
 
 def convert(stg_key: str, stnh_key: str, body: str, emp: dict,
@@ -700,6 +847,7 @@ def convert(stg_key: str, stnh_key: str, body: str, emp: dict,
             # See .docs/decisions/26-home-system-classes.md.
             out.append(f"{indent}\tinit_effect = "
                        f"{{ generate_empire_home_planet = yes }}")
+            out.append(ai_empire_block(stg_key, emp, indent + "\t"))
         for mn in sub_blocks(block, "moon"):
             emit(mn, "moon", indent + "\t")
         out.append(f"{indent}}}")
@@ -775,7 +923,9 @@ def main() -> int:
         if stg_key in AUTHORED:
             key = f"stg_{stg_key.removeprefix('stg_')}_home"
             cap = (CAPITAL.replace("@PLANET@", emp["planet_key"] or "")
-                          .replace("@CLASS@", emp["planet_class"] or "pc_continental"))
+                          .replace("@CLASS@", emp["planet_class"] or "pc_continental")
+                          .replace("@AI_EMPIRE@",
+                                   ai_empire_block(stg_key, emp, "\t\t")))
             body = AUTHORED[stg_key].replace("\t@CAPITAL@", cap)
             chunks.append(
                 f"# {stg_key} — authored: STNH's own home system is procedural.\n"
@@ -823,7 +973,16 @@ def main() -> int:
 # See .docs/decisions/25-real-home-systems.md.
 #
 # The Federation is not here: it uses vanilla's own sol_system_initializer,
-# which Real Space rescales, and which is already the real solar system.
+# which Real Space rescales, and which is already the real solar system. That
+# also means the Federation has no AI copy — the block below is what creates one
+# and there is nowhere to put it (.docs/decisions/93-static-galaxy-scenario.md).
+#
+# EACH CAPITAL CARRIES A GUARDED create_country. It creates this empire's AI
+# copy, and only when no country already carries the empire's own design key as
+# a country flag — which the player's copy does, from
+# common/prescripted_flags/. That is the mechanism a Trek galaxy runs on; the
+# prescripted pool is the player's roster and places nobody
+# (.docs/decisions/92-create-country-initializers.md).
 #
 # {len(chunks)} systems generated, {len(unplaced)} empires left on generated systems.
 

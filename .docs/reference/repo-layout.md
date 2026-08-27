@@ -42,7 +42,14 @@ tools/
   gen_shipsets.py       one-shot: graphical cultures + vanilla-shaped ship entities
                         (decision 17, narrowed by 18 to the five cultures with no
                         Walshicus set, plus the generic_* minor-power donors)
-  gen_home_systems.py   one-shot: the 36 home systems (decision 25)
+  gen_home_systems.py   one-shot: the 36 home systems (decision 25), each with the
+                        guarded `create_country` that makes the empire's AI copy
+                        (decision 93)
+  gen_empire_flags.py   the 99 common/prescripted_flags/ entries — the country
+                        flag a static map weights on and an initializer guards
+                        on (decision 93)
+  gen_static_galaxy.py  the static galaxy scenario: 95 systems, 21 empires, every
+                        coordinate harvested from STNH's own map (decision 93)
   gen_borg_vo.py        one-shot: src/sound/sth_soundgroups.asset
   gen_room_selector.py  the one room_selector: vanilla + STNH's 47 Trek rooms
                         + Diverse Rooms' designer list (decision 48)

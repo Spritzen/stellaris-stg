@@ -116,6 +116,32 @@ and **two of the five printed no reason at all**
 All three are read out of vanilla's own databases by
 `check_prescripted_empires`, not hardcoded, so they follow vanilla forward.
 
+## Every empire needs a `flag = empire_<its own key>`, and it is not heraldry
+
+`empire_flag = { icon … }` is the coat of arms. **`flag = empire_<key>` is
+something else entirely**: it names an entry in `common/prescripted_flags/`,
+and that entry's `flags` are set on the country as **country flags** the moment
+it is created — before a single system is generated.
+
+That is the join a static galaxy scenario runs on. The map pins an empire to its
+home system with `spawn_weight = { base = 0 modifier = { add = 100000
+has_country_flag = <key> } }`, and that home system's initializer creates the AI
+copy only when nothing already carries the flag. **Without this line the
+player's own copy carries no flag, so picking that empire puts a second one on
+its homeworld.** Vanilla's `humans2` is the model: `flag = empire_human_2`,
+declared as `empire_human_2 = { flags = { human_2 custom_start_screen } }`.
+
+In STG **the country flag is the design key** — `stg_klingon_empire` is the
+block key, the country flag, the string the map tests and the string the
+initializer sets. So a new empire needs two things and
+`check_static_galaxy` fails without either:
+
+1. `flag = empire_<key>` in the empire's own block, and
+2. a re-run of `python3 tools/gen_empire_flags.py`, which writes
+   `src/common/prescripted_flags/stg_empire_flags.txt` off the roster.
+
+[Decision 93](../decisions/93-static-galaxy-scenario.md).
+
 ## A civic can grant a species trait the species block must also carry
 
 The engine reports this **once per trait name**, so six broken empires read as

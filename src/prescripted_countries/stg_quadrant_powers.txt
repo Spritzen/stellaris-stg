@@ -55,6 +55,7 @@ stg_ferengi_alliance = {
 	ethic = "ethic_fanatic_materialist"
 	ethic = "ethic_authoritarian"
 
+	flag = empire_stg_ferengi_alliance
 	initializer = "stg_ferengi_alliance_home"
 	planet_name = "STG_planet_name_ferengi"
 	planet_class = "pc_tropical"
@@ -123,6 +124,7 @@ stg_bajoran_republic = {
 	ethic = "ethic_fanatic_spiritualist"
 	ethic = "ethic_pacifist"
 
+	flag = empire_stg_bajoran_republic
 	initializer = "stg_bajoran_republic_home"
 	planet_name = "STG_planet_name_bajoran"
 	planet_class = "pc_continental"
@@ -193,6 +195,7 @@ stg_trill_symbiosis = {
 	ethic = "ethic_fanatic_materialist"
 	ethic = "ethic_egalitarian"
 
+	flag = empire_stg_trill_symbiosis
 	initializer = "stg_trill_symbiosis_home"
 	planet_name = "STG_planet_name_trill"
 	planet_class = "pc_continental"
@@ -267,6 +270,7 @@ stg_andorian_empire = {
 	ethic = "ethic_fanatic_militarist"
 	ethic = "ethic_egalitarian"
 
+	flag = empire_stg_andorian_empire
 	initializer = "stg_andorian_empire_home"
 	planet_name = "STG_planet_name_andorian"
 	planet_class = "pc_arctic"
@@ -335,6 +339,7 @@ stg_bolian_union = {
 	ethic = "ethic_fanatic_egalitarian"
 	ethic = "ethic_pacifist"
 
+	flag = empire_stg_bolian_union
 	initializer = "stg_bolian_union_home"
 	planet_name = "STG_planet_name_bolian"
 	planet_class = "pc_ocean"
@@ -405,6 +410,7 @@ stg_breen_confederacy = {
 	ethic = "ethic_fanatic_xenophobe"
 	ethic = "ethic_militarist"
 
+	flag = empire_stg_breen_confederacy
 	initializer = "stg_breen_confederacy_home"
 	planet_name = "STG_planet_name_breen"
 	planet_class = "pc_arctic"
@@ -477,6 +483,7 @@ stg_tholian_assembly = {
 	ethic = "ethic_fanatic_xenophobe"
 	ethic = "ethic_pacifist"
 
+	flag = empire_stg_tholian_assembly
 	initializer = "stg_tholian_assembly_home"
 	planet_name = "STG_planet_name_tholian"
 	planet_class = "pc_desert"
@@ -547,6 +554,7 @@ stg_dominion = {
 	ethic = "ethic_fanatic_authoritarian"
 	ethic = "ethic_spiritualist"
 
+	flag = empire_stg_dominion
 	initializer = "stg_dominion_home"
 	planet_name = "STG_planet_name_dominion"
 	planet_class = "pc_ocean"
@@ -644,6 +652,7 @@ stg_borg_collective = {
 	government = gov_machine_assimilator
 	origin = "origin_default"
 
+	flag = empire_stg_borg_collective
 	initializer = "stg_borg_collective_home"
 	planet_name = "STG_planet_name_borg"
 	planet_class = "pc_continental"

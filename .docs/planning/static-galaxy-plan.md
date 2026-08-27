@@ -5,7 +5,24 @@
 > scenarios the only ones the player can pick.
 > **Open when** — working on why the galaxy is not Trek, or before touching
 > `map/`, `prescripted_countries/` or `CUSTOM_EMPIRE_SPAWN_CHANCE` again.
-> **Then** — [Decision 92](../decisions/92-create-country-initializers.md) · [Decision 91](../decisions/91-static-galaxy-is-the-mechanism.md) · [Open questions](open-questions.md) · [Status](status.md)
+> **Then** — [Decision 93](../decisions/93-static-galaxy-scenario.md) · [Decision 92](../decisions/92-create-country-initializers.md) · [Decision 91](../decisions/91-static-galaxy-is-the-mechanism.md) · [Open questions](open-questions.md) · [Status](status.md)
+
+> ## Where this plan stands, 2026-08-27
+>
+> **Pieces 1, 2 and 4 are built and the binding question is settled** —
+> [decision 93](../decisions/93-static-galaxy-scenario.md). `make validate` is
+> clean and `make gen-check` is 13 of 13 fixpoints, **and neither of those is
+> evidence about the galaxy**: both were clean throughout all six empty ones.
+> **The next live run is the whole test.**
+>
+> | | |
+> |---|---|
+> | the binding | **`spawn_weight` + country flag.** STNH uses `spawn_design` zero times in 22 maps; it routes back through the draw that already failed six times |
+> | the map | `src/map/setup_scenarios/stg_alpha_beta_quadrant.txt` — 95 systems, 21 empires, every coordinate harvested from STNH's default galaxy map |
+> | the AI copies | 36 `create_country` blocks, generated into `stg_home_systems.txt` |
+> | **the piece this plan did not have** | the **country flag join**. `common/prescripted_flags/` is what gives the *player's* copy of an empire the flag the map weights on and the initializer guards on. STG shipped none. §2 below said the flag "exists because the initializer set it" — that is true only of the AI copy |
+> | the check | `check_static_galaxy`, five questions, vanilla floor 0 |
+> | still open | **piece 3, the picker lock** (deliberately — see the order of work), **an AI Federation** (Sol is Real Space's file), and the **Terran Empire**, whose Sol collides with the Federation's |
 
 Six galaxies have contained no Trek AI empire. Three fixes went into the
 prescripted-empire pool and none moved the number, and the 2026-08-26 save
@@ -53,13 +70,18 @@ add_hyperlane = { from = "372" to = "373" }
 
 **Every STNH map sets `random_hyperlanes = no`** — all 22 of them — but only
 **one of the 22 defines a single lane**: `09 botf`, with 468 systems and **892**
-`add_hyperlane` lines. The other 21, every canon map among them, pair
-`random_hyperlanes = no` with `num_hyperlanes = { min = 0 max = 0 }` and **zero**
-`add_hyperlane` (measured 2026-08-27; re-measure with
-`grep -c add_hyperlane <map>`). **So the lane graph is not the cost driver — the
-systems are.** What 21 maps do instead is worth settling before piece 1 starts,
-because "no random lanes and no defined lanes" is a combination this project has
-not yet seen run.
+`add_hyperlane` lines. The other 21, every canon map among them, carry **zero**
+`add_hyperlane` (re-measure with `grep -c add_hyperlane <map>`). **So the lane
+graph is not the cost driver — the systems are.**
+
+> **What those 21 pair it with was written down wrong here and is corrected in
+> [decision 93](../decisions/93-static-galaxy-scenario.md).** They do *not* all
+> set `num_hyperlanes = { min = 0 max = 0 }`. Re-measured 2026-08-27: **10 do**
+> (01, 02, 10, 12, 17, 18, 19, 20, 22, 23), **six** set `{ min = 5 max = 5 }`,
+> **four** carry no `num_hyperlanes` line at all, and `04 tiny_alpha_beta` sets
+> `{ min = 0.5 max = 1.0 }`. STG's scenario takes 04's, as the live range rather
+> than the locked zero. **"No defined lanes" is still a combination this project
+> has not seen run, and it is the largest unknown in what shipped.**
 
 | STNH map | systems | weighted | note |
 |---|---|---|---|
@@ -72,10 +94,14 @@ not yet seen run.
 `spawn_weight = { base = 0 … }` means **no empire lands in that system except the
 one the modifier matches** — that is what pins Qo'noS to the Klingons. Vanilla
 documents a second form, `spawn_design = <design>`, which names a prescripted
-design outright and *"will ignore spawn_weight"*; it is the simpler binding where
-it works, and STG's design keys (`stg_klingon_empire`) are ready-made for it.
-**Which of the two STG uses is the first thing to settle**, because piece 2
-depends on it.
+design outright and *"will ignore spawn_weight"*.
+
+> **Settled 2026-08-27: `spawn_weight` + country flag**
+> ([93](../decisions/93-static-galaxy-scenario.md)). STNH uses `spawn_design`
+> **zero** times across all 22 maps, and it is the form that needs the design
+> database to hand out a prescripted design — the draw six galaxies have
+> already shown does not fill a galaxy. `spawn_weight` needs only a country
+> flag, and the initializer that creates the empire sets that flag itself.
 
 ## 2. The initializers do the real work
 
@@ -95,6 +121,16 @@ create_country = {
 
 `set_country_flag = klingon_empire` is the other half of the map's
 `spawn_weight` — the flag exists because the initializer set it.
+
+> **That is only true of the AI copy, and the missing half was the whole risk.**
+> When the *player* picks the Klingons there is no initializer to set the flag,
+> so the guard could not tell them from nobody playing the empire and would
+> create a second Klingon Empire on Qo'noS. **`common/prescripted_flags/` is
+> where the player's copy gets it** — vanilla's `humans2` carries
+> `flag = empire_human_2`, whose entry sets `human_2` at country creation, and
+> `com_sol_system` reads exactly that during galaxy generation. STG shipped no
+> such file and no `flag =` line on any of its 99 empires until
+> [decision 93](../decisions/93-static-galaxy-scenario.md).
 
 **STG already owns most of the inputs.** Each of the 36 home-system initializers
 ([25](../decisions/25-real-home-systems.md)) has a matching prescripted empire
@@ -163,17 +199,26 @@ STNH's 22 in `.source/`
 
 ## Order of work
 
-1. **Settle `spawn_weight` + country flag versus `spawn_design`.** One question,
-   and pieces 1 and 2 both hang off it.
-2. **One scenario, small, end to end** — ~100 systems, the 22 majors, quadrant
-   and frontier powers on their real home systems. Follow the 21 maps that define
-   no lanes before hand-cutting any; the one live run proves the mechanism, and
-   whether lanes are needed at all is part of what it proves.
-3. **The generator** for the `create_country` initializers, off
-   `prescripted_countries/`.
-4. **The check**, calibrated against vanilla and STNH.
-5. **Scale to a full map**, then lock the picker (piece 3) once at least one STG
-   scenario is playable — *not before, or there is nothing to select*.
+1. ~~**Settle `spawn_weight` + country flag versus `spawn_design`.**~~
+   **Done 2026-08-27** — `spawn_weight`, [93](../decisions/93-static-galaxy-scenario.md).
+2. ~~**One scenario, small, end to end.**~~ **Done** — 95 systems, 21 empires,
+   no defined lanes, coordinates harvested from STNH's default galaxy map.
+3. ~~**The generator** for the `create_country` initializers.~~ **Done** —
+   `ai_empire_block` in `tools/gen_home_systems.py`, plus
+   `tools/gen_empire_flags.py` for the country-flag half nobody had noticed was
+   needed.
+4. ~~**The check**, calibrated against vanilla and STNH.~~ **Done** —
+   `check_static_galaxy`, floor 0 against vanilla and Ariphaos, 4,265 findings
+   against STNH's own maps.
+5. **A live run.** Everything above is structure, and structure has validated
+   clean through six empty galaxies. What to look for, in the order it would
+   fail, is at the end of [decision 93](../decisions/93-static-galaxy-scenario.md).
+6. **Then, in this order:** the AI Federation (Sol is Real Space's file — an
+   `src/` override or a `vendor.yml` patch, and it is a content call);
+   the Terran Empire and its Sol collision, which wants a mirror scenario;
+   **scale to a full map**, adding the 15 minors that already have home systems;
+   nebulae, which STNH hand-places by canon name; and only then **lock the
+   picker** (piece 3) — *not before, or there is nothing to select*.
 
 ## What this closes, and what it does not
 

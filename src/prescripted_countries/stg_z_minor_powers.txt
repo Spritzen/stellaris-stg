@@ -61,6 +61,7 @@ stg_minor_acamarian_sovereignty = {
 	ethic = "ethic_militarist"
 	ethic = "ethic_spiritualist"
 
+	flag = empire_stg_minor_acamarian_sovereignty
 	initializer = "stg_minor_acamarian_sovereignty_home"
 	planet_name = "STG_planet_name_minor_acamarian_sovereignty"
 	planet_class = "pc_arctic"
@@ -127,6 +128,7 @@ stg_minor_antedian_shoals = {
 	ethic = "ethic_pacifist"
 	ethic = "ethic_materialist"
 
+	flag = empire_stg_minor_antedian_shoals
 	planet_name = "STG_planet_name_minor_antedian_shoals"
 	planet_class = "pc_continental"
 	system_name = "STG_system_name_minor_antedian_shoals"
@@ -192,6 +194,7 @@ stg_minor_antican_packs = {
 	ethic = "ethic_militarist"
 	ethic = "ethic_materialist"
 
+	flag = empire_stg_minor_antican_packs
 	planet_name = "STG_planet_name_minor_antican_packs"
 	planet_class = "pc_arctic"
 	system_name = "STG_system_name_minor_antican_packs"
@@ -256,6 +259,7 @@ stg_minor_argrathian_commonwealth = {
 	ethic = "ethic_fanatic_egalitarian"
 	ethic = "ethic_militarist"
 
+	flag = empire_stg_minor_argrathian_commonwealth
 	planet_name = "STG_planet_name_minor_argrathian_commonwealth"
 	planet_class = "pc_arctic"
 	system_name = "STG_system_name_minor_argrathian_commonwealth"
@@ -319,6 +323,7 @@ stg_minor_benzarian_commonwealth = {
 	ethic = "ethic_pacifist"
 	ethic = "ethic_fanatic_materialist"
 
+	flag = empire_stg_minor_benzarian_commonwealth
 	planet_name = "STG_planet_name_minor_benzarian_commonwealth"
 	planet_class = "pc_continental"
 	system_name = "STG_system_name_minor_benzarian_commonwealth"
@@ -385,6 +390,7 @@ stg_minor_betazoid_houses = {
 	ethic = "ethic_pacifist"
 	ethic = "ethic_materialist"
 
+	flag = empire_stg_minor_betazoid_houses
 	initializer = "stg_minor_betazoid_houses_home"
 	planet_name = "STG_planet_name_minor_betazoid_houses"
 	planet_class = "pc_continental"
@@ -450,6 +456,7 @@ stg_minor_brunali_empire = {
 	ethic = "ethic_pacifist"
 	ethic = "ethic_spiritualist"
 
+	flag = empire_stg_minor_brunali_empire
 	planet_name = "STG_planet_name_minor_brunali_empire"
 	planet_class = "pc_continental"
 	system_name = "STG_system_name_minor_brunali_empire"
@@ -514,6 +521,7 @@ stg_minor_bynar_domains = {
 	ethic = "ethic_pacifist"
 	ethic = "ethic_materialist"
 
+	flag = empire_stg_minor_bynar_domains
 	planet_name = "STG_planet_name_minor_bynar_domains"
 	planet_class = "pc_arctic"
 	system_name = "STG_system_name_minor_bynar_domains"
@@ -578,6 +586,7 @@ stg_minor_chelarian_sovereignty = {
 	ethic = "ethic_egalitarian"
 	ethic = "ethic_fanatic_xenophile"
 
+	flag = empire_stg_minor_chelarian_sovereignty
 	planet_name = "STG_planet_name_minor_chelarian_sovereignty"
 	planet_class = "pc_ocean"
 	system_name = "STG_system_name_minor_chelarian_sovereignty"
@@ -644,6 +653,7 @@ stg_minor_cheronite_nation = {
 	ethic = "ethic_xenophobe"
 	ethic = "ethic_spiritualist"
 
+	flag = empire_stg_minor_cheronite_nation
 	initializer = "stg_minor_cheronite_nation_home"
 	planet_name = "STG_planet_name_minor_cheronite_nation"
 	planet_class = "pc_arctic"
@@ -710,6 +720,7 @@ stg_minor_confederation_earth = {
 	ethic = "ethic_xenophobe"
 	ethic = "ethic_spiritualist"
 
+	flag = empire_stg_minor_confederation_earth
 	initializer = "stg_minor_confederation_earth_home"
 	planet_name = "STG_planet_name_minor_confederation_earth"
 	planet_class = "pc_continental"
@@ -775,6 +786,7 @@ stg_minor_cravic_imperative = {
 	ethic = "ethic_fanatic_egalitarian"
 	ethic = "ethic_materialist"
 
+	flag = empire_stg_minor_cravic_imperative
 	planet_name = "STG_planet_name_minor_cravic_imperative"
 	planet_class = "pc_continental"
 	system_name = "STG_system_name_minor_cravic_imperative"
@@ -840,6 +852,7 @@ stg_minor_deltan_union = {
 	ethic = "ethic_pacifist"
 	ethic = "ethic_materialist"
 
+	flag = empire_stg_minor_deltan_union
 	planet_name = "STG_planet_name_minor_deltan_union"
 	planet_class = "pc_continental"
 	system_name = "STG_system_name_minor_deltan_union"
@@ -906,6 +919,7 @@ stg_minor_denobulan_unity = {
 	ethic = "ethic_pacifist"
 	ethic = "ethic_materialist"
 
+	flag = empire_stg_minor_denobulan_unity
 	initializer = "stg_minor_denobulan_unity_home"
 	planet_name = "STG_planet_name_minor_denobulan_unity"
 	planet_class = "pc_continental"
@@ -977,6 +991,7 @@ stg_minor_devore_imperium = {
 	ethic = "ethic_xenophobe"
 	ethic = "ethic_spiritualist"
 
+	flag = empire_stg_minor_devore_imperium
 	planet_name = "STG_planet_name_minor_devore_imperium"
 	planet_class = "pc_arctic"
 	system_name = "STG_system_name_minor_devore_imperium"
@@ -1042,6 +1057,7 @@ stg_minor_dosi_confederacy = {
 	ethic = "ethic_pacifist"
 	ethic = "ethic_materialist"
 
+	flag = empire_stg_minor_dosi_confederacy
 	planet_name = "STG_planet_name_minor_dosi_confederacy"
 	planet_class = "pc_desert"
 	system_name = "STG_system_name_minor_dosi_confederacy"
@@ -1108,6 +1124,7 @@ stg_minor_elaurian_auditorium = {
 	ethic = "ethic_pacifist"
 	ethic = "ethic_materialist"
 
+	flag = empire_stg_minor_elaurian_auditorium
 	planet_name = "STG_planet_name_minor_elaurian_auditorium"
 	planet_class = "pc_continental"
 	system_name = "STG_system_name_minor_elaurian_auditorium"
@@ -1174,6 +1191,7 @@ stg_minor_fen_domar_states = {
 	ethic = "ethic_militarist"
 	ethic = "ethic_spiritualist"
 
+	flag = empire_stg_minor_fen_domar_states
 	planet_name = "STG_planet_name_minor_fen_domar_states"
 	planet_class = "pc_arctic"
 	system_name = "STG_system_name_minor_fen_domar_states"
@@ -1244,6 +1262,7 @@ stg_minor_flaxian_hegemony = {
 	ethic = "ethic_xenophobe"
 	ethic = "ethic_spiritualist"
 
+	flag = empire_stg_minor_flaxian_hegemony
 	planet_name = "STG_planet_name_minor_flaxian_hegemony"
 	planet_class = "pc_desert"
 	system_name = "STG_system_name_minor_flaxian_hegemony"
@@ -1309,6 +1328,7 @@ stg_minor_garidian_republic = {
 	ethic = "ethic_militarist"
 	ethic = "ethic_spiritualist"
 
+	flag = empire_stg_minor_garidian_republic
 	initializer = "stg_minor_garidian_republic_home"
 	planet_name = "STG_planet_name_minor_garidian_republic"
 	planet_class = "pc_arctic"
@@ -1374,6 +1394,7 @@ stg_minor_gorn_empire = {
 	ethic = "ethic_fanatic_egalitarian"
 	ethic = "ethic_militarist"
 
+	flag = empire_stg_minor_gorn_empire
 	planet_name = "STG_planet_name_minor_gorn_empire"
 	planet_class = "pc_desert"
 	system_name = "STG_system_name_minor_gorn_empire"
@@ -1439,6 +1460,7 @@ stg_minor_haakonian_order = {
 	ethic = "ethic_militarist"
 	ethic = "ethic_materialist"
 
+	flag = empire_stg_minor_haakonian_order
 	initializer = "stg_minor_haakonian_order_home"
 	planet_name = "STG_planet_name_minor_haakonian_order"
 	planet_class = "pc_arctic"
@@ -1510,6 +1532,7 @@ stg_minor_hazari_tuatara = {
 	ethic = "ethic_xenophobe"
 	ethic = "ethic_spiritualist"
 
+	flag = empire_stg_minor_hazari_tuatara
 	planet_name = "STG_planet_name_minor_hazari_tuatara"
 	planet_class = "pc_desert"
 	system_name = "STG_system_name_minor_hazari_tuatara"
@@ -1574,6 +1597,7 @@ stg_minor_hirogen_hunters = {
 	ethic = "ethic_authoritarian"
 	ethic = "ethic_fanatic_militarist"
 
+	flag = empire_stg_minor_hirogen_hunters
 	initializer = "stg_minor_hirogen_hunters_home"
 	planet_name = "STG_planet_name_minor_hirogen_hunters"
 	planet_class = "pc_continental"
@@ -1639,6 +1663,7 @@ stg_minor_hur_q_stagnancy = {
 	ethic = "ethic_fanatic_egalitarian"
 	ethic = "ethic_militarist"
 
+	flag = empire_stg_minor_hur_q_stagnancy
 	initializer = "stg_minor_hur_q_stagnancy_home"
 	planet_name = "STG_planet_name_minor_hur_q_stagnancy"
 	planet_class = "pc_desert"
@@ -1706,6 +1731,7 @@ stg_minor_husnock_ascendency = {
 	ethic = "ethic_xenophobe"
 	ethic = "ethic_spiritualist"
 
+	flag = empire_stg_minor_husnock_ascendency
 	planet_name = "STG_planet_name_minor_husnock_ascendency"
 	planet_class = "pc_continental"
 	system_name = "STG_system_name_minor_husnock_ascendency"
@@ -1771,6 +1797,7 @@ stg_minor_hydran_kingdom = {
 	ethic = "ethic_militarist"
 	ethic = "ethic_spiritualist"
 
+	flag = empire_stg_minor_hydran_kingdom
 	planet_name = "STG_planet_name_minor_hydran_kingdom"
 	planet_class = "pc_ocean"
 	system_name = "STG_system_name_minor_hydran_kingdom"
@@ -1837,6 +1864,7 @@ stg_minor_karemman_foundation = {
 	ethic = "ethic_pacifist"
 	ethic = "ethic_materialist"
 
+	flag = empire_stg_minor_karemman_foundation
 	planet_name = "STG_planet_name_minor_karemman_foundation"
 	planet_class = "pc_desert"
 	system_name = "STG_system_name_minor_karemman_foundation"
@@ -1902,6 +1930,7 @@ stg_minor_kazon_sects = {
 	ethic = "ethic_militarist"
 	ethic = "ethic_spiritualist"
 
+	flag = empire_stg_minor_kazon_sects
 	planet_name = "STG_planet_name_minor_kazon_sects"
 	planet_class = "pc_desert"
 	system_name = "STG_system_name_minor_kazon_sects"
@@ -1968,6 +1997,7 @@ stg_minor_kessok_heliolatry = {
 	ethic = "ethic_xenophobe"
 	ethic = "ethic_spiritualist"
 
+	flag = empire_stg_minor_kessok_heliolatry
 	planet_name = "STG_planet_name_minor_kessok_heliolatry"
 	planet_class = "pc_desert"
 	system_name = "STG_system_name_minor_kessok_heliolatry"
@@ -2033,6 +2063,7 @@ stg_minor_kinshaya_holy_order = {
 	ethic = "ethic_xenophobe"
 	ethic = "ethic_spiritualist"
 
+	flag = empire_stg_minor_kinshaya_holy_order
 	initializer = "stg_minor_kinshaya_holy_order_home"
 	planet_name = "STG_planet_name_minor_kinshaya_holy_order"
 	planet_class = "pc_arctic"
@@ -2100,6 +2131,7 @@ stg_minor_kobali_republic = {
 	ethic = "ethic_pacifist"
 	ethic = "ethic_materialist"
 
+	flag = empire_stg_minor_kobali_republic
 	initializer = "stg_minor_kobali_republic_home"
 	planet_name = "STG_planet_name_minor_kobali_republic"
 	planet_class = "pc_continental"
@@ -2165,6 +2197,7 @@ stg_minor_kraylor_republic = {
 	ethic = "ethic_pacifist"
 	ethic = "ethic_materialist"
 
+	flag = empire_stg_minor_kraylor_republic
 	initializer = "stg_minor_kraylor_republic_home"
 	planet_name = "STG_planet_name_minor_kraylor_republic"
 	planet_class = "pc_continental"
@@ -2231,6 +2264,7 @@ stg_minor_krios_dynasty = {
 	ethic = "ethic_militarist"
 	ethic = "ethic_materialist"
 
+	flag = empire_stg_minor_krios_dynasty
 	planet_name = "STG_planet_name_minor_krios_dynasty"
 	planet_class = "pc_continental"
 	system_name = "STG_system_name_minor_krios_dynasty"
@@ -2296,6 +2330,7 @@ stg_minor_kzinti_empire = {
 	ethic = "ethic_authoritarian"
 	ethic = "ethic_fanatic_militarist"
 
+	flag = empire_stg_minor_kzinti_empire
 	planet_name = "STG_planet_name_minor_kzinti_empire"
 	planet_class = "pc_arctic"
 	system_name = "STG_system_name_minor_kzinti_empire"
@@ -2362,6 +2397,7 @@ stg_minor_lissepian_parliaments = {
 	ethic = "ethic_pacifist"
 	ethic = "ethic_materialist"
 
+	flag = empire_stg_minor_lissepian_parliaments
 	planet_name = "STG_planet_name_minor_lissepian_parliaments"
 	planet_class = "pc_desert"
 	system_name = "STG_system_name_minor_lissepian_parliaments"
@@ -2432,6 +2468,7 @@ stg_minor_lurian_principality = {
 	ethic = "ethic_xenophobe"
 	ethic = "ethic_spiritualist"
 
+	flag = empire_stg_minor_lurian_principality
 	planet_name = "STG_planet_name_minor_lurian_principality"
 	planet_class = "pc_desert"
 	system_name = "STG_system_name_minor_lurian_principality"
@@ -2497,6 +2534,7 @@ stg_minor_lyran_star_empire = {
 	ethic = "ethic_xenophobe"
 	ethic = "ethic_spiritualist"
 
+	flag = empire_stg_minor_lyran_star_empire
 	initializer = "stg_minor_lyran_star_empire_home"
 	planet_name = "STG_planet_name_minor_lyran_star_empire"
 	planet_class = "pc_arctic"
@@ -2563,6 +2601,7 @@ stg_minor_lyridian_diaspora = {
 	ethic = "ethic_militarist"
 	ethic = "ethic_materialist"
 
+	flag = empire_stg_minor_lyridian_diaspora
 	planet_name = "STG_planet_name_minor_lyridian_diaspora"
 	planet_class = "pc_arctic"
 	system_name = "STG_system_name_minor_lyridian_diaspora"
@@ -2628,6 +2667,7 @@ stg_minor_medusan_corporium = {
 	ethic = "ethic_pacifist"
 	ethic = "ethic_materialist"
 
+	flag = empire_stg_minor_medusan_corporium
 	planet_name = "STG_planet_name_minor_medusan_corporium"
 	planet_class = "pc_continental"
 	system_name = "STG_system_name_minor_medusan_corporium"
@@ -2693,6 +2733,7 @@ stg_minor_monean_maritime_sovereignty = {
 	ethic = "ethic_pacifist"
 	ethic = "ethic_materialist"
 
+	flag = empire_stg_minor_monean_maritime_sovereignty
 	planet_name = "STG_planet_name_minor_monean_maritime_sovereignty"
 	planet_class = "pc_ocean"
 	system_name = "STG_system_name_minor_monean_maritime_sovereignty"
@@ -2757,6 +2798,7 @@ stg_minor_morali_states = {
 	ethic = "ethic_spiritualist"
 	ethic = "ethic_pacifist"
 
+	flag = empire_stg_minor_morali_states
 	planet_name = "STG_planet_name_minor_morali_states"
 	planet_class = "pc_continental"
 	system_name = "STG_system_name_minor_morali_states"
@@ -2822,6 +2864,7 @@ stg_minor_nausicaan_tribes = {
 	ethic = "ethic_militarist"
 	ethic = "ethic_materialist"
 
+	flag = empire_stg_minor_nausicaan_tribes
 	planet_name = "STG_planet_name_minor_nausicaan_tribes"
 	planet_class = "pc_desert"
 	system_name = "STG_system_name_minor_nausicaan_tribes"
@@ -2888,6 +2931,7 @@ stg_minor_norcadian_harmony = {
 	ethic = "ethic_pacifist"
 	ethic = "ethic_materialist"
 
+	flag = empire_stg_minor_norcadian_harmony
 	planet_name = "STG_planet_name_minor_norcadian_harmony"
 	planet_class = "pc_continental"
 	system_name = "STG_system_name_minor_norcadian_harmony"
@@ -2954,6 +2998,7 @@ stg_minor_nyberrite_alliance = {
 	ethic = "ethic_pacifist"
 	ethic = "ethic_materialist"
 
+	flag = empire_stg_minor_nyberrite_alliance
 	planet_name = "STG_planet_name_minor_nyberrite_alliance"
 	planet_class = "pc_continental"
 	system_name = "STG_system_name_minor_nyberrite_alliance"
@@ -3020,6 +3065,7 @@ stg_minor_nygean_sector_authority = {
 	ethic = "ethic_xenophobe"
 	ethic = "ethic_spiritualist"
 
+	flag = empire_stg_minor_nygean_sector_authority
 	planet_name = "STG_planet_name_minor_nygean_sector_authority"
 	planet_class = "pc_continental"
 	system_name = "STG_system_name_minor_nygean_sector_authority"
@@ -3086,6 +3132,7 @@ stg_minor_orion_free_states = {
 	ethic = "ethic_militarist"
 	ethic = "ethic_materialist"
 
+	flag = empire_stg_minor_orion_free_states
 	planet_name = "STG_planet_name_minor_orion_free_states"
 	planet_class = "pc_continental"
 	system_name = "STG_system_name_minor_orion_free_states"
@@ -3151,6 +3198,7 @@ stg_minor_oschean_hunters = {
 	ethic = "ethic_militarist"
 	ethic = "ethic_materialist"
 
+	flag = empire_stg_minor_oschean_hunters
 	planet_name = "STG_planet_name_minor_oschean_hunters"
 	planet_class = "pc_desert"
 	system_name = "STG_system_name_minor_oschean_hunters"
@@ -3221,6 +3269,7 @@ stg_minor_pakled_groupings = {
 	ethic = "ethic_xenophobe"
 	ethic = "ethic_spiritualist"
 
+	flag = empire_stg_minor_pakled_groupings
 	planet_name = "STG_planet_name_minor_pakled_groupings"
 	planet_class = "pc_continental"
 	system_name = "STG_system_name_minor_pakled_groupings"
@@ -3287,6 +3336,7 @@ stg_minor_paradan_commonwealth = {
 	ethic = "ethic_militarist"
 	ethic = "ethic_materialist"
 
+	flag = empire_stg_minor_paradan_commonwealth
 	planet_name = "STG_planet_name_minor_paradan_commonwealth"
 	planet_class = "pc_continental"
 	system_name = "STG_system_name_minor_paradan_commonwealth"
@@ -3351,6 +3401,7 @@ stg_minor_pralor_auxiliary = {
 	ethic = "ethic_fanatic_egalitarian"
 	ethic = "ethic_materialist"
 
+	flag = empire_stg_minor_pralor_auxiliary
 	planet_name = "STG_planet_name_minor_pralor_auxiliary"
 	planet_class = "pc_arctic"
 	system_name = "STG_system_name_minor_pralor_auxiliary"
@@ -3416,6 +3467,7 @@ stg_minor_rakharian_free_states = {
 	ethic = "ethic_fanatic_authoritarian"
 	ethic = "ethic_xenophobe"
 
+	flag = empire_stg_minor_rakharian_free_states
 	planet_name = "STG_planet_name_minor_rakharian_free_states"
 	planet_class = "pc_desert"
 	system_name = "STG_system_name_minor_rakharian_free_states"
@@ -3480,6 +3532,7 @@ stg_minor_rigellian_consortium = {
 	ethic = "ethic_egalitarian"
 	ethic = "ethic_fanatic_xenophile"
 
+	flag = empire_stg_minor_rigellian_consortium
 	initializer = "stg_minor_rigellian_consortium_home"
 	planet_name = "STG_planet_name_minor_rigellian_consortium"
 	planet_class = "pc_arctic"
@@ -3547,6 +3600,7 @@ stg_minor_saurian_league = {
 	ethic = "ethic_pacifist"
 	ethic = "ethic_materialist"
 
+	flag = empire_stg_minor_saurian_league
 	planet_name = "STG_planet_name_minor_saurian_league"
 	planet_class = "pc_desert"
 	system_name = "STG_system_name_minor_saurian_league"
@@ -3611,6 +3665,7 @@ stg_minor_selay_clutches = {
 	ethic = "ethic_fanatic_egalitarian"
 	ethic = "ethic_militarist"
 
+	flag = empire_stg_minor_selay_clutches
 	planet_name = "STG_planet_name_minor_selay_clutches"
 	planet_class = "pc_continental"
 	system_name = "STG_system_name_minor_selay_clutches"
@@ -3677,6 +3732,7 @@ stg_minor_sheliak_corporate = {
 	ethic = "ethic_xenophobe"
 	ethic = "ethic_spiritualist"
 
+	flag = empire_stg_minor_sheliak_corporate
 	planet_name = "STG_planet_name_minor_sheliak_corporate"
 	planet_class = "pc_desert"
 	system_name = "STG_system_name_minor_sheliak_corporate"
@@ -3740,6 +3796,7 @@ stg_minor_skrreean_republic = {
 	ethic = "ethic_xenophobe"
 	ethic = "ethic_fanatic_pacifist"
 
+	flag = empire_stg_minor_skrreean_republic
 	planet_name = "STG_planet_name_minor_skrreean_republic"
 	planet_class = "pc_desert"
 	system_name = "STG_system_name_minor_skrreean_republic"
@@ -3805,6 +3862,7 @@ stg_minor_t_rogoran_empire = {
 	ethic = "ethic_xenophobe"
 	ethic = "ethic_spiritualist"
 
+	flag = empire_stg_minor_t_rogoran_empire
 	planet_name = "STG_planet_name_minor_t_rogoran_empire"
 	planet_class = "pc_arctic"
 	system_name = "STG_system_name_minor_t_rogoran_empire"
@@ -3869,6 +3927,7 @@ stg_minor_talarian_republic = {
 	ethic = "ethic_fanatic_egalitarian"
 	ethic = "ethic_militarist"
 
+	flag = empire_stg_minor_talarian_republic
 	planet_name = "STG_planet_name_minor_talarian_republic"
 	planet_class = "pc_continental"
 	system_name = "STG_system_name_minor_talarian_republic"
@@ -3933,6 +3992,7 @@ stg_minor_talaxian_empire = {
 	ethic = "ethic_spiritualist"
 	ethic = "ethic_pacifist"
 
+	flag = empire_stg_minor_talaxian_empire
 	planet_name = "STG_planet_name_minor_talaxian_empire"
 	planet_class = "pc_continental"
 	system_name = "STG_system_name_minor_talaxian_empire"
@@ -3997,6 +4057,7 @@ stg_minor_tamarian_unity = {
 	ethic = "ethic_pacifist"
 	ethic = "ethic_spiritualist"
 
+	flag = empire_stg_minor_tamarian_unity
 	planet_name = "STG_planet_name_minor_tamarian_unity"
 	planet_class = "pc_continental"
 	system_name = "STG_system_name_minor_tamarian_unity"
@@ -4063,6 +4124,7 @@ stg_minor_tellarian_technocracy = {
 	ethic = "ethic_pacifist"
 	ethic = "ethic_materialist"
 
+	flag = empire_stg_minor_tellarian_technocracy
 	planet_name = "STG_planet_name_minor_tellarian_technocracy"
 	planet_class = "pc_continental"
 	system_name = "STG_system_name_minor_tellarian_technocracy"
@@ -4128,6 +4190,7 @@ stg_minor_trabe_alliance = {
 	ethic = "ethic_militarist"
 	ethic = "ethic_materialist"
 
+	flag = empire_stg_minor_trabe_alliance
 	planet_name = "STG_planet_name_minor_trabe_alliance"
 	planet_class = "pc_desert"
 	system_name = "STG_system_name_minor_trabe_alliance"
@@ -4193,6 +4256,7 @@ stg_minor_turei_commonwealth = {
 	ethic = "ethic_militarist"
 	ethic = "ethic_materialist"
 
+	flag = empire_stg_minor_turei_commonwealth
 	planet_name = "STG_planet_name_minor_turei_commonwealth"
 	planet_class = "pc_arctic"
 	system_name = "STG_system_name_minor_turei_commonwealth"
@@ -4264,6 +4328,7 @@ stg_minor_tzenkethi_coalition = {
 	ethic = "ethic_militarist"
 	ethic = "ethic_materialist"
 
+	flag = empire_stg_minor_tzenkethi_coalition
 	planet_name = "STG_planet_name_minor_tzenkethi_coalition"
 	planet_class = "pc_continental"
 	system_name = "STG_system_name_minor_tzenkethi_coalition"
@@ -4333,6 +4398,7 @@ stg_minor_undine_vanguard = {
 	ethic = "ethic_fanatic_authoritarian"
 	ethic = "ethic_xenophobe"
 
+	flag = empire_stg_minor_undine_vanguard
 	planet_name = "STG_planet_name_minor_undine_vanguard"
 	planet_class = "pc_continental"
 	system_name = "STG_system_name_minor_undine_vanguard"
@@ -4398,6 +4464,7 @@ stg_minor_united_congress_of_banea = {
 	ethic = "ethic_pacifist"
 	ethic = "ethic_materialist"
 
+	flag = empire_stg_minor_united_congress_of_banea
 	planet_name = "STG_planet_name_minor_united_congress_of_banea"
 	planet_class = "pc_desert"
 	system_name = "STG_system_name_minor_united_congress_of_banea"
@@ -4463,6 +4530,7 @@ stg_minor_vaadwaur_supremacy = {
 	ethic = "ethic_xenophobe"
 	ethic = "ethic_spiritualist"
 
+	flag = empire_stg_minor_vaadwaur_supremacy
 	planet_name = "STG_planet_name_minor_vaadwaur_supremacy"
 	planet_class = "pc_continental"
 	system_name = "STG_system_name_minor_vaadwaur_supremacy"
@@ -4528,6 +4596,7 @@ stg_minor_valerian_freeholds = {
 	ethic = "ethic_militarist"
 	ethic = "ethic_materialist"
 
+	flag = empire_stg_minor_valerian_freeholds
 	planet_name = "STG_planet_name_minor_valerian_freeholds"
 	planet_class = "pc_desert"
 	system_name = "STG_system_name_minor_valerian_freeholds"
@@ -4592,6 +4661,7 @@ stg_minor_valtese_senate = {
 	ethic = "ethic_spiritualist"
 	ethic = "ethic_pacifist"
 
+	flag = empire_stg_minor_valtese_senate
 	planet_name = "STG_planet_name_minor_valtese_senate"
 	planet_class = "pc_arctic"
 	system_name = "STG_system_name_minor_valtese_senate"
@@ -4662,6 +4732,7 @@ stg_minor_vau_nakat_order = {
 	ethic = "ethic_xenophobe"
 	ethic = "ethic_spiritualist"
 
+	flag = empire_stg_minor_vau_nakat_order
 	planet_name = "STG_planet_name_minor_vau_nakat_order"
 	planet_class = "pc_continental"
 	system_name = "STG_system_name_minor_vau_nakat_order"
@@ -4727,6 +4798,7 @@ stg_minor_voth_theocracy = {
 	ethic = "ethic_xenophobe"
 	ethic = "ethic_spiritualist"
 
+	flag = empire_stg_minor_voth_theocracy
 	initializer = "stg_minor_voth_theocracy_home"
 	planet_name = "STG_planet_name_minor_voth_theocracy"
 	planet_class = "pc_continental"
@@ -4794,6 +4866,7 @@ stg_minor_wadi_emirates = {
 	ethic = "ethic_pacifist"
 	ethic = "ethic_materialist"
 
+	flag = empire_stg_minor_wadi_emirates
 	planet_name = "STG_planet_name_minor_wadi_emirates"
 	planet_class = "pc_arctic"
 	system_name = "STG_system_name_minor_wadi_emirates"
@@ -4860,6 +4933,7 @@ stg_minor_xepolite_guilds = {
 	ethic = "ethic_pacifist"
 	ethic = "ethic_materialist"
 
+	flag = empire_stg_minor_xepolite_guilds
 	planet_name = "STG_planet_name_minor_xepolite_guilds"
 	planet_class = "pc_desert"
 	system_name = "STG_system_name_minor_xepolite_guilds"
@@ -4930,6 +5004,7 @@ stg_minor_yaderan_republic = {
 	ethic = "ethic_spiritualist"
 	ethic = "ethic_pacifist"
 
+	flag = empire_stg_minor_yaderan_republic
 	planet_name = "STG_planet_name_minor_yaderan_republic"
 	planet_class = "pc_continental"
 	system_name = "STG_system_name_minor_yaderan_republic"
@@ -4995,6 +5070,7 @@ stg_minor_zahl_technocracy = {
 	ethic = "ethic_pacifist"
 	ethic = "ethic_materialist"
 
+	flag = empire_stg_minor_zahl_technocracy
 	planet_name = "STG_planet_name_minor_zahl_technocracy"
 	planet_class = "pc_arctic"
 	system_name = "STG_system_name_minor_zahl_technocracy"
@@ -5060,6 +5136,7 @@ stg_minor_zakdorn_alliance = {
 	ethic = "ethic_pacifist"
 	ethic = "ethic_materialist"
 
+	flag = empire_stg_minor_zakdorn_alliance
 	planet_name = "STG_planet_name_minor_zakdorn_alliance"
 	planet_class = "pc_desert"
 	system_name = "STG_system_name_minor_zakdorn_alliance"

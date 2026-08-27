@@ -3030,7 +3030,14 @@ def _initializer_class_tokens(text: str) -> set[tuple[str, bool]]:
     refs: set[tuple[str, bool]] = set()
     stack: list[str] = []
     # key = {   |   }   |   class = value   (quoted or bare)
-    tok = re.compile(r'([a-z_][a-z0-9_]*)\s*=\s*\{|(\})|'
+    #
+    # THE KEY PATTERN HAS TO ACCEPT UPPERCASE. `NOT = {`, `OR = {` and `AND = {`
+    # are blocks like any other, and a walker that skipped their `{` while
+    # still popping on their `}` drifted one level shallower for the rest of the
+    # file. It survived only because nothing in an initializer used to open a
+    # `limit = { NOT = { … } }` next to a `class =`; the AI-empire guards
+    # tools/gen_home_systems.py now writes do exactly that.
+    tok = re.compile(r'([A-Za-z_][A-Za-z0-9_]*)\s*=\s*\{|(\})|'
                      r'\bclass\s*=\s*(?:"([A-Za-z][A-Za-z0-9_]*)"'
                      r'|([A-Za-z][A-Za-z0-9_]*))')
     for m in tok.finditer(text):
@@ -3060,7 +3067,8 @@ def _star_planet_count(body: str) -> int:
     system's star class. Block-aware for the reason in
     _initializer_class_refs."""
     n, stack = 0, []
-    for m in re.finditer(r'([a-z_][a-z0-9_]*)\s*=\s*\{|(\})|class\s*=\s*"?star"?',
+    # Uppercase keys push too — see the note in `_initializer_class_tokens`.
+    for m in re.finditer(r'([A-Za-z_][A-Za-z0-9_]*)\s*=\s*\{|(\})|class\s*=\s*"?star"?',
                          body):
         if m.group(1) is not None:
             stack.append(m.group(1))
@@ -5826,6 +5834,283 @@ def check_home_system_body_names() -> int:
     return n
 
 
+def _scenario_systems(text: str) -> list[tuple[int, str]]:
+    """(offset, body) for every `system = { … }` in a galaxy scenario.
+
+    Brace-matched rather than line-matched. STNH writes one system per line and
+    so does the generator, but vanilla's own `static_galaxy_example.txt` breaks
+    a system across seven lines whenever it carries an `effect` block, and a
+    line regex reads that as no system at all.
+    """
+    out = []
+    for m in re.finditer(r"\bsystem\s*=\s*\{", text):
+        i, depth = m.end(), 1
+        while i < len(text) and depth:
+            depth += (text[i] == "{") - (text[i] == "}")
+            i += 1
+        out.append((m.start(), text[m.end():i - 1]))
+    return out
+
+
+def _declared_country_flags() -> set[str]:
+    """Every country flag a `has_country_flag` in a map could ever be true of.
+
+    TWO SOURCES, AND MISSING EITHER ONE BREAKS THE CHECK IN A DIFFERENT
+    DIRECTION.
+
+    `set_country_flag = X` anywhere in script covers the AI copies: an empire
+    created by its home system's initializer sets its own flag there.
+
+    `common/prescripted_flags/` covers the PLAYER's copy, and it is the only
+    source for it — a prescripted design carries `flag = empire_X`, whose entry
+    lists the country flags the engine sets on that country at creation. It is
+    also the only source at all for an empire with no initializer of its own,
+    which is why the Federation's flag resolves here and nowhere else.
+    """
+    flags: set[str] = set()
+    for root in (GAME_DIR, BUILD):
+        d = root / "common/prescripted_flags"
+        if d.is_dir():
+            for f in d.rglob("*.txt"):
+                for _key, body in _top_level_blocks(_strip_comments(_read(f))):
+                    inner = _sub_block(body, "flags")
+                    if inner:
+                        flags |= set(re.findall(r"[A-Za-z_][A-Za-z_0-9]*", inner))
+    for sub in ("common", "events"):
+        d = BUILD / sub
+        if not d.is_dir():
+            continue
+        for f in d.rglob("*.txt"):
+            text = _read(f)
+            if "set_country_flag" in text:
+                flags |= set(re.findall(r"set_country_flag\s*=\s*([A-Za-z_][A-Za-z_0-9]*)",
+                                        text))
+    return flags
+
+
+def check_static_galaxy() -> int:
+    """Does every galaxy scenario in `map/setup_scenarios/` hold together?
+
+    WHY THIS EXISTS. A static galaxy scenario is how a total conversion puts
+    named empires in the galaxy — `prescripted_countries/` is only the roster
+    the player picks from
+    (.docs/decisions/92-create-country-initializers.md). Every join it depends
+    on fails quietly: an initializer that does not resolve logs one line and
+    leaves a generated system in its place, a `spawn_weight` testing a country
+    flag nothing ever sets is simply never satisfied, and two systems sharing a
+    position or an id is a map the generator resolves however it likes.
+
+    A static map is a graph, so most of this is cheap to ask.
+
+    FIVE QUESTIONS:
+
+      * every `initializer` names a declared solar system initializer, and
+        every `spawn_design` a declared prescripted design;
+      * every country flag a `spawn_weight` tests is reachable — see
+        `_declared_country_flags` for why that has two sources;
+      * no two systems share an `id`, and no two share a position;
+      * every `add_hyperlane` endpoint is a declared `id`, and where a scenario
+        defines lanes at all the graph they form is connected. **A scenario
+        with no lanes is a valid scenario** and must not be reported as
+        disconnected: 21 of STNH's 22 maps define none, pairing
+        `random_hyperlanes = no` with a `num_hyperlanes` range and letting the
+        engine build the network;
+      * every `flag = empire_X` in `prescripted_countries/` resolves to a
+        `common/prescripted_flags/` entry, and that entry carries the design's
+        own key as a country flag. This is the half a generator cannot hold on
+        its own — `tools/gen_empire_flags.py` writes the entries, the `flag =`
+        lines are hand-authored beside the empire, and nothing but this notices
+        when one side gains an empire and the other does not.
+
+    THE FLOOR IS ZERO AND THE ONLY SCOPE IS THE ONE MARKED BELOW. Vanilla's
+    own roster and its five scenarios answer every question cleanly, and so do
+    Ariphaos Galaxies' nine (measured 2026-08-27, 0 findings each). None of
+    vanilla's fourteen declares a system at all — they are random
+    `setup_scenario` templates — so the map half is calibrated against
+    vanilla's `static_galaxy_example.txt` and against STNH.
+
+    STNH'S 22 MAPS ARE THE OPPOSITE, AND THEY ARE WHY THIS CHECK IS STRICT
+    rather than tolerant. Run against their own tree they report **4,265**
+    findings: 4,256 systems naming one of **38** distinct initializers nothing
+    in the mod declares — `rl_sirius` is a `name = "…"` inside a different
+    initializer, `sck_b` does not exist at all — 8 `spawn_weight`s testing a
+    country flag nothing sets, and one prescripted design pointing at a
+    `prescripted_flags` entry that is not there. Every one of those is an
+    empire that quietly does not appear, in the shipping mod this whole
+    mechanism is modelled on (.docs/validation/check-design.md, rule 11).
+
+    An EMPTY scenario file is skipped rather than reported. A same-named 0-byte
+    file is how a mod removes a vanilla scenario from the picker, and STNH
+    ships five of them.
+    """
+    d = BUILD / "map/setup_scenarios"
+    if not d.is_dir():
+        return 0
+
+    initializers: set[str] = set()
+    for root in (GAME_DIR, BUILD):
+        sub = root / "common/solar_system_initializers"
+        if sub.is_dir():
+            for f in sub.rglob("*.txt"):
+                initializers |= {k for k, _ in
+                                 _top_level_blocks(_strip_comments(_read(f)))}
+
+    designs: dict[str, str] = {}
+    for root in (GAME_DIR, BUILD):
+        sub = root / "prescripted_countries"
+        if sub.is_dir():
+            for f in sub.rglob("*.txt"):
+                for key, body in _top_level_blocks(_strip_comments(_read(f))):
+                    designs.setdefault(key, body)
+
+    flags = _declared_country_flags()
+
+    n = 0
+    for f in sorted(d.rglob("*.txt")):
+        text = _strip_comments(_read(f))
+        if not text.strip():
+            continue                     # a 0-byte override removes a scenario
+        rp = str(f.relative_to(BUILD))
+        systems = _scenario_systems(text)
+        if not systems:
+            continue                     # a random `setup_scenario`, not a map
+        n += 1
+
+        ids: dict[str, int] = {}
+        seen_pos: dict[tuple[str, str, str], str] = {}
+        for _off, body in systems:
+            m_id = re.search(r'\bid\s*=\s*"?([\w-]+)"?', body)
+            sid = m_id.group(1) if m_id else ""
+            ids[sid] = ids.get(sid, 0) + 1
+
+            pos = _sub_block(body, "position") or ""
+            key = tuple(
+                (re.search(rf"\b{ax}\s*=\s*(?:\{{[^}}]*\}}|(-?[\d.]+))", pos)
+                 or [None, ""])[1] or "" for ax in ("x", "y", "z"))
+            if any(key):
+                if key in seen_pos:
+                    errors.append(
+                        f"{rp}: two systems share the position "
+                        f"x={key[0]} y={key[1]}"
+                        f"{' z=' + key[2] if key[2] else ''} (ids "
+                        f"'{seen_pos[key]}' and '{sid}'). The generator keeps "
+                        f"one and the other empire lands wherever it likes.")
+                seen_pos[key] = sid
+
+            init = re.search(r'\binitializer\s*=\s*"?([A-Za-z_][\w]*)"?', body)
+            if init and init.group(1) not in initializers:
+                errors.append(
+                    f"{rp}: system '{sid}' names initializer "
+                    f"'{init.group(1)}', which no file in "
+                    f"common/solar_system_initializers/ declares. The engine "
+                    f"logs `Invalid initializer` and generates an ordinary "
+                    f"system in its place — so the empire that system was for "
+                    f"is never created.")
+
+            des = re.search(r'\bspawn_design\s*=\s*"?([A-Za-z_][\w]*)"?', body)
+            if des and des.group(1) not in designs:
+                errors.append(
+                    f"{rp}: system '{sid}' names spawn_design "
+                    f"'{des.group(1)}', which no prescripted_countries/ file "
+                    f"declares.")
+
+            weight = _sub_block(body, "spawn_weight") or ""
+            for cf in re.findall(r"has_country_flag\s*=\s*([A-Za-z_][\w]*)",
+                                 weight):
+                if cf not in flags:
+                    errors.append(
+                        f"{rp}: system '{sid}' weights on country flag "
+                        f"'{cf}', which nothing sets and no "
+                        f"common/prescripted_flags/ entry declares. The "
+                        f"modifier can never match, so with `base = 0` the "
+                        f"system is reserved for an empire that will never "
+                        f"arrive.")
+
+        for sid, count in sorted(ids.items()):
+            if count > 1:
+                errors.append(
+                    f"{rp}: {count} systems share id '{sid}'. Hyperlanes and "
+                    f"the generator both address systems by id.")
+
+        lanes = [(m.group(1), m.group(2)) for m in re.finditer(
+            r'add_hyperlane\s*=\s*\{\s*from\s*=\s*"?([\w-]+)"?\s+'
+            r'to\s*=\s*"?([\w-]+)"?\s*\}', text)]
+        declared_lanes = len(re.findall(r"\badd_hyperlane\b", text))
+        if declared_lanes != len(lanes):
+            warnings.append(
+                f"{rp}: {declared_lanes} add_hyperlane line(s) but only "
+                f"{len(lanes)} parsed as `from`/`to` — the rest are not being "
+                f"checked.")
+        if not lanes:
+            continue                     # valid: 21 of STNH's 22 maps do this
+
+        adj: dict[str, set[str]] = {sid: set() for sid in ids}
+        for a, b in lanes:
+            for end in (a, b):
+                if end not in ids:
+                    errors.append(
+                        f"{rp}: add_hyperlane names system '{end}', which the "
+                        f"scenario never declares.")
+            if a in adj and b in adj:
+                adj[a].add(b)
+                adj[b].add(a)
+        start = next(iter(adj))
+        seen_ids, stack = {start}, [start]
+        while stack:
+            for nxt in adj[stack.pop()]:
+                if nxt not in seen_ids:
+                    seen_ids.add(nxt)
+                    stack.append(nxt)
+        if len(seen_ids) != len(adj):
+            errors.append(
+                f"{rp}: the hyperlane graph is not connected — "
+                f"{len(adj) - len(seen_ids)} of {len(adj)} systems cannot be "
+                f"reached from '{start}'. An unreachable component is a part "
+                f"of the galaxy no fleet can enter, and it produces no log "
+                f"record at all.")
+
+    # The prescripted half of the flag join.
+    pre = BUILD / "prescripted_countries"
+    entries: dict[str, set[str]] = {}
+    for root in (GAME_DIR, BUILD):
+        sub = root / "common/prescripted_flags"
+        if sub.is_dir():
+            for f in sub.rglob("*.txt"):
+                for key, body in _top_level_blocks(_strip_comments(_read(f))):
+                    inner = _sub_block(body, "flags") or ""
+                    entries[key] = set(re.findall(r"[A-Za-z_][\w]*", inner))
+    if pre.is_dir():
+        for f in sorted(pre.rglob("*.txt")):
+            for key, body in _top_level_blocks(_strip_comments(_read(f))):
+                m = re.search(r"^\s*flag\s*=\s*([A-Za-z_][\w]*)\s*$", body, re.M)
+                if not m:
+                    continue
+                if m.group(1) not in entries:
+                    errors.append(
+                        f"{f.relative_to(BUILD)}: {key} declares "
+                        f"`flag = {m.group(1)}`, which no "
+                        f"common/prescripted_flags/ file declares. The player's "
+                        f"copy of this empire then carries no country flag, so "
+                        f"a static map cannot pin it to its own home system and "
+                        f"that system's initializer cannot tell it apart from "
+                        f"nobody playing the empire — it creates a second one.")
+                # THE SECOND CONDITION IS OURS, NOT VANILLA'S, AND THE SCOPE
+                # SAYS SO. "The country flag is the design key" is an STG
+                # convention that keeps one string to get wrong instead of
+                # three; vanilla's own `humans2` points at `empire_human_2`,
+                # which sets `human_2`, and asking this of vanilla's roster
+                # reports 21 findings out of 51 designs and none of them is a
+                # defect (measured 2026-08-27).
+                # .docs/validation/check-design.md, rule 11.
+                elif key.startswith("stg_") and key not in entries[m.group(1)]:
+                    errors.append(
+                        f"{f.relative_to(BUILD)}: {key} declares "
+                        f"`flag = {m.group(1)}`, but that entry does not set "
+                        f"'{key}' as a country flag. The flag IS the design "
+                        f"key here — see tools/gen_empire_flags.py.")
+    return n
+
+
 def check_unreferenced() -> tuple[int, int]:
     """The dual of every other check here: is this FILE referenced by anything?
 
@@ -6018,6 +6303,7 @@ def main() -> int:
     gca_n = check_graphical_culture_art()
     sdesc_n = check_shipset_descriptions()
     hsbn_n = check_home_system_body_names()
+    gal_n = check_static_galaxy()
     mus_n = check_music_declarations()
     ano_n = check_anomalies()
     arc_n = check_archaeology()
@@ -6063,6 +6349,8 @@ def main() -> int:
           f"{gca_n} offerable graphical culture(s) for city art or a fallback that reaches it, "
           f"{sdesc_n} flown culture(s) for a shipset description, "
           f"{hsbn_n} home system(s) for two bodies sharing a name, "
+          f"{gal_n} static galaxy scenario(s) for their systems, initializers, "
+          f"country flags and lanes, "
           f"{mus_n} music track(s) for a declaration that plays them, "
           f"{ano_n} anomaly categor(ies) for their event, picture and loc, "
           f"{arc_n} archaeological site(s) for their stages, pictures, "

@@ -10,7 +10,16 @@
 # See .docs/decisions/25-real-home-systems.md.
 #
 # The Federation is not here: it uses vanilla's own sol_system_initializer,
-# which Real Space rescales, and which is already the real solar system.
+# which Real Space rescales, and which is already the real solar system. That
+# also means the Federation has no AI copy — the block below is what creates one
+# and there is nowhere to put it (.docs/decisions/93-static-galaxy-scenario.md).
+#
+# EACH CAPITAL CARRIES A GUARDED create_country. It creates this empire's AI
+# copy, and only when no country already carries the empire's own design key as
+# a country flag — which the player's copy does, from
+# common/prescripted_flags/. That is the mechanism a Trek galaxy runs on; the
+# prescripted pool is the player's roster and places nobody
+# (.docs/decisions/92-create-country-initializers.md).
 #
 # 36 systems generated, 62 empires left on generated systems.
 
@@ -104,6 +113,66 @@ stg_andorian_empire_home = {
 			modifiers = none
 			init_effect = { prevent_anomaly = yes }
 			init_effect = { generate_empire_home_planet = yes }
+			init_effect = {
+				# The AI copy of stg_andorian_empire, created only when no country is
+				# already playing it. See ai_empire_block in the generator.
+				if = {
+					limit = { NOT = { any_country = { has_country_flag = stg_andorian_empire } } }
+					create_species = {
+						name = "STG_species_name_andorian"
+						plural = "STG_species_plural_andorian"
+						adjective = "STG_species_adjective_andorian"
+						class = ADR
+						portrait = "andorian"
+						homeworld = THIS
+						namelist = "STG_ANDORIAN"
+						traits = {
+							trait = "trait_organic"
+							trait = "trait_very_strong"
+							trait = "trait_talented"
+							trait = "trait_quarrelsome"
+							trait = "trait_fleeting"
+							ideal_planet_class = "pc_arctic"
+						}
+						effect = { save_event_target_as = andorian_empire_species }
+					}
+					create_country = {
+						name = "STG_EMPIRE_andorian"
+						adjective = "STG_adjective_andorian"
+						type = default
+						authority = "auth_oligarchic"
+						civics = { civic = "civic_citizen_service" civic = "civic_warrior_culture" }
+						ethos = { ethic = "ethic_fanatic_militarist" ethic = "ethic_egalitarian" }
+						origin = "origin_default"
+						species = event_target:andorian_empire_species
+						name_list = "STG_ANDORIAN"
+						ship_prefix = "STG_ship_prefix_andorian"
+						flag = {
+							icon = { category = "trek" file = "Andorian.dds" }
+							background = { category = "backgrounds" file = "triangle_split.dds" }
+							colors = { "intense_blue" "white" "null" "null" }
+						}
+						effect = {
+							save_event_target_as = andorian_empire_country
+							set_graphical_culture = andorian_01
+							set_city_graphical_culture = humanoid_01
+							set_country_flag = stg_andorian_empire
+						}
+					}
+					create_colony = { owner = event_target:andorian_empire_country }
+					generate_start_deposits_and_blockers = yes
+					clear_blockers = yes
+					colony = {
+						generate_start_buildings_and_districts = yes
+						generate_start_pops = yes
+					}
+					event_target:andorian_empire_country = {
+						create_starting_leaders = yes
+						country_event = { id = game_start.9 }
+						country_event = { id = game_start.33 days = 1 }
+					}
+				}
+			}
 		}
 		moon = {
 			name = "Onlith b"
@@ -240,6 +309,65 @@ stg_bajoran_republic_home = {
 		modifiers = none
 		init_effect = { prevent_anomaly = yes }
 		init_effect = { generate_empire_home_planet = yes }
+		init_effect = {
+			# The AI copy of stg_bajoran_republic, created only when no country is
+			# already playing it. See ai_empire_block in the generator.
+			if = {
+				limit = { NOT = { any_country = { has_country_flag = stg_bajoran_republic } } }
+				create_species = {
+					name = "STG_species_name_bajoran"
+					plural = "STG_species_plural_bajoran"
+					adjective = "STG_species_adjective_bajoran"
+					class = BAJ
+					portrait = "bajoran"
+					homeworld = THIS
+					namelist = "STG_BAJORAN"
+					traits = {
+						trait = "trait_organic"
+						trait = "trait_agrarian"
+						trait = "trait_traditional"
+						trait = "trait_deviants"
+						ideal_planet_class = "pc_continental"
+					}
+					effect = { save_event_target_as = bajoran_republic_species }
+				}
+				create_country = {
+					name = "STG_EMPIRE_bajoran"
+					adjective = "STG_adjective_bajoran"
+					type = default
+					authority = "auth_democratic"
+					civics = { civic = "civic_agrarian_idyll" civic = "civic_parliamentary_system" }
+					ethos = { ethic = "ethic_fanatic_spiritualist" ethic = "ethic_pacifist" }
+					origin = "origin_default"
+					species = event_target:bajoran_republic_species
+					name_list = "STG_BAJORAN"
+					ship_prefix = "STG_ship_prefix_bajoran"
+					flag = {
+						icon = { category = "trek" file = "Bajor.dds" }
+						background = { category = "backgrounds" file = "circle.dds" }
+						colors = { "burgundy" "desert_yellow" "null" "null" }
+					}
+					effect = {
+						save_event_target_as = bajoran_republic_country
+						set_graphical_culture = bajoran_01
+						set_city_graphical_culture = humanoid_01
+						set_country_flag = stg_bajoran_republic
+					}
+				}
+				create_colony = { owner = event_target:bajoran_republic_country }
+				generate_start_deposits_and_blockers = yes
+				clear_blockers = yes
+				colony = {
+					generate_start_buildings_and_districts = yes
+					generate_start_pops = yes
+				}
+				event_target:bajoran_republic_country = {
+					create_starting_leaders = yes
+					country_event = { id = game_start.9 }
+					country_event = { id = game_start.33 days = 1 }
+				}
+			}
+		}
 		moon = {
 			name = "Endalla"
 			class = "pc_continental"
@@ -334,6 +462,65 @@ stg_bolian_union_home = {
 		modifiers = none
 		init_effect = { prevent_anomaly = yes }
 		init_effect = { generate_empire_home_planet = yes }
+		init_effect = {
+			# The AI copy of stg_bolian_union, created only when no country is
+			# already playing it. See ai_empire_block in the generator.
+			if = {
+				limit = { NOT = { any_country = { has_country_flag = stg_bolian_union } } }
+				create_species = {
+					name = "STG_species_name_bolian"
+					plural = "STG_species_plural_bolian"
+					adjective = "STG_species_adjective_bolian"
+					class = BOL
+					portrait = "bolian"
+					homeworld = THIS
+					namelist = "STG_BOLIAN"
+					traits = {
+						trait = "trait_organic"
+						trait = "trait_thrifty"
+						trait = "trait_communal"
+						trait = "trait_sedentary"
+						ideal_planet_class = "pc_ocean"
+					}
+					effect = { save_event_target_as = bolian_union_species }
+				}
+				create_country = {
+					name = "STG_EMPIRE_bolian"
+					adjective = "STG_adjective_bolian"
+					type = default
+					authority = "auth_democratic"
+					civics = { civic = "civic_idealistic_foundation" civic = "civic_functional_architecture" }
+					ethos = { ethic = "ethic_fanatic_egalitarian" ethic = "ethic_pacifist" }
+					origin = "origin_default"
+					species = event_target:bolian_union_species
+					name_list = "STG_BOLIAN"
+					ship_prefix = "STG_ship_prefix_bolian"
+					flag = {
+						icon = { category = "spherical" file = "flag_spherical_5.dds" }
+						background = { category = "backgrounds" file = "horizontal.dds" }
+						colors = { "sky_blue" "off_white" "null" "null" }
+					}
+					effect = {
+						save_event_target_as = bolian_union_country
+						set_graphical_culture = bolian_01
+						set_city_graphical_culture = humanoid_01
+						set_country_flag = stg_bolian_union
+					}
+				}
+				create_colony = { owner = event_target:bolian_union_country }
+				generate_start_deposits_and_blockers = yes
+				clear_blockers = yes
+				colony = {
+					generate_start_buildings_and_districts = yes
+					generate_start_pops = yes
+				}
+				event_target:bolian_union_country = {
+					create_starting_leaders = yes
+					country_event = { id = game_start.9 }
+					country_event = { id = game_start.33 days = 1 }
+				}
+			}
+		}
 	}
 	usage = custom_empire
 	flags = { empire_home_system stg_home_system }
@@ -368,6 +555,66 @@ stg_borg_collective_home = {
 		modifiers = none
 		init_effect = { prevent_anomaly = yes }
 		init_effect = { generate_empire_home_planet = yes }
+		init_effect = {
+			# The AI copy of stg_borg_collective, created only when no country is
+			# already playing it. See ai_empire_block in the generator.
+			if = {
+				limit = { NOT = { any_country = { has_country_flag = stg_borg_collective } } }
+				create_species = {
+					name = "STG_species_name_borg"
+					plural = "STG_species_plural_borg"
+					adjective = "STG_species_adjective_borg"
+					class = BRG
+					portrait = "borg"
+					homeworld = THIS
+					namelist = "STG_BORG"
+					traits = {
+						trait = "trait_machine_unit"
+						trait = "trait_robot_enhanced_memory"
+						trait = "trait_robot_learning_algorithms"
+						trait = "trait_robot_uncanny"
+						trait = "trait_robot_high_maintenance"
+						ideal_planet_class = "pc_continental"
+					}
+					effect = { save_event_target_as = borg_collective_species }
+				}
+				create_country = {
+					name = "STG_EMPIRE_borg"
+					adjective = "STG_adjective_borg"
+					type = default
+					authority = "auth_machine_intelligence"
+					civics = { civic = "civic_machine_assimilator" civic = "civic_machine_predictive_analysis" }
+					ethos = {  }
+					origin = "origin_default"
+					species = event_target:borg_collective_species
+					name_list = "STG_BORG"
+					ship_prefix = "STG_ship_prefix_borg"
+					flag = {
+						icon = { category = "trek" file = "borg.dds" }
+						background = { category = "backgrounds" file = "square.dds" }
+						colors = { "dark_grey" "toxic_green" "null" "null" }
+					}
+					effect = {
+						save_event_target_as = borg_collective_country
+						set_graphical_culture = borg
+						set_city_graphical_culture = borg_01
+						set_country_flag = stg_borg_collective
+					}
+				}
+				create_colony = { owner = event_target:borg_collective_country }
+				generate_start_deposits_and_blockers = yes
+				clear_blockers = yes
+				colony = {
+					generate_start_buildings_and_districts = yes
+					generate_start_pops = yes
+				}
+				event_target:borg_collective_country = {
+					create_starting_leaders = yes
+					country_event = { id = game_start.9 }
+					country_event = { id = game_start.33 days = 1 }
+				}
+			}
+		}
 	}
 	planet = {
 		name = "NAME_Unicomplex_Section_Beta"
@@ -400,6 +647,66 @@ stg_breen_confederacy_home = {
 		modifiers = none
 		init_effect = { prevent_anomaly = yes }
 		init_effect = { generate_empire_home_planet = yes }
+		init_effect = {
+			# The AI copy of stg_breen_confederacy, created only when no country is
+			# already playing it. See ai_empire_block in the generator.
+			if = {
+				limit = { NOT = { any_country = { has_country_flag = stg_breen_confederacy } } }
+				create_species = {
+					name = "STG_species_name_breen"
+					plural = "STG_species_plural_breen"
+					adjective = "STG_species_adjective_breen"
+					class = BRE
+					portrait = "breen"
+					homeworld = THIS
+					namelist = "STG_BREEN"
+					traits = {
+						trait = "trait_organic"
+						trait = "trait_industrious"
+						trait = "trait_resilient"
+						trait = "trait_talented"
+						trait = "trait_repugnant"
+						ideal_planet_class = "pc_arctic"
+					}
+					effect = { save_event_target_as = breen_confederacy_species }
+				}
+				create_country = {
+					name = "STG_EMPIRE_breen"
+					adjective = "STG_adjective_breen"
+					type = default
+					authority = "auth_dictatorial"
+					civics = { civic = "civic_police_state" civic = "civic_distinguished_admiralty" }
+					ethos = { ethic = "ethic_fanatic_xenophobe" ethic = "ethic_militarist" }
+					origin = "origin_default"
+					species = event_target:breen_confederacy_species
+					name_list = "STG_BREEN"
+					ship_prefix = "STG_ship_prefix_breen"
+					flag = {
+						icon = { category = "trek" file = "breen.dds" }
+						background = { category = "backgrounds" file = "v.dds" }
+						colors = { "dark_steel" "ice_turquoise" "null" "null" }
+					}
+					effect = {
+						save_event_target_as = breen_confederacy_country
+						set_graphical_culture = breen_01
+						set_city_graphical_culture = molluscoid_01
+						set_country_flag = stg_breen_confederacy
+					}
+				}
+				create_colony = { owner = event_target:breen_confederacy_country }
+				generate_start_deposits_and_blockers = yes
+				clear_blockers = yes
+				colony = {
+					generate_start_buildings_and_districts = yes
+					generate_start_pops = yes
+				}
+				event_target:breen_confederacy_country = {
+					create_starting_leaders = yes
+					country_event = { id = game_start.9 }
+					country_event = { id = game_start.33 days = 1 }
+				}
+			}
+		}
 	}
 	planet = { name = "STG_N_Dozaria" class = "pc_barren_cold" orbit_distance = 32 orbit_angle = 55 size = 11 has_ring = no }
 	planet = { name = "STG_N_BreenVI" class = "pc_gas_giant" orbit_distance = 58 orbit_angle = 285 size = 26 has_ring = yes }
@@ -462,6 +769,64 @@ stg_caitian_empire_home = {
 		modifiers = none
 		init_effect = { prevent_anomaly = yes }
 		init_effect = { generate_empire_home_planet = yes }
+		init_effect = {
+			# The AI copy of stg_caitian_empire, created only when no country is
+			# already playing it. See ai_empire_block in the generator.
+			if = {
+				limit = { NOT = { any_country = { has_country_flag = stg_caitian_empire } } }
+				create_species = {
+					name = "STG_species_name_caitian"
+					plural = "STG_species_plural_caitian"
+					adjective = "STG_species_adjective_caitian"
+					class = CAI
+					portrait = "caitian"
+					homeworld = THIS
+					namelist = "STG_CAITIAN"
+					traits = {
+						trait = "trait_organic"
+						trait = "trait_nomadic"
+						trait = "trait_strong"
+						ideal_planet_class = "pc_savannah"
+					}
+					effect = { save_event_target_as = caitian_empire_species }
+				}
+				create_country = {
+					name = "STG_EMPIRE_caitian"
+					adjective = "STG_adjective_caitian"
+					type = default
+					authority = "auth_democratic"
+					civics = { civic = "civic_beacon_of_liberty" civic = "civic_free_haven" }
+					ethos = { ethic = "ethic_egalitarian" ethic = "ethic_fanatic_xenophile" }
+					origin = "origin_default"
+					species = event_target:caitian_empire_species
+					name_list = "STG_CAITIAN"
+					ship_prefix = "STG_ship_prefix_caitian"
+					flag = {
+						icon = { category = "trek" file = "caitian.dds" }
+						background = { category = "backgrounds" file = "00_solid.dds" }
+						colors = { "orange" "burgundy" "null" "null" }
+					}
+					effect = {
+						save_event_target_as = caitian_empire_country
+						set_graphical_culture = caitian
+						set_city_graphical_culture = humanoid_01
+						set_country_flag = stg_caitian_empire
+					}
+				}
+				create_colony = { owner = event_target:caitian_empire_country }
+				generate_start_deposits_and_blockers = yes
+				clear_blockers = yes
+				colony = {
+					generate_start_buildings_and_districts = yes
+					generate_start_pops = yes
+				}
+				event_target:caitian_empire_country = {
+					create_starting_leaders = yes
+					country_event = { id = game_start.9 }
+					country_event = { id = game_start.33 days = 1 }
+				}
+			}
+		}
 		moon = {
 			name = "Rea"
 			class = "pc_barren_cold"
@@ -539,6 +904,66 @@ stg_cardassian_union_home = {
 		modifiers = none
 		init_effect = { prevent_anomaly = yes }
 		init_effect = { generate_empire_home_planet = yes }
+		init_effect = {
+			# The AI copy of stg_cardassian_union, created only when no country is
+			# already playing it. See ai_empire_block in the generator.
+			if = {
+				limit = { NOT = { any_country = { has_country_flag = stg_cardassian_union } } }
+				create_species = {
+					name = "STG_species_name_cardassian"
+					plural = "STG_species_plural_cardassian"
+					adjective = "STG_species_adjective_cardassian"
+					class = CAR
+					portrait = "cardassian"
+					homeworld = THIS
+					namelist = "STG_CARDASSIAN"
+					traits = {
+						trait = "trait_organic"
+						trait = "trait_industrious"
+						trait = "trait_conformists"
+						trait = "trait_decadent"
+						trait = "trait_quarrelsome"
+						ideal_planet_class = "pc_arid"
+					}
+					effect = { save_event_target_as = cardassian_union_species }
+				}
+				create_country = {
+					name = "STG_EMPIRE_cardassian"
+					adjective = "STG_adjective_cardassian"
+					type = default
+					authority = "auth_oligarchic"
+					civics = { civic = "civic_police_state" civic = "civic_shadow_council" }
+					ethos = { ethic = "ethic_authoritarian" ethic = "ethic_fanatic_militarist" }
+					origin = "origin_default"
+					species = event_target:cardassian_union_species
+					name_list = "STG_CARDASSIAN"
+					ship_prefix = "STG_ship_prefix_cardassian"
+					flag = {
+						icon = { category = "trek" file = "Cardassian1.dds" }
+						background = { category = "backgrounds" file = "v.dds" }
+						colors = { "dark_teal" "desert_yellow" "null" "null" }
+					}
+					effect = {
+						save_event_target_as = cardassian_union_country
+						set_graphical_culture = cardassian
+						set_city_graphical_culture = cardassian_01
+						set_country_flag = stg_cardassian_union
+					}
+				}
+				create_colony = { owner = event_target:cardassian_union_country }
+				generate_start_deposits_and_blockers = yes
+				clear_blockers = yes
+				colony = {
+					generate_start_buildings_and_districts = yes
+					generate_start_pops = yes
+				}
+				event_target:cardassian_union_country = {
+					create_starting_leaders = yes
+					country_event = { id = game_start.9 }
+					country_event = { id = game_start.33 days = 1 }
+				}
+			}
+		}
 		moon = {
 			name = "Letau"
 			class = "pc_barren"
@@ -635,6 +1060,66 @@ stg_confederacy_of_vulcan_home = {
 		modifiers = none
 		init_effect = { prevent_anomaly = yes }
 		init_effect = { generate_empire_home_planet = yes }
+		init_effect = {
+			# The AI copy of stg_confederacy_of_vulcan, created only when no country is
+			# already playing it. See ai_empire_block in the generator.
+			if = {
+				limit = { NOT = { any_country = { has_country_flag = stg_confederacy_of_vulcan } } }
+				create_species = {
+					name = "STG_species_name_vulcan"
+					plural = "STG_species_plural_vulcan"
+					adjective = "STG_species_adjective_vulcan"
+					class = VUL
+					portrait = "vulcan"
+					homeworld = THIS
+					namelist = "STG_VULCAN"
+					traits = {
+						trait = "trait_organic"
+						trait = "trait_intelligent"
+						trait = "trait_enduring"
+						trait = "trait_conservational"
+						trait = "trait_slow_breeders"
+						ideal_planet_class = "pc_desert"
+					}
+					effect = { save_event_target_as = confederacy_of_vulcan_species }
+				}
+				create_country = {
+					name = "STG_EMPIRE_vulcan"
+					adjective = "STG_adjective_vulcan"
+					type = default
+					authority = "auth_oligarchic"
+					civics = { civic = "civic_technocracy" civic = "civic_meritocracy" }
+					ethos = { ethic = "ethic_fanatic_materialist" ethic = "ethic_pacifist" }
+					origin = "origin_default"
+					species = event_target:confederacy_of_vulcan_species
+					name_list = "STG_VULCAN"
+					ship_prefix = "STG_ship_prefix_vulcan"
+					flag = {
+						icon = { category = "trek" file = "Vulcan.dds" }
+						background = { category = "backgrounds" file = "circle.dds" }
+						colors = { "burgundy" "desert_yellow" "null" "null" }
+					}
+					effect = {
+						save_event_target_as = confederacy_of_vulcan_country
+						set_graphical_culture = vulcan
+						set_city_graphical_culture = vulcan_01
+						set_country_flag = stg_confederacy_of_vulcan
+					}
+				}
+				create_colony = { owner = event_target:confederacy_of_vulcan_country }
+				generate_start_deposits_and_blockers = yes
+				clear_blockers = yes
+				colony = {
+					generate_start_buildings_and_districts = yes
+					generate_start_pops = yes
+				}
+				event_target:confederacy_of_vulcan_country = {
+					create_starting_leaders = yes
+					country_event = { id = game_start.9 }
+					country_event = { id = game_start.33 days = 1 }
+				}
+			}
+		}
 	}
 	planet = {
 		name = "T'Khut"
@@ -750,6 +1235,66 @@ stg_dominion_home = {
 		modifiers = none
 		init_effect = { prevent_anomaly = yes }
 		init_effect = { generate_empire_home_planet = yes }
+		init_effect = {
+			# The AI copy of stg_dominion, created only when no country is
+			# already playing it. See ai_empire_block in the generator.
+			if = {
+				limit = { NOT = { any_country = { has_country_flag = stg_dominion } } }
+				create_species = {
+					name = "STG_species_name_dominion"
+					plural = "STG_species_plural_dominion"
+					adjective = "STG_species_adjective_dominion"
+					class = DOM
+					portrait = "changeling"
+					homeworld = THIS
+					namelist = "STG_DOMINION"
+					traits = {
+						trait = "trait_organic"
+						trait = "trait_adaptive"
+						trait = "trait_enduring"
+						trait = "trait_talented"
+						trait = "trait_slow_breeders"
+						ideal_planet_class = "pc_ocean"
+					}
+					effect = { save_event_target_as = dominion_species }
+				}
+				create_country = {
+					name = "STG_EMPIRE_dominion"
+					adjective = "STG_adjective_dominion"
+					type = default
+					authority = "auth_imperial"
+					civics = { civic = "civic_imperial_cult" civic = "civic_slaver_guilds" }
+					ethos = { ethic = "ethic_fanatic_authoritarian" ethic = "ethic_spiritualist" }
+					origin = "origin_default"
+					species = event_target:dominion_species
+					name_list = "STG_DOMINION"
+					ship_prefix = "STG_ship_prefix_dominion"
+					flag = {
+						icon = { category = "trek" file = "Dominion.dds" }
+						background = { category = "backgrounds" file = "delta.dds" }
+						colors = { "dark_purple" "sun_green" "null" "null" }
+					}
+					effect = {
+						save_event_target_as = dominion_country
+						set_graphical_culture = dominion
+						set_city_graphical_culture = molluscoid_01
+						set_country_flag = stg_dominion
+					}
+				}
+				create_colony = { owner = event_target:dominion_country }
+				generate_start_deposits_and_blockers = yes
+				clear_blockers = yes
+				colony = {
+					generate_start_buildings_and_districts = yes
+					generate_start_pops = yes
+				}
+				event_target:dominion_country = {
+					create_starting_leaders = yes
+					country_event = { id = game_start.9 }
+					country_event = { id = game_start.33 days = 1 }
+				}
+			}
+		}
 	}
 }
 
@@ -774,6 +1319,66 @@ stg_ferengi_alliance_home = {
 		modifiers = none
 		init_effect = { prevent_anomaly = yes }
 		init_effect = { generate_empire_home_planet = yes }
+		init_effect = {
+			# The AI copy of stg_ferengi_alliance, created only when no country is
+			# already playing it. See ai_empire_block in the generator.
+			if = {
+				limit = { NOT = { any_country = { has_country_flag = stg_ferengi_alliance } } }
+				create_species = {
+					name = "STG_species_name_ferengi"
+					plural = "STG_species_plural_ferengi"
+					adjective = "STG_species_adjective_ferengi"
+					class = FER
+					portrait = "ferengi"
+					homeworld = THIS
+					namelist = "STG_FERENGI"
+					traits = {
+						trait = "trait_organic"
+						trait = "trait_thrifty"
+						trait = "trait_talented"
+						trait = "trait_quick_learners"
+						trait = "trait_repugnant"
+						ideal_planet_class = "pc_tropical"
+					}
+					effect = { save_event_target_as = ferengi_alliance_species }
+				}
+				create_country = {
+					name = "STG_EMPIRE_ferengi"
+					adjective = "STG_adjective_ferengi"
+					type = default
+					authority = "auth_corporate"
+					civics = { civic = "civic_free_traders" civic = "civic_trading_posts" }
+					ethos = { ethic = "ethic_fanatic_materialist" ethic = "ethic_authoritarian" }
+					origin = "origin_default"
+					species = event_target:ferengi_alliance_species
+					name_list = "STG_FERENGI"
+					ship_prefix = "STG_ship_prefix_ferengi"
+					flag = {
+						icon = { category = "trek" file = "ferengi.dds" }
+						background = { category = "backgrounds" file = "00_solid.dds" }
+						colors = { "orange" "dark_brown" "null" "null" }
+					}
+					effect = {
+						save_event_target_as = ferengi_alliance_country
+						set_graphical_culture = ferengi
+						set_city_graphical_culture = molluscoid_01
+						set_country_flag = stg_ferengi_alliance
+					}
+				}
+				create_colony = { owner = event_target:ferengi_alliance_country }
+				generate_start_deposits_and_blockers = yes
+				clear_blockers = yes
+				colony = {
+					generate_start_buildings_and_districts = yes
+					generate_start_pops = yes
+				}
+				event_target:ferengi_alliance_country = {
+					create_starting_leaders = yes
+					country_event = { id = game_start.9 }
+					country_event = { id = game_start.33 days = 1 }
+				}
+			}
+		}
 	}
 	planet = { name = "STG_N_Gorlack" class = "pc_barren_cold" orbit_distance = 30 orbit_angle = 15 size = 10 has_ring = no }
 	planet = { name = "STG_N_Clarus" class = "pc_gas_giant" orbit_distance = 55 orbit_angle = 240 size = 27 has_ring = yes }
@@ -817,6 +1422,66 @@ stg_klingon_empire_home = {
 		modifiers = none
 		init_effect = { prevent_anomaly = yes }
 		init_effect = { generate_empire_home_planet = yes }
+		init_effect = {
+			# The AI copy of stg_klingon_empire, created only when no country is
+			# already playing it. See ai_empire_block in the generator.
+			if = {
+				limit = { NOT = { any_country = { has_country_flag = stg_klingon_empire } } }
+				create_species = {
+					name = "STG_species_name_klingon"
+					plural = "STG_species_plural_klingon"
+					adjective = "STG_species_adjective_klingon"
+					class = KDF
+					portrait = "klingon"
+					homeworld = THIS
+					namelist = "STG_KLINGON"
+					traits = {
+						trait = "trait_organic"
+						trait = "trait_very_strong"
+						trait = "trait_resilient"
+						trait = "trait_quarrelsome"
+						trait = "trait_fleeting"
+						ideal_planet_class = "pc_continental"
+					}
+					effect = { save_event_target_as = klingon_empire_species }
+				}
+				create_country = {
+					name = "STG_EMPIRE_klingon"
+					adjective = "STG_adjective_klingon"
+					type = default
+					authority = "auth_imperial"
+					civics = { civic = "civic_warrior_culture" civic = "civic_aristocratic_elite" }
+					ethos = { ethic = "ethic_fanatic_militarist" ethic = "ethic_authoritarian" }
+					origin = "origin_default"
+					species = event_target:klingon_empire_species
+					name_list = "STG_KLINGON"
+					ship_prefix = "STG_ship_prefix_klingon"
+					flag = {
+						icon = { category = "trek" file = "Klingon.dds" }
+						background = { category = "backgrounds" file = "triangle_split.dds" }
+						colors = { "dark_red" "dark_grey" "null" "null" }
+					}
+					effect = {
+						save_event_target_as = klingon_empire_country
+						set_graphical_culture = klingon
+						set_city_graphical_culture = klingon
+						set_country_flag = stg_klingon_empire
+					}
+				}
+				create_colony = { owner = event_target:klingon_empire_country }
+				generate_start_deposits_and_blockers = yes
+				clear_blockers = yes
+				colony = {
+					generate_start_buildings_and_districts = yes
+					generate_start_pops = yes
+				}
+				event_target:klingon_empire_country = {
+					create_starting_leaders = yes
+					country_event = { id = game_start.9 }
+					country_event = { id = game_start.33 days = 1 }
+				}
+			}
+		}
 		moon = {
 			name = "Praxis"
 			class = "pc_barren"
@@ -888,6 +1553,65 @@ stg_krenim_empire_home = {
 		modifiers = none
 		init_effect = { prevent_anomaly = yes }
 		init_effect = { generate_empire_home_planet = yes }
+		init_effect = {
+			# The AI copy of stg_krenim_empire, created only when no country is
+			# already playing it. See ai_empire_block in the generator.
+			if = {
+				limit = { NOT = { any_country = { has_country_flag = stg_krenim_empire } } }
+				create_species = {
+					name = "STG_species_name_krenim"
+					plural = "STG_species_plural_krenim"
+					adjective = "STG_species_adjective_krenim"
+					class = KRE
+					portrait = "krenim"
+					homeworld = THIS
+					namelist = "STG_KRENIM"
+					traits = {
+						trait = "trait_organic"
+						trait = "trait_intelligent"
+						trait = "trait_natural_physicists"
+						trait = "trait_fleeting"
+						ideal_planet_class = "pc_continental"
+					}
+					effect = { save_event_target_as = krenim_empire_species }
+				}
+				create_country = {
+					name = "STG_EMPIRE_krenim"
+					adjective = "STG_adjective_krenim"
+					type = default
+					authority = "auth_dictatorial"
+					civics = { civic = "civic_technocracy" civic = "civic_environmentalist" }
+					ethos = { ethic = "ethic_authoritarian" ethic = "ethic_fanatic_materialist" }
+					origin = "origin_default"
+					species = event_target:krenim_empire_species
+					name_list = "STG_KRENIM"
+					ship_prefix = "STG_ship_prefix_krenim"
+					flag = {
+						icon = { category = "trek" file = "krenim.dds" }
+						background = { category = "backgrounds" file = "00_solid.dds" }
+						colors = { "dark_purple" "grey" "null" "null" }
+					}
+					effect = {
+						save_event_target_as = krenim_empire_country
+						set_graphical_culture = krenim
+						set_city_graphical_culture = humanoid_01
+						set_country_flag = stg_krenim_empire
+					}
+				}
+				create_colony = { owner = event_target:krenim_empire_country }
+				generate_start_deposits_and_blockers = yes
+				clear_blockers = yes
+				colony = {
+					generate_start_buildings_and_districts = yes
+					generate_start_pops = yes
+				}
+				event_target:krenim_empire_country = {
+					create_starting_leaders = yes
+					country_event = { id = game_start.9 }
+					country_event = { id = game_start.33 days = 1 }
+				}
+			}
+		}
 	}
 	planet = { name = "STG_N_KyanaIII" class = "pc_toxic" orbit_distance = 27 orbit_angle = 220 size = 12 has_ring = no }
 	planet = { name = "STG_N_KyanaIV" class = "pc_frozen" orbit_distance = 33 orbit_angle = 305 size = 10 has_ring = no }
@@ -917,6 +1641,65 @@ stg_malon_empire_home = {
 		modifiers = none
 		init_effect = { prevent_anomaly = yes }
 		init_effect = { generate_empire_home_planet = yes }
+		init_effect = {
+			# The AI copy of stg_malon_empire, created only when no country is
+			# already playing it. See ai_empire_block in the generator.
+			if = {
+				limit = { NOT = { any_country = { has_country_flag = stg_malon_empire } } }
+				create_species = {
+					name = "STG_species_name_malon"
+					plural = "STG_species_plural_malon"
+					adjective = "STG_species_adjective_malon"
+					class = MAL
+					portrait = "malon"
+					homeworld = THIS
+					namelist = "STG_MALON"
+					traits = {
+						trait = "trait_organic"
+						trait = "trait_industrious"
+						trait = "trait_strong"
+						trait = "trait_wasteful"
+						ideal_planet_class = "pc_continental"
+					}
+					effect = { save_event_target_as = malon_empire_species }
+				}
+				create_country = {
+					name = "STG_EMPIRE_malon"
+					adjective = "STG_adjective_malon"
+					type = default
+					authority = "auth_oligarchic"
+					civics = { civic = "civic_mining_guilds" civic = "civic_meritocracy" }
+					ethos = { ethic = "ethic_pacifist" ethic = "ethic_fanatic_materialist" }
+					origin = "origin_default"
+					species = event_target:malon_empire_species
+					name_list = "STG_MALON"
+					ship_prefix = "STG_ship_prefix_malon"
+					flag = {
+						icon = { category = "trek" file = "malon.dds" }
+						background = { category = "backgrounds" file = "00_solid.dds" }
+						colors = { "dark_orange" "dark_grey" "null" "null" }
+					}
+					effect = {
+						save_event_target_as = malon_empire_country
+						set_graphical_culture = malon
+						set_city_graphical_culture = humanoid_01
+						set_country_flag = stg_malon_empire
+					}
+				}
+				create_colony = { owner = event_target:malon_empire_country }
+				generate_start_deposits_and_blockers = yes
+				clear_blockers = yes
+				colony = {
+					generate_start_buildings_and_districts = yes
+					generate_start_pops = yes
+				}
+				event_target:malon_empire_country = {
+					create_starting_leaders = yes
+					country_event = { id = game_start.9 }
+					country_event = { id = game_start.33 days = 1 }
+				}
+			}
+		}
 	}
 	planet = { name = "STG_N_Neled" class = "pc_toxic" orbit_distance = 26 orbit_angle = 195 size = 13 has_ring = no }
 	planet = { name = "STG_N_MalonIV" class = "pc_toxic" orbit_distance = 24 orbit_angle = 265 size = 11 has_ring = no }
@@ -962,6 +1745,66 @@ stg_minor_acamarian_sovereignty_home = {
 		modifiers = none
 		init_effect = { prevent_anomaly = yes }
 		init_effect = { generate_empire_home_planet = yes }
+		init_effect = {
+			# The AI copy of stg_minor_acamarian_sovereignty, created only when no country is
+			# already playing it. See ai_empire_block in the generator.
+			if = {
+				limit = { NOT = { any_country = { has_country_flag = stg_minor_acamarian_sovereignty } } }
+				create_species = {
+					name = "STG_species_name_minor_acamarian_sovereignty"
+					plural = "STG_species_plural_minor_acamarian_sovereignty"
+					adjective = "STG_species_adjective_minor_acamarian_sovereignty"
+					class = ACA
+					portrait = "acamarian"
+					homeworld = THIS
+					namelist = "STG_ACAMARIAN"
+					traits = {
+						trait = "trait_organic"
+						trait = "trait_storm_touched"
+						trait = "trait_charismatic"
+						trait = "trait_nomadic"
+						trait = "trait_solitary"
+						ideal_planet_class = "pc_arctic"
+					}
+					effect = { save_event_target_as = minor_acamarian_sovereignty_species }
+				}
+				create_country = {
+					name = "STG_EMPIRE_minor_acamarian_sovereignty"
+					adjective = "STG_adjective_minor_acamarian_sovereignty"
+					type = default
+					authority = "auth_oligarchic"
+					civics = { civic = "civic_astrometeorology" civic = "civic_storm_callers" }
+					ethos = { ethic = "ethic_xenophile" ethic = "ethic_militarist" ethic = "ethic_spiritualist" }
+					origin = "origin_default"
+					species = event_target:minor_acamarian_sovereignty_species
+					name_list = "STG_ACAMARIAN"
+					ship_prefix = "STG_ship_prefix_minor_acamarian_sovereignty"
+					flag = {
+						icon = { category = "trek" file = "acamarian.dds" }
+						background = { category = "backgrounds" file = "00_solid.dds" }
+						colors = { "dark_brown" "khaki_brown" "null" "null" }
+					}
+					effect = {
+						save_event_target_as = minor_acamarian_sovereignty_country
+						set_graphical_culture = generic_05
+						set_city_graphical_culture = humanoid_01
+						set_country_flag = stg_minor_acamarian_sovereignty
+					}
+				}
+				create_colony = { owner = event_target:minor_acamarian_sovereignty_country }
+				generate_start_deposits_and_blockers = yes
+				clear_blockers = yes
+				colony = {
+					generate_start_buildings_and_districts = yes
+					generate_start_pops = yes
+				}
+				event_target:minor_acamarian_sovereignty_country = {
+					create_starting_leaders = yes
+					country_event = { id = game_start.9 }
+					country_event = { id = game_start.33 days = 1 }
+				}
+			}
+		}
 	}
 	planet = {
 		name = "Acamar IV"
@@ -1032,6 +1875,65 @@ stg_minor_betazoid_houses_home = {
 		modifiers = none
 		init_effect = { prevent_anomaly = yes }
 		init_effect = { generate_empire_home_planet = yes }
+		init_effect = {
+			# The AI copy of stg_minor_betazoid_houses, created only when no country is
+			# already playing it. See ai_empire_block in the generator.
+			if = {
+				limit = { NOT = { any_country = { has_country_flag = stg_minor_betazoid_houses } } }
+				create_species = {
+					name = "STG_species_name_minor_betazoid_houses"
+					plural = "STG_species_plural_minor_betazoid_houses"
+					adjective = "STG_species_adjective_minor_betazoid_houses"
+					class = BET
+					portrait = "betazoid"
+					homeworld = THIS
+					namelist = "STG_BETAZOID"
+					traits = {
+						trait = "trait_organic"
+						trait = "trait_charismatic"
+						trait = "trait_nomadic"
+						trait = "trait_solitary"
+						ideal_planet_class = "pc_continental"
+					}
+					effect = { save_event_target_as = minor_betazoid_houses_species }
+				}
+				create_country = {
+					name = "STG_EMPIRE_minor_betazoid_houses"
+					adjective = "STG_adjective_minor_betazoid_houses"
+					type = default
+					authority = "auth_democratic"
+					civics = { civic = "civic_technocracy" civic = "civic_free_haven" }
+					ethos = { ethic = "ethic_xenophile" ethic = "ethic_pacifist" ethic = "ethic_materialist" }
+					origin = "origin_default"
+					species = event_target:minor_betazoid_houses_species
+					name_list = "STG_BETAZOID"
+					ship_prefix = "STG_ship_prefix_minor_betazoid_houses"
+					flag = {
+						icon = { category = "trek" file = "betazoid.dds" }
+						background = { category = "backgrounds" file = "00_solid.dds" }
+						colors = { "intense_burgundy" "grey" "null" "null" }
+					}
+					effect = {
+						save_event_target_as = minor_betazoid_houses_country
+						set_graphical_culture = generic_01
+						set_city_graphical_culture = humanoid_01
+						set_country_flag = stg_minor_betazoid_houses
+					}
+				}
+				create_colony = { owner = event_target:minor_betazoid_houses_country }
+				generate_start_deposits_and_blockers = yes
+				clear_blockers = yes
+				colony = {
+					generate_start_buildings_and_districts = yes
+					generate_start_pops = yes
+				}
+				event_target:minor_betazoid_houses_country = {
+					create_starting_leaders = yes
+					country_event = { id = game_start.9 }
+					country_event = { id = game_start.33 days = 1 }
+				}
+			}
+		}
 		moon = {
 			name = "Avanadar"
 			class = "pc_barren_cold"
@@ -1140,6 +2042,65 @@ stg_minor_cheronite_nation_home = {
 		modifiers = none
 		init_effect = { prevent_anomaly = yes }
 		init_effect = { generate_empire_home_planet = yes }
+		init_effect = {
+			# The AI copy of stg_minor_cheronite_nation, created only when no country is
+			# already playing it. See ai_empire_block in the generator.
+			if = {
+				limit = { NOT = { any_country = { has_country_flag = stg_minor_cheronite_nation } } }
+				create_species = {
+					name = "STG_species_name_minor_cheronite_nation"
+					plural = "STG_species_plural_minor_cheronite_nation"
+					adjective = "STG_species_adjective_minor_cheronite_nation"
+					class = CHER
+					portrait = "cheronite"
+					homeworld = THIS
+					namelist = "STG_CHERONITE"
+					traits = {
+						trait = "trait_organic"
+						trait = "trait_industrious"
+						trait = "trait_deviants"
+						trait = "trait_traditional"
+						ideal_planet_class = "pc_arctic"
+					}
+					effect = { save_event_target_as = minor_cheronite_nation_species }
+				}
+				create_country = {
+					name = "STG_EMPIRE_minor_cheronite_nation"
+					adjective = "STG_adjective_minor_cheronite_nation"
+					type = default
+					authority = "auth_imperial"
+					civics = { civic = "civic_crowdsourcing" civic = "civic_philosopher_king" }
+					ethos = { ethic = "ethic_authoritarian" ethic = "ethic_xenophobe" ethic = "ethic_spiritualist" }
+					origin = "origin_default"
+					species = event_target:minor_cheronite_nation_species
+					name_list = "STG_CHERONITE"
+					ship_prefix = "STG_ship_prefix_minor_cheronite_nation"
+					flag = {
+						icon = { category = "pirate" file = "flag_pirate_4.dds" }
+						background = { category = "backgrounds" file = "00_solid.dds" }
+						colors = { "grey" "dark_blue" "null" "null" }
+					}
+					effect = {
+						save_event_target_as = minor_cheronite_nation_country
+						set_graphical_culture = generic_01
+						set_city_graphical_culture = humanoid_01
+						set_country_flag = stg_minor_cheronite_nation
+					}
+				}
+				create_colony = { owner = event_target:minor_cheronite_nation_country }
+				generate_start_deposits_and_blockers = yes
+				clear_blockers = yes
+				colony = {
+					generate_start_buildings_and_districts = yes
+					generate_start_pops = yes
+				}
+				event_target:minor_cheronite_nation_country = {
+					create_starting_leaders = yes
+					country_event = { id = game_start.9 }
+					country_event = { id = game_start.33 days = 1 }
+				}
+			}
+		}
 	}
 	planet = {
 		name = "Cheron V"
@@ -1198,6 +2159,64 @@ stg_minor_confederation_earth_home = {
 		modifiers = none
 		init_effect = { prevent_anomaly = yes }
 		init_effect = { generate_empire_home_planet = yes }
+		init_effect = {
+			# The AI copy of stg_minor_confederation_earth, created only when no country is
+			# already playing it. See ai_empire_block in the generator.
+			if = {
+				limit = { NOT = { any_country = { has_country_flag = stg_minor_confederation_earth } } }
+				create_species = {
+					name = "STG_species_name_minor_confederation_earth"
+					plural = "STG_species_plural_minor_confederation_earth"
+					adjective = "STG_species_adjective_minor_confederation_earth"
+					class = CON
+					portrait = "human"
+					homeworld = THIS
+					namelist = "STG_CONFEDERATION"
+					traits = {
+						trait = "trait_organic"
+						trait = "trait_strong"
+						trait = "trait_resilient"
+						ideal_planet_class = "pc_continental"
+					}
+					effect = { save_event_target_as = minor_confederation_earth_species }
+				}
+				create_country = {
+					name = "STG_EMPIRE_minor_confederation_earth"
+					adjective = "STG_adjective_minor_confederation_earth"
+					type = default
+					authority = "auth_imperial"
+					civics = { civic = "civic_crowdsourcing" civic = "civic_philosopher_king" }
+					ethos = { ethic = "ethic_authoritarian" ethic = "ethic_xenophobe" ethic = "ethic_spiritualist" }
+					origin = "origin_default"
+					species = event_target:minor_confederation_earth_species
+					name_list = "STG_CONFEDERATION"
+					ship_prefix = "STG_ship_prefix_minor_confederation_earth"
+					flag = {
+						icon = { category = "trek" file = "confederation.dds" }
+						background = { category = "backgrounds" file = "00_solid.dds" }
+						colors = { "beige" "brown" "null" "null" }
+					}
+					effect = {
+						save_event_target_as = minor_confederation_earth_country
+						set_graphical_culture = starfleet_tng
+						set_city_graphical_culture = humanoid_01
+						set_country_flag = stg_minor_confederation_earth
+					}
+				}
+				create_colony = { owner = event_target:minor_confederation_earth_country }
+				generate_start_deposits_and_blockers = yes
+				clear_blockers = yes
+				colony = {
+					generate_start_buildings_and_districts = yes
+					generate_start_pops = yes
+				}
+				event_target:minor_confederation_earth_country = {
+					create_starting_leaders = yes
+					country_event = { id = game_start.9 }
+					country_event = { id = game_start.33 days = 1 }
+				}
+			}
+		}
 		moon = {
 			name = "Luna"
 			class = "pc_barren"
@@ -1453,6 +2472,65 @@ stg_minor_denobulan_unity_home = {
 		modifiers = none
 		init_effect = { prevent_anomaly = yes }
 		init_effect = { generate_empire_home_planet = yes }
+		init_effect = {
+			# The AI copy of stg_minor_denobulan_unity, created only when no country is
+			# already playing it. See ai_empire_block in the generator.
+			if = {
+				limit = { NOT = { any_country = { has_country_flag = stg_minor_denobulan_unity } } }
+				create_species = {
+					name = "STG_species_name_minor_denobulan_unity"
+					plural = "STG_species_plural_minor_denobulan_unity"
+					adjective = "STG_species_adjective_minor_denobulan_unity"
+					class = DEN
+					portrait = "denobulan"
+					homeworld = THIS
+					namelist = "STG_DENOBULAN"
+					traits = {
+						trait = "trait_organic"
+						trait = "trait_charismatic"
+						trait = "trait_nomadic"
+						trait = "trait_solitary"
+						ideal_planet_class = "pc_continental"
+					}
+					effect = { save_event_target_as = minor_denobulan_unity_species }
+				}
+				create_country = {
+					name = "STG_EMPIRE_minor_denobulan_unity"
+					adjective = "STG_adjective_minor_denobulan_unity"
+					type = default
+					authority = "auth_democratic"
+					civics = { civic = "civic_technocracy" civic = "civic_free_haven" }
+					ethos = { ethic = "ethic_xenophile" ethic = "ethic_pacifist" ethic = "ethic_materialist" }
+					origin = "origin_default"
+					species = event_target:minor_denobulan_unity_species
+					name_list = "STG_DENOBULAN"
+					ship_prefix = "STG_ship_prefix_minor_denobulan_unity"
+					flag = {
+						icon = { category = "trek" file = "denobula.dds" }
+						background = { category = "backgrounds" file = "00_solid.dds" }
+						colors = { "orange" "pink" "null" "null" }
+					}
+					effect = {
+						save_event_target_as = minor_denobulan_unity_country
+						set_graphical_culture = starfleet_tng
+						set_city_graphical_culture = humanoid_01
+						set_country_flag = stg_minor_denobulan_unity
+					}
+				}
+				create_colony = { owner = event_target:minor_denobulan_unity_country }
+				generate_start_deposits_and_blockers = yes
+				clear_blockers = yes
+				colony = {
+					generate_start_buildings_and_districts = yes
+					generate_start_pops = yes
+				}
+				event_target:minor_denobulan_unity_country = {
+					create_starting_leaders = yes
+					country_event = { id = game_start.9 }
+					country_event = { id = game_start.33 days = 1 }
+				}
+			}
+		}
 	}
 	planet = {
 		name = "Denobula Triaxa B"
@@ -1556,6 +2634,64 @@ stg_minor_garidian_republic_home = {
 		modifiers = none
 		init_effect = { prevent_anomaly = yes }
 		init_effect = { generate_empire_home_planet = yes }
+		init_effect = {
+			# The AI copy of stg_minor_garidian_republic, created only when no country is
+			# already playing it. See ai_empire_block in the generator.
+			if = {
+				limit = { NOT = { any_country = { has_country_flag = stg_minor_garidian_republic } } }
+				create_species = {
+					name = "STG_species_name_minor_garidian_republic"
+					plural = "STG_species_plural_minor_garidian_republic"
+					adjective = "STG_species_adjective_minor_garidian_republic"
+					class = GAR
+					portrait = "garidian"
+					homeworld = THIS
+					namelist = "STG_GARIDIAN"
+					traits = {
+						trait = "trait_organic"
+						trait = "trait_strong"
+						trait = "trait_resilient"
+						ideal_planet_class = "pc_arctic"
+					}
+					effect = { save_event_target_as = minor_garidian_republic_species }
+				}
+				create_country = {
+					name = "STG_EMPIRE_minor_garidian_republic"
+					adjective = "STG_adjective_minor_garidian_republic"
+					type = default
+					authority = "auth_imperial"
+					civics = { civic = "civic_feudal_realm" civic = "civic_aristocratic_elite" }
+					ethos = { ethic = "ethic_authoritarian" ethic = "ethic_militarist" ethic = "ethic_spiritualist" }
+					origin = "origin_default"
+					species = event_target:minor_garidian_republic_species
+					name_list = "STG_GARIDIAN"
+					ship_prefix = "STG_ship_prefix_minor_garidian_republic"
+					flag = {
+						icon = { category = "pointy" file = "flag_pointy_9.dds" }
+						background = { category = "backgrounds" file = "00_solid.dds" }
+						colors = { "shadow_purple" "brown" "null" "null" }
+					}
+					effect = {
+						save_event_target_as = minor_garidian_republic_country
+						set_graphical_culture = romulan
+						set_city_graphical_culture = humanoid_01
+						set_country_flag = stg_minor_garidian_republic
+					}
+				}
+				create_colony = { owner = event_target:minor_garidian_republic_country }
+				generate_start_deposits_and_blockers = yes
+				clear_blockers = yes
+				colony = {
+					generate_start_buildings_and_districts = yes
+					generate_start_pops = yes
+				}
+				event_target:minor_garidian_republic_country = {
+					create_starting_leaders = yes
+					country_event = { id = game_start.9 }
+					country_event = { id = game_start.33 days = 1 }
+				}
+			}
+		}
 		moon = {
 			name = "Plebia"
 			class = "pc_barren"
@@ -1680,6 +2816,64 @@ stg_minor_haakonian_order_home = {
 		modifiers = none
 		init_effect = { prevent_anomaly = yes }
 		init_effect = { generate_empire_home_planet = yes }
+		init_effect = {
+			# The AI copy of stg_minor_haakonian_order, created only when no country is
+			# already playing it. See ai_empire_block in the generator.
+			if = {
+				limit = { NOT = { any_country = { has_country_flag = stg_minor_haakonian_order } } }
+				create_species = {
+					name = "STG_species_name_minor_haakonian_order"
+					plural = "STG_species_plural_minor_haakonian_order"
+					adjective = "STG_species_adjective_minor_haakonian_order"
+					class = HAA
+					portrait = "haakonian"
+					homeworld = THIS
+					namelist = "STG_HAAKONIAN"
+					traits = {
+						trait = "trait_organic"
+						trait = "trait_strong"
+						trait = "trait_resilient"
+						ideal_planet_class = "pc_arctic"
+					}
+					effect = { save_event_target_as = minor_haakonian_order_species }
+				}
+				create_country = {
+					name = "STG_EMPIRE_minor_haakonian_order"
+					adjective = "STG_adjective_minor_haakonian_order"
+					type = default
+					authority = "auth_oligarchic"
+					civics = { civic = "civic_twisted_experimenters" civic = "civic_police_state" }
+					ethos = { ethic = "ethic_authoritarian" ethic = "ethic_militarist" ethic = "ethic_materialist" }
+					origin = "origin_default"
+					species = event_target:minor_haakonian_order_species
+					name_list = "STG_HAAKONIAN"
+					ship_prefix = "STG_ship_prefix_minor_haakonian_order"
+					flag = {
+						icon = { category = "trek" file = "haakonian.dds" }
+						background = { category = "backgrounds" file = "00_solid.dds" }
+						colors = { "dark_teal" "burgundy" "null" "null" }
+					}
+					effect = {
+						save_event_target_as = minor_haakonian_order_country
+						set_graphical_culture = generic_01
+						set_city_graphical_culture = humanoid_01
+						set_country_flag = stg_minor_haakonian_order
+					}
+				}
+				create_colony = { owner = event_target:minor_haakonian_order_country }
+				generate_start_deposits_and_blockers = yes
+				clear_blockers = yes
+				colony = {
+					generate_start_buildings_and_districts = yes
+					generate_start_pops = yes
+				}
+				event_target:minor_haakonian_order_country = {
+					create_starting_leaders = yes
+					country_event = { id = game_start.9 }
+					country_event = { id = game_start.33 days = 1 }
+				}
+			}
+		}
 	}
 	planet = {
 		class = "pc_gas_giant"
@@ -1750,6 +2944,64 @@ stg_minor_hirogen_hunters_home = {
 		modifiers = none
 		init_effect = { prevent_anomaly = yes }
 		init_effect = { generate_empire_home_planet = yes }
+		init_effect = {
+			# The AI copy of stg_minor_hirogen_hunters, created only when no country is
+			# already playing it. See ai_empire_block in the generator.
+			if = {
+				limit = { NOT = { any_country = { has_country_flag = stg_minor_hirogen_hunters } } }
+				create_species = {
+					name = "STG_species_name_minor_hirogen_hunters"
+					plural = "STG_species_plural_minor_hirogen_hunters"
+					adjective = "STG_species_adjective_minor_hirogen_hunters"
+					class = HIR
+					portrait = "hirogen"
+					homeworld = THIS
+					namelist = "STG_HIROGEN"
+					traits = {
+						trait = "trait_organic"
+						trait = "trait_strong"
+						trait = "trait_resilient"
+						ideal_planet_class = "pc_continental"
+					}
+					effect = { save_event_target_as = minor_hirogen_hunters_species }
+				}
+				create_country = {
+					name = "STG_EMPIRE_minor_hirogen_hunters"
+					adjective = "STG_adjective_minor_hirogen_hunters"
+					type = default
+					authority = "auth_imperial"
+					civics = { civic = "civic_police_state" civic = "civic_slaver_guilds" }
+					ethos = { ethic = "ethic_authoritarian" ethic = "ethic_fanatic_militarist" }
+					origin = "origin_default"
+					species = event_target:minor_hirogen_hunters_species
+					name_list = "STG_HIROGEN"
+					ship_prefix = "STG_ship_prefix_minor_hirogen_hunters"
+					flag = {
+						icon = { category = "trek" file = "hirogen.dds" }
+						background = { category = "backgrounds" file = "00_solid.dds" }
+						colors = { "purple" "yellow" "null" "null" }
+					}
+					effect = {
+						save_event_target_as = minor_hirogen_hunters_country
+						set_graphical_culture = krenim
+						set_city_graphical_culture = humanoid_01
+						set_country_flag = stg_minor_hirogen_hunters
+					}
+				}
+				create_colony = { owner = event_target:minor_hirogen_hunters_country }
+				generate_start_deposits_and_blockers = yes
+				clear_blockers = yes
+				colony = {
+					generate_start_buildings_and_districts = yes
+					generate_start_pops = yes
+				}
+				event_target:minor_hirogen_hunters_country = {
+					create_starting_leaders = yes
+					country_event = { id = game_start.9 }
+					country_event = { id = game_start.33 days = 1 }
+				}
+			}
+		}
 	}
 }
 
@@ -1795,6 +3047,64 @@ stg_minor_hur_q_stagnancy_home = {
 		modifiers = none
 		init_effect = { prevent_anomaly = yes }
 		init_effect = { generate_empire_home_planet = yes }
+		init_effect = {
+			# The AI copy of stg_minor_hur_q_stagnancy, created only when no country is
+			# already playing it. See ai_empire_block in the generator.
+			if = {
+				limit = { NOT = { any_country = { has_country_flag = stg_minor_hur_q_stagnancy } } }
+				create_species = {
+					name = "STG_species_name_minor_hur_q_stagnancy"
+					plural = "STG_species_plural_minor_hur_q_stagnancy"
+					adjective = "STG_species_adjective_minor_hur_q_stagnancy"
+					class = HUR
+					portrait = "hur'q"
+					homeworld = THIS
+					namelist = "STG_ARGRATHI"
+					traits = {
+						trait = "trait_organic"
+						trait = "trait_strong"
+						trait = "trait_resilient"
+						ideal_planet_class = "pc_desert"
+					}
+					effect = { save_event_target_as = minor_hur_q_stagnancy_species }
+				}
+				create_country = {
+					name = "STG_EMPIRE_minor_hur_q_stagnancy"
+					adjective = "STG_adjective_minor_hur_q_stagnancy"
+					type = default
+					authority = "auth_democratic"
+					civics = { civic = "civic_nationalistic_zeal" civic = "civic_citizen_service" }
+					ethos = { ethic = "ethic_fanatic_egalitarian" ethic = "ethic_militarist" }
+					origin = "origin_default"
+					species = event_target:minor_hur_q_stagnancy_species
+					name_list = "STG_ARGRATHI"
+					ship_prefix = "STG_ship_prefix_minor_hur_q_stagnancy"
+					flag = {
+						icon = { category = "trek" file = "hur'q.dds" }
+						background = { category = "backgrounds" file = "00_solid.dds" }
+						colors = { "intense_burgundy" "grey" "null" "null" }
+					}
+					effect = {
+						save_event_target_as = minor_hur_q_stagnancy_country
+						set_graphical_culture = generic_01
+						set_city_graphical_culture = humanoid_01
+						set_country_flag = stg_minor_hur_q_stagnancy
+					}
+				}
+				create_colony = { owner = event_target:minor_hur_q_stagnancy_country }
+				generate_start_deposits_and_blockers = yes
+				clear_blockers = yes
+				colony = {
+					generate_start_buildings_and_districts = yes
+					generate_start_pops = yes
+				}
+				event_target:minor_hur_q_stagnancy_country = {
+					create_starting_leaders = yes
+					country_event = { id = game_start.9 }
+					country_event = { id = game_start.33 days = 1 }
+				}
+			}
+		}
 	}
 	planet = {
 		name = "Forgotten Heroics"
@@ -1863,6 +3173,64 @@ stg_minor_kinshaya_holy_order_home = {
 		modifiers = none
 		init_effect = { prevent_anomaly = yes }
 		init_effect = { generate_empire_home_planet = yes }
+		init_effect = {
+			# The AI copy of stg_minor_kinshaya_holy_order, created only when no country is
+			# already playing it. See ai_empire_block in the generator.
+			if = {
+				limit = { NOT = { any_country = { has_country_flag = stg_minor_kinshaya_holy_order } } }
+				create_species = {
+					name = "STG_species_name_minor_kinshaya_holy_order"
+					plural = "STG_species_plural_minor_kinshaya_holy_order"
+					adjective = "STG_species_adjective_minor_kinshaya_holy_order"
+					class = KIN
+					portrait = "kinshaya"
+					homeworld = THIS
+					namelist = "STG_KINSHAYA"
+					traits = {
+						trait = "trait_organic"
+						trait = "trait_strong"
+						trait = "trait_resilient"
+						ideal_planet_class = "pc_arctic"
+					}
+					effect = { save_event_target_as = minor_kinshaya_holy_order_species }
+				}
+				create_country = {
+					name = "STG_EMPIRE_minor_kinshaya_holy_order"
+					adjective = "STG_adjective_minor_kinshaya_holy_order"
+					type = default
+					authority = "auth_imperial"
+					civics = { civic = "civic_crowdsourcing" civic = "civic_philosopher_king" }
+					ethos = { ethic = "ethic_authoritarian" ethic = "ethic_xenophobe" ethic = "ethic_spiritualist" }
+					origin = "origin_default"
+					species = event_target:minor_kinshaya_holy_order_species
+					name_list = "STG_KINSHAYA"
+					ship_prefix = "STG_ship_prefix_minor_kinshaya_holy_order"
+					flag = {
+						icon = { category = "ornate" file = "flag_ornate_3.dds" }
+						background = { category = "backgrounds" file = "00_solid.dds" }
+						colors = { "dark_orange" "dark_teal" "null" "null" }
+					}
+					effect = {
+						save_event_target_as = minor_kinshaya_holy_order_country
+						set_graphical_culture = klingon
+						set_city_graphical_culture = humanoid_01
+						set_country_flag = stg_minor_kinshaya_holy_order
+					}
+				}
+				create_colony = { owner = event_target:minor_kinshaya_holy_order_country }
+				generate_start_deposits_and_blockers = yes
+				clear_blockers = yes
+				colony = {
+					generate_start_buildings_and_districts = yes
+					generate_start_pops = yes
+				}
+				event_target:minor_kinshaya_holy_order_country = {
+					create_starting_leaders = yes
+					country_event = { id = game_start.9 }
+					country_event = { id = game_start.33 days = 1 }
+				}
+			}
+		}
 	}
 	planet = {
 		class = "pc_gas_giant"
@@ -1927,6 +3295,65 @@ stg_minor_kobali_republic_home = {
 		modifiers = none
 		init_effect = { prevent_anomaly = yes }
 		init_effect = { generate_empire_home_planet = yes }
+		init_effect = {
+			# The AI copy of stg_minor_kobali_republic, created only when no country is
+			# already playing it. See ai_empire_block in the generator.
+			if = {
+				limit = { NOT = { any_country = { has_country_flag = stg_minor_kobali_republic } } }
+				create_species = {
+					name = "STG_species_name_minor_kobali_republic"
+					plural = "STG_species_plural_minor_kobali_republic"
+					adjective = "STG_species_adjective_minor_kobali_republic"
+					class = KOB
+					portrait = "kobali"
+					homeworld = THIS
+					namelist = "STG_KOBALI"
+					traits = {
+						trait = "trait_organic"
+						trait = "trait_intelligent"
+						trait = "trait_natural_physicists"
+						trait = "trait_fleeting"
+						ideal_planet_class = "pc_continental"
+					}
+					effect = { save_event_target_as = minor_kobali_republic_species }
+				}
+				create_country = {
+					name = "STG_EMPIRE_minor_kobali_republic"
+					adjective = "STG_adjective_minor_kobali_republic"
+					type = default
+					authority = "auth_democratic"
+					civics = { civic = "civic_technocracy" civic = "civic_free_haven" }
+					ethos = { ethic = "ethic_xenophile" ethic = "ethic_pacifist" ethic = "ethic_materialist" }
+					origin = "origin_default"
+					species = event_target:minor_kobali_republic_species
+					name_list = "STG_KOBALI"
+					ship_prefix = "STG_ship_prefix_minor_kobali_republic"
+					flag = {
+						icon = { category = "trek" file = "kobali.dds" }
+						background = { category = "backgrounds" file = "00_solid.dds" }
+						colors = { "ochre_brown" "dark_brown" "null" "null" }
+					}
+					effect = {
+						save_event_target_as = minor_kobali_republic_country
+						set_graphical_culture = vidiian
+						set_city_graphical_culture = humanoid_01
+						set_country_flag = stg_minor_kobali_republic
+					}
+				}
+				create_colony = { owner = event_target:minor_kobali_republic_country }
+				generate_start_deposits_and_blockers = yes
+				clear_blockers = yes
+				colony = {
+					generate_start_buildings_and_districts = yes
+					generate_start_pops = yes
+				}
+				event_target:minor_kobali_republic_country = {
+					create_starting_leaders = yes
+					country_event = { id = game_start.9 }
+					country_event = { id = game_start.33 days = 1 }
+				}
+			}
+		}
 	}
 	planet = {
 		name = "Kalu"
@@ -2005,6 +3432,63 @@ stg_minor_kraylor_republic_home = {
 		modifiers = none
 		init_effect = { prevent_anomaly = yes }
 		init_effect = { generate_empire_home_planet = yes }
+		init_effect = {
+			# The AI copy of stg_minor_kraylor_republic, created only when no country is
+			# already playing it. See ai_empire_block in the generator.
+			if = {
+				limit = { NOT = { any_country = { has_country_flag = stg_minor_kraylor_republic } } }
+				create_species = {
+					name = "STG_species_name_minor_kraylor_republic"
+					plural = "STG_species_plural_minor_kraylor_republic"
+					adjective = "STG_species_adjective_minor_kraylor_republic"
+					class = KRA
+					portrait = "kraylor"
+					homeworld = THIS
+					namelist = "STG_KRAYLOR"
+					traits = {
+						trait = "trait_organic"
+						trait = "trait_agrarian"
+						ideal_planet_class = "pc_continental"
+					}
+					effect = { save_event_target_as = minor_kraylor_republic_species }
+				}
+				create_country = {
+					name = "STG_EMPIRE_minor_kraylor_republic"
+					adjective = "STG_adjective_minor_kraylor_republic"
+					type = default
+					authority = "auth_democratic"
+					civics = { civic = "civic_technocracy" civic = "civic_free_haven" }
+					ethos = { ethic = "ethic_xenophile" ethic = "ethic_pacifist" ethic = "ethic_materialist" }
+					origin = "origin_default"
+					species = event_target:minor_kraylor_republic_species
+					name_list = "STG_KRAYLOR"
+					ship_prefix = "STG_ship_prefix_minor_kraylor_republic"
+					flag = {
+						icon = { category = "ornate" file = "flag_ornate_9.dds" }
+						background = { category = "backgrounds" file = "00_solid.dds" }
+						colors = { "dark_brown" "dark_blue" "null" "null" }
+					}
+					effect = {
+						save_event_target_as = minor_kraylor_republic_country
+						set_graphical_culture = malon
+						set_city_graphical_culture = humanoid_01
+						set_country_flag = stg_minor_kraylor_republic
+					}
+				}
+				create_colony = { owner = event_target:minor_kraylor_republic_country }
+				generate_start_deposits_and_blockers = yes
+				clear_blockers = yes
+				colony = {
+					generate_start_buildings_and_districts = yes
+					generate_start_pops = yes
+				}
+				event_target:minor_kraylor_republic_country = {
+					create_starting_leaders = yes
+					country_event = { id = game_start.9 }
+					country_event = { id = game_start.33 days = 1 }
+				}
+			}
+		}
 	}
 	planet = {
 		name = "Krayus V"
@@ -2083,6 +3567,64 @@ stg_minor_lyran_star_empire_home = {
 		modifiers = none
 		init_effect = { prevent_anomaly = yes }
 		init_effect = { generate_empire_home_planet = yes }
+		init_effect = {
+			# The AI copy of stg_minor_lyran_star_empire, created only when no country is
+			# already playing it. See ai_empire_block in the generator.
+			if = {
+				limit = { NOT = { any_country = { has_country_flag = stg_minor_lyran_star_empire } } }
+				create_species = {
+					name = "STG_species_name_minor_lyran_star_empire"
+					plural = "STG_species_plural_minor_lyran_star_empire"
+					adjective = "STG_species_adjective_minor_lyran_star_empire"
+					class = LYR
+					portrait = "lyran"
+					homeworld = THIS
+					namelist = "STG_LYRAN"
+					traits = {
+						trait = "trait_organic"
+						trait = "trait_strong"
+						trait = "trait_resilient"
+						ideal_planet_class = "pc_arctic"
+					}
+					effect = { save_event_target_as = minor_lyran_star_empire_species }
+				}
+				create_country = {
+					name = "STG_EMPIRE_minor_lyran_star_empire"
+					adjective = "STG_adjective_minor_lyran_star_empire"
+					type = default
+					authority = "auth_imperial"
+					civics = { civic = "civic_crowdsourcing" civic = "civic_philosopher_king" }
+					ethos = { ethic = "ethic_authoritarian" ethic = "ethic_xenophobe" ethic = "ethic_spiritualist" }
+					origin = "origin_default"
+					species = event_target:minor_lyran_star_empire_species
+					name_list = "STG_LYRAN"
+					ship_prefix = "STG_ship_prefix_minor_lyran_star_empire"
+					flag = {
+						icon = { category = "trek" file = "lyran.dds" }
+						background = { category = "backgrounds" file = "00_solid.dds" }
+						colors = { "dark_blue" "orange" "null" "null" }
+					}
+					effect = {
+						save_event_target_as = minor_lyran_star_empire_country
+						set_graphical_culture = caitian
+						set_city_graphical_culture = humanoid_01
+						set_country_flag = stg_minor_lyran_star_empire
+					}
+				}
+				create_colony = { owner = event_target:minor_lyran_star_empire_country }
+				generate_start_deposits_and_blockers = yes
+				clear_blockers = yes
+				colony = {
+					generate_start_buildings_and_districts = yes
+					generate_start_pops = yes
+				}
+				event_target:minor_lyran_star_empire_country = {
+					create_starting_leaders = yes
+					country_event = { id = game_start.9 }
+					country_event = { id = game_start.33 days = 1 }
+				}
+			}
+		}
 		moon = {
 			name = "Rea"
 			class = "pc_barren_cold"
@@ -2177,6 +3719,64 @@ stg_minor_rigellian_consortium_home = {
 		modifiers = none
 		init_effect = { prevent_anomaly = yes }
 		init_effect = { generate_empire_home_planet = yes }
+		init_effect = {
+			# The AI copy of stg_minor_rigellian_consortium, created only when no country is
+			# already playing it. See ai_empire_block in the generator.
+			if = {
+				limit = { NOT = { any_country = { has_country_flag = stg_minor_rigellian_consortium } } }
+				create_species = {
+					name = "STG_species_name_minor_rigellian_consortium"
+					plural = "STG_species_plural_minor_rigellian_consortium"
+					adjective = "STG_species_adjective_minor_rigellian_consortium"
+					class = RIG
+					portrait = "rigellian"
+					homeworld = THIS
+					namelist = "STG_RIGELLIAN"
+					traits = {
+						trait = "trait_organic"
+						trait = "trait_communal"
+						trait = "trait_talented"
+						ideal_planet_class = "pc_arctic"
+					}
+					effect = { save_event_target_as = minor_rigellian_consortium_species }
+				}
+				create_country = {
+					name = "STG_EMPIRE_minor_rigellian_consortium"
+					adjective = "STG_adjective_minor_rigellian_consortium"
+					type = default
+					authority = "auth_democratic"
+					civics = { civic = "civic_beacon_of_liberty" civic = "civic_free_haven" }
+					ethos = { ethic = "ethic_egalitarian" ethic = "ethic_fanatic_xenophile" }
+					origin = "origin_default"
+					species = event_target:minor_rigellian_consortium_species
+					name_list = "STG_RIGELLIAN"
+					ship_prefix = "STG_ship_prefix_minor_rigellian_consortium"
+					flag = {
+						icon = { category = "spherical" file = "flag_spherical_13.dds" }
+						background = { category = "backgrounds" file = "00_solid.dds" }
+						colors = { "intense_burgundy" "yellow" "null" "null" }
+					}
+					effect = {
+						save_event_target_as = minor_rigellian_consortium_country
+						set_graphical_culture = generic_05
+						set_city_graphical_culture = humanoid_01
+						set_country_flag = stg_minor_rigellian_consortium
+					}
+				}
+				create_colony = { owner = event_target:minor_rigellian_consortium_country }
+				generate_start_deposits_and_blockers = yes
+				clear_blockers = yes
+				colony = {
+					generate_start_buildings_and_districts = yes
+					generate_start_pops = yes
+				}
+				event_target:minor_rigellian_consortium_country = {
+					create_starting_leaders = yes
+					country_event = { id = game_start.9 }
+					country_event = { id = game_start.33 days = 1 }
+				}
+			}
+		}
 	}
 	planet = {
 		name = "Krayus V"
@@ -2228,6 +3828,64 @@ stg_minor_voth_theocracy_home = {
 		modifiers = none
 		init_effect = { prevent_anomaly = yes }
 		init_effect = { generate_empire_home_planet = yes }
+		init_effect = {
+			# The AI copy of stg_minor_voth_theocracy, created only when no country is
+			# already playing it. See ai_empire_block in the generator.
+			if = {
+				limit = { NOT = { any_country = { has_country_flag = stg_minor_voth_theocracy } } }
+				create_species = {
+					name = "STG_species_name_minor_voth_theocracy"
+					plural = "STG_species_plural_minor_voth_theocracy"
+					adjective = "STG_species_adjective_minor_voth_theocracy"
+					class = VOT
+					portrait = "voth"
+					homeworld = THIS
+					namelist = "STG_VOTH"
+					traits = {
+						trait = "trait_organic"
+						trait = "trait_traditional"
+						trait = "trait_talented"
+						ideal_planet_class = "pc_continental"
+					}
+					effect = { save_event_target_as = minor_voth_theocracy_species }
+				}
+				create_country = {
+					name = "STG_EMPIRE_minor_voth_theocracy"
+					adjective = "STG_adjective_minor_voth_theocracy"
+					type = default
+					authority = "auth_imperial"
+					civics = { civic = "civic_crowdsourcing" civic = "civic_philosopher_king" }
+					ethos = { ethic = "ethic_authoritarian" ethic = "ethic_xenophobe" ethic = "ethic_spiritualist" }
+					origin = "origin_default"
+					species = event_target:minor_voth_theocracy_species
+					name_list = "STG_VOTH"
+					ship_prefix = "STG_ship_prefix_minor_voth_theocracy"
+					flag = {
+						icon = { category = "trek" file = "voth.dds" }
+						background = { category = "backgrounds" file = "00_solid.dds" }
+						colors = { "brown" "dark_red" "null" "null" }
+					}
+					effect = {
+						save_event_target_as = minor_voth_theocracy_country
+						set_graphical_culture = krenim
+						set_city_graphical_culture = humanoid_01
+						set_country_flag = stg_minor_voth_theocracy
+					}
+				}
+				create_colony = { owner = event_target:minor_voth_theocracy_country }
+				generate_start_deposits_and_blockers = yes
+				clear_blockers = yes
+				colony = {
+					generate_start_buildings_and_districts = yes
+					generate_start_pops = yes
+				}
+				event_target:minor_voth_theocracy_country = {
+					create_starting_leaders = yes
+					country_event = { id = game_start.9 }
+					country_event = { id = game_start.33 days = 1 }
+				}
+			}
+		}
 	}
 }
 
@@ -2265,6 +3923,65 @@ stg_romulan_star_empire_home = {
 		modifiers = none
 		init_effect = { prevent_anomaly = yes }
 		init_effect = { generate_empire_home_planet = yes }
+		init_effect = {
+			# The AI copy of stg_romulan_star_empire, created only when no country is
+			# already playing it. See ai_empire_block in the generator.
+			if = {
+				limit = { NOT = { any_country = { has_country_flag = stg_romulan_star_empire } } }
+				create_species = {
+					name = "STG_species_name_romulan"
+					plural = "STG_species_plural_romulan"
+					adjective = "STG_species_adjective_romulan"
+					class = ROM
+					portrait = "romulan"
+					homeworld = THIS
+					namelist = "STG_ROMULAN"
+					traits = {
+						trait = "trait_organic"
+						trait = "trait_intelligent"
+						trait = "trait_natural_engineers"
+						trait = "trait_deviants"
+						ideal_planet_class = "pc_continental"
+					}
+					effect = { save_event_target_as = romulan_star_empire_species }
+				}
+				create_country = {
+					name = "STG_EMPIRE_romulan"
+					adjective = "STG_adjective_romulan"
+					type = default
+					authority = "auth_imperial"
+					civics = { civic = "civic_police_state" civic = "civic_aristocratic_elite" }
+					ethos = { ethic = "ethic_fanatic_authoritarian" ethic = "ethic_militarist" }
+					origin = "origin_default"
+					species = event_target:romulan_star_empire_species
+					name_list = "STG_ROMULAN"
+					ship_prefix = "STG_ship_prefix_romulan"
+					flag = {
+						icon = { category = "trek" file = "Romulan1.dds" }
+						background = { category = "backgrounds" file = "double_hemispheres.dds" }
+						colors = { "dark_green" "green" "null" "null" }
+					}
+					effect = {
+						save_event_target_as = romulan_star_empire_country
+						set_graphical_culture = romulan
+						set_city_graphical_culture = avian_01
+						set_country_flag = stg_romulan_star_empire
+					}
+				}
+				create_colony = { owner = event_target:romulan_star_empire_country }
+				generate_start_deposits_and_blockers = yes
+				clear_blockers = yes
+				colony = {
+					generate_start_buildings_and_districts = yes
+					generate_start_pops = yes
+				}
+				event_target:romulan_star_empire_country = {
+					create_starting_leaders = yes
+					country_event = { id = game_start.9 }
+					country_event = { id = game_start.33 days = 1 }
+				}
+			}
+		}
 		moon = {
 			name = "Pirek"
 			class = "pc_barren"
@@ -2380,6 +4097,64 @@ stg_suliban_empire_home = {
 			modifiers = none
 			init_effect = { prevent_anomaly = yes }
 			init_effect = { generate_empire_home_planet = yes }
+			init_effect = {
+				# The AI copy of stg_suliban_empire, created only when no country is
+				# already playing it. See ai_empire_block in the generator.
+				if = {
+					limit = { NOT = { any_country = { has_country_flag = stg_suliban_empire } } }
+					create_species = {
+						name = "STG_species_name_suliban"
+						plural = "STG_species_plural_suliban"
+						adjective = "STG_species_adjective_suliban"
+						class = SUL
+						portrait = "suliban"
+						homeworld = THIS
+						namelist = "STG_SULIBAN"
+						traits = {
+							trait = "trait_organic"
+							trait = "trait_talented"
+							trait = "trait_quick_learners"
+							ideal_planet_class = "pc_desert"
+						}
+						effect = { save_event_target_as = suliban_empire_species }
+					}
+					create_country = {
+						name = "STG_EMPIRE_suliban"
+						adjective = "STG_adjective_suliban"
+						type = default
+						authority = "auth_dictatorial"
+						civics = { civic = "civic_corvee_system" civic = "civic_cutthroat_politics" }
+						ethos = { ethic = "ethic_fanatic_authoritarian" ethic = "ethic_xenophobe" }
+						origin = "origin_default"
+						species = event_target:suliban_empire_species
+						name_list = "STG_SULIBAN"
+						ship_prefix = "STG_ship_prefix_suliban"
+						flag = {
+							icon = { category = "trek" file = "suliban.dds" }
+							background = { category = "backgrounds" file = "00_solid.dds" }
+							colors = { "dark_green" "grey" "null" "null" }
+						}
+						effect = {
+							save_event_target_as = suliban_empire_country
+							set_graphical_culture = suliban
+							set_city_graphical_culture = humanoid_01
+							set_country_flag = stg_suliban_empire
+						}
+					}
+					create_colony = { owner = event_target:suliban_empire_country }
+					generate_start_deposits_and_blockers = yes
+					clear_blockers = yes
+					colony = {
+						generate_start_buildings_and_districts = yes
+						generate_start_pops = yes
+					}
+					event_target:suliban_empire_country = {
+						create_starting_leaders = yes
+						country_event = { id = game_start.9 }
+						country_event = { id = game_start.33 days = 1 }
+					}
+				}
+			}
 		}
 	}
 }
@@ -2405,6 +4180,65 @@ stg_terran_empire_home = {
 		modifiers = none
 		init_effect = { prevent_anomaly = yes }
 		init_effect = { generate_empire_home_planet = yes }
+		init_effect = {
+			# The AI copy of stg_terran_empire, created only when no country is
+			# already playing it. See ai_empire_block in the generator.
+			if = {
+				limit = { NOT = { any_country = { has_country_flag = stg_terran_empire } } }
+				create_species = {
+					name = "STG_species_name_terran"
+					plural = "STG_species_plural_terran"
+					adjective = "STG_species_adjective_terran"
+					class = TER
+					portrait = "human"
+					homeworld = THIS
+					namelist = "STG_TERRAN"
+					traits = {
+						trait = "trait_organic"
+						trait = "trait_adaptive"
+						trait = "trait_strong"
+						trait = "trait_deviants"
+						ideal_planet_class = "pc_continental"
+					}
+					effect = { save_event_target_as = terran_empire_species }
+				}
+				create_country = {
+					name = "STG_EMPIRE_terran"
+					adjective = "STG_adjective_terran"
+					type = default
+					authority = "auth_imperial"
+					civics = { civic = "civic_police_state" civic = "civic_slaver_guilds" }
+					ethos = { ethic = "ethic_authoritarian" ethic = "ethic_fanatic_militarist" }
+					origin = "origin_default"
+					species = event_target:terran_empire_species
+					name_list = "STG_TERRAN"
+					ship_prefix = "STG_ship_prefix_terran"
+					flag = {
+						icon = { category = "trek" file = "TerranEmpire.dds" }
+						background = { category = "backgrounds" file = "00_solid.dds" }
+						colors = { "red" "black" "null" "null" }
+					}
+					effect = {
+						save_event_target_as = terran_empire_country
+						set_graphical_culture = terran_nx
+						set_city_graphical_culture = humanoid_01
+						set_country_flag = stg_terran_empire
+					}
+				}
+				create_colony = { owner = event_target:terran_empire_country }
+				generate_start_deposits_and_blockers = yes
+				clear_blockers = yes
+				colony = {
+					generate_start_buildings_and_districts = yes
+					generate_start_pops = yes
+				}
+				event_target:terran_empire_country = {
+					create_starting_leaders = yes
+					country_event = { id = game_start.9 }
+					country_event = { id = game_start.33 days = 1 }
+				}
+			}
+		}
 	}
 	planet = { name = "NAME_Mars" class = "pc_barren" orbit_distance = 25 orbit_angle = 15 size = 13 has_ring = no }
 	planet = { name = "NAME_Jupiter" class = "pc_gas_giant" orbit_distance = 40 orbit_angle = 240 size = 35 has_ring = no }
@@ -2434,6 +4268,65 @@ stg_tholian_assembly_home = {
 		modifiers = none
 		init_effect = { prevent_anomaly = yes }
 		init_effect = { generate_empire_home_planet = yes }
+		init_effect = {
+			# The AI copy of stg_tholian_assembly, created only when no country is
+			# already playing it. See ai_empire_block in the generator.
+			if = {
+				limit = { NOT = { any_country = { has_country_flag = stg_tholian_assembly } } }
+				create_species = {
+					name = "STG_species_name_tholian"
+					plural = "STG_species_plural_tholian"
+					adjective = "STG_species_adjective_tholian"
+					class = THO
+					portrait = "tholian"
+					homeworld = THIS
+					namelist = "STG_THOLIAN"
+					traits = {
+						trait = "trait_lithoid"
+						trait = "trait_industrious"
+						trait = "trait_talented"
+						trait = "trait_solitary"
+						ideal_planet_class = "pc_desert"
+					}
+					effect = { save_event_target_as = tholian_assembly_species }
+				}
+				create_country = {
+					name = "STG_EMPIRE_tholian"
+					adjective = "STG_adjective_tholian"
+					type = default
+					authority = "auth_oligarchic"
+					civics = { civic = "civic_inwards_perfection" civic = "civic_mining_guilds" }
+					ethos = { ethic = "ethic_fanatic_xenophobe" ethic = "ethic_pacifist" }
+					origin = "origin_default"
+					species = event_target:tholian_assembly_species
+					name_list = "STG_THOLIAN"
+					ship_prefix = "STG_ship_prefix_tholian"
+					flag = {
+						icon = { category = "trek" file = "tholian.dds" }
+						background = { category = "backgrounds" file = "hexagon.dds" }
+						colors = { "intense_orange" "dark_red" "null" "null" }
+					}
+					effect = {
+						save_event_target_as = tholian_assembly_country
+						set_graphical_culture = tholian
+						set_city_graphical_culture = tholian_01
+						set_country_flag = stg_tholian_assembly
+					}
+				}
+				create_colony = { owner = event_target:tholian_assembly_country }
+				generate_start_deposits_and_blockers = yes
+				clear_blockers = yes
+				colony = {
+					generate_start_buildings_and_districts = yes
+					generate_start_pops = yes
+				}
+				event_target:tholian_assembly_country = {
+					create_starting_leaders = yes
+					country_event = { id = game_start.9 }
+					country_event = { id = game_start.33 days = 1 }
+				}
+			}
+		}
 	}
 	planet = { name = "STG_N_TholiaIII" class = "pc_molten" orbit_distance = 26 orbit_angle = 175 size = 9 has_ring = no }
 	planet = { name = "STG_N_TholiaIV" class = "pc_barren" orbit_distance = 30 orbit_angle = 250 size = 12 has_ring = no }
@@ -2463,6 +4356,66 @@ stg_trill_symbiosis_home = {
 		modifiers = none
 		init_effect = { prevent_anomaly = yes }
 		init_effect = { generate_empire_home_planet = yes }
+		init_effect = {
+			# The AI copy of stg_trill_symbiosis, created only when no country is
+			# already playing it. See ai_empire_block in the generator.
+			if = {
+				limit = { NOT = { any_country = { has_country_flag = stg_trill_symbiosis } } }
+				create_species = {
+					name = "STG_species_name_trill"
+					plural = "STG_species_plural_trill"
+					adjective = "STG_species_adjective_trill"
+					class = TRI
+					portrait = "trill"
+					homeworld = THIS
+					namelist = "STG_TRILL"
+					traits = {
+						trait = "trait_organic"
+						trait = "trait_intelligent"
+						trait = "trait_enduring"
+						trait = "trait_talented"
+						trait = "trait_slow_breeders"
+						ideal_planet_class = "pc_continental"
+					}
+					effect = { save_event_target_as = trill_symbiosis_species }
+				}
+				create_country = {
+					name = "STG_EMPIRE_trill"
+					adjective = "STG_adjective_trill"
+					type = default
+					authority = "auth_democratic"
+					civics = { civic = "civic_technocracy" civic = "civic_idealistic_foundation" }
+					ethos = { ethic = "ethic_fanatic_materialist" ethic = "ethic_egalitarian" }
+					origin = "origin_default"
+					species = event_target:trill_symbiosis_species
+					name_list = "STG_TRILL"
+					ship_prefix = "STG_ship_prefix_trill"
+					flag = {
+						icon = { category = "trek" file = "trill.dds" }
+						background = { category = "backgrounds" file = "double_hemispheres.dds" }
+						colors = { "teal" "beige" "null" "null" }
+					}
+					effect = {
+						save_event_target_as = trill_symbiosis_country
+						set_graphical_culture = federation_32
+						set_city_graphical_culture = humanoid_01
+						set_country_flag = stg_trill_symbiosis
+					}
+				}
+				create_colony = { owner = event_target:trill_symbiosis_country }
+				generate_start_deposits_and_blockers = yes
+				clear_blockers = yes
+				colony = {
+					generate_start_buildings_and_districts = yes
+					generate_start_pops = yes
+				}
+				event_target:trill_symbiosis_country = {
+					create_starting_leaders = yes
+					country_event = { id = game_start.9 }
+					country_event = { id = game_start.33 days = 1 }
+				}
+			}
+		}
 	}
 	planet = { name = "STG_N_Mak_ala" class = "pc_barren_cold" orbit_distance = 28 orbit_angle = 40 size = 9 has_ring = no }
 	planet = { name = "STG_N_TrilliusVI" class = "pc_gas_giant" orbit_distance = 60 orbit_angle = 320 size = 26 has_ring = no }
@@ -2490,6 +4443,66 @@ stg_vidiian_empire_home = {
 		modifiers = none
 		init_effect = { prevent_anomaly = yes }
 		init_effect = { generate_empire_home_planet = yes }
+		init_effect = {
+			# The AI copy of stg_vidiian_empire, created only when no country is
+			# already playing it. See ai_empire_block in the generator.
+			if = {
+				limit = { NOT = { any_country = { has_country_flag = stg_vidiian_empire } } }
+				create_species = {
+					name = "STG_species_name_vidiian"
+					plural = "STG_species_plural_vidiian"
+					adjective = "STG_species_adjective_vidiian"
+					class = VID
+					portrait = "vidiian"
+					homeworld = THIS
+					namelist = "STG_VIDIIAN"
+					traits = {
+						trait = "trait_organic"
+						trait = "trait_intelligent"
+						trait = "trait_natural_engineers"
+						trait = "trait_talented"
+						trait = "trait_repugnant"
+						ideal_planet_class = "pc_continental"
+					}
+					effect = { save_event_target_as = vidiian_empire_species }
+				}
+				create_country = {
+					name = "STG_EMPIRE_vidiian"
+					adjective = "STG_adjective_vidiian"
+					type = default
+					authority = "auth_dictatorial"
+					civics = { civic = "civic_nationalistic_zeal" civic = "civic_distinguished_admiralty" }
+					ethos = { ethic = "ethic_xenophobe" ethic = "ethic_fanatic_militarist" }
+					origin = "origin_default"
+					species = event_target:vidiian_empire_species
+					name_list = "STG_VIDIIAN"
+					ship_prefix = "STG_ship_prefix_vidiian"
+					flag = {
+						icon = { category = "trek" file = "vidiian.dds" }
+						background = { category = "backgrounds" file = "00_solid.dds" }
+						colors = { "dark_green" "dark_brown" "null" "null" }
+					}
+					effect = {
+						save_event_target_as = vidiian_empire_country
+						set_graphical_culture = vidiian
+						set_city_graphical_culture = humanoid_01
+						set_country_flag = stg_vidiian_empire
+					}
+				}
+				create_colony = { owner = event_target:vidiian_empire_country }
+				generate_start_deposits_and_blockers = yes
+				clear_blockers = yes
+				colony = {
+					generate_start_buildings_and_districts = yes
+					generate_start_pops = yes
+				}
+				event_target:vidiian_empire_country = {
+					create_starting_leaders = yes
+					country_event = { id = game_start.9 }
+					country_event = { id = game_start.33 days = 1 }
+				}
+			}
+		}
 	}
 	planet = { name = "STG_N_Fina_Prime" class = "pc_barren_cold" orbit_distance = 29 orbit_angle = 180 size = 11 has_ring = no }
 	planet = { name = "STG_N_VidiiaIV" class = "pc_gas_giant" orbit_distance = 54 orbit_angle = 275 size = 26 has_ring = no }
@@ -2539,6 +4552,65 @@ stg_xindi_empire_home = {
 		modifiers = none
 		init_effect = { prevent_anomaly = yes }
 		init_effect = { generate_empire_home_planet = yes }
+		init_effect = {
+			# The AI copy of stg_xindi_empire, created only when no country is
+			# already playing it. See ai_empire_block in the generator.
+			if = {
+				limit = { NOT = { any_country = { has_country_flag = stg_xindi_empire } } }
+				create_species = {
+					name = "STG_species_name_xindi"
+					plural = "STG_species_plural_xindi"
+					adjective = "STG_species_adjective_xindi"
+					class = XIN
+					portrait = "xindi_reptilian"
+					homeworld = THIS
+					namelist = "STG_XINDI"
+					traits = {
+						trait = "trait_organic"
+						trait = "trait_industrious"
+						trait = "trait_communal"
+						trait = "trait_quarrelsome"
+						ideal_planet_class = "pc_arid"
+					}
+					effect = { save_event_target_as = xindi_empire_species }
+				}
+				create_country = {
+					name = "STG_EMPIRE_xindi"
+					adjective = "STG_adjective_xindi"
+					type = default
+					authority = "auth_oligarchic"
+					civics = { civic = "civic_citizen_service" civic = "civic_distinguished_admiralty" }
+					ethos = { ethic = "ethic_xenophobe" ethic = "ethic_fanatic_militarist" }
+					origin = "origin_default"
+					species = event_target:xindi_empire_species
+					name_list = "STG_XINDI"
+					ship_prefix = "STG_ship_prefix_xindi"
+					flag = {
+						icon = { category = "trek" file = "xindi.dds" }
+						background = { category = "backgrounds" file = "00_solid.dds" }
+						colors = { "dark_teal" "dark_brown" "null" "null" }
+					}
+					effect = {
+						save_event_target_as = xindi_empire_country
+						set_graphical_culture = xindi
+						set_city_graphical_culture = reptilian_01
+						set_country_flag = stg_xindi_empire
+					}
+				}
+				create_colony = { owner = event_target:xindi_empire_country }
+				generate_start_deposits_and_blockers = yes
+				clear_blockers = yes
+				colony = {
+					generate_start_buildings_and_districts = yes
+					generate_start_pops = yes
+				}
+				event_target:xindi_empire_country = {
+					create_starting_leaders = yes
+					country_event = { id = game_start.9 }
+					country_event = { id = game_start.33 days = 1 }
+				}
+			}
+		}
 	}
 }
 
@@ -2561,6 +4633,66 @@ stg_yridian_empire_home = {
 		modifiers = none
 		init_effect = { prevent_anomaly = yes }
 		init_effect = { generate_empire_home_planet = yes }
+		init_effect = {
+			# The AI copy of stg_yridian_empire, created only when no country is
+			# already playing it. See ai_empire_block in the generator.
+			if = {
+				limit = { NOT = { any_country = { has_country_flag = stg_yridian_empire } } }
+				create_species = {
+					name = "STG_species_name_yridian"
+					plural = "STG_species_plural_yridian"
+					adjective = "STG_species_adjective_yridian"
+					class = YRI
+					portrait = "yridian"
+					homeworld = THIS
+					namelist = "STG_YRIDIAN"
+					traits = {
+						trait = "trait_organic"
+						trait = "trait_thrifty"
+						trait = "trait_talented"
+						trait = "trait_traditional"
+						trait = "trait_repugnant"
+						ideal_planet_class = "pc_arid"
+					}
+					effect = { save_event_target_as = yridian_empire_species }
+				}
+				create_country = {
+					name = "STG_EMPIRE_yridian"
+					adjective = "STG_adjective_yridian"
+					type = default
+					authority = "auth_corporate"
+					civics = { civic = "civic_brand_loyalty" civic = "civic_media_conglomerate" }
+					ethos = { ethic = "ethic_authoritarian" ethic = "ethic_xenophile" ethic = "ethic_materialist" }
+					origin = "origin_default"
+					species = event_target:yridian_empire_species
+					name_list = "STG_YRIDIAN"
+					ship_prefix = "STG_ship_prefix_yridian"
+					flag = {
+						icon = { category = "trek" file = "yridian.dds" }
+						background = { category = "backgrounds" file = "00_solid.dds" }
+						colors = { "dark_brown" "yellow" "null" "null" }
+					}
+					effect = {
+						save_event_target_as = yridian_empire_country
+						set_graphical_culture = yridian
+						set_city_graphical_culture = humanoid_01
+						set_country_flag = stg_yridian_empire
+					}
+				}
+				create_colony = { owner = event_target:yridian_empire_country }
+				generate_start_deposits_and_blockers = yes
+				clear_blockers = yes
+				colony = {
+					generate_start_buildings_and_districts = yes
+					generate_start_pops = yes
+				}
+				event_target:yridian_empire_country = {
+					create_starting_leaders = yes
+					country_event = { id = game_start.9 }
+					country_event = { id = game_start.33 days = 1 }
+				}
+			}
+		}
 	}
 	planet = { name = "STG_N_YridiaIII" class = "pc_barren" orbit_distance = 28 orbit_angle = 200 size = 11 has_ring = no }
 	planet = { name = "STG_N_YridiaIV" class = "pc_gas_giant" orbit_distance = 55 orbit_angle = 290 size = 25 has_ring = yes }

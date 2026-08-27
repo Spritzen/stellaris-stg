@@ -11,8 +11,17 @@
 # authority/government/trait tables plus the three fields that resolve by bare
 # name and fail silently.
 #
-# Per-field notes, none of which the rules doc covers:
+# Per-field notes. The rules doc covers `flag`; the rest are only here:
 #
+#   flag                NOT heraldry -- that is `empire_flag` below. This names
+#                       a common/prescripted_flags/ entry, whose flags are set
+#                       on the country as COUNTRY FLAGS at creation, and it is
+#                       what a static galaxy scenario's `spawn_weight` tests and
+#                       what a home system's initializer guards on. The flag IS
+#                       this block's key. Entries are GENERATED into
+#                       src/common/prescripted_flags/stg_empire_flags.txt by
+#                       tools/gen_empire_flags.py; this line is not.
+#                       .docs/decisions/93-static-galaxy-scenario.md
 #   initializer         a REAL home system, GENERATED into
 #                       src/common/solar_system_initializers/stg_home_systems.txt
 #                       by tools/gen_home_systems.py. planet_name/planet_class
@@ -69,6 +78,7 @@ stg_united_federation_of_planets = {
 	ethic = "ethic_fanatic_xenophile"
 	ethic = "ethic_egalitarian"
 
+	flag = empire_stg_united_federation_of_planets
 	initializer = "sol_system_initializer"
 	planet_name = "STG_planet_name_federation"
 	planet_class = "pc_continental"
@@ -137,6 +147,7 @@ stg_confederacy_of_vulcan = {
 	ethic = "ethic_fanatic_materialist"
 	ethic = "ethic_pacifist"
 
+	flag = empire_stg_confederacy_of_vulcan
 	initializer = "stg_confederacy_of_vulcan_home"
 	planet_name = "STG_planet_name_vulcan"
 	planet_class = "pc_desert"
@@ -205,6 +216,7 @@ stg_klingon_empire = {
 	ethic = "ethic_fanatic_militarist"
 	ethic = "ethic_authoritarian"
 
+	flag = empire_stg_klingon_empire
 	initializer = "stg_klingon_empire_home"
 	planet_name = "STG_planet_name_klingon"
 	planet_class = "pc_continental"
@@ -271,6 +283,7 @@ stg_romulan_star_empire = {
 	ethic = "ethic_fanatic_authoritarian"
 	ethic = "ethic_militarist"
 
+	flag = empire_stg_romulan_star_empire
 	initializer = "stg_romulan_star_empire_home"
 	planet_name = "STG_planet_name_romulan"
 	planet_class = "pc_continental"
@@ -339,6 +352,7 @@ stg_cardassian_union = {
 	ethic = "ethic_authoritarian"
 	ethic = "ethic_fanatic_militarist"
 
+	flag = empire_stg_cardassian_union
 	initializer = "stg_cardassian_union_home"
 	planet_name = "STG_planet_name_cardassian"
 	planet_class = "pc_arid"

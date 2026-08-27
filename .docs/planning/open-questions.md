@@ -74,6 +74,16 @@ off now, so keep it that way.
 > below is the narrower question of whether the prescripted *pool* can ever be
 > drawn from — it still matters for the player's roster, and `randomized` is
 > still its suspect — but it no longer gates whether the galaxy is Trek.
+>
+> **And the mechanism now ships, unrun**
+> ([93](../decisions/93-static-galaxy-scenario.md)): a 95-system static map with
+> 21 empires on their canon positions, 36 `create_country` initializers, and the
+> `common/prescripted_flags/` join that lets an initializer tell "nobody is
+> playing this empire" from "the player is". **So the top item on this whole
+> page is now a live run**, not another diagnosis — select *The Known Galaxy* in
+> the galaxy-shape picker and count the empires. Decision 93 ends with what to
+> watch for, in the order it would fail. Nothing below has changed and nothing
+> below is the thing to do first.
 
 That does not falsify decision 88 — the gate it removed was real and had to go —
 but it does say the gate was **not the whole cause**. Both levers are now in and
@@ -204,11 +214,12 @@ the `human` portrait, the Federation among them. Both sides in
 [90](../decisions/90-design-database-is-not-the-cause.md) and
 [91](../decisions/91-static-galaxy-is-the-mechanism.md).
 
-**4. The static galaxy scenario, which is the real answer whatever 1 and 3
-say.** Not a fallback — the mechanism. STG already owns the expensive half: 36
-hand-built home system initializers and 1,444 Trek systems already harvested by
-name. [Decision 91](../decisions/91-static-galaxy-is-the-mechanism.md) has the
-scale.
+**4. ~~The static galaxy scenario~~ — built 2026-08-27, and now the first
+thing to do rather than the fourth.** Not a fallback — the mechanism.
+[Decision 93](../decisions/93-static-galaxy-scenario.md) has what shipped, what
+is deliberately absent from it (an AI Federation, the Terran Empire) and what a
+run has to answer. Items 1, 1b and 3 above are all about the *pool*, and the
+pool no longer gates the galaxy — do them after the run, not before it.
 
 #### What not to do yet
 

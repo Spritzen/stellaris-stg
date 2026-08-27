@@ -55,6 +55,7 @@ stg_caitian_empire = {
 	ethic = "ethic_egalitarian"
 	ethic = "ethic_fanatic_xenophile"
 
+	flag = empire_stg_caitian_empire
 	initializer = "stg_caitian_empire_home"
 	planet_name = "STG_planet_name_caitian"
 	planet_class = "pc_savannah"
@@ -127,6 +128,7 @@ stg_xindi_empire = {
 	ethic = "ethic_xenophobe"
 	ethic = "ethic_fanatic_militarist"
 
+	flag = empire_stg_xindi_empire
 	initializer = "stg_xindi_empire_home"
 	planet_name = "STG_planet_name_xindi"
 	planet_class = "pc_arid"
@@ -195,6 +197,7 @@ stg_suliban_empire = {
 	ethic = "ethic_fanatic_authoritarian"
 	ethic = "ethic_xenophobe"
 
+	flag = empire_stg_suliban_empire
 	initializer = "stg_suliban_empire_home"
 	planet_name = "STG_planet_name_suliban"
 	planet_class = "pc_desert"
@@ -267,6 +270,7 @@ stg_yridian_empire = {
 	ethic = "ethic_xenophile"
 	ethic = "ethic_materialist"
 
+	flag = empire_stg_yridian_empire
 	initializer = "stg_yridian_empire_home"
 	planet_name = "STG_planet_name_yridian"
 	planet_class = "pc_arid"
@@ -336,6 +340,7 @@ stg_krenim_empire = {
 	ethic = "ethic_authoritarian"
 	ethic = "ethic_fanatic_materialist"
 
+	flag = empire_stg_krenim_empire
 	initializer = "stg_krenim_empire_home"
 	planet_name = "STG_planet_name_krenim"
 	planet_class = "pc_continental"
@@ -408,6 +413,7 @@ stg_malon_empire = {
 	ethic = "ethic_pacifist"
 	ethic = "ethic_fanatic_materialist"
 
+	flag = empire_stg_malon_empire
 	initializer = "stg_malon_empire_home"
 	planet_name = "STG_planet_name_malon"
 	planet_class = "pc_continental"
@@ -478,6 +484,7 @@ stg_vidiian_empire = {
 	ethic = "ethic_xenophobe"
 	ethic = "ethic_fanatic_militarist"
 
+	flag = empire_stg_vidiian_empire
 	initializer = "stg_vidiian_empire_home"
 	planet_name = "STG_planet_name_vidiian"
 	planet_class = "pc_continental"
@@ -551,6 +558,7 @@ stg_terran_empire = {
 	# Its own mirror Sol, NOT the Federation's. Two prescripted empires naming
 	# one initializer is a documented engine failure that logs nothing and
 	# costs both of them — decision 88.
+	flag = empire_stg_terran_empire
 	initializer = "stg_terran_empire_home"
 	planet_name = "STG_planet_name_terran"
 	planet_class = "pc_continental"
