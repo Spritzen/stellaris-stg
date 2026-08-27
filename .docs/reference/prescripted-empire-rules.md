@@ -87,6 +87,35 @@ both questions — [decision 48](../decisions/48-room-selector-merge.md),
 [62](../decisions/62-city-set-cultures-undeclared.md),
 [84](../decisions/84-shipset-descs-and-home-system-names.md).
 
+## A vanilla tuple is not automatically legal here: three availability rules
+
+Copying an authority/government/civic/ethic tuple whole from a vanilla empire is
+the standing advice above, and it is **sound but insufficient** — the tuple also
+has to survive the DLC set and the species classes STG actually ships. Three
+rules, all added 2026-08-26 after five STG empires were hidden from the designer
+and **two of the five printed no reason at all**
+([decision 90](../decisions/90-design-database-is-not-the-cause.md)):
+
+1. **A civic whose `playable` is satisfied only when a DLC is ABSENT.** Vanilla
+   ships these as stand-ins for a DLC's own civic —
+   `playable = { NOT = { host_has_dlc = "…" } }`. `civic_corporate_dominion` is
+   the whole set today, and vanilla ships it on `iferyx`, which is hidden on a
+   full install too. **STG targets a full install**, so naming one hides the
+   empire. Four minor powers lifted it from `iferyx` and all four were hidden;
+   `gov_trade_league` names the civic in its own `possible`, so the government
+   had to move with it.
+2. **A civic whose `possible` gates `species_class` to a POSITIVE list.** All 99
+   STG empires carry STG's own classes and those lists name vanilla's, so no STG
+   empire can ever satisfy one. `civic_tankbound` wants
+   `{ AQUATIC INF NECROID TOX }`.
+3. **A trait vanilla declares `species_possible_add = { always = no }`.** A
+   civic's `modification` block grants it; a species block can never carry it
+   directly. `trait_tankbound` is the worked example — and it is two defects on
+   one empire, not one, because the civic and the trait each break a rule.
+
+All three are read out of vanilla's own databases by
+`check_prescripted_empires`, not hardcoded, so they follow vanilla forward.
+
 ## A civic can grant a species trait the species block must also carry
 
 The engine reports this **once per trait name**, so six broken empires read as
@@ -101,6 +130,9 @@ would never have produced a record at all. (Those nine reach the designer now �
 [decision 88](../decisions/88-playable-gates-the-design-database.md).)
 
 `check_prescripted_empires` enforces all of it against vanilla's own databases,
-calibrated by reverting the repairs: 21 findings, no false positives.
+calibrated by reverting the repairs: 21 findings, no false positives. The three
+availability rules above are calibrated the same way — reverting their five
+repairs yields **six** findings over those five empires and nothing else
+([90](../decisions/90-design-database-is-not-the-cause.md)).
 
 **Never repair only the instances a log names.**

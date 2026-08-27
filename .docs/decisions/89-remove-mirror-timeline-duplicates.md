@@ -86,8 +86,9 @@ Federation and four others still do.
 
 **It does not change how many Trek empires reach the galaxy.** That question is
 open and this removal is orthogonal to it — see
-[open-questions.md](../planning/open-questions.md), "Whether the galaxy is Trek
-now". 99 empires that cannot be drawn are no better than 101.
+[open-questions.md](../planning/open-questions.md), "Whether the prescripted
+pool can ever be drawn from". 99 empires that cannot be drawn are no better than
+101.
 
 `make vendor` / `validate` / `docs` / `clutter` / `gen-check` all clean;
 `validate` reports 99 prescripted empires, 129 species classes, 36 home systems,

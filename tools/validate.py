@@ -2598,13 +2598,53 @@ def check_prescripted_empires() -> int:
     # <t>` when it does not -- deduplicated BY TRAIT NAME, so six broken
     # empires surfaced as three log lines.
     # See .docs/decisions/41-civic-granted-species-traits.md.
+    civics_db = _defs_and_blocks(GAME_DIR / "common/governments/civics",
+                                 BUILD / "common/governments/civics",
+                                 REPO / "src/common/governments/civics")
     civic_grants: dict[str, set[str]] = {}
-    for key, cb in _defs_and_blocks(GAME_DIR / "common/governments/civics",
-                                    BUILD / "common/governments/civics",
-                                    REPO / "src/common/governments/civics").items():
+    for key, cb in civics_db.items():
         g = set(re.findall(r"^\s*trait\s*=\s*(trait_\w+)\s*$", cb, re.M))
         if g:
             civic_grants[key] = g
+
+    # Three rules off the 2026-08-26 Vulcan run, which hid five STG empires from
+    # the designer -- `select_empire_design_view.cpp:714`. Two of the five
+    # printed no reason at all, so the log named the empires and not the cause;
+    # sweeping each rule found exactly the five and nothing more, which is what
+    # makes them cheap to keep. All three read vanilla's own databases.
+    #
+    # 1. A civic whose `playable` is satisfied only when a DLC is ABSENT is
+    #    vanilla's substitute for that DLC's own civic. `civic_corporate_dominion`
+    #    is the whole set today. STG targets a full install, so naming one hides
+    #    the empire -- and vanilla ships it on `iferyx`, which is where all four
+    #    STG copies came from. Lifting a vanilla tuple whole is not enough on its
+    #    own; the tuple has to survive the DLC set STG requires.
+    dlc_inverted = {
+        key for key, cb in civics_db.items()
+        for gate in (_sub_block(cb, "playable"),)
+        if gate and re.search(r"NOT\s*=\s*\{\s*host_has_dlc", gate)
+    }
+
+    # 2. A civic whose `possible` gates `species_class` to a POSITIVE list can
+    #    never be held by an STG empire: all 99 carry STG's own classes and the
+    #    lists name vanilla's. `civic_tankbound` wants NECROID/TOX/AQUATIC/INF.
+    class_gated: dict[str, set[str]] = {}
+    for key, cb in civics_db.items():
+        pos = _sub_block(cb, "possible")
+        sc = _sub_block(pos, "species_class") if pos else None
+        if sc and not re.search(r"\b(?:NOT|NOR)\b", sc):
+            req = set(re.findall(r"value\s*=\s*(\w+)", sc))
+            if req:
+                class_gated[key] = req
+
+    # 3. A trait vanilla declares `species_possible_add = { always = no }` is
+    #    granted by a civic's `modification` block and can never be written into
+    #    a species block by hand.
+    never_add = {
+        t for t, tb in traits.items()
+        for gate in (_sub_block(tb, "species_possible_add"),)
+        if gate and re.search(r"\balways\s*=\s*no\b", gate)
+    }
 
     ack = _ack_list("prescripted_empire_ack")
     n = 0
@@ -2705,6 +2745,28 @@ def check_prescripted_empires() -> int:
                         f"species block carries it — `Design species was missing trait "
                         f"{miss}`. Vanilla's own empires never do this in 51 designs. "
                         f"Add the trait, or pick a civic the species can actually hold.")
+
+            primary = _sub_block(body, "species")
+            pcm = re.search(r'class\s*=\s*"?(\w+)"?', primary) if primary else None
+            pcls = pcm.group(1) if pcm else None
+            for civ in sorted(used):
+                if civ in dlc_inverted:
+                    found.append(
+                        f"{rp}: {empire} takes '{civ}', which vanilla offers only to installs "
+                        f"WITHOUT the DLC it stands in for (`playable = {{ NOT = {{ host_has_dlc "
+                        f"… }} }}`). STG targets a full install, so the designer hides the "
+                        f"empire and the AI pool never draws it.")
+                req = class_gated.get(civ)
+                if req and pcls and pcls not in req:
+                    found.append(
+                        f"{rp}: {empire} takes '{civ}', which vanilla gates to species_class "
+                        f"{{ {' '.join(sorted(req))} }}; the empire's class is '{pcls}'. "
+                        f"The designer hides the empire.")
+            for t in sorted(all_traits & never_add):
+                found.append(
+                    f"{rp}: {empire} names trait '{t}', which vanilla declares "
+                    f"`species_possible_add = {{ always = no }}` — a civic's `modification` "
+                    f"block grants it and a species block can never carry it directly.")
 
             for who in ("ruler", "leader"):
                 lb = _sub_block(body, who)

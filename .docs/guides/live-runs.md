@@ -72,7 +72,7 @@ carry most of the answers:
 
 | section | answers |
 |---|---|
-| `design={…}` blocks | which empire designs the engine **loaded** — the pool the galaxy generator draws AI empires from. Count the blocks; do not count key occurrences, which is how [decision 86](../decisions/86-prescripted-empires-never-drawn.md) read 101 where there were 22. |
+| `design={…}` blocks | which empire designs the engine **loaded** — the pool the galaxy generator draws AI empires from. Count the blocks; do not count key occurrences, which is how [decision 86](../decisions/86-prescripted-empires-never-drawn.md) read 101 where there were 22. **In a 4.4.6 save the blocks nest inside `galaxy={…}` and the brace sits on the following line**, so `grep 'design={'` finds zero and reads as "nothing loaded". Match the key: `grep -cP '^\tdesign=$' gamestate` — [decision 90](../decisions/90-design-database-is-not-the-cause.md). |
 | `country={…}` entries | who is actually in the galaxy. A procedurally generated empire's name key is `%ADJECTIVE%` or `%ADJ%`; a prescripted one carries its own key. |
 | `initializer="…"` | every system the generator placed, and so which home systems were used and which were never reached. |
 

@@ -48,12 +48,32 @@ evidence for anything in this section — the standing lesson of decisions
 > **not a defect at all**: `fallback` is the mechanism and vanilla's own header
 > says so. See "Confirmed on disk" below.
 
-### Whether the galaxy is Trek now — five galaxies, five times zero
+### Whether the prescripted pool can ever be drawn from — six galaxies, six times zero
 
 **This is the biggest open question in the project and the only one that has
-survived three fixes.** The 2026-08-25 **evening** Vulcan run was the fifth
-galaxy with no Trek AI empire in it, and the first played on the build decision
-88 produced. The player met every empire in it. **Not one of the 18 was Trek.**
+survived three fixes.** The 2026-08-26 Vulcan run was the **sixth** galaxy with no
+Trek AI empire in it. The player met every empire in it. **Not one of the 18 was
+Trek.**
+
+**It is also the first run since 2026-08-22 to leave a save on disk, and that
+save closed half the question** —
+[decision 90](../decisions/90-design-database-is-not-the-cause.md). `ironman` is
+off now, so keep it that way.
+
+> **The question below is framed wrongly and is kept only for its measurements.**
+> Everything under it asks *why is the lottery not drawing*. The answer is that
+> the lottery is not how a total conversion places AI empires at all: they are
+> **created by their home system's initializer**, which a **static galaxy
+> scenario** puts on the map — vanilla's own `com_sol_system` does it for the
+> United Nations of Earth, and STNH does it 40 times
+> ([92](../decisions/92-create-country-initializers.md),
+> [91](../decisions/91-static-galaxy-is-the-mechanism.md)).
+>
+> **The work is planned in
+> [static-galaxy-plan.md](static-galaxy-plan.md). Go there.** What stays live
+> below is the narrower question of whether the prescripted *pool* can ever be
+> drawn from — it still matters for the player's roster, and `randomized` is
+> still its suspect — but it no longer gates whether the galaxy is Trek.
 
 That does not falsify decision 88 — the gate it removed was real and had to go —
 but it does say the gate was **not the whole cause**. Both levers are now in and
@@ -61,8 +81,9 @@ neither moved the number:
 
 | lever | in since | what the run says |
 |---|---|---|
-| `CUSTOM_EMPIRE_SPAWN_CHANCE = 1000` — 100% of AI slots draw from the prescripted pool ([86](../decisions/86-prescripted-empires-never-drawn.md)) | 2026-08-24 | two galaxies at 100%, zero drawn. At 100% the die roll is not the variable |
+| `CUSTOM_EMPIRE_SPAWN_CHANCE = 1000` — 100% of AI slots draw from the prescripted pool ([86](../decisions/86-prescripted-empires-never-drawn.md)) | 2026-08-24 | **three** galaxies at 100%, zero drawn. At 100% the die roll is not the variable |
 | `playable = stg_never` removed from the 79 minors, so they load into the design database ([88](../decisions/88-playable-gates-the-design-database.md)) | 2026-08-25 | pool went from 22 to 100 designs. Still zero |
+| — | 2026-08-26 | **the save proves the pool is right**: 99 `design=` blocks, `spawn_enabled=yes` on each, and 1 of 77 countries prescripted. The database is not the cause ([90](../decisions/90-design-database-is-not-the-cause.md)) |
 
 **Verified on disk after the run**, so none of these is still a candidate: the
 build under test was stamped 16:56:28 and the run started at 18:02, so it
@@ -127,44 +148,77 @@ The table cannot tell those two apart on its own — what it establishes for
 certain is only that **vanilla ships no example of the thing STG does 39 times**,
 so there is no positive evidence anywhere that the combination works.
 
-**And the reading has a hole, which is the reason nothing has been changed
-yet.** 62 of the 77 minor powers have no `initializer` line at all — 15 do, and
-the two removed on 2026-08-25 were both among the 15, so this figure has not
-moved. On the initializer theory those 62 were free to spawn on the evening run
-and none did.
-Either they were still not in the design database — which decision 88's fix was
-supposed to settle and which no save has yet confirmed — or the cause is
-something else again.
+**And the reading has a hole, which the 2026-08-26 save turned from a doubt into
+a result.** 62 of the 99 designs carry no `initializer` at all. On the
+initializer theory those 62 were free to spawn and none did. That left two
+readings — they were still not in the design database, or the cause is something
+else again — and **the save settles it: all 99 are in the database**
+([decision 90](../decisions/90-design-database-is-not-the-cause.md)). It is
+something else again. The initializer theory survives only as a *second* filter
+over the 36 that do carry one; it cannot reach the other 62, so it is no longer
+a candidate for the whole cause.
 
-#### The two cheap things that would settle it, in order
+#### What is left to do, in order
 
-**1. The AI empire preview, before generating anything.** The galaxy setup
+**1. There is no UI test — the force-spawn button is player-made-only.**
+Confirmed at the UI by the maintainer, 2026-08-26, against a same-day
+recommendation here that said otherwise on the strength of vanilla's loc strings
+saying "empire **template**". `spawn_enabled` in script is the only forcing lever
+STG has. Build a test instead: **`randomized = yes` on three major powers'
+species classes only**, everything else left at `no`, and one galaxy separates
+"the draw is the problem" from "the engine will not place these at all" —
+[decision 91](../decisions/91-static-galaxy-is-the-mechanism.md).
+
+**1b. The AI empire preview, before generating anything.** The galaxy setup
 screen previews the AI empires that will spawn; vanilla ships tooltips for
 `AI_EMPIRE_PREVIEW_TOOLTIP_RANDOM` ("Random AI Empire"),
 `..._TOO_MANY_FORCED` and `..._INCOMPATIBLE_SYSTEM` ("The following empires have
 incompatible starting systems, so only one of them can appear"). If the preview
-shows 18 *Random AI Empire* slots, the pool is not being drawn from at all and
-the question is the database. If it shows Trek empires and the galaxy does not
-contain them, the question is placement. **One glance, before pressing start,
-and it separates the two candidate causes that a whole galaxy cannot.**
+shows 18 *Random AI Empire* slots, the generator never consults the pool. If it
+shows Trek empires and the galaxy does not contain them, the question is
+placement. **One glance, before pressing start.** The database half of what this
+used to discriminate is now closed
+([90](../decisions/90-design-database-is-not-the-cause.md)), so this glance now
+answers the whole of what is left, and it is the only cheap thing still
+outstanding.
 
-**2. A save.** [Live runs](../guides/live-runs.md#the-save-is-better-evidence-than-the-log-when-there-is-one)
-says the save is better evidence than the log, and both questions that took four
-runs each were settled from one in minutes. **There is no save from any run since
-2026-08-22**: `settings.txt` has `ironman=yes` with `autosave_tocloud=yes`, so
-nothing reaches disk and `continue_game.json` names a folder that is not there.
-Counting `design={` blocks in `gamestate` answers "are the 100 loaded" outright.
+**2. A save — done, and keep doing it.** The 2026-08-26 run left two on disk and
+they closed half the question in minutes. `settings.txt` no longer carries
+`ironman`, so saves land in `save games/<empire>_<id>/` by themselves. **Do not
+turn ironman back on while this is open.** The one trap:
+`design={…}` blocks are nested inside `galaxy={…}` with the brace on the
+following line, so decision 86's `grep 'design={'` finds zero in a 4.4.6 save —
+match `^\tdesign=$` instead.
 
-**Turn ironman off, or `autosave_tocloud` off, for one run.** That is the whole
-ask, and until it happens every further fix here is a guess graded by a galaxy.
+**3. The `randomized` question, which is now stronger than it was.** Vanilla is
+32 of 33 spawn-eligible prescripted empires on a *randomizable* species class;
+STG is 0 of 99. The STNH counterexample that was against it **fell** — STNH's
+Trek galaxy comes from static maps, not from its prescripted pool, so the pool
+was never under test there
+([91](../decisions/91-static-galaxy-is-the-mechanism.md)). What remains against
+it: vanilla's own `mindwardens`, and the fact that the fix is not one line —
+vanilla ships a `common/species_names/` entry for every class it randomizes and
+STG ships none. Community material names the same mechanism and names
+`non_randomized_portraits` alongside it, which catches **three** STG empires on
+the `human` portrait, the Federation among them. Both sides in
+[90](../decisions/90-design-database-is-not-the-cause.md) and
+[91](../decisions/91-static-galaxy-is-the-mechanism.md).
+
+**4. The static galaxy scenario, which is the real answer whatever 1 and 3
+say.** Not a fallback — the mechanism. STG already owns the expensive half: 36
+hand-built home system initializers and 1,444 Trek systems already harvested by
+name. [Decision 91](../decisions/91-static-galaxy-is-the-mechanism.md) has the
+scale.
 
 #### What not to do yet
 
 **Do not strip the `initializer` lines.** It is the change the vanilla table
 points at, and it would cost decision 25 in full — the real home systems are one
 of the most visible things in the mod, and the last run confirmed 40 Eridani
-reads correctly. If the answer turns out to be the database, they would have
-been given up for nothing.
+reads correctly. **The 2026-08-26 save strengthened this, not weakened it**: 62
+of the 99 designs carry no `initializer` and were not drawn either, so stripping
+the other 36 could not have reached most of the pool anyway
+([90](../decisions/90-design-database-is-not-the-cause.md)).
 
 ### Devastated Trek city sets — six sets, no `_devastated` art
 
@@ -188,9 +242,8 @@ is a call nobody has made.
 ### The shipsets' weapons
 
 Whether the Walshicus shipsets draw their weapons — 17 of the 22 majors,
-quadrant and frontier powers
-empires fly one — and whether the pruned event pictures took anything visible
-with them.
+quadrant and frontier powers fly one — and whether the pruned event pictures
+took anything visible with them.
 
 Then the weapon-mount re-derivation
 ([60](../decisions/60-mounts-share-existing-points.md),
@@ -216,7 +269,7 @@ as badly as the corvette's third gun did.
 >
 > **Fixed the same day** — 230 attach points over 100 files
 > ([82](../decisions/82-hull-section-attach-points.md)) — and **nothing about it
-> is confirmed in game after three runs.** The 2026-08-22 run flew corvettes and
+> is confirmed in game after five runs.** The 2026-08-22 run flew corvettes and
 > science ships only. The 2026-08-24 run played ~7 hours and its `error.log`
 > carries **zero** `has no attach point` records against 2026-08-10's eight —
 > **suggestive and not confirmation**, because nothing in that log or in its one

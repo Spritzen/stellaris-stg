@@ -6,6 +6,10 @@ corrects a measurement in [decision 44](44-random-names-pools-append.md).
 2026-08-10:** the source and the written form below stand, but a **quoted**
 entry is a localisation key, not a literal — all 110 of vanilla's own are
 defined — and the 330 this shipped had no keys.
+**Corrected in part by [decision 91](91-static-galaxy-is-the-mechanism.md),
+2026-08-26:** "ten hand-built galaxy maps" is a miscount — STNH ships **22**
+`static_galaxy_scenario` files and 17 of them carry system names. The harvest and
+its 1,444 names are unaffected: the generator globs the whole directory.
 
 ## The item
 

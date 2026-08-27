@@ -114,6 +114,9 @@ which is also where the rule lives: category is in this index, not in the path.
 | [81](81-random-names-are-loc-keys.md) | A quoted random name is a localisation key, and STG shipped 330 with no key — *falsifies [52](52-trek-star-names.md) in part* |
 | [88](88-playable-gates-the-design-database.md) | `playable` gates the engine's design database, not the picker, so 79 of the 101 empires could never spawn — *falsifies [19](19-stnh-minor-powers-as-ai-empires.md)'s mechanism, corrects [86](86-prescripted-empires-never-drawn.md)'s premise, unshares [25](25-real-home-systems.md)'s Sol; its own closure falsified 2026-08-25* |
 | [89](89-remove-mirror-timeline-duplicates.md) | The Republic of Hope and the Klingon-Cardassian Alliance are removed: two 2300s empires holding a second 40 Eridani and a second Qo'noS — *closes [46](46-coalition-of-hope-takes-vul.md)'s subject* |
+| [90](90-design-database-is-not-the-cause.md) | The 99 designs *are* loaded and still nothing draws them, five empires were hidden by two vanilla gates, and the initializer theory cannot explain 62 of them — *confirms [88](88-playable-gates-the-design-database.md)'s fix, closes the database half of the question, corrects [external-sources.md](../reference/external-sources.md) on `randomized`* |
+| [91](91-static-galaxy-is-the-mechanism.md) | STNH gets its Trek galaxy from static maps, not from the spawn lottery, and STG ships no map at all — *corrects [90](90-design-database-is-not-the-cause.md)'s STNH reading, reframes [86](86-prescripted-empires-never-drawn.md)'s define as the wrong mechanism* |
+| [92](92-create-country-initializers.md) | AI Trek empires are created by their home system's initializer, not drawn from the prescripted pool — *supersedes the direction of [86](86-prescripted-empires-never-drawn.md) and [88](88-playable-gates-the-design-database.md); plan in [static-galaxy-plan.md](../planning/static-galaxy-plan.md)* |
 
 ## Ship art and weapon mounts
 

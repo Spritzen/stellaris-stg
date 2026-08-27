@@ -20,7 +20,9 @@ loser") assumed a failure mode the engine does not have.
 100% and the first with decision 88's fix in it: still zero Trek empires in 18,
 with every empire met. The lever remains correct and remains in the tree; it was
 never the cause. Item 4 is reopened — [open-questions.md](../planning/open-questions.md),
-"Whether the galaxy is Trek now".
+"Whether the prescripted pool can ever be drawn from" (that section's title as of
+2026-08-26; the galaxy half of it moved to
+[static-galaxy-plan.md](../planning/static-galaxy-plan.md)).
 
 ## The report
 

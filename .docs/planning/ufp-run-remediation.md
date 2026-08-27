@@ -465,9 +465,12 @@ and excluded.)*
 > ```
 >
 > **Do not treat this file as the live record of item 4 any longer.**
-> [open-questions.md](open-questions.md), "Whether the galaxy is Trek now", is,
-> and it carries the vanilla cross-tabulation and the two cheap tests that would
-> settle it.
+> [open-questions.md](open-questions.md), "Whether the prescripted pool can ever
+> be drawn from", is, and it carries the vanilla cross-tabulation and what is
+> left to test. **The galaxy half of item 4 has since moved out of that question
+> entirely** — it is answered by
+> [decision 92](../decisions/92-create-country-initializers.md) and planned in
+> [static-galaxy-plan.md](static-galaxy-plan.md).
 
 ### 5. Planetary Diversity's infester events fire into the wrong scope
 

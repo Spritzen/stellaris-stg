@@ -7,18 +7,44 @@
 # prescripted pool all-Trek and decision 19 made it deep enough to fill a
 # galaxy.
 #
-# THIS IS NOT A CLOSED QUESTION, whatever decision 86 says. Two galaxies have
-# now been generated at 1000, the second with all 99 designs loaded, and both
-# contained zero Trek AI empires. The define was a real defect and is a real
-# fix; it was never the cause. Do not read this file as the answer to "why is
-# there no Trek in the galaxy", and do not raise or lower the value looking for
-# one -- at 100% the draw rate is no longer the variable.
-# .docs/planning/open-questions.md, "Whether the galaxy is Trek now"
+# THIS IS NOT A CLOSED QUESTION, whatever decision 86 says. THREE galaxies have
+# now been generated at 1000 and all three contained zero Trek AI empires. The
+# define was a real defect and is a real fix; it was never the cause. Do not
+# read this file as the answer to "why is there no Trek in the galaxy", and do
+# not raise or lower the value looking for one -- at 100% the draw rate is no
+# longer the variable.
+#
+# The 2026-08-26 save takes the last excuse away: all 99 designs were loaded,
+# `spawn_enabled=yes` on every one, and 1 of 77 countries in the galaxy was
+# prescripted. Both levers are in and the pool is provably right, so whatever is
+# left is neither of them.
+#
+# DO NOT TOUCH THIS VALUE AGAIN. STNH -- a Trek total conversion with a Trek
+# galaxy, vendored at .source/688086068/ -- leaves this define at vanilla's 50
+# and gets its empires from twenty-two static_galaxy_scenario maps instead. This
+# lottery sprinkles the occasional preset into an otherwise random galaxy; it is
+# not how a total conversion places a named cast, and STG ships no map at all.
+#
+# What DOES place them: the home system's initializer creates the empire with
+# `create_country`, and a static_galaxy_scenario puts that system on the map.
+# Vanilla's own com_sol_system does it for the United Nations of Earth.
+# .docs/decisions/92-create-country-initializers.md
+# .docs/planning/static-galaxy-plan.md
+# .docs/decisions/91-static-galaxy-is-the-mechanism.md
+# .docs/planning/open-questions.md, "Whether the prescripted pool can ever be
+# drawn from"
 # .docs/decisions/86-prescripted-empires-never-drawn.md
 # .docs/decisions/88-playable-gates-the-design-database.md
+# .docs/decisions/90-design-database-is-not-the-cause.md
 #
 # This is the only lever of its kind: the designer's force-spawn checkbox exists
-# for player-made empires and a prescripted one cannot reach it.
+# for player-made empires and a prescripted one cannot reach it. CONFIRMED at the
+# UI by the maintainer, 2026-08-26. Vanilla's loc strings say "template"
+# (EMPIRE_SPAWN_ALLOWED / _DISALLOWED / _ALWAYS, and EMPIRE_SPAWN_TOOLTIP_DELAYED
+# "Click to change the spawn setting for this empire template") and reading them
+# as covering prescripted empires is wrong -- that inference was made and
+# corrected on the same day. `spawn_enabled` in script is the only forcing lever
+# STG has, and on the Federation's `always` it demonstrably does not fire.
 # FALLEN_CUSTOM_EMPIRE_SPAWN_CHANCE stays at vanilla's 50 -- STG ships no
 # prescripted fallen empire for it to find.
 NGameplay = {

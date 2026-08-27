@@ -23,6 +23,15 @@
 # src/prescripted_countries/, and 30 of the 129 are selector stubs that no
 # empire names at all -- .docs/decisions/32-declare-stub-species-classes.md.
 #
+# THAT REASONING IS NOW UNDER QUESTION and this is the file the answer would
+# change. Vanilla is 32 of 33 spawn-eligible prescripted empires on a
+# RANDOMIZABLE species class; STG is 0 of 99, and six galaxies have contained no
+# Trek AI empire. It is not settled -- vanilla's own `mindwardens` is a
+# counterexample and STNH ships the same combination 94 times -- and the fix is
+# not one line: vanilla ships a common/species_names/ entry for every class it
+# randomizes and STG ships none. Read the argument before touching the field.
+# .docs/decisions/90-design-database-is-not-the-cause.md
+#
 # EVERY CLASS NEEDS THE 27-KEY LOC FAMILY the engine derives from the class key
 # -- `FED_desc`, `FED_organ`. An `STG_` prefix there is a key nothing looks up.
 # .docs/decisions/21-species-class-localisation.md

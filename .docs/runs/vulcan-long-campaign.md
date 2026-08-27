@@ -41,13 +41,15 @@ the expectation it should be read against.
 ```
 - [ ] **Do not relaunch after you stop.** The log is per-session; a second launch
       wipes the run you just played.
-- [ ] **Turn ironman OFF, or `autosave_tocloud` off, for this run.** This is now
-      the single most valuable setting in the plan and it costs nothing else.
-      `settings.txt` currently has both on, so **no run since 2026-08-22 has left
-      a save on disk** — `continue_game.json` names a folder that is not there.
-      A save answers "are all 99 empire designs loaded" by counting `design={`
-      blocks, outright and in minutes, and that is the question five galaxies in
-      a row have failed to answer.
+- [done] **Turn ironman OFF, or `autosave_tocloud` off, for this run.** Done for
+      2026-08-26, and it was the single most valuable setting in the plan: the two
+      saves it left closed half the standing question in minutes
+      ([decision 90](../decisions/90-design-database-is-not-the-cause.md)). `settings.txt` no
+      longer carries `ironman`, so saves land in `save games/<empire>_<id>/` by
+      themselves. **Keep it that way while the galaxy question is open.**
+      One trap: `design={…}` blocks nest inside `galaxy={…}` with the brace on
+      the *following* line, so `grep 'design={'` finds zero in a 4.4.6 save —
+      match `^\tdesign=$` instead.
       [Live runs](../guides/live-runs.md#the-save-is-better-evidence-than-the-log-when-there-is-one).
 
 ## Galaxy settings, because they decide what this run can measure
@@ -70,14 +72,16 @@ the expectation it should be read against.
       `..._TOO_MANY_FORCED` and `..._INCOMPATIBLE_SYSTEM` ("The following empires
       have incompatible starting systems, so only one of them can appear"), and
       the vendored UIOD `setup.gui` still draws the element.
-      **This one glance separates the two candidate causes that a whole galaxy
-      cannot**: 18 *Random AI Empire* slots means the pool is not being drawn
-      from at all and the problem is the design database; Trek empires in the
-      preview that are then absent from the galaxy means the problem is
-      placement. Write down what the slots say, and any incompatible-system
-      warning verbatim.
-      [open-questions.md](../planning/open-questions.md), "Whether the galaxy is
-      Trek now".
+      **Still outstanding, and now the only cheap thing left.** 18 *Random AI
+      Empire* slots means the generator never consults the pool; Trek empires in
+      the preview that are then absent from the galaxy means placement. The
+      database half this used to discriminate is closed — the 2026-08-26 save
+      proved all 99 designs load
+      ([90](../decisions/90-design-database-is-not-the-cause.md)) — so the glance
+      now answers the whole of what is left. Write down what the slots say, and
+      any incompatible-system warning verbatim.
+      [open-questions.md](../planning/open-questions.md), "Whether the prescripted
+      pool can ever be drawn from".
 ```markdown
 #OBSERVATIONS
 ```

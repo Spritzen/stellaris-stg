@@ -436,14 +436,13 @@ stg_minor_brunali_empire = {
 		adjective = "STG_species_adjective_minor_brunali_empire"
 		name_list = "STG_BRUNALI"
 		trait = "trait_organic"
-		trait = "trait_tankbound"
 		trait = "trait_agrarian"
 	}
 
 	room = "personality_spiritual_seekers_room"
 
 	authority = "auth_democratic"
-	civics = { "civic_superstitious_beliefs" "civic_tankbound" }
+	civics = { "civic_superstitious_beliefs" "civic_agrarian_idyll" }
 	government = gov_theocratic_republic
 	origin = "origin_default"
 
@@ -2750,8 +2749,8 @@ stg_minor_morali_states = {
 	room = "personality_harmonious_hierarchy_room"
 
 	authority = "auth_oligarchic"
-	civics = { "civic_corporate_dominion" "civic_shadow_council" }
-	government = gov_trade_league
+	civics = { "civic_merchant_guilds" "civic_shadow_council" }
+	government = gov_theocratic_oligarchy
 	origin = "origin_default"
 
 	ethic = "ethic_egalitarian"
@@ -3926,8 +3925,8 @@ stg_minor_talaxian_empire = {
 	room = "personality_migrating_flock_room"
 
 	authority = "auth_oligarchic"
-	civics = { "civic_corporate_dominion" "civic_shadow_council" }
-	government = gov_trade_league
+	civics = { "civic_merchant_guilds" "civic_shadow_council" }
+	government = gov_theocratic_oligarchy
 	origin = "origin_default"
 
 	ethic = "ethic_egalitarian"
@@ -4585,8 +4584,8 @@ stg_minor_valtese_senate = {
 	room = "personality_erudite_explorers_room"
 
 	authority = "auth_oligarchic"
-	civics = { "civic_corporate_dominion" "civic_shadow_council" }
-	government = gov_trade_league
+	civics = { "civic_merchant_guilds" "civic_shadow_council" }
+	government = gov_theocratic_oligarchy
 	origin = "origin_default"
 
 	ethic = "ethic_egalitarian"
@@ -4923,8 +4922,8 @@ stg_minor_yaderan_republic = {
 	room = "personality_peaceful_traders_room"
 
 	authority = "auth_oligarchic"
-	civics = { "civic_corporate_dominion" "civic_shadow_council" }
-	government = gov_trade_league
+	civics = { "civic_merchant_guilds" "civic_shadow_council" }
+	government = gov_theocratic_oligarchy
 	origin = "origin_default"
 
 	ethic = "ethic_egalitarian"

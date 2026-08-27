@@ -14,6 +14,7 @@
 | [3 — art and identity](#phase-3--art-and-identity) | complete 2026-08-08 |
 | [4 — polish](#phase-4--polish) | started 2026-08-08 |
 | [5 — the clutter pass](#phase-5--the-clutter-pass) | complete 2026-08-07 |
+| [6 — the static galaxy](#phase-6--the-static-galaxy) | **planned 2026-08-26**, not started |
 
 ---
 
@@ -104,7 +105,11 @@ yes`. There is no such state: `playable` gates the engine's design database, the
 galaxy generator draws from that database, and so the gate kept them out of both
 the picker and the galaxy for four live runs.
 [Decision 88](../decisions/88-playable-gates-the-design-database.md) removed it —
-all 99 empires are playable, and all 99 are in the pool the galaxy generator draws from — **though five galaxies running have drawn none of them**, which is [the project's largest open question](open-questions.md).
+all 99 empires are playable, and all 99 are in the pool the galaxy generator draws from — **though six galaxies running have drawn none of them**, and the 2026-08-26 save proved the pool itself is correct
+([90](../decisions/90-design-database-is-not-the-cause.md)). The pool was never
+the mechanism: AI empires are created by their home system's initializer, which a
+static galaxy scenario places — [92](../decisions/92-create-country-initializers.md),
+planned in [static-galaxy-plan.md](static-galaxy-plan.md).
 
 ### Species-class localisation
 
@@ -169,17 +174,26 @@ rolling up as Klingons with random ethics and vanilla names reads as a bug.
 This was deferred on the grounds that *"the minors already populate the galaxy,
 so this is about variety now, not emptiness"*.
 
-**That premise is false and has been for every run.** Five galaxies have been
-generated with no Trek AI empire in any of them, so a random AI empire in STG
-today is a vanilla one with vanilla names — emptiness, not a variety problem.
+**That premise is false and has been for every run.** Six galaxies have been
+generated with no Trek AI empire in any of them, and the 2026-08-26 save measured
+it directly: every one of the 18 AI empires was a vanilla species class on a
+vanilla name list. Emptiness, not a variety problem.
 STNH's own answer to this is worth knowing: it sets `randomized = no` on all its
 named Trek classes exactly as we do, and adds two classes of its own,
 `RANDOMTREK` and `PRE_RANDOMTREK`, with `randomized = yes` so that randomly
 generated empires still come out Trek-shaped. **That is a second, independent
 route to a Trek galaxy and it does not depend on the prescripted pool being
-drawn at all.** Do not act on it until
-[the prescripted question](open-questions.md) is settled, because if that closes
-this stays a variety problem. Phase 4 at the earliest.
+drawn at all.**
+
+**Since 2026-08-26 it may not be independent after all.** Vanilla is 32 of 33
+spawn-eligible prescripted empires on a *randomizable* species class and STG is
+0 of 99, which makes `randomized` a candidate for the prescripted question
+itself rather than only a route around it —
+[decision 90](../decisions/90-design-database-is-not-the-cause.md) has the
+cross-tab and what argues against it. Either way the work is the same shape and
+the cost is the same: **vanilla ships a `common/species_names/` entry for every
+class it randomizes and STG ships none for its 99**, so this was never the one
+line it looks like. Phase 4 at the earliest.
 
 ---
 
@@ -642,3 +656,45 @@ explicit excludes.
 The mechanism, its calibration and the four non-obvious things about it are in
 [the clutter closure](../validation/clutter.md); the decision is
 [45](../decisions/45-clutter-pass.md).
+
+---
+
+## Phase 6 — The static galaxy
+
+**PLANNED 2026-08-26. Not started.** The full plan is
+[static-galaxy-plan.md](static-galaxy-plan.md); this is what the phase is and why
+it exists.
+
+Six galaxies contained no Trek AI empire. Three fixes went into the prescripted
+pool — [86](../decisions/86-prescripted-empires-never-drawn.md)'s spawn chance,
+[88](../decisions/88-playable-gates-the-design-database.md)'s `playable` gate,
+[90](../decisions/90-design-database-is-not-the-cause.md)'s five hidden designs —
+and the 2026-08-26 save proved the pool is *correct* and still never drawn.
+
+**The pool was never the mechanism.** `prescripted_countries/` is the player's
+roster. AI empires in a total conversion are **created by their home system's
+initializer**, which a **`static_galaxy_scenario`** places on the map. Vanilla
+does it for the United Nations of Earth in `com_sol_system`; STNH does it 40
+times — [decision 92](../decisions/92-create-country-initializers.md).
+
+Four pieces: the scenarios, the `create_country` initializers (generated off
+`prescripted_countries/`, not hand-written), locking the picker to STG's own
+scenarios by shipping vanilla's five as empty files, and a `make validate` check
+that the map is a connected graph naming things that exist.
+
+**The lanes are cheaper than they look.** All 22 STNH maps set
+`random_hyperlanes = no`, but only **one of the 22 defines any lanes at all** —
+the BotF map, 468 systems and 892 `add_hyperlane` lines. The other 21, every
+canon map among them, ship `random_hyperlanes = no` with **zero**
+`add_hyperlane`, `num_hyperlanes = { min = 0 max = 0 }` and nothing else
+(measured 2026-08-27 over `.source/688086068/map/setup_scenarios/`). Re-measure
+with `grep -c 'add_hyperlane' <map>`. So hand-cutting a lane graph is what *one*
+STNH map did, not the price of entry, and the cost driver is the systems.
+What STG already owns is the identity half — 36 real home systems
+([25](../decisions/25-real-home-systems.md)), 99 empires whose `create_country`
+blocks are a mechanical transcription of entries that already exist, and the
+1,444 Trek systems already harvested by name
+([52](../decisions/52-trek-star-names.md)).
+
+**Ends in something playable**, like every phase here: one small scenario, the 22
+majors on their real home systems, proven in a live run before anything scales.

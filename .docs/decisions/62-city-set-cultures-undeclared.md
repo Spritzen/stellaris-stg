@@ -1,6 +1,12 @@
 # 62 — Five city sets with complete art and no declaration: the designer hid the empires
 
 **Resolved 2026-08-08**, from the Klingon live run of the same day.
+**Corrected in part by [decision 88](88-playable-gates-the-design-database.md),
+2026-08-25:** the reasoning below rests on `stg_minor_undine_vanguard` being
+`playable = stg_never` and therefore beyond the empire designer's reach. That
+gate is gone from all 79 minor powers, so the empire *does* reach the designer
+now and a log **can** name it. The defect the sweep found, and the fix, are
+unaffected.
 
 ## The report
 

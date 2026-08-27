@@ -8,6 +8,7 @@
 |---|---|
 | [status.md](status.md) | **Start here.** Phase completion, the `error.log` baseline, what the last runs established |
 | [open-questions.md](open-questions.md) | What is still live, split by what would settle it |
+| [static-galaxy-plan.md](static-galaxy-plan.md) | **How STG actually gets a Trek galaxy** — static scenarios, `create_country` initializers, and locking the picker to ours |
 | [ufp-run-remediation.md](ufp-run-remediation.md) | Every defect the 2026-08-10 Federation run found, traced to a root cause, with the fix and the check behind it |
 | [scope.md](scope.md) | What we're building, the explicit non-goal, and the settled calls |
 | [phases.md](phases.md) | What each phase built and what it taught |

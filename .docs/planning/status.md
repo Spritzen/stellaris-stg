@@ -6,7 +6,7 @@
 > build.
 > **Then** — [Open questions](open-questions.md) · [Phases](phases.md) · [Live runs](../guides/live-runs.md)
 
-*Last updated against the build of 2026-08-24 and the run of the same day; the
+*Last updated against the build of 2026-08-26 and the run of the same day; the
 last run with a written analysis is 2026-08-22
 ([analysis 2026-08-16](../analysis/2026-08-16.md)). Every number here has a date
 because every number here goes stale — [style guide §6](../style-guide.md).*
@@ -15,7 +15,7 @@ because every number here goes stale — [style guide §6](../style-guide.md).*
 |---|---|
 | **Phase 0** — vendoring pipeline | **complete** |
 | **Phase 1** — playable Federation | **complete**, run in-game repeatedly |
-| **Phase 2** — the rest of the galaxy | **complete**. 99 prescripted empires (22 majors/quadrant/frontier, 77 minors; all playable, and all in the pool the generator draws from since [decision 88](../decisions/88-playable-gates-the-design-database.md) — **though no galaxy has yet drawn one**, see [open questions](open-questions.md)) over 99 distinct species classes, 92 name lists, 36 generated home systems plus vanilla's Sol. `src/` declares **129** classes in all — the extra 30 are the STNH selector stubs of [decision 32](../decisions/32-declare-stub-species-classes.md) |
+| **Phase 2** — the rest of the galaxy | **complete**. 99 prescripted empires (22 majors/quadrant/frontier, 77 minors; all playable, and all in the pool the generator draws from since [decision 88](../decisions/88-playable-gates-the-design-database.md) — **and the 2026-08-26 save proves all 99 reach the design database — and that no galaxy has yet drawn one**, see [decision 90](../decisions/90-design-database-is-not-the-cause.md); the mechanism a Trek galaxy actually needs is a static map plus `create_country` initializers, neither of which STG ships — [decision 92](../decisions/92-create-country-initializers.md), planned in [static-galaxy-plan.md](static-galaxy-plan.md)) over 99 distinct species classes, 92 name lists, 36 generated home systems plus vanilla's Sol. `src/` declares **129** classes in all — the extra 30 are the STNH selector stubs of [decision 32](../decisions/32-declare-stub-species-classes.md) |
 | **Phase 3** — art and identity | **complete 2026-08-08**. Clothing triggers, shipsets, weapon mounts, flags, rooms, city sets, loading screens, `paragon_backgrounds.txt`, the shipsets' 39 extra flags |
 | **Phase 4** — polish | **started 2026-08-08**. Music, the ship registries and their class names, then the three slices [decision 75](../decisions/75-trek-anomalies.md) scoped: **21 Trek anomalies** ([75](../decisions/75-trek-anomalies.md)), **6 dig sites** ([76](../decisions/76-trek-archaeology.md)) and **21 story events** ([77](../decisions/77-trek-story-events.md)), all 2026-08-09. All three are shipped; what remains in the phase has no scope written for it |
 | **Phase 5** — the clutter pass | **complete 2026-08-07** (pipeline work, taken out of order) |
@@ -26,9 +26,9 @@ because every number here goes stale — [style guide §6](../style-guide.md).*
 `.vendor-manifest.json` and the `make validate` summary line carry the live
 ones.
 
-| | Build of 2026-08-24 |
+| | Build of 2026-08-27 |
 |---|---|
-| Files / size | **22,407 / 14.3 GiB** ([the per-tier split](../architecture/vendored-merge.md#size)) |
+| Files / size | **22,406 / 14.3 GiB** ([the per-tier split](../architecture/vendored-merge.md#size)) |
 | Re-cut at harvest / pruned | 1,661 / **888** |
 | Overwrites / additive skips | 947 / 220 |
 | `make vendor` | 69 s |
@@ -76,27 +76,36 @@ constants in `tools/validate.py` with the ratio written beside them
 
 ## The `error.log` baseline
 
-**The current baseline is the 2026-08-25 evening Vulcan run**, the first played
-on the build [decision 88](../decisions/88-playable-gates-the-design-database.md)
-produced. The 2026-08-10 Federation run beside it is still the deepest: ~11
-hours, and the only log so far that carried real defects rather than eyes-only
-findings.
+**The current baseline is the 2026-08-26 Vulcan run**, the first since
+2026-08-22 to leave a save on disk — which is what made
+[decision 90](../decisions/90-design-database-is-not-the-cause.md) possible. The
+2026-08-10 Federation run beside it is still the deepest: ~11 hours, and the only
+log so far that carried real defects rather than eyes-only findings.
 
-| | **2026-08-25 pm** Vulcan | 2026-08-25 am Vulcan | 2026-08-24 Vulcan | 2026-08-22 Vulcan | 2026-08-10 Federation | 2026-08-08 |
-|---|---|---|---|---|---|---|
-| Records / size | **1,280 / 191 KB** | 1,335 / 190 KB | 1,315 / 208 KB | 1,264 / 187 KB | 2,251 / 228 KB | 1,261 / 187 KB |
-| Startup window | 45.1 s | 48.5 s | 46.8 s | 55.4 s | 49.4 s | 49.3 s |
-| Records **after** startup | **13** | 19 | 55 | 4 | 174 | 1 |
-| Play window | **~1 h** | ~2.5 h | ~7 h | ~26 min | ~11 h | short |
+| | **2026-08-26** Vulcan | 2026-08-25 pm Vulcan | 2026-08-25 am Vulcan | 2026-08-24 Vulcan | 2026-08-22 Vulcan | 2026-08-10 Federation | 2026-08-08 |
+|---|---|---|---|---|---|---|---|
+| Records / size | **1,315 / 195 KB** | 1,280 / 191 KB | 1,335 / 190 KB | 1,315 / 208 KB | 1,264 / 187 KB | 2,251 / 228 KB | 1,261 / 187 KB |
+| Startup window | 48.3 s | 45.1 s | 48.5 s | 46.8 s | 55.4 s | 49.4 s | 49.3 s |
+| Records **after** startup | **55** | 13 | 19 | 55 | 4 | 174 | 1 |
+| Play window | **~2 h 45 m** | ~1 h | ~2.5 h | ~7 h | ~26 min | ~11 h | short |
 
 **Read the post-init column, never the total.** 187–208 KB is the init-window
-floor of this build and it has not moved in six runs; against the ~1 MB a clean
+floor of this build and it has not moved in seven runs; against the ~1 MB a clean
 vanilla run produces the volume is fine either way. **The 1 → 174 → 4 → 55 → 19
-→ 13 swing is a change of run, not of build**: the short sessions opened few
+→ 13 → 55 swing is a change of run, not of build**: the short sessions opened few
 screens.
 
-The evening run's **13 post-init records are eight distinct kinds** over roughly
-an hour of play: `PLANET_SCALE_SYSTEM` (acked,
+**Five of 2026-08-26's 55 post-init records name STG files, and all five are now
+fixed** — `select_empire_design_view.cpp:714`, five minor powers hidden from the
+empire designer by two vanilla gates STG had no check for. Both rules were swept
+across all 99 empires and found exactly those five;
+`check_prescripted_empires` now carries all three
+([decision 90](../decisions/90-design-database-is-not-the-cause.md)). The other
+50 are the familiar vanilla mix, plus the `ariphaos_precursor_cosmic.txt` record
+below, which recurred.
+
+The 2026-08-25 evening run's **13 post-init records were eight distinct kinds**
+over roughly an hour of play: `PLANET_SCALE_SYSTEM` (acked,
 [43](../decisions/43-planet-scale-system-length.md)), three `add_intel` and two
 `add_trust` script errors in vanilla's own `nemesis_operations_events_1.txt` and
 `shroud_events.txt`, one `Invalid context switch [FROM]` in vanilla's
@@ -134,15 +143,17 @@ inspection. The whole reading is
 findings and what each cost are in
 [ufp-run-remediation.md](ufp-run-remediation.md).
 
-**What still has no in-game evidence at all.** Of the four runs since
-2026-08-10, one ended early and the other three were played without a run plan
-and written up only in [decision 86](../decisions/86-prescripted-empires-never-drawn.md)
-and [decision 88](../decisions/88-playable-gates-the-design-database.md), so none
+**What still has no in-game evidence at all.** Of the five runs since
+2026-08-10, one ended early and the other four were played without a run plan
+and written up only in [decision 86](../decisions/86-prescripted-empires-never-drawn.md),
+[decision 88](../decisions/88-playable-gates-the-design-database.md) and
+[decision 90](../decisions/90-design-database-is-not-the-cause.md), so none
 of them reported on any of these:
 
 - **Every hull above corvette.** [Decision 82](../decisions/82-hull-section-attach-points.md)'s
   230 attach points are the single most valuable unmeasured thing in the project.
-- **The dig sites, the anomalies and the story events** — unreached twice
+- **The dig sites, the anomalies and the story events** — unreached in all five
+  runs since 2026-08-10
   ([76](../decisions/76-trek-archaeology.md), [75](../decisions/75-trek-anomalies.md),
   [77](../decisions/77-trek-story-events.md)).
 - **Habitats** ([53](../decisions/53-duplicate-entity-triage.md)), the ship class
@@ -158,16 +169,24 @@ descriptions written against the hull art); the 40 Eridani duplicate was seven
 duplicate names in six systems from three separate `gen_home_systems.py` bugs
 rather than one paste; and the six cultures with no city art all declare a
 `fallback` that reaches art, which is the mechanism vanilla's own file header
-names. **Closed 2026-08-24: why no Trek empire appeared in 22, or in 18.** It was
-never the empires. `CUSTOM_EMPIRE_SPAWN_CHANCE` is 50 on a `10 = 1%` scale — a
-**5% chance per AI slot** that the galaxy draws a prescripted empire at all, so
-three galaxies with none is the ordinary outcome rather than a defect, and the
-2026-08-22 save proves it by listing exactly one STG home initializer. Now 1000
-(100%), which is safe only because the pool is all-Trek
+names. **Closed 2026-08-24 and reopened twice since: why no Trek empire appeared in 22,
+or in 18.** The closure said `CUSTOM_EMPIRE_SPAWN_CHANCE` is 50 on a `10 = 1%`
+scale — a **5% chance per AI slot** — so a few galaxies with none was the
+ordinary outcome rather than a defect. The lever was real and is still in the
+tree at 1000 (100%), safe only because the pool is all-Trek
 ([14](../decisions/14-remove-vanilla-prescripted-empires.md)) and deep enough to
 fill a galaxy ([19](../decisions/19-stnh-minor-powers-as-ai-empires.md))
-([86](../decisions/86-prescripted-empires-never-drawn.md)). **The Federation's
-`spawn_enabled = always` still did not fire** and is now its own open question. **The selector rows pointing at art no source mod
+([86](../decisions/86-prescripted-empires-never-drawn.md)). **It was never the
+cause**: three further galaxies at 100% drew zero
+([88](../decisions/88-playable-gates-the-design-database.md)), and the
+2026-08-26 save proved the pool itself is correct
+([90](../decisions/90-design-database-is-not-the-cause.md)). The mechanism a
+Trek galaxy actually needs is a static map plus `create_country` initializers —
+[92](../decisions/92-create-country-initializers.md),
+[static-galaxy-plan.md](static-galaxy-plan.md). **Do not treat this paragraph as
+the live record**; [open questions](open-questions.md) is. **The Federation's
+`spawn_enabled = always` still did not fire** and is still its own open
+question. **The selector rows pointing at art no source mod
 ships are closed**: 117 rather than the 196 recorded, two thirds of them a
 misspelled directory or a substitute the tree named itself, the rest repointed
 under one policy, and the tree held at zero by a new check
