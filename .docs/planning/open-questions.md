@@ -75,15 +75,24 @@ off now, so keep it that way.
 > drawn from — it still matters for the player's roster, and `randomized` is
 > still its suspect — but it no longer gates whether the galaxy is Trek.
 >
-> **And the mechanism now ships, unrun**
-> ([93](../decisions/93-static-galaxy-scenario.md)): a 95-system static map with
-> 21 empires on their canon positions, 36 `create_country` initializers, and the
-> `common/prescripted_flags/` join that lets an initializer tell "nobody is
-> playing this empire" from "the player is". **So the top item on this whole
-> page is now a live run**, not another diagnosis — select *The Known Galaxy* in
-> the galaxy-shape picker and count the empires. Decision 93 ends with what to
-> watch for, in the order it would fail. Nothing below has changed and nothing
-> below is the thing to do first.
+> **And the mechanism has now run, and it works**
+> ([93](../decisions/93-static-galaxy-scenario.md),
+> [94](../decisions/94-static-map-lanes-are-generated.md)): a 95-system static
+> map with 21 empires on their canon positions, 36 `create_country`
+> initializers, and the `common/prescripted_flags/` join that lets an
+> initializer tell "nobody is playing this empire" from "the player is". The
+> 2026-08-27 Klingon save holds **20 AI Trek empires, one each, no duplicates**,
+> and no randomly generated empire at all. **The galaxy is Trek.** That is the
+> question this whole page was built around, and it is answered.
+>
+> **What that run also found was a galaxy with one hyperlane in it** — the map
+> declared none and nothing built them. Fixed and regenerated (162 lanes), but
+> **not yet run with lanes**, so the top item on this page is still a live run:
+> check you can fly out of Qo'noS. Decisions 94 and 95 end with what to watch
+> for. **No longer "select *The Known Galaxy*"** — the picker is locked and it is
+> the only galaxy there is ([95](../decisions/95-lock-the-galaxy-picker.md)), so
+> the first thing that run grades is whether the setup screen comes up at all.
+> Nothing below has changed and nothing below is the thing to do first.
 
 That does not falsify decision 88 — the gate it removed was real and had to go —
 but it does say the gate was **not the whole cause**. Both levers are now in and
@@ -214,12 +223,15 @@ the `human` portrait, the Federation among them. Both sides in
 [90](../decisions/90-design-database-is-not-the-cause.md) and
 [91](../decisions/91-static-galaxy-is-the-mechanism.md).
 
-**4. ~~The static galaxy scenario~~ — built 2026-08-27, and now the first
-thing to do rather than the fourth.** Not a fallback — the mechanism.
-[Decision 93](../decisions/93-static-galaxy-scenario.md) has what shipped, what
-is deliberately absent from it (an AI Federation, the Terran Empire) and what a
-run has to answer. Items 1, 1b and 3 above are all about the *pool*, and the
-pool no longer gates the galaxy — do them after the run, not before it.
+**4. ~~The static galaxy scenario~~ — built 2026-08-27, run the same day, and
+it works.** Not a fallback — the mechanism.
+[Decision 93](../decisions/93-static-galaxy-scenario.md) has what shipped and
+what is deliberately absent from it (an AI Federation, the Terran Empire);
+[decision 94](../decisions/94-static-map-lanes-are-generated.md) has what the
+run returned: 20 AI Trek empires created, the flag guard firing, and a galaxy
+with no hyperlanes in it because the map declared none. The lanes are generated
+now and want one more run. Items 1, 1b and 3 above are all about the *pool*, and
+the pool no longer gates the galaxy — do them after that run, not before it.
 
 #### What not to do yet
 

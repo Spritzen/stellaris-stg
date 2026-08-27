@@ -9,11 +9,14 @@
 # 0.36. Filler systems carry no initializer and no name: the engine builds
 # and names them from STG's own Trek star pool.
 #
-# 21 empires placed, 74 filler systems, 95 systems in all.
+# 21 empires placed, 74 filler systems, 95 systems in all,
+# joined by 162 hyperlanes. The lanes are generated from the positions
+# above, not left to the engine: `random_hyperlanes = no` builds nothing.
 
 static_galaxy_scenario = {
 	name = "STG_galaxy_alpha_beta"
 	priority = 0
+	default = yes
 
 	colonizable_planet_odds = 1.0
 	primitive_odds = 1.0
@@ -26,6 +29,8 @@ static_galaxy_scenario = {
 	fallen_empire_max = 0
 	core_radius = 0
 
+	# The lanes are declared at the bottom of this file. `num_hyperlanes` is
+	# the random-generation density and is inert while this is `no`.
 	random_hyperlanes = no
 	num_hyperlanes = { min = 0.5 max = 1.0 }
 	num_hyperlanes_default = 1.0
@@ -136,4 +141,167 @@ static_galaxy_scenario = {
 	system = { id = "92" name = "" position = { x = 7 y = 26 } }
 	system = { id = "93" name = "" position = { x = -2 y = -31 } }
 	system = { id = "94" name = "" position = { x = -102 y = -193 } }
+
+	add_hyperlane = { from = "0" to = "1" }
+	add_hyperlane = { from = "0" to = "5" }
+	add_hyperlane = { from = "0" to = "11" }
+	add_hyperlane = { from = "0" to = "86" }
+	add_hyperlane = { from = "1" to = "5" }
+	add_hyperlane = { from = "1" to = "11" }
+	add_hyperlane = { from = "1" to = "78" }
+	add_hyperlane = { from = "2" to = "15" }
+	add_hyperlane = { from = "2" to = "17" }
+	add_hyperlane = { from = "2" to = "57" }
+	add_hyperlane = { from = "2" to = "89" }
+	add_hyperlane = { from = "3" to = "7" }
+	add_hyperlane = { from = "3" to = "40" }
+	add_hyperlane = { from = "3" to = "56" }
+	add_hyperlane = { from = "4" to = "6" }
+	add_hyperlane = { from = "4" to = "11" }
+	add_hyperlane = { from = "4" to = "14" }
+	add_hyperlane = { from = "5" to = "7" }
+	add_hyperlane = { from = "5" to = "57" }
+	add_hyperlane = { from = "6" to = "11" }
+	add_hyperlane = { from = "6" to = "14" }
+	add_hyperlane = { from = "6" to = "75" }
+	add_hyperlane = { from = "6" to = "77" }
+	add_hyperlane = { from = "7" to = "55" }
+	add_hyperlane = { from = "8" to = "9" }
+	add_hyperlane = { from = "8" to = "83" }
+	add_hyperlane = { from = "8" to = "88" }
+	add_hyperlane = { from = "9" to = "16" }
+	add_hyperlane = { from = "9" to = "60" }
+	add_hyperlane = { from = "9" to = "86" }
+	add_hyperlane = { from = "9" to = "88" }
+	add_hyperlane = { from = "10" to = "73" }
+	add_hyperlane = { from = "10" to = "74" }
+	add_hyperlane = { from = "10" to = "79" }
+	add_hyperlane = { from = "11" to = "86" }
+	add_hyperlane = { from = "12" to = "28" }
+	add_hyperlane = { from = "12" to = "33" }
+	add_hyperlane = { from = "12" to = "35" }
+	add_hyperlane = { from = "13" to = "18" }
+	add_hyperlane = { from = "13" to = "46" }
+	add_hyperlane = { from = "13" to = "50" }
+	add_hyperlane = { from = "14" to = "75" }
+	add_hyperlane = { from = "14" to = "77" }
+	add_hyperlane = { from = "15" to = "57" }
+	add_hyperlane = { from = "15" to = "84" }
+	add_hyperlane = { from = "15" to = "89" }
+	add_hyperlane = { from = "16" to = "55" }
+	add_hyperlane = { from = "16" to = "60" }
+	add_hyperlane = { from = "17" to = "57" }
+	add_hyperlane = { from = "17" to = "78" }
+	add_hyperlane = { from = "18" to = "20" }
+	add_hyperlane = { from = "18" to = "47" }
+	add_hyperlane = { from = "19" to = "23" }
+	add_hyperlane = { from = "19" to = "24" }
+	add_hyperlane = { from = "19" to = "37" }
+	add_hyperlane = { from = "20" to = "24" }
+	add_hyperlane = { from = "20" to = "25" }
+	add_hyperlane = { from = "20" to = "48" }
+	add_hyperlane = { from = "20" to = "49" }
+	add_hyperlane = { from = "21" to = "22" }
+	add_hyperlane = { from = "21" to = "31" }
+	add_hyperlane = { from = "21" to = "53" }
+	add_hyperlane = { from = "22" to = "23" }
+	add_hyperlane = { from = "22" to = "54" }
+	add_hyperlane = { from = "23" to = "37" }
+	add_hyperlane = { from = "24" to = "25" }
+	add_hyperlane = { from = "24" to = "38" }
+	add_hyperlane = { from = "25" to = "26" }
+	add_hyperlane = { from = "25" to = "38" }
+	add_hyperlane = { from = "25" to = "51" }
+	add_hyperlane = { from = "26" to = "27" }
+	add_hyperlane = { from = "26" to = "34" }
+	add_hyperlane = { from = "26" to = "51" }
+	add_hyperlane = { from = "27" to = "33" }
+	add_hyperlane = { from = "27" to = "34" }
+	add_hyperlane = { from = "28" to = "29" }
+	add_hyperlane = { from = "28" to = "35" }
+	add_hyperlane = { from = "29" to = "30" }
+	add_hyperlane = { from = "29" to = "36" }
+	add_hyperlane = { from = "30" to = "32" }
+	add_hyperlane = { from = "30" to = "36" }
+	add_hyperlane = { from = "31" to = "56" }
+	add_hyperlane = { from = "31" to = "91" }
+	add_hyperlane = { from = "32" to = "36" }
+	add_hyperlane = { from = "33" to = "35" }
+	add_hyperlane = { from = "33" to = "65" }
+	add_hyperlane = { from = "34" to = "64" }
+	add_hyperlane = { from = "35" to = "36" }
+	add_hyperlane = { from = "35" to = "66" }
+	add_hyperlane = { from = "36" to = "67" }
+	add_hyperlane = { from = "37" to = "61" }
+	add_hyperlane = { from = "37" to = "62" }
+	add_hyperlane = { from = "38" to = "63" }
+	add_hyperlane = { from = "39" to = "60" }
+	add_hyperlane = { from = "39" to = "81" }
+	add_hyperlane = { from = "39" to = "82" }
+	add_hyperlane = { from = "39" to = "83" }
+	add_hyperlane = { from = "39" to = "92" }
+	add_hyperlane = { from = "40" to = "56" }
+	add_hyperlane = { from = "40" to = "58" }
+	add_hyperlane = { from = "41" to = "42" }
+	add_hyperlane = { from = "41" to = "53" }
+	add_hyperlane = { from = "41" to = "58" }
+	add_hyperlane = { from = "41" to = "59" }
+	add_hyperlane = { from = "42" to = "43" }
+	add_hyperlane = { from = "42" to = "53" }
+	add_hyperlane = { from = "42" to = "54" }
+	add_hyperlane = { from = "43" to = "44" }
+	add_hyperlane = { from = "43" to = "54" }
+	add_hyperlane = { from = "44" to = "45" }
+	add_hyperlane = { from = "44" to = "52" }
+	add_hyperlane = { from = "45" to = "46" }
+	add_hyperlane = { from = "45" to = "50" }
+	add_hyperlane = { from = "45" to = "52" }
+	add_hyperlane = { from = "46" to = "50" }
+	add_hyperlane = { from = "47" to = "48" }
+	add_hyperlane = { from = "47" to = "94" }
+	add_hyperlane = { from = "48" to = "49" }
+	add_hyperlane = { from = "48" to = "94" }
+	add_hyperlane = { from = "49" to = "51" }
+	add_hyperlane = { from = "50" to = "52" }
+	add_hyperlane = { from = "53" to = "54" }
+	add_hyperlane = { from = "55" to = "92" }
+	add_hyperlane = { from = "58" to = "59" }
+	add_hyperlane = { from = "58" to = "84" }
+	add_hyperlane = { from = "59" to = "85" }
+	add_hyperlane = { from = "59" to = "87" }
+	add_hyperlane = { from = "60" to = "83" }
+	add_hyperlane = { from = "61" to = "62" }
+	add_hyperlane = { from = "61" to = "93" }
+	add_hyperlane = { from = "62" to = "63" }
+	add_hyperlane = { from = "63" to = "64" }
+	add_hyperlane = { from = "64" to = "65" }
+	add_hyperlane = { from = "65" to = "66" }
+	add_hyperlane = { from = "66" to = "67" }
+	add_hyperlane = { from = "67" to = "68" }
+	add_hyperlane = { from = "68" to = "69" }
+	add_hyperlane = { from = "69" to = "70" }
+	add_hyperlane = { from = "70" to = "71" }
+	add_hyperlane = { from = "71" to = "72" }
+	add_hyperlane = { from = "71" to = "76" }
+	add_hyperlane = { from = "72" to = "73" }
+	add_hyperlane = { from = "72" to = "76" }
+	add_hyperlane = { from = "72" to = "79" }
+	add_hyperlane = { from = "73" to = "74" }
+	add_hyperlane = { from = "73" to = "79" }
+	add_hyperlane = { from = "74" to = "75" }
+	add_hyperlane = { from = "76" to = "79" }
+	add_hyperlane = { from = "77" to = "78" }
+	add_hyperlane = { from = "80" to = "81" }
+	add_hyperlane = { from = "80" to = "90" }
+	add_hyperlane = { from = "80" to = "93" }
+	add_hyperlane = { from = "81" to = "82" }
+	add_hyperlane = { from = "82" to = "83" }
+	add_hyperlane = { from = "84" to = "85" }
+	add_hyperlane = { from = "84" to = "89" }
+	add_hyperlane = { from = "85" to = "87" }
+	add_hyperlane = { from = "86" to = "88" }
+	add_hyperlane = { from = "90" to = "91" }
+	add_hyperlane = { from = "90" to = "92" }
+	add_hyperlane = { from = "90" to = "93" }
+	add_hyperlane = { from = "91" to = "92" }
 }

@@ -1,0 +1,18 @@
+# small.txt — INTENTIONALLY DECLARES NOTHING.
+#
+# STG ships one galaxy, The Known Galaxy, and the picker offers only it
+# (.docs/decisions/95-lock-the-galaxy-picker.md). This file exists to REMOVE
+# vanilla's `small` galaxy size from the setup screen: a scenario is
+# offered because a file at this path declares it, so the way to withdraw one
+# is to occupy the path and declare nothing.
+#
+# It shadows BOTH vanilla's `small.txt` and Yet Another Galaxy Enhancement
+# Mod's override of it. Excluding YAGEM's copy in vendor.yml would not do --
+# vanilla's own would simply load in its place.
+#
+# STNH does this with five 0-byte files at exactly these five paths. STG uses a
+# comment-only file instead, which the parser treats identically and which can
+# say why it is here. Vanilla's own `static_galaxy_example.txt` is the
+# precedent for a scenario file that is entirely comments and declares nothing.
+#
+# Nothing to regenerate: this file has no content to fall out of date.

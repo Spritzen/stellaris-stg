@@ -539,6 +539,19 @@ src_regression_ack:
   # and is UNTERMINATED upstream — its closing brace is missing — and nothing
   # references it. The four that resolve are restored in the override.
   - gfx/FX/pdxmesh.shader
+  # The five galaxy sizes, dropped ON PURPOSE -- this is the picker lock, not a
+  # regression (.docs/decisions/95-lock-the-galaxy-picker.md). Each override
+  # withdraws exactly one `setup_scenario` declaration, which is the entire
+  # point of the file: STG offers one galaxy and these five are the vanilla
+  # sizes it replaces. Nothing references a scenario by name -- the setup screen
+  # enumerates the directory -- so there is no dangling reference to restore.
+  # The nine `ariphaos_*` maps need no ack here: they are YAGEM's own paths and
+  # are excluded at harvest rather than shadowed.
+  - map/setup_scenarios/tiny.txt
+  - map/setup_scenarios/small.txt
+  - map/setup_scenarios/medium.txt
+  - map/setup_scenarios/large.txt
+  - map/setup_scenarios/huge.txt
 
 # Files whose `attach = { "slot" = "entity" }` targets do not resolve, reviewed
 # and accepted. Read by tools/validate.py's check_attach_targets. Keyed by the
@@ -3271,6 +3284,24 @@ sources:
   # ── Gameplay / galaxy generation ───────────────────────────────────────────
   - id: "1327874725"
     name: Yet Another Galaxy Enhancement Mod
+    # STG ships one galaxy and the picker offers only it
+    # (.docs/decisions/95-lock-the-galaxy-picker.md). YAGEM's twelve alternative
+    # maps go; its other twelve files -- the defines, on_actions, astro and
+    # species names, setup.gui and loc -- are why the mod stays.
+    #
+    # The nine `ariphaos_*` scenarios are YAGEM's own names, so excluding them
+    # removes them outright. The five vanilla names are NOT excluded here: drop
+    # them and vanilla's own tiny..huge load in their place. They are masked by
+    # 0-byte files in `src/map/setup_scenarios/` instead, which is STNH's method
+    # -- STNH ships all five at 0 bytes for this exact reason and loses them to
+    # YAGEM here, being `additive_only`.
+    #
+    # `map/ridiculous/` is not a path the engine reads; YAGEM ships it for a
+    # player to copy into `setup_scenarios/` by hand. Inert either way, and it
+    # is three more galaxy maps.
+    exclude:
+      - "map/setup_scenarios/ariphaos_*.txt"
+      - "map/ridiculous/**"
 
   - id: "1326381312"
     name: Assorted Precursor Adjustments

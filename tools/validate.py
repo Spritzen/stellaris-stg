@@ -5909,12 +5909,19 @@ def check_static_galaxy() -> int:
       * every country flag a `spawn_weight` tests is reachable — see
         `_declared_country_flags` for why that has two sources;
       * no two systems share an `id`, and no two share a position;
-      * every `add_hyperlane` endpoint is a declared `id`, and where a scenario
-        defines lanes at all the graph they form is connected. **A scenario
-        with no lanes is a valid scenario** and must not be reported as
-        disconnected: 21 of STNH's 22 maps define none, pairing
-        `random_hyperlanes = no` with a `num_hyperlanes` range and letting the
-        engine build the network;
+      * every `add_hyperlane` endpoint is a declared `id`, and the graph they
+        form is connected. **A static map that declares no lanes is an ERROR**,
+        not a tolerated shape. This bullet used to say the opposite, and that
+        is how STG shipped a 95-system galaxy containing exactly one hyperlane
+        -- an accident of a Planetary Diversity `spawn_system`, found in a save
+        and not in any log (.docs/decisions/94-static-map-lanes-are-generated.md).
+        `random_hyperlanes = no` builds nothing; `num_hyperlanes` is the
+        random-generation density and is inert beside it. 21 of STNH's 22 maps
+        do declare none, but they build the network in script at game start
+        (`every_system = { connect_neighbour_stars = yes }`) -- which is a thing
+        no scenario file can show and this check cannot see, so it judges the
+        file in front of it. A scenario that leaves `random_hyperlanes` on is
+        exempt: there the engine really does build the network;
       * every `flag = empire_X` in `prescripted_countries/` resolves to a
         `common/prescripted_flags/` entry, and that entry carries the design's
         own key as a country flag. This is the half a generator cannot hold on
@@ -6042,7 +6049,17 @@ def check_static_galaxy() -> int:
                 f"{len(lanes)} parsed as `from`/`to` — the rest are not being "
                 f"checked.")
         if not lanes:
-            continue                     # valid: 21 of STNH's 22 maps do this
+            rnd = re.search(r"\brandom_hyperlanes\s*=\s*(\w+)", text)
+            if not rnd or rnd.group(1) != "no":
+                continue                 # the engine builds the network
+            errors.append(
+                f"{rp}: {len(ids)} systems, `random_hyperlanes = no`, and not "
+                f"one `add_hyperlane`. Nothing will build the lane network and "
+                f"the galaxy generates unplayable -- no fleet can leave its "
+                f"home system. Either declare the lanes in the file (STNH's "
+                f"BotF map is the precedent, and tools/gen_static_galaxy.py "
+                f"generates STG's) or turn `random_hyperlanes` back on.")
+            continue
 
         adj: dict[str, set[str]] = {sid: set() for sid in ids}
         for a, b in lanes:

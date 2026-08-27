@@ -682,14 +682,17 @@ Four pieces: the scenarios, the `create_country` initializers (generated off
 scenarios by shipping vanilla's five as empty files, and a `make validate` check
 that the map is a connected graph naming things that exist.
 
-**The lanes are cheaper than they look.** All 22 STNH maps set
-`random_hyperlanes = no`, but only **one of the 22 defines any lanes at all** —
-the BotF map, 468 systems and 892 `add_hyperlane` lines. The other 21, every
-canon map among them, ship `random_hyperlanes = no` with **zero**
-`add_hyperlane`, `num_hyperlanes = { min = 0 max = 0 }` and nothing else
-(measured 2026-08-27 over `.source/688086068/map/setup_scenarios/`). Re-measure
-with `grep -c 'add_hyperlane' <map>`. So hand-cutting a lane graph is what *one*
-STNH map did, not the price of entry, and the cost driver is the systems.
+**The lanes looked cheaper than they were, and this paragraph is the reason
+why** — corrected by [94](../decisions/94-static-map-lanes-are-generated.md).
+All 22 STNH maps set `random_hyperlanes = no`, and only **one of the 22 defines
+any lanes** — the BotF map, 468 systems and 892 `add_hyperlane` lines. That much
+is measured and holds. What does not hold is the conclusion: the other 21 do not
+go without a lane graph, they **build one in script** at game start
+(`every_system = { connect_neighbour_stars = yes }`, in `events/STH_start.txt`).
+STG vendored the header and not the script, and shipped a galaxy with one
+hyperlane in 98 systems. STG now generates its lanes into the file, as BotF
+does, and `make validate` rejects a lane-less static map. The cost driver is
+still the systems; the lanes were never free.
 What STG already owns is the identity half — 36 real home systems
 ([25](../decisions/25-real-home-systems.md)), 99 empires whose `create_country`
 blocks are a mechanical transcription of entries that already exist, and the

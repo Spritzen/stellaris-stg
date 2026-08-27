@@ -76,7 +76,7 @@ constants in `tools/validate.py` with the ratio written beside them
 
 ---
 
-## The static galaxy, shipped and unrun
+## The static galaxy — run once, and the mechanism works
 
 **2026-08-27.** The mechanism [decision 92](../decisions/92-create-country-initializers.md)
 identified is now in the tree, in four parts and one correction —
@@ -84,16 +84,32 @@ identified is now in the tree, in four parts and one correction —
 
 | | |
 |---|---|
-| `src/map/setup_scenarios/stg_alpha_beta_quadrant.txt` | **95 systems, 21 empires**, every coordinate harvested from STNH's default galaxy map and scaled. No defined hyperlanes, as 21 of STNH's 22 maps do |
+| `src/map/setup_scenarios/stg_alpha_beta_quadrant.txt` | **95 systems, 21 empires, 162 hyperlanes**, every coordinate harvested from STNH's default galaxy map and scaled. The lanes are generated from those same positions — shipping without them, as 21 of STNH's 22 maps appear to, cost the 2026-08-27 run ([94](../decisions/94-static-map-lanes-are-generated.md)) |
 | `src/common/solar_system_initializers/stg_home_systems.txt` | **36 `create_country` blocks**, one per home system, each guarded so the player's own empire is never duplicated |
 | `src/common/prescripted_flags/stg_empire_flags.txt` | **99 country flags** — the join the plan did not have. It is what gives the *player's* copy of an empire the flag the map weights on |
 | `check_static_galaxy` | five questions; vanilla floor **0**, STNH's own maps **4,265** |
 
-**None of it is evidence.** `make validate` was clean through all six empty
-galaxies and is clean now; the next live run is the whole test, and what to
-watch for in the order it would fail is at the end of decision 93. **Select
-*The Known Galaxy* in the galaxy-shape picker** — it is not the default, and
-Ariphaos's `medium` still is.
+**A Klingon run on 2026-08-27 graded it, and three of decision 93's four
+questions came back good** ([94](../decisions/94-static-map-lanes-are-generated.md)):
+the scenario appears in the picker and renders its name; **20 AI Trek empires
+were created, one each**; exactly **one** Klingon Empire existed while playing
+the Klingons, so the `prescripted_flags` guard fired; and no randomly generated
+empire appeared. **Decisions 91, 92 and 93 are confirmed by a live save.**
+
+**Question 2 failed and is now fixed.** The galaxy generated with **one**
+hyperlane in 98 systems, because `random_hyperlanes = no` builds nothing and
+STG had not vendored the start-of-game script STNH builds its network with.
+The lanes are generated into the file now, and `check_static_galaxy` rejects a
+lane-less static map — it used to wave one through, which is why `make validate`
+reported clean over the defect. **Still unrun with lanes**, and that is the next
+test.
+
+**The picker is locked** ([95](../decisions/95-lock-the-galaxy-picker.md)):
+YAGEM's twelve maps are excluded, vanilla's five are masked by files in `src/`
+that declare nothing, and *The Known Galaxy* carries `default = yes`. **Exactly
+one scenario declaration now reaches the engine** — so there is nothing to
+select, and no random galaxy to fall back to. That also makes the map a single
+point of failure, reversible in one commit.
 
 **Two empires are deliberately absent from the map**: the Terran Empire, whose
 Sol and Earth collide with the Federation's, and an AI Federation, because Sol
