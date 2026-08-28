@@ -8,8 +8,9 @@
 
 *Last updated 2026-08-28, against the build of that date and the Klingon run of
 2026-08-27. The build figures below are unchanged by the 28th's work — one
-`vendor.yml` patch, one loc key, four new checks and three deleted name lists
-move the file count by three and nothing else. **No live run has a write-up any more** — the run plans and analyses were
+`vendor.yml` patch, one loc key, four new checks, a fifth widened, three deleted
+name lists and 17 deleted colony-name tokens move the file count by three and
+nothing else. **No live run has a write-up any more** — the run plans and analyses were
 retired on 2026-08-27 ([89](../decisions/89-retired-run-write-ups.md)), and what
 each run established now lives in the decision it produced and in the baseline
 table below. Every number here has a date because
@@ -154,6 +155,34 @@ nothing: 0 findings across 193 identities against vanilla's 11,857.**
 defect, 92 asked again and found another, 94 asks again and finds none — which is
 what turns *"we fixed two instances"* into *"the shape is covered everywhere it
 can occur"*, for the price of a session rather than a live run.
+
+**And a widening rather than a fifty-second, which is where the day's last
+defect was** ([95](../decisions/95-colony-pools-drop-home-system-bodies.md)).
+`check_colony_name_collisions` asked whether a colony pool offers some empire's
+**capital**; it now also asks whether it offers any other **body of its own
+empire's home system** — a Klingon colony called Praxis while the real Praxis
+orbits Qo'noS. **17 tokens across 12 empires were dropped from `planet_names`,
+and every `ship_names` copy was left alone**, because that is where STNH puts
+them and STG already did that half.
+
+**The floor is what unblocked it, and it was not vanilla's nine home systems.**
+STNH answers the same question **0 times** across the ten of its empires that
+have both a real home system and a real pool — **four of them on a 32-body Sol
+with a 160-name pool** — and vanilla is **0 of 8** comparable. STG was 12 of 37.
+
+**The count in the record was wrong and the check found the missing one.** This
+had been logged as 16 names over 11 empires; it is **17 over 12**. The extra is
+the Terran Empire's **Mars** — its home system is Sol, so the body carries
+vanilla's `NAME_Mars` while the pool offers our `STG_N_Mars`, one name under two
+keys, invisible to a key-wise comparison. **Two drafts of the widened check
+missed it too, and both failed by under-reporting**: the first resolved
+localisation from the build alone (11 empires), the second added vanilla with
+`rglob("*.yml")` and let **Portuguese** win the key, resolving Mars to *Marte*
+and unmaking a finding it had reported a moment before (10). `*l_english.yml`
+fixes it. **A clean `make validate` would have read as success both times** —
+only reverting the repair caught either, which is
+[rule 7](../validation/check-design.md#7-compare-declared-identity-not-block-key--and-distrust-a-check-that-has-never-failed)
+paying for itself twice in one check.
 
 **What the check cost was getting identity right, not contention**
 ([rule 7](../validation/check-design.md#7-compare-declared-identity-not-block-key--and-distrust-a-check-that-has-never-failed)),

@@ -164,7 +164,7 @@ STG_BAJORAN = {
 	planet_names = {
 		generic = {
 			names = {
-				STG_N_Jeraddo STG_N_Andros STG_N_Golana STG_N_ValoII STG_N_FreeHaven STG_N_DreonVII
+				STG_N_Golana STG_N_ValoII STG_N_FreeHaven STG_N_DreonVII
 				STG_N_ProphetsLanding STG_N_Hathon STG_N_Ilvia STG_N_Jalanda STG_N_Kendra STG_N_Dahkur
 				STG_N_Rakantha STG_N_Musilla STG_N_Hedrikspool STG_N_Lonar STG_N_Janitza STG_N_Perikian
 				STG_N_Tozhat

@@ -149,7 +149,7 @@ STG_YRIDIAN = {
 	planet_names = {
 		generic = {
 			names = {
-				STG_N_YridiaII STG_N_YridiaIV STG_N_YridiaPrime STG_N_Ledger STG_N_Clearing STG_N_Escrow
+				STG_N_YridiaII STG_N_YridiaPrime STG_N_Ledger STG_N_Clearing STG_N_Escrow
 				STG_N_Tally STG_N_Consignment STG_N_Retainer STG_N_Bargain STG_N_Surety STG_N_Arrears
 				STG_N_Debenture STG_N_Auction STG_N_Bailment STG_N_Dossier STG_N_Brokerage STG_N_Freeport
 				STG_N_Countinghouse

@@ -655,7 +655,7 @@ STG_TERRAN = {
 	planet_names = {
 		generic = {
 			names = {
-				STG_N_Terra STG_N_Luna STG_N_Mars STG_N_Vulcanis STG_N_Andor STG_N_Alpha
+				STG_N_Terra STG_N_Luna STG_N_Vulcanis STG_N_Andor STG_N_Alpha
 				STG_N_Centauri STG_N_Deneva STG_N_Janus STG_N_Vega STG_N_Altair STG_N_Berengaria
 				STG_N_Tarsus STG_N_Terranova STG_N_Delta STG_N_Izar
 			}

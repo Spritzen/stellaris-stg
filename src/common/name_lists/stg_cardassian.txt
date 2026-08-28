@@ -186,7 +186,7 @@ STG_CARDASSIAN = {
 		generic = {
 			names = {
 				STG_N_CardassiaII STG_N_CardassiaIII STG_N_Lakat STG_N_Culat STG_N_Rondac STG_N_Septimus
-				STG_N_Torros STG_N_Kelvas STG_N_Loval STG_N_Chintoka STG_N_Dorvan STG_N_Hutet
+				STG_N_Torros STG_N_Kelvas STG_N_Loval STG_N_Chintoka STG_N_Dorvan
 				STG_N_Lazon STG_N_MinosKorva STG_N_Orias STG_N_Quatal STG_N_Rakal STG_N_Setlik
 				STG_N_Soukara STG_N_Vandros
 			}

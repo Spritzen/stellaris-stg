@@ -180,7 +180,7 @@ STG_FERENGI = {
 	planet_names = {
 		generic = {
 			names = {
-				STG_N_Clarus STG_N_Irtok STG_N_Balancar STG_N_VolchokPrime STG_N_GintsRest STG_N_NagusPrime
+				STG_N_Irtok STG_N_Balancar STG_N_VolchokPrime STG_N_GintsRest STG_N_NagusPrime
 				STG_N_Ferengal STG_N_SlugCove STG_N_Rainfall STG_N_Cascade STG_N_Torrent STG_N_Muck
 				STG_N_Ledger STG_N_Tally STG_N_Vault STG_N_Exchange STG_N_Bourse STG_N_CountingHouse
 				STG_N_Drip

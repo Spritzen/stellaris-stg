@@ -263,8 +263,8 @@ STG_ROMULAN = {
 	planet_names = {
 		generic = {
 			names = {
-				STG_N_Remus STG_N_Rator STG_N_Dartha STG_N_Rateg STG_N_Chaltok STG_N_Unroth
-				STG_N_Nequencia STG_N_Galorndon STG_N_Hobus STG_N_Algeron STG_N_Nelvana STG_N_Devolin
+				STG_N_Rator STG_N_Dartha STG_N_Rateg STG_N_Chaltok STG_N_Unroth
+				STG_N_Nequencia STG_N_Galorndon STG_N_Algeron STG_N_Nelvana STG_N_Devolin
 				STG_N_Xanitla STG_N_Artaleirh STG_N_Achernar STG_N_Terix STG_N_Constanthus STG_N_Ralatak
 				STG_N_Virinat STG_N_Mylasa
 			}

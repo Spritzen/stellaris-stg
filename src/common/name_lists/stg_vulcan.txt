@@ -656,7 +656,7 @@ STG_VULCAN = {
 	planet_names = {
 		generic = {
 			names = {
-				STG_N_Vulcanis STG_N_TKhut STG_N_DeltaVega STG_N_Kir STG_N_Raal STG_N_Gol
+				STG_N_Vulcanis STG_N_Kir STG_N_Raal STG_N_Gol
 				STG_N_ShiKahr STG_N_Xirtan STG_N_Seleya STG_N_VulcanaRegar
 				STG_N_DaKal STG_N_KelProvek STG_N_Han-Shir STG_N_Tanjara STG_N_Voroth
 				STG_N_Nevasa STG_N_Valdena STG_N_KelRyk STG_N_Sherikahr STG_N_TPaal

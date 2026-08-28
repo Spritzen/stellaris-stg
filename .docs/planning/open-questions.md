@@ -16,11 +16,15 @@ reason to drop a mod; sources go on content grounds only**
 
 ## Needs a content call
 
-*Both of these were found on 2026-08-28 while working
+*Three items were opened here on 2026-08-28 while working
 [decision 91](../decisions/91-src-contests-its-own-name-lists.md) and its
-sibling. Neither breaks anything as it stands and neither makes `make validate`
-warn; they are recorded so that whoever widens a check next knows the floor has
-already been measured.*
+siblings. **All three are now closed and nothing in this section needs a call** —
+it is kept because what closed each one is the reusable part. Two were closed by
+making the call ([93](../decisions/93-power-lists-win-the-contested-keys.md),
+[95](../decisions/95-colony-pools-drop-home-system-bodies.md)); the third turned
+out to have no defect behind it. **The pattern across all three: the blocker was
+never the decision, it was a floor nobody had measured yet** — and in two cases
+measuring it also corrected the finding's own numbers.*
 
 > **The one that did make `make validate` warn is closed.** Three name-list keys
 > were declared twice by files we wrote — `STG_CAITIAN`, `STG_KLINGON`,
@@ -30,39 +34,39 @@ already been measured.*
 > `src/common/name_lists/` is now **89 files declaring 89 keys** and the tree is
 > back to **0 warnings**.
 
-### Sixteen home-system bodies are also offered as colony names to their own empire
-
-**New 2026-08-28, measured while fixing
-[decision 92](../decisions/92-src-contests-its-own-loc-keys.md) and deliberately
-not acted on there.** Eleven empires' `planet_names` pools offer a name that
-their own home system already carries:
-
-| empire | names offered in both places |
-|---|---|
-| Klingon | Praxis |
-| Romulan | Remus, Hobus |
-| Vulcan | T'Khut, Delta Vega |
-| Bolian | Bolarus III, Bolarus VII |
-| Breen | Dozaria, Portas V |
-| Bajoran | Andros, Jeraddo |
-| Ferengi | Clarus |
-| Trill | Mak'ala |
-| Cardassian | Hutet |
-| Xindi | Azati Prime |
-| Yridian | Yridia IV |
-
-**This is the same defect class `check_colony_name_collisions` exists for, one
-step out.** That check asks about *capitals* — "an Andorian colony called
-Andoria" — and its scope was chosen deliberately. The question here is whether a
-Klingon colony called **Praxis**, founded while the real Praxis orbits Qo'noS
-three systems away, is wrong in the same way or is ordinary flavour.
-
-**It is a content call and nothing is broken until it is made.** If the answer is
-"wrong", the fix is mechanical — drop the sixteen tokens from the pools that
-offer them — and the check widens from `planet_name`/`system_name` to every body
-in a `usage = custom_empire` initializer, which needs its own vanilla floor
-first. **Do not widen the check before the call**: vanilla's nine home systems
-are the only calibration set available and they are few.
+> **Closed the same day, and the count was wrong**
+> ([decision 95](../decisions/95-colony-pools-drop-home-system-bodies.md),
+> 2026-08-28). This item recorded *"sixteen home-system bodies are also offered
+> as colony names"* across eleven empires and left the content call unmade for
+> want of a vanilla floor. Both halves moved.
+>
+> **The floor exists and it is not vanilla's nine.** STNH, whose home systems
+> STG's are harvested from, answers the same question **0 times** across the ten
+> of its empires that have both a real home system and a real colony pool —
+> **four of them on a 32-body Sol with a 160-name pool**. Vanilla is **0 of 8**
+> comparable, its United Nations of Earth being 18 Sol bodies against `HUMAN1`'s
+> 59 names with no overlap. STG was **12 of 37**. STNH also shows what the
+> convention *is*: home-system bodies go in **`ship_names`** — Starfleet's own
+> naming convention — and the only Mars in any of its colony pools is
+> `TERRAN_PLANET_NewMars`.
+>
+> **The count was 17 across 12 empires, not 16 across 11.** The extra one is the
+> **Terran Empire's Mars**: its home system is Sol, so the body carries
+> vanilla's `NAME_Mars` while the pool offers our `STG_N_Mars` — one name, two
+> keys, invisible to the key-wise comparison that produced the sixteen.
+> `check_colony_name_collisions` had said in its own docstring since
+> [decision 23](../decisions/23-real-home-systems.md) that this class of
+> collision is between **values**; the measurement did not read it. **Third
+> instance** of [decision 79](../decisions/79-shipset-descs-and-home-system-names.md)'s
+> lesson.
+>
+> **The call was made and applied**: the 17 tokens are dropped from
+> `planet_names`, every `ship_names` copy is left alone, and the check now
+> carries the question as a third flavour. **Two drafts of it under-reported —
+> 11 empires, then 10 — and only reverting the repair caught either**, which is
+> [check design rule 7](../validation/check-design.md#7-compare-declared-identity-not-block-key--and-distrust-a-check-that-has-never-failed)
+> earning its place: a clean `make validate` would have read as success both
+> times.
 
 > **The third quadrant of that hole is closed, and it was empty**
 > ([decision 94](../decisions/94-src-contests-its-own-identities.md), 2026-08-28).

@@ -2888,8 +2888,36 @@ def check_name_lists() -> int:
     return n
 
 
+def _initializer_body_names(body: str) -> list[str]:
+    """Every body name declared inside one solar system initializer.
+
+    ONLY THE BLOCK'S OWN NAME COUNTS -- the text before its first child block.
+    A `planet` holding a `moon` would otherwise report the moon's name twice,
+    and the initializer's own top-level `name` is the SYSTEM, not a body:
+    vanilla names the system NAME_Sol and its primary star NAME_Sol, which is
+    convention rather than collision.
+
+    Shared by check_home_system_body_names, which asks whether two of these
+    collide with each other, and check_colony_name_collisions, which asks
+    whether a colony pool offers one of them.
+    """
+    names: list[str] = []
+    for m in re.finditer(r"\b(?:planet|moon)\s*=\s*\{", body):
+        i, depth = m.end(), 1
+        while i < len(body) and depth:
+            depth += (body[i] == "{") - (body[i] == "}")
+            i += 1
+        inner = body[m.end():i - 1]
+        head = re.split(r"\b(?:planet|moon)\s*=\s*\{", inner, maxsplit=1)[0]
+        nm = re.search(r'\bname\s*=\s*"([^"]+)"', head)
+        if nm:
+            names.append(nm.group(1))
+    return names
+
+
 def check_colony_name_collisions() -> int:
-    """A `planet_names` pool must not offer a name some empire's CAPITAL uses.
+    """A `planet_names` pool must not offer a name some empire's CAPITAL uses,
+    nor a name a body of its OWN empire's home system already carries.
 
     These pools name colonies. Before decision 23 they also, in effect, named
     the other planets of the home system, and the Federation's pool is a list of
@@ -2898,27 +2926,77 @@ def check_colony_name_collisions() -> int:
     still offered "Vulcan" for any colony the Federation founded, anywhere,
     while the Vulcan Confederacy sat on the real one.
 
-    Two flavours, both wrong and both checked here:
+    THREE flavours, all wrong and all checked here:
       * another empire's capital -- two Vulcans in one galaxy;
       * the empire's OWN capital -- an Andorian colony called Andoria, which
-        only became possible once `planet_name` pinned the capital for real.
+        only became possible once `planet_name` pinned the capital for real;
+      * any other body of the empire's own home system -- a Klingon colony
+        called Praxis while the real Praxis orbits Qo'noS three systems away.
+        Added by .docs/decisions/95-colony-pools-drop-home-system-bodies.md.
 
     Resolution is through localisation on both sides, because a name list holds
     keys and a prescripted empire holds keys, and the collision is between their
     VALUES: STG_N_Vulcan and STG_planet_name_vulcan are different keys that both
-    render "Vulcan".
+    render "Vulcan". THE THIRD FLAVOUR IS WHY THAT MATTERS TWICE OVER. The first
+    measurement of it compared KEYS and reported 16 names over 11 empires; the
+    real figure is 17 over 12, and the one it missed is the Terran Empire's Mars
+    -- its home system is Sol, so the body carries vanilla's `NAME_Mars` while
+    the pool offers `STG_N_Mars`. Same name, different keys, invisible to a key
+    comparison. This docstring already said so before that measurement was
+    taken (.docs/decisions/79-shipset-descs-and-home-system-names.md: read the
+    check next door).
+
+    SCOPE IS `usage = custom_empire`, AND IT IS A CALIBRATION RESULT.
+    The third flavour is asked only of an empire whose `initializer` names a
+    home system the engine will actually give it, joined through
+    `prescripted_countries`. Two floors, and neither supports the reading that
+    this is ordinary flavour:
+
+      * VANILLA -- 0 collisions over 10 such empires, 158 bodies and 776 pool
+        tokens. The direct control is the United Nations of Earth: 18 bodies in
+        Sol against HUMAN1's 59-name pool, and the pool contains no Sol body at
+        all.
+      * STNH, whose home systems STG's are harvested from -- 0 over the 10
+        empires that have both a real system and a real pool. FOUR of those ten
+        sit on a 32-body Sol with a 160-name pool and none collides once. Its
+        raw figure is 1 over 111 empires, but most STNH name lists ship an
+        EMPTY `planet_names`, so 111 is not the population that had the chance.
+
+    STNH also shows what the convention is rather than merely that it holds:
+    `Terran.txt` puts Mercury, Venus, Mars, Jupiter, Saturn, Luna, Titan and
+    Europa in `ship_names` -- Starfleet's own naming convention -- and the only
+    Mars in its `planet_names` is `TERRAN_PLANET_NewMars`. A home-system body
+    becomes a SHIP name; a colony is a new place, or `New` the old one. STG
+    already did that half: the 17 tokens dropped were dropped from
+    `planet_names` only, and every `ship_names` occurrence was left alone
+    (rule 11).
     """
     names_dir = BUILD / "common/name_lists"
     pre = BUILD / "prescripted_countries"
     if not names_dir.is_dir() or not pre.is_dir():
         return 0
 
+    # BUILD FIRST, THEN VANILLA, because `setdefault` keeps the first and the
+    # mod must win where both declare a key. Vanilla has to be in here at all
+    # for the third flavour: STG's Terran Empire starts in Sol, so its bodies
+    # carry vanilla's `NAME_Mars` rather than a key of ours, and a build-only
+    # map leaves that name unresolved and the collision invisible. That is the
+    # same blindness in a second layer -- the first measurement missed Mars by
+    # comparing keys, and the first draft of this check missed it by resolving
+    # only half the keys there are.
+    # `*l_english.yml`, NOT `*.yml`. The build ships english only, so the
+    # narrower glob changes nothing there -- but vanilla ships eight more
+    # languages under the same tree, and with `setdefault` keeping the first
+    # file walked, Portuguese won: Mars resolved to "Marte" and Praxis to
+    # "Práxis&!name", which silently UNMADE two findings this check had been
+    # reporting a moment earlier.
     loc: dict[str, str] = {}
-    for p in (BUILD / "localisation").rglob("*.yml"):
-        for line in _read(p).splitlines():
-            m = re.match(r'\s*([A-Za-z_0-9\-]+):\d*\s*"(.*)"\s*$', line)
-            if m:
-                loc.setdefault(m.group(1), m.group(2))
+    for root in (BUILD, GAME_DIR):
+        for p in (root / "localisation").rglob("*l_english.yml"):
+            for line in _read(p).splitlines():
+                m = re.match(r'\s*([A-Za-z_0-9\-]+):\d*\s*"(.*)"\s*$', line)
+                if m:
+                    loc.setdefault(m.group(1), m.group(2))
 
     owner: dict[str, str] = {}
     for f in pre.rglob("*.txt"):
@@ -2929,6 +3007,34 @@ def check_colony_name_collisions() -> int:
                 if m and m.group(1) in loc:
                     owner.setdefault(loc[m.group(1)], key)
 
+    # The third flavour needs the empire behind each name list, and the bodies
+    # of the home system that empire actually starts in. Initializers are read
+    # from vanilla as well as the build: STG's Terran Empire starts in Sol,
+    # which is Real Space's file, and its bodies carry vanilla's own keys.
+    inits: dict[str, str] = {}
+    for root in (GAME_DIR, BUILD):
+        sub = root / "common/solar_system_initializers"
+        if sub.is_dir():
+            for f in sub.rglob("*.txt"):
+                for key, body in _top_level_blocks(_strip_comments(_read(f))):
+                    inits.setdefault(key, body)
+
+    home: dict[str, tuple[str, set[str]]] = {}
+    for f in pre.rglob("*.txt"):
+        for key, body in _top_level_blocks(_strip_comments(_read(f))):
+            mi = re.search(r'\binitializer\s*=\s*"?([A-Za-z_0-9\-]+)"?', body)
+            mn = re.search(r'\bname_list\s*=\s*"?([A-Za-z_0-9\-]+)"?', body)
+            if not (mi and mn):
+                continue
+            ibody = inits.get(mi.group(1))
+            if ibody is None:
+                continue
+            if not re.search(r"\busage\s*=\s*custom_empire\b", ibody):
+                continue
+            bodies = {loc.get(b, b) for b in _initializer_body_names(ibody)}
+            prev = home.setdefault(mn.group(1), (key, set()))
+            prev[1].update(bodies)
+
     ack = _ack_list("colony_name_ack")
     n = 0
     for f in sorted(names_dir.rglob("*.txt")):
@@ -2937,6 +3043,28 @@ def check_colony_name_collisions() -> int:
         if not block:
             continue
         n += 1
+        pool = re.findall(r"\b[A-Za-z_0-9\-]+", block.group(1))
+
+        # Flavour three: a body of this empire's own home system.
+        for nl_key, _ in _top_level_blocks(_strip_comments(text)):
+            if nl_key not in home:
+                continue
+            empire, bodies = home[nl_key]
+            own = sorted({loc[tok] for tok in pool
+                          if tok in loc and loc[tok] in bodies
+                          and loc[tok] not in ack})
+            if own:
+                errors.append(
+                    f"{f.relative_to(BUILD)}: planet_names offers "
+                    f"{len(own)} name(s) that a body of {empire}'s own home "
+                    f"system already carries: {', '.join(own[:6])}"
+                    f"{f' (+{len(own) - 6} more)' if len(own) > 6 else ''}. "
+                    f"A colony would be founded carrying the name of a planet "
+                    f"three systems away. Drop the token from `planet_names` — "
+                    f"and leave any `ship_names` copy alone, which is where "
+                    f"STNH puts these. "
+                    f"See .docs/decisions/95-colony-pools-drop-home-system-bodies.md.")
+
         hits = []
         for tok in re.findall(r"\bSTG_N_[A-Za-z_0-9\-]+", block.group(1)):
             val = loc.get(tok)
@@ -5807,18 +5935,7 @@ def check_home_system_body_names() -> int:
             if not re.search(r"\busage\s*=\s*custom_empire\b", body):
                 continue
             n += 1
-            names: list[str] = []
-            for m in re.finditer(r"\b(?:planet|moon)\s*=\s*\{", body):
-                i, depth = m.end(), 1
-                while i < len(body) and depth:
-                    depth += (body[i] == "{") - (body[i] == "}")
-                    i += 1
-                inner = body[m.end():i - 1]
-                # The block's OWN name: everything before its first child block.
-                head = re.split(r"\b(?:planet|moon)\s*=\s*\{", inner, maxsplit=1)[0]
-                nm = re.search(r'\bname\s*=\s*"([^"]+)"', head)
-                if nm:
-                    names.append(nm.group(1))
+            names = _initializer_body_names(body)
             dup = {k: v for k, v in collections.Counter(names).items() if v > 1}
             if dup:
                 bad[key] = dup

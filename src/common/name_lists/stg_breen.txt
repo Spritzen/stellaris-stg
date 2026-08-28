@@ -156,7 +156,7 @@ STG_BREEN = {
 	planet_names = {
 		generic = {
 			names = {
-				STG_N_PortasV STG_N_Dozaria STG_N_Rimefall STG_N_Glacier STG_N_Frostbite STG_N_Whiteout
+				STG_N_Rimefall STG_N_Glacier STG_N_Frostbite STG_N_Whiteout
 				STG_N_Snowblind STG_N_Hoarfrost STG_N_Icebound STG_N_Blizzard STG_N_LongWinter STG_N_SilentCold
 				STG_N_ColdFront STG_N_NewBreen STG_N_Sarr STG_N_Trell STG_N_Vekk STG_N_Rhun
 				STG_N_Dissipator

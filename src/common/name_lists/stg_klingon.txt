@@ -287,7 +287,7 @@ STG_KLINGON = {
 	planet_names = {
 		generic = {
 			names = {
-				STG_N_Boreth STG_N_QamChee STG_N_Praxis STG_N_Morska STG_N_Khitomer STG_N_Narendra
+				STG_N_Boreth STG_N_QamChee STG_N_Morska STG_N_Khitomer STG_N_Narendra
 				STG_N_Tygokor STG_N_HuqIq STG_N_Maranga STG_N_Mempa STG_N_Ogat STG_N_RuraPenthe
 				STG_N_Tyken STG_N_Vorn STG_N_Ganalda STG_N_Archanis STG_N_Donatu
 			}

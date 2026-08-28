@@ -148,7 +148,7 @@ STG_TRILL = {
 	planet_names = {
 		generic = {
 			names = {
-				STG_N_TrilliusPrime STG_N_LeranManev STG_N_Makala STG_N_Gandhara STG_N_NewSydney STG_N_Kurl
+				STG_N_TrilliusPrime STG_N_LeranManev STG_N_Gandhara STG_N_NewSydney STG_N_Kurl
 				STG_N_Bilby STG_N_Tenaran STG_N_Ganses STG_N_Rixx STG_N_Vernan STG_N_Kelis
 				STG_N_Belar STG_N_Nilani STG_N_Manev STG_N_Caves STG_N_Pools STG_N_Hoobishan
 				STG_N_Vanden

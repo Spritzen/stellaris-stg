@@ -153,7 +153,7 @@ STG_XINDI = {
 	planet_names = {
 		generic = {
 			names = {
-				STG_N_AzatiPrime STG_N_XindusII STG_N_Calindra STG_N_CalindraIII STG_N_Loque STG_N_LoqueII
+				STG_N_XindusII STG_N_Calindra STG_N_CalindraIII STG_N_Loque STG_N_LoqueII
 				STG_N_Naara STG_N_NaaraPrime STG_N_Gralik STG_N_Damron STG_N_Threnna STG_N_Sekal
 				STG_N_Ashani STG_N_Corvath STG_N_Tarnak STG_N_Vosk STG_N_Kessick STG_N_Rajiin
 				STG_N_NewXindus

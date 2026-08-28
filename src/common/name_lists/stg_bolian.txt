@@ -144,8 +144,8 @@ STG_BOLIAN = {
 		generic = {
 			names = {
 				STG_N_Bolias STG_N_CorvanII STG_N_MelonaIV STG_N_VandorIV STG_N_BarisaPrime STG_N_NelvanaIII
-				STG_N_SapporaVII STG_N_Ansata STG_N_Tenara STG_N_NewBolarus STG_N_Zhukova STG_N_BolarusVII
-				STG_N_BolarusIII STG_N_ChellsLanding STG_N_Rixxa STG_N_Boqta STG_N_Adisla STG_N_Harova
+				STG_N_SapporaVII STG_N_Ansata STG_N_Tenara STG_N_NewBolarus STG_N_Zhukova
+				STG_N_ChellsLanding STG_N_Rixxa STG_N_Boqta STG_N_Adisla STG_N_Harova
 				STG_N_Brottan
 			}
 		}
