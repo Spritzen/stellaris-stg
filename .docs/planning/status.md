@@ -6,8 +6,8 @@
 > build.
 > **Then** — [Open questions](open-questions.md) · [Phases](phases.md) · [Live runs](../guides/live-runs.md)
 
-*Last updated 2026-08-28, against the build of that date and the Klingon run of
-2026-08-27. The build figures below are unchanged by the 28th's work — one
+*Last updated 2026-08-28, against the build of that date and the **second**
+Klingon run of 2026-08-28 — the first against a static map that has lanes. The build figures below are unchanged by the 28th's work — one
 `vendor.yml` patch, one loc key, five new `make validate` checks, a sixth
 question widened onto an existing one, a seventh check added to `make docs`,
 three deleted name lists and 17 deleted colony-name tokens move the file count
@@ -38,7 +38,7 @@ ones.
 | Re-cut at harvest / pruned | 1,661 / **888** |
 | Overwrites / additive skips | 952 / 220 |
 | `make vendor` | 68 s |
-| `make validate` | **0 warnings, 0 errors**, over **52 checks** — five more than yesterday. It warned 3 for part of 2026-08-28, on the contested name-list keys [decision 91](../decisions/91-src-contests-its-own-name-lists.md) found, and [decision 93](../decisions/93-power-lists-win-the-contested-keys.md) closed them the same day |
+| `make validate` | **0 warnings, 0 errors**, over **53 checks** — six more than yesterday, the last of them `check_galaxy_size_references` ([98](../decisions/98-withdrawn-scenarios-are-referenced-by-name.md)). It warned 3 for part of 2026-08-28, on the contested name-list keys [decision 91](../decisions/91-src-contests-its-own-name-lists.md) found, and [decision 93](../decisions/93-power-lists-win-the-contested-keys.md) closed them the same day |
 | `make docs` | **0 warnings, 0 errors** |
 | `make gen-check` | **13 of 13 generators are fixpoints** |
 
@@ -236,6 +236,47 @@ one more: `LITH1.txt` and `LITH2.txt` indent `LITHOID1` and `LITHOID2`, so
 track depth; **every count on the summary line is byte-identical afterwards**,
 which is what says it was a parser repair and not a change of question.
 
+**And a fifty-third, from the live run of 2026-08-28 rather than from disk —
+the first check in a week that a run had to find**
+([98](../decisions/98-withdrawn-scenarios-are-referenced-by-name.md)).
+`check_galaxy_size_references` asks whether a `galaxy_size = <name>` names a
+setup scenario anything declares. **It corrects
+[decision 88](../decisions/88-lock-the-galaxy-picker.md)'s one load-bearing
+sentence.** The picker lock reasoned that withdrawing vanilla's five galaxy
+sizes was free because *"nothing references a scenario by name — the setup
+screen enumerates the directory"*. The screen does; **script does not**, and the
+game's own `triggers.log` says so: `galaxy_size` resolves a `setup_scenario` by
+its name. All five dangled, in **353 records against 0 in every log from before
+the lock**, and the cost is behavioural rather than cosmetic — every five-way
+size ladder in vanilla script collapses to its base, `ai_habitat_cap` from
+2/4/6/8/10 to **0**.
+
+**The lock stands and the ack carries the price.** Vanilla's floor is **0 of
+113**, necessarily, since it declares all five sizes it references — which is
+what makes the merged tree's 113 a measurement of our lock rather than of the
+game. `galaxy_size_ack` holds exactly the five names and is the largest ack in
+the project by record count; [acks.md](../validation/acks.md) argues why that is
+legitimate here and what would make it not be. **Restoring the sizes empties the
+list and takes the check to 0 with no further edit.**
+
+> **A withdrawal by occupying a path is a withdrawal from script too.** "Nothing
+> references it" is a claim about the whole merged tree and has to be measured
+> there, not inferred from how the feature is presented to the player.
+
+**And a widening rather than a fifty-fourth, from two records that were in every
+log on disk** ([99](../decisions/99-starbase-modules-name-sections-too.md),
+2026-08-28). `check_section_slot_references` walked
+`common/global_ship_designs` → `common/section_templates`, because that is the
+direction decision 37's defect ran in. **A starbase module names a section too**,
+as a bare `section = "KEY"` rather than a `section = { template = … }` block, and
+nothing had ever asked whether those resolve. Two do not — SBX's
+`orbital_ring_shield_module` and `orbital_ring_armor_module`, naming sections
+declared in **no file in any tree**, ours, vanilla's or any in `.source/`.
+Patched in `vendor.yml`; floors vanilla **0 of 96**, merged **0 of 123**, and
+reverting the patch recovers exactly the two keys the engine named.
+**96's floor of 0 and 0 was true and was never the whole question** — the same
+database, reached from a directory nobody walked, was 2.
+
 **And one more that is `make docs`' rather than `make validate`'s, from asking
 what the 2026-08-27 renumbering could not see**
 ([97](../decisions/97-bare-decision-numbers.md), 2026-08-28). A decision
@@ -255,7 +296,7 @@ line-wise grep including the sweep's own.
 
 ---
 
-## The static galaxy — run once, and the mechanism works
+## The static galaxy — run twice, and the lanes work too
 
 **2026-08-27.** The mechanism [decision 85](../decisions/85-create-country-initializers.md)
 identified is now in the tree, in four parts and one correction —
@@ -280,8 +321,21 @@ hyperlane in 98 systems, because `random_hyperlanes = no` builds nothing and
 STG had not vendored the start-of-game script STNH builds its network with.
 The lanes are generated into the file now, and `check_static_galaxy` rejects a
 lane-less static map — it used to wave one through, which is why `make validate`
-reported clean over the defect. **Still unrun with lanes**, and that is the next
-test.
+reported clean over the defect.
+
+**The 2026-08-28 Klingon run is that test, and it passed.** Read off the save
+(`klingonempire2_558137403`, 2201.02.18, `mods = { "Star Trek Galaxies" }`):
+
+| | 2026-08-27 | **2026-08-28** |
+|---|---|---|
+| Hyperlane endpoints | **1** | **355** across 100 systems — the map's 162 lanes stored both ways, plus what the generated systems added |
+| Contact | none reachable | **~40 `first_contact.1` events in three minutes**, which is what says the lanes are connected rather than merely present |
+| STG empires in the galaxy | 20, one each | **20, one each** — Klingon among them as country 0, no procedural empire competing |
+| Design database | 99 | **99** — all 99 prescripted empires load ([83](../decisions/83-design-database-is-not-the-cause.md)) |
+| STG home-system initializers loaded / placed | — | **36 / 20**, which is the 36 `create_country` blocks against the 21 systems the map places |
+
+**Decisions 84, 85, 86 and 87 are now all confirmed by a live save**, and the
+whole of decision 86's four questions have come back good.
 
 **The picker is locked** ([88](../decisions/88-lock-the-galaxy-picker.md)):
 YAGEM's twelve maps are excluded, vanilla's five are masked by files in `src/`
@@ -289,6 +343,22 @@ that declare nothing, and *The Known Galaxy* carries `default = yes`. **Exactly
 one scenario declaration now reaches the engine** — so there is nothing to
 select, and no random galaxy to fall back to. That also makes the map a single
 point of failure, reversible in one commit.
+
+**The lock has a price nobody had counted, and it is paid every run**:
+`galaxy_size` resolves a `setup_scenario` by name, so all five withdrawn sizes
+dangle — 353 records and every galaxy-size ladder in vanilla script collapsed to
+its base ([98](../decisions/98-withdrawn-scenarios-are-referenced-by-name.md)).
+**The call was re-made with that on the table and the lock stands.**
+
+**Decision 88's own open question is closed, the same day, in two halves.** The
+picker comes up **preselected on The Known Galaxy** — reported from the run, and
+the half no check could reach; an empty list, which was the failure mode 88
+watched for, cannot preselect anything. And it is **the only choice**, which
+turned out not to need eyes at all: seven files reach `map/setup_scenarios/`
+after shadowing, six of them declare nothing — our five overrides plus vanilla's
+commented-out `static_galaxy_example.txt` — and `/stellaris/dlc` ships no
+`setup_scenarios`. One declaration reaches the engine, and
+`check_galaxy_size_references` recounts it every run.
 
 **Two empires are deliberately absent from the map**: the Terran Empire, whose
 Sol and Earth collide with the Federation's, and an AI Federation, because Sol
@@ -298,37 +368,88 @@ decision 86.
 
 ## The `error.log` baseline
 
-**The current baseline is the 2026-08-27 Klingon run**, the first against the
-static galaxy — and the second in a row to be settled by the **save** rather than
-by the log ([87](../decisions/87-static-map-lanes-are-generated.md)). The
+**The current baseline is the 2026-08-28 Klingon run**, the first against a
+static galaxy that has lanes — and the third in a row to be settled largely by
+the **save** rather than by the log. The
 2026-08-10 Federation run at the far end is still the deepest: ~11 hours, and the
 only log so far that carried real defects rather than eyes-only findings.
 
-| | **2026-08-27** Klingon | 2026-08-26 Vulcan | 2026-08-25 pm Vulcan | 2026-08-25 am Vulcan | 2026-08-24 Vulcan | 2026-08-22 Vulcan | 2026-08-10 Federation | 2026-08-08 |
-|---|---|---|---|---|---|---|---|---|
-| Records / size | **1,267 / 187 KB** | 1,315 / 195 KB | 1,280 / 191 KB | 1,335 / 190 KB | 1,315 / 208 KB | 1,264 / 187 KB | 2,251 / 228 KB | 1,261 / 187 KB |
-| Startup window | 47.1 s | 48.3 s | 45.1 s | 48.5 s | 46.8 s | 55.4 s | 49.4 s | 49.3 s |
-| Records **after** startup | **4** | 55 | 13 | 19 | 55 | 4 | 174 | 1 |
-| Play window | not recorded | ~2 h 45 m | ~1 h | ~2.5 h | ~7 h | ~26 min | ~11 h | short |
+| | **2026-08-28** Klingon | 2026-08-27 Klingon | 2026-08-26 Vulcan | 2026-08-25 pm Vulcan | 2026-08-25 am Vulcan | 2026-08-24 Vulcan | 2026-08-22 Vulcan | 2026-08-10 Federation | 2026-08-08 |
+|---|---|---|---|---|---|---|---|---|---|
+| Records / size | **1,622 / 279 KB** | 1,267 / 187 KB | 1,315 / 195 KB | 1,280 / 191 KB | 1,335 / 190 KB | 1,315 / 208 KB | 1,264 / 187 KB | 2,251 / 228 KB | 1,261 / 187 KB |
+| Startup window | 51.6 s | 47.1 s | 48.3 s | 45.1 s | 48.5 s | 46.8 s | 55.4 s | 49.4 s | 49.3 s |
+| Records **after** startup | **9** | 4 | 55 | 13 | 19 | 55 | 4 | 174 | 1 |
+| Play window | ~3 min | not recorded | ~2 h 45 m | ~1 h | ~2.5 h | ~7 h | ~26 min | ~11 h | short |
 
-**Read the post-init column, never the total.** 187–208 KB is the init-window
-floor of this build and it has not moved in eight runs; against the ~1 MB a clean
-vanilla run produces the volume is fine either way. **The 1 → 174 → 4 → 55 → 19
-→ 13 → 55 → 4 swing is a change of run, not of build**: the short sessions opened
-few screens.
+**Read the post-init column, never the total.** 187–208 KB was the init-window
+floor of this build across eight runs; against the ~1 MB a clean vanilla run
+produces the volume is fine either way. **The 1 → 174 → 4 → 55 → 19 → 13 → 55 →
+4 → 9 swing is a change of run, not of build**: the short sessions opened few
+screens.
 
-**The init window's third-largest class is now triaged, and it was the last
-untriaged one.** Sorted by shape, the 2026-08-27 log's 1,267 records are 110
-`An item with name … already exists`, 103 `a 3d-type with the name … already
-exists` and **23 `duplicate section template found`** — then nothing above
-nine. The first two are the ASB projectile reimplementations and the
-STNH/Walshicus texture library, both long triaged in the leftovers list on
-[open-questions](open-questions.md). **The 23 were named by no document at all**
-until [decision 96](../decisions/96-section-slots-survive-a-replacement.md)
-measured them: they are Starbase Extended winning 23 vanilla section keys under
-its `!!!_` filenames, and its slots are a superset of what it replaced in all
-23. Benign, and now guarded by `check_section_slot_references` rather than
-assumed.
+**The 2026-08-28 run is the one exception to that, and the floor moved for a
+reason we caused.** 1,622 records is +355 on the 27th, and **353 of them are a
+single class that had never appeared in any log**: `Failed to deferred read key
+reference {tiny,small,medium,large,huge} from database`. That is
+[decision 88](../decisions/88-lock-the-galaxy-picker.md)'s picker lock. Its one
+load-bearing sentence — *"nothing references a scenario by name"* — is false;
+`galaxy_size` is a trigger that resolves a `setup_scenario` **by name**, so
+withdrawing the five sizes dangled 113 of vanilla's own references and every
+five-way galaxy-size ladder in vanilla script now collapses to its base.
+**The lock stands and the price is now measured rather than assumed**, held by
+`check_galaxy_size_references` and `galaxy_size_ack`
+([98](../decisions/98-withdrawn-scenarios-are-referenced-by-name.md)). **The new
+init-window floor is 279 KB for as long as the lock does.**
+
+**Nine post-init records, and eight of them are before the game started** —
+vanilla loc strings scanned on the main menu at 19:49:43, out of
+`federations_l_english.yml` and `nomads_1_l_english.yml`. From galaxy generation
+to the last event the log carries **one** record, the `PLANET_SCALE_SYSTEM` size
+mismatch (acked, [41](../decisions/41-planet-scale-system-length.md)). **No
+record in the run names an STG-authored path** — which is true and misleading
+both, because the 353 are recorded against vanilla's files and are ours by
+cause.
+
+**The init window, sorted by shape.** Counted off the 2026-08-28 log by the
+`.cpp:line` that emitted each record, which is the only grouping that does not
+depend on how a message is worded:
+
+| | | |
+|---|---|---|
+| 568 | `Duplicate of … added to entity system` | a mod redeclaring a vanilla entity — the override idiom, triaged in [31](../decisions/31-duplicate-entity-declarations.md) and [50](../decisions/50-duplicate-entity-triage.md) |
+| 353 | `Failed to deferred read key reference … from database` | **new, and ours** — the picker lock, [98](../decisions/98-withdrawn-scenarios-are-referenced-by-name.md) |
+| 143 | `Duplicate texture …` | STNH's `shared_assets/` against Walshicus' `stnc_shipset_shared/` |
+| 110 | `An item with name … already exists` | ASB's projectile reimplementations |
+| 103 | `a 3d-type with the name … already exists` | the same library, one layer up |
+| 31 | `an event with id … already exists` | vanilla event ids redeclared by forks of vanilla files, e.g. `!vanilla_toxoids_events_fix.txt` against `toxoids_events.txt` |
+| 23 | `duplicate section template found` | Starbase Extended winning 23 vanilla section keys, [96](../decisions/96-section-slots-survive-a-replacement.md) |
+
+**This table exists because the sentence it replaces was wrong, and wrong in the
+way a shape triage most easily is.** It read *"110 … 103 … and 23 — then nothing
+above nine"*, which omits the largest class in the log by a factor of five.
+`Duplicate of … added to entity system` is **exactly 568 in the 2026-08-08 log,
+568 in the 2026-08-10 log and 568 today** — an init-window constant across three
+weeks, and one that is genuinely triaged (decisions 31 and 50 measured it at 576
+in the 2026-08-07 run and found 558 of them to be the deliberate
+vanilla-override idiom). **What was missing was not the triage but the count**,
+in both this page and the leftovers list on
+[open-questions](open-questions.md), where it has now been added.
+
+> **A triage sorted by remembered wording samples the classes you can already
+> name.** Group by the emitting `.cpp:line` instead: it is in every record, it
+> does not vary with phrasing, and it cannot skip a class because nobody quoted
+> it.
+
+The 143 and the 110/103 are long triaged in the leftovers list. **The 23 were
+named by no document at all** until
+[decision 96](../decisions/96-section-slots-survive-a-replacement.md) measured
+them: Starbase Extended winning 23 vanilla section keys under its `!!!_`
+filenames, its slots a superset of what it replaced in all 23. Benign, and now
+guarded by `check_section_slot_references` rather than assumed — a check
+[decision 99](../decisions/99-starbase-modules-name-sections-too.md) has since
+widened into the module → section direction, where it found the two
+`ship_design_templates.cpp:480` records that are in every log on disk and that
+no document had named either.
 
 **The 2026-08-27 run's four post-init records name no STG file** — three
 `spawn_system` failures out of Planetary Diversity's `events/pd_unique.txt` and

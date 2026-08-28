@@ -125,6 +125,43 @@ evidence for anything in this section — the standing lesson of decisions
 > **not a defect at all**: `fallback` is the mechanism and vanilla's own header
 > says so. See "Confirmed on disk" below.
 
+### The galaxy picker — answered 2026-08-28, half by eye and half from disk
+
+**Closed.** [Decision 88](../decisions/88-lock-the-galaxy-picker.md) asked two
+things: does the setup screen come up with *The Known Galaxy* already selected,
+and is it the only choice.
+
+- **Preselected: yes, seen in the 2026-08-28 run.** That is the half no check
+  could reach, and it also rules out the failure mode 88 named — *a galaxy list
+  the engine finds empty* — because an empty list cannot preselect anything.
+- **Only choice: yes, and this half never needed eyes.** Seven files reach
+  `map/setup_scenarios/` after shadowing and **six of them declare nothing** —
+  our five picker-lock overrides plus vanilla's own `static_galaxy_example.txt`,
+  which is entirely commented out. One declaration reaches the engine,
+  `STG_galaxy_alpha_beta`. There is no other directory: `/stellaris/dlc` has no
+  `setup_scenarios`, so the path is the whole population.
+
+> **Half of what was filed as eyes-only was a disk question wearing a screen's
+> clothes.** 88's own rule — *a scenario is offered because a file at that path
+> declares it* — makes "is it the only choice" countable, and the helper written
+> for `check_galaxy_size_references` counts it on every run. **Say which half of
+> a two-part question actually needs the game before spending a run on it.**
+
+### Two orbital-ring modules whose art is a guess
+
+[Decision 99](../decisions/99-starbase-modules-name-sections-too.md) repointed
+Starbase Extended's `orbital_ring_shield_module` and `orbital_ring_armor_module`
+at `SOLAR_PANEL_ORBITAL_RING_SECTION`, because the sections they named are
+declared in no file anywhere — not vanilla's, not SBX's, not any source in
+`.source/`. **The repair is sound and the art is a guess**: nothing in either
+tree records what SBX meant them to look like.
+
+**What to look at:** build a shield or an armor module on an orbital ring and
+see whether the segment reads as defensive plating or as an obvious solar panel.
+If it reads wrong, changing it is one word twice in `vendor.yml`. Note that this
+is a *new* thing to look at rather than a regression — before the repair the
+engine found no section at all for either module.
+
 ### Whether the prescripted pool can ever be drawn from — six galaxies, six times zero
 
 **This is the biggest open question in the project and the only one that has
@@ -669,9 +706,26 @@ unnamed ones do.
 ## Log-level leftovers
 
 *Init-window groups that are third-party or reviewed, listed with their share of
-the 2026-08-07 run's 1,308 records — the run that triaged them. The init window
-has not changed shape since; [status.md](status.md) carries the current totals.*
+the 2026-08-07 run's 1,308 records — the run that triaged them. Counts against
+the current build are in the shape table on [status.md](status.md), which is
+sorted by the emitting `.cpp:line` rather than by wording.*
 
+- **Duplicate entity declarations — 568 records, and much the largest class in
+  the log.** `pdx_entity.cpp:2560`, `Duplicate of <name> added to entity system`:
+  a mod redeclaring a **vanilla** entity from a differently-named file, which is
+  how a mod overrides vanilla art without shadowing the path. Triaged in
+  [31](../decisions/31-duplicate-entity-declarations.md) and
+  [50](../decisions/50-duplicate-entity-triage.md), which measured 576 in the
+  2026-08-07 run and found **558 of them to be that deliberate idiom**; the
+  thirteen that were a real merge contest were repaired or acked there, and
+  `check_duplicate_entities` watches for new ones.
+  **Listed here for the first time on 2026-08-28, and that is the point of the
+  entry.** It is exactly **568 in the 2026-08-08 log, 568 in the 2026-08-10 log
+  and 568 today** — an init-window constant across three weeks that both this
+  list and status.md's shape triage had left out, while status.md positively
+  asserted there was *"nothing above nine"* below the third class. The triage
+  existed; the count did not. **A class nobody has written a number for reads as
+  a class nobody has looked at.**
 - **ASB's projectile reimplementations — 213 records, the largest class left.**
   `alt_*` and `ap_*` in `gfx/projectiles/` redeclare vanilla names and the engine
   keeps one. **Still open: which one renders.**
@@ -700,6 +754,22 @@ has not changed shape since; [status.md](status.md) carries the current totals.*
   silent and a *new* collision reports.
 - **`legend` — 2 records**, inside vendored Klingon art at
   `gfx/portraits/asset_selectors/klingon/klingon_male_clothes_combined.txt:42,48`.
+- **2 `Failed to get section template for key` — fixed 2026-08-28, and they
+  were never triaged either.** `ship_design_templates.cpp:480`, SBX's
+  `orbital_ring_shield_module` and `orbital_ring_armor_module` naming sections
+  declared in no file in any tree. In every log on disk, named by no document,
+  and outside the only check that walks that database because
+  `check_section_slot_references` asked the ship-design direction and a module
+  writes a bare `section = "KEY"` instead. Repaired in `vendor.yml` and the
+  check now walks both directions
+  ([99](../decisions/99-starbase-modules-name-sections-too.md)).
+- **353 `Failed to deferred read key reference … from database` — new on
+  2026-08-28, ours, and staying.** The picker lock withdrew the five galaxy
+  sizes and `galaxy_size` resolves a `setup_scenario` by name. Acked with its
+  price under `galaxy_size_ack`
+  ([98](../decisions/98-withdrawn-scenarios-are-referenced-by-name.md)); **the
+  ack silences the check, not the engine**, and it empties itself if the sizes
+  are ever restored.
 - The small defects of that run and what each cost are in
   [decision 38](../decisions/38-live-run-2026-08-07-repairs.md).
 

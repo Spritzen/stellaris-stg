@@ -6,6 +6,11 @@ deliberately left undone until an STG scenario was known to generate.
 **Follows** [decision 87](87-static-map-lanes-are-generated.md), which is what
 made the map worth defaulting to, and
 [decision 86](86-static-galaxy-scenario.md), which built it.
+**Corrected by** [decision 98](98-withdrawn-scenarios-are-referenced-by-name.md)
+on one sentence below — *"nothing references a scenario by name"* is false.
+`galaxy_size` is a trigger that resolves a `setup_scenario` by its name, so the
+five withdrawals dangled 113 of vanilla's own references. The lock stands; the
+text here is left as written and the price is recorded there.
 
 ## The finding
 

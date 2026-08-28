@@ -543,8 +543,17 @@ src_regression_ack:
   # regression (.docs/decisions/88-lock-the-galaxy-picker.md). Each override
   # withdraws exactly one `setup_scenario` declaration, which is the entire
   # point of the file: STG offers one galaxy and these five are the vanilla
-  # sizes it replaces. Nothing references a scenario by name -- the setup screen
-  # enumerates the directory -- so there is no dangling reference to restore.
+  # sizes it replaces.
+  #
+  # WHAT DECISION 88 GOT WRONG, corrected 2026-08-28 by the Klingon run of that
+  # day: "nothing references a scenario by name" is FALSE. The setup screen
+  # enumerates the directory, but SCRIPT does not -- `galaxy_size = medium` is a
+  # trigger that matches the active scenario against a setup_scenario name, and
+  # withdrawing the five dangles every one of them. 353 records a run. The lock
+  # is kept anyway and the cost is measured rather than assumed:
+  # .docs/decisions/98-withdrawn-scenarios-are-referenced-by-name.md, and
+  # galaxy_size_ack below is where the five names are signed off.
+  #
   # The nine `ariphaos_*` maps need no ack here: they are YAGEM's own paths and
   # are excluded at harvest rather than shadowed.
   - map/setup_scenarios/tiny.txt
@@ -552,6 +561,32 @@ src_regression_ack:
   - map/setup_scenarios/medium.txt
   - map/setup_scenarios/large.txt
   - map/setup_scenarios/huge.txt
+
+# Setup-scenario names that `galaxy_size = <name>` may reference without one
+# being declared. Read by tools/validate.py's check_galaxy_size_references.
+#
+# These five are the picker lock's price, and they are the ONLY entries this
+# list should ever hold. STG withdraws vanilla's five galaxy sizes on purpose
+# (src_regression_ack above), and `galaxy_size` is a trigger that resolves a
+# setup_scenario BY NAME, so all five dangle for as long as the lock stands --
+# 353 `Failed to deferred read key reference ... from database` records in the
+# 2026-08-28 Klingon run, against 0 in every run before the lock shipped.
+#
+# THE ACK SILENCES THE CHECK, NOT THE ENGINE, and not the behaviour either:
+# every five-way galaxy-size ladder in vanilla script now collapses to its base
+# value, which is the part worth remembering and is measured in
+# .docs/decisions/98-withdrawn-scenarios-are-referenced-by-name.md.
+#
+# A SIXTH NAME HERE IS A DIFFERENT DEFECT and must not be acked without one:
+# it would mean a source mod referencing a galaxy size nobody declares, which
+# vanilla never does (floor 0 of 113). Restoring the sizes -- the one-commit
+# reversal decision 88 promises -- empties this list rather than growing it.
+galaxy_size_ack:
+  - tiny
+  - small
+  - medium
+  - large
+  - huge
 
 # Files whose `attach = { "slot" = "entity" }` targets do not resolve, reviewed
 # and accepted. Read by tools/validate.py's check_attach_targets. Keyed by the
@@ -1345,6 +1380,59 @@ patches:
         count: 1
       - from: "\tpotential = { \r\n\t\thas_starbase_size >= orbital_ring_tier_1\r\n\t\tcount_starbase_modules = { type = orbital_ring_missile_battery count < 5 }\r\n\t}\r\n"
         to: ""
+        count: 1
+
+  # --- Starbase Extended: two modules naming a section nothing declares -----
+  # `orbital_ring_shield_module` and `orbital_ring_armor_module` are SBX's own
+  # inventions -- vanilla has no shield or armor orbital-ring module -- and each
+  # names a section template that is declared NOWHERE: not in SBX's own
+  # !!!_sbx_3_0_orbital_ring_sections.txt, not in vanilla, not anywhere in
+  # .source/. The engine says so twice at load, every run since 2026-08-08:
+  #
+  #     ship_design_templates.cpp:480  Failed to get section template for key:
+  #     SHIELD_ORBITAL_RING_SECTION / ARMOR_ORBITAL_RING_SECTION
+  #
+  # NOT a harvest loss -- grepping all of .source/ for either key finds only
+  # this modules file, so there is nothing to un-prune and nothing to restore.
+  # It is SBX's defect, and decision 11 says fix it rather than drop the mod.
+  #
+  # REPOINTED, NOT AUTHORED. SOLAR_PANEL_ORBITAL_RING_SECTION is the one
+  # orbital-ring section SBX declares that no module claims -- measured 0
+  # references across vanilla and the merged tree -- and it carries no
+  # component_slot, which is what a stat-only module needs (both of these add
+  # shields/armor and mount no weapon). Reusing one section for several modules
+  # is vanilla's own idiom: SHIPYARD_ORBITAL_RING_SECTION serves two modules,
+  # HANGAR_ORBITAL_RING_SECTION two, SCIENCE_STARBASE_SECTION three.
+  #
+  # WHAT IS STILL A GUESS IS THE ART, and only the art. Both modules now render
+  # as a solar-panel ring segment. Nothing in either tree says what SBX meant
+  # them to look like, so this is EYES-ONLY and is listed as such in
+  # .docs/planning/open-questions.md. Changing it is one word, twice.
+  # See .docs/decisions/99-starbase-modules-name-sections-too.md.
+
+  - path: common/starbase_modules/sbx_3_0_orbital_ring_modules.txt
+    source: Starbase Extended 3.0
+    why: >-
+      `orbital_ring_shield_module` names SHIELD_ORBITAL_RING_SECTION, which is
+      declared in no file in vanilla, in SBX or anywhere in .source/ --
+      `Failed to get section template for key` at load, every run. Repointed at
+      SOLAR_PANEL_ORBITAL_RING_SECTION, the only orbital-ring section SBX
+      declares that no module references and one with no component_slot, which
+      is what a weaponless stat module needs. Unique in the file.
+    replace:
+      - from: "\tsection = \"SHIELD_ORBITAL_RING_SECTION\""
+        to: "\tsection = \"SOLAR_PANEL_ORBITAL_RING_SECTION\""
+        count: 1
+
+  - path: common/starbase_modules/sbx_3_0_orbital_ring_modules.txt
+    source: Starbase Extended 3.0
+    why: >-
+      `orbital_ring_armor_module` names ARMOR_ORBITAL_RING_SECTION, declared
+      nowhere, for the same reason and with the same repair as the shield
+      module above. Unique in the file.
+    replace:
+      - from: "\tsection = \"ARMOR_ORBITAL_RING_SECTION\""
+        to: "\tsection = \"SOLAR_PANEL_ORBITAL_RING_SECTION\""
         count: 1
 
   - path: common/section_templates/!!!_sbx_3_0_starbase_sections.txt

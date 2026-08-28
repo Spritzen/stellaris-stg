@@ -2082,7 +2082,32 @@ def check_section_slot_references() -> int:
     sections are supersets of what they replaced
     ([rule 7](.docs/validation/check-design.md)).
 
-    See .docs/decisions/96-section-slots-survive-a-replacement.md.
+    A THIRD QUESTION, ADDED 2026-08-28, AND IT IS THE ONE THAT WAS MISSING.
+    Everything above walks `common/global_ship_designs` -> section, because that
+    is the direction decision 37's defect ran in. It is not the only direction.
+    A `starbase_module` names its section too, with a bare `section = "KEY"`
+    rather than a `section = { template = ... }` block, and NOTHING had ever
+    asked whether those resolve. Two do not, and the engine had been saying so
+    at load in every log on disk:
+
+        ship_design_templates.cpp:480  Failed to get section template for key:
+        SHIELD_ORBITAL_RING_SECTION / ARMOR_ORBITAL_RING_SECTION
+
+    Both are SBX's own `orbital_ring_shield_module` and
+    `orbital_ring_armor_module`, naming sections declared in no file anywhere --
+    vanilla's, SBX's or any other in `.source/`. Patched in vendor.yml.
+
+    VANILLA'S FLOOR IS 0 OF 96 and the merged tree is 0 of 123 once patched;
+    reverting the patch recovers exactly the two keys the live log named, which
+    is what says the check can fail ([rule 7](.docs/validation/check-design.md)).
+    The population is `common/` MINUS `global_ship_designs` and
+    `section_templates` themselves, which is a calibration result rather than a
+    convenience filter: `section = "..."` in that form appears in exactly two
+    directories in either tree, `starbase_modules` and one Grand Archive
+    inline script, and the ship-design form is already asked about above.
+
+    See .docs/decisions/96-section-slots-survive-a-replacement.md and
+    .docs/decisions/99-starbase-modules-name-sections-too.md.
     """
     def merged(sub: str, pat: str) -> dict[str, tuple[str, str]]:
         """key -> (body, filename), FIOS across vanilla and the built tree.
@@ -2111,6 +2136,26 @@ def check_section_slot_references() -> int:
     sections = {k: _slot_names(b) for k, (b, _) in
                 merged("common/section_templates", "ship_section_template").items()}
     designs = merged("common/global_ship_designs", "ship_design")
+
+    # The module -> section direction. A bare `section = "KEY"`, resolved
+    # against the same merged section map the ship designs use.
+    bare = re.compile(r'^\s*section\s*=\s*"([A-Za-z_0-9]+)"', re.M)
+    mod_files: dict[str, Path] = {}
+    for root in (GAME_DIR, BUILD):
+        if not (root / "common").is_dir():
+            continue
+        for f in (root / "common").rglob("*.txt"):
+            rel = f.relative_to(root).as_posix()
+            if "global_ship_designs" in rel or "section_templates" in rel:
+                continue
+            mod_files[rel] = f            # BUILD written second: it shadows
+    missing_mod: list[tuple[str, str]] = []
+    mod_n = 0
+    for rel, f in sorted(mod_files.items()):
+        for m in bare.finditer(_strip_comments(_read(f))):
+            mod_n += 1
+            if m.group(1) not in sections:
+                missing_mod.append((rel, m.group(1)))
 
     missing_sec: list[tuple[str, str]] = []
     missing_slot: dict[tuple[str, str], list[str]] = collections.defaultdict(list)
@@ -2155,7 +2200,16 @@ def check_section_slot_references() -> int:
             f"{n or 6882}. Restore the names with a vendor.yml patch, as "
             f".docs/decisions/37-sbx-citadel-slot-renumbering.md does. "
             f"See .docs/decisions/96-section-slots-survive-a-replacement.md.")
-    return n
+    if missing_mod:
+        head = "; ".join(f"{p} -> {k}" for p, k in missing_mod[:4])
+        warnings.append(
+            f"common/starbase_modules: {len(missing_mod)} of {mod_n} module "
+            f"`section = \"…\"` reference(s) name a section template nothing "
+            f"declares — {head}{' …' if len(missing_mod) > 4 else ''}. The "
+            f"engine logs `Failed to get section template for key` at load and "
+            f"the module builds with no art. Vanilla's floor is 0 of 96. "
+            f"See .docs/decisions/99-starbase-modules-name-sections-too.md.")
+    return n + mod_n
 
 def _parse_defines(text: str) -> dict[str, str]:
     """<group>.<KEY> -> raw value, for one defines file.
@@ -6712,6 +6766,124 @@ def check_anomaly_targets() -> int:
     return n
 
 
+def check_galaxy_size_references() -> int:
+    """Does every `galaxy_size = <name>` name a scenario something declares?
+
+    WHY THIS EXISTS, AND IT IS A CORRECTION RATHER THAN A NEW WORRY.
+    Decision 88 locked the galaxy picker by occupying vanilla's five
+    `map/setup_scenarios/{tiny,small,medium,large,huge}.txt` with files that
+    declare nothing, and reasoned that this was free because "nothing
+    references a scenario by name -- the setup screen enumerates the
+    directory". The first half is true and the second is false. `galaxy_size`
+    is a TRIGGER, and it resolves a setup_scenario BY NAME:
+
+        galaxy_size - Checks whether the galaxy size if of a certain type
+        galaxy_size=medium
+                        -- logs/script_documentation/triggers.log
+
+    So withdrawing the five declarations dangled every reference to them, and
+    the 2026-08-28 Klingon run is where that finally showed: 353
+    `parser_deferred_database_objects.cpp:84` records, `Failed to deferred read
+    key reference tiny from database`, against ZERO in every log on disk from
+    before the lock shipped. It was the largest change in that log by a factor
+    of a hundred and no check could see it.
+
+    THE COST IS BEHAVIOURAL, NOT COSMETIC, which is the part to keep. These
+    references are almost all five-way ladders that scale something by galaxy
+    size, and with none of the five resolvable each ladder collapses to its
+    base: `storm_size_multiplier` stays at 1 for every storm in the game, and
+    `ai_habitat_cap` in 00_script_values.txt stays at its base of 0 rather than
+    being SET to 2/4/6/8/10. 113 sites in 11 of vanilla's own common/ and
+    events/ files, and the harvest adds none: every one of the 113 is
+    vanilla's.
+
+    THE LOCK IS KEPT ANYWAY AND THE FIVE ARE ACKED, which is decision 35's
+    shape: the ack silences the check, not the engine, and the reason is a
+    content call recorded with its price rather than a repair. A SIXTH name
+    would be a different defect -- a source mod referencing a galaxy size
+    nobody declares -- and reports.
+
+    VANILLA'S FLOOR IS 0 OF 113, necessarily: vanilla declares all five sizes
+    it references. That is what makes the merged tree's count a measurement of
+    the lock rather than of the game. Restoring the sizes empties
+    `galaxy_size_ack` and takes this check to 0 by itself.
+
+    See .docs/decisions/98-withdrawn-scenarios-are-referenced-by-name.md
+    and .docs/decisions/88-lock-the-galaxy-picker.md.
+    """
+    ack = _ack_list("galaxy_size_ack")
+    ref = re.compile(r"\bgalaxy_size\s*=\s*\"?([A-Za-z_0-9]+)\"?")
+
+    def declared(roots: list[Path]) -> set[str]:
+        """Scenario names, with our copy of a path SHADOWING vanilla's.
+
+        Keyed by filename rather than by full path for the same reason
+        check_section_slot_references is: same name means an overwrite, not a
+        contest. A file that declares nothing therefore contributes nothing,
+        which is exactly what the five picker-lock overrides do.
+        """
+        by_name: dict[str, Path] = {}
+        for root in roots:
+            d = root / "map/setup_scenarios"
+            if d.is_dir():
+                for f in d.rglob("*.txt"):
+                    by_name[f.name] = f
+        out: set[str] = set()
+        for f in by_name.values():
+            for kind, body in _top_level_blocks(_strip_comments(_read(f))):
+                if kind not in ("setup_scenario", "static_galaxy_scenario"):
+                    continue
+                m = re.search(r'^\s*name\s*=\s*"?([A-Za-z_0-9]+)"?', body, re.M)
+                if m:
+                    out.add(m.group(1))
+        return out
+
+    def refs(roots: list[Path]) -> list[tuple[str, int, str]]:
+        seen: dict[str, Path] = {}
+        for root in roots:
+            for sub in ("common", "events"):
+                if not (root / sub).is_dir():
+                    continue
+                for f in (root / sub).rglob("*.txt"):
+                    seen[f.relative_to(root).as_posix()] = f
+        out: list[tuple[str, int, str]] = []
+        for rel, f in sorted(seen.items()):
+            t = _read(f)
+            if "galaxy_size" not in t:
+                continue
+            stripped = _strip_comments(t)
+            for m in ref.finditer(stripped):
+                out.append((rel, stripped[: m.start()].count("\n") + 1,
+                            m.group(1)))
+        return out
+
+    names = declared([GAME_DIR, BUILD])
+    found = refs([GAME_DIR, BUILD])
+    bad = [(p, l, k) for p, l, k in found if k not in names and k not in ack]
+    dangling_acked = sorted({k for _p, _l, k in found
+                             if k not in names and k in ack})
+
+    if bad:
+        head = "; ".join(f"{p}:{l} galaxy_size = {k}" for p, l, k in bad[:4])
+        warnings.append(
+            f"galaxy_size: {len(bad)} of {len(found)} reference(s) name a setup "
+            f"scenario nothing declares — {head}"
+            f"{' …' if len(bad) > 4 else ''}. `galaxy_size` resolves a "
+            f"setup_scenario by name, so a withdrawn scenario dangles every "
+            f"reference to it and the modifier it gates never applies. "
+            f"Vanilla's floor is 0 of 113. Declare the scenario, or ack the "
+            f"name in vendor.yml under galaxy_size_ack with what it costs. "
+            f"See .docs/decisions/"
+            f"98-withdrawn-scenarios-are-referenced-by-name.md.")
+    if dangling_acked:
+        n_acked = sum(1 for _p, _l, k in found if k in dangling_acked)
+        print(f"{DIM}      galaxy_size: {n_acked} reference(s) to "
+              f"{len(dangling_acked)} withdrawn scenario "
+              f"({', '.join(dangling_acked)}) — acked, the picker lock's price "
+              f"(decision 98){OFF}")
+    return len(found)
+
+
 def check_static_galaxy() -> int:
     """Does every galaxy scenario in `map/setup_scenarios/` hold together?
 
@@ -7146,6 +7318,7 @@ def main() -> int:
     sdesc_n = check_shipset_descriptions()
     hsbn_n = check_home_system_body_names()
     gal_n = check_static_galaxy()
+    gsz_n = check_galaxy_size_references()
     anot_n = check_anomaly_targets()
     skc_n = check_src_key_contention()
     slk_n = check_src_loc_key_contention()
@@ -7170,7 +7343,7 @@ def main() -> int:
           f"{ord_n} ship asset(s) for clone load order and section locators, "
           f"{sap_n} for hull section attach points, "
           f"{atk_n} for attach targets, "
-          f"{ssl_n} ship-design component reference(s) for a slot the section they name still offers, "
+          f"{ssl_n} ship-design component and starbase-module reference(s) for the section and slot they name, "
           f"{var_n} art file(s) for unresolved @variables, "
           f"{dup_n} for duplicate entity declarations, "
           f"{dtx_n} texture(s) for duplicate basenames, "
@@ -7198,6 +7371,7 @@ def main() -> int:
           f"{hsbn_n} home system(s) for two bodies sharing a name, "
           f"{gal_n} static galaxy scenario(s) for their systems, initializers, "
           f"country flags and lanes, "
+          f"{gsz_n} galaxy_size reference(s) for a scenario that declares the name, "
           f"{anot_n} add_anomaly target(s) for a scope that resolves to a country, "
           f"{skc_n} src/ identifier(s) for a second file of ours claiming them, "
           f"{slk_n} src/ localisation key(s) for a second file of ours "

@@ -46,6 +46,36 @@ The list is now empty and all 34 classes are declared
 > and `make validate` reports `ok` while the defect recurs every run.
 > **If the fix is cheap, take the fix.**
 
+## The largest ack in the project is a content call, and it says so
+
+`galaxy_size_ack` holds five names and silences **353 records a run** — more
+than every other ack combined. It is worth reading precisely because it is the
+shape the section above warns about and is *not* the failure that section
+describes.
+
+The lock in [decision 88](../decisions/88-lock-the-galaxy-picker.md) withdrew
+vanilla's five galaxy sizes, and `galaxy_size` turns out to resolve a
+`setup_scenario` **by name**, so all five dangle
+([98](../decisions/98-withdrawn-scenarios-are-referenced-by-name.md)). What
+makes the ack legitimate is not that the cost is small — it is the largest in
+the tree — but that:
+
+- **the cost is measured, not estimated.** 353 records, 113 references, 11 files,
+  and the behavioural consequence named specifically: each five-way size ladder
+  in vanilla script collapses to its base, `ai_habitat_cap` to 0;
+- **the thing being silenced is a deliberate content call**, re-made with that
+  measurement on the table, not a defect waiting for someone to get around to;
+- **it empties itself.** Restore the five sizes — the one-commit reversal
+  decision 88 promises — and the list goes to `[]` and the check to 0 with no
+  further edit;
+- **a sixth entry is a different defect**, and the ack's own comment says so.
+  A source mod referencing a size nobody declares is not this.
+
+> **"The fix is cheap, take the fix" still holds — and here the fix has a price
+> in content that the records do not.** That is the one case where a large ack
+> beats a small repair, and it has to be argued in those terms rather than in
+> record counts.
+
 ## What an ack entry owes the next reader
 
 - What was looked at, and against what evidence — a live run, a decoded texture
