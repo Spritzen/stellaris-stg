@@ -8,7 +8,7 @@
 
 *Last updated 2026-08-28, against the build of that date and the Klingon run of
 2026-08-27. The build figures below are unchanged by the 28th's work — one
-`vendor.yml` patch, one loc key, three new checks and three deleted name lists
+`vendor.yml` patch, one loc key, four new checks and three deleted name lists
 move the file count by three and nothing else. **No live run has a write-up any more** — the run plans and analyses were
 retired on 2026-08-27 ([89](../decisions/89-retired-run-write-ups.md)), and what
 each run established now lives in the decision it produced and in the baseline
@@ -36,7 +36,7 @@ ones.
 | Re-cut at harvest / pruned | 1,661 / **888** |
 | Overwrites / additive skips | 952 / 220 |
 | `make vendor` | 68 s |
-| `make validate` | **0 warnings, 0 errors**, over **50 checks** — three more than yesterday. It warned 3 for part of 2026-08-28, on the contested name-list keys [decision 91](../decisions/91-src-contests-its-own-name-lists.md) found, and [decision 93](../decisions/93-power-lists-win-the-contested-keys.md) closed them the same day |
+| `make validate` | **0 warnings, 0 errors**, over **51 checks** — four more than yesterday. It warned 3 for part of 2026-08-28, on the contested name-list keys [decision 91](../decisions/91-src-contests-its-own-name-lists.md) found, and [decision 93](../decisions/93-power-lists-win-the-contested-keys.md) closed them the same day |
 | `make docs` | **0 warnings, 0 errors** |
 | `make gen-check` | **13 of 13 generators are fixpoints** |
 
@@ -140,6 +140,38 @@ file: 0 across 148,053 keys in 231 english files**, with no key repeated inside 
 file either. The scope is again a calibration result: build-wide 16 keys are
 declared twice by one source, **10 of them Real Space's own base/replace pair
 with every value identical**, and 6 ours.
+
+**And a fifty-first, from asking the same question a third time — which is the
+one that came back empty** ([94](../decisions/94-src-contests-its-own-identities.md)).
+The two checks above walk one directory each, `src/common/` and
+`src/localisation/`, and `check_duplicate_entities` walks `*.asset` only. That
+left **384 declarations of ours across 11 directories** — `events/`,
+`prescripted_countries/`, `interface/`, `gfx/`, `map/` — where nothing had ever
+put the question. `check_src_identity_contention` asks it, and **`src/` contests
+nothing: 0 findings across 193 identities against vanilla's 11,857.**
+
+**The zero is the result, and the third asking is what makes it one.** 91 found a
+defect, 92 asked again and found another, 94 asks again and finds none — which is
+what turns *"we fixed two instances"* into *"the shape is covered everywhere it
+can occur"*, for the price of a session rather than a live run.
+
+**What the check cost was getting identity right, not contention**
+([rule 7](../validation/check-design.md#7-compare-declared-identity-not-block-key--and-distrust-a-check-that-has-never-failed)),
+and it was wrong three times first, confidently each time. In `events/` the
+identity is the `id` inside a depth-0 event block, not the block key and not
+every `id =` — counting those conflates **declaring** an event with **firing**
+one and reports 33 vanilla collisions that are all references. In a `.gfx` it is
+the `name` of each direct child of the container, read at that child's own depth
+and in both written forms: an anchored `^\s*name = …$` found **0** of
+`stg_paragon_backgrounds.gfx`'s 28 sprites, because that file writes each on one
+line. **Five of the 11 directories exclude themselves** because vanilla contests
+them — `interface` on per-charset fonts, `music` on `song`,
+`map/setup_scenarios` on `setup_scenario` — and none of that is hand-listed.
+
+**A zero finding is worth only as much as the proof the check can fail.** This
+one reports **6** when pointed at the built tree — PD's `zzz_` override, a
+base/`_fix` pair, three PD particles, UIOD's defines split, all of them a source
+overriding itself — and 2 on an injected duplicate.
 
 ---
 

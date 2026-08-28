@@ -64,6 +64,18 @@ in a `usage = custom_empire` initializer, which needs its own vanilla floor
 first. **Do not widen the check before the call**: vanilla's nine home systems
 are the only calibration set available and they are few.
 
+> **The third quadrant of that hole is closed, and it was empty**
+> ([decision 94](../decisions/94-src-contests-its-own-identities.md), 2026-08-28).
+> The two contention checks walk one directory each — `src/common/` and
+> `src/localisation/` — and `check_duplicate_entities` walks `*.asset` only, which
+> left **384 declarations of ours across 11 directories** unasked: `events/`,
+> `prescripted_countries/`, `interface/`, `gfx/`, `map/`.
+> `check_src_identity_contention` asks the same question there and **`src/`
+> contests nothing — 0 findings across 193 identities against vanilla's 11,857.**
+> So the shape decisions 91 and 92 found twice is now covered everywhere it can
+> occur inside `src/`. **The item below is what is left, and it is a different
+> question**: two *sources* contesting a key, not two files of ours.
+
 ### `check_key_conflicts` cannot see a contested localisation key
 
 **Recorded 2026-08-28 in [decision 92](../decisions/92-src-contests-its-own-loc-keys.md),

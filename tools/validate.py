@@ -6101,6 +6101,229 @@ def check_src_loc_key_contention() -> int:
     return n
 
 
+# The third quadrant of one hole. check_src_key_contention asks it of
+# src/common/, check_src_loc_key_contention of src/localisation/, and this asks
+# it everywhere else src/ writes. Kept together deliberately: a session that
+# widens one should see the other two.
+
+_ID_BLOCK = re.compile(r"([A-Za-z_][A-Za-z_0-9]*)\s*=\s*\{")
+
+
+def _blocks_at_depth(text: str, want: int):
+    """(key, body) for every `key = { … }` whose OPENING brace sits at depth `want`.
+
+    _top_level_blocks answers `want=0` and anchors to the line start, which is
+    right for a `.txt` database and wrong for a `.gfx`: there the declarations
+    are children of a `spriteTypes = { … }` container, so they live at depth 1
+    and are routinely written mid-line. This is the general form.
+    """
+    depth, i = 0, 0
+    while i < len(text):
+        c = text[i]
+        if c == "}":
+            depth -= 1
+            i += 1
+            continue
+        if c == "{":
+            depth += 1
+            i += 1
+            continue
+        m = _ID_BLOCK.match(text, i)
+        if m:
+            j, d = m.end(), 1
+            while j < len(text) and d:
+                d += (text[j] == "{") - (text[j] == "}")
+                j += 1
+            if depth == want:
+                yield m.group(1), text[m.end():j - 1]
+            i, depth = m.end(), depth + 1
+            continue
+        i += 1
+
+
+def _field_at_depth0(body: str, field: str) -> str | None:
+    """`field = value` at the body's OWN depth 0, skipping every nested block.
+
+    Searching the whole body instead would read a child's `name` as the
+    parent's, which is how the first cut of this check reported
+    `cardassian_01_orbital_station_mesh` as declared twice: the container and
+    its single child each yielded the child's name. Rule 7.
+    """
+    pat = re.compile(r'\b%s\s*=\s*"?([^"\s}]+)"?' % re.escape(field))
+    depth, i = 0, 0
+    while i < len(body):
+        c = body[i]
+        if c == "{":
+            depth += 1
+        elif c == "}":
+            depth -= 1
+        elif depth == 0:
+            m = pat.match(body, i)
+            if m:
+                return m.group(1)
+        i += 1
+    return None
+
+
+def check_src_identity_contention() -> int:
+    """Two files WE wrote declaring one identity, outside common/ and localisation/.
+
+    THE THIRD AND LAST QUADRANT OF THE HOLE decisions 91 and 92 opened.
+    `check_key_conflicts` gates on two SOURCES, so `src/` contesting itself is
+    invisible to it; 91 closed that for `src/common/` and 92 for
+    `src/localisation/`. `src/` also writes into `events/`,
+    `prescripted_countries/`, `interface/`, `gfx/` and `map/`, and NOTHING asked
+    the question there -- `check_key_conflicts` walks `common/` only and
+    `check_duplicate_entities` walks `*.asset` only.
+
+    THE FAILURE IT GUARDS IS TOTAL AND SILENT. Two files declaring one event id
+    is not a cosmetic duplicate: one of the two events never reaches the game,
+    filename sort decides which, and nothing is logged. That is decision 90's
+    shape -- an anomaly whose whole payload was silently never added -- and
+    `events` is in FIOS_DIRS, so it is the FIRST filename that wins.
+
+    IDENTITY IS NOT THE BLOCK KEY HERE, WHICH IS THE WHOLE DIFFICULTY (rule 7).
+    Three written forms, and getting any of them wrong makes the check confident
+    and blind:
+
+        events/      the `id` INSIDE a top-level `*_event = { … }`. The block
+                     key is the scope, and every declaration in the database
+                     shares it. `country_event = { id = x days = 10 }` inside an
+                     effect FIRES an event and declares nothing, so only depth-0
+                     blocks count -- counting every `id =` reports 33 vanilla
+                     collisions that are all references.
+        *.gfx        the `name` of each DIRECT CHILD of the depth-0 container.
+                     Both written forms occur and an anchored regex sees only
+                     one: stg_paragon_backgrounds.gfx writes all 28 of its
+                     sprites on a single line each, so `^\\s*name = …$` found 0
+                     of them (rule 8). Matching `\\w*Type` instead of "any child"
+                     missed all 14 `pdxparticle` declarations for the same
+                     reason -- the key was guessed rather than read.
+        everything   the depth-0 block key, as in `check_src_key_contention`.
+        else         Covers prescripted_countries/, where it is the country id.
+
+    THE DATABASE GATE IS DERIVED FROM VANILLA AT RUN TIME (rule 4) AND NOTHING
+    IS HAND-LISTED. A directory is asked about only if vanilla's own copy of it
+    declares at least one identity and contests none -- neither across two files
+    nor twice inside one. Over the 11 directories `src/` writes into outside
+    common/ and localisation/, five pass and five are excluded by vanilla itself:
+
+        gfx/portraits/asset_selectors   vanilla contests 11 (the shared
+                                        `*_hair_1` selectors)
+        gfx/portraits/portraits         `portraits` IS the block key there, so
+                                        every file declares it -- WHOLE_TEXT_DIRS
+                                        already says the file is the unit
+        interface                       vanilla's fonts.gfx declares
+                                        `large_title_font` and seven others five
+                                        times each, once per charset
+        map/setup_scenarios             all five vanilla files declare
+                                        `setup_scenario`; the key is the type
+        music                           `song` likewise, 17 times in songs.txt
+
+    So the exclusions are not a convenience filter -- each is a database where
+    one name genuinely means one thing per file, and a game patch that starts
+    contesting a sixth silently stops us asking about it, which is the right
+    direction to fail.
+
+    THE FLOOR AND THE POPULATION. The five asked databases hold **193 of our
+    identities against 11,857 of vanilla's, and vanilla contests none of them**:
+
+        events                  77 ours   9,995 vanilla
+        prescripted_countries   99           53
+        gfx/particles           14        1,740
+        gfx/models/planets       2           47
+        interface/resource_groups 1          22
+
+    IT IS CALIBRATED BY POINTING IT AT THE BUILT TREE, where the same code
+    reports **6** and every one is a source overriding itself: `pdmaengine.40`
+    (PD's own `zzz_` file), `toxoids.1` (a mod's base/`_fix` pair), three PD
+    laser-muzzle particles declared twice in one file, and UIOD's `NInterface`.
+    All four families are what decision 11 forbids second-guessing, and all four
+    are why the scope is `src/`. A check that cannot fail is worse than an absent
+    one (rule 7); this one fails on demand.
+
+    ONE PLACE HAS NO FLOOR AND IS THEREFORE NOT ASKED. The five `pdxmesh` names
+    in src/gfx/models/ships/stg_stnh_restored_station_meshes.gfx sit in a
+    directory where vanilla ships no `.gfx` or `.txt` at all, so there is nothing
+    to calibrate against, and `check_duplicate_entities` does not reach them
+    either -- it walks `*.asset`. Widening to them means finding a real floor
+    first, not dropping the requirement for one (rule 5).
+
+    See .docs/decisions/94-src-contests-its-own-identities.md.
+    """
+    src = REPO / "src"
+    if not src.is_dir():
+        return 0
+    suffixes = (".txt", ".gfx")
+    skip_top = {"common", "localisation"}   # the two siblings own these
+
+    def identities(f: Path, db: str) -> list[str]:
+        text = _strip_comments(_read(f))
+        if f.suffix == ".gfx":
+            return [n for _, b in _blocks_at_depth(text, 1)
+                    if (n := _field_at_depth0(b, "name"))]
+        if db == "events" or db.startswith("events/"):
+            return [i for k, b in _blocks_at_depth(text, 0)
+                    if _is_event_block(k) and (i := _field_at_depth0(b, "id"))]
+        return [k for k, _ in _blocks_at_depth(text, 0)]
+
+    def survey(d: Path, db: str):
+        """NON-RECURSIVE: identity -> {filename}, plus identities repeated in one file."""
+        claims: dict[str, set[str]] = collections.defaultdict(set)
+        repeated: set[str] = set()
+        total = 0
+        if not d.is_dir():
+            return claims, repeated, total
+        for f in sorted(d.iterdir()):
+            if not f.is_file() or f.suffix not in suffixes:
+                continue
+            ids = identities(f, db)
+            total += len(ids)
+            for k, c in collections.Counter(ids).items():
+                if c > 1:
+                    repeated.add(k)
+                claims[k].add(f.name)
+        return claims, repeated, total
+
+    dbs = {f.relative_to(src).parent.as_posix()
+           for f in src.rglob("*")
+           if f.is_file() and f.suffix in suffixes
+           and f.relative_to(src).parts[0] not in skip_top}
+
+    n = 0
+    for db in sorted(dbs):
+        van_claims, van_repeated, van_total = survey(GAME_DIR / db, db)
+        if not van_total:
+            continue          # no vanilla population: nothing to calibrate against
+        if van_repeated or any(len(fs) > 1 for fs in van_claims.values()):
+            continue          # vanilla contests this database itself; not our question
+
+        ours, repeated, total = survey(src / db, db)
+        n += total
+        fios = db in FIOS_DIRS
+        for key in sorted(repeated):
+            warnings.append(
+                f"src/{db}: WE declare '{key}' twice in one file, so only one of "
+                f"the two ever reaches the game. Vanilla repeats no identity "
+                f"inside a file anywhere in its own {db}/. "
+                f"See .docs/decisions/94-src-contests-its-own-identities.md.")
+        for key, files in sorted(ours.items()):
+            if len(files) < 2 or key in repeated:
+                continue
+            win = sorted(files)[0] if fios else sorted(files)[-1]
+            warnings.append(
+                f"src/{db}: WE declare '{key}' in {len(files)} differently-named "
+                f"files ({', '.join(sorted(files))}), so one of them never reaches "
+                f"the game and nothing is logged. {db} is "
+                f"{'FIOS' if fios else 'LIOS'}, so the "
+                f"{'FIRST' if fios else 'LAST'} filename in sort order wins: "
+                f"'{win}'. Vanilla contests no identity in its own {db}/ at all "
+                f"({van_total} of them). Both files are ours, so this is not a "
+                f"merge to confirm — it is one declaration to keep and one to "
+                f"renumber or drop. "
+                f"See .docs/decisions/94-src-contests-its-own-identities.md.")
+    return n
+
 def check_anomaly_targets() -> int:
     """Does `add_anomaly`'s `target` name a country that can still exist there?
 
@@ -6630,6 +6853,7 @@ def main() -> int:
     anot_n = check_anomaly_targets()
     skc_n = check_src_key_contention()
     slk_n = check_src_loc_key_contention()
+    sid_n = check_src_identity_contention()
     mus_n = check_music_declarations()
     ano_n = check_anomalies()
     arc_n = check_archaeology()
@@ -6681,6 +6905,7 @@ def main() -> int:
           f"{skc_n} src/ identifier(s) for a second file of ours claiming them, "
           f"{slk_n} src/ localisation key(s) for a second file of ours "
           f"declaring them, "
+          f"{sid_n} src/ identit(ies) outside common/ for the same question, "
           f"{mus_n} music track(s) for a declaration that plays them, "
           f"{ano_n} anomaly categor(ies) for their event, picture and loc, "
           f"{arc_n} archaeological site(s) for their stages, pictures, "
