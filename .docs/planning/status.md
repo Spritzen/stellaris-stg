@@ -8,7 +8,8 @@
 
 *Last updated 2026-08-28, against the build of that date and the Klingon run of
 2026-08-27. The build figures below are unchanged by the 28th's work — one
-`vendor.yml` patch and one check move no file counts. **No live run has a write-up any more** — the run plans and analyses were
+`vendor.yml` patch, one loc key, three new checks and three deleted name lists
+move the file count by three and nothing else. **No live run has a write-up any more** — the run plans and analyses were
 retired on 2026-08-27 ([89](../decisions/89-retired-run-write-ups.md)), and what
 each run established now lives in the decision it produced and in the baseline
 table below. Every number here has a date because
@@ -18,7 +19,7 @@ every number here goes stale — [style guide §6](../style-guide.md).*
 |---|---|
 | **Phase 0** — vendoring pipeline | **complete** |
 | **Phase 1** — playable Federation | **complete**, run in-game repeatedly |
-| **Phase 2** — the rest of the galaxy | **complete**. 99 prescripted empires (22 majors/quadrant/frontier, 77 minors; all playable, and all in the pool the generator draws from since the `playable = stg_never` gate was removed — **and the 2026-08-26 save proves all 99 reach the design database — and that no galaxy has yet drawn one**, see [decision 83](../decisions/83-design-database-is-not-the-cause.md); the mechanism a Trek galaxy actually needs is a static map plus `create_country` initializers — [decision 85](../decisions/85-create-country-initializers.md) — and **both ship and have now been run once**: 95 systems, 21 empires, 36 `create_country` blocks and the `prescripted_flags` join between them, [decision 86](../decisions/86-static-galaxy-scenario.md), graded by the 2026-08-27 Klingon run [87](../decisions/87-static-map-lanes-are-generated.md)) over 99 distinct species classes, 92 name lists, 36 generated home systems plus vanilla's Sol. `src/` declares **129** classes in all — the extra 30 are the STNH selector stubs of [decision 30](../decisions/30-declare-stub-species-classes.md) |
+| **Phase 2** — the rest of the galaxy | **complete**. 99 prescripted empires (22 majors/quadrant/frontier, 77 minors; all playable, and all in the pool the generator draws from since the `playable = stg_never` gate was removed — **and the 2026-08-26 save proves all 99 reach the design database — and that no galaxy has yet drawn one**, see [decision 83](../decisions/83-design-database-is-not-the-cause.md); the mechanism a Trek galaxy actually needs is a static map plus `create_country` initializers — [decision 85](../decisions/85-create-country-initializers.md) — and **both ship and have now been run once**: 95 systems, 21 empires, 36 `create_country` blocks and the `prescripted_flags` join between them, [decision 86](../decisions/86-static-galaxy-scenario.md), graded by the 2026-08-27 Klingon run [87](../decisions/87-static-map-lanes-are-generated.md)) over 99 distinct species classes, 89 name lists, 36 generated home systems plus vanilla's Sol. `src/` declares **129** classes in all — the extra 30 are the STNH selector stubs of [decision 30](../decisions/30-declare-stub-species-classes.md) |
 | **Phase 3** — art and identity | **complete 2026-08-08**. Clothing triggers, shipsets, weapon mounts, flags, rooms, city sets, loading screens, `paragon_backgrounds.txt`, the shipsets' 39 extra flags |
 | **Phase 4** — polish | **started 2026-08-08**. Music, the ship registries and their class names, then the three slices [decision 70](../decisions/70-trek-anomalies.md) scoped: **21 Trek anomalies** ([70](../decisions/70-trek-anomalies.md)), **6 dig sites** ([71](../decisions/71-trek-archaeology.md)) and **21 story events** ([72](../decisions/72-trek-story-events.md)), all 2026-08-09. All three are shipped; what remains in the phase has no scope written for it |
 | **Phase 5** — the clutter pass | **complete 2026-08-07** (pipeline work, taken out of order) |
@@ -29,13 +30,13 @@ every number here goes stale — [style guide §6](../style-guide.md).*
 `.vendor-manifest.json` and the `make validate` summary line carry the live
 ones.
 
-| | Build of 2026-08-27 |
+| | Build of 2026-08-28 |
 |---|---|
-| Files / size | **22,397 / 14.3 GiB** ([the per-tier split](../architecture/vendored-merge.md#size)) |
+| Files / size | **22,394 / 14.3 GiB** ([the per-tier split](../architecture/vendored-merge.md#size)) — three fewer than the 27th, the three name lists [93](../decisions/93-power-lists-win-the-contested-keys.md) deleted |
 | Re-cut at harvest / pruned | 1,661 / **888** |
 | Overwrites / additive skips | 952 / 220 |
-| `make vendor` | 67 s |
-| `make validate` | **3 warnings, 0 errors** — the three contested name-list keys of [decision 91](../decisions/91-src-contests-its-own-name-lists.md), open on a content call. 0 and 0 up to 2026-08-28 |
+| `make vendor` | 68 s |
+| `make validate` | **0 warnings, 0 errors**, over **50 checks** — three more than yesterday. It warned 3 for part of 2026-08-28, on the contested name-list keys [decision 91](../decisions/91-src-contests-its-own-name-lists.md) found, and [decision 93](../decisions/93-power-lists-win-the-contested-keys.md) closed them the same day |
 | `make docs` | **0 warnings, 0 errors** |
 | `make gen-check` | **13 of 13 generators are fixpoints** |
 
@@ -101,11 +102,44 @@ pair never reaches the game and **filename sort decides which** — inconsistent
 the minor list winning twice and the power list once. Vanilla's floor in
 `common/name_lists` is **0 across 78 keys in 76 files**.
 
-**This is why `make validate` now warns**, and it is the check working. Which of
-each pair to keep is a content call and is the top item in
-[open questions](open-questions.md). It also puts one figure already in the
-record back in doubt: *"the gap is Caitian, which has no `titan` block"* was
-measured against one of the two files, and the other carries all five tiers.
+**This is why `make validate` warned for part of the day**, and it was the check
+working. **The content call was made the same day and the tree is clean again**
+([93](../decisions/93-power-lists-win-the-contested-keys.md)): the hand-written
+power list wins all three, the three converted duplicates are deleted, and
+`src/common/name_lists/` is now **89 files declaring 89 keys** — one file, one
+key, for the first time. The cost was measured rather than assumed by re-running
+the two generators that emit name-list loc: **five keys**, not the ~107 the token
+counts implied, because the rest were unique to the *file* and not to the tree.
+
+It also settles a figure that was in the record wrongly. *"The gap is Caitian,
+which has no `titan` block"* was measured against `stg_minor_caitian.txt`, the
+file nobody intended to ship; the surviving one carries all five tiers, so **all
+22 majors, quadrant and frontier powers carry all five** and the Caitian titan
+exception is withdrawn. **A contested key hides a measurement as well as a name,
+and the measurement outlives the defect.**
+
+**And a fiftieth, from asking where else the forty-ninth's hole could be**
+([92](../decisions/92-src-contests-its-own-loc-keys.md)).
+`check_src_key_contention` closed `src/` contesting itself in `common/`;
+`src/localisation/` has the identical shape and **neither existing check could
+reach it** — `check_key_conflicts` walks `common/` only, and
+`check_localisation` reads each file alone. `check_src_loc_key_contention` found
+**six keys declared by two files of ours, and one of the six disagreed with
+itself**: the Breen home system's third body asked for `STG_N_Portas` — the key
+that means **"Portas"**, a colonizer ship — while `stg_home_systems_l_english.yml`
+redeclared that same key as **"Portas V"**. So either the planet drew as *Portas*
+or every Breen colony ship launched as *Portas V*, and **filename sort decided
+which**. The name that was wanted already existed as its own key, `STG_N_PortasV`,
+three lines away in a file the same generator reads.
+
+**Fixed in `tools/gen_home_systems.py` and regenerated** — which makes four body-name
+bugs that generator has now had, after the three
+[79](../decisions/79-shipset-descs-and-home-system-names.md) found — and all six
+duplicate declarations are gone. **Vanilla's floor is the strongest in the
+file: 0 across 148,053 keys in 231 english files**, with no key repeated inside a
+file either. The scope is again a calibration result: build-wide 16 keys are
+declared twice by one source, **10 of them Real Space's own base/replace pair
+with every value identical**, and 6 ours.
 
 ---
 

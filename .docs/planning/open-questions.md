@@ -14,36 +14,68 @@ reason to drop a mod; sources go on content grounds only**
 
 ---
 
-## Needs a content call, and it is the only thing making `make validate` warn
+## Needs a content call
 
-### Three name lists are declared twice, and two of them are major powers
+*Both of these were found on 2026-08-28 while working
+[decision 91](../decisions/91-src-contests-its-own-name-lists.md) and its
+sibling. Neither breaks anything as it stands and neither makes `make validate`
+warn; they are recorded so that whoever widens a check next knows the floor has
+already been measured.*
 
-**New 2026-08-28, and it is the first thing on this page that can be finished
-without a live run** ([decision 91](../decisions/91-src-contests-its-own-name-lists.md)).
+> **The one that did make `make validate` warn is closed.** Three name-list keys
+> were declared twice by files we wrote — `STG_CAITIAN`, `STG_KLINGON`,
+> `STG_VULCAN` — and the call was made the same day: **the hand-written power
+> list wins all three and the converted duplicates are deleted**
+> ([decision 93](../decisions/93-power-lists-win-the-contested-keys.md)).
+> `src/common/name_lists/` is now **89 files declaring 89 keys** and the tree is
+> back to **0 warnings**.
 
-`src/common/name_lists/` ships 92 files declaring 89 keys. Three keys are
-declared by **two files we wrote**, so one of each pair never reaches the game
-and filename sort decides which:
+### Sixteen home-system bodies are also offered as colony names to their own empire
 
-| key | power list | converted minor list | wins today |
-|---|---|---|---|
-| `STG_CAITIAN` | `stg_caitian.txt`, 107 tokens, all five class tiers | `stg_minor_caitian.txt`, 94 tokens, no `titan` | the minor |
-| `STG_KLINGON` | `stg_klingon.txt`, 701 tokens | `stg_minor_klingon.txt`, 690 tokens | the minor |
-| `STG_VULCAN` | `stg_vulcan.txt`, 2,507 tokens | `stg_minor_vulcan.txt`, 2,460 tokens | the power list |
+**New 2026-08-28, measured while fixing
+[decision 92](../decisions/92-src-contests-its-own-loc-keys.md) and deliberately
+not acted on there.** Eleven empires' `planet_names` pools offer a name that
+their own home system already carries:
 
-**The answer is not even consistent across the three**, which is what says nobody
-chose it. `check_key_conflicts` could never have found this — it gates on two
-*sources*, and both files are ours — and `check_src_key_contention` now reports
-all three, which is why the tree warns.
+| empire | names offered in both places |
+|---|---|
+| Klingon | Praxis |
+| Romulan | Remus, Hobus |
+| Vulcan | T'Khut, Delta Vega |
+| Bolian | Bolarus III, Bolarus VII |
+| Breen | Dozaria, Portas V |
+| Bajoran | Andros, Jeraddo |
+| Ferengi | Clarus |
+| Trill | Mak'ala |
+| Cardassian | Hutet |
+| Xindi | Azati Prime |
+| Yridian | Yridia IV |
 
-**What is needed is one call:** keep the hand-written power list and drop the
-converted duplicate, or fold the converted list's unique tokens in first
-(47 for Caitian, 43 Klingon, 17 Vulcan). Decision 91 recommends the first, and
-reserves the second for Klingon and Vulcan, where both sides are the same
-vocabulary and overlap 87% and 97%. Caitian is the one where the two genuinely
-differ in voice — a constructed feline phonology against STNH's Kilrathi names.
-Nothing breaks either way: the Kzinti Empire also names `STG_CAITIAN` and
-resolves to whichever file survives.
+**This is the same defect class `check_colony_name_collisions` exists for, one
+step out.** That check asks about *capitals* — "an Andorian colony called
+Andoria" — and its scope was chosen deliberately. The question here is whether a
+Klingon colony called **Praxis**, founded while the real Praxis orbits Qo'noS
+three systems away, is wrong in the same way or is ordinary flavour.
+
+**It is a content call and nothing is broken until it is made.** If the answer is
+"wrong", the fix is mechanical — drop the sixteen tokens from the pools that
+offer them — and the check widens from `planet_name`/`system_name` to every body
+in a `usage = custom_empire` initializer, which needs its own vanilla floor
+first. **Do not widen the check before the call**: vanilla's nine home systems
+are the only calibration set available and they are few.
+
+### `check_key_conflicts` cannot see a contested localisation key
+
+**Recorded 2026-08-28 in [decision 92](../decisions/92-src-contests-its-own-loc-keys.md),
+not fixed there.** It walks `stg-build/common/` only, so a key two *sources*
+contest in `localisation/` is unasked. The population is **41 keys, of which 8
+differ** — and all 8 are Planetary Diversity overriding itself through its own
+extensions, which is the "extension wins" case
+[decision 27](../decisions/27-merge-semantics-per-directory.md) settles as
+correct. So there is **no known defect here**, and widening the check means
+extending `vendor.yml`'s `key_conflict_families` to localisation first or it
+reports 8 findings that are all fine. Worth doing when something else touches
+that check; not worth doing alone.
 
 ---
 
@@ -419,19 +451,19 @@ descending order of how obviously they would be wrong:
   filled the empty tiers from vanilla's own second idiom (NEC4's vices, AQU1's
   water), so what to look for is `Stormwall` next to `Bolarus` and `Escrow` next
   to `Jaglom Shrek` — and whether the Xindi species names read as classes or
-  just as species labels. **21 of the 22 majors, quadrant and frontier powers now carry all five core
-  tiers**, against 13 — **the gap is Caitian, which has no `titan` block**
-  (`src/common/name_lists/stg_minor_caitian.txt`, measured 2026-08-22), so a
-  Caitian titan draws from `generic` and that is the one empire where a
-  tonnage-mismatched class name is expected rather than a defect.
+  just as species labels. **All 22 of the majors, quadrant and frontier powers carry all
+  five core tiers**, against 13 when decision 68 was written.
 
-  > **That measurement is against one of two files, and the other says
-  > otherwise** ([decision 91](../decisions/91-src-contests-its-own-name-lists.md),
-  > 2026-08-28). `STG_CAITIAN` is declared **twice** —
-  > `stg_caitian.txt` carries all five tiers, `stg_minor_caitian.txt` carries
-  > four — and only one of the two reaches the game. Until that is resolved
-  > neither reading is the answer, and the same collision hits `STG_KLINGON` and
-  > `STG_VULCAN`. **Do not re-measure this until the contention is settled.**
+  > **The Caitian `titan` exception is withdrawn**
+  > ([decision 93](../decisions/93-power-lists-win-the-contested-keys.md),
+  > 2026-08-28). It was carried here from 2026-08-22 as *"the gap is Caitian,
+  > which has no `titan` block"*, and it was measured against
+  > `stg_minor_caitian.txt` — **one of two files then contesting `STG_CAITIAN`**,
+  > and not the one anybody intended to ship. `stg_caitian.txt` carries all five
+  > tiers and is now the only one there is. A Caitian titan draws a Caitian class
+  > name, so there is **no empire where a tonnage-mismatched class name is
+  > expected rather than a defect** — which makes this bullet easier to grade,
+  > not harder.
 - **Whether the Defiant showing at two tonnages** — destroyer and cruiser, which
   is STNH's own modelling — reads as wrong or as fine.
 - **Whether any list draws a class name plainly belonging to another tonnage**,

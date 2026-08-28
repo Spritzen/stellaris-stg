@@ -5990,6 +5990,117 @@ def check_src_key_contention() -> int:
     return n
 
 
+def check_src_loc_key_contention() -> int:
+    """Two localisation files WE wrote declaring one key, in a language vanilla never does.
+
+    THE SAME HOLE AS check_src_key_contention, ONE DIRECTORY OVER. That check
+    fills `check_key_conflicts`\' blind spot for `src/common/`, where the gate is
+    two SOURCES and two files of ours can never satisfy it. `localisation/` has
+    the identical shape and neither check reaches it: `check_key_conflicts`
+    walks `common/` only, and `check_localisation` reads each file alone --
+    BOM, language tag, entry syntax -- so it has no idea another file of ours
+    already spelled the key.
+
+    IT WAS HIDING SIX, AND ONE OF THE SIX DISAGREED WITH ITSELF:
+
+        STG_N_Portas   stg_home_systems_l_english.yml  "Portas V"
+                       stg_names_l_english.yml         "Portas"
+
+    The other five were the same string twice and cost only their own lines.
+    That one was a body in the Breen home system, and the name list already
+    carried BOTH readings as separate keys -- `STG_N_Portas` "Portas" for a
+    colonizer ship and `STG_N_PortasV` "Portas V" for a planet. The initializer
+    asked for the ship\'s key and the home-system loc file redeclared it to the
+    planet\'s value, so one of the two rendered wrong and which one was decided
+    by filename sort. Fixed by naming the key that already meant what was
+    wanted; .docs/decisions/92-src-contests-its-own-loc-keys.md.
+
+    A DUPLICATE WITH THE SAME VALUE IS STILL REPORTED, and that is deliberate.
+    It costs nothing at runtime, but it is the state the disagreeing one hid
+    in: five harmless twins are why nobody looked at the sixth. Vanilla gives
+    no reason to tolerate either -- see the floor below -- so the rule is one
+    key, one declaration, and the report says which of the two kinds it found.
+
+    THE FLOOR IS THE STRONGEST IN THIS FILE. Vanilla declares **148,053 keys
+    across 231 english files and contests none of them**, and repeats no key
+    inside a file either. Nothing here is a judgement about how much duplication
+    is normal: the answer is none.
+
+    THE SCOPE IS `src/`, AND IT IS A CALIBRATION RESULT (rule 11). Build-wide,
+    16 keys are declared twice by two files of ONE source. **10 are Real Space\'s
+    own** `realspace_l_english.yml` against `realspace_replace_l_english.yml` --
+    a base/replace pair, every value identical, plainly its own design and what
+    decision 11 forbids second-guessing. The other 6 are ours. (A further 41 are
+    contested ACROSS sources, and all 8 of those whose values differ are
+    Planetary Diversity overriding itself through its own extensions -- the
+    "extension wins" family case decision 27 settles, and `check_key_conflicts`\'
+    question, not this one.)
+
+    THE LANGUAGE GATE IS DERIVED FROM VANILLA AT RUN TIME (rule 4). A language
+    folder is asked about only if vanilla contests nothing in its own copy of
+    it. A game patch that starts shipping a duplicate silently stops us asking
+    about that language, which is the right direction to fail.
+    """
+    src_loc = REPO / "src" / "localisation"
+    if not src_loc.is_dir():
+        return 0
+    entry = re.compile(r'^\s*([A-Za-z0-9_.\'-]+):\d*\s*"(.*)"\s*$')
+
+    def survey(root: Path) -> tuple[dict, list]:
+        """key -> {filename: value}, plus keys repeated inside a single file."""
+        claims: dict[str, dict[str, str]] = collections.defaultdict(dict)
+        intra: list[tuple[str, str]] = []
+        for f in sorted(root.rglob("*.yml")):
+            seen: set[str] = set()
+            for line in _read(f).splitlines():
+                m = entry.match(line)
+                if not m:
+                    continue
+                key, val = m.group(1), m.group(2)
+                if key in seen:
+                    intra.append((f.name, key))
+                seen.add(key)
+                claims[key][f.name] = val
+        return claims, intra
+
+    n = 0
+    for lang in sorted(d for d in src_loc.iterdir() if d.is_dir()):
+        van = GAME_DIR / "localisation" / lang.name
+        if not van.is_dir():
+            continue
+        van_claims, van_intra = survey(van)
+        if van_intra or any(len(v) > 1 for v in van_claims.values()):
+            continue          # vanilla contests this language itself; not our question
+
+        ours, intra = survey(lang)
+        n += len(ours)
+        for fname, key in intra:
+            warnings.append(
+                f"src/localisation/{lang.name}/{fname}: WE declare '{key}' twice in "
+                f"one file, so the second value is the only one the game ever "
+                f"reads. Vanilla repeats no key inside a file in its own "
+                f"{lang.name} localisation. "
+                f"See .docs/decisions/92-src-contests-its-own-loc-keys.md.")
+
+        for key, files in sorted(ours.items()):
+            if len(files) < 2:
+                continue
+            differ = len(set(files.values())) > 1
+            spelt = ", ".join(f'{f} "{v}"' for f, v in sorted(files.items()))
+            warnings.append(
+                f"src/localisation/{lang.name}: WE declare '{key}' in "
+                f"{len(files)} files ({spelt}), so only one of them reaches the "
+                + ("game and the two DISAGREE — one of the two readings is "
+                   "wrong and filename sort decides which the player sees. "
+                   if differ else
+                   "game. The values are identical, so nothing renders wrong; "
+                   "it is a second declaration to delete. ")
+                + f"Vanilla contests no key at all in its own {lang.name} "
+                f"localisation. "
+                f"See .docs/decisions/92-src-contests-its-own-loc-keys.md.")
+    return n
+
+
 def check_anomaly_targets() -> int:
     """Does `add_anomaly`'s `target` name a country that can still exist there?
 
@@ -6518,6 +6629,7 @@ def main() -> int:
     gal_n = check_static_galaxy()
     anot_n = check_anomaly_targets()
     skc_n = check_src_key_contention()
+    slk_n = check_src_loc_key_contention()
     mus_n = check_music_declarations()
     ano_n = check_anomalies()
     arc_n = check_archaeology()
@@ -6567,6 +6679,8 @@ def main() -> int:
           f"country flags and lanes, "
           f"{anot_n} add_anomaly target(s) for a scope that resolves to a country, "
           f"{skc_n} src/ identifier(s) for a second file of ours claiming them, "
+          f"{slk_n} src/ localisation key(s) for a second file of ours "
+          f"declaring them, "
           f"{mus_n} music track(s) for a declaration that plays them, "
           f"{ano_n} anomaly categor(ies) for their event, picture and loc, "
           f"{arc_n} archaeological site(s) for their stages, pictures, "

@@ -1,8 +1,10 @@
 # 91 — Three name lists are declared twice by files we wrote, and the key-conflict check could never have seen it
 
-**Status:** decided, 2026-08-28 — **the check and the finding are settled; which
-of each pair to keep is a content call and is open**, and is now the top item in
-[open questions](../planning/open-questions.md).
+**Status:** decided, 2026-08-28 — the check and the finding are settled.
+**The content call this left open was made the same day and is
+[decision 93](93-power-lists-win-the-contested-keys.md)**: the hand-written power
+list wins all three, and the converted duplicates are deleted. The text below
+stands as it was written, including the sentence saying the call is open.
 **Follows** [decision 27](27-merge-semantics-per-directory.md), whose per-directory
 merge table this uses and, in one entry, corrects.
 **Corrects** the premise that `common/name_lists` is a database where the file is

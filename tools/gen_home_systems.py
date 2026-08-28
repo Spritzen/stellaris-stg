@@ -234,7 +234,7 @@ AUTHORED: dict[str, str] = {
 
 \tplanet = { name = "STG_system_name_breen" class = "pc_m_star" orbit_distance = 0 orbit_angle = 1 size = 20 has_ring = no }
 \tplanet = { name = "STG_N_BreenI" class = "pc_barren" orbit_distance = 30 orbit_angle = 130 size = 9 has_ring = no }
-\tplanet = { name = "STG_N_Portas" class = "pc_frozen" orbit_distance = 22 orbit_angle = 210 size = 12 has_ring = no }
+\tplanet = { name = "STG_N_PortasV" class = "pc_frozen" orbit_distance = 22 orbit_angle = 210 size = 12 has_ring = no }
 \t@CAPITAL@
 \tplanet = { name = "STG_N_Dozaria" class = "pc_barren_cold" orbit_distance = 32 orbit_angle = 55 size = 11 has_ring = no }
 \tplanet = { name = "STG_N_BreenVI" class = "pc_gas_giant" orbit_distance = 58 orbit_angle = 285 size = 26 has_ring = yes }

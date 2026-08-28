@@ -16,7 +16,7 @@ src/                    hand-written STG content — mirrors the game's tree, ap
   descriptor.mod        the mod's own descriptor; vendored into stg-build/
   thumbnail.png
                         — three kinds of file, and the kind decides the filename:
-  stg_*                   OUR content. Species classes, 92 name lists, the 99
+  stg_*                   OUR content. Species classes, 89 name lists, the 99
                           prescripted empires, loc, the STNH art triggers and traits,
                           the graphical cultures, the music declarations.
   stg_*.asset / .gfx      DECLARE-don't-shadow: a new filename adding what a vendored

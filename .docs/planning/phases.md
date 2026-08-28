@@ -66,7 +66,7 @@ deliberately kept: it is the custom-empire template, not a playable empire.
 **COMPLETE.** 99 prescripted empires — 22 majors/quadrant/frontier powers and
 77 minors, all playable and all in the pool the galaxy generator draws from
 since the `playable = stg_never` gate was removed — over 99
-distinct species classes. 92 name lists, 36 generated home systems plus vanilla's
+distinct species classes. 89 name lists, 36 generated home systems plus vanilla's
 Sol. `src/common/species_classes/stg_species_classes.txt` declares **129** classes —
 the other 30 are the STNH selector stubs of
 [decision 30](../decisions/30-declare-stub-species-classes.md), which are not
@@ -466,7 +466,7 @@ nothing: STNH already repoints `maintheme` at its own theme.
 
 ### Done: the ship registries
 
-[Decision 56](../decisions/56-ship-name-pools.md). STG's 92 name lists were
+[Decision 56](../decisions/56-ship-name-pools.md). STG's 89 name lists were
 hand-written in Phase 1 and never revisited — 6,093 tokens, a median of 62 per list
 against vanilla's 116, so the Federation had five cruiser names and then repeated.
 STNH has 38,707, keyed by its own hull ladder (`fed_heavy_cruiser_nebula`, 96
