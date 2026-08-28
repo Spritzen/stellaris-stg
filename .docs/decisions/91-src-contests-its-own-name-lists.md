@@ -9,6 +9,13 @@ stands as it was written, including the sentence saying the call is open.
 merge table this uses and, in one entry, corrects.
 **Corrects** the premise that `common/name_lists` is a database where the file is
 the unit — see "The key is the identifier" below.
+**One figure below is corrected by**
+[decision 96](96-section-slots-survive-a-replacement.md): the vanilla floor for
+`common/name_lists` is **80 keys in 76 files**, not 78 — the check's own
+`^key = {` regex could not see `LITH1.txt` and `LITH2.txt`, which indent
+`LITHOID1` and `LITHOID2`. The verdict is unchanged in both directions: still 0
+contested, still the same fourteen databases asked. The text below stands as it
+was written.
 
 ## The finding
 

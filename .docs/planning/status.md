@@ -37,7 +37,7 @@ ones.
 | Re-cut at harvest / pruned | 1,661 / **888** |
 | Overwrites / additive skips | 952 / 220 |
 | `make vendor` | 68 s |
-| `make validate` | **0 warnings, 0 errors**, over **51 checks** — four more than yesterday. It warned 3 for part of 2026-08-28, on the contested name-list keys [decision 91](../decisions/91-src-contests-its-own-name-lists.md) found, and [decision 93](../decisions/93-power-lists-win-the-contested-keys.md) closed them the same day |
+| `make validate` | **0 warnings, 0 errors**, over **52 checks** — five more than yesterday. It warned 3 for part of 2026-08-28, on the contested name-list keys [decision 91](../decisions/91-src-contests-its-own-name-lists.md) found, and [decision 93](../decisions/93-power-lists-win-the-contested-keys.md) closed them the same day |
 | `make docs` | **0 warnings, 0 errors** |
 | `make gen-check` | **13 of 13 generators are fixpoints** |
 
@@ -101,7 +101,7 @@ major powers**: `STG_KLINGON`, `STG_VULCAN` and `STG_CAITIAN` are each declared
 by a hand-written power list and an STNH-converted minor list, so one of each
 pair never reaches the game and **filename sort decides which** — inconsistently,
 the minor list winning twice and the power list once. Vanilla's floor in
-`common/name_lists` is **0 across 78 keys in 76 files**.
+`common/name_lists` is **0 across 80 keys in 76 files** — published as 78 until [96](../decisions/96-section-slots-survive-a-replacement.md), whose column-0 fix uncovered the two indented lithoid lists. The verdict never moved; the population did.
 
 **This is why `make validate` warned for part of the day**, and it was the check
 working. **The content call was made the same day and the tree is clean again**
@@ -202,6 +202,39 @@ one reports **6** when pointed at the built tree — PD's `zzz_` override, a
 base/`_fix` pair, three PD particles, UIOD's defines split, all of them a source
 overriding itself — and 2 on an injected duplicate.
 
+**And a fifty-second, which came out of the `error.log` baseline rather than out
+of `src/`** ([96](../decisions/96-section-slots-survive-a-replacement.md),
+2026-08-28). Every run logs **23** `ship_design_templates.cpp:216` *duplicate
+section template* records naming vanilla's `starbase.txt` and `orbital_ring.txt`,
+and **no document had ever named them**. They are the receipt for Starbase
+Extended taking all 23 keys under its `!!!_`-prefixed filenames, which is
+[decision 27](../decisions/27-merge-semantics-per-directory.md)'s FIOS rule
+working — and they are silent on the only question a replacement raises: whether
+the **slot names** vanilla's own ship designs mount on survived it. One did not,
+and that was [decision 37](../decisions/37-sbx-citadel-slot-renumbering.md),
+found from four records in one live run.
+
+`check_section_slot_references` is the swept rule. It is asked of the **merge**,
+because nothing STG writes is in either database — vanilla owns all 412 ship
+designs, SBX owns the only section file the build ships. **Vanilla's floor is 0
+and 0 over 6,882 component references and the merged tree matches it**; the
+control is decision 37's patch reverted, which recovers the same four
+`MEDIUM_GUN_010`..`013` the live log named, from disk alone. Across all 23
+sections SBX takes, its slots are a **superset** of what it replaced — so the 23
+records are benign **by measurement**, and the fifteen-line patch is the only
+thing that makes the citadel one true.
+
+**It also found a parser defect in this file, and a floor that was wrong by
+two.** `_top_level_blocks` anchored its key at **column 0**, which lost the six
+`ship_section_template` declarations vanilla indents in `distant_stars.txt` and
+`reanimated.txt` — the check's first cut reported six vanilla designs naming a
+section nothing declares. Sweeping the same question over every database found
+one more: `LITH1.txt` and `LITH2.txt` indent `LITHOID1` and `LITHOID2`, so
+[decision 91](../decisions/91-src-contests-its-own-name-lists.md)'s
+`common/name_lists` floor is **80 keys in 76 files, not 78**. Both parsers now
+track depth; **every count on the summary line is byte-identical afterwards**,
+which is what says it was a parser repair and not a change of question.
+
 ---
 
 ## The static galaxy — run once, and the mechanism works
@@ -265,6 +298,19 @@ floor of this build and it has not moved in eight runs; against the ~1 MB a clea
 vanilla run produces the volume is fine either way. **The 1 → 174 → 4 → 55 → 19
 → 13 → 55 → 4 swing is a change of run, not of build**: the short sessions opened
 few screens.
+
+**The init window's third-largest class is now triaged, and it was the last
+untriaged one.** Sorted by shape, the 2026-08-27 log's 1,267 records are 110
+`An item with name … already exists`, 103 `a 3d-type with the name … already
+exists` and **23 `duplicate section template found`** — then nothing above
+nine. The first two are the ASB projectile reimplementations and the
+STNH/Walshicus texture library, both long triaged in the leftovers list on
+[open-questions](open-questions.md). **The 23 were named by no document at all**
+until [decision 96](../decisions/96-section-slots-survive-a-replacement.md)
+measured them: they are Starbase Extended winning 23 vanilla section keys under
+its `!!!_` filenames, and its slots are a superset of what it replaced in all
+23. Benign, and now guarded by `check_section_slot_references` rather than
+assumed.
 
 **The 2026-08-27 run's four post-init records name no STG file** — three
 `spawn_system` failures out of Planetary Diversity's `events/pd_unique.txt` and

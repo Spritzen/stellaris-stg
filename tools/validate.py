@@ -2019,6 +2019,144 @@ def check_attach_targets() -> int:
     return n
 
 
+def _slot_names(body: str) -> set[str]:
+    """Every component slot a `ship_section_template` body offers.
+
+    Two written forms, and a section uses both at once. Named mounts are
+    `component_slot = { name = "MEDIUM_GUN_01" ... }`; utility banks are a
+    COUNT — `large_utility_slots = 6` — and the engine numbers them
+    `LARGE_UTILITY_1` … `LARGE_UTILITY_6`. A design names either kind the same
+    way, so a check that reads only the first is blind to the second.
+    """
+    out = set(re.findall(
+        r'component_slot\s*=\s*\{[^{}]*?\bname\s*=\s*"?([A-Za-z_0-9]+)"?',
+        body, re.S))
+    for field, label in (("small_utility_slots", "SMALL_UTILITY"),
+                         ("medium_utility_slots", "MEDIUM_UTILITY"),
+                         ("large_utility_slots", "LARGE_UTILITY"),
+                         ("aux_utility_slots", "AUX_UTILITY")):
+        m = re.search(rf"^\s*{field}\s*=\s*(\d+)", body, re.M)
+        if m:
+            out |= {f"{label}_{i}" for i in range(1, int(m.group(1)) + 1)}
+    return out
+
+
+def check_section_slot_references() -> int:
+    """Does every slot a ship design asks for exist in the section it names?
+
+    WHY THIS EXISTS, AND IT IS DECISION 37 GENERALISED. Starbase Extended 3.0
+    replaces 23 of vanilla's own starbase and orbital-ring sections under the
+    filename `!!!_sbx_3_0_*`, which wins `common/section_templates` outright --
+    it is a FIOS directory and `!` sorts first. Every run logs the 23 vanilla
+    declarations it displaced:
+
+        ship_design_templates.cpp:216  duplicate section template found.
+        Multiple sections are named [CITADEL_STARBASE_SECTION].
+        file: common/section_templates/starbase.txt line: 247
+
+    THOSE RECORDS ARE THE SYMPTOM OF A REPLACEMENT, NOT OF A DEFECT, and they
+    say nothing about whether the replacement kept the slots vanilla's own
+    designs mount on. One of the 23 did not: SBX tidied the citadel's thirteen
+    medium mounts to `MEDIUM_GUN_10..12` and stopped at twelve, so vanilla's
+    Biogenesis bio-citadel asked for four slots that no longer existed and
+    mounted nothing. That was found from four `ship_growth_stage.cpp` records
+    in one live run and patched in vendor.yml
+    (.docs/decisions/37-sbx-citadel-slot-renumbering.md) -- one instance, from
+    one screen somebody opened. This is the swept rule behind it
+    ([rule 6](.docs/validation/check-design.md)).
+
+    THE QUESTION IS ASKED OF THE MERGE, NOT OF `src/`. Nothing STG writes is in
+    either database: vanilla owns all 412 ship designs and SBX owns the only
+    section file the build ships. The defect is what the two make TOGETHER, so
+    the population has to be the merged tree, resolved the way the engine
+    resolves it -- FIOS in both directories, our filenames sorted against
+    vanilla's.
+
+    BOTH HALVES ARE ASKED BECAUSE VANILLA'S FLOOR IS 0 ON BOTH: a design naming
+    a section nothing declares, and a design naming a slot the section has not
+    got. Vanilla alone is 0 and 0 over 412 designs and 6,882 component
+    references; the merged tree is 0 and 0 over the same population. The
+    control that says this can fail is SBX's UNPATCHED source: against it the
+    check reports exactly 4, the `MEDIUM_GUN_010`..`013` of decision 37 and
+    nothing else, which is also the measurement that says the other 22 replaced
+    sections are supersets of what they replaced
+    ([rule 7](.docs/validation/check-design.md)).
+
+    See .docs/decisions/96-section-slots-survive-a-replacement.md.
+    """
+    def merged(sub: str, pat: str) -> dict[str, tuple[str, str]]:
+        """key -> (body, filename), FIOS across vanilla and the built tree.
+
+        Same filename means our copy SHADOWS vanilla's rather than sorting
+        against it -- that is a path overwrite and never a key contest -- so the
+        map is built by name with the build written second. Only then does the
+        sort decide the contested keys, which is what the engine does.
+        """
+        by_name: dict[str, Path] = {}
+        for root in (GAME_DIR / sub, BUILD / sub):
+            if root.is_dir():
+                for f in root.rglob("*.txt"):
+                    by_name[f.name] = f
+        out: dict[str, tuple[str, str]] = {}
+        for f in sorted(by_name.values(), key=lambda p: p.name):
+            for kind, body in _top_level_blocks(_strip_comments(_read(f))):
+                if kind != pat:
+                    continue
+                m = re.search(r'^\s*(?:key|name)\s*=\s*"?([A-Za-z_0-9]+)"?',
+                              body, re.M)
+                if m and m.group(1) not in out:       # FIOS: first wins
+                    out[m.group(1)] = (body, f.name)
+        return out
+
+    sections = {k: _slot_names(b) for k, (b, _) in
+                merged("common/section_templates", "ship_section_template").items()}
+    designs = merged("common/global_ship_designs", "ship_design")
+
+    missing_sec: list[tuple[str, str]] = []
+    missing_slot: dict[tuple[str, str], list[str]] = collections.defaultdict(list)
+    n = 0
+    for design, (body, _f) in sorted(designs.items()):
+        for sm in re.finditer(r"\bsection\s*=\s*\{", body):
+            sec = _balanced(body, sm.end() - 1)[1:-1]
+            tm = re.search(r'^\s*template\s*=\s*"?([A-Za-z_0-9]+)"?', sec, re.M)
+            if not tm:
+                continue
+            key = tm.group(1)
+            if key not in sections:
+                missing_sec.append((design, key))
+                continue
+            for cm in re.finditer(r"\bcomponent\s*=\s*\{", sec):
+                comp = _balanced(sec, cm.end() - 1)
+                slm = re.search(r'^\s*slot\s*=\s*"?([A-Za-z_0-9]+)"?',
+                                comp, re.M)
+                if not slm:
+                    continue
+                n += 1
+                if slm.group(1) not in sections[key]:
+                    missing_slot[(key, slm.group(1))].append(design)
+
+    if missing_sec:
+        head = "; ".join(f"{d} -> {k}" for d, k in missing_sec[:4])
+        warnings.append(
+            f"common/global_ship_designs: {len(missing_sec)} design(s) name a "
+            f"section template nothing declares — {head}"
+            f"{' …' if len(missing_sec) > 4 else ''}. Vanilla's floor is 0. "
+            f"See .docs/decisions/96-section-slots-survive-a-replacement.md.")
+    if missing_slot:
+        head = "; ".join(
+            f"{k}.{s} ({len(v)} design(s), e.g. {sorted(v)[0]})"
+            for (k, s), v in sorted(missing_slot.items())[:4])
+        warnings.append(
+            f"common/section_templates: {len(missing_slot)} slot(s) a ship "
+            f"design mounts on are gone from the section that now wins the key "
+            f"— {head}{' …' if len(missing_slot) > 4 else ''}. A section "
+            f"replacement must keep every slot name the designs against it use, "
+            f"or those mounts are silently empty. Vanilla's floor is 0 of "
+            f"{n or 6882}. Restore the names with a vendor.yml patch, as "
+            f".docs/decisions/37-sbx-citadel-slot-renumbering.md does. "
+            f"See .docs/decisions/96-section-slots-survive-a-replacement.md.")
+    return n
+
 def _parse_defines(text: str) -> dict[str, str]:
     """<group>.<KEY> -> raw value, for one defines file.
 
@@ -2454,13 +2592,40 @@ def check_order_sensitive_databases() -> int:
 
 
 def _top_level_blocks(text: str):
-    """(key, body) for every depth-0 `key = { ... }`. Body excludes the braces."""
-    for m in re.finditer(r"^([A-Za-z_][A-Za-z_0-9]*)\s*=\s*\{", text, re.M):
-        i, depth = m.end(), 1
-        while i < len(text) and depth:
-            depth += (text[i] == "{") - (text[i] == "}")
+    """(key, body) for every depth-0 `key = { ... }`. Body excludes the braces.
+
+    DEPTH IS TRACKED, NOT INFERRED FROM COLUMN 0. This anchored the key at the
+    start of a line until 2026-08-28, which is identity in most of vanilla and
+    is not identity anywhere: leading whitespace at depth 0 is cosmetic to the
+    engine, so refusing to read it deletes the declaration rather than a defect
+    ([rule 8](.docs/validation/check-design.md), the cosmetic-form half).
+    Vanilla indents six `ship_section_template` declarations in
+    `distant_stars.txt` and `reanimated.txt`, and the `LITHOID1` / `LITHOID2`
+    name lists in `LITH1.txt` and `LITH2.txt` -- which is why the floor quoted
+    for common/name_lists was 78 keys in 76 files when it is 80.
+    `_top_level_keys` next door has always tracked depth and always saw them.
+    See .docs/decisions/96-section-slots-survive-a-replacement.md.
+    """
+    key = re.compile(r"([A-Za-z_][A-Za-z_0-9]*)\s*=\s*\{")
+    depth, i, n = 0, 0, len(text)
+    while i < n:
+        c = text[i]
+        if c == '"':
             i += 1
-        yield m.group(1), text[m.end():i - 1]
+            while i < n and text[i] != '"':
+                i += 1
+        elif c == "{":
+            depth += 1
+        elif c == "}":
+            depth = max(0, depth - 1)
+        elif depth == 0:
+            m = key.match(text, i)
+            if m and (i == 0 or text[i - 1] in " \t\r\n"):
+                body = _balanced(text, m.end() - 1)
+                yield m.group(1), body[1:-1]
+                i = m.end() - 1 + len(body)
+                continue
+        i += 1
 
 
 def _sub_block(body: str, key: str) -> str | None:
@@ -6047,7 +6212,7 @@ def check_src_key_contention() -> int:
     THE DATABASE GATE IS DERIVED FROM VANILLA AT RUN TIME (rule 4): a database
     is only asked about if **vanilla never contests an identifier in it**. Over
     the 16 databases `src/` writes into, vanilla's count is 0 in fourteen of
-    them -- including `common/name_lists`, 0 across 78 keys in 76 files -- and
+    them -- including `common/name_lists`, 0 across 80 keys in 76 files -- and
     non-zero in exactly two, `common/static_modifiers` (7) and `common/traits`
     (1), which are therefore not asked. Nothing is hand-listed, so a game patch
     that makes vanilla start contesting a database silently stops us asking
@@ -6056,8 +6221,6 @@ def check_src_key_contention() -> int:
     src_common = REPO / "src" / "common"
     if not src_common.is_dir():
         return 0
-    key_re = re.compile(r"^([A-Za-z_][\w'.-]*)\s*=\s*\{", re.M)
-
     def survey(root: Path) -> tuple[dict, dict]:
         claims: dict[tuple[str, str], set[str]] = collections.defaultdict(set)
         types: dict[str, set[str]] = collections.defaultdict(set)
@@ -6065,7 +6228,11 @@ def check_src_key_contention() -> int:
             db = f.relative_to(root).parent.as_posix()
             if db.split("/")[0] in ("defines", "unchecked_defines"):
                 continue
-            counts = collections.Counter(key_re.findall(_strip_comments(_read(f))))
+            # _top_level_blocks, not a `^key = {` regex: vanilla indents the
+            # LITHOID1 and LITHOID2 name lists, and a column-0 anchor reads
+            # `common/name_lists` as 78 keys in 76 files when it is 80.
+            counts = collections.Counter(
+                k for k, _ in _top_level_blocks(_strip_comments(_read(f))))
             for k, c in counts.items():
                 if c > 1:
                     types[db].add(k)      # a TYPE key: it repeats inside one file
@@ -6945,6 +7112,7 @@ def main() -> int:
     ord_n = check_asset_load_order()
     sap_n = check_section_attach_points()
     atk_n = check_attach_targets()
+    ssl_n = check_section_slot_references()
     var_n = check_asset_variables()
     dup_n = check_duplicate_entities()
     dtx_n = check_duplicate_textures()
@@ -6991,6 +7159,7 @@ def main() -> int:
           f"{ord_n} ship asset(s) for clone load order and section locators, "
           f"{sap_n} for hull section attach points, "
           f"{atk_n} for attach targets, "
+          f"{ssl_n} ship-design component reference(s) for a slot the section they name still offers, "
           f"{var_n} art file(s) for unresolved @variables, "
           f"{dup_n} for duplicate entity declarations, "
           f"{dtx_n} texture(s) for duplicate basenames, "

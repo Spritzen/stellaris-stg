@@ -681,6 +681,18 @@ has not changed shape since; [status.md](status.md) carries the current totals.*
   `advanced_military_program` — the one `potential` block in either its file or
   vanilla's that switched to `solar_system` unguarded — is patched as of 2026-08-07
   ([44](../decisions/44-coalition-of-hope-takes-vul.md)).
+- **23 `duplicate section template` records — triaged 2026-08-28, and benign
+  by measurement.** Starbase Extended ships its sections as `!!!_sbx_3_0_*`,
+  `common/section_templates` is FIOS, so SBX takes all 23 keys and each vanilla
+  declaration it displaces is logged. **Nothing was open here; nothing had ever
+  asked.** The question a replacement actually raises is whether the slot names
+  vanilla's own designs mount on survived it — one did not, which was
+  [decision 37](../decisions/37-sbx-citadel-slot-renumbering.md) — and the swept
+  answer is that SBX's slots are a **superset** of vanilla's in all 23.
+  `check_section_slot_references` holds it there: vanilla's floor 0 and 0 over
+  6,882 component references, and reverting decision 37's patch recovers the
+  same four slots the live log named
+  ([96](../decisions/96-section-slots-survive-a-replacement.md)).
 - **143 duplicate textures** where STNH's `shared_assets/` meets Walshicus'
   `stnc_shipset_shared/` — [the conflict register](../architecture/conflict-register.md)
   explains why last-wins is correct here. Now watched by
