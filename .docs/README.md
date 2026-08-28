@@ -28,7 +28,7 @@ of this page.
 | write a new check | [validation/check-design.md](validation/check-design.md) |
 | plan what a playthrough should cover | [runs/README.md](runs/README.md) |
 | read `error.log` after the user played | [guides/live-runs.md](guides/live-runs.md) |
-| **act on what the last live run found** | [planning/static-galaxy-plan.md](planning/static-galaxy-plan.md) — the plan that came out of it, and the answer to "why is the galaxy not Trek". **Most of it is built and none of it is run** — [decisions/93](decisions/86-static-galaxy-scenario.md) is what shipped and what a run has to answer; its reasoning is [decisions/92](decisions/85-create-country-initializers.md) and [84](decisions/84-static-galaxy-is-the-mechanism.md). Then [decisions/83-design-database-is-not-the-cause.md](decisions/83-design-database-is-not-the-cause.md) for the 2026-08-26 Vulcan run's save; then [planning/open-questions.md](planning/open-questions.md) for what is left. Baselines in [planning/status.md](planning/status.md). Older: [analysis/2026-08-16.md](analysis/2026-08-16.md) (Vulcan, 2026-08-22) · [planning/ufp-run-remediation.md](planning/ufp-run-remediation.md) (Federation, 2026-08-10) |
+| **act on what the last live run found** | [planning/static-galaxy-plan.md](planning/static-galaxy-plan.md) — the plan that came out of it, and the answer to "why is the galaxy not Trek". **Built, and run once** — [decision 86](decisions/86-static-galaxy-scenario.md) is what shipped, [87](decisions/87-static-map-lanes-are-generated.md) is what the 2026-08-27 run graded and the one thing it broke on; the reasoning is [85](decisions/85-create-country-initializers.md) and [84](decisions/84-static-galaxy-is-the-mechanism.md). Then [decisions/83-design-database-is-not-the-cause.md](decisions/83-design-database-is-not-the-cause.md) for the 2026-08-26 Vulcan run's save; then [planning/open-questions.md](planning/open-questions.md) for what is left. Baselines in [planning/status.md](planning/status.md). The write-ups of the earlier runs (Federation 2026-08-10, Vulcan 2026-08-22) were retired once every finding in them had landed in a decision — decisions [76](decisions/76-random-names-are-loc-keys.md)–[80](decisions/80-selector-textures-that-resolve.md) are what they left behind |
 | find out whether a question is already settled | [decisions/README.md](decisions/README.md) |
 | look up a term | [reference/glossary.md](reference/glossary.md) |
 | write documentation | [style-guide.md](style-guide.md) |
@@ -45,8 +45,8 @@ of this page.
 | [planning/](planning/) | **State and direction** — status, phases, open questions, scope | [README](planning/README.md) |
 | [decisions/](decisions/) | **One numbered file per resolved question**, with the reasoning and what it cost | [README](decisions/README.md) |
 | [reference/](reference/) | **Lookups** — glossary, repo layout, database rules, external links | [README](reference/README.md) |
-| [runs/](runs/) | **What a live run should cover** — written before the run, one file per playthrough | [README](runs/README.md) |
-| [analysis/](analysis/) | **What a live run measured** — written only on request, one file per run | [README](analysis/README.md) |
+| [runs/](runs/) | **What a live run should cover** — written before the run, one file per playthrough. **Empty today**, and that is the normal state: a plan is spent when its run is over | [README](runs/README.md) |
+| [analysis/](analysis/) | **What a live run measured** — written only on request, one file per run, and **written to be retired** once its findings land in a decision. **Empty today** | [README](analysis/README.md) |
 
 Plus two single files:
 

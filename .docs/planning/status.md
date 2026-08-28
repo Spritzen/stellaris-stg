@@ -6,16 +6,18 @@
 > build.
 > **Then** — [Open questions](open-questions.md) · [Phases](phases.md) · [Live runs](../guides/live-runs.md)
 
-*Last updated against the build of 2026-08-26 and the run of the same day; the
-last run with a written analysis is 2026-08-22
-([analysis 2026-08-16](../analysis/2026-08-16.md)). Every number here has a date
-because every number here goes stale — [style guide §6](../style-guide.md).*
+*Last updated against the build of 2026-08-27 and the Klingon run of the same
+day. **No live run has a write-up any more** — the run plans and analyses were
+retired on 2026-08-27 ([89](../decisions/89-retired-run-write-ups.md)), and what
+each run established now lives in the decision it produced and in the baseline
+table below. Every number here has a date because
+every number here goes stale — [style guide §6](../style-guide.md).*
 
 | | |
 |---|---|
 | **Phase 0** — vendoring pipeline | **complete** |
 | **Phase 1** — playable Federation | **complete**, run in-game repeatedly |
-| **Phase 2** — the rest of the galaxy | **complete**. 99 prescripted empires (22 majors/quadrant/frontier, 77 minors; all playable, and all in the pool the generator draws from since the `playable = stg_never` gate was removed — **and the 2026-08-26 save proves all 99 reach the design database — and that no galaxy has yet drawn one**, see [decision 83](../decisions/83-design-database-is-not-the-cause.md); the mechanism a Trek galaxy actually needs is a static map plus `create_country` initializers — [decision 85](../decisions/85-create-country-initializers.md) — and **both now ship, unrun**: 95 systems, 21 empires, 36 `create_country` blocks and the `prescripted_flags` join between them, [decision 86](../decisions/86-static-galaxy-scenario.md)) over 99 distinct species classes, 92 name lists, 36 generated home systems plus vanilla's Sol. `src/` declares **129** classes in all — the extra 30 are the STNH selector stubs of [decision 30](../decisions/30-declare-stub-species-classes.md) |
+| **Phase 2** — the rest of the galaxy | **complete**. 99 prescripted empires (22 majors/quadrant/frontier, 77 minors; all playable, and all in the pool the generator draws from since the `playable = stg_never` gate was removed — **and the 2026-08-26 save proves all 99 reach the design database — and that no galaxy has yet drawn one**, see [decision 83](../decisions/83-design-database-is-not-the-cause.md); the mechanism a Trek galaxy actually needs is a static map plus `create_country` initializers — [decision 85](../decisions/85-create-country-initializers.md) — and **both ship and have now been run once**: 95 systems, 21 empires, 36 `create_country` blocks and the `prescripted_flags` join between them, [decision 86](../decisions/86-static-galaxy-scenario.md), graded by the 2026-08-27 Klingon run [87](../decisions/87-static-map-lanes-are-generated.md)) over 99 distinct species classes, 92 name lists, 36 generated home systems plus vanilla's Sol. `src/` declares **129** classes in all — the extra 30 are the STNH selector stubs of [decision 30](../decisions/30-declare-stub-species-classes.md) |
 | **Phase 3** — art and identity | **complete 2026-08-08**. Clothing triggers, shipsets, weapon mounts, flags, rooms, city sets, loading screens, `paragon_backgrounds.txt`, the shipsets' 39 extra flags |
 | **Phase 4** — polish | **started 2026-08-08**. Music, the ship registries and their class names, then the three slices [decision 70](../decisions/70-trek-anomalies.md) scoped: **21 Trek anomalies** ([70](../decisions/70-trek-anomalies.md)), **6 dig sites** ([71](../decisions/71-trek-archaeology.md)) and **21 story events** ([72](../decisions/72-trek-story-events.md)), all 2026-08-09. All three are shipped; what remains in the phase has no scope written for it |
 | **Phase 5** — the clutter pass | **complete 2026-08-07** (pipeline work, taken out of order) |
@@ -28,9 +30,9 @@ ones.
 
 | | Build of 2026-08-27 |
 |---|---|
-| Files / size | **22,409 / 14.3 GiB** ([the per-tier split](../architecture/vendored-merge.md#size)) |
+| Files / size | **22,397 / 14.3 GiB** ([the per-tier split](../architecture/vendored-merge.md#size)) |
 | Re-cut at harvest / pruned | 1,661 / **888** |
-| Overwrites / additive skips | 947 / 220 |
+| Overwrites / additive skips | 952 / 220 |
 | `make vendor` | 67 s |
 | `make validate` | **0 warnings, 0 errors** |
 | `make docs` | **0 warnings, 0 errors** |
@@ -119,24 +121,32 @@ decision 86.
 
 ## The `error.log` baseline
 
-**The current baseline is the 2026-08-26 Vulcan run**, the first since
-2026-08-22 to leave a save on disk — which is what made
-[decision 83](../decisions/83-design-database-is-not-the-cause.md) possible. The
-2026-08-10 Federation run beside it is still the deepest: ~11 hours, and the only
-log so far that carried real defects rather than eyes-only findings.
+**The current baseline is the 2026-08-27 Klingon run**, the first against the
+static galaxy — and the second in a row to be settled by the **save** rather than
+by the log ([87](../decisions/87-static-map-lanes-are-generated.md)). The
+2026-08-10 Federation run at the far end is still the deepest: ~11 hours, and the
+only log so far that carried real defects rather than eyes-only findings.
 
-| | **2026-08-26** Vulcan | 2026-08-25 pm Vulcan | 2026-08-25 am Vulcan | 2026-08-24 Vulcan | 2026-08-22 Vulcan | 2026-08-10 Federation | 2026-08-08 |
-|---|---|---|---|---|---|---|---|
-| Records / size | **1,315 / 195 KB** | 1,280 / 191 KB | 1,335 / 190 KB | 1,315 / 208 KB | 1,264 / 187 KB | 2,251 / 228 KB | 1,261 / 187 KB |
-| Startup window | 48.3 s | 45.1 s | 48.5 s | 46.8 s | 55.4 s | 49.4 s | 49.3 s |
-| Records **after** startup | **55** | 13 | 19 | 55 | 4 | 174 | 1 |
-| Play window | **~2 h 45 m** | ~1 h | ~2.5 h | ~7 h | ~26 min | ~11 h | short |
+| | **2026-08-27** Klingon | 2026-08-26 Vulcan | 2026-08-25 pm Vulcan | 2026-08-25 am Vulcan | 2026-08-24 Vulcan | 2026-08-22 Vulcan | 2026-08-10 Federation | 2026-08-08 |
+|---|---|---|---|---|---|---|---|---|
+| Records / size | **1,267 / 187 KB** | 1,315 / 195 KB | 1,280 / 191 KB | 1,335 / 190 KB | 1,315 / 208 KB | 1,264 / 187 KB | 2,251 / 228 KB | 1,261 / 187 KB |
+| Startup window | 47.1 s | 48.3 s | 45.1 s | 48.5 s | 46.8 s | 55.4 s | 49.4 s | 49.3 s |
+| Records **after** startup | **4** | 55 | 13 | 19 | 55 | 4 | 174 | 1 |
+| Play window | not recorded | ~2 h 45 m | ~1 h | ~2.5 h | ~7 h | ~26 min | ~11 h | short |
 
 **Read the post-init column, never the total.** 187–208 KB is the init-window
-floor of this build and it has not moved in seven runs; against the ~1 MB a clean
+floor of this build and it has not moved in eight runs; against the ~1 MB a clean
 vanilla run produces the volume is fine either way. **The 1 → 174 → 4 → 55 → 19
-→ 13 → 55 swing is a change of run, not of build**: the short sessions opened few
-screens.
+→ 13 → 55 → 4 swing is a change of run, not of build**: the short sessions opened
+few screens.
+
+**The 2026-08-27 run's four post-init records name no STG file** — three
+`spawn_system` failures out of Planetary Diversity's `events/pd_unique.txt` and
+one `PLANET_SCALE_SYSTEM` size mismatch (acked,
+[41](../decisions/41-planet-scale-system-length.md)). All three `spawn_system`
+records were **consequences of the lane defect**, not evidence of it: the log
+named the symptom, and a galaxy with no hyperlanes produces no record at all
+([87](../decisions/87-static-map-lanes-are-generated.md)).
 
 **Five of 2026-08-26's 55 post-init records name STG files, and all five are now
 fixed** — `select_empire_design_view.cpp:714`, five minor powers hidden from the
@@ -178,22 +188,25 @@ and recorded nowhere else.
 
 **Two 2026-08-10 fixes are now confirmed in game by silence** — the 98-record
 Planetary Diversity cluster and the 19 missing-localisation records are both
-**0**, and the run exercised the thing that produced each. That is the first time
-a live run has closed a defect in this project by measurement rather than by
-inspection. The whole reading is
-[analysis 2026-08-16](../analysis/2026-08-16.md); the Federation run's own
-findings and what each cost are in
-[ufp-run-remediation.md](ufp-run-remediation.md).
+**0** in the 2026-08-22 run, and it exercised the thing that produced each. That
+is the first time a live run has closed a defect in this project by measurement
+rather than by inspection. What the Federation run of 2026-08-10 found, and what
+each finding cost, is in decisions
+[76](../decisions/76-random-names-are-loc-keys.md) through
+[80](../decisions/80-selector-textures-that-resolve.md).
 
-**What still has no in-game evidence at all.** Of the five runs since
-2026-08-10, one ended early and the other four were played without a run plan
-and written up only in the empire-spawn investigation that ends in
-[decision 83](../decisions/83-design-database-is-not-the-cause.md), so none
-of them reported on any of these:
+**What still has no in-game evidence at all.** Of the six runs since
+2026-08-10, one ended early, four were played without a run plan and written up
+only in the empire-spawn investigation that ends in
+[decision 83](../decisions/83-design-database-is-not-the-cause.md), and the
+sixth — 2026-08-27, Klingon — was a static-galaxy grading run that ended on a
+galaxy with one hyperlane in it
+([87](../decisions/87-static-map-lanes-are-generated.md)). None of them reported
+on any of these:
 
 - **Every hull above corvette.** [Decision 77](../decisions/77-hull-section-attach-points.md)'s
   230 attach points are the single most valuable unmeasured thing in the project.
-- **The dig sites, the anomalies and the story events** — unreached in all five
+- **The dig sites, the anomalies and the story events** — unreached in all six
   runs since 2026-08-10
   ([71](../decisions/71-trek-archaeology.md), [70](../decisions/70-trek-anomalies.md),
   [72](../decisions/72-trek-story-events.md)).
@@ -216,14 +229,16 @@ scale — a **5% chance per AI slot** — so a few galaxies with none was the
 ordinary outcome rather than a defect. The lever was real and is still in the
 tree at 1000 (100%), safe only because the pool is all-Trek
 ([13](../decisions/13-remove-vanilla-prescripted-empires.md)) and deep enough to
-fill a galaxy — the 79 minor powers. **It was never the
+fill a galaxy — the 77 minor powers. **It was never the
 cause**: three further galaxies at 100% drew zero even with the
 `playable = stg_never` gate gone, and the
 2026-08-26 save proved the pool itself is correct
 ([83](../decisions/83-design-database-is-not-the-cause.md)). The mechanism a
 Trek galaxy actually needs is a static map plus `create_country` initializers —
-[85](../decisions/85-create-country-initializers.md) — and it shipped 2026-08-27,
-unrun: [86](../decisions/86-static-galaxy-scenario.md),
+[85](../decisions/85-create-country-initializers.md) — and it shipped and ran
+on 2026-08-27, putting **20 AI Trek empires** in the galaxy on its first try:
+[86](../decisions/86-static-galaxy-scenario.md),
+[87](../decisions/87-static-map-lanes-are-generated.md),
 [static-galaxy-plan.md](static-galaxy-plan.md). **Do not treat this paragraph as
 the live record**; [open questions](open-questions.md) is. **The Federation's
 `spawn_enabled = always` still did not fire** and is still its own open
@@ -239,8 +254,10 @@ deployment re-confirmed on it, startup and gfx counts **not comparable across th
 boundary**.
 
 Analyses are written only on request, one file per live run
-([`../analysis/`](../analysis/README.md)). **Filenames there are sequence slots,
-not dates**: `2026-08-16` is the run of 2026-08-22.
+([`../analysis/`](../analysis/README.md)), and **none is standing**: the two that
+existed were retired on 2026-08-27 once every finding in them had landed in a
+decision. A run named by a date in this file is named by the date it was
+**played**.
 
 ---
 

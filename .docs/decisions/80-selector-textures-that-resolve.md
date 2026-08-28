@@ -3,9 +3,8 @@
 **Status:** decided, 2026-08-24
 **Follows** [decision 78](78-widen-attach-points-and-two-new-checks.md), which
 landed the syntax half of this question and left this half for a content call.
-**Corrects** the count carried by
-[ufp-run-remediation](../planning/ufp-run-remediation.md) item 2,
-[open-questions](../planning/open-questions.md),
+**Corrects** the count carried by the 2026-08-10 Federation remediation plan's
+item 2, [open-questions](../planning/open-questions.md),
 [status](../planning/status.md) and [checks.md](../validation/checks.md) since
 2026-08-10.
 
@@ -29,7 +28,7 @@ Measured against the build of 2026-08-24, four resolution rules:
 None of them is 196, and nothing since 2026-08-22 changed the portrait harvest —
 decision 78's eleven patches only *add* to this population, by moving ten rows
 from malformed to dangling. So the 196 is a rule difference, not drift, and
-**the document that carries it names the rule**: ufp-run-remediation item 2 says
+**the document that carries it named the rule**: that plan's item 2 said
 to *walk every quoted `gfx/models/portraits/…` in that directory and test it
 against `stg-build/`*. That is the first line of the table, with vanilla left
 out of the resolution set.

@@ -46,8 +46,9 @@ and **the tree is now at zero**
 extension appears in that position at all, so the floor is 0 and there is no
 scope. The engine falls back silently on a miss, which is why 10 rows survived
 two live runs: the log records only the rows somebody actually drew.
-[Analysis 2026-08-16](../analysis/2026-08-16.md) finding 1,
-[ufp-run-remediation](../planning/ufp-run-remediation.md) item 2.
+Opened by the 2026-08-10 Federation run and widened by the 2026-08-22 Vulcan
+run; [78](../decisions/78-widen-attach-points-and-two-new-checks.md) is where
+both landed.
 
 ---
 

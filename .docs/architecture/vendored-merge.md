@@ -105,15 +105,15 @@ harvest change and this section has been stale more than once.
 [`.docs/provenance.md`](../provenance.md) is the generated report;
 `.vendor-manifest.json` has the per-source split.
 
-*(Read off the build of 2026-08-25. GiB, as `make vendor` prints.)*
+*(Read off the build of 2026-08-27. GiB, as `make vendor` prints.)*
 
 | | |
 |---|---|
-| Gameplay/UI tier — [26 harvest positions](harvest-order.md), 25 with surviving files | 4.7 GiB, 8,026 files |
+| Gameplay/UI tier — [26 harvest positions](harvest-order.md), 25 with surviving files | 4.7 GiB, 8,009 files |
 | STNH — art paths only, ship tree pruned per [decision 17](../decisions/17-walshicus-shipsets-replace-stnh-hulls.md) | 7.0 GiB, 10,929 files |
 | Walshicus' 22 Trek shipsets | 2.5 GiB, 3,092 files |
-| `src/` — hand-written | 5.0 MB, 359 files |
-| **Built mod, total** | **14.3 GiB**, 22,406 files, 49 sources + `src/` |
+| `src/` — hand-written | 5.0 MB, 367 files |
+| **Built mod, total** | **14.3 GiB**, 22,397 files, 49 sources + `src/` |
 | `.source/` — 51 mods: the 49 harvested plus Kammarheit and Apocryphos | 22 GB apparent, **~0 real** (reflinked; [decision 08](../decisions/08-source-snapshot.md)) |
 
 *(The gameplay/UI tier holds 26 harvest positions but only 25 leave a file

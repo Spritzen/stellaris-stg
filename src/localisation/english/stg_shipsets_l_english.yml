@@ -5,7 +5,7 @@
  # (localisation/english/biogenesis_bioships_l_english.yml). Vanilla defines no
  # display-NAME key for a shipset, so none is invented here: the browser listing
  # species names is vanilla's own presentation, not a missing key
- # (.docs/planning/ufp-run-remediation.md, item 7).
+ # (measured for the 2026-08-10 Federation run; .docs/decisions/79-shipset-descs-and-home-system-names.md).
  #
  # THE POPULATION IS "FLOWN", NOT "DECLARED", and that is a calibration result
  # rather than a convenience. Vanilla declares 52 graphical cultures and keys

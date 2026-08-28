@@ -3614,8 +3614,9 @@ def check_selector_texture_paths() -> int:
     ROWS THAT NAME ART NO SOURCE SHIPS STILL BELONG HERE. Appending `.dds` to
     `sth_humanoid_08_male_clothes_01` does not conjure the file -- it moves the
     row from "malformed" to "dangling", which is the other half's population and
-    the honest place for it. See .docs/analysis/2026-08-16.md finding 1 and
-    .docs/planning/ufp-run-remediation.md item 2.
+    the honest place for it. See
+    .docs/decisions/78-widen-attach-points-and-two-new-checks.md and
+    .docs/decisions/80-selector-textures-that-resolve.md.
     """
     d = BUILD / "gfx/portraits/asset_selectors"
     if not d.is_dir():
@@ -3642,7 +3643,7 @@ def check_selector_texture_paths() -> int:
             f"wrong clothes with nothing in error.log unless that exact row is "
             f"drawn. Vanilla writes 7,845 of these and every one ends `.dds`. "
             f"Fix with a `patches:` entry in vendor.yml. "
-            f"See .docs/planning/ufp-run-remediation.md, item 2.")
+            f"See .docs/decisions/78-widen-attach-points-and-two-new-checks.md.")
     return n
 
 

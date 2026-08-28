@@ -72,7 +72,7 @@ tools/
                         (decisions 26, 57, 64, 77)
   fix_prescripted_rooms.py    rewrites `room =` from STNH's own assignment
                         — these take their CONTENT from .source/, never from the
-                        built tree. SIX of the eleven (gen_borg_vo,
+                        built tree. SIX of the thirteen (gen_borg_vo,
                         gen_home_systems, gen_room_selector, gen_ruler_clothes,
                         gen_star_names, fix_ship_locators) also read stg-build/
                         to ask what the merge already declares; a generator that

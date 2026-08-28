@@ -9,16 +9,21 @@
 
 > ## Where this plan stands, 2026-08-27
 >
-> **Pieces 1, 2 and 4 are built and the binding question is settled** —
-> [decision 86](../decisions/86-static-galaxy-scenario.md). `make validate` is
-> clean and `make gen-check` is 13 of 13 fixpoints, **and neither of those is
-> evidence about the galaxy**: both were clean throughout all six empty ones.
-> **The next live run is the whole test.**
+> **All four pieces are built, and a live run has graded them** —
+> [86](../decisions/86-static-galaxy-scenario.md),
+> [87](../decisions/87-static-map-lanes-are-generated.md),
+> [88](../decisions/88-lock-the-galaxy-picker.md). The 2026-08-27 Klingon save
+> holds **20 AI Trek empires, one each, and no randomly generated empire**: the
+> mechanism works. **One question failed and is fixed but unrun** — the map
+> shipped with no lanes and generated a galaxy with one hyperlane in it, so the
+> 162 generated lanes are what the next run grades. `make validate` clean and
+> `make gen-check` 13 of 13 were **not** evidence about the galaxy: both were
+> clean throughout all six empty ones, and clean over the lane defect too.
 >
 > | | |
 > |---|---|
 > | the binding | **`spawn_weight` + country flag.** STNH uses `spawn_design` zero times in 22 maps; it routes back through the draw that already failed six times |
-> | the map | `src/map/setup_scenarios/stg_alpha_beta_quadrant.txt` — 95 systems, 21 empires, every coordinate harvested from STNH's default galaxy map |
+> | the map | `src/map/setup_scenarios/stg_alpha_beta_quadrant.txt` — 95 systems, 21 empires, **162 generated hyperlanes**, every coordinate harvested from STNH's default galaxy map |
 > | the AI copies | 36 `create_country` blocks, generated into `stg_home_systems.txt` |
 > | **the piece this plan did not have** | the **country flag join**. `common/prescripted_flags/` is what gives the *player's* copy of an empire the flag the map weights on and the initializer guards on. STG shipped none. §2 below said the flag "exists because the initializer set it" — that is true only of the AI copy |
 > | the check | `check_static_galaxy`, five questions, vanilla floor 0 |
@@ -85,7 +90,8 @@ graph is not the cost driver — the systems are.**
 > shipped a 95-system galaxy containing **one** hyperlane, and no log said so.
 >
 > **STG now generates its lanes into the file**, BotF's road — see
-> `tools/gen_static_galaxy.py` and 94. `check_static_galaxy` treats a lane-less
+> `tools/gen_static_galaxy.py` and [87](../decisions/87-static-map-lanes-are-generated.md).
+> `check_static_galaxy` treats a lane-less
 > static map as an error, so this cannot ship twice.
 >
 > The `num_hyperlanes` re-measurement below stands and is unaffected: they do
@@ -223,7 +229,9 @@ STNH's 22 in `.source/`
 1. ~~**Settle `spawn_weight` + country flag versus `spawn_design`.**~~
    **Done 2026-08-27** — `spawn_weight`, [86](../decisions/86-static-galaxy-scenario.md).
 2. ~~**One scenario, small, end to end.**~~ **Done** — 95 systems, 21 empires,
-   no defined lanes, coordinates harvested from STNH's default galaxy map.
+   coordinates harvested from STNH's default galaxy map. It shipped with **no**
+   lanes, which cost the 2026-08-27 run; 162 are generated into the file now
+   ([87](../decisions/87-static-map-lanes-are-generated.md)).
 3. ~~**The generator** for the `create_country` initializers.~~ **Done** —
    `ai_empire_block` in `tools/gen_home_systems.py`, plus
    `tools/gen_empire_flags.py` for the country-flag half nobody had noticed was
@@ -231,9 +239,12 @@ STNH's 22 in `.source/`
 4. ~~**The check**, calibrated against vanilla and STNH.~~ **Done** —
    `check_static_galaxy`, floor 0 against vanilla and Ariphaos, 4,265 findings
    against STNH's own maps.
-5. **A live run.** Everything above is structure, and structure has validated
-   clean through six empty galaxies. What to look for, in the order it would
-   fail, is at the end of [decision 86](../decisions/86-static-galaxy-scenario.md).
+5. ~~**A live run.**~~ **Done 2026-08-27, and it moved the question** — three of
+   decision 86's four questions came back good and the fourth, the hyperlanes,
+   failed and is fixed ([87](../decisions/87-static-map-lanes-are-generated.md)).
+   **What is left is one more run**, against the map with lanes in it: check you
+   can fly out of Qo'noS, and that the setup screen comes up at all now the
+   picker is locked ([88](../decisions/88-lock-the-galaxy-picker.md)).
 6. **Then, in this order:** the AI Federation (Sol is Real Space's file — an
    `src/` override or a `vendor.yml` patch, and it is a content call);
    the Terran Empire and its Sol collision, which wants a mirror scenario;

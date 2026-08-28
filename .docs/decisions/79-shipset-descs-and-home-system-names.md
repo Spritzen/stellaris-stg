@@ -5,14 +5,14 @@
 "read the docs against the tree" sweep this continues — three of the four items
 below came from the same place and none from a live run.
 **Follows** [decision 59](59-city-set-cultures-undeclared.md), whose mechanism
-[analysis 2026-08-16](../analysis/2026-08-16.md) read forwards, and which turns
+analysis 2026-08-16 read forwards, and which turns
 out not to run in that direction.
 **Follows** [decision 23](23-real-home-systems.md), whose generator carried two
 bugs nothing had ever asked about.
 
 ## Where these came from
 
-[Analysis 2026-08-16](../analysis/2026-08-16.md) left three items marked
+Analysis 2026-08-16 left three items marked
 *confirmed on disk, waiting on a content call* — its findings 2, 3 and 4. This
 records what happened when each was actually worked. **Two were real and larger
 than recorded; the third was not a defect at all.**
@@ -71,7 +71,7 @@ Both floors are exactly 0, so `check_shipset_descriptions` needs no scope
 
 ## 2. One duplicate body name was three bugs in six systems
 
-[Analysis 2026-08-16](../analysis/2026-08-16.md) finding 4 recorded two bodies in
+Analysis 2026-08-16 finding 4 recorded two bodies in
 40 Eridani both named "Kerkhov's Moon" and called it *"small, certain, one
 edit"*. Swept across all 37 generated home systems it is **seven duplicates in
 six systems**, from **three unrelated causes**, and none of them is an edit to
@@ -128,7 +128,7 @@ place.
 
 ## 3. Finding 2 was not a defect — the fallback is the mechanism
 
-[Analysis 2026-08-16](../analysis/2026-08-16.md) finding 2 read six declared
+Analysis 2026-08-16 finding 2 read six declared
 cultures with no `<key>_city_l01.dds` as six styles the empire designer offers
 with nothing to draw, and asked for a content call: point them at one of the
 orphan city sets, or accept a blank planet surface. **Neither is needed, and the

@@ -6,9 +6,9 @@
 > are adding a source that ships a path something else already does.
 > **Then** — [Harvest order](harvest-order.md) · [decision 27](../decisions/27-merge-semantics-per-directory.md) · [Key-conflict checks](../validation/checks.md#c-two-sources-one-key)
 
-**`make vendor` reports 947 overwrite events — plus 220 paths skipped by the
+**`make vendor` reports 952 overwrite events — plus 220 paths skipped by the
 additive-only rule and 888 files removed by the prune closure** (build of
-2026-08-25). Read them out of `.vendor-manifest.json` rather than recounting by
+2026-08-27). Read them out of `.vendor-manifest.json` rather than recounting by
 hand; they move whenever a source is dropped or an `include:` widens, and this
 section has been stale five times for exactly that reason:
 
@@ -124,7 +124,7 @@ Walshicus sets, **20** from STNH, one from ASB Ironman and one from `src/`'s own
 | Diverse Rooms | `gfx/portraits/asset_selectors/dr_room_textures.txt` | A SECOND file claiming `room_selector`, which STNH's copy of vanilla's file also claims — decided by nothing on disk, and under the reading where DR wins, its 277 unconditional `ruler` rows put every empire in a cave. Its 297 designer rows are merged into `src/`'s single selector instead. [Decision 46](../decisions/46-room-selector-merge.md). |
 
 Beyond these, **`make vendor` removes unreferenced files itself** — 888 of them
-on the build of 2026-08-24,
+on the build of 2026-08-27,
 re-derived on every build by the reachability closure rather than listed here,
 because an 813-line exclude list is correct the day it is written and silently
 wrong after the next `make sources-sync`. See [the clutter closure](../validation/clutter.md).

@@ -60,7 +60,7 @@ finding is read against its own. `make clutter-vanilla` re-measures it.
 `sound` (1.6%, 12.1%) are pruned. `gfx/models` at 5.2% against vanilla's own 4.9%
 is **reported**, because at that rate the check cannot tell our leftovers from
 Paradox's and gating on it would be gating on noise. **700 orphans remain (build
-of 2026-08-25**, against the 706 [decision 43](../decisions/43-clutter-pass.md)
+of 2026-08-27**, against the 706 [decision 43](../decisions/43-clutter-pass.md)
 measured — the difference is art a later `.gfx` reached, not a change to the
 closure**)**, and `make validate` prints the count every run. Read the current
 figure off that line rather than this sentence.

@@ -103,11 +103,13 @@ They were built as **AI-only**, on `playable = stg_never` + `spawn_enabled =
 yes`. There is no such state: `playable` gates the engine's design database, the
 galaxy generator draws from that database, and so the gate kept them out of both
 the picker and the galaxy for four live runs. The gate was removed 2026-08-25 —
-all 99 empires are playable, and all 99 are in the pool the galaxy generator draws from — **though six galaxies running have drawn none of them**, and the 2026-08-26 save proved the pool itself is correct
+all 99 empires are playable, and all 99 are in the pool the galaxy generator draws from — **though six galaxies running drew none of them**, and the 2026-08-26 save proved the pool itself is correct
 ([83](../decisions/83-design-database-is-not-the-cause.md)). The pool was never
 the mechanism: AI empires are created by their home system's initializer, which a
-static galaxy scenario places — [85](../decisions/85-create-country-initializers.md),
-planned in [static-galaxy-plan.md](static-galaxy-plan.md).
+static galaxy scenario places — [85](../decisions/85-create-country-initializers.md).
+That map shipped 2026-08-27 and put 20 AI Trek empires in the galaxy on its first
+run ([86](../decisions/86-static-galaxy-scenario.md),
+[87](../decisions/87-static-map-lanes-are-generated.md)).
 
 ### Species-class localisation
 
@@ -171,10 +173,13 @@ rolling up as Klingons with random ethics and vanilla names reads as a bug.
 This was deferred on the grounds that *"the minors already populate the galaxy,
 so this is about variety now, not emptiness"*.
 
-**That premise is false and has been for every run.** Six galaxies have been
+**That premise was false for every run up to 2026-08-26.** Six galaxies were
 generated with no Trek AI empire in any of them, and the 2026-08-26 save measured
 it directly: every one of the 18 AI empires was a vanilla species class on a
-vanilla name list. Emptiness, not a variety problem.
+vanilla name list. Emptiness, not a variety problem. **The static map answered
+the emptiness half on 2026-08-27** — 20 AI Trek empires, one each
+([87](../decisions/87-static-map-lanes-are-generated.md)) — which leaves this
+item as the variety question it was originally deferred as.
 STNH's own answer to this is worth knowing: it sets `randomized = no` on all its
 named Trek classes exactly as we do, and adds two classes of its own,
 `RANDOMTREK` and `PRE_RANDOMTREK`, with `randomized = yes` so that randomly
@@ -583,8 +588,7 @@ worth having — plus one at a floor of 1 and an eleventh scoped the way
 
 **And a twelfth as of [decision 74](../decisions/74-reachability-checks.md):
 `weight` itself**, which is the field this section calls the whole question and
-which no check asked until the [2026-08-15 audit](../analysis/2026-08-15.md)
-went looking. A site with no positive weight that nothing in script names can
+which no check asked until the 2026-08-15 audit went looking. A site with no positive weight that nothing in script names can
 never be placed; vanilla's floor for that pair is 0 of 123, so it is asked of the
 whole tree. `check_anomalies` gained the same question over `spawn_chance`.
 
@@ -658,7 +662,12 @@ The mechanism, its calibration and the four non-obvious things about it are in
 
 ## Phase 6 — The static galaxy
 
-**PLANNED 2026-08-26. Not started.** The full plan is
+**PLANNED 2026-08-26, shipped and first run 2026-08-27.** Three of its four
+pieces are in the tree and graded by a live save — the scenario
+([86](../decisions/86-static-galaxy-scenario.md)), the generated lane network
+([87](../decisions/87-static-map-lanes-are-generated.md)) and the picker lock
+([88](../decisions/88-lock-the-galaxy-picker.md)). **What is not yet graded is
+the galaxy with lanes in it**, which is the next live run. The full plan is
 [static-galaxy-plan.md](static-galaxy-plan.md); this is what the phase is and why
 it exists.
 
@@ -670,7 +679,7 @@ and the 2026-08-26 save proved the pool is *correct* and still never drawn.
 **The pool was never the mechanism.** `prescripted_countries/` is the player's
 roster. AI empires in a total conversion are **created by their home system's
 initializer**, which a **`static_galaxy_scenario`** places on the map. Vanilla
-does it for the United Nations of Earth in `com_sol_system`; STNH does it 40
+does it for the United Nations of Earth in `com_sol_system`; STNH does it 43
 times — [decision 85](../decisions/85-create-country-initializers.md).
 
 Four pieces: the scenarios, the `create_country` initializers (generated off

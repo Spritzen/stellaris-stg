@@ -195,6 +195,7 @@ which is also where the rule lives: category is in this index, not in the path.
 | [79](79-shipset-descs-and-home-system-names.md) | Thirty shipset descriptions were keyed to the wrong database, six home systems named a body twice, and one finding falsified itself — *continues [78](78-widen-attach-points-and-two-new-checks.md), corrects [23](23-real-home-systems.md)'s generator, closes [59](59-city-set-cultures-undeclared.md) in the reverse direction* |
 | [80](80-selector-textures-that-resolve.md) | The 196 was 117, two thirds of it was never a content call, and the thirteen that were took one policy rather than thirteen decisions — *completes [78](78-widen-attach-points-and-two-new-checks.md)'s second half* |
 | [81](81-city-horizon-band.md) | Vulcan's skyline filled 325 of 400 rows against a family median of 289, and the fix is a resample, not a crop — *falsifies the 2026-08-08 review that left this art alone, supersedes [63](63-city-set-canvas-overflow.md)'s crop* |
+| [89](89-retired-run-write-ups.md) | The five live-run write-ups are retired, and a retired document leaves a provenance label behind, not a link — *removes 2,408 lines and rewrites the 51 references they left, including 7 from live code; adds `check_link_labels` to `make docs`* |
 
 ---
 

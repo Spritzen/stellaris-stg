@@ -70,8 +70,9 @@ ways when checked against 4.4.
 **The 2026-08-26 search found the answer somewhere else again: in `.source/`.**
 STNH is the closest working reference and its files were already on disk. It
 leaves `CUSTOM_EMPIRE_SPAWN_CHANCE` at vanilla's 50 and ships twenty-two
-`static_galaxy_scenario` maps; STG ships none —
-[decision 84](../decisions/84-static-galaxy-is-the-mechanism.md). Three web pages
+`static_galaxy_scenario` maps; STG shipped none until 2026-08-27 and now ships
+one — [decision 84](../decisions/84-static-galaxy-is-the-mechanism.md),
+[86](../decisions/86-static-galaxy-scenario.md). Three web pages
 did carry real mechanism and are worth re-reading before anyone reopens this:
 [Map modding](https://stellaris.paradoxwikis.com/Map_modding) (`spawn_weight`,
 `has_country_flag`, and why a static map must define nearly everything),

@@ -150,7 +150,16 @@ failed the check transiently during a rebuild.
 leaves citations that resolve to nothing while still reading as authoritative.
 
 **Run `make docs` before and after any move.** That is the whole enforcement
-story, and it is why the numbered decision files do not move.
+story, and it is why the numbered decision files stay where they are by default.
+
+**They moved once, on 2026-08-27**, when seven superseded decisions were removed
+and the remaining 88 renumbered to 01–88 with no gaps. That is the measure of
+what a move costs: the number is the address for several hundred citations, a
+number used before that date does not map onto today's index, and the sweep that
+rewrote them introduced a second bug of its own — 415 link *labels* renumbered
+twice, invisible to `make docs` because it validated hrefs and not the text
+beside them. [The index](decisions/README.md) carries the dated note; the label
+check now exists (§10).
 
 ## 10. The docs get the same treatment the mod gets
 
@@ -170,7 +179,7 @@ It asks two kinds of question:
 
 | | |
 |---|---|
-| **Does every reference resolve?** | every markdown link and heading anchor; every `.docs/` path cited from `tools/`, `src/`, `vendor.yml`, the `Makefile` and the root dotfiles; every doc's nav card; every category README |
+| **Does every reference resolve?** | every markdown link and heading anchor; **every numbered link label, against the decision its href names**; every `.docs/` path cited from `tools/`, `src/`, `vendor.yml`, the `Makefile` and the root dotfiles; every doc's nav card; every category README |
 | **Does the documented inventory match the repo?** | `make` targets against the Makefile; the check catalogue against `validate.py`'s own `def` lines; `vendor.yml`'s `*_ack` lists against the checks that read them; the harvest order against `vendor.yml`; every quoted source count |
 
 **The second family exists because a citation can resolve perfectly and still
@@ -181,6 +190,11 @@ harvest-order.md put it, `check_texture_basenames` in no document at all, a
 where the manifest had 49. **Every inventory check compares against a generated
 source of truth**, never a second hand-written list — otherwise it is one more
 thing to keep in sync.
+
+**The label check was added 2026-08-27**, the day a renumbering sweep proved a
+link can resolve perfectly and still say the wrong thing: 415 labels were
+rewritten twice, every href stayed correct, and `make docs` reported clean. A
+number in a link's text now has to agree with the decision the link points at.
 
 **What `make docs` deliberately does not check:** whether the prose is true. No
 tool can. That is what a live run and the next session's eyes are for.

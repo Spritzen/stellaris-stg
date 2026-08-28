@@ -71,7 +71,8 @@ The mod folder is a **symlink** to `stg-build/`, so a rebuild is live the moment
 it finishes. `make link` is needed once.
 
 Run `make validate` after any script edit, `make clutter` after any change to
-what is harvested, `make docs` after any change to documentation.
+what is harvested, `make gen-check` after touching a generator in `tools/`, and
+`make docs` after any change to documentation.
 [All targets](.docs/guides/workflow.md).
 
 **Finished work is committed straight to `main` and pushed to `origin`** — no

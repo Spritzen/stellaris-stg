@@ -10,7 +10,7 @@ this file is where the right figures live.
 
 ## Where this came from
 
-The [2026-08-15 audit](../analysis/2026-08-15.md) re-measured every quantity
+The 2026-08-15 audit re-measured every quantity
 decisions 52–72 state against what is on disk. **Every cross-reference resolved
 — roughly 350 of them, 0 dangling — and every figure in the ship-name and music
 group verified exactly.** The four below are what did not, plus one the audit

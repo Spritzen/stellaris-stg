@@ -7,27 +7,32 @@ DOES EVERY REFERENCE RESOLVE?
 
   1. Does every markdown link in .docs/ (and CLAUDE.md, README.md) resolve --
      file, and heading anchor where one is given?
-  2. Does every `.docs/...` path cited from live code -- tools/, src/,
+  2. Does a link to a decision NAME that decision in its own label? The href is
+     the authority and the label is what a reader believes. On 2026-08-27 a
+     renumbering sweep rewrote 415 labels twice while every href stayed correct,
+     and this tool passed clean over links whose visible text named the wrong
+     decision. That is the failure check_link_labels() exists for.
+  3. Does every `.docs/...` path cited from live code -- tools/, src/,
      vendor.yml, Makefile, and the root dotfiles -- point at a file that exists?
-  3. Does every document carry the nav card the style guide requires?
-  4. Does every category folder have a README that names its files?
+  4. Does every document carry the nav card the style guide requires?
+  5. Does every category folder have a README that names its files?
 
-(1) and (2) are the ones that earned this tool: a planning file named
+(1) and (3) are the ones that earned this tool: a planning file named
 clutter-pass.md was cited from tools/clutter.py and from decision 43 for five
-days after it stopped existing, and nothing anywhere said so. That is why (2)
+days after it stopped existing, and nothing anywhere said so. That is why (3)
 exists at all -- the docs can link to each other perfectly while every file
 header in tools/ points at nothing. See .docs/style-guide.md.
 
 DOES THE DOCUMENTED INVENTORY MATCH THE REPO?
 
-  5. Is every `make` target documented, and does every target the docs name
+  6. Is every `make` target documented, and does every target the docs name
      exist?
-  6. Is every check in validate.py in the catalogue, and vice versa?
-  7. Is every `*_ack` list in vendor.yml actually read by a check?
-  8. Does the harvest order in architecture/ still match vendor.yml?
-  9. Does the source count the docs quote still match vendor.yml?
+  7. Is every check in validate.py in the catalogue, and vice versa?
+  8. Is every `*_ack` list in vendor.yml actually read by a check?
+  9. Does the harvest order in architecture/ still match vendor.yml?
+ 10. Does the source count the docs quote still match vendor.yml?
 
-These are the SAME asymmetry as (2), one level up: a citation that resolves to
+These are the SAME asymmetry as (3), one level up: a citation that resolves to
 a real file can still describe a repo that has moved. All five were added on
 2026-08-09 after a documentation pass found one live instance of each --
 notably Cinematic Camera sitting four positions from where harvest-order.md
@@ -82,6 +87,7 @@ CATEGORY_DIRS = ["guides", "architecture", "validation", "planning",
                  "reference", "decisions", "analysis", "runs"]
 
 LINK = re.compile(r"\[[^\]]*\]\(([^)\s]+)(?:\s+\"[^\"]*\")?\)")
+LABELLED_LINK = re.compile(r"\[([^\]]*)\]\(([^)\s]+)(?:\s+\"[^\"]*\")?\)")
 CODE_CITE = re.compile(r"\.docs/[A-Za-z0-9_./-]*[A-Za-z0-9_-]")
 HEADING = re.compile(r"^#{1,6}\s+(.*?)\s*$", re.M)
 FENCE = re.compile(r"^```.*?^```", re.M | re.S)
@@ -183,6 +189,60 @@ def check_links() -> int:
                 if frag not in anchors.get(target, set()):
                     errors.append(f"{f.relative_to(REPO)}: no heading "
                                   f"'#{frag}' in {path_part}")
+    return n
+
+
+# A link whose href names a decision file: `[... 77 ...](../decisions/77-slug.md)`.
+# The label is the half no other check reads, and on 2026-08-27 a renumbering
+# sweep rewrote 415 of them twice while every href stayed correct -- `make docs`
+# passed clean over links whose visible text named the wrong decision. The href
+# is the authority; a number in the label has to agree with it.
+DECISION_HREF = re.compile(r"(?:^|/)(\d{2})-[a-z0-9-]+\.md$")
+# Only labels that are ABOUT a decision number are read. A bare "[77]", a range
+# "[76]-[80]", or anything saying "decision 77" is a claim about which decision
+# this is; "[230 attach points]" and "[the 2026-08-08 review]" are not, and
+# reading a number out of those is how this check would start lying
+# (.docs/validation/check-design.md rule 8 -- the written form is part of the
+# name). Dates go first, so a label may carry one without being read as one.
+DATE_IN_LABEL = re.compile(r"\d{4}-\d{2}-\d{2}")
+LABEL_IS_NUMBER = re.compile(r"^[\s\d,&/:;.–—-]*\d[\s\d,&/:;.–—-]*$")
+LABEL_SAYS_DECISION = re.compile(r"decisions?\s*§?\s*((?:\d{1,3})"
+                                 r"(?:\s*(?:[-–—,]|and|to|through)\s*\d{1,3})*)",
+                                 re.I)
+LABEL_NUM = re.compile(r"\d{1,3}")
+
+
+def check_link_labels() -> int:
+    """A link to a decision does not name a different decision in its text.
+
+    The href is the authority: `make docs` already proves it resolves, and the
+    label is the half a reader actually believes. A label naming several
+    numbers passes if any of them is the target -- "decisions 76 through 80" is
+    one link, deliberately.
+    """
+    n = 0
+    for f in md_files():
+        text = strip_code(f.read_text(encoding="utf-8-sig"))
+        for m in LABELLED_LINK.finditer(text):
+            label, href = m.group(1), m.group(2)
+            if href.startswith(("http://", "https://", "mailto:")):
+                continue
+            target = DECISION_HREF.search(href.partition("#")[0])
+            if not target:
+                continue
+            plain = DATE_IN_LABEL.sub(" ", label)
+            says = LABEL_SAYS_DECISION.search(plain)
+            if says:
+                nums = LABEL_NUM.findall(says.group(1))
+            elif LABEL_IS_NUMBER.match(plain):
+                nums = LABEL_NUM.findall(plain)
+            else:
+                continue
+            n += 1
+            if not any(x.zfill(2) == target.group(1) for x in nums):
+                errors.append(f"{f.relative_to(REPO)}: link labelled "
+                              f"'{label}' points at decision "
+                              f"{target.group(1)} ({href})")
     return n
 
 
@@ -500,6 +560,7 @@ def check_source_count() -> int:
 
 def main() -> int:
     link_n = check_links()
+    label_n = check_link_labels()
     cite_n = check_code_citations()
     nav_n = check_nav_cards()
     dec_n = check_decision_heads()
@@ -513,6 +574,7 @@ def main() -> int:
 
     print(f"{DIM}docs: {nav_n} document(s) for a nav card, {dec_n} decision(s) "
           f"for a head and an index row, {link_n} internal link(s), "
+          f"{label_n} numbered link label(s), "
           f"{cite_n} citation(s) from code, {cat_n} category folder(s), "
           f"{orph_n} unlinked  |  inventory: {mk_n} make target(s), "
           f"{chk_n} check(s) against the catalogue, {ack_n} ack list(s), "

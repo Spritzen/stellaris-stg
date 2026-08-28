@@ -18,7 +18,7 @@ culture one database over, and it is the same defect
 on_actions database.
 
 **`check_archaeology` did not ask it.** The
-[2026-08-15 audit](../analysis/2026-08-15.md) read the check and found the
+2026-08-15 audit read the check and found the
 substring `weight` nowhere in it: it asked about pictures, loc, `stages = N`,
 stage events, rune icons and `RANDOM_EVENTS`, and stopped. The same asymmetry
 existed in `check_anomalies`, which never looked at `spawn_chance` — a field

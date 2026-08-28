@@ -21,22 +21,19 @@ evidence for anything in this section — the standing lesson of decisions
 [07](../decisions/07-stnh-art-shadows-vanilla.md) and
 [40](../decisions/40-event-picture-geometry.md).
 
-> **Read [ufp-run-remediation.md](ufp-run-remediation.md) and
-> [analysis 2026-08-16](../analysis/2026-08-16.md) before working any item
-> below.** Between them, the Federation run of 2026-08-10
-> ([its plan](../runs/ufp-long-campaign.md)) and the Vulcan run of 2026-08-22
-> ([its plan](../runs/vulcan-long-campaign.md)) answered most of this section, and
-> several items now have a confirmed cause on disk rather than an eyes-only
-> question — so the thing to do next is *grade a fix*, not re-diagnose.
+> **The Federation run of 2026-08-10 and the Vulcan run of 2026-08-22 answered
+> most of this section between them**, and several items now have a confirmed
+> cause on disk rather than an eyes-only question — so the thing to do next is
+> *grade a fix*, not re-diagnose. Both runs' write-ups have since been retired;
+> what each established is stated in full in the decision it produced, and the
+> items below name them.
 >
 > **Both planned runs ended before the long half of their plan.** The dig sites,
 > the anomalies, the story events and every hull above corvette are **unreached
-> twice** — unmeasured, not negative. The long 2026-08-24 run had **no run plan
-> and no analysis**, and reported only what the spawn-chance investigation
-> records, so it adds nothing here either: **the next run's first job is a plan, then
-> length**. [The 2026-08-15 audit](../analysis/2026-08-15.md), finding 1;
-> [analysis 2026-08-16](../analysis/2026-08-16.md), "What this run could not
-> reach".
+> in every run since**, which is unmeasured, not negative. The long runs of
+> 2026-08-24 onward had **no run plan and no analysis**, and reported only what
+> the empire-spawn investigation records, so they add nothing here either:
+> **the next run's first job is a plan, then length.**
 >
 > **The three questions the Vulcan run opened are all closed** as of 2026-08-22
 > ([decision 79](../decisions/79-shipset-descs-and-home-system-names.md)) and
@@ -64,7 +61,7 @@ off now, so keep it that way.
 > the lottery is not how a total conversion places AI empires at all: they are
 > **created by their home system's initializer**, which a **static galaxy
 > scenario** puts on the map — vanilla's own `com_sol_system` does it for the
-> United Nations of Earth, and STNH does it 40 times
+> United Nations of Earth, and STNH does it 43 times
 > ([85](../decisions/85-create-country-initializers.md),
 > [84](../decisions/84-static-galaxy-is-the-mechanism.md)).
 >
@@ -100,7 +97,7 @@ neither moved the number:
 | lever | in since | what the run says |
 |---|---|---|
 | `CUSTOM_EMPIRE_SPAWN_CHANCE = 1000` — 100% of AI slots draw from the prescripted pool | 2026-08-24 | **three** galaxies at 100%, zero drawn. At 100% the die roll is not the variable |
-| `playable = stg_never` removed from the 79 minors, so they load into the design database | 2026-08-25 | pool went from 22 to 100 designs. Still zero |
+| `playable = stg_never` removed from the minors, so they load into the design database | 2026-08-25 | pool went from 22 to 100 designs. Still zero |
 | — | 2026-08-26 | **the save proves the pool is right**: 99 `design=` blocks, `spawn_enabled=yes` on each, and 1 of 77 countries prescripted. The database is not the cause ([83](../decisions/83-design-database-is-not-the-cause.md)) |
 
 **Verified on disk after the run**, so none of these is still a candidate: the
@@ -146,8 +143,8 @@ community advice on the same symptom says the same thing from the other end —
 starting systems that lock each other out.
 
 **The hypothesis was written down in 2026-08-10 and ruled out on a miscount.**
-[ufp-run-remediation.md](ufp-run-remediation.md) item 4's elimination table
-carries the row *"Excluded because their home systems are hand-placed — 23 of
+The 2026-08-10 Federation remediation plan's item 4 carried an elimination table
+with the row *"Excluded because their home systems are hand-placed — 23 of
 vanilla's own 33 spawn-eligible empires also carry an `initializer`, and those
 spawn as AI routinely — **Ruled out**"*. That counted the `initializer` **line**.
 **18 of those 23 are `initializer = ""`.** The real figure is 5 of 33, all five
@@ -299,8 +296,8 @@ as badly as the corvette's third gun did.
 > either way. Grading the mounts above corvette is now a live question rather
 > than an unanswerable one, and it is the single most valuable unmeasured thing
 > in the project.
-> [ufp-run-remediation.md](ufp-run-remediation.md), item 1. The check that now
-> guards the repair is [78](../decisions/78-widen-attach-points-and-two-new-checks.md);
+> Recorded as item 1 of the 2026-08-10 Federation remediation plan. The check
+> that now guards the repair is [78](../decisions/78-widen-attach-points-and-two-new-checks.md);
 > a clean check only says the locators exist.
 
 ### The ruler clothes
@@ -336,15 +333,15 @@ falsified the earlier index model.
 > thirteen decisions.** Every row now resolves, and
 > `check_selector_texture_files` holds it there, so a ruler that still looks
 > wrong is no longer explained by a missing garment.
-> [Decision 80](../decisions/80-selector-textures-that-resolve.md),
-> [ufp-run-remediation.md](ufp-run-remediation.md) item 2.
+> [Decision 80](../decisions/80-selector-textures-that-resolve.md); opened as
+> item 2 of the 2026-08-10 Federation remediation plan.
 >
 > **And the clothes-slider wrap is arithmetic, not a defect.** The designer's
 > slider runs to 499; the male pool is 495 wide and the female 472, so
 > 496–499 address nothing — exactly the range the 2026-08-10 run named.
 > **Prediction the next run can falsify in a minute: on a female portrait the
-> wrap begins at ~472, on a male at ~496.**
-> [Analysis 2026-08-16](../analysis/2026-08-16.md).
+> wrap begins at ~472, on a male at ~496.** Measured for the 2026-08-22 Vulcan
+> run.
 
 ### The 2026-08-08 warning triage
 
@@ -364,8 +361,8 @@ needed fixing; the *expectation* did.
 > **The two figures count different things, and a run plan must carry both.** The
 > player lists **55 declarations**; the rotation is **27 playlist entries**,
 > reproducing [decision 62](../decisions/62-music-rotation-dedupe.md) exactly. A
-> run reporting "approx. 70 tracks" is eyeballing the 55.
-> [ufp-run-remediation.md](ufp-run-remediation.md), item 6.
+> run reporting "approx. 70 tracks" is eyeballing the 55. Recorded as item 6 of
+> the 2026-08-10 Federation remediation plan.
 
 What is still ungraded by ear: whether the four chosen main-theme titles sit
 right beside the eighteen derived ones.
@@ -569,9 +566,8 @@ measurement stopped one question short of the mechanism.***
   standing policy, not a defect.
 
 > **What generalises, and it has now happened twice.** [Decision
-> 83](../decisions/78-widen-attach-points-and-two-new-checks.md) struck
-> [analysis 2026-08-16](../analysis/2026-08-16.md) finding 5 for the same
-> reason this strikes finding 2: **both were measurements taken without reading
+> 78](../decisions/78-widen-attach-points-and-two-new-checks.md) struck the
+> 2026-08-22 Vulcan run's finding 5 for the same reason this strikes finding 2: **both were measurements taken without reading
 > the thing that had already measured them** — a helper in `tools/validate.py`
 > in one case, three lines of vanilla's own file header in the other. Before
 > writing a check for a finding, read vanilla's header and the check next door.
@@ -584,9 +580,8 @@ unnamed ones do.
 ## Log-level leftovers
 
 *Init-window groups that are third-party or reviewed, listed with their share of
-the 2026-08-07 run's 1,308 records — the run that triaged them.
-[Analysis 2026-08-16](../analysis/2026-08-16.md) has the current per-group
-breakdown of the init window, which has not changed shape since.*
+the 2026-08-07 run's 1,308 records — the run that triaged them. The init window
+has not changed shape since; [status.md](status.md) carries the current totals.*
 
 - **ASB's projectile reimplementations — 213 records, the largest class left.**
   `alt_*` and `ap_*` in `gfx/projectiles/` redeclare vanilla names and the engine

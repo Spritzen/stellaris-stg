@@ -4,9 +4,9 @@
 WHY THIS EXISTS. `tools/gen_star_names.py` subtracts names already pooled by
 reading the BUILT tree -- which `make vendor` fills with the generator's own
 previous output. A second run therefore subtracted its own 580 names and wrote a
-pool a third the size. That went unnoticed until a live run reported unlocalised
-nebula names and somebody re-ran the tool by hand
-(.docs/planning/ufp-run-remediation.md, item 3).
+pool a third the size. That went unnoticed until the 2026-08-10 Federation run
+reported unlocalised nebula names and somebody re-ran the tool by hand
+(.docs/decisions/78-widen-attach-points-and-two-new-checks.md).
 
 SIX OF THE THIRTEEN GENERATORS READ `stg-build/`, and none of them is invoked by
 any `make` target -- so nothing has ever established that the other seven are
@@ -207,8 +207,8 @@ def main() -> int:
         print(f"{DIM}      A generator whose output differs from `src/` has "
               f"either drifted behind its inputs or is feeding on itself. "
               f"Re-run it deliberately and read the diff before committing — "
-              f"see .docs/planning/ufp-run-remediation.md item 3 for what that "
-              f"looked like the one time it happened.{RESET}")
+              f"see .docs/decisions/78-widen-attach-points-and-two-new-checks.md "
+              f"for what that looked like the one time it happened.{RESET}")
     if not broke and not drifted:
         print(f"{GREEN}ok{RESET} — every generator checked reproduces src/ "
               f"exactly")

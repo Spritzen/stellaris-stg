@@ -32,7 +32,7 @@ does not exist, and on a destroyer `part2` is a corvette's, ~3 units of z from
 destroyer's stern mounts as plainly wrong and the log named all eight points.
 hull_entities() declares the slots past the first onto `part1`, where the
 `empty_mesh` sections' whole-hull gun coordinates already assume they are. See
-.docs/planning/ufp-run-remediation.md, item 1.
+.docs/decisions/77-hull-section-attach-points.md.
 
 THE MIDDLE RULE IS THE 2026-08-08 ONE, and it exists because the bounding-box
 spread was still a guess wherever the artist had already answered the question.
@@ -382,7 +382,7 @@ def hull_entities(slots: dict, ents: dict) -> dict:
     whole job is to have a `part1`. Declaring one anyway would move the bow
     section of 293 entities that render correctly today, to fix nothing. The
     log names `part2`, `part3` and `frame_ship`, and those are what this
-    writes. See .docs/planning/ufp-run-remediation.md, item 1.
+    writes. See .docs/decisions/77-hull-section-attach-points.md.
     """
     out = {}
     for name, (mesh, _clone) in ents.items():

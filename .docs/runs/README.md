@@ -18,16 +18,37 @@ what it would waste, which is a decision to make while the game is still closed:
 and no amount of after-the-fact reading recovers an hour spent on the wrong
 empire.
 
-| File | |
-|---|---|
-| [ufp-long-campaign.md](ufp-long-campaign.md) | **A long Federation playthrough**, written 2026-08-09 for the first run since decisions 69–72 landed. Survey-led, because the anomalies, dig sites and story events have never been in front of the game. **Run 2026-08-10**; observations are inline, and what to do about them is [the remediation plan](../planning/ufp-run-remediation.md) |
-| [vulcan-long-campaign.md](vulcan-long-campaign.md) | **A long Confederacy of Vulcan playthrough**, written 2026-08-11 for the first run against the build carrying decisions 76 and 77. Survey-led again — the dig sites went unreached last time — and it grades the hull attach points on a second shipset, the ruler clothes on a second empire, and the story-event gate from outside the Federation. **Run five times** — 2026-08-22 (cut short at ~26 min), 2026-08-24, twice on 2026-08-25, and 2026-08-26. Only the first was written up ([analysis 2026-08-16](../analysis/2026-08-16.md)); the other four live in [status.md](../planning/status.md)'s baseline and in [decision 83](../decisions/83-design-database-is-not-the-cause.md). The long half of the plan — dig sites, anomalies, story events, every hull above corvette — is **still unreached after all five**, and the plan was re-run rather than replaced because the question it kept hitting is [whether the galaxy is Trek at all](../planning/open-questions.md). **That question now has an answer and a plan of its own** ([static-galaxy-plan.md](../planning/static-galaxy-plan.md)), so the next run of this file can finally be about the checklist rather than the galaxy |
+**This folder is empty, and that is the normal state.** A run plan is spent when
+its run is over, and the two that stood here — a long Federation playthrough run
+2026-08-10, and a long Confederacy of Vulcan playthrough run five times between
+2026-08-22 and 2026-08-26 — were retired on 2026-08-27 once every observation
+in them had landed in a decision
+([89](../decisions/89-retired-run-write-ups.md)). What they found is in decisions
+[76](../decisions/76-random-names-are-loc-keys.md)–[80](../decisions/80-selector-textures-that-resolve.md)
+and [83](../decisions/83-design-database-is-not-the-cause.md); what they never
+reached is in [status.md](../planning/status.md) under *what still has no in-game
+evidence at all*.
 
-**A run plan is spent when its run is over.** Leave the file in place, dated, and
-write a new one for the next empire rather than editing this one into something
-that no longer describes any run that happened.
+**Write a new plan rather than re-running an old one.** The Vulcan plan was
+re-run five times because each session was cut short on the same question —
+whether the galaxy is Trek at all — so nothing further down its checklist was
+ever reached. That question now has an answer and a plan of its own
+([static-galaxy-plan.md](../planning/static-galaxy-plan.md)), and the 2026-08-27
+Klingon run confirmed the mechanism works
+([87](../decisions/87-static-map-lanes-are-generated.md)). **The next plan
+written here can finally be about the checklist rather than the galaxy** — the
+hulls above corvette, the dig sites, the anomalies and the story events, none of
+which any run has reached.
 
-**The Vulcan plan is the standing exception and says why in its own row above.**
-Five runs have now used it because each was cut short on the same question, so
-nothing further down the checklist has ever been reached. It is annotated in
-place, not rewritten.
+## What a run plan owes the run
+
+- **Name the empire, and say what it cannot reach.** That half is only cheap to
+  know in advance.
+- **Order the checklist by what a short session would still answer.** Every run
+  so far has ended earlier than planned.
+- **Leave room for observations inline**, under the item they answer, in a fenced
+  block opening with `#OBSERVATIONS`. An observation under the wrong item is
+  worth much less than one under the right item, because the item carries the
+  expectation it should be read against.
+- **State the build under test** — the `.vendor-manifest.json` stamp and the
+  commit — so the write-up can say which fixes the run actually carried.

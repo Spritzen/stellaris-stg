@@ -21,13 +21,13 @@ this records those three and what measuring them changed.
 **Two of the ten closed themselves on measurement and needed no work at all**,
 which is recorded here so nobody re-opens them:
 
-- **[Analysis 2026-08-16](../analysis/2026-08-16.md) finding 5** — the six
+- **Analysis 2026-08-16 finding 5** — the six
   `pd_tree_of_life_01` city layers at 4×4 — is not a defect and was already
   answered in code. `_vanilla_family_sizes()` in `tools/validate.py` records
   that **vanilla itself ships `ai_01_city_l01..l05` at 4×4 to mean "this layer
   is empty"** and that Planetary Diversity uses the same idiom. `.source/`
   ships them at 4×4. Struck.
-- **[Analysis 2026-08-16](../analysis/2026-08-16.md) finding 6** — the nine
+- **Analysis 2026-08-16 finding 6** — the nine
   `Failed to find entity … for attachment` records, described there as "never
   triaged" — **were** triaged, in
   [decision 35](35-attach-edges-into-pruned-art.md), and the four referencing
@@ -45,7 +45,7 @@ which is recorded here so nobody re-opens them:
 why: over all 317 sizes with `section_slots`, **41 vanilla findings against 147
 mod findings**, "not a signal anyone can act on". Both
 [checks.md](../validation/checks.md) and
-[ufp-run-remediation](../planning/ufp-run-remediation.md) item 1 then said the
+the 2026-08-10 Federation remediation plan item 1 then said the
 hull family had nothing guarding it.
 
 **Re-measured against the build of 2026-08-11, that whole population is 12** — 7
@@ -88,10 +88,10 @@ tree takes the check from 0 to **267 findings**, including hulls
 
 ## 2. `check_selector_texture_paths` — the syntax half, landed alone
 
-[ufp-run-remediation](../planning/ufp-run-remediation.md) item 2 specified this
-check on 2026-08-10 and it was never written. The Vulcan run of 2026-08-22 then
+The 2026-08-10 Federation remediation plan specified this check as its item 2
+and it was never written. The Vulcan run of 2026-08-22 then
 logged three of its findings, and
-[analysis 2026-08-16](../analysis/2026-08-16.md) finding 1 established that the
+analysis 2026-08-16 finding 1 established that the
 29 patches of 2026-08-10 had all landed in the **male** master selector while the
 female file — carrying the exact female mirror of the seven president rows — was
 never touched.
@@ -130,7 +130,7 @@ rule in its purest form: the log is a sample of the rows somebody scrolled past.
 output — **and none of them is invoked by any `make` target.** That is the exact
 loop that broke `gen_star_names.py`, which subtracted its own 580 names and wrote
 a pool a third the size on its second run
-([ufp-run-remediation](../planning/ufp-run-remediation.md) item 3). Nothing had
+(the 2026-08-10 Federation remediation plan item 3). Nothing had
 ever established that the other five were safe.
 
 `tools/gen_check.py` runs each generator over the tree it already produced and

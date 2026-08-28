@@ -5,7 +5,7 @@
 # ship-size buckets are rebuilt for VANILLA's ladder -- STNH's file buckets by
 # its own (saber, sovereign, steamrunner) and those keys mean nothing here.
 #
-# One of the 79 minor powers converted from STNH's prescripted empires.
+# One of the 77 minor powers converted from STNH's prescripted empires.
 
 STG_CHERONITE = {
 	category = "Humanoid"

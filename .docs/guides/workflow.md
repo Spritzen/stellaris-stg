@@ -65,9 +65,10 @@ it is safe to run against a dirty tree.
 `DEEP=1` inserts a `make vendor` between two runs of each generator that reads
 the built tree. That is the only level that can catch a generator **feeding on
 its own output** — the defect that made `gen_star_names.py` write a pool a third
-the size on its second run
-([ufp-run-remediation](../planning/ufp-run-remediation.md) item 3) — and it costs
-a full build per generator.
+the size on its second run, found after the 2026-08-10 Federation run reported
+unlocalised nebula names
+([decision 78](../decisions/78-widen-attach-points-and-two-new-checks.md)) — and
+it costs a full build per generator.
 
 ## `make vendor` also deletes
 

@@ -3,7 +3,7 @@
 **Status:** decided, 2026-08-27
 **Answers** [decision 86](86-static-galaxy-scenario.md)'s question 2, which named
 this shape as "the single largest unknown in what shipped" and named the right
-fallback. 93 is answered, not falsified.
+fallback. 86 is answered, not falsified.
 **Corrects** [the plan](../planning/static-galaxy-plan.md)'s inference that a
 lane-less STNH map means the engine builds the network, and the same inference
 in `tools/gen_static_galaxy.py` and in `check_static_galaxy`'s own docstring.
@@ -60,7 +60,7 @@ STG vendors neither — `connect_neighbour_stars` appears nowhere in `stg-build/
 > and not for us, look for the script that source runs beside it** before
 > changing the parameter.
 
-`num_hyperlanes` was never the dial 93 hoped it might be: it is the density the
+`num_hyperlanes` was never the dial 86 hoped it might be: it is the density the
 setup screen offers for **random** generation, so `random_hyperlanes = no` makes
 it inert. It is left at 04's `{ min = 0.5 max = 1.0 }` untouched, so that the
 next run grades the lanes and nothing else.
@@ -101,7 +101,7 @@ check — it fails the build.
   is deliberately absent ([86](86-static-galaxy-scenario.md)), so 20 is the
   number that means the mechanism works end to end.
 - **Exactly one Klingon Empire** while playing the Klingons. The
-  `prescripted_flags` guard fired — the one thing in 93 that could not be
+  `prescripted_flags` guard fired — the one thing in 86 that could not be
   validated statically.
 - **No randomly generated empire appeared.** The four `%ADJECTIVE%` countries
   all carry primitive governments, which is `primitive_odds = 1.0`, not a breach

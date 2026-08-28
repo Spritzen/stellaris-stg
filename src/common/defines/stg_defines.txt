@@ -4,12 +4,12 @@
 # Vanilla ships 50 on a `10 = 1%` scale (00_defines.txt:972): a 5% chance that
 # any given AI slot is filled from the prescripted pool rather than randomly
 # generated. 1000 is 100%, which is safe here only because decision 13 left the
-# prescripted pool all-Trek and the 79 minor powers made it deep enough to
+# prescripted pool all-Trek and the 77 minor powers made it deep enough to
 # fill a galaxy.
 #
-# THIS IS NOT A CLOSED QUESTION. THREE galaxies have now been generated at
-# 1000 and all three contained zero Trek AI empires. The
-# define was a real defect and is a real fix; it was never the cause. Do not
+# IT WAS NEVER THE CAUSE. THREE galaxies were generated at 1000 and all three
+# contained zero Trek AI empires; the galaxy only filled once STG shipped a
+# static map (below). The define was a real defect and is a real fix. Do not
 # read this file as the answer to "why is there no Trek in the galaxy", and do
 # not raise or lower the value looking for one -- at 100% the draw rate is no
 # longer the variable.
@@ -23,12 +23,17 @@
 # galaxy, vendored at .source/688086068/ -- leaves this define at vanilla's 50
 # and gets its empires from twenty-two static_galaxy_scenario maps instead. This
 # lottery sprinkles the occasional preset into an otherwise random galaxy; it is
-# not how a total conversion places a named cast, and STG ships no map at all.
+# not how a total conversion places a named cast.
 #
 # What DOES place them: the home system's initializer creates the empire with
 # `create_country`, and a static_galaxy_scenario puts that system on the map.
-# Vanilla's own com_sol_system does it for the United Nations of Earth.
+# Vanilla's own com_sol_system does it for the United Nations of Earth. STG
+# SHIPS THAT MAP NOW -- 95 systems, 21 empires -- and the 2026-08-27 Klingon run
+# generated a galaxy holding 20 AI Trek empires, one each. The mechanism works
+# and this define is not part of it.
 # .docs/decisions/85-create-country-initializers.md
+# .docs/decisions/86-static-galaxy-scenario.md
+# .docs/decisions/87-static-map-lanes-are-generated.md
 # .docs/planning/static-galaxy-plan.md
 # .docs/decisions/84-static-galaxy-is-the-mechanism.md
 # .docs/planning/open-questions.md, "Whether the prescripted pool can ever be

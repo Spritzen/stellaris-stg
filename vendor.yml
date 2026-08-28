@@ -1542,7 +1542,7 @@ patches:
   # and every target file is present on disk: the defect is the reference. A
   # texture that fails to load falls back, which is why high clothes indices
   # redrew as index 1 in the empire designer.
-  # See .docs/planning/ufp-run-remediation.md, item 2.
+  # See .docs/decisions/78-widen-attach-points-and-two-new-checks.md.
   # --- Six events declared in the wrong scope for the hook that fires them ---
   # `on_building_complete` and `on_building_upgraded` fire in vanilla's COLONY
   # scope, and every one of the 30-odd vanilla events on those two hooks is a
@@ -1551,7 +1551,8 @@ patches:
   # group in that log. Each body already wraps its work in `planet = { ... }`,
   # which is a transition only a carrier scope needs -- so the bodies were
   # written for the type they should have been declared as.
-  # See .docs/planning/ufp-run-remediation.md, item 5.
+  # Confirmed fixed in game by silence on 2026-08-22: 98 records, then zero.
+  # See .docs/planning/status.md, the `error.log` baseline.
   - path: events/pd_planetary_infesters_events.txt
     source: "Planetary Diversity"
     why: >-
@@ -1632,7 +1633,7 @@ patches:
       with no extension at all and one named a real texture under brunali/ that
       exists only under norcadian/; the Vulcan run logged three of them at 14:11
       and every target is on disk. Now held by check_selector_texture_paths.
-      See .docs/analysis/2026-08-16.md finding 1.
+      See .docs/decisions/78-widen-attach-points-and-two-new-checks.md.
     replace:
       - from: "human_terran_ruler_female_1.dds.dds"
         to: "human_terran_ruler_female_1.dds"
