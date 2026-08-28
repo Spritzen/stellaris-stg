@@ -5891,6 +5891,198 @@ def _declared_country_flags() -> set[str]:
     return flags
 
 
+def check_src_key_contention() -> int:
+    """Two files WE wrote declaring one identifier, in a database vanilla never does.
+
+    THE HOLE THIS FILLS, and it is a hole in a check that reports a number.
+    `check_key_conflicts` asks whether two SOURCES claim one key -- its `multi`
+    gate is `len({s for s in mods.values()}) > 1`. Two files from ONE source can
+    never satisfy it, so a key `src/` contests with itself is invisible to it,
+    and `src/` is the one source whose every file we chose.
+
+    IT WAS HIDING THREE, ALL IN `common/name_lists`, AND TWO ARE MAJOR POWERS:
+
+        STG_CAITIAN   stg_caitian.txt   vs stg_minor_caitian.txt
+        STG_KLINGON   stg_klingon.txt   vs stg_minor_klingon.txt
+        STG_VULCAN    stg_vulcan.txt    vs stg_minor_vulcan.txt
+
+    Each pair is a hand-written power list and an STNH-converted minor list that
+    happened to pick the same key, so one of the two never reaches the game --
+    and which one is decided by filename sort, not by anybody's intent.
+
+    THE KEY IS THE IDENTIFIER HERE, WHATEVER `WHOLE_TEXT_DIRS` SAYS. That table
+    lists `common/name_lists` as a database where the FILE is the unit, and
+    vanilla falsifies it in its own tree: **19 of vanilla's 76 name-list files
+    declare a key that is not their filename** -- `AQU1.txt` declares `AQUATIC1`,
+    `Graygoo.txt` declares `graygoo` -- and `28_biogenesis.txt` declares TWO.
+    A prescripted country names the KEY, so two files claiming one key contest
+    it however they are named. The table is left as it is rather than edited
+    here, because `check_key_conflicts` is calibrated against it; the correction
+    is recorded in .docs/decisions/91-src-contests-its-own-name-lists.md.
+
+    THE SCOPE IS `src/`, AND IT IS A CALIBRATION RESULT (rule 11). Build-wide,
+    exactly **16** keys are contested by two files of one source. **13 belong to
+    source mods and are their own design** -- PD's `zzz_`-prefixed decision
+    overrides, and `common/inline_scripts/` fragments, where the depth-0 key is
+    a chunk of script and not a name at all. Second-guessing those is what
+    decision 11 forbids. The other 3 are ours.
+
+    THE DATABASE GATE IS DERIVED FROM VANILLA AT RUN TIME (rule 4): a database
+    is only asked about if **vanilla never contests an identifier in it**. Over
+    the 16 databases `src/` writes into, vanilla's count is 0 in fourteen of
+    them -- including `common/name_lists`, 0 across 78 keys in 76 files -- and
+    non-zero in exactly two, `common/static_modifiers` (7) and `common/traits`
+    (1), which are therefore not asked. Nothing is hand-listed, so a game patch
+    that makes vanilla start contesting a database silently stops us asking
+    about it, which is the right direction to fail.
+    """
+    src_common = REPO / "src" / "common"
+    if not src_common.is_dir():
+        return 0
+    key_re = re.compile(r"^([A-Za-z_][\w'.-]*)\s*=\s*\{", re.M)
+
+    def survey(root: Path) -> tuple[dict, dict]:
+        claims: dict[tuple[str, str], set[str]] = collections.defaultdict(set)
+        types: dict[str, set[str]] = collections.defaultdict(set)
+        for f in sorted(root.rglob("*.txt")):
+            db = f.relative_to(root).parent.as_posix()
+            if db.split("/")[0] in ("defines", "unchecked_defines"):
+                continue
+            counts = collections.Counter(key_re.findall(_strip_comments(_read(f))))
+            for k, c in counts.items():
+                if c > 1:
+                    types[db].add(k)      # a TYPE key: it repeats inside one file
+                claims[(db, k)].add(f.name)
+        return claims, types
+
+    def contested(claims, types) -> collections.Counter:
+        out: collections.Counter = collections.Counter()
+        for (db, k), files in claims.items():
+            if len(files) > 1 and k not in types[db]:
+                out[db] += 1
+        return out
+
+    van_claims, van_types = survey(GAME_DIR / "common")
+    van_bad = contested(van_claims, van_types)
+    ours, our_types = survey(src_common)
+
+    bad, n = [], 0
+    for (db, k), files in sorted(ours.items()):
+        if k in our_types[db]:
+            continue
+        n += 1
+        if len(files) < 2 or van_bad[db]:
+            continue          # vanilla contests this database itself; not our question
+        fios = f"common/{db}" in FIOS_DIRS
+        win = sorted(files)[0] if fios else sorted(files)[-1]
+        bad.append((db, k, sorted(files), win, fios))
+
+    for db, k, files, win, fios in bad:
+        warnings.append(
+            f"src/common/{db}: WE declare '{k}' in {len(files)} differently-named "
+            f"files ({', '.join(files)}), so one of them never reaches the game. "
+            f"common/{db} is {'FIOS' if fios else 'LIOS'}, so the "
+            f"{'FIRST' if fios else 'LAST'} filename in sort order wins: '{win}'. "
+            f"Vanilla contests no identifier in this database at all. Both files "
+            f"are ours, so this is not a merge to confirm — it is one list to keep "
+            f"and one to fold in or drop. "
+            f"See .docs/decisions/91-src-contests-its-own-name-lists.md.")
+    return n
+
+
+def check_anomaly_targets() -> int:
+    """Does `add_anomaly`'s `target` name a country that can still exist there?
+
+    WHY THIS EXISTS. `add_anomaly` runs in PLANET scope, and the planet it runs
+    on is by definition one nobody has claimed -- an anomaly is what a science
+    ship finds on an unsurveyed body. So the current scope's own `owner` is
+    systematically empty in exactly the place this effect is written, and a
+    `target = owner` there resolves to nothing: the anomaly is silently not
+    added, and the player never learns there was one.
+
+    THE LOG SAYS IT ONCE AND ONLY IF SOMEONE SURVEYS THAT EXACT PLANET. The
+    2026-08-25 evening run caught a single record --
+
+        eventscope.cpp:3383  add_anomaly: Unable to resolve country from
+        'owner' (country scope) at events/!!!!!!ariphaos_precursor_cosmic.txt
+        line: 127
+
+    -- which is [rule 6](.docs/validation/check-design.md) in its purest form:
+    one line stands for a whole class nobody opened the screen for.
+
+    WHY THE SCOPE IS `add_anomaly` AND NOT `target =` GENERALLY, which is
+    [rule 11](.docs/validation/check-design.md) and the thing to read before
+    widening it. A bare `target = owner` is NOT wrong in general and a check
+    that said so would be false: vanilla writes one 8 times, on
+    `begin_event_chain` and `start_situation`, where the scope really does have
+    an owner. Measured across both trees, `target =` appears at 3,067 sites in
+    vanilla over 124 effect kinds and 1,171 here over 9. It is `add_anomaly`
+    alone that carries the guarantee of an unowned scope, and vanilla's 29
+    `add_anomaly` targets bear it out: 14 `root`, 8 `solar_system`, 6 `prev`,
+    1 `prevprev`, and **not one** that reads the planet's own ownership.
+
+    THE ALLOWLIST IS DERIVED FROM VANILLA AT RUN TIME rather than written here,
+    so it survives a game patch ([rule 4](.docs/validation/check-design.md)).
+    `from`/`fromfrom` and `event_target:` are accepted alongside it: vanilla
+    happens not to use them on this effect, but each NAMES a scope rather than
+    reading a property of the planet, which is the distinction that matters.
+    `this` is rejected -- `this.owner` is the defect spelled out in full.
+
+    VANILLA'S FLOOR IS 0 OF 29. STG's population is small (2 targets over 29
+    `add_anomaly` sites, the other 27 being the `solar_system_initializers/`
+    form, which takes no target and is not asked about) -- but it is a source
+    mod's defect class, so it grows with the harvest rather than with `src/`.
+    See .docs/decisions/90-add-anomaly-target-scope.md.
+    """
+    blocks = re.compile(r"add_anomaly\s*=\s*\{(.*?)\}", re.S)
+    target = re.compile(r"\btarget\s*=\s*(\S+)")
+
+    def anchors(root: Path) -> set[str]:
+        out: set[str] = set()
+        for f in sorted(root.rglob("*.txt")):
+            t = _read(f)
+            if "add_anomaly" not in t:
+                continue
+            for m in blocks.finditer(_strip_comments(t)):
+                tm = target.search(m.group(1))
+                if tm:
+                    out.add(tm.group(1).strip('"').split(".")[0].lower())
+        return out
+
+    allowed = anchors(GAME_DIR) | {"from", "fromfrom", "fromfromfrom"}
+    allowed.discard("this")
+
+    bad, n = [], 0
+    for f in sorted(BUILD.rglob("*.txt")):
+        t = _read(f)
+        if "add_anomaly" not in t:
+            continue
+        stripped = _strip_comments(t)
+        for m in blocks.finditer(stripped):
+            tm = target.search(m.group(1))
+            if not tm:
+                continue          # the initializer form; it takes no target
+            n += 1
+            val = tm.group(1).strip('"')
+            head = val.split(".")[0].lower()
+            if head.startswith("event_target:") or head in allowed:
+                continue
+            line = stripped[: m.start()].count("\n") + 1
+            bad.append((f.relative_to(BUILD).as_posix(), line, val))
+
+    if bad:
+        head = "; ".join(f"{p}:{l} target = {v}" for p, l, v in bad[:4])
+        warnings.append(
+            f"add_anomaly: {len(bad)} of {n} target(s) name no scope the effect "
+            f"can reach — {head}{' …' if len(bad) > 4 else ''}. `add_anomaly` "
+            f"runs on an unclaimed planet, so the current scope has no owner and "
+            f"the anomaly is silently not added. Anchor the target at "
+            f"{'/'.join(sorted(allowed - {'from', 'fromfrom', 'fromfromfrom'}))} "
+            f"instead, as vanilla does in all 29 of its own. Vanilla's floor is 0. "
+            f"See .docs/decisions/90-add-anomaly-target-scope.md.")
+    return n
+
+
 def check_static_galaxy() -> int:
     """Does every galaxy scenario in `map/setup_scenarios/` hold together?
 
@@ -6324,6 +6516,8 @@ def main() -> int:
     sdesc_n = check_shipset_descriptions()
     hsbn_n = check_home_system_body_names()
     gal_n = check_static_galaxy()
+    anot_n = check_anomaly_targets()
+    skc_n = check_src_key_contention()
     mus_n = check_music_declarations()
     ano_n = check_anomalies()
     arc_n = check_archaeology()
@@ -6371,6 +6565,8 @@ def main() -> int:
           f"{hsbn_n} home system(s) for two bodies sharing a name, "
           f"{gal_n} static galaxy scenario(s) for their systems, initializers, "
           f"country flags and lanes, "
+          f"{anot_n} add_anomaly target(s) for a scope that resolves to a country, "
+          f"{skc_n} src/ identifier(s) for a second file of ours claiming them, "
           f"{mus_n} music track(s) for a declaration that plays them, "
           f"{ano_n} anomaly categor(ies) for their event, picture and loc, "
           f"{arc_n} archaeological site(s) for their stages, pictures, "

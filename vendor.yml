@@ -1537,12 +1537,6 @@ patches:
           \t\t\"gfx/models/portraits/vau_nakat/vau_nakat_male_clothes_ruler.dds\" = { owner_species = { is_species_class = VAU } }\r\n"
         count: 1
 
-  # --- Nine textures named by a path the engine cannot load --------------------
-  # The 2026-08-10 Federation run logged all nine as `Could not find texture`,
-  # and every target file is present on disk: the defect is the reference. A
-  # texture that fails to load falls back, which is why high clothes indices
-  # redrew as index 1 in the empire designer.
-  # See .docs/decisions/78-widen-attach-points-and-two-new-checks.md.
   # --- Six events declared in the wrong scope for the hook that fires them ---
   # `on_building_complete` and `on_building_upgraded` fire in vanilla's COLONY
   # scope, and every one of the 30-odd vanilla events on those two hooks is a
@@ -1583,6 +1577,45 @@ patches:
         to: "carrier_event = {\r\n\tid = pdawplanetaryinfesters.120\r\n"
         count: 1
 
+  # --- add_anomaly aimed at the planet's owner, on a planet with no owner ----
+  # cstorms.200 is a ship_event: `root` is the surveying ship and `from` is the
+  # planet it just surveyed. Ariphaos rewrote vanilla's `target = root.owner`
+  # as a bare `target = owner`, which inside `from = { ... }` asks the PLANET
+  # for its owner -- and the event's own trigger requires an uncolonised body
+  # (not a star, no habitable deposits, no anomaly, no dig site), so there is
+  # never an owner there to find. The anomaly is silently not added.
+  #
+  # The tell is eight lines up in the same file: cstorms.100, the identical
+  # event for the Inetian precursor, still carries vanilla's `prev.owner`. One
+  # of the two was rewritten and the other was not.
+  #
+  # Logged once in the 2026-08-25 evening run, the first post-init record
+  # naming a file we ship since 2026-08-10:
+  #   eventscope.cpp:3383 add_anomaly: Unable to resolve country from 'owner'
+  #   (country scope) at events/!!!!!!ariphaos_precursor_cosmic.txt line: 127
+  # Swept: this is the only `add_anomaly` target in the whole build that names
+  # a bare relative property; vanilla writes 29 of them and never does.
+  # Invariant 4 -- patch the source, do not drop it.
+  # See .docs/decisions/90-add-anomaly-target-scope.md. CRLF is Ariphaos'.
+  - path: events/!!!!!!ariphaos_precursor_cosmic.txt
+    source: Assorted Precursor Adjustments
+    why: >-
+      cstorms.200 targets add_anomaly at `owner` from inside `from = { ... }`,
+      which is the surveyed planet -- and its own trigger requires that planet
+      to be uncolonised, so the country never resolves. Restore vanilla's
+      `root.owner`, the surveying ship's owner, which is the country the sibling
+      event cstorms.100 already targets.
+    replace:
+      - from: "\t\t\t\tcategory = STORMS_PREC_ONE\r\n\t\t\t\ttarget = owner\r\n"
+        to: "\t\t\t\tcategory = STORMS_PREC_ONE\r\n\t\t\t\ttarget = root.owner\r\n"
+        count: 1
+
+  # --- Nine textures named by a path the engine cannot load --------------------
+  # The 2026-08-10 Federation run logged all nine as `Could not find texture`,
+  # and every target file is present on disk: the defect is the reference. A
+  # texture that fails to load falls back, which is why high clothes indices
+  # redrew as index 1 in the empire designer.
+  # See .docs/decisions/78-widen-attach-points-and-two-new-checks.md.
   - path: gfx/portraits/asset_selectors/humanoid_master_male_clothes_01.txt
     source: "Star Trek: New Horizons"
     why: >-

@@ -6,8 +6,9 @@
 > build.
 > **Then** — [Open questions](open-questions.md) · [Phases](phases.md) · [Live runs](../guides/live-runs.md)
 
-*Last updated against the build of 2026-08-27 and the Klingon run of the same
-day. **No live run has a write-up any more** — the run plans and analyses were
+*Last updated 2026-08-28, against the build of that date and the Klingon run of
+2026-08-27. The build figures below are unchanged by the 28th's work — one
+`vendor.yml` patch and one check move no file counts. **No live run has a write-up any more** — the run plans and analyses were
 retired on 2026-08-27 ([89](../decisions/89-retired-run-write-ups.md)), and what
 each run established now lives in the decision it produced and in the baseline
 table below. Every number here has a date because
@@ -34,7 +35,7 @@ ones.
 | Re-cut at harvest / pruned | 1,661 / **888** |
 | Overwrites / additive skips | 952 / 220 |
 | `make vendor` | 67 s |
-| `make validate` | **0 warnings, 0 errors** |
+| `make validate` | **3 warnings, 0 errors** — the three contested name-list keys of [decision 91](../decisions/91-src-contests-its-own-name-lists.md), open on a content call. 0 and 0 up to 2026-08-28 |
 | `make docs` | **0 warnings, 0 errors** |
 | `make gen-check` | **13 of 13 generators are fixpoints** |
 
@@ -75,6 +76,36 @@ What each asks, and the vanilla floor each is calibrated against, is in
 [the check catalogue](../validation/checks.md); the floors themselves are
 constants in `tools/validate.py` with the ratio written beside them
 ([rule 11](../validation/check-design.md#11-scope-is-a-calibration-result-not-a-convenience-filter)).
+
+**2026-08-28 added a forty-eighth, from the one queue item in the `error.log`
+baseline rather than from the docs**: `check_anomaly_targets`, which asks whether
+an `add_anomaly`'s `target` names a scope or a property of the planet it is
+standing on ([90](../decisions/90-add-anomaly-target-scope.md)). Vanilla's floor
+is **0 of 29**, and its allowlist is read out of vanilla at run time rather than
+written into the check, so it survives a game patch
+([rule 4](../validation/check-design.md#4-derive-allowlists-from-vanillas-own-usage-never-by-hand)).
+Its scope is the interesting part and it is a calibration result: a bare
+`target = owner` is ordinary on other effects — **vanilla writes 8 of them**, over
+3,067 `target =` sites in 124 effect kinds — and only `add_anomaly` guarantees the
+unowned scope that makes one wrong.
+
+**And a forty-ninth the same day, which found something nothing had been able to
+see** ([91](../decisions/91-src-contests-its-own-name-lists.md)):
+`check_src_key_contention` asks whether **two files we wrote** declare one
+identifier. `check_key_conflicts` gates on two *sources*, so a key `src/`
+contests with itself could never satisfy it — it was counting `common/name_lists`
+among its 506 files the whole time. **Three keys were contested, and two are
+major powers**: `STG_KLINGON`, `STG_VULCAN` and `STG_CAITIAN` are each declared
+by a hand-written power list and an STNH-converted minor list, so one of each
+pair never reaches the game and **filename sort decides which** — inconsistently,
+the minor list winning twice and the power list once. Vanilla's floor in
+`common/name_lists` is **0 across 78 keys in 76 files**.
+
+**This is why `make validate` now warns**, and it is the check working. Which of
+each pair to keep is a content call and is the top item in
+[open questions](open-questions.md). It also puts one figure already in the
+record back in doubt: *"the gap is Caitian, which has no `titan` block"* was
+measured against one of the two files, and the other carries all five tiers.
 
 ---
 
@@ -174,10 +205,25 @@ so since 2026-08-10:
 ```
 
 Vendored from **Assorted Precursor Adjustments** (harvest position 13), so
-[invariant 4](../guides/working-rules.md) applies — fix it in a `vendor.yml`
-patch, do not drop the source. One occurrence in an hour; a queue item, not a
-regression. *(Not the dropped Ariphaos Unofficial Patch — same author, different
+[invariant 4](../guides/working-rules.md) applied — patched in `vendor.yml`, the
+source kept. *(Not the dropped Ariphaos Unofficial Patch — same author, different
 mod. [Decision 02](../decisions/02-drop-ariphaos.md).)*
+
+**Fixed 2026-08-28** ([decision 90](../decisions/90-add-anomaly-target-scope.md)),
+and it was worse than "one occurrence in an hour" made it sound. `cstorms.200` is
+a `ship_event` whose `from` is the planet just surveyed, and its own trigger
+requires that planet to be **uncolonised** — so `target = owner` asks an unowned
+body for its owner and the adAkkaria anomaly was **never added on any planet the
+event ever fired for**. The anomaly is the whole payload of the event. The tell
+was eight lines up in the same file: the sibling event `cstorms.100` still
+carried vanilla's `prev.owner`. The patch restores vanilla's own `root.owner`.
+
+`check_anomaly_targets` now holds it there — **vanilla's floor is 0 of 29**, and
+the check is calibrated by reverting the repair, at which point it names the same
+file and the same line 127 the engine did. It is scoped to `add_anomaly` alone
+because a bare `target = owner` is ordinary elsewhere: vanilla writes 8 of them
+over 3,067 `target =` sites. **Not confirmed in game** — grading it means
+surveying the adAkkaria system's barren bodies.
 
 **None of 2026-08-24's 55 post-init records names an STG file either** — they are
 vanilla's own event and trigger scripts plus Planetary Diversity's domed-base

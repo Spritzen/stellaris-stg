@@ -14,6 +14,39 @@ reason to drop a mod; sources go on content grounds only**
 
 ---
 
+## Needs a content call, and it is the only thing making `make validate` warn
+
+### Three name lists are declared twice, and two of them are major powers
+
+**New 2026-08-28, and it is the first thing on this page that can be finished
+without a live run** ([decision 91](../decisions/91-src-contests-its-own-name-lists.md)).
+
+`src/common/name_lists/` ships 92 files declaring 89 keys. Three keys are
+declared by **two files we wrote**, so one of each pair never reaches the game
+and filename sort decides which:
+
+| key | power list | converted minor list | wins today |
+|---|---|---|---|
+| `STG_CAITIAN` | `stg_caitian.txt`, 107 tokens, all five class tiers | `stg_minor_caitian.txt`, 94 tokens, no `titan` | the minor |
+| `STG_KLINGON` | `stg_klingon.txt`, 701 tokens | `stg_minor_klingon.txt`, 690 tokens | the minor |
+| `STG_VULCAN` | `stg_vulcan.txt`, 2,507 tokens | `stg_minor_vulcan.txt`, 2,460 tokens | the power list |
+
+**The answer is not even consistent across the three**, which is what says nobody
+chose it. `check_key_conflicts` could never have found this — it gates on two
+*sources*, and both files are ours — and `check_src_key_contention` now reports
+all three, which is why the tree warns.
+
+**What is needed is one call:** keep the hand-written power list and drop the
+converted duplicate, or fold the converted list's unique tokens in first
+(47 for Caitian, 43 Klingon, 17 Vulcan). Decision 91 recommends the first, and
+reserves the second for Klingon and Vulcan, where both sides are the same
+vocabulary and overlap 87% and 97%. Caitian is the one where the two genuinely
+differ in voice — a constructed feline phonology against STNH's Kilrathi names.
+Nothing breaks either way: the Kzinti Empire also names `STG_CAITIAN` and
+resolves to whichever file survives.
+
+---
+
 ## Needs a live run to settle — and all of it is eyes-only
 
 **A reference that resolves produces no log record.** `make validate` clean is not
@@ -391,6 +424,14 @@ descending order of how obviously they would be wrong:
   (`src/common/name_lists/stg_minor_caitian.txt`, measured 2026-08-22), so a
   Caitian titan draws from `generic` and that is the one empire where a
   tonnage-mismatched class name is expected rather than a defect.
+
+  > **That measurement is against one of two files, and the other says
+  > otherwise** ([decision 91](../decisions/91-src-contests-its-own-name-lists.md),
+  > 2026-08-28). `STG_CAITIAN` is declared **twice** —
+  > `stg_caitian.txt` carries all five tiers, `stg_minor_caitian.txt` carries
+  > four — and only one of the two reaches the game. Until that is resolved
+  > neither reading is the answer, and the same collision hits `STG_KLINGON` and
+  > `STG_VULCAN`. **Do not re-measure this until the contention is settled.**
 - **Whether the Defiant showing at two tonnages** — destroyer and cruiser, which
   is STNH's own modelling — reads as wrong or as fine.
 - **Whether any list draws a class name plainly belonging to another tonnage**,

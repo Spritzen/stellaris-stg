@@ -172,6 +172,7 @@ which is also where the rule lives: category is in this index, not in the path.
 | [71](71-trek-archaeology.md) | Trek archaeology, and the one field in the format that decides whether any of it is ever seen |
 | [72](72-trek-story-events.md) | Trek story events, and the merge question the design refuses to ask |
 | [73](73-phase-4-count-corrections.md) | Four numbers in Phase 4 were wrong, and the worst was another database's right number — *corrects [70](70-trek-anomalies.md) and [72](72-trek-story-events.md) in part* |
+| [90](90-add-anomaly-target-scope.md) | `add_anomaly` runs on a planet nobody owns, so `target = owner` resolves to nothing — *fixes the one post-init record naming a shipped file since 2026-08-10, in a `vendor.yml` patch per [11](11-fix-source-errors-dont-drop.md); adds `check_anomaly_targets`, vanilla floor 0 of 29* |
 
 ## Audio
 
@@ -196,6 +197,7 @@ which is also where the rule lives: category is in this index, not in the path.
 | [80](80-selector-textures-that-resolve.md) | The 196 was 117, two thirds of it was never a content call, and the thirteen that were took one policy rather than thirteen decisions — *completes [78](78-widen-attach-points-and-two-new-checks.md)'s second half* |
 | [81](81-city-horizon-band.md) | Vulcan's skyline filled 325 of 400 rows against a family median of 289, and the fix is a resample, not a crop — *falsifies the 2026-08-08 review that left this art alone, supersedes [63](63-city-set-canvas-overflow.md)'s crop* |
 | [89](89-retired-run-write-ups.md) | The five live-run write-ups are retired, and a retired document leaves a provenance label behind, not a link — *removes 2,408 lines and rewrites the 51 references they left, including 7 from live code; adds `check_link_labels` to `make docs`* |
+| [91](91-src-contests-its-own-name-lists.md) | Three name lists are declared twice by files we wrote, and the key-conflict check could never have seen it — *`check_key_conflicts` gates on two **sources**, so `src/` contesting itself is invisible to it; adds `check_src_key_contention`, vanilla floor 0 of 78 in `common/name_lists`; corrects [27](27-merge-semantics-per-directory.md) on whether a name list's id is its filename; **which of each pair to keep is open***  |
 
 ---
 
