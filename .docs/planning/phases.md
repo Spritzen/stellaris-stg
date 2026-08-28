@@ -14,7 +14,7 @@
 | [3 — art and identity](#phase-3--art-and-identity) | complete 2026-08-08 |
 | [4 — polish](#phase-4--polish) | started 2026-08-08 |
 | [5 — the clutter pass](#phase-5--the-clutter-pass) | complete 2026-08-07 |
-| [6 — the static galaxy](#phase-6--the-static-galaxy) | **planned 2026-08-26**, not started |
+| [6 — the static galaxy](#phase-6--the-static-galaxy) | **shipped and first run 2026-08-27**; the galaxy with lanes in it is ungraded |
 
 ---
 
@@ -95,8 +95,10 @@ machine side.
 ### 77 minor powers
 
 Converted rather than authored: their identity is STNH's (names, species,
-homeworlds, rulers, heraldry, 70 name lists totalling 6,302 loc keys), their
-mechanics are vanilla's, because all 110 of STNH's use at least one STNH-only
+homeworlds, rulers, heraldry, 67 name lists — 70 until
+[93](../decisions/93-power-lists-win-the-contested-keys.md) deleted the three
+that contested a power list's key, 2026-08-28), their mechanics are vanilla's,
+because all 110 of STNH's use at least one STNH-only
 origin, trait, civic or room and not one validates against 4.4 as written.
 
 They were built as **AI-only**, on `playable = stg_never` + `spawn_enabled =
@@ -500,7 +502,10 @@ species-language words (HUM1's `Il-Koth`, LITH3's `Kroshhk`) or **one semantic
 field in plain English** (NEC4's vices, HIVE2's robustness, AQU1's water) — and
 the second is what STG's Phase 1 pools already are, so extending a register is
 not inventing lore. **99 hand-authored names across 15 lists, 820 → 1,864
-tokens, and 21 of those 22 now carry all five core tiers** against 13.
+tokens, and all 22 now carry all five core tiers** against 13. *(Recorded here as
+21 of 22 until 2026-08-28: the Caitian gap was measured against
+`stg_minor_caitian.txt`, the contested file nobody intended to ship —
+[93](../decisions/93-power-lists-win-the-contested-keys.md).)*
 
 > **Vanilla never splits this block by tonnage at all** — all 13 lists are
 > `generic` only, 17–40 names, median 22. STG splits because a Trek class *is*

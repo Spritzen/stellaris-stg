@@ -8,10 +8,11 @@
 
 *Last updated 2026-08-28, against the build of that date and the Klingon run of
 2026-08-27. The build figures below are unchanged by the 28th's work — one
-`vendor.yml` patch, one loc key, four new checks, a fifth widened, three deleted
-name lists and 17 deleted colony-name tokens move the file count by three and
-nothing else. **No live run has a write-up any more** — the run plans and analyses were
-retired on 2026-08-27 ([89](../decisions/89-retired-run-write-ups.md)), and what
+`vendor.yml` patch, one loc key, five new `make validate` checks, a sixth
+question widened onto an existing one, a seventh check added to `make docs`,
+three deleted name lists and 17 deleted colony-name tokens move the file count
+by three and nothing else. **No live run has a write-up any
+more** — the run plans and analyses were retired on 2026-08-27 ([89](../decisions/89-retired-run-write-ups.md)), and what
 each run established now lives in the decision it produced and in the baseline
 table below. Every number here has a date because
 every number here goes stale — [style guide §6](../style-guide.md).*
@@ -234,6 +235,23 @@ one more: `LITH1.txt` and `LITH2.txt` indent `LITHOID1` and `LITHOID2`, so
 `common/name_lists` floor is **80 keys in 76 files, not 78**. Both parsers now
 track depth; **every count on the summary line is byte-identical afterwards**,
 which is what says it was a parser repair and not a change of question.
+
+**And one more that is `make docs`' rather than `make validate`'s, from asking
+what the 2026-08-27 renumbering could not see**
+([97](../decisions/97-bare-decision-numbers.md), 2026-08-28). A decision
+citation takes three forms — a path, a link, or **a bare number in a sentence** —
+and only the first two had ever been read. There are **519** bare ones, about a
+third of every decision citation in the repo. **All 519 resolved and three named
+the wrong decision**: `decision 88` for the `playable` gate, `decision 09` for
+the source snapshot, `decision 42` for event-picture geometry — each of them a
+pre-sweep number that still points at a real file, confirmed against the
+pre-sweep tree. `check_bare_decision_numbers` holds the exact half at a floor of
+**0 of 519**; the semantic half is a `git blame` audit recorded in
+[style guide §9](../style-guide.md#9-renaming-a-document-is-a-repo-wide-edit),
+and it is what found all three. **A number that still resolves is the failure
+mode of a renumbering, not a dangling one** — and one of the three had `decision`
+ending a line and `88` beginning the next, which is how it survived every
+line-wise grep including the sweep's own.
 
 ---
 

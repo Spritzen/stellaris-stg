@@ -12,27 +12,31 @@ DOES EVERY REFERENCE RESOLVE?
      renumbering sweep rewrote 415 labels twice while every href stayed correct,
      and this tool passed clean over links whose visible text named the wrong
      decision. That is the failure check_link_labels() exists for.
-  3. Does every `.docs/...` path cited from live code -- tools/, src/,
+  3. Does a decision named by NUMBER ALONE -- no path, no link -- name a
+     decision that exists? This is the third form a citation takes and the last
+     one to get a check: 519 of them, a third of every decision citation in the
+     repo, sat outside both (2) and (4) until 2026-08-28.
+  4. Does every `.docs/...` path cited from live code -- tools/, src/,
      vendor.yml, Makefile, and the root dotfiles -- point at a file that exists?
-  4. Does every document carry the nav card the style guide requires?
-  5. Does every category folder have a README that names its files?
+  5. Does every document carry the nav card the style guide requires?
+  6. Does every category folder have a README that names its files?
 
-(1) and (3) are the ones that earned this tool: a planning file named
+(1) and (4) are the ones that earned this tool: a planning file named
 clutter-pass.md was cited from tools/clutter.py and from decision 43 for five
-days after it stopped existing, and nothing anywhere said so. That is why (3)
+days after it stopped existing, and nothing anywhere said so. That is why (4)
 exists at all -- the docs can link to each other perfectly while every file
 header in tools/ points at nothing. See .docs/style-guide.md.
 
 DOES THE DOCUMENTED INVENTORY MATCH THE REPO?
 
-  6. Is every `make` target documented, and does every target the docs name
+  7. Is every `make` target documented, and does every target the docs name
      exist?
-  7. Is every check in validate.py in the catalogue, and vice versa?
-  8. Is every `*_ack` list in vendor.yml actually read by a check?
-  9. Does the harvest order in architecture/ still match vendor.yml?
- 10. Does the source count the docs quote still match vendor.yml?
+  8. Is every check in validate.py in the catalogue, and vice versa?
+  9. Is every `*_ack` list in vendor.yml actually read by a check?
+ 10. Does the harvest order in architecture/ still match vendor.yml?
+ 11. Does the source count the docs quote still match vendor.yml?
 
-These are the SAME asymmetry as (3), one level up: a citation that resolves to
+These are the SAME asymmetry as (4), one level up: a citation that resolves to
 a real file can still describe a repo that has moved. All five were added on
 2026-08-09 after a documentation pass found one live instance of each --
 notably Cinematic Camera sitting four positions from where harvest-order.md
@@ -243,6 +247,107 @@ def check_link_labels() -> int:
                 errors.append(f"{f.relative_to(REPO)}: link labelled "
                               f"'{label}' points at decision "
                               f"{target.group(1)} ({href})")
+    return n
+
+
+# A citation with no path and no link: `decision 40`, `decisions 76 through 80`.
+# Same shape as LABEL_SAYS_DECISION above and deliberately so -- ranges are a
+# real form in these docs, and reading only the first number leaves the rest
+# outside the sweep this exists to make possible.
+BARE_DECISION = re.compile(r"[Dd]ecisions?\s+((?:\d{1,3})"
+                           r"(?:\s*(?:[-\u2013\u2014,]|and|to|through)\s*\d{1,3})*)")
+# Comment and docstring wrapping is not decoration here: it is what hid the one
+# defect this check was written after. `decision` ended line 4191 of
+# tools/validate.py and `88` began 4192, so every line-wise grep -- including
+# the renumbering sweep's own -- looked straight past it.
+CODE_WRAP = re.compile(r"\s*\n\s*(?:#|\*)?\s*")
+DOC_WRAP = re.compile(r"\s*\n\s*>?\s*")
+
+
+def check_bare_decision_numbers() -> int:
+    """A decision named by NUMBER ALONE still names a decision that exists.
+
+    THE THIRD FORM A CITATION TAKES, and the only one nothing had ever read.
+    check_code_citations() reads `.docs/decisions/NN-slug.md` and
+    check_link_labels() reads `[NN](...)`; between them they cover the 983
+    citations the 2026-08-27 renumbering rewrote. A bare `decision 40` in a
+    comment or a sentence carries neither a path nor an href, so it was outside
+    both -- 509 of them, a third of every decision citation in the repo, none of
+    which any tool had looked at.
+
+    WHAT IT ASKS, AND IT IS EXACT. Does the number name a decision file that
+    exists? Floor 0 of 509 across live code and every document, so there is no
+    scope and no ratio to write beside one
+    (.docs/validation/check-design.md rule 11). It fails on a number one past the
+    last decision written, and on every bare citation to one that is removed.
+
+    IT READS ITS OWN PROSE, WHICH IS NOT A BUG TO EXEMPT. The first run of this
+    check reported the worked example in this docstring, which named a number
+    that did not exist yet -- the "documentation OF a citation is not a
+    citation" class strip_code() was written for. Stripping backticks out of
+    code files was measured as the fix and rejected: docstring prose carries
+    unpaired backticks, so the span regex swallows whole sentences and would
+    HIDE two real citations to buy this one. The example is worded around
+    instead. A check weakened to spare its own docstring is worth less than the
+    docstring.
+
+    WHAT IT CANNOT ASK, AND THE HONEST LIMIT IS THE POINT (rule 5). It cannot
+    tell whether the number names the RIGHT decision. Every number in the repo
+    resolved on 2026-08-28 and three were still wrong -- `decision 88` for the
+    playable gate, `decision 09` for the source snapshot, `decision 42` for
+    event-picture geometry -- because the renumbering moved what each addressed
+    while leaving a number that still resolves. A vocabulary heuristic was
+    measured against the real corpus before this was written and rejected: its
+    floor was 27 to 101 false positives depending on the window, and it could
+    still pass a wrong number on one shared word.
+
+    SO THE SEMANTIC HALF IS AN AUDIT, NOT A CHECK, and it is exact when it is
+    run at the right moment: after a renumbering, `git blame` every bare
+    citation and read the ones whose line predates the sweep, because those are
+    exactly the lines it could not rewrite. That recipe found all three, and it
+    lives in .docs/style-guide.md section 9 with the renumbering rule it belongs to.
+
+    THE COUNT ON THE SUMMARY LINE IS THE DELIVERABLE. A renumbering needs a
+    worklist and the 2026-08-27 sweep did not have one for this form, which is
+    why it rewrote 415 link labels twice and these three not at all.
+    """
+    have = {int(f.name[:2]) for f in DOCS.glob("decisions/[0-9]*.md")}
+    n = 0
+
+    def scan(where: pathlib.Path, text: str) -> None:
+        nonlocal n
+        for m in BARE_DECISION.finditer(text):
+            nums = LABEL_NUM.findall(m.group(1))
+            n += len(nums)
+            # One finding per CITATION, not per number: a citation naming a
+            # range is one thing a reader followed and one edit to make, and
+            # reporting it once per number, under the same quoted text, reads
+            # as several defects where there is one.
+            missing = [x for x in nums if int(x) not in have]
+            if missing:
+                quote = " ".join(m.group(0).split())
+                errors.append(
+                    f"{where}: '{quote}' names no decision file "
+                    f"({', '.join(missing)}). The number is the address "
+                    f"(.docs/style-guide.md section 3); cite the slug it "
+                    f"should read.")
+
+    for f in code_files():
+        try:
+            text = f.read_bytes().decode("utf-8-sig")
+        except UnicodeDecodeError:
+            continue
+        scan(f.relative_to(REPO), CODE_WRAP.sub(" ", text))
+
+    for f in md_files():
+        if f in GENERATED:
+            continue
+        # Linked citations belong to check_link_labels, which reads the href as
+        # the authority; reading them here too would report one defect twice and
+        # in the weaker form.
+        text = LINK.sub(" ", strip_code(f.read_text(encoding="utf-8-sig")))
+        scan(f.relative_to(REPO), DOC_WRAP.sub(" ", text))
+
     return n
 
 
@@ -561,6 +666,7 @@ def check_source_count() -> int:
 def main() -> int:
     link_n = check_links()
     label_n = check_link_labels()
+    bare_n = check_bare_decision_numbers()
     cite_n = check_code_citations()
     nav_n = check_nav_cards()
     dec_n = check_decision_heads()
@@ -575,6 +681,7 @@ def main() -> int:
     print(f"{DIM}docs: {nav_n} document(s) for a nav card, {dec_n} decision(s) "
           f"for a head and an index row, {link_n} internal link(s), "
           f"{label_n} numbered link label(s), "
+          f"{bare_n} bare decision number(s), "
           f"{cite_n} citation(s) from code, {cat_n} category folder(s), "
           f"{orph_n} unlinked  |  inventory: {mk_n} make target(s), "
           f"{chk_n} check(s) against the catalogue, {ack_n} ack list(s), "

@@ -2685,7 +2685,7 @@ patches:
       art -- it is what `entity = "orbital_habitat"` in common/planet_classes/
       resolves to, so the undetermined winner decides whether EVERY empire's
       habitats render as vanilla's orbital ring or as the Suliban helix. Vanilla
-      wins: habitat art is shared by all 101 empires and the helix is one
+      wins: habitat art is shared by all 99 empires and the helix is one
       species' ship. The Suliban empire flies the Walshicus suliban set anyway
       (decision 17). Renamed rather than deleted, per the Saturn precedent;
       suliban_01_orbital_habitat_entity is untouched and still resolves.
@@ -3861,7 +3861,7 @@ sources:
   #     Borg, dominion, elachi, federation_01..07, krenim_old, lukari, malon,
   #     39 files with their map/ and small/ variants. Scoped to `flags` and not
   #     the source, because gfx/ must still beat STNH — decision 17 again.
-  #     The Bolian Union and 22 of the 79 minor powers are still on a fallback
+  #     The Bolian Union and 22 of the 77 minor powers are still on a fallback
   #     icon: no shipset ships those either. See decision 47.
   #   * `localisation/` — carries only the species-class name we don't take and
   #     FLAG_CATEGORY_trek, which STNH already provides.

@@ -4188,8 +4188,12 @@ def check_portrait_clothes_selectors() -> int:
                 # The empire designer reads ONLY the `game_setup` scope, so a
                 # class-gated selector whose game_setup is a bare default draws
                 # every species it serves as that default. This used to skip
-                # the 79 `playable = stg_never` minors as unreachable; decision
-                # 88 made every empire playable, so every empire is checked.
+                # the 79 `playable = stg_never` minors as unreachable; that
+                # gate was removed on 2026-08-25 -- the decision recording it is
+                # one of the seven struck in the 2026-08-27 renumbering, and
+                # .docs/decisions/82-remove-mirror-timeline-duplicates.md is the
+                # surviving anchor for the date. Every empire is playable, so
+                # every one of the 77 minors is checked.
                 blind = sorted(s for s in gating if cls not in sel_setup.get(s, set()))
                 if blind:
                     warnings.append(
@@ -6191,6 +6195,13 @@ def check_src_key_contention() -> int:
     Each pair is a hand-written power list and an STNH-converted minor list that
     happened to pick the same key, so one of the two never reaches the game --
     and which one is decided by filename sort, not by anybody's intent.
+
+    ALL THREE ARE CLOSED AND THE stg_minor_* SIDE OF EACH PAIR NO LONGER EXISTS:
+    the hand-written power list won all three and the converted duplicates were
+    deleted the same day, leaving src/common/name_lists/ at 89 files declaring 89
+    keys. The three filenames above are named as they were, because a check's
+    docstring is the record of what it caught.
+    See .docs/decisions/93-power-lists-win-the-contested-keys.md.
 
     THE KEY IS THE IDENTIFIER HERE, WHATEVER `WHOLE_TEXT_DIRS` SAYS. That table
     lists `common/name_lists` as a database where the FILE is the unit, and

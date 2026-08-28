@@ -51,7 +51,7 @@ designer.
 Worse, sweeping the *rule* behind those findings turned up nine more empires with
 the same defect, all of them gated out of the designer at the time and so beyond
 any log: the engine drops a trait silently rather than refusing it. (They reach
-the designer now: the `playable = stg_never` gate is gone from all 79.)
+the designer now: the `playable = stg_never` gate is gone from all 77.)
 [Prescripted empire rules](../reference/prescripted-empire-rules.md#why-this-is-a-swept-rule-and-not-a-list-of-fixes)
 holds the rules themselves and the count.
 

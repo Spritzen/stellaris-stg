@@ -158,7 +158,9 @@ carrying the exact name, adjective, ethics, civics, authority, government, flag,
 ship prefix, graphical culture and species. **A `create_country` block is a
 mechanical transcription of a `prescripted_countries/` entry**, which means it
 should be *generated*, not hand-written — the same generator discipline as the
-eleven existing ones, and `make gen-check` proves it stays a fixpoint.
+others, and `make gen-check` proves it stays a fixpoint. *(Eleven when this was
+written; thirteen since this plan's own two landed — read the roster off
+`GENERATORS` in `tools/gen_check.py`.)*
 
 ## 3. Locking the picker — the answer is an empty file
 

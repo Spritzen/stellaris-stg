@@ -14,7 +14,7 @@
 #   The art is 620x264 or a 9315x264 animation strip in .source/; `target:
 #   family` on gfx/event_pictures in vendor.yml re-cuts it to vanilla's 450x150
 #   at harvest, freezing frame 0 of a strip. Without that this file is decision
-#   42's defect: UIOD's eventwindow.gui draws at scale = 1.5 inside a 693x239
+#   40's defect: UIOD's eventwindow.gui draws at scale = 1.5 inside a 693x239
 #   frame, so 620x264 art renders 930x396.
 #   See .docs/decisions/69-event-picture-families.md.
 #

@@ -153,7 +153,7 @@ Vanilla's `opposites` lists, archetype budgets and ruler-trait ethic gates hid
 **nine** STG empires from the designer for eleven runs. Sweeping the rule behind
 them found **nine more** on empires that were then gated out of the designer and
 would never have produced a record at all. (Those nine reach the designer now:
-the `playable = stg_never` gate is gone from all 79.)
+the `playable = stg_never` gate is gone from all 77.)
 
 `check_prescripted_empires` enforces all of it against vanilla's own databases,
 calibrated by reverting the repairs: 21 findings, no false positives. The three

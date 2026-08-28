@@ -457,7 +457,7 @@ def render_diff(rel: str, old: Path | None, new: Path | None,
     CRLF, and without this a 74-line change reports as 16,964 (.docs/architecture/conflict-register.md)."""
     # `status` compares size+mtime for speed, so a file Steam merely re-touched
     # reports as drift. Say outright that there is nothing to accept -- decision
-    # 09 exists to keep accepting an upstream change deliberate, and wording
+    # 08 exists to keep accepting an upstream change deliberate, and wording
     # that reads like a real change trains the reader to sync reflexively.
     if old and new and byte_identical(old, new):
         return [f"{DIM}{rel}: byte-identical — only the modification time "

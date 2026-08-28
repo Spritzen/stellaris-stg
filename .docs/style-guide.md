@@ -161,6 +161,30 @@ twice, invisible to `make docs` because it validated hrefs and not the text
 beside them. [The index](decisions/README.md) carries the dated note; the label
 check now exists (§10).
 
+### After a renumbering, audit the bare numbers with `git blame`
+
+`make docs` can prove a bare `decision NN` names a decision that **exists**. No
+tool can prove it names the **right** one — and a renumbering breaks exactly
+that, because it moves what a number addresses while leaving a number that still
+resolves. A vocabulary heuristic was measured against the real corpus and
+rejected: 27–101 false positives depending on the window, and it could still
+pass a wrong number on one shared word.
+
+The exact audit is a date. A sweep rewrites the lines it can see, so **a bare
+citation whose line still predates the sweep is one the sweep could not
+rewrite** — and that is a small, readable set:
+
+```bash
+git blame --line-porcelain -- <file> | grep '^author-time'
+# read every `decision NN` sitting on a line older than the renumbering commit
+```
+
+Run over `tools/`, `src/` and `vendor.yml` on 2026-08-28 this returned **12**
+citations, of which **3** were wrong — one in `tools/sources.py` and two in
+`src/interface/*.gfx`. Join wrapped lines before matching: the fourth, in
+`tools/validate.py`, had `decision` ending one line and `88` beginning the next,
+which is how it survived every line-wise grep including the sweep's own.
+
 ## 10. The docs get the same treatment the mod gets
 
 Every rule above that can be checked, is:
@@ -179,7 +203,7 @@ It asks two kinds of question:
 
 | | |
 |---|---|
-| **Does every reference resolve?** | every markdown link and heading anchor; **every numbered link label, against the decision its href names**; every `.docs/` path cited from `tools/`, `src/`, `vendor.yml`, the `Makefile` and the root dotfiles; every doc's nav card; every category README |
+| **Does every reference resolve?** | every markdown link and heading anchor; **every numbered link label, against the decision its href names**; **every bare `decision NN` that carries no path and no link**; every `.docs/` path cited from `tools/`, `src/`, `vendor.yml`, the `Makefile` and the root dotfiles; every doc's nav card; every category README |
 | **Does the documented inventory match the repo?** | `make` targets against the Makefile; the check catalogue against `validate.py`'s own `def` lines; `vendor.yml`'s `*_ack` lists against the checks that read them; the harvest order against `vendor.yml`; every quoted source count |
 
 **The second family exists because a citation can resolve perfectly and still
@@ -195,6 +219,19 @@ thing to keep in sync.
 link can resolve perfectly and still say the wrong thing: 415 labels were
 rewritten twice, every href stayed correct, and `make docs` reported clean. A
 number in a link's text now has to agree with the decision the link points at.
+
+**The bare-number check was added 2026-08-28**, after the same sweep turned out
+to have missed a third form entirely. A citation can carry a path, or an href,
+or **neither** — `decision 40`, in a sentence. There are **519** of those, about
+a third of every decision citation in the repo, and no tool had read one. Three
+were wrong, all of them survivors of the renumbering: `decision 88` for the
+`playable` gate, `decision 09` for the source snapshot, `decision 42` for
+event-picture geometry. **Each still resolved**, which is why nothing caught
+them and why the check cannot: it asks only whether the number names a decision
+that exists (floor **0 of 519**). What it buys is that the form is now counted
+on the summary line, so the next renumbering has the worklist this one lacked.
+[Section 9](#9-renaming-a-document-is-a-repo-wide-edit) has the audit for the
+half a check cannot do.
 
 **What `make docs` deliberately does not check:** whether the prose is true. No
 tool can. That is what a live run and the next session's eyes are for.

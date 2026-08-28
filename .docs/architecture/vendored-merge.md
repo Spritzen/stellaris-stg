@@ -105,15 +105,15 @@ harvest change and this section has been stale more than once.
 [`.docs/provenance.md`](../provenance.md) is the generated report;
 `.vendor-manifest.json` has the per-source split.
 
-*(Read off the build of 2026-08-27. GiB, as `make vendor` prints.)*
+*(Read off the build of 2026-08-28. GiB, as `make vendor` prints.)*
 
 | | |
 |---|---|
 | Gameplay/UI tier — [26 harvest positions](harvest-order.md), 25 with surviving files | 4.7 GiB, 8,009 files |
 | STNH — art paths only, ship tree pruned per [decision 17](../decisions/17-walshicus-shipsets-replace-stnh-hulls.md) | 7.0 GiB, 10,929 files |
 | Walshicus' 22 Trek shipsets | 2.5 GiB, 3,092 files |
-| `src/` — hand-written | 5.0 MB, 367 files |
-| **Built mod, total** | **14.3 GiB**, 22,397 files, 49 sources + `src/` |
+| `src/` — hand-written | 5.0 MB, 364 files |
+| **Built mod, total** | **14.3 GiB**, 22,394 files, 49 sources + `src/` |
 | `.source/` — 51 mods: the 49 harvested plus Kammarheit and Apocryphos | 22 GB apparent, **~0 real** (reflinked; [decision 08](../decisions/08-source-snapshot.md)) |
 
 *(The gameplay/UI tier holds 26 harvest positions but only 25 leave a file
@@ -133,12 +133,12 @@ explicitly. Two things that *do* follow from the size:
   are ignored; `sources.lock.yml` records which revision of each source they were
   built from. Full list: [repo layout](../reference/repo-layout.md#what-is-generated-and-what-is-not).
 - **Game load time is 45–55 s**, of which almost all is `init application`,
-  against a 40 s native-vanilla floor. Six runs between 2026-08-08 and
-  2026-08-25 measured 49.3 / 49.4 / 55.4 / 46.8 / 48.5 / 45.1 s on content that
-  only grew, so **the spread is noise and the trend is flat** — settled, not
-  worth another sample. Not painful enough to act on, and the obvious lever —
-  the ship-model prune — has already been pulled. Every run's figure is
-  `init application` in `/paradox/stellaris/logs/time.log`.
+  against a 40 s native-vanilla floor. Eight runs between 2026-08-08 and
+  2026-08-27 measured 49.3 / 49.4 / 55.4 / 46.8 / 48.5 / 45.1 / 48.3 / 47.1 s on
+  content that only grew, so **the spread is noise and the trend is flat** —
+  settled, not worth another sample. Not painful enough to act on, and the
+  obvious lever — the ship-model prune — has already been pulled. Every run's
+  figure is `init application` in `/paradox/stellaris/logs/time.log`.
 
 ## Line endings
 

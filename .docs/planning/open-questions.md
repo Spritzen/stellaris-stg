@@ -241,7 +241,7 @@ nine are Earth-and-human variants from `00_top_countries.txt`, and five of them
 start on Sol. Paradox may set `spawn_enabled = no` on them because a galaxy with
 three Earths in it is bad *flavour*, not because the engine cannot place them.
 The table cannot tell those two apart on its own — what it establishes for
-certain is only that **vanilla ships no example of the thing STG does 39 times**,
+certain is only that **vanilla ships no example of the thing STG does 37 times**,
 so there is no positive evidence anywhere that the combination works.
 
 **And the reading has a hole, which the 2026-08-26 save turned from a doubt into
@@ -251,7 +251,7 @@ readings — they were still not in the design database, or the cause is somethi
 else again — and **the save settles it: all 99 are in the database**
 ([decision 83](../decisions/83-design-database-is-not-the-cause.md)). It is
 something else again. The initializer theory survives only as a *second* filter
-over the 36 that do carry one; it cannot reach the other 62, so it is no longer
+over the 37 that do carry one; it cannot reach the other 62, so it is no longer
 a candidate for the whole cause.
 
 #### What is left to do, in order
@@ -317,7 +317,7 @@ points at, and it would cost decision 23 in full — the real home systems are o
 of the most visible things in the mod, and the last run confirmed 40 Eridani
 reads correctly. **The 2026-08-26 save strengthened this, not weakened it**: 62
 of the 99 designs carry no `initializer` and were not drawn either, so stripping
-the other 36 could not have reached most of the pool anyway
+the other 37 could not have reached most of the pool anyway
 ([83](../decisions/83-design-database-is-not-the-cause.md)).
 
 ### Devastated Trek city sets — six sets, no `_devastated` art
@@ -577,7 +577,7 @@ questions above apply here unchanged. Four that are specific to a story event:
 
   > **And a third way, which is not a broken gate and would not read as one:
   > eleven of the 22 majors, quadrant and frontier powers are outside the gate entirely** — BOL, BRE,
-  > THO, CAI, XIN, SUL, YRI, KRE, MAL, VID and the mirror **TER**, plus all 79
+  > THO, CAI, XIN, SUL, YRI, KRE, MAL, VID and the mirror **TER**, plus all 77
   > AI minors. They see only the eight open events. **A Malon player reporting "I
   > never see my own story" is reporting the content, not the gate**, so ask
   > which empire before doubting the trigger. Left open as a content gap;

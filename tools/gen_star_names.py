@@ -1,8 +1,12 @@
 #!/usr/bin/env python3
 """Generate src/common/random_names/base/stg_star_names.txt from STNH's maps.
 
-Phase 2's last unwritten item: Trek names for the systems a normally generated
-galaxy fills in around our 37 hand-placed home systems (.docs/planning/phases.md, Phase 2).
+Phase 2's last unwritten item: Trek names for the systems around our 37
+hand-placed home systems (.docs/planning/phases.md, Phase 2). Written for a
+normally generated galaxy; since 2026-08-27 the galaxy is a static map instead
+(.docs/decisions/86-static-galaxy-scenario.md), and the pool is what still names
+it -- all 95 of its systems carry `name = ""` and 74 of them carry no
+initializer either, so the engine draws every one of those names from here.
 
 SOURCE: STNH's `map/setup_scenarios/*.txt`, not its `common/random_names/`.
 STNH's star_names pool looks like the obvious source and is the wrong one --
