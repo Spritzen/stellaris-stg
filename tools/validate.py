@@ -2594,6 +2594,40 @@ def check_defines_conflicts() -> int:
     return len(files), same_value
 
 
+def _key_conflict_families() -> list[set[str]]:
+    """`vendor.yml`'s `key_conflict_families:`, as a list of source-name sets.
+
+    Sources that override each other ON PURPOSE. A mod family exists so its
+    extensions can redefine the base's keys, which
+    .docs/architecture/conflict-register.md settles as "extension wins".
+    Declared in vendor.yml rather than inferred from names -- guessing family
+    membership from strings is how you silently stop reporting a real conflict:
+    "Planetary Diversity" and "PD - Gaia Worlds" share no usable prefix.
+
+    Shared by `check_key_conflicts`, where the filter takes 75 of 88 findings,
+    and `check_loc_key_conflicts`, where it takes all 8. One parser on purpose:
+    two copies drift, and a family that stops applying to one of the two checks
+    is exactly the silence this list exists to avoid.
+    """
+    families: list[set[str]] = []
+    fam_block = re.search(r"^key_conflict_families:\s*$(.*?)(?=^\S|\Z)",
+                          _manifest_text(), re.M | re.S)
+    if not fam_block:
+        return families
+    current: set[str] = set()
+    for line in fam_block.group(1).splitlines():
+        if re.match(r"\s+-\s+name:", line):
+            if current:
+                families.append(current)
+            current = set()
+        m = re.match(r"\s+-\s+([^#\n]+?)\s*(?:#.*)?$", line)
+        if m and not m.group(1).startswith("name:"):
+            current.add(m.group(1).strip("\"'"))
+    if current:
+        families.append(current)
+    return families
+
+
 def check_key_conflicts() -> int:
     """Top-level keys claimed by two sources, or silently shrunk against vanilla.
 
@@ -2648,21 +2682,7 @@ def check_key_conflicts() -> int:
     # "extension wins"; reporting them is 75 of 88 findings. Declared in
     # vendor.yml rather than inferred from names -- guessing family membership
     # from strings is how you silently stop reporting a real conflict.
-    families: list[set[str]] = []
-    fam_block = re.search(r"^key_conflict_families:\s*$(.*?)(?=^\S|\Z)",
-                          _manifest_text(), re.M | re.S)
-    if fam_block:
-        current: set[str] = set()
-        for line in fam_block.group(1).splitlines():
-            if re.match(r"\s+-\s+name:", line):
-                if current:
-                    families.append(current)
-                current = set()
-            m = re.match(r"\s+-\s+([^#\n]+?)\s*(?:#.*)?$", line)
-            if m and not m.group(1).startswith("name:"):
-                current.add(m.group(1).strip("\"'"))
-        if current:
-            families.append(current)
+    families = _key_conflict_families()
 
     def same_family(sources: set[str]) -> bool:
         return any(sources <= f for f in families) if len(sources) > 1 else True
@@ -2816,6 +2836,119 @@ def check_key_conflicts() -> int:
     if shrunk > 8:
         warnings.append(f"... and {shrunk - 8} more shrunk pool(s)")
     return n, identical
+
+
+def check_loc_key_conflicts() -> int:
+    """A localisation key two SOURCES declare, with values that disagree.
+
+    THE FOURTH QUADRANT, and the one `check_key_conflicts` was structurally
+    unable to reach. That check walks `stg-build/common/` and asks its question
+    of `key = { … }` blocks; a localisation file has no blocks, so a key two
+    mods both write has never been asked about at all. The sibling pair
+    `check_src_key_contention` / `check_src_loc_key_contention` splits the same
+    question the same way for `src/` -- one directory each, because the two
+    file formats have nothing in common but the question
+    (.docs/decisions/92-src-contests-its-own-loc-keys.md). This is the
+    two-sources half of the localisation one.
+
+    WHY IT MATTERS AND WHY NOTHING ELSE SEES IT. `error.log` records a
+    localisation key that is MISSING. It records nothing at all about a key two
+    files declare, because both resolve; the engine keeps one and renders it.
+    That is decision 45 exactly -- 78 of 79 minor powers shipped reading `of
+    Earth` and no log ever said so, because loc that resolves to the wrong
+    string still resolves.
+
+    THE FAMILY FILTER IS THE WHOLE CHECK. Read raw, the merged tree contests
+    **41 keys and 8 of them disagree** -- and all 8 are Planetary Diversity
+    overriding its own placeholders through its own extensions: `Placeholder
+    Origin - DO NOT USE` in the base against `Megaflora Tree of Life` in
+    PD - Ascension Worlds, `You should not see this, please report if you do`
+    against `Confluence Spire` in PD - More Arcologies. Every one resolves to
+    the extension under filename sort, which is the "extension wins" case
+    .docs/architecture/conflict-register.md settles and decision 27 states. So
+    the same `key_conflict_families` declaration that takes 75 of 88 findings
+    out of `check_key_conflicts` takes all 8 out of this one, and it is read
+    from the same place in vendor.yml rather than inferred from names.
+
+    THE FLOOR IS ZERO ON BOTH SIDES AND ONE OF THEM IS VERY STRONG. Vanilla
+    declares **148,053 keys across 231 english files and contests none**
+    (decision 92's measurement, unchanged). The merged tree contests 41 and 0
+    across families.
+
+    LIOS, ALWAYS. Localisation has no FIOS directory: the engine reads every
+    `.yml` and the last file in sort order is what a key resolves to, so the
+    winner named here is `sorted(files)[-1]` with no directory table behind it.
+
+    THE LANGUAGE GATE IS DERIVED FROM VANILLA AT RUN TIME (rule 4), the same
+    way and for the same reason as `check_src_loc_key_contention`: a language
+    is asked about only if vanilla contests nothing in its own copy of it. The
+    built tree also carries two folders that are not languages at all --
+    `localisation/replace/` and a nested `localisation/localisation/` -- and
+    the gate excludes them for free, because vanilla ships neither.
+
+    See .docs/decisions/109-two-sources-one-loc-key.md.
+    """
+    loc = BUILD / "localisation"
+    if not loc.is_dir():
+        return 0
+
+    owner: dict[str, str] = {}
+    if STATE.is_file():
+        try:
+            for k, v in json.loads(STATE.read_text()).get("generated", {}).items():
+                owner[k] = v.get("source", "?")
+        except ValueError:
+            pass
+
+    ack = _ack_list("key_conflict_ack")
+    families = _key_conflict_families()
+    entry = re.compile(r'^\s*([A-Za-z0-9_.\'-]+):\d*\s*"(.*)"\s*$')
+
+    def survey(root: Path, with_owner: bool):
+        claims: dict[str, dict[str, tuple[str, str]]] = collections.defaultdict(dict)
+        for f in sorted(root.rglob("*.yml")):
+            who = owner.get(f.relative_to(BUILD).as_posix(), "src/") \
+                if with_owner else "vanilla"
+            for line in _read(f).splitlines():
+                m = entry.match(line)
+                if m:
+                    claims[m.group(1)][f.name] = (who, m.group(2))
+        return claims
+
+    n = 0
+    for lang in sorted(d for d in loc.iterdir() if d.is_dir()):
+        van_dir = GAME_DIR / "localisation" / lang.name
+        if not van_dir.is_dir():
+            continue                  # not a language vanilla ships
+        van = survey(van_dir, False)
+        if any(len(v) > 1 for v in van.values()):
+            continue                  # vanilla contests it itself; not our question
+
+        ours = survey(lang, True)
+        n += len(ours)
+        for key, files in sorted(ours.items()):
+            if key in ack or f"{lang.name}/{key}" in ack:
+                continue
+            sources = {who for who, _ in files.values()}
+            if len(sources) < 2 or len(files) < 2:
+                continue
+            if len({val for _, val in files.values()}) == 1:
+                continue              # same string, so nothing renders wrong
+            if any(sources <= f for f in families):
+                continue              # a family overriding itself, by design
+            win = sorted(files)[-1]
+            spelt = ", ".join(f'{f} [{w}] "{v}"'
+                              for f, (w, v) in sorted(files.items()))
+            warnings.append(
+                f"localisation/{lang.name}: key '{key}' is declared by "
+                f"{len(sources)} sources with values that DISAGREE ({spelt}). "
+                f"Localisation is LIOS, so the last filename in sort order "
+                f"wins: '{win}'. Nothing is logged — a key two files declare "
+                f"resolves, it just resolves to one of them, and loc that "
+                f"resolves to the wrong string is decision 45 exactly. Confirm "
+                f"that is the reading you want, then ack it or rename with a "
+                f"`renames:` entry.")
+    return n
 
 
 def check_order_sensitive_databases() -> int:
@@ -7126,6 +7259,35 @@ def check_galaxy_size_references() -> int:
     return len(found)
 
 
+def _expand_inline_scripts(body: str, depth: int = 0) -> str:
+    """Splice `inline_script = "name"` includes into a script body.
+
+    The engine's include is a PREPROCESSOR step -- the named file's text is
+    pasted in before anything is parsed -- so a reader that does not follow it
+    sees a block that is missing whatever the fragment carried. STG uses one
+    to give the Federation its AI copy inside Real Space's Sol, which is a
+    file src/ cannot otherwise reach
+    (.docs/decisions/107-the-ai-federation.md), and vanilla uses the same
+    include in common/solar_system_initializers/ nine times over.
+
+    The block form -- `inline_script = { script = X ... }` -- is deliberately
+    NOT followed: it takes parameters, so pasting its text without binding them
+    would be a different file from the one the engine assembles.
+    """
+    if depth > 4:
+        return body
+
+    def _one(m: "re.Match[str]") -> str:
+        for root in (BUILD, GAME_DIR):
+            p = root / "common/inline_scripts" / (m.group(1) + ".txt")
+            if p.is_file():
+                return _expand_inline_scripts(_strip_comments(_read(p)),
+                                              depth + 1)
+        return ""
+
+    return re.sub(r'inline_script\s*=\s*"?([\w/]+)"?', _one, body)
+
+
 def check_static_galaxy() -> int:
     """Does every galaxy scenario in `map/setup_scenarios/` hold together?
 
@@ -7140,7 +7302,7 @@ def check_static_galaxy() -> int:
 
     A static map is a graph, so most of this is cheap to ask.
 
-    FIVE QUESTIONS:
+    SIX QUESTIONS:
 
       * every `initializer` names a declared solar system initializer, and
         every `spawn_design` a declared prescripted design;
@@ -7165,7 +7327,19 @@ def check_static_galaxy() -> int:
         own key as a country flag. This is the half a generator cannot hold on
         its own — `tools/gen_empire_flags.py` writes the entries, the `flag =`
         lines are hand-authored beside the empire, and nothing but this notices
-        when one side gains an empire and the other does not.
+        when one side gains an empire and the other does not;
+      * **a system reserved for an `stg_` empire must have an initializer that
+        actually creates that empire.** The five above all ask whether the
+        joins RESOLVE, and every one of them said yes about a Sol that created
+        nobody: the map pinned the Federation there, the flag was declared, the
+        initializer existed, and the seat was empty in every galaxy where the
+        player picked somebody else — the mod's own headline empire, absent
+        (.docs/decisions/107-the-ai-federation.md). The condition is
+        `set_country_flag = <flag>` somewhere in the initializer the system
+        names, read with `inline_script` includes expanded. Scoped to `stg_`
+        flags for the same reason as the bullet above: it is our convention
+        that a country flag is a design key, and vanilla's roster does not
+        share it.
 
     THE FLOOR IS ZERO AND THE ONLY SCOPE IS THE ONE MARKED BELOW. Vanilla's
     own roster and its five scenarios answer every question cleanly, and so do
@@ -7193,12 +7367,18 @@ def check_static_galaxy() -> int:
         return 0
 
     initializers: set[str] = set()
-    for root in (GAME_DIR, BUILD):
+    # BUILD FIRST, and setdefault, so the body belongs to the file that
+    # actually ships. Real Space shadows vanilla's own sol_initializers.txt at
+    # the same path, and it is Real Space's Sol the engine loads -- reading
+    # vanilla's would ask the sixth question of a file nobody runs.
+    init_bodies: dict[str, str] = {}
+    for root in (BUILD, GAME_DIR):
         sub = root / "common/solar_system_initializers"
         if sub.is_dir():
             for f in sub.rglob("*.txt"):
-                initializers |= {k for k, _ in
-                                 _top_level_blocks(_strip_comments(_read(f)))}
+                for k, b in _top_level_blocks(_strip_comments(_read(f))):
+                    initializers.add(k)
+                    init_bodies.setdefault(k, b)
 
     designs: dict[str, str] = {}
     for root in (GAME_DIR, BUILD):
@@ -7270,6 +7450,25 @@ def check_static_galaxy() -> int:
                         f"modifier can never match, so with `base = 0` the "
                         f"system is reserved for an empire that will never "
                         f"arrive.")
+                elif cf.startswith("stg_") and init:
+                    body_i = _expand_inline_scripts(
+                        init_bodies.get(init.group(1), ""))
+                    # \b at the end, not a substring test: `stg_klingon_empire`
+                    # is a prefix of `stg_klingon_empire_TYPO`, so a plain `in`
+                    # calls a misspelt flag a match. Found by the control that
+                    # misspelt one.
+                    if not re.search(rf"set_country_flag\s*=\s*{re.escape(cf)}\b",
+                                     body_i):
+                        errors.append(
+                            f"{rp}: system '{sid}' is reserved for '{cf}', but "
+                            f"its initializer '{init.group(1)}' never runs "
+                            f"`set_country_flag = {cf}` — so it creates no AI "
+                            f"copy of that empire. The system spawns, the "
+                            f"weight pins the PLAYER there if they pick it, "
+                            f"and when they do not the seat is simply empty. "
+                            f"Nothing is logged: an initializer that places "
+                            f"geometry and creates nobody is a valid "
+                            f"initializer.")
 
         for sid, count in sorted(ids.items()):
             if count > 1:
@@ -7527,6 +7726,7 @@ def main() -> int:
     shadow_n = check_src_shadowing()
     nl_n = check_name_lists()
     key_n, key_same = check_key_conflicts()
+    lkey_n = check_loc_key_conflicts()
     ose_n = check_order_sensitive_databases()
     gen_n = check_vendored()
     reg_n = check_vanilla_regression()
@@ -7601,6 +7801,7 @@ def main() -> int:
           f"{def_n} defines file(s) ({def_same} define(s) set twice to the same "
           f"value, not reported), {key_n} common/ file(s) for key conflicts "
           f"({key_same} contested key(s) identical in content, not reported), "
+          f"{lkey_n} localisation key(s) for two sources declaring one, "
           f"{ose_n} order-sensitive database(s), "
           f"{pre_n} prescripted-country file(s) for traits and ethics, "
           f"{col_n} name list(s) for colony/capital collisions, "

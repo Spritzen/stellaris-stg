@@ -3730,6 +3730,48 @@ patches:
         to: "\tfile = \"fallen_empire_01_citadel_idle.anim\""
         count: 1
 
+
+  # --- The AI Federation: one line into Real Space's Earth --------------------
+  # THE ONE EMPIRE ON THE MAP WITH NO AI COPY, and the most visible one. Every
+  # other Trek empire in the galaxy is created by its own home system's
+  # initializer in src/ (decision 85); the Federation's home system is Sol,
+  # which belongs to Real Space, so there was nowhere in src/ to put the same
+  # guarded create_country and it was left out of decision 86 as a content call.
+  #
+  # This is that call. The block itself is NOT here -- it is generated into
+  # common/inline_scripts/stg_federation_ai_empire.txt by
+  # tools/gen_home_systems.py, from the Federation's own prescripted entry, by
+  # the same ai_empire_block the other 36 carry. So it cannot drift from the
+  # empire it copies, which a block hand-written into this file would. All this
+  # patch does is include it, with the engine's own `inline_script` -- vanilla
+  # uses that include in common/solar_system_initializers/ nine times over.
+  #
+  # It goes at PLANET level, after Earth's own init_effect, which is exactly
+  # where the other 36 put theirs. The guard means nothing is created when the
+  # player is the Federation: their country already carries
+  # stg_united_federation_of_planets from common/prescripted_flags/.
+  #
+  # THE ANCHOR IS 16 LINES BECAUSE NOTHING SHORTER IS UNIQUE. This file carries
+  # SEVEN Earths -- com_sol_system, ai_sol_system, the lost-colony and mirror
+  # Sols, mindwarden's -- and their planet blocks are byte-identical down to the
+  # entity name. Uniqueness only arrives at Luna and the planet that follows
+  # her, so the anchor runs to there. `count: 1` is what proves it: if Real
+  # Space ever edits any of these lines the patch dies rather than landing on
+  # somebody else's Earth.
+  #
+  # See .docs/decisions/107-the-ai-federation.md.
+  - path: common/solar_system_initializers/sol_initializers.txt
+    source: Real Space 4.0
+    why: >-
+      Sol is Real Space's file, so the Federation had no AI copy while every
+      other Trek empire did. Includes the generated
+      stg_federation_ai_empire fragment on Earth. One line added; nothing
+      Real Space wrote is changed.
+    replace:
+      - from: "\t\t}\r\n\r\n\t\tmoon = {\r\n\t\t\tname = \"NAME_Luna\"\r\n\t\t\tclass = \"pc_barren_cold\"\r\n\t\t\tflags = { luna }\r\n\t\t\tsize = 5\r\n\t\t\torbit_distance = 8\r\n\t\t\torbit_angle = 40\r\n\t\t\thas_ring = no\r\n\t\t\tentity = \"cold_barren_planet_luna_entity\"\r\n\t\t}\r\n\t}\r\n\r\n\r\n\tplanet = {"
+        to: "\t\t}\r\n\r\n\t\tinline_script = \"stg_federation_ai_empire\"\r\n\t\tmoon = {\r\n\t\t\tname = \"NAME_Luna\"\r\n\t\t\tclass = \"pc_barren_cold\"\r\n\t\t\tflags = { luna }\r\n\t\t\tsize = 5\r\n\t\t\torbit_distance = 8\r\n\t\t\torbit_angle = 40\r\n\t\t\thas_ring = no\r\n\t\t\tentity = \"cold_barren_planet_luna_entity\"\r\n\t\t}\r\n\t}\r\n\r\n\r\n\tplanet = {"
+        count: 1
+
 # ── Renames ──────────────────────────────────────────────────────────────────
 #
 # Change a vendored file's NAME, leaving its contents alone. Applied by

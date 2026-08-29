@@ -80,18 +80,21 @@ measuring it also corrected the finding's own numbers.*
 > occur inside `src/`. **The item below is what is left, and it is a different
 > question**: two *sources* contesting a key, not two files of ours.
 
-### `check_key_conflicts` cannot see a contested localisation key
-
-**Recorded 2026-08-28 in [decision 92](../decisions/92-src-contests-its-own-loc-keys.md),
-not fixed there.** It walks `stg-build/common/` only, so a key two *sources*
-contest in `localisation/` is unasked. The population is **41 keys, of which 8
-differ** — and all 8 are Planetary Diversity overriding itself through its own
-extensions, which is the "extension wins" case
-[decision 27](../decisions/27-merge-semantics-per-directory.md) settles as
-correct. So there is **no known defect here**, and widening the check means
-extending `vendor.yml`'s `key_conflict_families` to localisation first or it
-reports 8 findings that are all fine. Worth doing when something else touches
-that check; not worth doing alone.
+> **~~`check_key_conflicts` cannot see a contested localisation key~~ — closed
+> 2026-08-29** ([decision 109](../decisions/109-two-sources-one-loc-key.md)).
+> This item said the widening was *"worth doing when something else touches that
+> check; not worth doing alone"*, and the reason it was never one line is now on
+> record: `check_key_conflicts` asks its question of `key = { … }` blocks and
+> **a localisation file has no blocks**, so there was nothing to widen. It is a
+> sibling check, `check_loc_key_conflicts`, the way
+> [91](../decisions/91-src-contests-its-own-name-lists.md) and
+> [92](../decisions/92-src-contests-its-own-loc-keys.md) are siblings.
+>
+> **The numbers this item recorded held**: 41 contested keys, 8 differing, all
+> Planetary Diversity overriding its own placeholders through its own
+> extensions, every one resolving to the extension. The `key_conflict_families`
+> filter empties it, and the parser is shared with the sibling rather than
+> copied. Population **27,742 keys, 0 findings**, calibrated on four controls.
 
 ---
 
@@ -162,6 +165,28 @@ above — permanently lit and ignored, versus never lit at all.
 ---
 
 ## Needs a live run to settle — and all of it is eyes-only
+
+> **Two things built 2026-08-29 that the next run should grade first, because
+> both are one glance and both have a falsifiable prediction.**
+>
+> **1. Is there an AI Federation, and is there exactly one?**
+> ([decision 107](../decisions/107-the-ai-federation.md)) The map reserved Sol
+> for the Federation and nothing created one; it does now, through a generated
+> `inline_script` fragment spliced into Real Space's Earth. **One** in the
+> contacts list is the pass. **Two** means the guard did not see the player's
+> own country flag — the failure mode `common/prescripted_flags/` exists to
+> prevent, and the same one the other 36 empires would show. **None** means the
+> include did not take, and the first thing to read is whether `error.log`
+> mentions `stg_federation_ai_empire`.
+>
+> **2. Roughly one anomaly in twelve should be Trek**, up from one in nineteen
+> ([decision 108](../decisions/108-anomaly-weights-not-levels.md)). All 33 spawn
+> weights were raised `1 → 2`, `2 → 3`, `3 → 5`, taking the 21 Trek categories
+> from 5.3% of the merged pool's spawn weight to 8.3% against a fair share of
+> 8.4%. Survey a few dozen bodies and count how many of the anomalies carry
+> `stg_` names. This is the rare item on this page that a run can **falsify**
+> rather than merely observe.
+
 
 **A reference that resolves produces no log record.** `make validate` clean is not
 evidence for anything in this section — the standing lesson of decisions
@@ -305,7 +330,12 @@ off now, so keep it that way.
 > system is vanilla's **Sealed System** — `isolate_system = yes`, reached by a
 > wormhole pair, working as designed and reported from the run as a suspected
 > defect. **You can fly out of Qo'noS.** That was the top item on this page and
-> it is answered; the picker lock and the AI Federation below are not.
+> it is answered; the picker lock is not. **The AI Federation is, as of
+> 2026-08-29** ([decision 107](../decisions/107-the-ai-federation.md)) — the
+> map had reserved system `0` for it and nothing created one, because Sol is
+> Real Space's file and no `src/` file can add a line to a block another mod
+> declares. It is built and unrun: **one glance at the contacts list asks
+> whether there is an AI Federation in the galaxy, and exactly one.**
 
 That does not falsify the `playable` fix — the gate it removed was real and had
 to go — but it does say the gate was **not the whole cause**. Both levers are now in and
@@ -439,7 +469,9 @@ the `human` portrait, the Federation among them. Both sides in
 **4. ~~The static galaxy scenario~~ — built 2026-08-27, run the same day, and
 it works.** Not a fallback — the mechanism.
 [Decision 86](../decisions/86-static-galaxy-scenario.md) has what shipped and
-what is deliberately absent from it (an AI Federation, the Terran Empire);
+what was deliberately absent from it — **the AI Federation is no longer, as of
+[decision 107](../decisions/107-the-ai-federation.md); the Terran Empire still
+is, and deliberately** —
 [decision 87](../decisions/87-static-map-lanes-are-generated.md) has what the
 run returned: 20 AI Trek empires created, the flag guard firing, and a galaxy
 with no hyperlanes in it because the map declared none. The lanes are generated
@@ -650,21 +682,34 @@ they fail differently:
   they were chosen, and two rejected on tone. **Nine of the 24 are frames
   extracted from a 9315×264 animation strip**, and a wrong frame is the failure
   mode there.
-- **Do the levels and rewards feel right?** An anomaly level gates which
-  scientist can crack it and how often the roll fails. The mapping is a
-  judgement, but there is a number to hold it against
-  ([73](../decisions/73-phase-4-count-corrections.md)):
+- **Do the rewards feel right?** An anomaly level gates which scientist can
+  crack it and how often the roll fails, and the mapping is a judgement.
 
-  | level | 1 | 2 | 3 | 4 | 5 | 6 | 7 | mean |
-  |---|---|---|---|---|---|---|---|---|
-  | STG, 21 categories | 2 | 2 | 5 | 3 | 6 | 3 | 0 | **3.86** |
-  | vanilla base game, 40 | 12 | 14 | 6 | 4 | 3 | 0 | 1 | **2.4** |
-
-  Vanilla puts 65% of its base-game categories at level 1–2 and 10% at level 5+;
-  STG puts 19% and **43%**. The merged pool still leans vanilla (348 categories),
-  so the galaxy is not harder — but **the Trek half is the slow, failure-prone
-  half**, which is the half the player is meant to notice, and early-game
-  scientists will bounce off it.
+  > **The levels half of this item is closed, and the yardstick under it was
+  > wrong** ([decision 108](../decisions/108-anomaly-weights-not-levels.md),
+  > 2026-08-29). It used to read *"vanilla puts 65% of its base-game categories
+  > at level 1–2 and 10% at level 5+; STG puts 19% and 43% … early-game
+  > scientists will bounce off it."* Both STG figures are right. The comparison
+  > was to vanilla's **base-game 40**, and the pool a survey actually draws from
+  > is **327**: **37.4% at level 1–2 and 24.2% at 5+**, mean 3.28 against STG's
+  > 3.86. Half the gap was the yardstick.
+  >
+  > **And the half that is left costs two points.** Weighted by the spawn weight
+  > each category carries — what a player meets, rather than what a file lists —
+  > the merged pool sits at **27.4%** of weight at level 5+ against vanilla's own
+  > **25.2%**. The Trek set is 8% of the pool, so its lean moves the galaxy by
+  > 2.2 percentage points. **The levels were deliberately left alone**: a level
+  > is content, an Iconian gateway is meant to be beyond an early scientist, and
+  > flattening the curve would cost the set its character to buy back a
+  > difficulty the player does not experience as Trek's.
+  >
+  > **What the same measurement did find was the weights, and they moved.** The
+  > 21 categories held **5.3% of the merged pool's spawn weight for 7.2% of its
+  > spawnable categories** — under fair share in *every* body class by the same
+  > factor, medians vanilla 3.0 and STG 2.0. All 33 `add` values were remapped
+  > `1 → 2`, `2 → 3`, `3 → 5` and the set now sits at **8.3%**. **A live run can
+  > falsify it in a few dozen surveys: roughly one anomaly in twelve should be
+  > `stg_`, up from one in nineteen.**
 
 > **And the framing question underneath all three.**
 > [Decision 69](../decisions/69-event-picture-families.md) centre-crops these

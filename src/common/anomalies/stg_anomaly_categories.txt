@@ -21,6 +21,23 @@
 # than a drift from the rule.
 # See .docs/decisions/73-phase-4-count-corrections.md
 #
+# THE SPAWN WEIGHTS WERE RAISED 2026-08-29 -- 1 -> 2, 2 -> 3, 3 -> 5, all 33 of
+# them, every value a vanilla idiom (vanilla writes `add = 3` 143 times, 2 15
+# times, 5 11 times). These 21 categories held 5.3% of the merged pool's spawn
+# weight where their share of its spawnable categories is 8.4%: written a notch
+# stingier than vanilla in EVERY body class, not in one. The remap lands at
+# 8.3%, and per class within a point or two of fair share. Do not read the raw
+# ratio without excluding vanilla's four `add >= 100` scene-specific spawns --
+# DISTAR_DEAD_GOD_CAT alone is `add = 1000` and it made the same gap look three
+# times worse than it is.
+#
+# THE LEVELS WERE DELIBERATELY LEFT ALONE, and the measurement is why: these
+# categories lean hard, 43% of them at level 5+, but they are 8% of the pool, so
+# the galaxy a player actually surveys goes from vanilla's 25.2% of spawn weight
+# at level 5+ to 27.4%. Two points. The skew is content -- an Iconian gateway is
+# meant to be hard -- and it is not a difficulty problem.
+# See .docs/decisions/108-anomaly-weights-not-levels.md
+#
 # EVERY CATEGORY NEEDS A POSITIVE `spawn_chance`. It defaults to `base = 0`, and
 # a category with nothing adding to it is complete, validating clean and never
 # rolled. check_anomalies asks this now; a `factor` does not count, because it
@@ -38,7 +55,7 @@ stg_dilithium_matrix_category = {
 
 	spawn_chance = {
 		modifier = {
-			add = 3
+			add = 5
 			is_asteroid = yes
 		}
 		modifier = {
@@ -61,11 +78,11 @@ stg_starship_graveyard_category = {
 
 	spawn_chance = {
 		modifier = {
-			add = 2
+			add = 3
 			uninhabitable_regular_planet = yes
 		}
 		modifier = {
-			add = 2
+			add = 3
 			is_asteroid = yes
 		}
 	}
@@ -84,7 +101,7 @@ stg_derelict_hulk_category = {
 
 	spawn_chance = {
 		modifier = {
-			add = 2
+			add = 3
 			uninhabitable_regular_planet = yes
 		}
 		modifier = {
@@ -108,7 +125,7 @@ stg_sleeper_capsule_category = {
 
 	spawn_chance = {
 		modifier = {
-			add = 2
+			add = 3
 			is_asteroid = yes
 		}
 	}
@@ -125,11 +142,11 @@ stg_interphase_ship_category = {
 
 	spawn_chance = {
 		modifier = {
-			add = 1
+			add = 2
 			uninhabitable_regular_planet = yes
 		}
 		modifier = {
-			add = 1
+			add = 2
 			is_planet_class = pc_gas_giant
 		}
 	}
@@ -147,7 +164,7 @@ stg_planet_killer_remnant_category = {
 
 	spawn_chance = {
 		modifier = {
-			add = 2
+			add = 3
 			is_asteroid = yes
 		}
 	}
@@ -163,7 +180,7 @@ stg_shattered_moon_category = {
 
 	spawn_chance = {
 		modifier = {
-			add = 3
+			add = 5
 			is_moon = yes
 			uninhabitable_regular_planet = yes
 		}
@@ -182,11 +199,11 @@ stg_horta_tunnels_category = {
 
 	spawn_chance = {
 		modifier = {
-			add = 3
+			add = 5
 			is_planet_class = pc_molten
 		}
 		modifier = {
-			add = 2
+			add = 3
 			is_planet_class = pc_barren
 		}
 	}
@@ -205,22 +222,22 @@ stg_cliff_dwellings_category = {
 
 	spawn_chance = {
 		modifier = {
-			add = 2
+			add = 3
 			habitable_planet_not_urban = yes
 			is_planet_class = pc_arid
 		}
 		modifier = {
-			add = 2
+			add = 3
 			habitable_planet_not_urban = yes
 			is_planet_class = pc_desert
 		}
 		modifier = {
-			add = 2
+			add = 3
 			habitable_planet_not_urban = yes
 			is_planet_class = pc_savannah
 		}
 		modifier = {
-			add = 2
+			add = 3
 			habitable_planet_not_urban = yes
 			is_planet_class = pc_tundra
 		}
@@ -239,11 +256,11 @@ stg_iconian_gateway_category = {
 
 	spawn_chance = {
 		modifier = {
-			add = 2
+			add = 3
 			is_planet_class = pc_barren
 		}
 		modifier = {
-			add = 3
+			add = 5
 			is_planet_class = pc_nuked
 		}
 	}
@@ -263,11 +280,11 @@ stg_genesis_matrix_category = {
 
 	spawn_chance = {
 		modifier = {
-			add = 2
+			add = 3
 			is_planet_class = pc_barren
 		}
 		modifier = {
-			add = 2
+			add = 3
 			is_planet_class = pc_toxic
 		}
 		modifier = {
@@ -289,11 +306,11 @@ stg_tox_uthat_category = {
 
 	spawn_chance = {
 		modifier = {
-			add = 2
+			add = 3
 			is_planet_class = pc_frozen
 		}
 		modifier = {
-			add = 2
+			add = 3
 			is_planet_class = pc_arctic
 		}
 	}
@@ -311,11 +328,11 @@ stg_resonator_cache_category = {
 
 	spawn_chance = {
 		modifier = {
-			add = 2
+			add = 3
 			is_planet_class = pc_nuked
 		}
 		modifier = {
-			add = 1
+			add = 2
 			is_planet_class = pc_barren_cold
 		}
 	}
@@ -331,7 +348,7 @@ stg_tribble_biosphere_category = {
 
 	spawn_chance = {
 		modifier = {
-			add = 2
+			add = 3
 			habitable_planet_not_urban = yes
 		}
 	}
@@ -350,11 +367,11 @@ stg_crystalline_entity_category = {
 
 	spawn_chance = {
 		modifier = {
-			add = 1
+			add = 2
 			uninhabitable_regular_planet = yes
 		}
 		modifier = {
-			add = 2
+			add = 3
 			is_asteroid = yes
 		}
 	}
@@ -372,7 +389,7 @@ stg_living_ship_category = {
 
 	spawn_chance = {
 		modifier = {
-			add = 3
+			add = 5
 			is_planet_class = pc_gas_giant
 		}
 	}
@@ -390,7 +407,7 @@ stg_cetacean_probe_category = {
 
 	spawn_chance = {
 		modifier = {
-			add = 3
+			add = 5
 			is_planet_class = pc_ocean
 		}
 	}
@@ -408,11 +425,11 @@ stg_deep_space_probe_category = {
 
 	spawn_chance = {
 		modifier = {
-			add = 1
+			add = 2
 			is_planet_class = pc_gas_giant
 		}
 		modifier = {
-			add = 1
+			add = 2
 			uninhabitable_regular_planet = yes
 		}
 	}
@@ -430,7 +447,7 @@ stg_omega_signature_category = {
 
 	spawn_chance = {
 		modifier = {
-			add = 2
+			add = 3
 			is_star = yes
 		}
 	}
@@ -449,7 +466,7 @@ stg_plasma_storms_category = {
 
 	spawn_chance = {
 		modifier = {
-			add = 3
+			add = 5
 			is_inside_nebula = yes
 			is_star = yes
 		}
@@ -468,7 +485,7 @@ stg_transwarp_conduit_category = {
 
 	spawn_chance = {
 		modifier = {
-			add = 3
+			add = 5
 			is_star = yes
 			is_star_class = sc_black_hole
 		}

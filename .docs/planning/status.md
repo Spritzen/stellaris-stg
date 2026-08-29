@@ -6,15 +6,23 @@
 > build.
 > **Then** — [Open questions](open-questions.md) · [Phases](phases.md) · [Live runs](../guides/live-runs.md)
 
-*Last updated 2026-08-29, against the build of 2026-08-28 and the **UFP run**
+*Last updated 2026-08-29, against the build of **2026-08-29** and the **UFP run**
 of 2026-08-29, which is the current `error.log` baseline. The Klingon run that
 shares that date is the first against a static map that has lanes; name the
-empire, never the date alone. **The last night's work is decisions
-[100](../decisions/100-starbase-slot-tables-outrun-the-art.md)–[105](../decisions/105-ten-log-files-nothing-had-named.md)**
-— four more `vendor.yml` patches, three new `make validate` checks, a fourteenth
-generator and the one file it emits, and a new `make logs` target with the
-`make docs` check that holds its table to
-[game-logs.md](../reference/game-logs.md). They move the file count by one.
+empire, never the date alone. **The most recent work is decisions
+[107](../decisions/107-the-ai-federation.md)–[110](../decisions/110-effect-and-trigger-names-are-clean.md)**
+— the **AI Federation**, which the map had reserved a seat for and nothing had
+ever created; the Trek anomaly spawn weights, raised to their fair share of the
+merged pool while the level curve was measured and deliberately left alone; a
+fifty-seventh check for a localisation key two sources contest; and one measured
+negative that ships no check. Two new `make validate` questions, one new file
+(the generated `common/inline_scripts/stg_federation_ai_empire.txt`) and one new
+`vendor.yml` patch. **Neither of the two content changes is graded** — see
+[open questions](open-questions.md), where both carry a one-glance test and a
+falsifiable prediction. The night before was
+[100](../decisions/100-starbase-slot-tables-outrun-the-art.md)–[105](../decisions/105-ten-log-files-nothing-had-named.md)
+— four `vendor.yml` patches, three checks, a fourteenth generator and the
+`make logs` target.
 **No live run has a write-up any
 more** — the run plans and analyses were retired on 2026-08-27 ([89](../decisions/89-retired-run-write-ups.md)), and what
 each run established now lives in the decision it produced and in the baseline
@@ -25,7 +33,7 @@ every number here goes stale — [style guide §6](../style-guide.md).*
 |---|---|
 | **Phase 0** — vendoring pipeline | **complete** |
 | **Phase 1** — playable Federation | **complete**, run in-game repeatedly |
-| **Phase 2** — the rest of the galaxy | **complete**. 99 prescripted empires (22 majors/quadrant/frontier, 77 minors; all playable, and all in the pool the generator draws from since the `playable = stg_never` gate was removed — **and the 2026-08-26 save proves all 99 reach the design database — and that no galaxy has yet drawn one**, see [decision 83](../decisions/83-design-database-is-not-the-cause.md); the mechanism a Trek galaxy actually needs is a static map plus `create_country` initializers — [decision 85](../decisions/85-create-country-initializers.md) — and **both ship and have now been run once**: 95 systems, 21 empires, 36 `create_country` blocks and the `prescripted_flags` join between them, [decision 86](../decisions/86-static-galaxy-scenario.md), graded by the 2026-08-27 Klingon run [87](../decisions/87-static-map-lanes-are-generated.md)) over 99 distinct species classes, 89 name lists, 36 generated home systems plus vanilla's Sol. `src/` declares **129** classes in all — the extra 30 are the STNH selector stubs of [decision 30](../decisions/30-declare-stub-species-classes.md) |
+| **Phase 2** — the rest of the galaxy | **complete**. 99 prescripted empires (22 majors/quadrant/frontier, 77 minors; all playable, and all in the pool the generator draws from since the `playable = stg_never` gate was removed — **and the 2026-08-26 save proves all 99 reach the design database — and that no galaxy has yet drawn one**, see [decision 83](../decisions/83-design-database-is-not-the-cause.md); the mechanism a Trek galaxy actually needs is a static map plus `create_country` initializers — [decision 85](../decisions/85-create-country-initializers.md) — and **both ship and have now been run once**: 95 systems, 21 empires, 36 `create_country` blocks and the `prescripted_flags` join between them, [decision 86](../decisions/86-static-galaxy-scenario.md), graded by the 2026-08-27 Klingon run [87](../decisions/87-static-map-lanes-are-generated.md)) over 99 distinct species classes, 89 name lists, 36 generated home systems plus Real Space's Sol — which since [decision 107](../decisions/107-the-ai-federation.md) carries the Federation's AI copy too, as a generated `inline_script` fragment a `vendor.yml` patch includes, so **all 21 empires on the map now create themselves**. `src/` declares **129** classes in all — the extra 30 are the STNH selector stubs of [decision 30](../decisions/30-declare-stub-species-classes.md) |
 | **Phase 3** — art and identity | **complete 2026-08-08**. Clothing triggers, shipsets, weapon mounts, flags, rooms, city sets, loading screens, `paragon_backgrounds.txt`, the shipsets' 39 extra flags |
 | **Phase 4** — polish | **started 2026-08-08**. Music, the ship registries and their class names, then the three slices [decision 70](../decisions/70-trek-anomalies.md) scoped: **21 Trek anomalies** ([70](../decisions/70-trek-anomalies.md)), **6 dig sites** ([71](../decisions/71-trek-archaeology.md)) and **21 story events** ([72](../decisions/72-trek-story-events.md)), all 2026-08-09. All three are shipped; what remains in the phase has no scope written for it |
 | **Phase 5** — the clutter pass | **complete 2026-08-07** (pipeline work, taken out of order) |
@@ -36,13 +44,13 @@ every number here goes stale — [style guide §6](../style-guide.md).*
 `.vendor-manifest.json` and the `make validate` summary line carry the live
 ones.
 
-| | Build of 2026-08-28 |
+| | Build of 2026-08-29 |
 |---|---|
-| Files / size | **22,395 / 14.3 GiB** ([the per-tier split](../architecture/vendored-merge.md#size)) — net two fewer than the 27th: the three name lists [93](../decisions/93-power-lists-win-the-contested-keys.md) deleted, against the one inline script [101](../decisions/101-first-contact-sounds-are-species-class-gated.md) added |
+| Files / size | **22,396 / 14.3 GiB** ([the per-tier split](../architecture/vendored-merge.md#size)) — net one fewer than the 27th: the three name lists [93](../decisions/93-power-lists-win-the-contested-keys.md) deleted, against **two** inline scripts added, [101](../decisions/101-first-contact-sounds-are-species-class-gated.md)'s first contact sounds and [107](../decisions/107-the-ai-federation.md)'s AI Federation |
 | Re-cut at harvest / pruned | 1,661 / **888** |
 | Overwrites / additive skips | 952 / 220 |
 | `make vendor` | 68 s |
-| `make validate` | **0 warnings, 0 errors**, over **56 checks** — nine more than yesterday, the last three of them `check_slot_table_widening` ([100](../decisions/100-starbase-slot-tables-outrun-the-art.md)), `check_build_script_syntax` and `check_script_variables` ([102](../decisions/102-syntax-checking-stopped-at-src.md)). It warned 3 for part of 2026-08-28, on the contested name-list keys [decision 91](../decisions/91-src-contests-its-own-name-lists.md) found, and [decision 93](../decisions/93-power-lists-win-the-contested-keys.md) closed them the same day |
+| `make validate` | **0 warnings, 0 errors**, over **57 checks** — the newest is `check_loc_key_conflicts` ([109](../decisions/109-two-sources-one-loc-key.md)), and `check_static_galaxy` gained a **sixth question** the same day ([107](../decisions/107-the-ai-federation.md)): the five it already asked all check that a join *resolves*, and the Federation's Sol resolved perfectly while creating nobody. Before those, `check_slot_table_widening` ([100](../decisions/100-starbase-slot-tables-outrun-the-art.md)), `check_build_script_syntax` and `check_script_variables` ([102](../decisions/102-syntax-checking-stopped-at-src.md)). It warned 3 for part of 2026-08-28, on the contested name-list keys [decision 91](../decisions/91-src-contests-its-own-name-lists.md) found, and [decision 93](../decisions/93-power-lists-win-the-contested-keys.md) closed them the same day |
 | `make docs` | **0 warnings, 0 errors**, over **14 checks** — six of them the inventory family of [66](../decisions/66-doc-inventory-checks.md), the newest `check_log_inventory` ([105](../decisions/105-ten-log-files-nothing-had-named.md)) |
 | `make logs` | **19 files censused, 0 warnings** — new target ([105](../decisions/105-ten-log-files-nothing-had-named.md)) |
 | `make gen-check` | **14 of 14 generators are fixpoints** — the fourteenth is `gen_first_contact_sounds.py` ([101](../decisions/101-first-contact-sounds-are-species-class-gated.md)) |
