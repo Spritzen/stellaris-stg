@@ -201,7 +201,19 @@ def check_links() -> int:
 # sweep rewrote 415 of them twice while every href stayed correct -- `make docs`
 # passed clean over links whose visible text named the wrong decision. The href
 # is the authority; a number in the label has to agree with it.
-DECISION_HREF = re.compile(r"(?:^|/)(\d{2})-[a-z0-9-]+\.md$")
+DECISION_HREF = re.compile(r"(?:^|/)(\d{2,3})-[a-z0-9-]+\.md$")
+
+
+def _num(f: pathlib.Path) -> str:
+    """A decision file's number: the digits before the first dash.
+
+    Not `name[:2]`, which is what every one of these read until 2026-08-28.
+    The corpus was two digits wide for 99 decisions and the hundredth broke
+    four checks at once -- the title/filename comparison, the `have` set the
+    bare-number check tests against, and the href regex behind both link
+    checks -- each of them silently, by reading `10` out of `100-`.
+    """
+    return f.name.split("-", 1)[0]
 # Only labels that are ABOUT a decision number are read. A bare "[77]", a range
 # "[76]-[80]", or anything saying "decision 77" is a claim about which decision
 # this is; "[230 attach points]" and "[the 2026-08-08 review]" are not, and
@@ -311,7 +323,7 @@ def check_bare_decision_numbers() -> int:
     worklist and the 2026-08-27 sweep did not have one for this form, which is
     why it rewrote 415 link labels twice and these three not at all.
     """
-    have = {int(f.name[:2]) for f in DOCS.glob("decisions/[0-9]*.md")}
+    have = {int(_num(f)) for f in DOCS.glob("decisions/[0-9]*.md")}
     n = 0
 
     def scan(where: pathlib.Path, text: str) -> None:
@@ -414,7 +426,7 @@ def check_nav_cards() -> int:
 DECISION_STATUS = re.compile(
     r"^\s*(?:\*\*(?:Status|Decided|Resolved)\b|\*(?:Decided|Originally|Resolved)\b)",
     re.M)
-DECISION_TITLE = re.compile(r"^#\s+(?:Decision\s+)?(\d{2})\s*[—-]\s*\S")
+DECISION_TITLE = re.compile(r"^#\s+(?:Decision\s+)?(\d{2,3})\s*[—-]\s*\S")
 
 
 def check_decision_heads() -> int:
@@ -437,9 +449,9 @@ def check_decision_heads() -> int:
             errors.append(f"{f.relative_to(REPO)}: title is not "
                           f"'# NN — <the finding>' "
                           f"(.docs/style-guide.md section 7)")
-        elif m.group(1) != f.name[:2]:
+        elif m.group(1) != _num(f):
             errors.append(f"{f.relative_to(REPO)}: title says {m.group(1)}, "
-                          f"filename says {f.name[:2]}")
+                          f"filename says {_num(f)}")
         if not DECISION_STATUS.search("\n".join(text.split("\n")[:10])):
             errors.append(f"{f.relative_to(REPO)}: no dated status in the "
                           f"head (.docs/style-guide.md section 7)")

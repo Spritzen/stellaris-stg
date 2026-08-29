@@ -225,38 +225,177 @@ def check_script() -> int:
             errors.append(f"{rel(p)}: not valid UTF-8")
             continue
 
-        depth, line_no = 0, 1
-        opened: list[int] = []
-        in_str = in_comment = False
-        for ch in text:
-            if ch == "\n":
-                line_no += 1
-                in_comment = False
-            elif in_comment:
-                continue
-            elif ch == '"':
-                in_str = not in_str
-            elif in_str:
-                continue
-            # A BRACE INSIDE A COMMENT IS NOT A BRACE, and the scanner used to
-            # count it. STNH's ship art comments out whole `state = { ... }`
-            # blocks and leaves the opener behind: those files are +2 on a raw
-            # count and balanced on a real one. The game reads them fine, and
-            # this check only ever saw them once one became an src/ override.
-            elif ch == "#":
-                in_comment = True
-            elif ch == "{":
-                depth += 1
-                opened.append(line_no)
-            elif ch == "}":
-                depth -= 1
-                if depth < 0:
-                    errors.append(f"{rel(p)}:{line_no}: unmatched closing brace")
-                    break
-                opened.pop()
-        else:
-            if depth > 0:
-                errors.append(f"{rel(p)}: {depth} unclosed brace(s), first opened at line {opened[0]}")
+        stray, opened = _brace_scan(text)
+        if stray:
+            errors.append(f"{rel(p)}:{stray}: unmatched closing brace")
+        elif opened:
+            errors.append(f"{rel(p)}: {len(opened)} unclosed brace(s), "
+                          f"first opened at line {opened[0]}")
+    return n
+
+
+def _brace_scan(text: str) -> tuple[int | None, list[int]]:
+    """(line of the first stray `}`, lines of every still-open `{`).
+
+    A BRACE INSIDE A COMMENT IS NOT A BRACE, and the scanner used to count it.
+    STNH's ship art comments out whole `state = { ... }` blocks and leaves the
+    opener behind: those files are +2 on a raw count and balanced on a real
+    one. The game reads them fine, and this only ever saw them once one became
+    an src/ override -- which is the same blind spot decision 102 widened, one
+    tree over.
+    """
+    depth, line_no = 0, 1
+    opened: list[int] = []
+    in_str = in_comment = False
+    for ch in text:
+        if ch == "\n":
+            line_no += 1
+            in_comment = False
+        elif in_comment:
+            continue
+        elif ch == '"':
+            in_str = not in_str
+        elif in_str:
+            continue
+        elif ch == "#":
+            in_comment = True
+        elif ch == "{":
+            depth += 1
+            opened.append(line_no)
+        elif ch == "}":
+            depth -= 1
+            if depth < 0:
+                return line_no, []
+            opened.pop()
+    return None, opened
+
+
+def check_build_script_syntax() -> int:
+    """Unbalanced braces and unterminated strings in the tree the GAME reads.
+
+    THE SAME SCANNER check_script HAS ALWAYS RUN, pointed at the other tree.
+    That one walks `src/` -- 340 files of ours -- and until 2026-08-28 nothing
+    walked the 3,934 script files the build actually ships. The 22,394-file
+    figure elsewhere on this page counts art; the parseable surface is a tenth
+    of it and was entirely unasked.
+
+    WHY IT MATTERS MORE HERE THAN IN src/. A missing brace does not fail
+    loudly: the Clausewitz parser swallows the rest of the file, so everything
+    after the defect is silently not there -- and the loss is invisible unless
+    something happens to reference what went missing. `src/` is 340 files we
+    wrote and reviewed; the build is 49 mods merged, patched and pruned, and
+    every one of those steps writes bytes.
+
+    THE FLOOR IS 0 AND IT IS MEASURED, not assumed: the build was clean the day
+    this was written, against VANILLA's own 3 -- `scripted_loc_ruloc.txt` and
+    two `nomads` .gfx, none of which the build ships. Vanilla failing its own
+    parser three times is the reason this reports rather than errors on the
+    vendored half: a source is entitled to ship what vanilla ships.
+
+    See .docs/decisions/102-syntax-checking-stopped-at-src.md.
+    """
+    if not BUILD.is_dir():
+        return 0
+    ack = _ack_list("build_syntax_ack")
+    bad: list[str] = []
+    n = 0
+    for p in sorted(BUILD.rglob("*")):
+        if not p.is_file() or p.suffix.lower() not in (
+                ".txt", ".gui", ".gfx", ".asset"):
+            continue
+        rel_p = p.relative_to(BUILD).as_posix()
+        if rel_p in ack:
+            continue
+        n += 1
+        text = p.read_bytes().decode("utf-8-sig", errors="replace")
+        stray, opened = _brace_scan(text)
+        if stray:
+            bad.append(f"{rel_p}:{stray} unmatched `}}`")
+        elif opened:
+            bad.append(f"{rel_p}: {len(opened)} unclosed, first at line {opened[0]}")
+    if bad:
+        warnings.append(
+            f"stg-build: {len(bad)} script file(s) do not parse — "
+            f"{'; '.join(bad[:3])}{' …' if len(bad) > 3 else ''}. The Clausewitz "
+            f"parser swallows the rest of a file after an unbalanced brace, so "
+            f"everything below the defect is silently absent and nothing in the "
+            f"log names it. Fix through a `patches:` entry or `src/`, never by "
+            f"hand-editing the vendored file, or ack in vendor.yml under "
+            f"build_syntax_ack. "
+            f"See .docs/decisions/102-syntax-checking-stopped-at-src.md.")
+    return n
+
+
+_AT_DEF = re.compile(r"^[ \t]*(@\w+)\s*=", re.M)
+_AT_USE = re.compile(r"(?<![\w@])(@\w+)(\$?)")
+
+
+def check_script_variables() -> int:
+    """A `common/` file reading an `@variable` nothing declares.
+
+    THE CLASS ASB AND SBX BOTH SHIPPED and that only ever got found by reading
+    a log. An unresolved `@` does not keep its name: the field it feeds gets
+    NOTHING. `vendor.yml`'s nsc_starbases patch is the worked example — two
+    `@` names defined only in a sibling file, and the two ship sizes that file
+    exists to declare came up with no build-block radius and no formation
+    priority.
+
+    SCOPE IS BOTH HALVES, and getting it wrong measures the model rather than
+    the tree. A first cut treated `@` as file-local -- which `vendor.yml`'s own
+    patch note says -- and reported 592 vanilla files, 29% of `common/`.
+    `common/scripted_variables/` is a GLOBAL database on top of the file's own
+    definitions; with both, vanilla drops to 25.
+
+    AND 24 OF THOSE 25 ARE NOT REFERENCES AT ALL. `@bio_ship_armor_$SIZE$` is
+    an inline-script parameter concatenated at splice time, and reading a name
+    out of it is .docs/validation/check-design.md rule 8 again -- the written
+    form is part of the name. A `$` immediately after the match is the tell,
+    and skipping those leaves vanilla's floor at exactly **1**:
+    `@max_unlocked_council_positions` in `01_script_values_paragon.txt`, which
+    vanilla declares nowhere.
+
+    Ours is 1 as well and it is a different kind: Sensor Expansion's
+    `@ap_technological_ascendancy_rare_tech`, defined in an Ariphaos companion
+    mod we do not harvest. Patched out in vendor.yml rather than acked, so the
+    baseline here is 0.
+
+    See .docs/decisions/102-syntax-checking-stopped-at-src.md.
+    """
+    if not (BUILD / "common").is_dir():
+        return 0
+
+    glob: set[str] = set()
+    for root in (GAME_DIR, BUILD):
+        d = root / "common/scripted_variables"
+        if d.is_dir():
+            for f in sorted(d.glob("*.txt")):
+                glob |= set(_AT_DEF.findall(_strip_comments(_read(f))))
+
+    ack = _ack_list("script_variable_ack")
+    bad: list[str] = []
+    n = 0
+    for p in sorted((BUILD / "common").rglob("*.txt")):
+        if "scripted_variables" in p.parts:
+            continue
+        n += 1
+        text = _strip_comments(_read(p))
+        have = set(_AT_DEF.findall(text)) | glob
+        # `$` after the name means inline-script concatenation, not a reference.
+        miss = sorted({m for m, dollar in _AT_USE.findall(text)
+                       if not dollar and m not in have and m not in ack})
+        if miss:
+            bad.append(f"{p.relative_to(BUILD).as_posix()} [{' '.join(miss[:3])}]")
+    if bad:
+        warnings.append(
+            f"stg-build/common: {len(bad)} file(s) read an @variable nothing "
+            f"declares — {'; '.join(bad[:3])}{' …' if len(bad) > 3 else ''}. The "
+            f"field it feeds gets nothing, not the name: a cost, a weight or a "
+            f"radius silently goes missing. Resolution is "
+            f"common/scripted_variables/ plus the file's own `@name =` lines, "
+            f"and NOT a sibling file in the same directory. Fix through a "
+            f"`patches:` entry, or ack in vendor.yml under script_variable_ack. "
+            f"Vanilla's own floor over the same question is 1. "
+            f"See .docs/decisions/102-syntax-checking-stopped-at-src.md.")
     return n
 
 
@@ -1742,6 +1881,51 @@ def check_asset_load_order() -> int:
 _STATION_SIZE = re.compile(r"^(military_station_\w+|ion_cannon)$")
 
 
+def _slot_tables(*roots: Path) -> dict[str, set[str]]:
+    """size -> the locators its `section_slots` name, in the order the engine
+    resolves them.
+
+    `common/ship_sizes/` is read vanilla-first and then the mod's, each
+    alphabetically, and a later file that redefines a size REPLACES it whole.
+    A vendored file under a DIFFERENT NAME therefore wins over vanilla's — which
+    is how Starbase Extended's `sbx_3_0_starbases.txt` takes `starbase_starport`
+    off vanilla's `00_starbases.txt` without shadowing it by path.
+
+    THE ORDER IS THE WHOLE POINT. Reading BUILD first and letting vanilla land
+    last, which is what check_section_attach_points did until 2026-08-28,
+    inverts it: for the 19 sizes declared in both trees under different names
+    it reads a table the game never uses. Latent rather than load-bearing at
+    the time — vanilla and SBX agree on `ion_cannon`, the one such size in the
+    station scope — and wrong either way. See .docs/decisions/100-starbase-slot-tables-outrun-the-art.md.
+
+    Pass one root for vanilla's own answer, two for the merged one.
+    """
+    shadowed: set[str] = set()
+    if len(roots) > 1:
+        d = roots[-1] / "common/ship_sizes"
+        if d.is_dir():
+            shadowed = {f.name for f in d.glob("*.txt")}
+    out: dict[str, set[str]] = {}
+    for i, root in enumerate(roots):
+        d = root / "common/ship_sizes"
+        if not d.is_dir():
+            continue
+        for f in sorted(d.glob("*.txt")):
+            if i < len(roots) - 1 and f.name in shadowed:
+                continue            # a later root replaces it by path
+            text = _strip_comments(_read(f))
+            for m in re.finditer(r"^(\w+)\s*=\s*\{", text, re.M):
+                body = _balanced(text, text.index("{", m.start()))
+                sm = re.search(r"section_slots\s*=\s*\{", body)
+                if not sm:
+                    continue
+                slots = _balanced(body, sm.end() - 1)
+                names = set(re.findall(r'locator\s*=\s*"?(\w+)"?', slots))
+                if names:
+                    out[m.group(1)] = names
+    return out
+
+
 def check_section_attach_points() -> int:
     """Hull entities missing the attach points their ship size's slots name.
 
@@ -1802,35 +1986,21 @@ def check_section_attach_points() -> int:
     if not (BUILD / "gfx/models/ships").is_dir():
         return 0
 
-    # ship size -> the attach points its section slots name.
+    # ship size -> the attach points its section slots name, as the engine
+    # resolves them: the mod's table wins over vanilla's. See _slot_tables.
     required: dict[str, set[str]] = {}
     hull_required: dict[str, set[str]] = {}
-    seen_sz: set[str] = set()
-    for root in (BUILD, GAME_DIR):
-        d = root / "common/ship_sizes"
-        if not d.is_dir():
+    for size, names in _slot_tables(GAME_DIR, BUILD).items():
+        want = names - {"root"}
+        if not want:
             continue
-        for f in sorted(d.glob("*.txt")):
-            if f.name in seen_sz:
-                continue            # BUILD's copy shadows vanilla's by path
-            seen_sz.add(f.name)
-            text = _strip_comments(_read(f))
-            for m in re.finditer(r"^(\w+)\s*=\s*\{", text, re.M):
-                body = _balanced(text, text.index("{", m.start()))
-                sm = re.search(r"section_slots\s*=\s*\{", body)
-                if not sm:
-                    continue
-                slots = _balanced(body, sm.end() - 1)
-                names = set(re.findall(r'locator\s*=\s*"?(\w+)"?', slots))
-                size = m.group(1)
-                if _STATION_SIZE.match(size):
-                    if names - {"root"}:
-                        required[size] = names - {"root"}
-                # The hull scope. `part1` is dropped, not overlooked: every
-                # borrowed frame here is a corvette's, and a corvette's whole
-                # job is to have a part1. See the docstring.
-                elif names - {"root", "part1"}:
-                    hull_required[size] = names - {"root", "part1"}
+        if _STATION_SIZE.match(size):
+            required[size] = want
+        # The hull scope. `part1` is dropped, not overlooked: every borrowed
+        # frame here is a corvette's, and a corvette's whole job is to have a
+        # part1. See the docstring.
+        elif want - {"part1"}:
+            hull_required[size] = want - {"part1"}
     if not (required or hull_required):
         return 0
 
@@ -1945,6 +2115,66 @@ def check_section_attach_points() -> int:
             f"section_attach_point_ack. "
             f"See .docs/decisions/33-station-section-attach-points.md.")
     return n
+
+
+def check_slot_table_widening() -> int:
+    """A vendored `section_slots` naming an attach point vanilla's does not.
+
+    THE CAUSE-SIDE OF check_section_attach_points, and it needs no mesh. That
+    one asks whether an ENTITY carries the points its size names, resolving
+    `pdxmesh` through the `.gfx` and searching the mesh blob. This one asks
+    whether the SIZE has any business naming them, and answers it from two text
+    files. Different evidence, and the cheaper of the two is the one that
+    generalises: vanilla's own table for a size is the only guarantee anybody
+    has of what EVERY graphical culture's mesh actually holds, because vanilla
+    ships art for all of them and never names a point its art lacks.
+
+    WHY BOTH EXIST. The entity check is scoped to the station family and to
+    hulls on a borrowed frame (see its docstring, and decisions 33 and 77), so
+    the whole starbase family sits outside it — and 40 of the 72 entities the
+    2026-08-28 run's defect covered are declared by VANILLA ALONE, which that
+    check skips by design. Neither gap is a bug in it: the art is vanilla's and
+    unedited. What was ours was the table. Asking the question one level up
+    catches the same defect on art nobody has to own.
+
+    THE POPULATION IS SMALL AND THAT IS THE POINT. Six vendored sizes name
+    anything vanilla's own table does not, and two of those are Starbase
+    Extended's genuinely new `starbase_stronghold` and `starbase_headquarters`,
+    which bring their own art and have no vanilla table to be compared against
+    — exempt here, and clean under the entity check. The other four were the
+    defect: SBX gives the starport, starhold, starfortress and citadel one
+    36-slot table and all three orbital ring tiers another, sized for the
+    largest member of each family. They are remapped in vendor.yml.
+
+    Baseline is 0. Reverting the four `vendor.yml` patches restores all four.
+    See .docs/decisions/100-starbase-slot-tables-outrun-the-art.md.
+    """
+    van = _slot_tables(GAME_DIR)
+    if not van:
+        return 0
+    ack = _ack_list("slot_table_widening_ack")
+    bad: list[str] = []
+    for size, names in sorted(_slot_tables(GAME_DIR, BUILD).items()):
+        if size not in van or size in ack:
+            continue            # a new size brings its own art; nothing to compare
+        extra = sorted(names - van[size], key=lambda s: (len(s), s))
+        if extra:
+            have = " ".join(sorted(van[size], key=lambda s: (len(s), s)))
+            bad.append(f"{size} names [{' '.join(extra)}] over vanilla's [{have}]")
+    if bad:
+        warnings.append(
+            f"common/ship_sizes: {len(bad)} vendored section_slots table(s) name "
+            f"an attach point vanilla's own table for the same size does not — "
+            f"{'; '.join(bad[:3])}{' …' if len(bad) > 3 else ''}. Vanilla's table "
+            f"is the only guarantee of what every culture's mesh carries, so a "
+            f"slot past it hangs on a locator that is not there: the section "
+            f"never attaches and the module never renders, with one "
+            f"`has no attach point` record per point per entity and nothing at "
+            f"all on screen. Remap the slot onto a point vanilla's table names "
+            f"— reusing one is the idiom, not a compromise — or ack in "
+            f"vendor.yml under slot_table_widening_ack. "
+            f"See .docs/decisions/100-starbase-slot-tables-outrun-the-art.md.")
+    return len(van)
 
 
 _ATTACH_RE = re.compile(r'\battach\s*=\s*\{\s*"?\w+"?\s*=\s*"([^"]+)"\s*\}')
@@ -2740,6 +2970,18 @@ def check_prescripted_empires() -> int:
     could never produce a record, at any session length. That is the whole reason this check
     exists: `error.log` measures what the engine refused, and the engine refuses
     nothing here — it silently drops one of the two traits at galaxy generation.
+
+    THE `opposites` HALF NOW HAS AN EXTERNAL CONTROL, which nothing else here
+    does. `setup.log` carries the engine's own COMPUTED opposites graph --
+    `trait.cpp:663`, 607 `Made X into opposite of Y` records over 333 traits,
+    reverse edges included. Against what this derives from files, merged tree
+    and BUILD-shadows-by-path: 607 versus 607, agreeing on all 607, neither
+    side holding a pair the other does not. The parser, the shadowing rule and
+    `_list_field` are confirmed against the game rather than against ourselves
+    -- every other calibration here is reverting our own repair, which proves
+    the check notices a change, not that it reads the right relation.
+    Re-measure after any live run; see
+    .docs/decisions/103-setup-log-is-a-load-manifest.md.
 
     Every rule is read out of vanilla's own databases (trait `cost`, `opposites`,
     `allowed_archetypes`, `allowed_ethics`, `leader_class`; archetype
@@ -7280,6 +7522,8 @@ def check_descriptor() -> None:
 def main() -> int:
     loc_n = check_localisation()
     scr_n = check_script()
+    bss_n = check_build_script_syntax()
+    scv_n = check_script_variables()
     shadow_n = check_src_shadowing()
     nl_n = check_name_lists()
     key_n, key_same = check_key_conflicts()
@@ -7294,6 +7538,7 @@ def main() -> int:
     tex_n = check_texture_basenames()
     ord_n = check_asset_load_order()
     sap_n = check_section_attach_points()
+    stw_n = check_slot_table_widening()
     atk_n = check_attach_targets()
     ssl_n = check_section_slot_references()
     var_n = check_asset_variables()
@@ -7334,6 +7579,8 @@ def main() -> int:
 
     print(f"{DIM}src/: {scr_n} script file(s), {loc_n} localisation file(s), "
           f"{shadow_n} checked for shadowing, {nl_n} name list(s)  |  "
+          f"build: {bss_n} script file(s) parsed for balance, "
+          f"{scv_n} common/ file(s) for @variables that resolve  |  "
           f"generated: {gen_n} file(s), {reg_n} checked for vanilla regression, "
           f"{srg_n} src/ override(s) against the source they shadow, "
           f"{art_n} art file(s) for dangling identifiers, {mesh_n} mesh/entity "
@@ -7342,6 +7589,7 @@ def main() -> int:
           f"{tex_n} for texture filenames that must resolve, "
           f"{ord_n} ship asset(s) for clone load order and section locators, "
           f"{sap_n} for hull section attach points, "
+          f"{stw_n} ship size(s) for a slot table that outruns vanilla's, "
           f"{atk_n} for attach targets, "
           f"{ssl_n} ship-design component and starbase-module reference(s) for the section and slot they name, "
           f"{var_n} art file(s) for unresolved @variables, "

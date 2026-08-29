@@ -58,6 +58,7 @@ GUARDED = (SRC, CACHE)
 GENERATORS: list[tuple[str, list[str], bool]] = [
     ("gen_borg_vo.py",             [],        True),
     ("gen_empire_flags.py",        [],        False),
+    ("gen_first_contact_sounds.py", [],       False),
     ("gen_home_systems.py",        [],        True),
     ("gen_static_galaxy.py",       [],        False),
     ("gen_paragon_backgrounds.py", [],        False),

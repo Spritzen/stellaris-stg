@@ -95,6 +95,72 @@ that check; not worth doing alone.
 
 ---
 
+## Mostly answered — the first contact stage alert is one alert for every site
+
+**The 2026-08-28 UFP run reported that first contact stopped notifying part way
+through the session**: the sound would play, no alert appeared, and every site
+had to be opened by hand to find which one was waiting. It had worked earlier in
+the same run.
+
+**The user was asked one question and it settled the mechanism: the game was not
+pausing.** `alert_first_contact_stage_done` is `enabled=yes` with
+`pausegame=yes` in their own `alert_settings.txt`, so **the alert was never
+newly raised** — which rules out the entire UI half of the question. It is not
+the alert row's position, not `GFX_alerticons`, not UIOD's `main_alerts.gui`,
+not the icon frame. Those were all cleared on disk beforehand and are now
+cleared by observation too.
+
+**What is left is vanilla's design, and vanilla's own string says so.** There is
+exactly one alert for the whole system:
+
+```
+alert_first_contact_stage_done_title:0   "First Contact Event Pending"
+alert_first_contact_stage_done_instant:1 "Something has happened in ONE OF the
+                                          first contact investigations we are
+                                          currently undertaking."
+```
+
+It never names the site — *"one of"* is the design. `alert_site_event` and
+`alert_espionage_event` are word for word the same shape. An alert that is
+already lit raises nothing and pauses nothing when the next one arrives, so the
+sound is the only per-event signal left, and **"check them all to find out which
+one" is literally the instruction the alert gives.**
+
+**The run makes it a load problem and that part is ours.** The player began
+**14** first contacts in 70 minutes and finished **4** — around ten running at
+once, and the backlog in `game.log` becomes permanent at 21:19, which is when
+the user says it stopped. Archaeology carries the identical alert and nobody has
+ever complained, because nobody digs ten sites at once. **STG's galaxy is what
+turns a one-alert-per-system design into a defect**: the mod's whole premise is
+a crowded, known galaxy, so the player meets far more empires far faster than
+vanilla ever asks this alert to cover.
+
+### What is still open, and it is a content call rather than a diagnosis
+
+**Whether to add a per-site signal, and whether one can be added at all.**
+Nothing is broken to repair — the question is whether STG should carry its own
+notification where vanilla carries a shared alert. Two findings for whoever
+takes it:
+
+- **There is no `on_action` for it.** Vanilla declares `on_first_contact`,
+  `on_first_contact_started`, `on_first_contact_finished`,
+  `on_first_contact_stage_1_no_path` and `on_first_contact_generic_stage_2` —
+  and nothing that fires when a stage completes. The obvious hook does not
+  exist.
+- **The one file in that path we now own is not a safe carrier.**
+  `common/inline_scripts/first_contact_event_sounds.txt` is ours as of
+  [101](../decisions/101-first-contact-sounds-are-species-class-gated.md) and it
+  is spliced into every stage-done event, which looks like a way in. It is not:
+  an `immediate` or `after` block added there would sit beside the event's own,
+  and `first_contact.350` and `.355` both carry one doing
+  `set_site_progress_locked`. Clobbering that breaks first contact outright.
+
+**What a next run could still add**, cheaply: whether the alert icon is
+*visibly* lit the whole time. That is the last untested half of the reading
+above — permanently lit and ignored, versus never lit at all.
+
+---
+
 ## Needs a live run to settle — and all of it is eyes-only
 
 **A reference that resolves produces no log record.** `make validate` clean is not
@@ -124,6 +190,35 @@ evidence for anything in this section — the standing lesson of decisions
 > bugs rather than one paste. The third, the six cultures with no city art, was
 > **not a defect at all**: `fallback` is the mechanism and vanilla's own header
 > says so. See "Confirmed on disk" below.
+
+### Starbase modules on the two tiers that were remapped
+
+**Added 2026-08-28, by
+[decision 100](../decisions/100-starbase-slot-tables-outrun-the-art.md).** Every
+module past the third on a starport, past the fifth on a starhold, and past the
+third and fourth on orbital ring tiers 1 and 2, used to attach to nothing and
+render nowhere; they now share a hardpoint with an earlier module instead. That
+is strictly better than invisible and it is **not the same as right**: six
+modules over two hardpoints on a starport may read as overlap.
+
+**What to look at:** build a starport and fill its six module slots, then the
+same on a starhold and on a tier-1 orbital ring. Modules bunched or clipping
+into each other is the failure; modules spread around the ring is the pass. 16
+starports, 16 starholds and 40 rings share the fix, so one of each grades all
+72. `make validate` clean says only that the locator now exists.
+
+### The first contact sting for 129 species
+
+**Added 2026-08-28, by
+[decision 101](../decisions/101-first-contact-sounds-are-species-class-gated.md).**
+Every first contact in the game played `event_first_contact_aquatic` because no
+block in vanilla's list matched a Trek species class. All 129 are now mapped,
+and the mapping is a made content call — the Kobali are a necroid, the Bynars a
+machine, the Sheliak a plantoid.
+
+**What to listen for:** whether the sting fits the species. The cheap half is
+free and needs no ears at all — **`error.log` should carry zero
+`Failed to pick an event sound` records**, against ten in the run that found it.
 
 ### The galaxy picker — answered 2026-08-28, half by eye and half from disk
 
@@ -406,12 +501,20 @@ as badly as the corvette's third gun did.
 >
 > **Fixed the same day** — 230 attach points over 100 files
 > ([77](../decisions/77-hull-section-attach-points.md)) — and **nothing about it
-> is confirmed in game after five runs.** The 2026-08-22 run flew corvettes and
+> is confirmed in game after six runs.** The 2026-08-22 run flew corvettes and
 > science ships only. The 2026-08-24 run played ~7 hours and its `error.log`
 > carries **zero** `has no attach point` records against 2026-08-10's eight —
 > **suggestive and not confirmation**, because nothing in that log or in its one
 > write-up says which hulls were flown, and a hull nobody built logs nothing
-> either way. Grading the mounts above corvette is now a live question rather
+> either way.
+>
+> **The 2026-08-28 UFP run carries four, and they say nothing about the hulls.**
+> They are `starbase_starport`, a family decision 77 never touched and the check
+> was never scoped to: Starbase Extended sizes every starbase tier's slot table
+> off the citadel's, so the smaller tiers name attach points vanilla's art does
+> not carry. **72 entities**, swept and remapped
+> ([100](../decisions/100-starbase-slot-tables-outrun-the-art.md)). The hull
+> question is exactly where it was. Grading the mounts above corvette is now a live question rather
 > than an unanswerable one, and it is the single most valuable unmeasured thing
 > in the project.
 > Recorded as item 1 of the 2026-08-10 Federation remediation plan. The check
@@ -735,6 +838,13 @@ sorted by the emitting `.cpp:line` rather than by wording.*
   `advanced_military_program` — the one `potential` block in either its file or
   vanilla's that switched to `solar_system` unguarded — is patched as of 2026-08-07
   ([44](../decisions/44-coalition-of-hope-takes-vul.md)).
+  **A third SBX defect landed 2026-08-28 and it is post-init, not part of this
+  count**: its starbase and orbital-ring sizes all share the largest tier's slot
+  table, so the smaller tiers name attach points the art does not carry — 72
+  entities, remapped in `vendor.yml` and guarded by `check_slot_table_widening`
+  ([100](../decisions/100-starbase-slot-tables-outrun-the-art.md)). Three
+  separate defects in one mod, all repaired rather than quoted as a reason to
+  drop it ([11](../decisions/11-fix-source-errors-dont-drop.md)).
 - **23 `duplicate section template` records — triaged 2026-08-28, and benign
   by measurement.** Starbase Extended ships its sections as `!!!_sbx_3_0_*`,
   `common/section_templates` is FIOS, so SBX takes all 23 keys and each vanilla
@@ -747,6 +857,20 @@ sorted by the emitting `.cpp:line` rather than by wording.*
   6,882 component references, and reverting decision 37's patch recovers the
   same four slots the live log named
   ([96](../decisions/96-section-slots-survive-a-replacement.md)).
+- **1,605 `Missing ship size Localization Key` records in `setup.log` — TRIAGED
+  AND CLOSED 2026-08-29, and not a defect in anything**
+  ([103](../decisions/103-setup-log-is-a-load-manifest.md)). Opened the previous
+  day at a count of 1,375, which was two per-second buckets added rather than
+  the class counted. They are **321 ship sizes × exactly five suffixes**
+  (`build_speed_mult`, `build_cost_mult`, `upkeep_mult`, `hull_mult`,
+  `hull_add`), **1,500 of them on sizes only vanilla declares** — and vanilla
+  defines that family for **no** ship size at all, its own
+  `corvette_build_speed_mult` included. The engine asks every size for a loc
+  family the game never ships. The ten keys belonging to Starbase Extended's two
+  new starbase tiers are **deliberately left**: answering them would make STG the
+  only thing in the game that does. **Do not reopen without new evidence.**
+  The same file's `trait.cpp:663` dump turned out to be worth more than the
+  error class was — see the decision.
 - **143 duplicate textures** where STNH's `shared_assets/` meets Walshicus'
   `stnc_shipset_shared/` — [the conflict register](../architecture/conflict-register.md)
   explains why last-wins is correct here. Now watched by

@@ -203,6 +203,28 @@ one reports **6** when pointed at the built tree — PD's `zzz_` override, a
 base/`_fix` pair, three PD particles, UIOD's defines split, all of them a source
 overriding itself — and 2 on an injected duplicate.
 
+**Fifty-three to fifty-six came out of the 2026-08-28 UFP run, and the last two
+came out of a question rather than a finding.**
+`check_slot_table_widening` asks whether a vendored ship size names an attach
+point vanilla's own table for the same size does not — floor **0**, population
+six sizes, reverted four
+([100](../decisions/100-starbase-slot-tables-outrun-the-art.md)).
+`check_build_script_syntax` and `check_script_variables` came out of *"how good
+is our syntax checking on our final build?"*, and the honest answer was that
+**nothing had ever asked**: `check_script` walked 340 files of `src/` while the
+build's 3,934-file parseable surface went unread. Both floors are 0 — the build
+does parse, and the hypothesis behind the question was wrong — but the check
+that could have said so did not exist, and the sweep found a real defect of the
+other class on the way
+([102](../decisions/102-syntax-checking-stopped-at-src.md)).
+
+> **The `@variable` half is the calibration story worth keeping.** A first cut
+> treated `@` as file-local — which `vendor.yml`'s own patch note says — and
+> reported **592 vanilla files, 29% of `common/`**. That measures the model, not
+> the tree. The rule is `common/scripted_variables/` globally *plus* file-local,
+> which drops vanilla to 25, and **24 of those are `@name$PARAM$` inline-script
+> concatenations rather than references**. True floors: vanilla 1, ours 1.
+
 **And a fifty-second, which came out of the `error.log` baseline rather than out
 of `src/`** ([96](../decisions/96-section-slots-survive-a-replacement.md),
 2026-08-28). Every run logs **23** `ship_design_templates.cpp:216` *duplicate
@@ -368,27 +390,33 @@ decision 86.
 
 ## The `error.log` baseline
 
-**The current baseline is the 2026-08-28 Klingon run**, the first against a
-static galaxy that has lanes — and the third in a row to be settled largely by
-the **save** rather than by the log. The
-2026-08-10 Federation run at the far end is still the deepest: ~11 hours, and the
-only log so far that carried real defects rather than eyes-only findings.
+**The current baseline is the 2026-08-28 UFP run** — 70 minutes of play, the
+first run since 2026-08-10 whose log carried a defect of its own
+([100](../decisions/100-starbase-slot-tables-outrun-the-art.md)), and the first
+whose most useful evidence came out of **`game.log`** rather than `error.log`.
+The 2026-08-10 Federation run at the far end is still the deepest: ~11 hours,
+and the only log so far that carried more than one.
 
-| | **2026-08-28** Klingon | 2026-08-27 Klingon | 2026-08-26 Vulcan | 2026-08-25 pm Vulcan | 2026-08-25 am Vulcan | 2026-08-24 Vulcan | 2026-08-22 Vulcan | 2026-08-10 Federation | 2026-08-08 |
-|---|---|---|---|---|---|---|---|---|---|
-| Records / size | **1,622 / 279 KB** | 1,267 / 187 KB | 1,315 / 195 KB | 1,280 / 191 KB | 1,335 / 190 KB | 1,315 / 208 KB | 1,264 / 187 KB | 2,251 / 228 KB | 1,261 / 187 KB |
-| Startup window | 51.6 s | 47.1 s | 48.3 s | 45.1 s | 48.5 s | 46.8 s | 55.4 s | 49.4 s | 49.3 s |
-| Records **after** startup | **9** | 4 | 55 | 13 | 19 | 55 | 4 | 174 | 1 |
-| Play window | ~3 min | not recorded | ~2 h 45 m | ~1 h | ~2.5 h | ~7 h | ~26 min | ~11 h | short |
+**Two runs share 2026-08-28 and they are not interchangeable.** The Klingon run
+that precedes it is three minutes long and is what the init-window shape below
+was counted off; the UFP run reproduces that shape record for record and is what
+the post-init column now means. Name the empire, never the date alone.
+
+| | **2026-08-28** UFP | 2026-08-28 Klingon | 2026-08-27 Klingon | 2026-08-26 Vulcan | 2026-08-25 pm Vulcan | 2026-08-25 am Vulcan | 2026-08-24 Vulcan | 2026-08-22 Vulcan | 2026-08-10 Federation | 2026-08-08 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| Records / size | **1,633 / 282 KB** | 1,622 / 279 KB | 1,267 / 187 KB | 1,315 / 195 KB | 1,280 / 191 KB | 1,335 / 190 KB | 1,315 / 208 KB | 1,264 / 187 KB | 2,251 / 228 KB | 1,261 / 187 KB |
+| Startup window | 48.8 s | 51.6 s | 47.1 s | 48.3 s | 45.1 s | 48.5 s | 46.8 s | 55.4 s | 49.4 s | 49.3 s |
+| Records **after** startup | **22** | 9 | 4 | 55 | 13 | 19 | 55 | 4 | 174 | 1 |
+| Play window | ~1 h 10 m | ~3 min | not recorded | ~2 h 45 m | ~1 h | ~2.5 h | ~7 h | ~26 min | ~11 h | short |
 
 **Read the post-init column, never the total.** 187–208 KB was the init-window
 floor of this build across eight runs; against the ~1 MB a clean vanilla run
 produces the volume is fine either way. **The 1 → 174 → 4 → 55 → 19 → 13 → 55 →
-4 → 9 swing is a change of run, not of build**: the short sessions opened few
-screens.
+4 → 9 → 22 swing is a change of run, not of build**: the short sessions opened
+few screens.
 
-**The 2026-08-28 run is the one exception to that, and the floor moved for a
-reason we caused.** 1,622 records is +355 on the 27th, and **353 of them are a
+**The 2026-08-28 Klingon run is the one exception to that, and the floor moved
+for a reason we caused.** 1,622 records is +355 on the 27th, and **353 of them are a
 single class that had never appeared in any log**: `Failed to deferred read key
 reference {tiny,small,medium,large,huge} from database`. That is
 [decision 88](../decisions/88-lock-the-galaxy-picker.md)'s picker lock. Its one
@@ -401,7 +429,8 @@ five-way galaxy-size ladder in vanilla script now collapses to its base.
 ([98](../decisions/98-withdrawn-scenarios-are-referenced-by-name.md)). **The new
 init-window floor is 279 KB for as long as the lock does.**
 
-**Nine post-init records, and eight of them are before the game started** —
+**Nine post-init records in the Klingon run, and eight of them are before the
+game started** —
 vanilla loc strings scanned on the main menu at 19:49:43, out of
 `federations_l_english.yml` and `nomads_1_l_english.yml`. From galaxy generation
 to the last event the log carries **one** record, the `PLANET_SCALE_SYSTEM` size
@@ -410,9 +439,44 @@ record in the run names an STG-authored path** — which is true and misleading
 both, because the 353 are recorded against vanilla's files and are ours by
 cause.
 
-**The init window, sorted by shape.** Counted off the 2026-08-28 log by the
-`.cpp:line` that emitted each record, which is the only grouping that does not
-depend on how a message is worded:
+**Twenty-two in the UFP run, and the useful ones are 14 records over two
+classes.** Ten are `Failed to pick an event sound … for event first_contact.NNN`
+— every first contact in the run, because vanilla's
+`first_contact_event_sounds` inline script picks on `is_species_class` against
+vanilla's thirteen and STG declares 129 of its own, so every Trek contact falls
+through to the first entry on the list
+([101](../decisions/101-first-contact-sounds-are-species-class-gated.md)). Four
+are `has no attach point named part4…part7` on a starport, which is the visible
+tenth of a 72-entity defect
+([100](../decisions/100-starbase-slot-tables-outrun-the-art.md)). Both are
+recorded against **vanilla's** files and both are ours by cause, which is the
+second time that sentence has had to be written on this page. The remaining
+eight are vanilla's own: `PLANET_SCALE_SYSTEM` (acked,
+[41](../decisions/41-planet-scale-system-length.md)), an unresolved
+`known_planet` promotion ×4 in vanilla's own `first_contact.15` descriptions, an
+invalid `[from]` switch in `grand_archive_events.txt`, and two colony
+building/district refusals out of vanilla's `on_action_events_1.txt`.
+
+> **What the user actually reported, the log does not carry at all — and one
+> question settled it.** First contact stopped raising its stage-done alert part
+> way through the run: a sound, no notification, every site to be checked by
+> hand. `error.log` has no record of it and nothing STG ships is in that path.
+> What corroborates it is `game.log`, which logs a `playerEventId` per answered
+> event and shows ten first-contact events answered out of order in bursts from
+> 21:36, oldest 172, with no other event type ever out of sequence. **The user
+> then reported that the game was not pausing**, and their own
+> `alert_settings.txt` has that alert `pausegame=yes` — so it was never newly
+> raised, which rules out every UI reading at once. Vanilla has **one** alert for
+> the whole system and its own string says *"one of the first contact
+> investigations"*; once it is lit it raises nothing further. The player began
+> **14** contacts in 70 minutes and finished **4**. Re-scoped from a diagnosis to
+> a content call in [open-questions](open-questions.md).
+
+**The init window, sorted by shape.** Counted off the 2026-08-28 Klingon log by
+the `.cpp:line` that emitted each record, which is the only grouping that does
+not depend on how a message is worded — and reproduced **record for record, all
+seven classes**, in the UFP run the next hour, which is the first time this
+table has had a second measurement:
 
 | | | |
 |---|---|---|

@@ -15,7 +15,20 @@ confirmed working in-game unless the user reports back that it is.** Say
 "validates clean" and stop.
 
 Game logs sit in the user-data folder one level above `mod/`, so they read at
-`/paradox/stellaris/logs/`. `error.log` is the one that matters.
+`/paradox/stellaris/logs/`. `error.log` is the one that matters — but it is not
+the only one that carries anything, and two sessions in a row were settled by a
+sibling instead.
+
+| file | what it is | what it is good for |
+|---|---|---|
+| `error.log` | the errors | the standard read below. **Always.** |
+| `time.log` | `Startup real time` | the only way to split init-window records from in-play ones |
+| `game.log` | one line per event a player or the AI **answered**, with a `playerEventId` | what the player actually saw and in what order. It settled the 2026-08-28 first-contact report when `error.log` had no record of it at all |
+| `setup.log` | **a load manifest, not an error log** | 13 of its 15 classes are numbered dumps of what loaded. Two are not: `ship_size.cpp:710` × 1,605 is engine noise, triaged and closed in [103](../decisions/103-setup-log-is-a-load-manifest.md) — **do not re-open it** — and `trait.cpp:663` is the engine's own computed `opposites` graph, which is an external control for `check_prescripted_empires` |
+| `debug.log`, `ai.log`, `info.log` | empty in every run so far | — |
+
+**`setup.log` is ~1.2 MB in a normal run and that is not a defect.** It is
+proportional to how much content loaded, not to how much went wrong.
 
 ---
 

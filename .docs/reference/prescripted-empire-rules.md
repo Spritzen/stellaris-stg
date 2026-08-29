@@ -156,7 +156,15 @@ would never have produced a record at all. (Those nine reach the designer now:
 the `playable = stg_never` gate is gone from all 77.)
 
 `check_prescripted_empires` enforces all of it against vanilla's own databases,
-calibrated by reverting the repairs: 21 findings, no false positives. The three
+calibrated by reverting the repairs: 21 findings, no false positives.
+
+> **The `opposites` half has an external control as of 2026-08-29, and it is the
+> only one in the repo.** `setup.log` carries the engine's own *computed*
+> opposites graph — 607 pairs over 333 traits, reverse edges included — and it
+> agrees with what the check derives from files on all 607, with nothing on
+> either side the other lacks. Reverting a repair proves a check notices a
+> change; this proves it reads the game's own relation
+> ([103](../decisions/103-setup-log-is-a-load-manifest.md)). The three
 availability rules above are calibrated the same way — reverting their five
 repairs yields **six** findings over those five empires and nothing else
 ([83](../decisions/83-design-database-is-not-the-cause.md)).

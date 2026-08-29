@@ -510,6 +510,44 @@ duplicate_texture_ack:
 # See .docs/decisions/33-station-section-attach-points.md.
 section_attach_point_ack: []
 
+# Vendored ship sizes whose `section_slots` name an attach point vanilla's own
+# table for the same size does not, reviewed and accepted. Read by
+# tools/validate.py's check_slot_table_widening. Keyed by the ship size.
+#
+# Empty, and the baseline is 0. Four sizes were findings — Starbase Extended
+# gives the starport, starhold, starfortress and citadel one table sized for
+# the citadel, and all three orbital ring tiers one sized for tier 3 — and all
+# four are remapped by the patches below rather than acked. SBX's genuinely new
+# starbase_stronghold and starbase_headquarters are not acked either: a size
+# vanilla does not declare has no table to be compared against and the check
+# exempts it.
+# See .docs/decisions/100-starbase-slot-tables-outrun-the-art.md.
+slot_table_widening_ack: []
+
+# Vendored script files that do not parse -- unbalanced braces or an
+# unterminated string -- reviewed and accepted. Read by tools/validate.py's
+# check_build_script_syntax. Keyed by the path inside stg-build/.
+#
+# Empty, and the baseline is 0 across 3,934 script files. VANILLA fails its own
+# parser 3 times (common/scripted_loc/scripted_loc_ruloc.txt and two `nomads`
+# .gfx) and the build ships none of the three, which is why this reports rather
+# than errors: a source is entitled to ship what vanilla ships.
+# See .docs/decisions/102-syntax-checking-stopped-at-src.md.
+build_syntax_ack: []
+
+# `@variables` a common/ file reads that neither it nor common/scripted_variables/
+# declares, reviewed and accepted. Read by tools/validate.py's
+# check_script_variables. Keyed by the `@name`.
+#
+# Empty, and the baseline is 0. One was a finding -- Sensor Expansion's
+# `@ap_technological_ascendancy_rare_tech`, an Ariphaos companion mod's
+# variable read six times and declared nowhere -- and it is patched out below
+# rather than acked. Vanilla's own floor over the same question is 1:
+# `@max_unlocked_council_positions`, which vanilla declares nowhere either and
+# which the build does not inherit as a finding because the file is vanilla's.
+# See .docs/decisions/102-syntax-checking-stopped-at-src.md.
+script_variable_ack: []
+
 # Weapon mounts with no position anywhere, and `clone` blocks that resolve
 # against an entity the engine has not loaded yet. Read by tools/validate.py's
 # check_asset_load_order. Keyed by entity name.
@@ -1473,6 +1511,405 @@ patches:
       - from: "##### STARBASE EXTENDED 3.0 STARBASES NSC #####\r\n"
         to: "##### STARBASE EXTENDED 3.0 STARBASES NSC #####\r\n\r\n@build_block_radius_starbase = 20\r\n@starbase_formation_priority = 1\r\n"
         count: 1
+
+  # --- Starbase Extended: slot tables that name attach points the art has not -
+  # SBX 3.0 gives the starport, the starhold, the starfortress and the citadel
+  # ONE 36-slot section_slots table -- the four blocks are byte-identical -- and
+  # does the same across the three orbital ring tiers. The citadel's art carries
+  # part1..part7 and the top tiers are fine. The smaller ones are not: vanilla's
+  # own table is the only guarantee of what every culture's mesh actually holds,
+  # and it stops at part3 for the starport, part5 for the starhold, part3 for
+  # ring tier 1 and part4 for tier 2. Every slot past those hangs on a locator
+  # that is not in the mesh, so the module never attaches and never renders.
+  #
+  #     pdx_entity.cpp:1217  mammalian_01_starbase_starport_entity
+  #                          has no attach point named part4 / part5 / part6 / part7
+  #
+  # The 2026-08-28 UFP run named one starport of 72 affected entities: 16
+  # starports, 16 starholds and 40 orbital rings, across every graphical culture
+  # in the tree. A screen nobody opened is a check that never ran -- the log is a
+  # sample of the class, not a census -- so this is swept, not repaired where it
+  # was seen. .docs/decisions/100-starbase-slot-tables-outrun-the-art.md
+  #
+  # REPOINTED, NOT AUTHORED, and the same argument as decision 37: the fix is
+  # SBX's table, never vanilla's art. Adding part4..part7 to 72 meshes is
+  # impossible -- the points are baked into the mesh, so a declared locator
+  # could only sit at the model origin, which is decision 26's failure by
+  # another route. Reusing an existing point is SBX's own idiom: part5 already
+  # carries eight of these 36 slots and part7 seven. Each replacement remaps
+  # every over-reaching slot onto a point vanilla's own table for that size
+  # names, and nothing else in the block moves.
+  #
+  # THE FOUR TIERS THAT ARE FINE ARE LEFT ALONE. starfortress and citadel name
+  # part1..part7 in vanilla too, and ring tier 3 part1..part5; collapsing those
+  # onto part2/part3 would bunch six modules onto two hardpoints on the tiers
+  # that render correctly today. That is why each `from` carries the size's own
+  # combat_size_multiplier line -- the one thing that distinguishes the
+  # identical blocks -- and asserts count: 1, rather than this being one
+  # file-wide replacement of a table that appears four times.
+
+  - path: common/ship_sizes/sbx_3_0_starbases.txt
+    source: Starbase Extended 3.0
+    why: >-
+      Two tiers whose slot table outruns their art. STARPORT: vanilla names
+      part1..part3 and SBX's copy of the citadel table names part1..part7, so
+      slots 3..35 hang on four locators no starport mesh carries and those
+      modules never render -- `has no attach point named part4..part7` in the
+      2026-08-28 run, 16 entities. part4/part6 -> part2 and part5/part7 ->
+      part3, preserving SBX's own alternation across the two hardpoints vanilla
+      guarantees. STARHOLD: vanilla names part1..part5 and SBX's reaches part7;
+      part6 -> part4 and part7 -> part5, the two nearest points vanilla's table
+      guarantees, 16 more entities. Slot count, module capacity and every other
+      field are untouched, and starfortress and citadel -- which share the same
+      table and whose art does carry part1..part7 -- are deliberately left
+      alone. Anchored on `combat_size_multiplier = 20` and `= 30`, which is
+      what distinguishes the two blocks from the four identical ones; each
+      verified count: 1.
+      See .docs/decisions/100-starbase-slot-tables-outrun-the-art.md.
+    replace:
+      # starport: part4/part6 -> part2, part5/part7 -> part3
+      - from: "\tcombat_size_multiplier = 20\r\n\
+          \tsize_multiplier = 4\r\n\
+          \tfleet_slot_size = 2\r\n\
+          \tsection_slots = {\r\n\
+          \t\t\"core\" = { locator = \"part1\" }\r\n\
+          \t\t\"1\" = { locator = \"part2\" }\r\n\
+          \t\t\"2\" = { locator = \"part3\" }\r\n\
+          \t\t\"3\" = { locator = \"part4\" }\r\n\
+          \t\t\"4\" = { locator = \"part5\" }\r\n\
+          \t\t\"5\" = { locator = \"part6\" }\r\n\
+          \t\t\"6\" = { locator = \"part7\" }\r\n\
+          \t\t\"7\" = { locator = \"part5\" }\r\n\
+          \t\t\"8\" = { locator = \"part5\" }\r\n\
+          \t\t\"9\" = { locator = \"part6\" }\r\n\
+          \t\t\"10\" = { locator = \"part6\" }\r\n\
+          \t\t\"11\" = { locator = \"part7\" }\r\n\
+          \t\t\"12\" = { locator = \"part7\" }\r\n\
+          \t\t\"13\" = { locator = \"part2\" }\r\n\
+          \t\t\"14\" = { locator = \"part3\" }\r\n\
+          \t\t\"15\" = { locator = \"part4\" }\r\n\
+          \t\t\"16\" = { locator = \"part5\" }\r\n\
+          \t\t\"17\" = { locator = \"part6\" }\r\n\
+          \t\t\"18\" = { locator = \"part7\" }\r\n\
+          \t\t\"19\" = { locator = \"part5\" }\r\n\
+          \t\t\"20\" = { locator = \"part5\" }\r\n\
+          \t\t\"21\" = { locator = \"part6\" }\r\n\
+          \t\t\"22\" = { locator = \"part6\" }\r\n\
+          \t\t\"23\" = { locator = \"part7\" }\r\n\
+          \t\t\"24\" = { locator = \"part7\" }\r\n\
+          \t\t\"25\" = { locator = \"part7\" }\r\n\
+          \t\t\"26\" = { locator = \"part5\" }\r\n\
+          \t\t\"27\" = { locator = \"part5\" }\r\n\
+          \t\t\"28\" = { locator = \"part6\" }\r\n\
+          \t\t\"29\" = { locator = \"part6\" }\r\n\
+          \t\t\"30\" = { locator = \"part7\" }\r\n\
+          \t\t\"31\" = { locator = \"part7\" }\r\n\
+          \t\t\"32\" = { locator = \"part2\" }\r\n\
+          \t\t\"33\" = { locator = \"part2\" }\r\n\
+          \t\t\"34\" = { locator = \"part6\" }\r\n\
+          \t\t\"35\" = { locator = \"part3\" }\r\n\
+          \t}"
+        to:   "\tcombat_size_multiplier = 20\r\n\
+          \tsize_multiplier = 4\r\n\
+          \tfleet_slot_size = 2\r\n\
+          \tsection_slots = {\r\n\
+          \t\t\"core\" = { locator = \"part1\" }\r\n\
+          \t\t\"1\" = { locator = \"part2\" }\r\n\
+          \t\t\"2\" = { locator = \"part3\" }\r\n\
+          \t\t\"3\" = { locator = \"part2\" }\r\n\
+          \t\t\"4\" = { locator = \"part3\" }\r\n\
+          \t\t\"5\" = { locator = \"part2\" }\r\n\
+          \t\t\"6\" = { locator = \"part3\" }\r\n\
+          \t\t\"7\" = { locator = \"part3\" }\r\n\
+          \t\t\"8\" = { locator = \"part3\" }\r\n\
+          \t\t\"9\" = { locator = \"part2\" }\r\n\
+          \t\t\"10\" = { locator = \"part2\" }\r\n\
+          \t\t\"11\" = { locator = \"part3\" }\r\n\
+          \t\t\"12\" = { locator = \"part3\" }\r\n\
+          \t\t\"13\" = { locator = \"part2\" }\r\n\
+          \t\t\"14\" = { locator = \"part3\" }\r\n\
+          \t\t\"15\" = { locator = \"part2\" }\r\n\
+          \t\t\"16\" = { locator = \"part3\" }\r\n\
+          \t\t\"17\" = { locator = \"part2\" }\r\n\
+          \t\t\"18\" = { locator = \"part3\" }\r\n\
+          \t\t\"19\" = { locator = \"part3\" }\r\n\
+          \t\t\"20\" = { locator = \"part3\" }\r\n\
+          \t\t\"21\" = { locator = \"part2\" }\r\n\
+          \t\t\"22\" = { locator = \"part2\" }\r\n\
+          \t\t\"23\" = { locator = \"part3\" }\r\n\
+          \t\t\"24\" = { locator = \"part3\" }\r\n\
+          \t\t\"25\" = { locator = \"part3\" }\r\n\
+          \t\t\"26\" = { locator = \"part3\" }\r\n\
+          \t\t\"27\" = { locator = \"part3\" }\r\n\
+          \t\t\"28\" = { locator = \"part2\" }\r\n\
+          \t\t\"29\" = { locator = \"part2\" }\r\n\
+          \t\t\"30\" = { locator = \"part3\" }\r\n\
+          \t\t\"31\" = { locator = \"part3\" }\r\n\
+          \t\t\"32\" = { locator = \"part2\" }\r\n\
+          \t\t\"33\" = { locator = \"part2\" }\r\n\
+          \t\t\"34\" = { locator = \"part2\" }\r\n\
+          \t\t\"35\" = { locator = \"part3\" }\r\n\
+          \t}"
+        count: 1
+      # starhold: part6 -> part4, part7 -> part5
+      - from: "\tcombat_size_multiplier = 30\r\n\
+          \tsize_multiplier = 4\r\n\
+          \tfleet_slot_size = 2\r\n\
+          \tsection_slots = {\r\n\
+          \t\t\"core\" = { locator = \"part1\" }\r\n\
+          \t\t\"1\" = { locator = \"part2\" }\r\n\
+          \t\t\"2\" = { locator = \"part3\" }\r\n\
+          \t\t\"3\" = { locator = \"part4\" }\r\n\
+          \t\t\"4\" = { locator = \"part5\" }\r\n\
+          \t\t\"5\" = { locator = \"part6\" }\r\n\
+          \t\t\"6\" = { locator = \"part7\" }\r\n\
+          \t\t\"7\" = { locator = \"part5\" }\r\n\
+          \t\t\"8\" = { locator = \"part5\" }\r\n\
+          \t\t\"9\" = { locator = \"part6\" }\r\n\
+          \t\t\"10\" = { locator = \"part6\" }\r\n\
+          \t\t\"11\" = { locator = \"part7\" }\r\n\
+          \t\t\"12\" = { locator = \"part7\" }\r\n\
+          \t\t\"13\" = { locator = \"part2\" }\r\n\
+          \t\t\"14\" = { locator = \"part3\" }\r\n\
+          \t\t\"15\" = { locator = \"part4\" }\r\n\
+          \t\t\"16\" = { locator = \"part5\" }\r\n\
+          \t\t\"17\" = { locator = \"part6\" }\r\n\
+          \t\t\"18\" = { locator = \"part7\" }\r\n\
+          \t\t\"19\" = { locator = \"part5\" }\r\n\
+          \t\t\"20\" = { locator = \"part5\" }\r\n\
+          \t\t\"21\" = { locator = \"part6\" }\r\n\
+          \t\t\"22\" = { locator = \"part6\" }\r\n\
+          \t\t\"23\" = { locator = \"part7\" }\r\n\
+          \t\t\"24\" = { locator = \"part7\" }\r\n\
+          \t\t\"25\" = { locator = \"part7\" }\r\n\
+          \t\t\"26\" = { locator = \"part5\" }\r\n\
+          \t\t\"27\" = { locator = \"part5\" }\r\n\
+          \t\t\"28\" = { locator = \"part6\" }\r\n\
+          \t\t\"29\" = { locator = \"part6\" }\r\n\
+          \t\t\"30\" = { locator = \"part7\" }\r\n\
+          \t\t\"31\" = { locator = \"part7\" }\r\n\
+          \t\t\"32\" = { locator = \"part2\" }\r\n\
+          \t\t\"33\" = { locator = \"part2\" }\r\n\
+          \t\t\"34\" = { locator = \"part6\" }\r\n\
+          \t\t\"35\" = { locator = \"part3\" }\r\n\
+          \t}"
+        to:   "\tcombat_size_multiplier = 30\r\n\
+          \tsize_multiplier = 4\r\n\
+          \tfleet_slot_size = 2\r\n\
+          \tsection_slots = {\r\n\
+          \t\t\"core\" = { locator = \"part1\" }\r\n\
+          \t\t\"1\" = { locator = \"part2\" }\r\n\
+          \t\t\"2\" = { locator = \"part3\" }\r\n\
+          \t\t\"3\" = { locator = \"part4\" }\r\n\
+          \t\t\"4\" = { locator = \"part5\" }\r\n\
+          \t\t\"5\" = { locator = \"part4\" }\r\n\
+          \t\t\"6\" = { locator = \"part5\" }\r\n\
+          \t\t\"7\" = { locator = \"part5\" }\r\n\
+          \t\t\"8\" = { locator = \"part5\" }\r\n\
+          \t\t\"9\" = { locator = \"part4\" }\r\n\
+          \t\t\"10\" = { locator = \"part4\" }\r\n\
+          \t\t\"11\" = { locator = \"part5\" }\r\n\
+          \t\t\"12\" = { locator = \"part5\" }\r\n\
+          \t\t\"13\" = { locator = \"part2\" }\r\n\
+          \t\t\"14\" = { locator = \"part3\" }\r\n\
+          \t\t\"15\" = { locator = \"part4\" }\r\n\
+          \t\t\"16\" = { locator = \"part5\" }\r\n\
+          \t\t\"17\" = { locator = \"part4\" }\r\n\
+          \t\t\"18\" = { locator = \"part5\" }\r\n\
+          \t\t\"19\" = { locator = \"part5\" }\r\n\
+          \t\t\"20\" = { locator = \"part5\" }\r\n\
+          \t\t\"21\" = { locator = \"part4\" }\r\n\
+          \t\t\"22\" = { locator = \"part4\" }\r\n\
+          \t\t\"23\" = { locator = \"part5\" }\r\n\
+          \t\t\"24\" = { locator = \"part5\" }\r\n\
+          \t\t\"25\" = { locator = \"part5\" }\r\n\
+          \t\t\"26\" = { locator = \"part5\" }\r\n\
+          \t\t\"27\" = { locator = \"part5\" }\r\n\
+          \t\t\"28\" = { locator = \"part4\" }\r\n\
+          \t\t\"29\" = { locator = \"part4\" }\r\n\
+          \t\t\"30\" = { locator = \"part5\" }\r\n\
+          \t\t\"31\" = { locator = \"part5\" }\r\n\
+          \t\t\"32\" = { locator = \"part2\" }\r\n\
+          \t\t\"33\" = { locator = \"part2\" }\r\n\
+          \t\t\"34\" = { locator = \"part4\" }\r\n\
+          \t\t\"35\" = { locator = \"part3\" }\r\n\
+          \t}"
+        count: 1
+
+  - path: common/ship_sizes/sbx_3_0_orbital_rings.txt
+    source: Starbase Extended 3.0
+    why: >-
+      The same defect in the ring family, where SBX gives all three tiers tier
+      3's table. TIER 1: vanilla names part1..part3 and the table reaches
+      part5; part4 -> part2 and part5 -> part3, which restores the table's own
+      two-point cycle. TIER 2: vanilla names part1..part4, one short of part5;
+      part5 -> part4. 20 entities each, every graphical culture, and NONE of
+      the 40 is redeclared anywhere in the tree -- they are vanilla's own art,
+      which is why the entity-level check could not have reported them and why
+      the guard for this asks the question at the table instead. Tier 3 is left
+      alone: its own table names part1..part5 in vanilla and its art carries
+      them. Tier 1 is anchored on `combat_size_multiplier = 5`; tier 2 on
+      `= 20` plus the block's closing brace, which is the only thing separating
+      it from tier 3's identical block. Each verified count: 1.
+      See .docs/decisions/100-starbase-slot-tables-outrun-the-art.md.
+    replace:
+      # ring tier 1: part4 -> part2, part5 -> part3
+      - from: "\tcombat_size_multiplier = 5\r\n\
+          \tsize_multiplier = 4\r\n\
+          \tfleet_slot_size = 2\r\n\
+          \tsection_slots = {\r\n\
+          \t\t\"core\" = { locator = \"part1\" }\r\n\
+          \t\t\"1\" = { locator = \"part2\" }\r\n\
+          \t\t\"2\" = { locator = \"part3\" }\r\n\
+          \t\t\"3\" = { locator = \"part4\" }\r\n\
+          \t\t\"4\" = { locator = \"part5\" }\r\n\
+          \t\t\"5\" = { locator = \"part2\" }\r\n\
+          \t\t\"6\" = { locator = \"part3\" }\r\n\
+          \t\t\"7\" = { locator = \"part4\" }\r\n\
+          \t\t\"8\" = { locator = \"part5\" }\r\n\
+          \t\t\"9\" = { locator = \"part2\" }\r\n\
+          \t\t\"10\" = { locator = \"part3\" }\r\n\
+          \t\t\"11\" = { locator = \"part4\" }\r\n\
+          \t\t\"12\" = { locator = \"part5\" }\r\n\
+          \t\t\"13\" = { locator = \"part2\" }\r\n\
+          \t\t\"14\" = { locator = \"part3\" }\r\n\
+          \t\t\"15\" = { locator = \"part4\" }\r\n\
+          \t\t\"16\" = { locator = \"part5\" }\r\n\
+          \t\t\"17\" = { locator = \"part2\" }\r\n\
+          \t\t\"18\" = { locator = \"part3\" }\r\n\
+          \t\t\"19\" = { locator = \"part4\" }\r\n\
+          \t\t\"20\" = { locator = \"part5\" }\r\n\
+          \t\t\"21\" = { locator = \"part2\" }\r\n\
+          \t}"
+        to:   "\tcombat_size_multiplier = 5\r\n\
+          \tsize_multiplier = 4\r\n\
+          \tfleet_slot_size = 2\r\n\
+          \tsection_slots = {\r\n\
+          \t\t\"core\" = { locator = \"part1\" }\r\n\
+          \t\t\"1\" = { locator = \"part2\" }\r\n\
+          \t\t\"2\" = { locator = \"part3\" }\r\n\
+          \t\t\"3\" = { locator = \"part2\" }\r\n\
+          \t\t\"4\" = { locator = \"part3\" }\r\n\
+          \t\t\"5\" = { locator = \"part2\" }\r\n\
+          \t\t\"6\" = { locator = \"part3\" }\r\n\
+          \t\t\"7\" = { locator = \"part2\" }\r\n\
+          \t\t\"8\" = { locator = \"part3\" }\r\n\
+          \t\t\"9\" = { locator = \"part2\" }\r\n\
+          \t\t\"10\" = { locator = \"part3\" }\r\n\
+          \t\t\"11\" = { locator = \"part2\" }\r\n\
+          \t\t\"12\" = { locator = \"part3\" }\r\n\
+          \t\t\"13\" = { locator = \"part2\" }\r\n\
+          \t\t\"14\" = { locator = \"part3\" }\r\n\
+          \t\t\"15\" = { locator = \"part2\" }\r\n\
+          \t\t\"16\" = { locator = \"part3\" }\r\n\
+          \t\t\"17\" = { locator = \"part2\" }\r\n\
+          \t\t\"18\" = { locator = \"part3\" }\r\n\
+          \t\t\"19\" = { locator = \"part2\" }\r\n\
+          \t\t\"20\" = { locator = \"part3\" }\r\n\
+          \t\t\"21\" = { locator = \"part2\" }\r\n\
+          \t}"
+        count: 1
+      # ring tier 2: part5 -> part4
+      - from: "\tcombat_size_multiplier = 20\r\n\
+          \tsize_multiplier = 4\r\n\
+          \tfleet_slot_size = 2\r\n\
+          \tsection_slots = {\r\n\
+          \t\t\"core\" = { locator = \"part1\" }\r\n\
+          \t\t\"1\" = { locator = \"part2\" }\r\n\
+          \t\t\"2\" = { locator = \"part3\" }\r\n\
+          \t\t\"3\" = { locator = \"part4\" }\r\n\
+          \t\t\"4\" = { locator = \"part5\" }\r\n\
+          \t\t\"5\" = { locator = \"part2\" }\r\n\
+          \t\t\"6\" = { locator = \"part3\" }\r\n\
+          \t\t\"7\" = { locator = \"part4\" }\r\n\
+          \t\t\"8\" = { locator = \"part5\" }\r\n\
+          \t\t\"9\" = { locator = \"part2\" }\r\n\
+          \t\t\"10\" = { locator = \"part3\" }\r\n\
+          \t\t\"11\" = { locator = \"part4\" }\r\n\
+          \t\t\"12\" = { locator = \"part5\" }\r\n\
+          \t\t\"13\" = { locator = \"part2\" }\r\n\
+          \t\t\"14\" = { locator = \"part3\" }\r\n\
+          \t\t\"15\" = { locator = \"part4\" }\r\n\
+          \t\t\"16\" = { locator = \"part5\" }\r\n\
+          \t\t\"17\" = { locator = \"part2\" }\r\n\
+          \t\t\"18\" = { locator = \"part3\" }\r\n\
+          \t\t\"19\" = { locator = \"part4\" }\r\n\
+          \t\t\"20\" = { locator = \"part5\" }\r\n\
+          \t\t\"21\" = { locator = \"part2\" }\r\n\
+          \t}"
+        to:   "\tcombat_size_multiplier = 20\r\n\
+          \tsize_multiplier = 4\r\n\
+          \tfleet_slot_size = 2\r\n\
+          \tsection_slots = {\r\n\
+          \t\t\"core\" = { locator = \"part1\" }\r\n\
+          \t\t\"1\" = { locator = \"part2\" }\r\n\
+          \t\t\"2\" = { locator = \"part3\" }\r\n\
+          \t\t\"3\" = { locator = \"part4\" }\r\n\
+          \t\t\"4\" = { locator = \"part4\" }\r\n\
+          \t\t\"5\" = { locator = \"part2\" }\r\n\
+          \t\t\"6\" = { locator = \"part3\" }\r\n\
+          \t\t\"7\" = { locator = \"part4\" }\r\n\
+          \t\t\"8\" = { locator = \"part4\" }\r\n\
+          \t\t\"9\" = { locator = \"part2\" }\r\n\
+          \t\t\"10\" = { locator = \"part3\" }\r\n\
+          \t\t\"11\" = { locator = \"part4\" }\r\n\
+          \t\t\"12\" = { locator = \"part4\" }\r\n\
+          \t\t\"13\" = { locator = \"part2\" }\r\n\
+          \t\t\"14\" = { locator = \"part3\" }\r\n\
+          \t\t\"15\" = { locator = \"part4\" }\r\n\
+          \t\t\"16\" = { locator = \"part4\" }\r\n\
+          \t\t\"17\" = { locator = \"part2\" }\r\n\
+          \t\t\"18\" = { locator = \"part3\" }\r\n\
+          \t\t\"19\" = { locator = \"part4\" }\r\n\
+          \t\t\"20\" = { locator = \"part4\" }\r\n\
+          \t\t\"21\" = { locator = \"part2\" }\r\n\
+          \t}"
+        count: 1
+
+  # --- Sensor Expansion: an @variable from a companion mod we do not harvest --
+  # `@ap_technological_ascendancy_rare_tech` is READ six times in this file and
+  # DECLARED nowhere -- not here, not in any other Ariphaos mod in the harvest,
+  # not in vanilla, not anywhere in .source/. It belongs to a companion mod of
+  # the same author's that STG does not vendor.
+  #
+  # An unresolved `@` does not keep its name: the field gets NOTHING. This is
+  # `vendor.yml`'s own nsc_starbases patch one database over, and that one is
+  # the worked example of what it costs -- two ship sizes with no build-block
+  # radius and no formation priority.
+  #
+  # DELETED RATHER THAN GIVEN A NUMBER, and vanilla is why. The block is a
+  # weight modifier boosting these six rare sensor techs while the player holds
+  # Technological Ascendancy, and **no rare tech in vanilla carries such a
+  # modifier**: `has_ascension_perk = ap_technological_ascendancy` appears in
+  # vanilla's whole common/technology/ exactly once, on a megastructure tech,
+  # at `factor = 9`. There is no value to read off and inventing one is
+  # authoring somebody's balance. Removing the block puts the six on vanilla's
+  # own footing for a rare tech, and is behaviour-identical to what the engine
+  # does with the line today at best -- at worst it removes a factor the parser
+  # may be reading as zero, which would make these techs UNDRAWABLE under the
+  # very perk meant to favour them.
+  # .docs/decisions/102-syntax-checking-stopped-at-src.md
+
+  - path: common/technology/ariphaos_sensors_techs.txt
+    source: Sensor Expansion
+    why: >-
+      `@ap_technological_ascendancy_rare_tech` is read six times and declared in
+      no file in vanilla, in this mod or anywhere in .source/ -- it is an
+      Ariphaos companion mod's variable. An unresolved `@` leaves the field
+      empty, so the modifier is at best inert and at worst a factor of zero on
+      six rare techs, under the one ascension perk meant to favour them. The six
+      blocks are byte-identical and are removed rather than given an invented
+      number: vanilla carries no such modifier on any rare tech of its own, so
+      this restores vanilla's footing. Nothing else in the file references the
+      variable.
+    replace:
+      - from: "\t\tmodifier = {\r\n\
+          \t\t\tfactor = @ap_technological_ascendancy_rare_tech\r\n\
+          \t\t\thas_ascension_perk = ap_technological_ascendancy\r\n\
+          \t\t}\r\n"
+        to: ""
+        count: 6
+
   - path: gfx/particles/_ships_particles.gfx
     source: ASB Ironman
     why: >-
