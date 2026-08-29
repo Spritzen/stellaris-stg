@@ -14,7 +14,7 @@
 | [3 — art and identity](#phase-3--art-and-identity) | complete 2026-08-08 |
 | [4 — polish](#phase-4--polish) | started 2026-08-08 |
 | [5 — the clutter pass](#phase-5--the-clutter-pass) | complete 2026-08-07 |
-| [6 — the static galaxy](#phase-6--the-static-galaxy) | **shipped and first run 2026-08-27**; the galaxy with lanes in it is ungraded |
+| [6 — the static galaxy](#phase-6--the-static-galaxy) | **shipped 2026-08-27, run twice**; the galaxy with lanes in it passed on 2026-08-28 |
 
 ---
 
@@ -667,14 +667,17 @@ The mechanism, its calibration and the four non-obvious things about it are in
 
 ## Phase 6 — The static galaxy
 
-**PLANNED 2026-08-26, shipped and first run 2026-08-27.** Three of its four
-pieces are in the tree and graded by a live save — the scenario
+**PLANNED 2026-08-26, shipped 2026-08-27, run twice.** All four of its pieces
+are in the tree and graded by a live save — the scenario
 ([86](../decisions/86-static-galaxy-scenario.md)), the generated lane network
 ([87](../decisions/87-static-map-lanes-are-generated.md)) and the picker lock
-([88](../decisions/88-lock-the-galaxy-picker.md)). **What is not yet graded is
-the galaxy with lanes in it**, which is the next live run. The full plan is
-[static-galaxy-plan.md](static-galaxy-plan.md); this is what the phase is and why
-it exists.
+([88](../decisions/88-lock-the-galaxy-picker.md)). **The galaxy with lanes in it
+was the one thing 2026-08-27 broke on, and the 2026-08-28 Klingon run passed it**:
+355 hyperlane endpoints across 100 systems against the 27th's one, and ~40
+`first_contact.1` events in three minutes, which is what says the lanes are
+connected rather than merely present — [status](status.md#the-static-galaxy--run-twice-and-the-lanes-work-too).
+The full plan is [static-galaxy-plan.md](static-galaxy-plan.md); this is what the
+phase is and why it exists.
 
 Six galaxies contained no Trek AI empire. Three fixes went into the prescripted
 pool — the spawn chance, the `playable` gate, and

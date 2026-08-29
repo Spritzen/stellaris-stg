@@ -34,6 +34,10 @@ tools/
   clutter.py            the reachability closure — `make clutter`, and the prune scope
   validate.py           BOM/syntax + vendored checksums + the cross-reference family
   check_docs.py         every .docs/ link and code citation resolves — `make docs`
+  logs.py               censuses /paradox/stellaris/logs/ against its own table and
+                        fails when a file changes state — `make logs`. Host state,
+                        so it skips cleanly where there is no log directory
+                        (decision 105)
   gen_check.py          re-runs every generator over the tree it produced and
                         diffs src/ against itself — `make gen-check`. A correct
                         generator is a fixpoint, so the floor is 0 by
@@ -67,12 +71,16 @@ tools/
                         (decision 67)
   gen_ruler_clothes.py  the seven empire-select ruler portraits and their
                         one-texture clothes selectors (decision 65)
+  gen_first_contact_sounds.py  vanilla's thirteen first_contact_event_sounds
+                        blocks unchanged plus eleven of ours, so all 129 species
+                        classes map to a sting instead of falling to the aquatic
+                        one (decision 101)
   fix_ship_locators.py  weapon mount positions, and the hull section attach
                         points a borrowed corvette frame does not supply
                         (decisions 26, 57, 64, 77)
   fix_prescripted_rooms.py    rewrites `room =` from STNH's own assignment
                         — these take their CONTENT from .source/, never from the
-                        built tree. SIX of the thirteen (gen_borg_vo,
+                        built tree. SIX of the fourteen (gen_borg_vo,
                         gen_home_systems, gen_room_selector, gen_ruler_clothes,
                         gen_star_names, fix_ship_locators) also read stg-build/
                         to ask what the merge already declares; a generator that

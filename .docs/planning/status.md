@@ -6,12 +6,16 @@
 > build.
 > **Then** — [Open questions](open-questions.md) · [Phases](phases.md) · [Live runs](../guides/live-runs.md)
 
-*Last updated 2026-08-28, against the build of that date and the **second**
-Klingon run of 2026-08-28 — the first against a static map that has lanes. The build figures below are unchanged by the 28th's work — one
-`vendor.yml` patch, one loc key, five new `make validate` checks, a sixth
-question widened onto an existing one, a seventh check added to `make docs`,
-three deleted name lists and 17 deleted colony-name tokens move the file count
-by three and nothing else. **No live run has a write-up any
+*Last updated 2026-08-29, against the build of 2026-08-28 and the **UFP run**
+of 2026-08-28, which is the current `error.log` baseline. The Klingon run that
+shares that date is the first against a static map that has lanes; name the
+empire, never the date alone. **The last night's work is decisions
+[100](../decisions/100-starbase-slot-tables-outrun-the-art.md)–[105](../decisions/105-ten-log-files-nothing-had-named.md)**
+— four more `vendor.yml` patches, three new `make validate` checks, a fourteenth
+generator and the one file it emits, and a new `make logs` target with the
+`make docs` check that holds its table to
+[game-logs.md](../reference/game-logs.md). They move the file count by one.
+**No live run has a write-up any
 more** — the run plans and analyses were retired on 2026-08-27 ([89](../decisions/89-retired-run-write-ups.md)), and what
 each run established now lives in the decision it produced and in the baseline
 table below. Every number here has a date because
@@ -34,13 +38,14 @@ ones.
 
 | | Build of 2026-08-28 |
 |---|---|
-| Files / size | **22,394 / 14.3 GiB** ([the per-tier split](../architecture/vendored-merge.md#size)) — three fewer than the 27th, the three name lists [93](../decisions/93-power-lists-win-the-contested-keys.md) deleted |
+| Files / size | **22,395 / 14.3 GiB** ([the per-tier split](../architecture/vendored-merge.md#size)) — net two fewer than the 27th: the three name lists [93](../decisions/93-power-lists-win-the-contested-keys.md) deleted, against the one inline script [101](../decisions/101-first-contact-sounds-are-species-class-gated.md) added |
 | Re-cut at harvest / pruned | 1,661 / **888** |
 | Overwrites / additive skips | 952 / 220 |
 | `make vendor` | 68 s |
-| `make validate` | **0 warnings, 0 errors**, over **53 checks** — six more than yesterday, the last of them `check_galaxy_size_references` ([98](../decisions/98-withdrawn-scenarios-are-referenced-by-name.md)). It warned 3 for part of 2026-08-28, on the contested name-list keys [decision 91](../decisions/91-src-contests-its-own-name-lists.md) found, and [decision 93](../decisions/93-power-lists-win-the-contested-keys.md) closed them the same day |
-| `make docs` | **0 warnings, 0 errors** |
-| `make gen-check` | **13 of 13 generators are fixpoints** |
+| `make validate` | **0 warnings, 0 errors**, over **56 checks** — nine more than yesterday, the last three of them `check_slot_table_widening` ([100](../decisions/100-starbase-slot-tables-outrun-the-art.md)), `check_build_script_syntax` and `check_script_variables` ([102](../decisions/102-syntax-checking-stopped-at-src.md)). It warned 3 for part of 2026-08-28, on the contested name-list keys [decision 91](../decisions/91-src-contests-its-own-name-lists.md) found, and [decision 93](../decisions/93-power-lists-win-the-contested-keys.md) closed them the same day |
+| `make docs` | **0 warnings, 0 errors**, over **14 checks** — six of them the inventory family of [66](../decisions/66-doc-inventory-checks.md), the newest `check_log_inventory` ([105](../decisions/105-ten-log-files-nothing-had-named.md)) |
+| `make logs` | **19 files censused, 0 warnings** — new target ([105](../decisions/105-ten-log-files-nothing-had-named.md)) |
+| `make gen-check` | **14 of 14 generators are fixpoints** — the fourteenth is `gen_first_contact_sounds.py` ([101](../decisions/101-first-contact-sounds-are-species-class-gated.md)) |
 
 **The prune has fallen 935 → 909 → 888 across three passes with no edit to
 `vendor.yml`**, and that is the property worth knowing rather than the number:
@@ -203,28 +208,6 @@ one reports **6** when pointed at the built tree — PD's `zzz_` override, a
 base/`_fix` pair, three PD particles, UIOD's defines split, all of them a source
 overriding itself — and 2 on an injected duplicate.
 
-**Fifty-three to fifty-six came out of the 2026-08-28 UFP run, and the last two
-came out of a question rather than a finding.**
-`check_slot_table_widening` asks whether a vendored ship size names an attach
-point vanilla's own table for the same size does not — floor **0**, population
-six sizes, reverted four
-([100](../decisions/100-starbase-slot-tables-outrun-the-art.md)).
-`check_build_script_syntax` and `check_script_variables` came out of *"how good
-is our syntax checking on our final build?"*, and the honest answer was that
-**nothing had ever asked**: `check_script` walked 340 files of `src/` while the
-build's 3,934-file parseable surface went unread. Both floors are 0 — the build
-does parse, and the hypothesis behind the question was wrong — but the check
-that could have said so did not exist, and the sweep found a real defect of the
-other class on the way
-([102](../decisions/102-syntax-checking-stopped-at-src.md)).
-
-> **The `@variable` half is the calibration story worth keeping.** A first cut
-> treated `@` as file-local — which `vendor.yml`'s own patch note says — and
-> reported **592 vanilla files, 29% of `common/`**. That measures the model, not
-> the tree. The rule is `common/scripted_variables/` globally *plus* file-local,
-> which drops vanilla to 25, and **24 of those are `@name$PARAM$` inline-script
-> concatenations rather than references**. True floors: vanilla 1, ours 1.
-
 **And a fifty-second, which came out of the `error.log` baseline rather than out
 of `src/`** ([96](../decisions/96-section-slots-survive-a-replacement.md),
 2026-08-28). Every run logs **23** `ship_design_templates.cpp:216` *duplicate
@@ -298,6 +281,28 @@ Patched in `vendor.yml`; floors vanilla **0 of 96**, merged **0 of 123**, and
 reverting the patch recovers exactly the two keys the engine named.
 **96's floor of 0 and 0 was true and was never the whole question** — the same
 database, reached from a directory nobody walked, was 2.
+
+**Fifty-four to fifty-six came out of the 2026-08-28 UFP run, and the last two
+came out of a question rather than a finding.**
+`check_slot_table_widening` asks whether a vendored ship size names an attach
+point vanilla's own table for the same size does not — floor **0**, population
+six sizes, reverted four
+([100](../decisions/100-starbase-slot-tables-outrun-the-art.md)).
+`check_build_script_syntax` and `check_script_variables` came out of *"how good
+is our syntax checking on our final build?"*, and the honest answer was that
+**nothing had ever asked**: `check_script` walked 340 files of `src/` while the
+build's 3,934-file parseable surface went unread. Both floors are 0 — the build
+does parse, and the hypothesis behind the question was wrong — but the check
+that could have said so did not exist, and the sweep found a real defect of the
+other class on the way
+([102](../decisions/102-syntax-checking-stopped-at-src.md)).
+
+> **The `@variable` half is the calibration story worth keeping.** A first cut
+> treated `@` as file-local — which `vendor.yml`'s own patch note says — and
+> reported **592 vanilla files, 29% of `common/`**. That measures the model, not
+> the tree. The rule is `common/scripted_variables/` globally *plus* file-local,
+> which drops vanilla to 25, and **24 of those are `@name$PARAM$` inline-script
+> concatenations rather than references**. True floors: vanilla 1, ours 1.
 
 **And one more that is `make docs`' rather than `make validate`'s, from asking
 what the 2026-08-27 renumbering could not see**

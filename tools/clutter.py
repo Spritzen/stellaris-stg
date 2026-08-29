@@ -80,7 +80,8 @@ DECLARATION_EXTS = {
 }
 
 # Leaf content: named by a declaration, never found by walking. These are what
-# the closure is actually about -- 20,600 of the built tree's 23,555 files.
+# the closure is actually about -- 18,402 of the built tree's 22,395 files
+# (build of 2026-08-28; `make clutter` prints today's split).
 ASSET_EXTS = {
     ".dds", ".tga", ".png", ".jpg", ".bmp", ".mesh", ".anim", ".animsm",
     ".wav", ".ogg", ".mp3", ".flac", ".m4r", ".ttf", ".otf", ".ttc", ".fnt",

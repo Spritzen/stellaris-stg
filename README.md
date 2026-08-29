@@ -137,6 +137,7 @@ The game still needs a restart to reload script.
 | a localisation file | `make validate` (and `make fix-bom` if it flags a BOM) |
 | a `tools/gen_*.py` or `tools/fix_*.py` | `make gen-check` — a correct generator reproduces `src/` exactly |
 | documentation, or a code comment citing it | `make docs` |
+| nothing — the user played a session | `make logs`, beside reading `error.log` ([procedure](.docs/guides/live-runs.md)) |
 | nothing — you just want the state | `make sources-status` |
 
 [Every target, with what each one proves and does not prove](.docs/guides/workflow.md).

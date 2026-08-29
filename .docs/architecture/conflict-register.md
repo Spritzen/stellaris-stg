@@ -8,9 +8,10 @@
 
 **`make vendor` reports 952 overwrite events — plus 220 paths skipped by the
 additive-only rule and 888 files removed by the prune closure** (build of
-2026-08-27). Read them out of `.vendor-manifest.json` rather than recounting by
-hand; they move whenever a source is dropped or an `include:` widens, and this
-section has been stale five times for exactly that reason:
+2026-08-28; unchanged from the 27th). Read them out of `.vendor-manifest.json`
+rather than recounting by hand; they move whenever a source is dropped or an
+`include:` widens, and this section has been stale five times for exactly that
+reason:
 
 ```bash
 python3 - <<'EOF'

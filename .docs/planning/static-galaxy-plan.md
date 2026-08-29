@@ -7,18 +7,20 @@
 > `map/`, `prescripted_countries/` or `CUSTOM_EMPIRE_SPAWN_CHANCE` again.
 > **Then** — [Decision 86](../decisions/86-static-galaxy-scenario.md) · [Decision 85](../decisions/85-create-country-initializers.md) · [Decision 84](../decisions/84-static-galaxy-is-the-mechanism.md) · [Open questions](open-questions.md) · [Status](status.md)
 
-> ## Where this plan stands, 2026-08-27
+> ## Where this plan stands, 2026-08-28
 >
-> **All four pieces are built, and a live run has graded them** —
+> **All four pieces are built, and two live runs have graded them** —
 > [86](../decisions/86-static-galaxy-scenario.md),
 > [87](../decisions/87-static-map-lanes-are-generated.md),
 > [88](../decisions/88-lock-the-galaxy-picker.md). The 2026-08-27 Klingon save
 > holds **20 AI Trek empires, one each, and no randomly generated empire**: the
-> mechanism works. **One question failed and is fixed but unrun** — the map
-> shipped with no lanes and generated a galaxy with one hyperlane in it, so the
-> 162 generated lanes are what the next run grades. `make validate` clean and
-> `make gen-check` 13 of 13 were **not** evidence about the galaxy: both were
-> clean throughout all six empty ones, and clean over the lane defect too.
+> mechanism works. **The one question that failed there is now fixed and run** —
+> the map shipped with no lanes and generated a galaxy with one hyperlane in it;
+> the 162 generated lanes went in, and the 2026-08-28 Klingon save holds **355
+> hyperlane endpoints across 100 systems** and ~40 `first_contact.1` events in
+> three minutes. **Nothing in this plan is now ungraded.** `make validate` and
+> `make gen-check` were **not** evidence about any of it: both were clean
+> throughout all six empty galaxies, and clean over the lane defect too.
 >
 > | | |
 > |---|---|

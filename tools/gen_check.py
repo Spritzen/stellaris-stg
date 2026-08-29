@@ -8,8 +8,8 @@ pool a third the size. That went unnoticed until the 2026-08-10 Federation run
 reported unlocalised nebula names and somebody re-ran the tool by hand
 (.docs/decisions/78-widen-attach-points-and-two-new-checks.md).
 
-SIX OF THE THIRTEEN GENERATORS READ `stg-build/`, and none of them is invoked by
-any `make` target -- so nothing has ever established that the other seven are
+SIX OF THE FOURTEEN GENERATORS READ `stg-build/`, and none of them is invoked by
+any `make` target -- so nothing has ever established that the other eight are
 fixpoints. A correct generator is one: run it against the tree it already
 produced and nothing changes. The floor is therefore 0 by construction, not by
 calibration, which is the rare case where a check needs no vanilla ratio beside

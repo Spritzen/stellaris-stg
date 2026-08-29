@@ -21,6 +21,19 @@ Match vanilla's structure for whatever you're adding, then diverge deliberately.
 Not a remembered example — an opened one. A plausible-looking guess costs a play
 session to discover.
 
+**Then read the engine's own list, which `/stellaris` cannot give you.** Every
+launch writes `/paradox/stellaris/logs/script_documentation/` from the **merged**
+database — `effects.log` (1,056 effects), `triggers.log` (1,087), `scopes.log`
+(99 scope links), `modifiers.log` and `localizations.log` — each name with the
+scopes it is supported in. It is version-exact and it knows about our own build,
+which is exactly what the wiki and a grep of vanilla cannot be
+([decision 104](../decisions/104-script-documentation-is-a-version-exact-oracle.md)).
+
+> **It is a lower bound, not a census.** `modifiers.log` omits real modifier
+> names — 117 of the 125 it was measured missing have vanilla loc keys — so a
+> name's absence from it is not evidence the name is wrong. Use it to confirm a
+> name and its scopes, never to rule one out.
+
 ## Prefix everything `stg_`
 
 Script keys, file names, loc keys (`STG_` for loc). Stellaris merges mods into
