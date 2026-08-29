@@ -7,7 +7,7 @@
 > **Then** — [Open questions](open-questions.md) · [Phases](phases.md) · [Live runs](../guides/live-runs.md)
 
 *Last updated 2026-08-29, against the build of 2026-08-28 and the **UFP run**
-of 2026-08-28, which is the current `error.log` baseline. The Klingon run that
+of 2026-08-29, which is the current `error.log` baseline. The Klingon run that
 shares that date is the first against a static map that has lanes; name the
 empire, never the date alone. **The last night's work is decisions
 [100](../decisions/100-starbase-slot-tables-outrun-the-art.md)–[105](../decisions/105-ten-log-files-nothing-had-named.md)**
@@ -395,7 +395,13 @@ decision 86.
 
 ## The `error.log` baseline
 
-**The current baseline is the 2026-08-28 UFP run** — 70 minutes of play, the
+**The current baseline is the 2026-08-29 UFP run** — 2 h 13 m of play, **1,735
+records, 1,723 of them inside the 47.5 s init window and 12 after it**, and none
+of the 12 ours. It is the run that graded the generated hyperlanes
+([106](../decisions/106-sealed-system-is-vanilla-content.md)) and the run whose
+full-directory sweep found the init table a class short.
+
+The 2026-08-28 UFP run it replaces was 70 minutes of play, the
 first run since 2026-08-10 whose log carried a defect of its own
 ([100](../decisions/100-starbase-slot-tables-outrun-the-art.md)), and the first
 whose most useful evidence came out of **`game.log`** rather than `error.log`.
@@ -414,20 +420,21 @@ of every effect, trigger, scope and modifier — got named at last
 
 **Two runs share 2026-08-28 and they are not interchangeable.** The Klingon run
 that precedes it is three minutes long and is what the init-window shape below
-was counted off; the UFP run reproduces that shape record for record and is what
-the post-init column now means. Name the empire, never the date alone.
+was counted off; the UFP run reproduces that shape record for record. **A third UFP run on
+2026-08-29 reproduces it again** and is what the post-init column now means.
+Name the empire, never the date alone.
 
-| | **2026-08-28** UFP | 2026-08-28 Klingon | 2026-08-27 Klingon | 2026-08-26 Vulcan | 2026-08-25 pm Vulcan | 2026-08-25 am Vulcan | 2026-08-24 Vulcan | 2026-08-22 Vulcan | 2026-08-10 Federation | 2026-08-08 |
-|---|---|---|---|---|---|---|---|---|---|---|
-| Records / size | **1,633 / 282 KB** | 1,622 / 279 KB | 1,267 / 187 KB | 1,315 / 195 KB | 1,280 / 191 KB | 1,335 / 190 KB | 1,315 / 208 KB | 1,264 / 187 KB | 2,251 / 228 KB | 1,261 / 187 KB |
-| Startup window | 48.8 s | 51.6 s | 47.1 s | 48.3 s | 45.1 s | 48.5 s | 46.8 s | 55.4 s | 49.4 s | 49.3 s |
-| Records **after** startup | **22** | 9 | 4 | 55 | 13 | 19 | 55 | 4 | 174 | 1 |
-| Play window | ~1 h 10 m | ~3 min | not recorded | ~2 h 45 m | ~1 h | ~2.5 h | ~7 h | ~26 min | ~11 h | short |
+| | **2026-08-29** UFP | 2026-08-28 UFP | 2026-08-28 Klingon | 2026-08-27 Klingon | 2026-08-26 Vulcan | 2026-08-25 pm Vulcan | 2026-08-25 am Vulcan | 2026-08-24 Vulcan | 2026-08-22 Vulcan | 2026-08-10 Federation | 2026-08-08 |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| Records / size | **1,735 / 283 KB** | 1,633 / 282 KB | 1,622 / 279 KB | 1,267 / 187 KB | 1,315 / 195 KB | 1,280 / 191 KB | 1,335 / 190 KB | 1,315 / 208 KB | 1,264 / 187 KB | 2,251 / 228 KB | 1,261 / 187 KB |
+| Startup window | 47.5 s | 48.8 s | 51.6 s | 47.1 s | 48.3 s | 45.1 s | 48.5 s | 46.8 s | 55.4 s | 49.4 s | 49.3 s |
+| Records **after** startup | **12** | 22 | 9 | 4 | 55 | 13 | 19 | 55 | 4 | 174 | 1 |
+| Play window | ~2 h 13 m | ~1 h 10 m | ~3 min | not recorded | ~2 h 45 m | ~1 h | ~2.5 h | ~7 h | ~26 min | ~11 h | short |
 
 **Read the post-init column, never the total.** 187–208 KB was the init-window
 floor of this build across eight runs; against the ~1 MB a clean vanilla run
 produces the volume is fine either way. **The 1 → 174 → 4 → 55 → 19 → 13 → 55 →
-4 → 9 → 22 swing is a change of run, not of build**: the short sessions opened
+4 → 9 → 22 → 12 swing is a change of run, not of build**: the short sessions opened
 few screens.
 
 **The 2026-08-28 Klingon run is the one exception to that, and the floor moved
@@ -489,14 +496,22 @@ building/district refusals out of vanilla's `on_action_events_1.txt`.
 
 **The init window, sorted by shape.** Counted off the 2026-08-28 Klingon log by
 the `.cpp:line` that emitted each record, which is the only grouping that does
-not depend on how a message is worded — and reproduced **record for record, all
-seven classes**, in the UFP run the next hour, which is the first time this
-table has had a second measurement:
+not depend on how a message is worded — and reproduced **record for record**, in the UFP run the next hour and again in
+the UFP run of 2026-08-29, which is the third measurement.
+
+**It listed seven classes and the log has eight.** The 172 below was added
+2026-08-29 ([106](../decisions/106-sealed-system-is-vanilla-content.md)): the
+table had been written by grouping once and then checking the result against the
+classes already named, which is the sidebar's own error one level up. Four more
+sit above the replaced sentence's "nothing above nine" — `pdx_entity.cpp:135`
+(18), `pdx_audio.cpp:1111` (11), `reader.cpp:209` (10), `pdx_entity.cpp:266`
+(10). **Re-derive this census; never reconcile it.**
 
 | | | |
 |---|---|---|
 | 568 | `Duplicate of … added to entity system` | a mod redeclaring a vanilla entity — the override idiom, triaged in [31](../decisions/31-duplicate-entity-declarations.md) and [50](../decisions/50-duplicate-entity-triage.md) |
 | 353 | `Failed to deferred read key reference … from database` | **new, and ours** — the picker lock, [98](../decisions/98-withdrawn-scenarios-are-referenced-by-name.md) |
+| 172 | `Object with key: … already exists, using the one at` | **added 2026-08-29, and it is the third-largest class in the log** — Planetary Diversity, Starbase Extended, Ariphaos and `vanilla_ow_` files redeclaring their own keys. **172 in all three logs on disk, 0% ours**, the same override idiom as the 568 ([106](../decisions/106-sealed-system-is-vanilla-content.md)) |
 | 143 | `Duplicate texture …` | STNH's `shared_assets/` against Walshicus' `stnc_shipset_shared/` |
 | 110 | `An item with name … already exists` | ASB's projectile reimplementations |
 | 103 | `a 3d-type with the name … already exists` | the same library, one layer up |

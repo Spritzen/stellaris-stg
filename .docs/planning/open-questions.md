@@ -295,13 +295,17 @@ off now, so keep it that way.
 > question this whole page was built around, and it is answered.
 >
 > **What that run also found was a galaxy with one hyperlane in it** — the map
-> declared none and nothing built them. Fixed and regenerated (162 lanes), but
-> **not yet run with lanes**, so the top item on this page is still a live run:
-> check you can fly out of Qo'noS. Decisions 87 and 88 end with what to watch
-> for. **No longer "select *The Known Galaxy*"** — the picker is locked and it is
-> the only galaxy there is ([88](../decisions/88-lock-the-galaxy-picker.md)), so
-> the first thing that run grades is whether the setup screen comes up at all.
-> Nothing below has changed and nothing below is the thing to do first.
+> declared none and nothing built them. Fixed and regenerated (162 lanes).
+>
+> **~~Not yet run with lanes~~ — run 2026-08-29, and the lanes work**
+> ([106](../decisions/106-sealed-system-is-vanilla-content.md)). **99 of 100
+> systems are reachable from Sol by hyperlane**; degree min 2, max 5, **mean
+> 3.45** over the 95 scenario systems, no isolated component, and **zero
+> `spawn_system` failures** against three the run before. The one unreachable
+> system is vanilla's **Sealed System** — `isolate_system = yes`, reached by a
+> wormhole pair, working as designed and reported from the run as a suspected
+> defect. **You can fly out of Qo'noS.** That was the top item on this page and
+> it is answered; the picker lock and the AI Federation below are not.
 
 That does not falsify the `playable` fix — the gate it removed was real and had
 to go — but it does say the gate was **not the whole cause**. Both levers are now in and
