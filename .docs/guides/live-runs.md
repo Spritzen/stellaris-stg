@@ -25,10 +25,18 @@ sibling instead.
 | `time.log` | `Startup real time` | the only way to split init-window records from in-play ones |
 | `game.log` | one line per event a player or the AI **answered**, with a `playerEventId` | what the player actually saw and in what order. It settled the 2026-08-28 first-contact report when `error.log` had no record of it at all |
 | `setup.log` | **a load manifest, not an error log** | 13 of its 15 classes are numbered dumps of what loaded. Two are not: `ship_size.cpp:710` × 1,605 is engine noise, triaged and closed in [103](../decisions/103-setup-log-is-a-load-manifest.md) — **do not re-open it** — and `trait.cpp:663` is the engine's own computed `opposites` graph, which is an external control for `check_prescripted_empires` |
-| `debug.log`, `ai.log`, `info.log` | empty in every run so far | — |
+| `debug.log` | engine load-time notices | **not empty, and a row here said it was** — 72 records in the 2026-08-28 run, 64 of them from vanilla's own `specimens.txt`. 0% ours ([105](../decisions/105-ten-log-files-nothing-had-named.md)) |
+| `script_documentation/` | five files the engine regenerates every launch **from the merged database** | the version-exact reference for writing script: every effect, trigger, scope link and modifier name, with supported scopes ([104](../decisions/104-script-documentation-is-a-version-exact-oracle.md)) |
+| the other eight | channels written only by a console command or a debug build | empty on every run so far. **If one ever holds bytes, read it** — `make logs` fails on exactly that |
 
 **`setup.log` is ~1.2 MB in a normal run and that is not a defect.** It is
 proportional to how much content loaded, not to how much went wrong.
+
+**This table is the short list, not the inventory.** All nineteen files, what
+fills each and whether it is any use:
+[reference/game-logs.md](../reference/game-logs.md). Run **`make logs`** after a
+run to census the directory — it fails when a file changes state, which is the
+only thing that would have caught the `debug.log` row above.
 
 ---
 

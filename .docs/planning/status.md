@@ -397,6 +397,16 @@ whose most useful evidence came out of **`game.log`** rather than `error.log`.
 The 2026-08-10 Federation run at the far end is still the deepest: ~11 hours,
 and the only log so far that carried more than one.
 
+**The rest of that directory is now inventoried, and was not.** All nineteen
+files, what fills each and whether it is any use:
+[reference/game-logs.md](../reference/game-logs.md). `make logs` censuses it and
+fails when one changes state — which is how `debug.log` was found carrying 10,663
+bytes under a guide row calling it empty
+([105](../decisions/105-ten-log-files-nothing-had-named.md)), and how
+`logs/script_documentation/` — the engine's own version-exact, merge-aware list
+of every effect, trigger, scope and modifier — got named at last
+([104](../decisions/104-script-documentation-is-a-version-exact-oracle.md)).
+
 **Two runs share 2026-08-28 and they are not interchangeable.** The Klingon run
 that precedes it is three minutes long and is what the init-window shape below
 was counted off; the UFP run reproduces that shape record for record and is what

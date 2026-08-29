@@ -11,6 +11,7 @@
 | [glossary.md](glossary.md) | The project's vocabulary — read once, or when a term in a doc is opaque |
 | [repo-layout.md](repo-layout.md) | Every top-level path, what generates it, what may be hand-edited |
 | [prescripted-empire-rules.md](prescripted-empire-rules.md) | The five databases that can veto an empire, and the authority/ethics matrix |
+| [game-logs.md](game-logs.md) | Every file the game writes to `logs/`, what fills it, and whether it is any use — censused by `make logs` |
 | [external-sources.md](external-sources.md) | Curated external links, with what each is good for and where each is wrong |
 
 Also generated, and living one level up because a tool writes it there:

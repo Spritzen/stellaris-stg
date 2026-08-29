@@ -26,6 +26,7 @@ make clutter         # census: is every file reachable, shadowing, or kept?
 make clutter-vanilla # the same closure over /stellaris — the calibration floor
 make docs            # every doc link and code citation resolves
 make gen-check       # every generator still reproduces src/ (DEEP=1 to round-trip)
+make logs            # census the game's log directory for any file that changed state
 make fix-bom         # add the missing UTF-8 BOM to src/localisation/*.yml
 
 # deploy and ship
@@ -54,6 +55,15 @@ failures CWTools doesn't flag. CWTools itself lints live in the editor against
 Run `make clutter` after any change to **what is harvested**.
 
 Run `make docs` after any change to `.docs/` or to a code comment that cites it.
+
+Run `make logs` after a live run, beside reading `error.log`. It censuses
+`/paradox/stellaris/logs/` against the table in `tools/logs.py` and fails when a
+file changes state — an "empty" channel that now carries bytes is evidence
+somebody generated and nobody read. It skips cleanly where there is no log
+directory, because the game runs on the host.
+[Every file in that directory](../reference/game-logs.md), and
+[decision 105](../decisions/105-ten-log-files-nothing-had-named.md) for the
+stale row that earned it.
 
 Run `make gen-check` after touching a `tools/gen_*.py` or `tools/fix_*.py`, and
 before committing anything they produced. It runs each generator over the tree it

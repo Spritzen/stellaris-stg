@@ -1,7 +1,7 @@
 .DEFAULT_GOAL := help
 .PHONY: help sources-sync sources-status sources-diff sources-list \
         vendor provenance clean-vendor validate clutter clutter-vanilla docs \
-        gen-check link mod-file unlink fix-bom dist game-version
+        gen-check logs link mod-file unlink fix-bom dist game-version
 
 # `make sources-diff ID=937289339`, `make sources-sync ID=...` to narrow to one
 # source; `DEEP=1` makes status hash every file instead of trusting size+mtime.
@@ -71,6 +71,13 @@ clutter-vanilla: ## Run the same closure over /stellaris — the calibration flo
 # generator feeding on its own output, at ~70s each. ARGS=<name> for one tool.
 gen-check: ## Check every generator still reproduces src/ exactly (DEEP=1 to round-trip)
 	@python3 tools/gen_check.py $(if $(DEEP),--deep,) $(ARGS)
+
+# Censuses the game's log directory against the table in tools/logs.py and
+# fails when a file changes state -- an "empty" one that now carries bytes is
+# evidence nobody has read. Host state, so it skips cleanly where there is no
+# log directory. Run it after a live run, beside reading error.log.
+logs: ## Census the game's log directory and flag any file that changed state
+	@python3 tools/logs.py
 
 # The docs get the same treatment the mod gets. Checks that references resolve;
 # it cannot check that prose is true. See .docs/style-guide.md.

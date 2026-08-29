@@ -531,6 +531,8 @@ WORKFLOW = DOCS / "guides" / "workflow.md"
 CHECKS_DOC = DOCS / "validation" / "checks.md"
 VALIDATE_PY = REPO / "tools" / "validate.py"
 VENDOR_YML = REPO / "vendor.yml"
+LOGS_PY = REPO / "tools" / "logs.py"
+LOGS_DOC = DOCS / "reference" / "game-logs.md"
 HARVEST_DOC = DOCS / "architecture" / "harvest-order.md"
 
 
@@ -611,6 +613,38 @@ def check_ack_keys() -> int:
     return len(declared)
 
 
+def check_log_inventory() -> int:
+    """Every log file tools/logs.py censuses is named in game-logs.md, and back.
+
+    live-runs.md said `debug.log` was "empty in every run so far" while it held
+    10,663 bytes, and had six rows for a directory of nineteen log files. Every
+    link in that table resolved; the sentence was simply false, and nothing
+    anywhere could say so (.docs/decisions/105-ten-log-files-nothing-had-named.md).
+
+    So the census gets the same treatment check_validate_catalogue gives the
+    check catalogue: the table in the TOOL is the source of truth, the document
+    is held to it in both directions, and a game version adding a log channel
+    breaks the build rather than quietly aging the page.
+
+    Compared by BASENAME. The tool addresses `script_documentation/` members by
+    path because it opens them; the page lists them by bare filename under a
+    heading that supplies the directory, which is the right way to write it.
+    """
+    table = {f.rsplit("/", 1)[-1]: f for f in re.findall(
+        r'^\s*\("([\w./]+\.log)",', LOGS_PY.read_text(encoding="utf-8-sig"), re.M)}
+    documented = {n for n in re.findall(
+        r"`([\w.-]+\.log)`", LOGS_DOC.read_text(encoding="utf-8-sig"))
+        if not re.match(r"error\.log\.\d{4}", n)}
+
+    for base in sorted(set(table) - documented):
+        errors.append(f"{LOGS_DOC.relative_to(REPO)}: does not name "
+                      f"`{table[base]}`, which tools/logs.py censuses")
+    for base in sorted(documented - set(table)):
+        errors.append(f"{LOGS_DOC.relative_to(REPO)}: names `{base}`, which no "
+                      f"row of tools/logs.py's table censuses")
+    return len(table)
+
+
 def check_harvest_order() -> int:
     """The numbered list in harvest-order.md still matches vendor.yml.
 
@@ -687,6 +721,7 @@ def main() -> int:
     mk_n = check_make_targets()
     chk_n = check_validate_catalogue()
     ack_n = check_ack_keys()
+    logi_n = check_log_inventory()
     hv_n = check_harvest_order()
     src_n = check_source_count()
 
@@ -697,6 +732,7 @@ def main() -> int:
           f"{cite_n} citation(s) from code, {cat_n} category folder(s), "
           f"{orph_n} unlinked  |  inventory: {mk_n} make target(s), "
           f"{chk_n} check(s) against the catalogue, {ack_n} ack list(s), "
+          f"{logi_n} log file(s) against game-logs.md, "
           f"{hv_n} harvest position(s), {src_n} source count(s){OFF}")
 
     for w in warnings:
