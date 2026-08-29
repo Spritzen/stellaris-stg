@@ -7819,7 +7819,7 @@ def main() -> int:
           f"{sdesc_n} flown culture(s) for a shipset description, "
           f"{hsbn_n} home system(s) for two bodies sharing a name, "
           f"{gal_n} static galaxy scenario(s) for their systems, initializers, "
-          f"country flags and lanes, "
+          f"country flags, lanes and the empires their seats reserve, "
           f"{gsz_n} galaxy_size reference(s) for a scenario that declares the name, "
           f"{anot_n} add_anomaly target(s) for a scope that resolves to a country, "
           f"{skc_n} src/ identifier(s) for a second file of ours claiming them, "

@@ -53,8 +53,17 @@ numbered log, the number is the address, and several hundred citations in
 categorised by [its index](decisions/README.md) instead. See §9. Re-measure with:
 
 ```bash
-grep -rhoE '\.docs/decisions/[0-9]{2}-[a-z0-9-]+\.md' tools src vendor.yml | wc -l
+grep -rhoE '\.docs/decisions/[0-9]{2,3}-[a-z0-9-]+\.md' tools src vendor.yml | wc -l
 ```
+
+> **`{2,3}`, not `{2}`, and the fix is dated 2026-08-29.** This command was
+> written when the log was two digits deep and it silently stopped counting the
+> day decision 100 landed: `[0-9]{2}` matches `10` in `100-…` and then demands a
+> `-` where the third digit is, so **every decision from 100 on was invisible to
+> it** — 738 citations against the true 767. It reported a smaller number rather
+> than an error, which is the failure mode §10 exists to catch and which no check
+> covers here, because the command lives in prose. **A re-measure command is a
+> number with a shelf life too**; run one before quoting what it returns.
 
 ## 4. Cite, don't summarise
 

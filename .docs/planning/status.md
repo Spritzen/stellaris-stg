@@ -33,10 +33,11 @@ every number here goes stale — [style guide §6](../style-guide.md).*
 |---|---|
 | **Phase 0** — vendoring pipeline | **complete** |
 | **Phase 1** — playable Federation | **complete**, run in-game repeatedly |
-| **Phase 2** — the rest of the galaxy | **complete**. 99 prescripted empires (22 majors/quadrant/frontier, 77 minors; all playable, and all in the pool the generator draws from since the `playable = stg_never` gate was removed — **and the 2026-08-26 save proves all 99 reach the design database — and that no galaxy has yet drawn one**, see [decision 83](../decisions/83-design-database-is-not-the-cause.md); the mechanism a Trek galaxy actually needs is a static map plus `create_country` initializers — [decision 85](../decisions/85-create-country-initializers.md) — and **both ship and have now been run once**: 95 systems, 21 empires, 36 `create_country` blocks and the `prescripted_flags` join between them, [decision 86](../decisions/86-static-galaxy-scenario.md), graded by the 2026-08-27 Klingon run [87](../decisions/87-static-map-lanes-are-generated.md)) over 99 distinct species classes, 89 name lists, 36 generated home systems plus Real Space's Sol — which since [decision 107](../decisions/107-the-ai-federation.md) carries the Federation's AI copy too, as a generated `inline_script` fragment a `vendor.yml` patch includes, so **all 21 empires on the map now create themselves**. `src/` declares **129** classes in all — the extra 30 are the STNH selector stubs of [decision 30](../decisions/30-declare-stub-species-classes.md) |
+| **Phase 2** — the rest of the galaxy | **complete**. 99 prescripted empires (22 majors/quadrant/frontier, 77 minors; all playable, and all in the pool the generator draws from since the `playable = stg_never` gate was removed — **and the 2026-08-26 save proves all 99 reach the design database — and that no galaxy has yet drawn one**, see [decision 83](../decisions/83-design-database-is-not-the-cause.md); the mechanism a Trek galaxy actually needs is a static map plus `create_country` initializers — [decision 85](../decisions/85-create-country-initializers.md) — and **both ship and have now been run three times**: 95 systems, 21 empires, 36 `create_country` blocks and the `prescripted_flags` join between them, [decision 86](../decisions/86-static-galaxy-scenario.md), graded by the 2026-08-27 Klingon run [87](../decisions/87-static-map-lanes-are-generated.md), the 2026-08-28 Klingon run that passed the lanes, and the 2026-08-29 UFP run that graded the graph [106](../decisions/106-sealed-system-is-vanilla-content.md)) over 99 distinct species classes, 89 name lists, 36 generated home systems plus Real Space's Sol — which since [decision 107](../decisions/107-the-ai-federation.md) carries the Federation's AI copy too, as a generated `inline_script` fragment a `vendor.yml` patch includes, so **all 21 empires on the map now create themselves**. `src/` declares **129** classes in all — the extra 30 are the STNH selector stubs of [decision 30](../decisions/30-declare-stub-species-classes.md) |
 | **Phase 3** — art and identity | **complete 2026-08-08**. Clothing triggers, shipsets, weapon mounts, flags, rooms, city sets, loading screens, `paragon_backgrounds.txt`, the shipsets' 39 extra flags |
 | **Phase 4** — polish | **started 2026-08-08**. Music, the ship registries and their class names, then the three slices [decision 70](../decisions/70-trek-anomalies.md) scoped: **21 Trek anomalies** ([70](../decisions/70-trek-anomalies.md)), **6 dig sites** ([71](../decisions/71-trek-archaeology.md)) and **21 story events** ([72](../decisions/72-trek-story-events.md)), all 2026-08-09. All three are shipped; what remains in the phase has no scope written for it |
 | **Phase 5** — the clutter pass | **complete 2026-08-07** (pipeline work, taken out of order) |
+| **Phase 6** — the static galaxy | **shipped 2026-08-27, run three times.** All four pieces are in the tree and graded by a live save — the scenario ([86](../decisions/86-static-galaxy-scenario.md)), the generated lanes ([87](../decisions/87-static-map-lanes-are-generated.md)) and the picker lock ([88](../decisions/88-lock-the-galaxy-picker.md)). The lanes were the one thing the 2026-08-27 run broke on; the 2026-08-28 Klingon run passed them and the 2026-08-29 UFP run graded the graph itself ([106](../decisions/106-sealed-system-is-vanilla-content.md)). [The section below](#the-static-galaxy--run-three-times-and-the-lanes-work-too) · [the plan](static-galaxy-plan.md) |
 
 ## The build, as it stands
 
@@ -331,7 +332,7 @@ line-wise grep including the sweep's own.
 
 ---
 
-## The static galaxy — run twice, and the lanes work too
+## The static galaxy — run three times, and the lanes work too
 
 **2026-08-27.** The mechanism [decision 85](../decisions/85-create-country-initializers.md)
 identified is now in the tree, in four parts and one correction —
@@ -342,7 +343,7 @@ identified is now in the tree, in four parts and one correction —
 | `src/map/setup_scenarios/stg_alpha_beta_quadrant.txt` | **95 systems, 21 empires, 162 hyperlanes**, every coordinate harvested from STNH's default galaxy map and scaled. The lanes are generated from those same positions — shipping without them, as 21 of STNH's 22 maps appear to, cost the 2026-08-27 run ([87](../decisions/87-static-map-lanes-are-generated.md)) |
 | `src/common/solar_system_initializers/stg_home_systems.txt` | **36 `create_country` blocks**, one per home system, each guarded so the player's own empire is never duplicated |
 | `src/common/prescripted_flags/stg_empire_flags.txt` | **99 country flags** — the join the plan did not have. It is what gives the *player's* copy of an empire the flag the map weights on |
-| `check_static_galaxy` | five questions; vanilla floor **0**, STNH's own maps **4,265** |
+| `check_static_galaxy` | five questions as shipped; **six since [107](../decisions/107-the-ai-federation.md)** — vanilla floor **0**, STNH's own maps **4,265** |
 
 **A Klingon run on 2026-08-27 graded it, and three of decision 86's four
 questions came back good** ([87](../decisions/87-static-map-lanes-are-generated.md)):
@@ -395,10 +396,19 @@ commented-out `static_galaxy_example.txt` — and `/stellaris/dlc` ships no
 `setup_scenarios`. One declaration reaches the engine, and
 `check_galaxy_size_references` recounts it every run.
 
-**Two empires are deliberately absent from the map**: the Terran Empire, whose
-Sol and Earth collide with the Federation's, and an AI Federation, because Sol
-is Real Space's file and STG does not own it. Both are content calls in
+**One empire is deliberately absent from the map**: the Terran Empire, whose
+Sol and Earth collide with the Federation's. That is a content call in
 decision 86.
+
+**It was two until 2026-08-29.** The other was an AI Federation, absent for the
+same-shaped reason from the other side — Sol is Real Space's file and STG does
+not own it, so no `src/` file could add a line to a block another mod declares.
+[Decision 107](../decisions/107-the-ai-federation.md) closed it with a generated
+`inline_script` fragment a `vendor.yml` patch splices into that initializer, and
+`check_static_galaxy`'s sixth question now asks of every `stg_` seat on the map
+whether the initializer it names actually creates the empire. **Built and
+ungraded** — one glance at the contacts list is the test
+([open questions](open-questions.md)).
 
 
 ## The `error.log` baseline

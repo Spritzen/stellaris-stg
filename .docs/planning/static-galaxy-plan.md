@@ -7,9 +7,9 @@
 > `map/`, `prescripted_countries/` or `CUSTOM_EMPIRE_SPAWN_CHANCE` again.
 > **Then** — [Decision 86](../decisions/86-static-galaxy-scenario.md) · [Decision 85](../decisions/85-create-country-initializers.md) · [Decision 84](../decisions/84-static-galaxy-is-the-mechanism.md) · [Open questions](open-questions.md) · [Status](status.md)
 
-> ## Where this plan stands, 2026-08-28
+> ## Where this plan stands, 2026-08-29
 >
-> **All four pieces are built, and two live runs have graded them** —
+> **All four pieces are built, and three live runs have graded them** —
 > [86](../decisions/86-static-galaxy-scenario.md),
 > [87](../decisions/87-static-map-lanes-are-generated.md),
 > [88](../decisions/88-lock-the-galaxy-picker.md). The 2026-08-27 Klingon save
@@ -18,7 +18,13 @@
 > the map shipped with no lanes and generated a galaxy with one hyperlane in it;
 > the 162 generated lanes went in, and the 2026-08-28 Klingon save holds **355
 > hyperlane endpoints across 100 systems** and ~40 `first_contact.1` events in
-> three minutes. **Nothing in this plan is now ungraded.** `make validate` and
+> three minutes. The 2026-08-29 UFP run graded the graph rather than its
+> presence: **99 of 100 systems reachable from Sol**, mean degree 3.45, no
+> isolated component, and the one exception is vanilla's own Sealed System
+> working as designed ([106](../decisions/106-sealed-system-is-vanilla-content.md)).
+> **Every piece of this plan is now graded** — but the AI Federation that came
+> out of it on the 29th is not: it is built and unrun
+> ([107](../decisions/107-the-ai-federation.md)). `make validate` and
 > `make gen-check` were **not** evidence about any of it: both were clean
 > throughout all six empty galaxies, and clean over the lane defect too.
 >
@@ -28,8 +34,8 @@
 > | the map | `src/map/setup_scenarios/stg_alpha_beta_quadrant.txt` — 95 systems, 21 empires, **162 generated hyperlanes**, every coordinate harvested from STNH's default galaxy map |
 > | the AI copies | 36 `create_country` blocks, generated into `stg_home_systems.txt` |
 > | **the piece this plan did not have** | the **country flag join**. `common/prescripted_flags/` is what gives the *player's* copy of an empire the flag the map weights on and the initializer guards on. STG shipped none. §2 below said the flag "exists because the initializer set it" — that is true only of the AI copy |
-> | the check | `check_static_galaxy`, five questions, vanilla floor 0 |
-> | still open | **an AI Federation** (Sol is Real Space's file) and the **Terran Empire**, whose Sol collides with the Federation's. Piece 3, the picker lock, is done — [88](../decisions/88-lock-the-galaxy-picker.md) |
+> | the check | `check_static_galaxy` — five questions as shipped, **six since [107](../decisions/107-the-ai-federation.md)**, vanilla floor 0 |
+> | still open | the **Terran Empire**, whose Sol collides with the Federation's. Piece 3, the picker lock, is done — [88](../decisions/88-lock-the-galaxy-picker.md). **The AI Federation is done too, as of 2026-08-29** — [107](../decisions/107-the-ai-federation.md), which is also where the sixth question came from |
 
 Six galaxies have contained no Trek AI empire. Three fixes went into the
 prescripted-empire pool and none moved the number, and the 2026-08-26 save
@@ -246,17 +252,23 @@ STNH's 22 in `.source/`
 5. ~~**A live run.**~~ **Done 2026-08-27, and it moved the question** — three of
    decision 86's four questions came back good and the fourth, the hyperlanes,
    failed and is fixed ([87](../decisions/87-static-map-lanes-are-generated.md)).
-   **What is left is one more run**, against the map with lanes in it: check you
-   can fly out of Qo'noS, and that the setup screen comes up at all now the
-   picker is locked ([88](../decisions/88-lock-the-galaxy-picker.md)).
-6. **Then, in this order:** the AI Federation (Sol is Real Space's file — an
-   `src/` override or a `vendor.yml` patch, and it is a content call);
-   the Terran Empire and its Sol collision, which wants a mirror scenario;
-   **scale to a full map**, adding the 15 minors that already have home systems;
-   nebulae, which STNH hand-places by canon name. **Piece 3, the picker lock, is
-   no longer last and is done** — its "not before, or there is nothing to
-   select" condition was met the moment the map generated with lanes and 20 AI
-   empires ([87](../decisions/87-static-map-lanes-are-generated.md),
+   ~~**What is left is one more run**, against the map with lanes in it.~~
+   **Done twice.** The 2026-08-28 Klingon run passed the lanes, and the
+   2026-08-29 UFP run answered both of this item's questions in the affirmative:
+   **you can fly out of Qo'noS**, and the picker comes up preselected on The
+   Known Galaxy and offering nothing else
+   ([106](../decisions/106-sealed-system-is-vanilla-content.md),
+   [88](../decisions/88-lock-the-galaxy-picker.md)).
+6. **Then, in this order:** ~~the AI Federation (Sol is Real Space's file — an
+   `src/` override or a `vendor.yml` patch, and it is a content call)~~ **done
+   2026-08-29, as a generated `inline_script` fragment a `vendor.yml` patch
+   splices in — [107](../decisions/107-the-ai-federation.md), and it is built
+   and unrun**; the Terran Empire and its Sol collision, which wants a mirror
+   scenario; **scale to a full map**, adding the 15 minors that already have
+   home systems; nebulae, which STNH hand-places by canon name. **Piece 3, the
+   picker lock, is no longer last and is done** — its "not before, or there is
+   nothing to select" condition was met the moment the map generated with lanes
+   and 20 AI empires ([87](../decisions/87-static-map-lanes-are-generated.md),
    [88](../decisions/88-lock-the-galaxy-picker.md)).
 
 ## What this closes, and what it does not

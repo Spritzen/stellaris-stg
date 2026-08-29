@@ -35,12 +35,21 @@ DOES THE DOCUMENTED INVENTORY MATCH THE REPO?
   9. Is every `*_ack` list in vendor.yml actually read by a check?
  10. Does the harvest order in architecture/ still match vendor.yml?
  11. Does the source count the docs quote still match vendor.yml?
+ 12. Does reference/game-logs.md still name every file the game writes to
+     `logs/`? Added 2026-08-29, and it is the family's own defect arriving from
+     outside the repo: the inventory a document describes can move without
+     anything in git changing at all
+     (.docs/decisions/105-ten-log-files-nothing-had-named.md). `tools/logs.py`
+     asks the harder half -- whether a file the table calls EMPTY now carries
+     bytes -- and this asks only whether the table and the directory list the
+     same files.
 
 These are the SAME asymmetry as (4), one level up: a citation that resolves to
-a real file can still describe a repo that has moved. All five were added on
+a real file can still describe a repo that has moved. Items 7-11 were added on
 2026-08-09 after a documentation pass found one live instance of each --
 notably Cinematic Camera sitting four positions from where harvest-order.md
-put it, and check_texture_basenames missing from the catalogue entirely.
+put it, and check_texture_basenames missing from the catalogue entirely; (12)
+followed on 2026-08-29.
 
 An inventory check is only worth its noise if it can fail, so each of these
 compares against a GENERATED source of truth (the Makefile, validate.py's own
