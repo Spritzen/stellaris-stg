@@ -1,7 +1,11 @@
 # large.txt — INTENTIONALLY DECLARES NOTHING.
 #
-# STG ships one galaxy, The Known Galaxy, and the picker offers only it
-# (.docs/decisions/88-lock-the-galaxy-picker.md). This file exists to REMOVE
+# STG ships The Known Galaxy and the picker offers nothing else
+# (.docs/decisions/88-lock-the-galaxy-picker.md). It comes in three SIZES as of
+# 2026-09-01 -- 95 / 600 / 1,000 systems, one generator, three scenario files
+# (.docs/decisions/111-three-galaxy-sizes.md) -- so the picker offers a choice
+# of size and never a choice of shape, and vanilla's five sizes are still the
+# wrong five to offer. This file exists to REMOVE
 # vanilla's `large` galaxy size from the setup screen: a scenario is
 # offered because a file at this path declares it, so the way to withdraw one
 # is to occupy the path and declare nothing.

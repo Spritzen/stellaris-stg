@@ -52,8 +52,10 @@ tools/
   gen_empire_flags.py   the 99 common/prescripted_flags/ entries — the country
                         flag a static map weights on and an initializer guards
                         on (decision 86)
-  gen_static_galaxy.py  the static galaxy scenario: 95 systems, 21 empires, every
-                        coordinate harvested from STNH's own map (decision 86)
+  gen_static_galaxy.py  the static galaxy scenarios and the picker's loc file:
+                        The Known Galaxy at 95 / 600 / 1,000 systems, 21 empires
+                        in each, every coordinate harvested from STNH's own map
+                        (decisions 86 and 111)
   gen_borg_vo.py        one-shot: src/sound/sth_soundgroups.asset
   gen_room_selector.py  the one room_selector: vanilla + STNH's 47 Trek rooms
                         + Diverse Rooms' designer list (decision 46)

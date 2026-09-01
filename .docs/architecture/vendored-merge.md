@@ -105,15 +105,15 @@ harvest change and this section has been stale more than once.
 [`.docs/provenance.md`](../provenance.md) is the generated report;
 `.vendor-manifest.json` has the per-source split.
 
-*(Read off the build of 2026-08-29. GiB, as `make vendor` prints.)*
+*(Read off the build of 2026-09-01. GiB, as `make vendor` prints.)*
 
 | | |
 |---|---|
 | Gameplay/UI tier — [26 harvest positions](harvest-order.md), 25 with surviving files | 4.7 GiB, 8,009 files |
 | STNH — art paths only, ship tree pruned per [decision 17](../decisions/17-walshicus-shipsets-replace-stnh-hulls.md) | 7.0 GiB, 10,929 files |
 | Walshicus' 22 Trek shipsets | 2.5 GiB, 3,092 files |
-| `src/` — hand-written | 5.1 MiB, 366 files |
-| **Built mod, total** | **14.3 GiB**, 22,396 files, 49 sources + `src/` |
+| `src/` — hand-written | 5.3 MiB, 368 files |
+| **Built mod, total** | **14.3 GiB**, 22,398 files, 49 sources + `src/` |
 | `.source/` — 51 mods: the 49 harvested plus Kammarheit and Apocryphos | 22 GB apparent, **~0 real** (reflinked; [decision 08](../decisions/08-source-snapshot.md)) |
 
 *(The gameplay/UI tier holds 26 harvest positions but only 25 leave a file
@@ -122,8 +122,11 @@ behind: URP harvests one file and `src/` shadows it —
 Re-derive the whole table by counting `generated[*].id` in
 `.vendor-manifest.json`, which is where these figures came from. Between the
 28th and the 29th only the `src/` row and the total moved — one file, decision
-107's generated `inline_script` — which is the usual shape: the vendored tiers
-change when the harvest changes and not otherwise.)*
+107's generated `inline_script` — and between the 29th and 2026-09-01 the same
+two moved again, by the two extra setup scenarios of
+[decision 111](../decisions/111-three-galaxy-sizes.md). That is the usual shape:
+the vendored tiers change when the harvest changes and not otherwise, so `src/`
+and the total are the only rows worth re-reading after a content commit.)*
 
 *(Ariphaos is subscribed but was never snapshotted — [decision 02](../decisions/02-drop-ariphaos.md)
 predates `.source/`. It is the one mod in `/workshop` with no copy here.)*

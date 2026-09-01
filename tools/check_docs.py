@@ -293,11 +293,11 @@ def check_bare_decision_numbers() -> int:
     check_link_labels() reads `[NN](...)`; between them they cover the 983
     citations the 2026-08-27 renumbering rewrote. A bare `decision 40` in a
     comment or a sentence carries neither a path nor an href, so it was outside
-    both -- 509 of them, a third of every decision citation in the repo, none of
+    both -- 519 of them, a third of every decision citation in the repo, none of
     which any tool had looked at.
 
     WHAT IT ASKS, AND IT IS EXACT. Does the number name a decision file that
-    exists? Floor 0 of 509 across live code and every document, so there is no
+    exists? Floor 0 of 519 across live code and every document, so there is no
     scope and no ratio to write beside one
     (.docs/validation/check-design.md rule 11). It fails on a number one past the
     last decision written, and on every bare citation to one that is removed.

@@ -275,9 +275,10 @@ def check_build_script_syntax() -> int:
 
     THE SAME SCANNER check_script HAS ALWAYS RUN, pointed at the other tree.
     That one walks `src/` -- 340 files of ours -- and until 2026-08-28 nothing
-    walked the 3,934 script files the build actually ships. The 22,394-file
-    figure elsewhere on this page counts art; the parseable surface is a tenth
-    of it and was entirely unasked.
+    walked the 3,934 script files the build actually ships. The tree was 22,395
+    files that day and the parseable surface a tenth of it; the rest is art, and
+    the summary line prints both counts live, so read them off a run rather than
+    off this docstring.
 
     WHY IT MATTERS MORE HERE THAN IN src/. A missing brace does not fail
     loudly: the Clausewitz parser swallows the rest of the file, so everything

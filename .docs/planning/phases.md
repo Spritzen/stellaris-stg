@@ -14,7 +14,7 @@
 | [3 — art and identity](#phase-3--art-and-identity) | complete 2026-08-08 |
 | [4 — polish](#phase-4--polish) | started 2026-08-08 |
 | [5 — the clutter pass](#phase-5--the-clutter-pass) | complete 2026-08-07 |
-| [6 — the static galaxy](#phase-6--the-static-galaxy) | **shipped 2026-08-27, run three times**; the galaxy with lanes in it passed on 2026-08-28 and its graph was graded on 2026-08-29 |
+| [6 — the static galaxy](#phase-6--the-static-galaxy) | **shipped 2026-08-27, run three times**; the galaxy with lanes in it passed on 2026-08-28 and its graph was graded on 2026-08-29. **Three sizes since 2026-09-01**, of which only the small one has been run |
 
 ---
 
@@ -66,8 +66,10 @@ deliberately kept: it is the custom-empire template, not a playable empire.
 **COMPLETE.** 99 prescripted empires — 22 majors/quadrant/frontier powers and
 77 minors, all playable and all in the pool the galaxy generator draws from
 since the `playable = stg_never` gate was removed — over 99
-distinct species classes. 89 name lists, 36 generated home systems plus vanilla's
-Sol. `src/common/species_classes/stg_species_classes.txt` declares **129** classes —
+distinct species classes. 89 name lists, 36 generated home systems plus Sol,
+which is **Real Space's file** rather than vanilla's: it shadows vanilla's
+`sol_initializers.txt` at the same path, and that is the whole reason the
+Federation needed [decision 107](../decisions/107-the-ai-federation.md). `src/common/species_classes/stg_species_classes.txt` declares **129** classes —
 the other 30 are the STNH selector stubs of
 [decision 30](../decisions/30-declare-stub-species-classes.md), which are not
 empires.
@@ -121,9 +123,12 @@ rather than prefixed `STG_` — which the engine never looks up.
 
 ### Home systems
 
-36 initializers plus vanilla's Sol, wired into **37** empires — all 22 majors,
-quadrant and frontier powers, and 15 minors. The
-Federation is on vanilla's own real Sol. The mirror Terran Empire used to
+36 initializers plus Sol, wired into **37** empires — all 22 majors,
+quadrant and frontier powers, and 15 minors. The Federation is on the real Sol,
+under vanilla's own `sol_system_initializer` key — but the *file* that wins that
+path in the merge is **Real Space's**, which is why the Federation's AI copy had
+to be spliced in rather than written
+([107](../decisions/107-the-ai-federation.md)). The mirror Terran Empire used to
 *share* that key — recorded here as meaning "a galaxy never holds both", which
 was the wrong way round: two prescripted empires naming one starting system is a
 documented engine failure that logs nothing and **costs both of them**. It has
@@ -671,7 +676,11 @@ The mechanism, its calibration and the four non-obvious things about it are in
 are in the tree and graded by a live save — the scenario
 ([86](../decisions/86-static-galaxy-scenario.md)), the generated lane network
 ([87](../decisions/87-static-map-lanes-are-generated.md)) and the picker lock
-([88](../decisions/88-lock-the-galaxy-picker.md)). **The galaxy with lanes in it
+([88](../decisions/88-lock-the-galaxy-picker.md)). **The one galaxy became three
+on 2026-09-01** — 95 / 600 / 1,000 systems from the same generator, medium and
+large on vanilla's own `medium` and `huge` star count and radius
+([111](../decisions/111-three-galaxy-sizes.md)). Only the small one has ever
+been run, and it is byte-identical to the map those three runs graded. **The galaxy with lanes in it
 was the one thing 2026-08-27 broke on, and the 2026-08-28 Klingon run passed it**:
 355 hyperlane endpoints across 100 systems against the 27th's one, and ~40
 `first_contact.1` events in three minutes, which is what says the lanes are
@@ -719,3 +728,7 @@ blocks are a mechanical transcription of entries that already exist, and the
 
 **Ends in something playable**, like every phase here: one small scenario, the 22
 majors on their real home systems, proven in a live run before anything scales.
+**The scaling came after that proof and not instead of it** — the small map is
+unchanged and still the default, and the two larger ones are generated from the
+same cloud rather than authored beside it
+([111](../decisions/111-three-galaxy-sizes.md)).

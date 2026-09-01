@@ -6,11 +6,18 @@
 > build.
 > **Then** — [Open questions](open-questions.md) · [Phases](phases.md) · [Live runs](../guides/live-runs.md)
 
-*Last updated 2026-08-29, against the build of **2026-08-29** and the **UFP run**
-of 2026-08-29, which is the current `error.log` baseline. The Klingon run that
-shares that date is the first against a static map that has lanes; name the
-empire, never the date alone. **The most recent work is decisions
-[107](../decisions/107-the-ai-federation.md)–[110](../decisions/110-effect-and-trigger-names-are-clean.md)**
+*Last updated 2026-09-01, against the build of **2026-09-01** and the **UFP run**
+of 2026-08-29, which is still the current `error.log` baseline — no run has been
+played since. The Klingon run that shares that date is the first against a static
+map that has lanes; name the empire, never the date alone. **The most recent work
+is [decision 111](../decisions/111-three-galaxy-sizes.md)** — The Known Galaxy in
+**three sizes**, 95 / 600 / 1,000 systems from the one generator, medium and
+large matching vanilla's own `medium` and `huge` on star count *and* radius. Two
+new files, no new check, and the picker's loc file joined the generator's output
+because a hand-written copy of a generated number goes stale in silence. **None
+of the three has been run since it landed, and only the small one ever has.**
+The night before that was decisions
+[107](../decisions/107-the-ai-federation.md)–[110](../decisions/110-effect-and-trigger-names-are-clean.md)
 — the **AI Federation**, which the map had reserved a seat for and nothing had
 ever created; the Trek anomaly spawn weights, raised to their fair share of the
 merged pool while the level curve was measured and deliberately left alone; a
@@ -19,7 +26,7 @@ negative that ships no check. Two new `make validate` questions, one new file
 (the generated `common/inline_scripts/stg_federation_ai_empire.txt`) and one new
 `vendor.yml` patch. **Neither of the two content changes is graded** — see
 [open questions](open-questions.md), where both carry a one-glance test and a
-falsifiable prediction. The night before was
+falsifiable prediction. The night before that was
 [100](../decisions/100-starbase-slot-tables-outrun-the-art.md)–[105](../decisions/105-ten-log-files-nothing-had-named.md)
 — four `vendor.yml` patches, three checks, a fourteenth generator and the
 `make logs` target.
@@ -45,9 +52,9 @@ every number here goes stale — [style guide §6](../style-guide.md).*
 `.vendor-manifest.json` and the `make validate` summary line carry the live
 ones.
 
-| | Build of 2026-08-29 |
+| | Build of 2026-09-01 |
 |---|---|
-| Files / size | **22,396 / 14.3 GiB** ([the per-tier split](../architecture/vendored-merge.md#size)) — net one fewer than the 27th: the three name lists [93](../decisions/93-power-lists-win-the-contested-keys.md) deleted, against **two** inline scripts added, [101](../decisions/101-first-contact-sounds-are-species-class-gated.md)'s first contact sounds and [107](../decisions/107-the-ai-federation.md)'s AI Federation |
+| Files / size | **22,398 / 14.3 GiB** ([the per-tier split](../architecture/vendored-merge.md#size)) — plus two on 2026-09-01, the medium and large setup scenarios of [111](../decisions/111-three-galaxy-sizes.md). It was 22,396 before them, itself net one fewer than the 27th: the three name lists [93](../decisions/93-power-lists-win-the-contested-keys.md) deleted, against **two** inline scripts added, [101](../decisions/101-first-contact-sounds-are-species-class-gated.md)'s first contact sounds and [107](../decisions/107-the-ai-federation.md)'s AI Federation |
 | Re-cut at harvest / pruned | 1,661 / **888** |
 | Overwrites / additive skips | 952 / 220 |
 | `make vendor` | 68 s |
@@ -375,9 +382,11 @@ whole of decision 86's four questions have come back good.
 
 **The picker is locked** ([88](../decisions/88-lock-the-galaxy-picker.md)):
 YAGEM's twelve maps are excluded, vanilla's five are masked by files in `src/`
-that declare nothing, and *The Known Galaxy* carries `default = yes`. **Exactly
-one scenario declaration now reaches the engine** — so there is nothing to
-select, and no random galaxy to fall back to. That also makes the map a single
+that declare nothing, and *The Known Galaxy — Small* carries `default = yes`.
+**Only STG's own scenarios reach the engine** — one until 2026-09-01 and
+**three** since ([111](../decisions/111-three-galaxy-sizes.md)) — so the only
+choice the picker offers is how big a Known Galaxy to play, and there is no
+random galaxy to fall back to. That also makes the one map generator a single
 point of failure, reversible in one commit.
 
 **The lock has a price nobody had counted, and it is paid every run**:
@@ -389,12 +398,15 @@ its base ([98](../decisions/98-withdrawn-scenarios-are-referenced-by-name.md)).
 **Decision 88's own open question is closed, the same day, in two halves.** The
 picker comes up **preselected on The Known Galaxy** — reported from the run, and
 the half no check could reach; an empty list, which was the failure mode 88
-watched for, cannot preselect anything. And it is **the only choice**, which
-turned out not to need eyes at all: seven files reach `map/setup_scenarios/`
-after shadowing, six of them declare nothing — our five overrides plus vanilla's
-commented-out `static_galaxy_example.txt` — and `/stellaris/dlc` ships no
-`setup_scenarios`. One declaration reaches the engine, and
-`check_galaxy_size_references` recounts it every run.
+watched for, cannot preselect anything. And **every choice it offers is ours**,
+which turned out not to need eyes at all: **nine** files reach
+`map/setup_scenarios/` after shadowing and **six declare nothing** — our five
+overrides plus vanilla's commented-out `static_galaxy_example.txt` — and
+`/stellaris/dlc` ships no `setup_scenarios`. **Three declarations reach the
+engine**, all three The Known Galaxy
+([111](../decisions/111-three-galaxy-sizes.md)); it was one when this was
+counted on 2026-08-28, and `check_galaxy_size_references` recounts it every
+run.
 
 **One empire is deliberately absent from the map**: the Terran Empire, whose
 Sol and Earth collide with the Federation's. That is a content call in

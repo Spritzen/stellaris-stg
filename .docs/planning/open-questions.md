@@ -254,12 +254,21 @@ and is it the only choice.
 - **Preselected: yes, seen in the 2026-08-28 run.** That is the half no check
   could reach, and it also rules out the failure mode 88 named — *a galaxy list
   the engine finds empty* — because an empty list cannot preselect anything.
-- **Only choice: yes, and this half never needed eyes.** Seven files reach
-  `map/setup_scenarios/` after shadowing and **six of them declare nothing** —
+- **Only choice: yes, and this half never needed eyes.** Seven files reached
+  `map/setup_scenarios/` after shadowing and **six of them declared nothing** —
   our five picker-lock overrides plus vanilla's own `static_galaxy_example.txt`,
-  which is entirely commented out. One declaration reaches the engine,
+  which is entirely commented out. One declaration reached the engine,
   `STG_galaxy_alpha_beta`. There is no other directory: `/stellaris/dlc` has no
   `setup_scenarios`, so the path is the whole population.
+
+  > **Recounted 2026-09-01 and the shape holds while the numbers moved**
+  > ([111](../decisions/111-three-galaxy-sizes.md)). The Known Galaxy now ships
+  > in three sizes, so it is **nine** files, still **six** declaring nothing,
+  > and **three** declarations reach the engine — all three ours. The answer to
+  > *"is every choice on the picker STG's own"* is unchanged; the answer to
+  > *"is there exactly one"* is not, and it was deliberately changed.
+  > `check_galaxy_size_references` recounts both on every run, which is why this
+  > did not have to be noticed by eye.
 
 > **Half of what was filed as eyes-only was a disk question wearing a screen's
 > clothes.** 88's own rule — *a scenario is offered because a file at that path

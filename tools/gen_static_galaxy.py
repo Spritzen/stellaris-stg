@@ -33,12 +33,18 @@ galaxies have already shown does not fill a galaxy, and STNH — 22 static maps,
 WHERE THE COORDINATES COME FROM. Every position here is harvested, not invented:
 STNH's `01 STH_galaxy_default_galaxy_map.txt` places 1,436 systems across all
 four quadrants, and CANON below says which of them is each STG empire's home.
+(`stnh_all_positions()` returns 1,437: the file carries a sixth `system = {` on
+a COMMENTED-OUT line, STNH's disabled second Sol, and the harvest regex does not
+strip comments. It costs nothing -- the position is byte-identical to the live
+Sol two lines up, so the thinning pass discards it as zero distance from a star
+already kept, and no map has ever contained it. Fix the regex only alongside a
+regeneration, because the three files are committed output.)
 The filler systems are the same map's other positions, thinned to a minimum
 separation so the density is even and the quadrant shape survives; the whole
 cloud is then scaled by SCALE. Nothing is random and nothing is authored, so a
 re-run reproduces the file byte for byte (`make gen-check`).
 
-THREE SIZES OUT OF ONE CLOUD. The same 1,437 STNH positions and the same 21
+THREE SIZES OUT OF ONE CLOUD. The same STNH positions and the same 21
 canon homes produce a small, a medium and a large galaxy; SIZES below is the
 whole difference between them — 95 / 600 / 1,000 systems over a radius of
 218 / 399 / 448. MEDIUM AND LARGE ARE VANILLA'S OWN NUMBERS: its `medium` is

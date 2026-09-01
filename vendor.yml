@@ -580,8 +580,11 @@ src_regression_ack:
   # The five galaxy sizes, dropped ON PURPOSE -- this is the picker lock, not a
   # regression (.docs/decisions/88-lock-the-galaxy-picker.md). Each override
   # withdraws exactly one `setup_scenario` declaration, which is the entire
-  # point of the file: STG offers one galaxy and these five are the vanilla
-  # sizes it replaces.
+  # point of the file: STG offers The Known Galaxy and these five are the
+  # vanilla sizes it replaces. STG's own map has come in THREE sizes since
+  # 2026-09-01 (.docs/decisions/111-three-galaxy-sizes.md), which changes what
+  # the picker lists and changes nothing here -- the five withdrawals and the
+  # ack below are the same five either way.
   #
   # WHAT DECISION 88 GOT WRONG, corrected 2026-08-28 by the Klingon run of that
   # day: "nothing references a scenario by name" is FALSE. The setup screen
@@ -3885,17 +3888,20 @@ sources:
   # ── Gameplay / galaxy generation ───────────────────────────────────────────
   - id: "1327874725"
     name: Yet Another Galaxy Enhancement Mod
-    # STG ships one galaxy and the picker offers only it
-    # (.docs/decisions/88-lock-the-galaxy-picker.md). YAGEM's twelve alternative
+    # STG ships The Known Galaxy and the picker offers nothing else
+    # (.docs/decisions/88-lock-the-galaxy-picker.md; three sizes of it since
+    # .docs/decisions/111-three-galaxy-sizes.md). YAGEM's twelve alternative
     # maps go; its other twelve files -- the defines, on_actions, astro and
     # species names, setup.gui and loc -- are why the mod stays.
     #
     # The nine `ariphaos_*` scenarios are YAGEM's own names, so excluding them
     # removes them outright. The five vanilla names are NOT excluded here: drop
     # them and vanilla's own tiny..huge load in their place. They are masked by
-    # 0-byte files in `src/map/setup_scenarios/` instead, which is STNH's method
-    # -- STNH ships all five at 0 bytes for this exact reason and loses them to
-    # YAGEM here, being `additive_only`.
+    # comment-only files in `src/map/setup_scenarios/` instead -- STNH's method
+    # with the reason written in, since STNH ships all five at 0 bytes for this
+    # exact reason and loses them to YAGEM here, being `additive_only`. A
+    # comment-only file parses to the same nothing a 0-byte one does and can say
+    # why it is there.
     #
     # `map/ridiculous/` is not a path the engine reads; YAGEM ships it for a
     # player to copy into `setup_scenarios/` by hand. Inert either way, and it

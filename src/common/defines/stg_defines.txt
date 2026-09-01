@@ -28,9 +28,10 @@
 # What DOES place them: the home system's initializer creates the empire with
 # `create_country`, and a static_galaxy_scenario puts that system on the map.
 # Vanilla's own com_sol_system does it for the United Nations of Earth. STG
-# SHIPS THAT MAP NOW -- 95 systems, 21 empires -- and the 2026-08-27 Klingon run
-# generated a galaxy holding 20 AI Trek empires, one each. The mechanism works
-# and this define is not part of it.
+# SHIPS THAT MAP NOW -- 21 empires, at 95 / 600 / 1,000 systems since
+# .docs/decisions/111-three-galaxy-sizes.md -- and the 2026-08-27 Klingon run on
+# the smallest of the three generated a galaxy holding 20 AI Trek empires, one
+# each. The mechanism works and this define is not part of it.
 # .docs/decisions/85-create-country-initializers.md
 # .docs/decisions/86-static-galaxy-scenario.md
 # .docs/decisions/87-static-map-lanes-are-generated.md
