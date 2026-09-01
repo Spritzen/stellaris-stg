@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-"""Generate src/map/setup_scenarios/stg_alpha_beta_quadrant.txt — STG's first
-static galaxy scenario, the thing that actually puts Trek empires in the galaxy.
+"""Generate STG's static galaxy scenarios — the three sizes of The Known
+Galaxy, the thing that actually puts Trek empires in the galaxy.
 
 WHY THIS EXISTS. Six galaxies contained no Trek AI empire, and three fixes to
 the prescripted pool moved the number by nothing, because the pool is not the
@@ -38,6 +38,19 @@ separation so the density is even and the quadrant shape survives; the whole
 cloud is then scaled by SCALE. Nothing is random and nothing is authored, so a
 re-run reproduces the file byte for byte (`make gen-check`).
 
+THREE SIZES OUT OF ONE CLOUD. The same 1,437 STNH positions and the same 21
+canon homes produce a small, a medium and a large galaxy; SIZES below is the
+whole difference between them — 95 / 600 / 1,000 systems over a radius of
+218 / 399 / 448. MEDIUM AND LARGE ARE VANILLA'S OWN NUMBERS: its `medium` is
+600 stars at radius 400 and its `huge` is 1,000 at 450, so STG's two new sizes
+match a vanilla galaxy on star count and radius at once, and therefore on
+density too. Small is the outlier and stays one — it is the map three live runs
+have graded and its file is unchanged.
+
+`separation` is a threshold, so the star count it yields moves in steps and a
+round number is not reachable by it alone; `trim` cuts the overshoot, four
+stars for medium and eleven for large.
+
 Filler systems carry `name = ""` on purpose. The engine draws their names from
 the pool, which is 1,444 Trek star names already
 (.docs/decisions/84-static-galaxy-is-the-mechanism.md), and hard-coding STNH's
@@ -70,7 +83,9 @@ REPO = Path(__file__).resolve().parent.parent
 STNH_MAP = (REPO / ".source/688086068/map/setup_scenarios"
             / "01 STH_galaxy_default_galaxy_map.txt")
 PRESCRIPTED = REPO / "src/prescripted_countries"
-OUT = REPO / "src/map/setup_scenarios/stg_alpha_beta_quadrant.txt"
+OUT_DIR = REPO / "src/map/setup_scenarios"
+LOC_OUT = (REPO / "src/localisation/english"
+           / "stg_galaxy_maps_l_english.yml")
 
 # Which STNH system is each STG empire's canon home. This is the one content
 # judgement in the file -- the coordinates themselves are read off STNH's map
@@ -102,19 +117,77 @@ CANON = {
     "stg_vidiian_empire":               "vidiian_homeworld",
 }
 
-# Minimum separation between filler systems, in STNH's own coordinates, chosen
-# by measurement rather than by taste: 70 leaves 95 systems, which is 4.5 stars
-# per empire -- STNH's smallest canon map, `09 botf`, is 468 stars for 99
-# weighted systems, or 4.7. Raise it for a sparser galaxy, lower it for a
-# denser one; the count is printed on every run.
-MIN_SEPARATION = 70.0
-
-# STNH's default map is a full 500-radius galaxy and this is a fifth of its
-# star count, so the cloud has to come in with it or the empires end up days
-# apart. At 0.36 the extent is a radius of ~218 and the median nearest
-# neighbour is 26 units, against vanilla's own `max_hyperlane_distance = 50` --
-# so every system has a neighbour close enough to reach.
-SCALE = 0.36
+# THE THREE SIZES. Star count and radius are the two facts a player reads off
+# the picker, so they are what SIZES states outright; `separation` is the
+# density knob underneath them.
+#
+#   `systems`     the EXACT number of stars the map ships with. The picker
+#                 advertises it and `check_static_galaxy` counts it, so it is a
+#                 target rather than a result -- see `trim` below for the four
+#                 and eleven stars that stand between the thinning pass and a
+#                 round number.
+#   `separation`  minimum gap between filler systems in STNH'S OWN coordinates.
+#                 The thinning pass keeps a star only if it is that far from
+#                 every star already kept, so LOWERING it admits more of STNH's
+#                 1,437 positions. This is the knob that sets DENSITY; it is
+#                 chosen to overshoot `systems` by as little as it can.
+#   `scale`       multiplies every position on the way out, so it sets the
+#                 galaxy's RADIUS: STNH's cloud reaches 605 units, and the
+#                 radius of the map is that times `scale`.
+#
+# WHERE THE NUMBERS COME FROM. Medium and large are vanilla's own scenarios,
+# matched on both facts at once:
+#
+#   | | stars | radius | density |
+#   |---|---|---|---|
+#   | vanilla `medium` | 600 | 400 | 11.9 |
+#   | **STG medium**   | 600 | 399 | 12.0 |
+#   | vanilla `huge`   | 1000 | 450 | 15.9 |
+#   | **STG large**    | 1000 | 448 | 15.9 |
+#
+# (density in stars per 10,000 square units.) That is why `scale` is 0.66 and
+# 0.74 and not round numbers: 605 x 0.66 = 399 and 605 x 0.74 = 448, which are
+# vanilla's 400 and 450. Vanilla's files also carry the ceiling -- `radius = 450`
+# under the comment "should be less than 500, preferably less than ~460" -- so
+# large is at the top of the ladder and there is no room above it. A bigger STG
+# galaxy would have to widen the cloud, not the scale.
+#
+# SMALL IS NOT ON THAT LADDER AND DELIBERATELY SO. 70 / 0.36 / 95 systems is the
+# map three live runs have graded
+# (.docs/decisions/106-sealed-system-is-vanilla-content.md), and it was itself
+# measured: 95 systems is 4.5 stars per empire, against the 4.7 of STNH's
+# smallest canon map (`09 botf`, 468 stars for 99 weighted systems). Nothing
+# about it moves here, and its file is byte-identical below the header comment.
+# It is therefore a THIRD as dense as vanilla, where medium and large are
+# vanilla's own density -- so the three differ in texture as well as in size,
+# and small is the one that is unlike the game around it.
+#
+# What survives that: the lane rule. Mean degree comes out 3.41 / 3.53 / 3.63
+# and the longest lane 49 / 41 / 40 units, all three under vanilla's
+# `max_hyperlane_distance = 50`, because LANE_NEIGHBOURS is a count and the cap
+# only ever binds on the sparse map.
+#
+# `default` marks the one scenario the setup screen opens on, and exactly one
+# row may carry it (.docs/decisions/88-lock-the-galaxy-picker.md). It stays on
+# small: that is the map with three live runs behind it, and a new size is not
+# graded by being generated.
+#
+# `priority` orders the picker list, ascending, the way vanilla's own five run
+# tiny=0 through huge=4.
+SIZES = [
+    {"name": "STG_galaxy_alpha_beta",
+     "file": "stg_alpha_beta_quadrant.txt",
+     "label": "Small",  "systems": 95,   "separation": 70.0, "scale": 0.36,
+     "priority": 0, "default": True},
+    {"name": "STG_galaxy_alpha_beta_medium",
+     "file": "stg_alpha_beta_quadrant_medium.txt",
+     "label": "Medium", "systems": 600,  "separation": 19.0, "scale": 0.66,
+     "priority": 1, "default": False},
+    {"name": "STG_galaxy_alpha_beta_large",
+     "file": "stg_alpha_beta_quadrant_large.txt",
+     "label": "Large",  "systems": 1000, "separation": 11.0, "scale": 0.74,
+     "priority": 2, "default": False},
+]
 
 # Modelled on STNH's `04 STH_galaxy_tiny_alpha_beta`, the closest thing in
 # .source/ to what this is: a small, canon, static Alpha/Beta map.
@@ -162,30 +235,38 @@ LANE_NEIGHBOURS = 3
 # (.docs/decisions/88-lock-the-galaxy-picker.md). It was deliberately left off
 # while YAGEM's `medium.txt` still carried it -- two defaults is worse than
 # none -- and YAGEM's twelve maps are now excluded and vanilla's five masked by
-# 0-byte files, so this is the only scenario the picker has and the default has
-# to be it. STNH's `01 STH_galaxy_default_galaxy_map.txt` is the precedent for
-# the key on a `static_galaxy_scenario` rather than a random `setup_scenario`.
+# 0-byte files, so the picker holds nothing but STG's own scenarios and the
+# default has to be one of them. Now that there are three, `default` is a
+# column of SIZES and exactly one row carries it. STNH's
+# `01 STH_galaxy_default_galaxy_map.txt` is the precedent for the key on a
+# `static_galaxy_scenario` rather than a random `setup_scenario`.
 HEADER = """\
 # GENERATED by tools/gen_static_galaxy.py — do not hand-edit; regenerate.
 #
-# STG's first static galaxy scenario. Every Trek empire in the galaxy is placed
-# here and created by the initializer this file names for it; the prescripted
-# pool is the player's roster and has nothing to do with it.
+# STG's static galaxy scenario, {label} of three. Every Trek empire in the
+# galaxy is placed here and created by the initializer this file names for it;
+# the prescripted pool is the player's roster and has nothing to do with it.
 # See .docs/decisions/86-static-galaxy-scenario.md.
 #
-# Positions are STNH's, harvested from their default galaxy map and scaled by
-# {scale}. Filler systems carry no initializer and no name: the engine builds
-# and names them from STG's own Trek star pool.
+# The three sizes are one cloud of positions under two knobs, `separation` and
+# `scale` in SIZES; this is the {label_lower} row. Nothing else differs between
+# them -- same 21 empires, same canon geography, same lane rule.
+# See .docs/decisions/111-three-galaxy-sizes.md.
+#
+# Positions are STNH's, harvested from their default galaxy map, thinned to a
+# minimum separation of {separation} in their coordinates, cut to this size's
+# star count and scaled by {scale}. Filler systems carry no initializer and no
+# name: the engine builds and names them from STG's own Trek star pool.
 #
 # {homes} empires placed, {filler} filler systems, {total} systems in all,
-# joined by {lanes} hyperlanes. The lanes are generated from the positions
-# above, not left to the engine: `random_hyperlanes = no` builds nothing.
+# joined by {lanes} hyperlanes across a radius of {radius}. The lanes are
+# generated from the positions above, not left to the engine:
+# `random_hyperlanes = no` builds nothing.
 
 static_galaxy_scenario = {{
-\tname = "STG_galaxy_alpha_beta"
-\tpriority = 0
-\tdefault = yes
-
+\tname = "{name}"
+\tpriority = {priority}
+{default_line}
 \tcolonizable_planet_odds = 1.0
 \tprimitive_odds = 1.0
 
@@ -216,6 +297,42 @@ static_galaxy_scenario = {{
 
 """
 
+
+# The picker's own text, generated with the maps so the counts in it cannot
+# drift from the counts in them. The engine renders a scenario's `name` as a
+# localisation key and lays the whole string out in the setup screen's map
+# list, so the line breaks and the £icon£ tokens are deliberate --
+# STNH's own map entries read the same way.
+LOC_HEADER = """\
+l_english:
+
+# GENERATED by tools/gen_static_galaxy.py — do not hand-edit; regenerate.
+#
+# Star Trek Galaxies — the galaxy-shape picker. One entry per scenario in
+# src/map/setup_scenarios/, keyed by the scenario's own `name`.
+# See .docs/decisions/86-static-galaxy-scenario.md,
+# .docs/decisions/111-three-galaxy-sizes.md.
+
+"""
+
+# True of all three, because all three are the same galaxy.
+LOC_BODY = ("The Alpha and Beta Quadrants at their canon positions, with the "
+            "Delta and Gamma powers beyond them. Every empire starts on its "
+            "own home system: Sol, Qo'noS, Romulus, Cardassia, 40 Eridani, "
+            "Bajor. No randomly generated empires.")
+
+# And the one line that is not. Keyed by SIZES' `label`.
+LOC_NOTE = {
+    "Small":  "The smallest and the sparsest: few stars between one empire and "
+              "the next, so first contact comes early and there is little "
+              "unclaimed room that somebody else does not already want.",
+    "Medium": "A full galaxy at the game's own medium scale \u2014 six times "
+              "the stars of the small map, and space to survey and settle for "
+              "a long while before the borders meet.",
+    "Large":  "The largest that fits: a thousand systems at the density of a "
+              "vanilla huge galaxy, with real unexplored distance between the "
+              "Alpha powers and the Delta and Gamma ones.",
+}
 
 def stnh_positions() -> dict[str, tuple[float, float]]:
     """Every `initializer = X` on STNH's default galaxy map, with its position.
@@ -357,43 +474,129 @@ def main() -> int:
         return 1
 
     homes = [(key, canon[CANON[key]]) for key in CANON]
+    allpos = stnh_all_positions()
+
+    stats = []
+    for size in SIZES:
+        s = scenario(size, emp, homes, allpos)
+        if s is None:
+            return 1
+        stats.append(s)
+
+    LOC_OUT.parent.mkdir(parents=True, exist_ok=True)
+    LOC_OUT.write_text(localisation(stats), encoding="utf-8-sig")
+    print(f"wrote {LOC_OUT.relative_to(REPO)}  "
+          f"({len(stats)} scenario name(s))")
+    return 0
+
+
+def trim(coords: list[tuple[int, int]], n_homes: int,
+         target: int) -> list[int]:
+    """Which systems survive, as indices, once the map is cut to `target`.
+
+    WHY THIS EXISTS. `separation` is a threshold and the star count it yields
+    is a step function of it, so a round number is simply not reachable: at
+    scale 0.66 the count goes 599 at separation 19.11 and 603 at 19.10, and
+    there is no separation between them that gives 600. Measured, not assumed
+    -- the search is in .docs/decisions/111-three-galaxy-sizes.md.
+
+    So the separation is chosen to OVERSHOOT by as little as it can and the
+    excess is cut here: four stars for medium, eleven for large, none at all
+    for small, whose 70 lands on 95 exactly and whose file is unchanged
+    because of it.
+
+    WHICH ONES GO. Repeatedly, the filler star currently closest to any other
+    surviving star. That is the removal that costs the map least -- a star in
+    the tightest pair is the one whose absence is least visible and whose
+    presence contributes least reach -- and it makes the minimum spacing go up
+    rather than down, so the cut cannot manufacture a pair the lane graph then
+    has to join twice. Homes are never candidates: an empire's seat is the one
+    thing on this map that is not interchangeable.
+
+    One at a time, re-measuring after each: dropping the n closest in a single
+    pass would take BOTH halves of a tight pair and leave the hole the pair was
+    filling. Ties break on index, so the result is reproducible
+    (`make gen-check`).
+    """
+    alive = list(range(len(coords)))
+    for _ in range(len(coords) - target):
+        worst = min(
+            ((min(math.dist(coords[i], coords[j])
+                  for j in alive if j != i), i)
+             for i in alive if i >= n_homes),
+            default=None)
+        if worst is None:
+            break                    # nothing left but empire homes
+        alive.remove(worst[1])
+    return alive
+
+
+def scenario(size: dict, emp: dict[str, dict[str, str]],
+             homes: list[tuple[str, tuple[float, float]]],
+             allpos: list[tuple[float, float]]) -> dict | None:
+    """Write one size's scenario file, and report what went into it.
+
+    Thinning is done per size rather than once because the surviving set is not
+    a subset relation the caller could share: a star kept at separation 11 can
+    be the one that suppresses a different star at 19, so each size has to walk
+    STNH's cloud in file order from the empires outward.
+    """
+    sep, scale, target = size["separation"], size["scale"], size["systems"]
+
     kept = [pos for _, pos in homes]
     filler: list[tuple[float, float]] = []
-    for pos in stnh_all_positions():
-        if all((pos[0] - k[0]) ** 2 + (pos[1] - k[1]) ** 2
-               >= MIN_SEPARATION ** 2 for k in kept):
+    for pos in allpos:
+        if all((pos[0] - k[0]) ** 2 + (pos[1] - k[1]) ** 2 >= sep ** 2
+               for k in kept):
             kept.append(pos)
             filler.append(pos)
 
     def place(pos: tuple[float, float]) -> tuple[int, int]:
-        return round(pos[0] * SCALE), round(pos[1] * SCALE)
+        return round(pos[0] * scale), round(pos[1] * scale)
 
     seen: dict[tuple[int, int], str] = {}
-    coords: list[tuple[int, int]] = []      # position of each system, by id
-    rows, sid = [], 0
+    coords: list[tuple[int, int]] = []      # position of each candidate
+    owner: list[str] = []                   # its empire key, or "" for filler
     for key, pos in homes:
         xy = place(pos)
         if xy in seen:
-            print(f"ERROR: {key} and {seen[xy]} land on {xy} after scaling; "
-                  f"raise SCALE.", file=sys.stderr)
-            return 1
+            print(f"ERROR: {size['name']}: {key} and {seen[xy]} land on {xy} "
+                  f"after scaling; raise this size's `scale`.", file=sys.stderr)
+            return None
         seen[xy] = key
         coords.append(xy)
-        rows.append(
-            f'\tsystem = {{ id = "{sid}" name = "" '
-            f"position = {{ x = {xy[0]} y = {xy[1]} }} "
-            f'initializer = {emp[key]["initializer"]} '
-            f"spawn_weight = {{ base = 0 modifier = {{ add = 100000 "
-            f"has_country_flag = {key} }} }} }}")
-        sid += 1
+        owner.append(key)
     for pos in filler:
         xy = place(pos)
         if xy in seen:
             continue          # two canon stars rounded onto one point
         seen[xy] = "filler"
         coords.append(xy)
-        rows.append(f'\tsystem = {{ id = "{sid}" name = "" '
-                    f"position = {{ x = {xy[0]} y = {xy[1]} }} }}")
+        owner.append("")
+
+    if len(coords) < target:
+        print(f"ERROR: {size['name']}: separation {sep} yields "
+              f"{len(coords)} systems, short of the {target} it asks for. "
+              f"Lower `separation` -- STNH's cloud holds "
+              f"{len(allpos)} positions in all.", file=sys.stderr)
+        return None
+    cut = len(coords) - target
+    alive = trim(coords, len(homes), target)
+    coords = [coords[i] for i in alive]
+    owner = [owner[i] for i in alive]
+
+    rows, sid = [], 0
+    for xy, key in zip(coords, owner):
+        if key:
+            rows.append(
+                f'\tsystem = {{ id = "{sid}" name = "" '
+                f"position = {{ x = {xy[0]} y = {xy[1]} }} "
+                f'initializer = {emp[key]["initializer"]} '
+                f"spawn_weight = {{ base = 0 modifier = {{ add = 100000 "
+                f"has_country_flag = {key} }} }} }}")
+        else:
+            rows.append(f'\tsystem = {{ id = "{sid}" name = "" '
+                        f"position = {{ x = {xy[0]} y = {xy[1]} }} }}")
         sid += 1
 
     lanes = lane_graph(coords)
@@ -401,22 +604,51 @@ def main() -> int:
     rows += [f'\tadd_hyperlane = {{ from = "{a}" to = "{b}" }}'
              for a, b in lanes]
 
-    body = HEADER.format(scale=SCALE, homes=len(homes),
-                         filler=sid - len(homes), total=sid,
-                         lanes=len(lanes))
+    span = max(math.hypot(*xy) for xy in coords)
+    body = HEADER.format(
+        name=size["name"], label=size["label"],
+        label_lower=size["label"].lower(), priority=size["priority"],
+        default_line="\tdefault = yes\n" if size["default"] else "",
+        scale=scale, separation=f"{sep:g}", homes=len(homes),
+        filler=sid - len(homes), total=sid, lanes=len(lanes),
+        radius=f"{span:.0f}")
     body += "\n".join(rows) + "\n}\n"
 
-    OUT.parent.mkdir(parents=True, exist_ok=True)
-    OUT.write_text(body, encoding="utf-8")
+    out = OUT_DIR / size["file"]
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(body, encoding="utf-8")
 
-    span = max(math.hypot(*place(p)) for p in kept)
-    print(f"wrote {OUT.relative_to(REPO)}")
-    print(f"  {len(homes)} empires, {sid - len(homes)} filler, {sid} systems")
-    print(f"  radius {span:.0f} at scale {SCALE}")
     longest = max(math.dist(coords[a], coords[b]) for a, b in lanes)
-    print(f"  {len(lanes)} hyperlanes, longest {longest:.0f} "
+    print(f"wrote {out.relative_to(REPO)}")
+    print(f"  {len(homes)} empires, {sid - len(homes)} filler, {sid} systems "
+          f"({cut} trimmed to hit {target})")
+    print(f"  radius {span:.0f} at scale {scale}, separation {sep:g}")
+    print(f"  {len(lanes)} hyperlanes, mean degree "
+          f"{2 * len(lanes) / sid:.2f}, longest {longest:.0f} "
           f"(cap {LANE_MAX:.0f}, exceeded only by MST edges)")
-    return 0
+    return {"size": size, "systems": sid, "empires": len(homes)}
+
+
+def localisation(stats: list[dict]) -> str:
+    """The picker's entry for every size, from the counts just written.
+
+    The engine renders a scenario's `name` as a loc key, so this file is what
+    the setup screen actually shows -- and the star count in it is a fact about
+    the map file beside it. Generating both from one run is the only way the
+    two cannot disagree; the hand-written version of this file said "95 Star
+    Systems" and would have gone on saying it.
+    """
+    out = [LOC_HEADER]
+    for s in stats:
+        size = s["size"]
+        out.append(
+            f' {size["name"]}:0 "\u00a7YThe Known Galaxy \u2014 '
+            f'{size["label"]}\u00a7!'
+            f'\\n\u00a3system\u00a3 {s["systems"]} Star Systems'
+            f'\\n\u00a3pops\u00a3 {s["empires"]} Empires'
+            f'\\n\\n\u00a7YStatic Galaxy\u00a7!\\n\\n'
+            f'{LOC_BODY}\\n\\n{LOC_NOTE[size["label"]]}"\n')
+    return "".join(out)
 
 
 if __name__ == "__main__":

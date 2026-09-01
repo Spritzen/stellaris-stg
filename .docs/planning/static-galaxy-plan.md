@@ -7,7 +7,7 @@
 > `map/`, `prescripted_countries/` or `CUSTOM_EMPIRE_SPAWN_CHANCE` again.
 > **Then** — [Decision 86](../decisions/86-static-galaxy-scenario.md) · [Decision 85](../decisions/85-create-country-initializers.md) · [Decision 84](../decisions/84-static-galaxy-is-the-mechanism.md) · [Open questions](open-questions.md) · [Status](status.md)
 
-> ## Where this plan stands, 2026-08-29
+> ## Where this plan stands, 2026-09-01
 >
 > **All four pieces are built, and three live runs have graded them** —
 > [86](../decisions/86-static-galaxy-scenario.md),
@@ -27,15 +27,23 @@
 > ([107](../decisions/107-the-ai-federation.md)). `make validate` and
 > `make gen-check` were **not** evidence about any of it: both were clean
 > throughout all six empty galaxies, and clean over the lane defect too.
+> **The one galaxy became three on 2026-09-01** — small, medium and large,
+> **95 / 600 / 1,000** systems out of the same generator and the same 21
+> canon homes. Medium and large are **vanilla's own `medium` and `huge`**,
+> matched on star count and radius at once and therefore on density too
+> ([111](../decisions/111-three-galaxy-sizes.md)). That is the scale half
+> of step 6. **Both are built and unrun**, and small — the one three runs
+> graded — is byte-identical and still the default, and now a third the
+> density of the other two.
 >
 > | | |
 > |---|---|
 > | the binding | **`spawn_weight` + country flag.** STNH uses `spawn_design` zero times in 22 maps; it routes back through the draw that already failed six times |
-> | the map | `src/map/setup_scenarios/stg_alpha_beta_quadrant.txt` — 95 systems, 21 empires, **162 generated hyperlanes**, every coordinate harvested from STNH's default galaxy map |
+> | the map | `src/map/setup_scenarios/stg_alpha_beta_quadrant*.txt` — **three sizes since 2026-09-01** ([111](../decisions/111-three-galaxy-sizes.md)): **95 / 600 / 1,000** systems, 21 empires and **162 / 1,058 / 1,814 generated hyperlanes** each, every coordinate harvested from STNH's default galaxy map. Only the smallest has been run |
 > | the AI copies | 36 `create_country` blocks, generated into `stg_home_systems.txt` |
 > | **the piece this plan did not have** | the **country flag join**. `common/prescripted_flags/` is what gives the *player's* copy of an empire the flag the map weights on and the initializer guards on. STG shipped none. §2 below said the flag "exists because the initializer set it" — that is true only of the AI copy |
 > | the check | `check_static_galaxy` — five questions as shipped, **six since [107](../decisions/107-the-ai-federation.md)**, vanilla floor 0 |
-> | still open | the **Terran Empire**, whose Sol collides with the Federation's. Piece 3, the picker lock, is done — [88](../decisions/88-lock-the-galaxy-picker.md). **The AI Federation is done too, as of 2026-08-29** — [107](../decisions/107-the-ai-federation.md), which is also where the sixth question came from |
+> | still open | the **Terran Empire**, whose Sol collides with the Federation's, and the **15 minors** that have home systems and no seat on any of the three maps. Piece 3, the picker lock, is done — [88](../decisions/88-lock-the-galaxy-picker.md). **The AI Federation is done too, as of 2026-08-29** — [107](../decisions/107-the-ai-federation.md), which is also where the sixth question came from. **The three sizes landed 2026-09-01** — [111](../decisions/111-three-galaxy-sizes.md) — and want a run on the large one |
 
 Six galaxies have contained no Trek AI empire. Three fixes went into the
 prescripted-empire pool and none moved the number, and the 2026-08-26 save
@@ -264,8 +272,12 @@ STNH's 22 in `.source/`
    2026-08-29, as a generated `inline_script` fragment a `vendor.yml` patch
    splices in — [107](../decisions/107-the-ai-federation.md), and it is built
    and unrun**; the Terran Empire and its Sol collision, which wants a mirror
-   scenario; **scale to a full map**, adding the 15 minors that already have
-   home systems; nebulae, which STNH hand-places by canon name. **Piece 3, the
+   scenario; ~~**scale to a full map**~~ — **done 2026-09-01**: three sizes at
+   **95 / 600 / 1,000** systems, the last two being vanilla's own `medium` and
+   `huge` on star count and radius alike ([111](../decisions/111-three-galaxy-sizes.md)) — what is
+   left of this item is **the 15 minors that already have home systems**, which
+   more room to place them in is not the same as placing them; nebulae, which
+   STNH hand-places by canon name. **Piece 3, the
    picker lock, is no longer last and is done** — its "not before, or there is
    nothing to select" condition was met the moment the map generated with lanes
    and 20 AI empires ([87](../decisions/87-static-map-lanes-are-generated.md),

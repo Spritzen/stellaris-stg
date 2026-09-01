@@ -475,7 +475,11 @@ is, and deliberately** —
 [decision 87](../decisions/87-static-map-lanes-are-generated.md) has what the
 run returned: 20 AI Trek empires created, the flag guard firing, and a galaxy
 with no hyperlanes in it because the map declared none. The lanes are generated
-now and want one more run. Items 1, 1b and 3 above are all about the *pool*, and
+now and want one more run. **Since 2026-09-01 there are three
+sizes of it** — 95, 600 and 1,000 systems from the one generator, the last two
+matching vanilla's own `medium` and `huge` on star count and radius
+([111](../decisions/111-three-galaxy-sizes.md)); only the smallest has ever been
+run, so a run on the 1,000-system map is the new open half of this item. Items 1, 1b and 3 above are all about the *pool*, and
 the pool no longer gates the galaxy — do them after that run, not before it.
 
 #### What not to do yet
